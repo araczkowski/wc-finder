@@ -1,0 +1,14 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <rect width="32" height="32" rx="5" fill="#10B981"/> <!-- Emerald green background with rounded corners -->
+  <text
+    x="50%"
+    y="51.5%"
+    dominant-baseline="central"
+    text-anchor="middle"
+    font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif"
+    font-size="16"
+    font-weight="bold"
+    fill="white">
+    WC
+  </text>
+</svg>
