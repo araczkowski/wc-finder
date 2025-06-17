@@ -444,7 +444,7 @@ export default function Home() {
               )}
               {!loadingWcs && !wcError && wcs.length === 0 && (
                 <p style={styles.noWcsMessage}>
-                  No WCs found. Click "Add New WC" to add one!
+                  No WCs found. Click Add New WC to add one!
                 </p>
               )}
               {!loadingWcs && !wcError && wcs.length > 0 && (

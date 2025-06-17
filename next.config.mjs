@@ -14,11 +14,29 @@ const nextConfig = {
       // 'http://<your-computer-name>.local:3000',
     ],
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "hzkvqzhvgdwlbienjgjx.supabase.co", // Your Supabase project hostname
+        port: "", // Default for https is 443, so empty string is fine
+        // You can make the pathname more specific if all your images
+        // are under a certain path within the bucket.
+        // This example allows any image from the 'wc-images' bucket.
+        pathname: "/storage/v1/object/public/wc-images/**",
+      },
+      // Add other remote patterns here if you use images from other domains
+      // Example:
+      // {
+      //   protocol: 'https',
+      //   hostname: 'lh3.googleusercontent.com', // For Google User Avatars
+      //   port: '',
+      //   pathname: '/a/**',
+      // },
+    ],
+  },
   // If you have other Next.js configurations, they would go here, for example:
   // reactStrictMode: true,
-  // images: {
-  //   domains: ['your-image-domain.com'],
-  // },
 };
 
 export default nextConfig;
