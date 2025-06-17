@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { createClient } from "@supabase/supabase-js"; // Import Supabase client
 
 // Basic inline styles (consider moving to CSS module or global CSS)
 const styles = {
@@ -12,7 +13,7 @@ const styles = {
     flexDirection: "column",
     alignItems: "center",
     padding: "20px",
-    minHeight: "calc(100vh - 70px)", // Assuming a header height of around 70px
+    minHeight: "calc(100vh - 70px)", // Assuming a header height
     backgroundColor: "#f9f9f9",
     fontFamily: "sans-serif",
   },
@@ -100,7 +101,9 @@ const styles = {
 export default function AddWcPage() {
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  // State for image handling
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
   const [rating, setRating] = useState(5); // Default to 5 stars (1-10 scale)
   const [hoverRating, setHoverRating] = useState(0);
   const [error, setError] = useState("");
@@ -108,6 +111,19 @@ export default function AddWcPage() {
 
   const router = useRouter();
   const { data: session, status: sessionStatus } = useSession();
+
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  const supabase = useMemo(() => {
+    if (supabaseUrl && supabaseAnonKey) {
+      return createClient(supabaseUrl, supabaseAnonKey);
+    }
+    console.warn(
+      "Supabase URL or Anon Key is missing for AddWcPage client. Image uploads will fail.",
+    );
+    return null;
+  }, [supabaseUrl, supabaseAnonKey]);
 
   useEffect(() => {
     if (sessionStatus === "loading") {
@@ -145,17 +161,52 @@ export default function AddWcPage() {
       return;
     }
 
-    const wcData = {
-      user_login: session.user.id, // This should match your Supabase column name for the user's ID
-      name: name.trim(),
-      location: location.trim() || null, // Send null if empty
-      image_url: imageUrl.trim() || null, // Send null if empty
-      rating: parseInt(rating, 10), // Rating is now always 1-10
-    };
-
     try {
+      let uploadedImageUrl = null;
+      if (selectedFile && supabase) {
+        // Use user_id and timestamp for a somewhat unique path
+        // Ensure your bucket is named 'wc-images' or change as needed
+        // Ensure RLS policies on 'wc-images' bucket allow uploads for authenticated users.
+        const filePath = `${session.user.id}/${Date.now()}_${selectedFile.name}`;
+
+        const { data: uploadData, error: uploadError } = await supabase.storage
+          .from("wc-images") // Make sure this bucket name is correct
+          .upload(filePath, selectedFile, {
+            cacheControl: "3600",
+            upsert: false, // Set to true if you want to allow overwriting files with the same path
+          });
+
+        if (uploadError) {
+          console.error("Supabase Storage upload error:", uploadError);
+          throw new Error(
+            `Failed to upload image: ${uploadError.message}. Ensure the 'wc-images' bucket exists and RLS policies allow uploads by authenticated users.`,
+          );
+        }
+
+        // Get public URL for the uploaded file
+        const { data: publicUrlData } = supabase.storage
+          .from("wc-images")
+          .getPublicUrl(uploadData.path);
+
+        if (!publicUrlData || !publicUrlData.publicUrl) {
+          console.error(
+            "Error getting public URL for uploaded image:",
+            publicUrlData,
+          );
+          throw new Error("Failed to get public URL for image after upload.");
+        }
+        uploadedImageUrl = publicUrlData.publicUrl;
+      }
+
+      const wcData = {
+        user_login: session.user.id,
+        name: name.trim(),
+        location: location.trim() || null,
+        image_url: uploadedImageUrl, // Use the uploaded image URL
+        rating: parseInt(rating, 10),
+      };
+
       const response = await fetch("/api/wcs", {
-        // Assuming your API route is at /api/wcs
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(wcData),
@@ -169,9 +220,8 @@ export default function AddWcPage() {
         );
       }
 
-      // Successful submission
-      router.push("/?status=wc_added"); // Redirect to home page with a status message
-      router.refresh(); // Optional: good if home page needs to refetch data server-side or clear cache
+      router.push("/?status=wc_added");
+      router.refresh();
     } catch (err) {
       console.error("Client-side error adding WC:", err);
       setError(
@@ -181,6 +231,28 @@ export default function AddWcPage() {
       setLoading(false);
     }
   };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setSelectedFile(file);
+      // Create a preview URL
+      const previewUrl = URL.createObjectURL(file);
+      setImagePreview(previewUrl);
+    } else {
+      setSelectedFile(null);
+      setImagePreview(null);
+    }
+  };
+
+  // Clean up the object URL to prevent memory leaks
+  useEffect(() => {
+    return () => {
+      if (imagePreview) {
+        URL.revokeObjectURL(imagePreview);
+      }
+    };
+  }, [imagePreview]);
 
   if (sessionStatus === "loading") {
     return <div style={styles.loadingMessage}>Loading session...</div>;
@@ -242,19 +314,34 @@ export default function AddWcPage() {
           </div>
 
           <div>
-            <label htmlFor="imageUrl" style={styles.label}>
-              Image URL
+            <label htmlFor="imageFile" style={styles.label}>
+              Image (Optional)
             </label>
             <input
-              id="imageUrl"
-              name="image_url"
-              type="url"
-              value={imageUrl}
-              onChange={(e) => setImageUrl(e.target.value)}
-              style={styles.input}
-              placeholder="https://example.com/image.jpg"
+              id="imageFile"
+              name="imageFile"
+              type="file"
+              accept="image/*"
+              capture="environment" // "user" for front camera, "environment" for back
+              onChange={handleFileChange}
+              style={{ ...styles.input, padding: "8px" }} // Adjust padding for file input aesthetics
               disabled={loading}
             />
+            {imagePreview && (
+              <div style={{ marginTop: "10px", textAlign: "center" }}>
+                <img
+                  src={imagePreview}
+                  alt="Selected image preview"
+                  style={{
+                    maxWidth: "100%",
+                    maxHeight: "200px",
+                    borderRadius: "4px",
+                    border: "1px solid #ddd",
+                    objectFit: "contain",
+                  }}
+                />
+              </div>
+            )}
           </div>
 
           <div>
