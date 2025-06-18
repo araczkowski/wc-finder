@@ -376,6 +376,13 @@ a {
     box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
 }
 
+textarea.form-input {
+    resize: vertical;
+    min-height: 100px;
+    font-family: inherit;
+    line-height: 1.5;
+}
+
 .form-input[readonly] {
     background-color: #f8f9fa;
     color: #6c757d;
@@ -485,6 +492,59 @@ a {
     object-fit: contain;
 }
 
+/* Rating sections */
+.rating-section {
+    margin-top: 2rem;
+    border-top: 1px solid #ddd;
+    padding-top: 2rem;
+}
+
+.rating-card {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.rating-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+}
+
+.rating-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.rating-stars {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.rating-date {
+    color: #666;
+    font-size: 0.8rem;
+}
+
+.rating-comment {
+    color: #555;
+    font-style: italic;
+    margin-top: 0.5rem;
+    line-height: 1.4;
+}
+
+.ratings-container {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 0.5rem;
+}
+
 /* Mobile form optimizations */
 @media (max-width: 767px) {
     .form-container {
@@ -520,6 +580,19 @@ a {
     .star-rating-container {
         gap: 0.25rem;
         justify-content: center;
+    }
+
+    .rating-header {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .rating-info {
+        align-items: flex-start;
+    }
+
+    .ratings-container {
+        max-height: 300px;
     }
 }
 
@@ -768,6 +841,31 @@ a {
     .form-input:focus {
         border-color: #0084ff;
         box-shadow: 0 0 0 2px rgba(0, 132, 255, 0.25);
+    }
+
+    textarea.form-input {
+        background-color: #333;
+        border-color: #555;
+        color: #fff;
+    }
+
+    .rating-card {
+        background-color: #333;
+        border-color: #555;
+    }
+
+    .rating-comment {
+        color: #ccc;
+    }
+
+    .rating-stars,
+    .rating-date {
+        color: #aaa;
+    }
+
+    .ratings-container {
+        border-color: #555;
+        background-color: #2a2a2a;
     }
 
     .form-input[readonly] {

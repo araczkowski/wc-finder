@@ -66,6 +66,16 @@ export default function EditWcPage() {
   const [pageLoading, setPageLoading] = useState(true); // For initial data fetch
   const [isOwner, setIsOwner] = useState(false); // Check if current user is the owner
 
+  // User rating state
+  const [userRating, setUserRating] = useState(0);
+  const [userComment, setUserComment] = useState("");
+  const [userHoverRating, setUserHoverRating] = useState(0);
+  const [hasUserRating, setHasUserRating] = useState(false);
+  const [ratingLoading, setRatingLoading] = useState(false);
+  const [ratingError, setRatingError] = useState("");
+  const [allRatings, setAllRatings] = useState([]);
+  const [averageRating, setAverageRating] = useState(0);
+
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
@@ -128,11 +138,68 @@ export default function EditWcPage() {
         setCurrentImageUrl(fetchedWc.image_url || null);
         setImagePreview(fetchedWc.image_url || null);
         setRating(fetchedWc.rating || 0);
+
+        // Fetch user ratings
+        await fetchUserRatings();
       } catch (err) {
         console.error("Error fetching WC data for edit:", err);
         setError(`Failed to load WC details: ${err.message}`);
       } finally {
         setPageLoading(false);
+      }
+    };
+
+    const fetchUserRatings = async () => {
+      try {
+        console.log("[fetchUserRatings] Fetching ratings for WC:", wcId);
+        const response = await fetch(`/api/wc-ratings?wc_id=${wcId}`);
+        const result = await response.json();
+
+        console.log("[fetchUserRatings] API Response:", {
+          status: response.status,
+          ok: response.ok,
+          result,
+        });
+
+        if (response.ok) {
+          console.log("[fetchUserRatings] Setting ratings data:", {
+            ratingsCount: result.ratings?.length || 0,
+            averageRating: result.averageRating || 0,
+            currentUserId: session.user.id,
+          });
+
+          setAllRatings(result.ratings || []);
+          setAverageRating(result.averageRating || 0);
+
+          // Check if current user has already rated this WC
+          const currentUserRating = result.ratings?.find(
+            (r) => r.user_id === session.user.id,
+          );
+
+          console.log(
+            "[fetchUserRatings] Current user rating found:",
+            currentUserRating,
+          );
+
+          if (currentUserRating) {
+            setUserRating(currentUserRating.rating);
+            setUserComment(currentUserRating.comment || "");
+            setHasUserRating(true);
+            console.log("[fetchUserRatings] Set user rating:", {
+              rating: currentUserRating.rating,
+              comment: currentUserRating.comment,
+              hasRating: true,
+            });
+          } else {
+            console.log(
+              "[fetchUserRatings] No existing rating for current user",
+            );
+          }
+        } else {
+          console.error("[fetchUserRatings] API Error:", result);
+        }
+      } catch (err) {
+        console.error("[fetchUserRatings] Error fetching ratings:", err);
       }
     };
 
@@ -232,6 +299,53 @@ export default function EditWcPage() {
       setError(err.message || "An unexpected error occurred during update.");
     } finally {
       setFormLoading(false);
+    }
+  };
+
+  const handleRatingSubmit = async (e) => {
+    e.preventDefault();
+    setRatingError("");
+    setRatingLoading(true);
+
+    if (!userRating || userRating < 1 || userRating > 10) {
+      setRatingError("Please select a rating between 1 and 10 stars.");
+      setRatingLoading(false);
+      return;
+    }
+
+    try {
+      const response = await fetch("/api/wc-ratings", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          wc_id: wcId,
+          rating: userRating,
+          comment: userComment.trim() || null,
+        }),
+      });
+
+      const result = await response.json();
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to save rating.");
+      }
+
+      setHasUserRating(true);
+
+      // Refresh ratings
+      const ratingsResponse = await fetch(`/api/wc-ratings?wc_id=${wcId}`);
+      const ratingsResult = await ratingsResponse.json();
+
+      if (ratingsResponse.ok) {
+        setAllRatings(ratingsResult.ratings || []);
+        setAverageRating(ratingsResult.averageRating || 0);
+      }
+    } catch (err) {
+      console.error("Error saving rating:", err);
+      setRatingError(err.message || "Failed to save rating.");
+    } finally {
+      setRatingLoading(false);
     }
   };
 
@@ -426,6 +540,155 @@ export default function EditWcPage() {
             </button>
           )}
         </form>
+
+        {/* User Rating Section */}
+        <div
+          style={{
+            marginTop: "2rem",
+            borderTop: "1px solid #ddd",
+            paddingTop: "2rem",
+          }}
+        >
+          <h3 style={{ marginBottom: "1rem", color: "#333" }}>Your Rating</h3>
+
+          {ratingError && (
+            <p className="form-message form-error">{ratingError}</p>
+          )}
+
+          <form onSubmit={handleRatingSubmit} className="form">
+            <div>
+              <label className="form-label">
+                Rate this WC ({userRating} / 10)
+              </label>
+              <div className="star-rating-container">
+                {[...Array(10)].map((_, index) => {
+                  const starValue = index + 1;
+                  return (
+                    <span
+                      key={starValue}
+                      className={`star ${starValue <= (userHoverRating || userRating) ? "active" : ""}`}
+                      onClick={() => !ratingLoading && setUserRating(starValue)}
+                      onMouseEnter={() =>
+                        !ratingLoading && setUserHoverRating(starValue)
+                      }
+                      onMouseLeave={() =>
+                        !ratingLoading && setUserHoverRating(0)
+                      }
+                      role="button"
+                      tabIndex={ratingLoading ? -1 : 0}
+                      onKeyDown={(e) => {
+                        if (
+                          !ratingLoading &&
+                          (e.key === "Enter" || e.key === " ")
+                        )
+                          setUserRating(starValue);
+                      }}
+                      aria-label={`Rate ${starValue} out of 10 stars`}
+                      aria-disabled={ratingLoading}
+                      style={{ cursor: ratingLoading ? "default" : "pointer" }}
+                    >
+                      ★
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div>
+              <label htmlFor="userComment" className="form-label">
+                Comment (Optional)
+              </label>
+              <textarea
+                id="userComment"
+                name="userComment"
+                value={userComment}
+                onChange={(e) => setUserComment(e.target.value)}
+                className="form-input"
+                style={{ minHeight: "100px", resize: "vertical" }}
+                placeholder="Share your experience with this WC..."
+                disabled={ratingLoading}
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="form-button"
+              disabled={ratingLoading || !userRating}
+              style={{ backgroundColor: "#28a745" }}
+            >
+              {ratingLoading
+                ? hasUserRating
+                  ? "Updating..."
+                  : "Saving..."
+                : hasUserRating
+                  ? "Update Rating"
+                  : "Save Rating"}
+            </button>
+          </form>
+        </div>
+
+        {/* All Ratings Section */}
+        {allRatings.length > 0 && (
+          <div
+            style={{
+              marginTop: "2rem",
+              borderTop: "1px solid #ddd",
+              paddingTop: "2rem",
+            }}
+          >
+            <h3 style={{ marginBottom: "1rem", color: "#333" }}>
+              All Ratings ({allRatings.length}) - Average:{" "}
+              {averageRating.toFixed(1)} ⭐
+            </h3>
+
+            <div style={{ maxHeight: "400px", overflowY: "auto" }}>
+              {allRatings.map((rating) => (
+                <div
+                  key={rating.id}
+                  style={{
+                    padding: "1rem",
+                    marginBottom: "1rem",
+                    backgroundColor: "#f8f9fa",
+                    borderRadius: "8px",
+                    border: "1px solid #e9ecef",
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "flex-start",
+                      marginBottom: "0.5rem",
+                    }}
+                  >
+                    <div>
+                      <strong>{rating.user_email || "Anonymous"}</strong>
+                      <span style={{ marginLeft: "1rem", color: "#666" }}>
+                        {"⭐".repeat(rating.rating)} ({rating.rating}/10)
+                      </span>
+                    </div>
+                    <small style={{ color: "#666" }}>
+                      {new Date(rating.created_at).toLocaleDateString()}
+                    </small>
+                  </div>
+
+                  {rating.comment && (
+                    <p
+                      style={{
+                        color: "#555",
+                        fontStyle: "italic",
+                        marginTop: "0.5rem",
+                      }}
+                    >
+                      &ldquo;{rating.comment}&rdquo;
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         <Link href="/" className="form-cancel-link">
           Cancel
         </Link>
