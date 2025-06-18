@@ -64,6 +64,7 @@ export default function EditWcPage() {
   const [error, setError] = useState("");
   const [formLoading, setFormLoading] = useState(false); // For form submission
   const [pageLoading, setPageLoading] = useState(true); // For initial data fetch
+  const [isOwner, setIsOwner] = useState(false); // Check if current user is the owner
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -118,7 +119,8 @@ export default function EditWcPage() {
           setPageLoading(false);
           return;
         }
-        // Allow all authenticated users to edit any WC
+        // Allow all authenticated users to view any WC, but only owners can edit
+        setIsOwner(fetchedWc.user_id === session.user.id);
 
         setOriginalWcData(fetchedWc);
         setName(fetchedWc.name || "");
@@ -272,7 +274,7 @@ export default function EditWcPage() {
         <h2
           style={{ marginBottom: "25px", color: "#333", textAlign: "center" }}
         >
-          Edit WC: {originalWcData.name}
+          {isOwner ? "Edit WC" : "View WC"}: {originalWcData.name}
         </h2>
         {error && <p className="form-message form-error">{error}</p>}
         <form onSubmit={handleSubmit} className="form">
@@ -289,6 +291,7 @@ export default function EditWcPage() {
               required
               className="form-input"
               disabled={formLoading}
+              readOnly={!isOwner}
             />
           </div>
           <div>
@@ -303,6 +306,7 @@ export default function EditWcPage() {
               onChange={(e) => setLocation(e.target.value)}
               className="form-input"
               disabled={formLoading}
+              readOnly={!isOwner}
             />
           </div>
           <div>
@@ -340,32 +344,34 @@ export default function EditWcPage() {
               onChange={handleFileChange}
               className="form-input"
               style={{ padding: "8px" }}
-              disabled={formLoading}
+              disabled={formLoading || !isOwner}
             />
-            <div style={styles.imageActionsContainer}>
-              {currentImageUrl && !wantsToRemoveImage && !selectedFile && (
-                <button
-                  type="button"
-                  onClick={handleRemoveImageClick}
-                  className="form-button"
-                  style={styles.removeImageButton}
-                  disabled={formLoading}
-                >
-                  Remove Current Image
-                </button>
-              )}
-              {selectedFile && (
-                <button
-                  type="button"
-                  onClick={handleCancelImageChange}
-                  className="form-button"
-                  style={styles.cancelImageChangeButton}
-                  disabled={formLoading}
-                >
-                  Cancel Image Change
-                </button>
-              )}
-            </div>
+            {isOwner && (
+              <div style={styles.imageActionsContainer}>
+                {currentImageUrl && !wantsToRemoveImage && !selectedFile && (
+                  <button
+                    type="button"
+                    onClick={handleRemoveImageClick}
+                    className="form-button"
+                    style={styles.removeImageButton}
+                    disabled={formLoading}
+                  >
+                    Remove Current Image
+                  </button>
+                )}
+                {selectedFile && (
+                  <button
+                    type="button"
+                    onClick={handleCancelImageChange}
+                    className="form-button"
+                    style={styles.cancelImageChangeButton}
+                    disabled={formLoading}
+                  >
+                    Cancel Image Change
+                  </button>
+                )}
+              </div>
+            )}
           </div>
           <div>
             <label htmlFor="rating" className="form-label">
@@ -378,19 +384,30 @@ export default function EditWcPage() {
                   <span
                     key={starValue}
                     className={`star ${starValue <= (hoverRating || rating) ? "active" : ""}`}
-                    onClick={() => !formLoading && setRating(starValue)}
-                    onMouseEnter={() =>
-                      !formLoading && setHoverRating(starValue)
+                    onClick={() =>
+                      !formLoading && isOwner && setRating(starValue)
                     }
-                    onMouseLeave={() => !formLoading && setHoverRating(0)}
+                    onMouseEnter={() =>
+                      !formLoading && isOwner && setHoverRating(starValue)
+                    }
+                    onMouseLeave={() =>
+                      !formLoading && isOwner && setHoverRating(0)
+                    }
                     role="button"
-                    tabIndex={formLoading ? -1 : 0}
+                    tabIndex={formLoading || !isOwner ? -1 : 0}
                     onKeyDown={(e) => {
-                      if (!formLoading && (e.key === "Enter" || e.key === " "))
+                      if (
+                        !formLoading &&
+                        isOwner &&
+                        (e.key === "Enter" || e.key === " ")
+                      )
                         setRating(starValue);
                     }}
                     aria-label={`Rate ${starValue} out of 10 stars`}
-                    aria-disabled={formLoading}
+                    aria-disabled={formLoading || !isOwner}
+                    style={{
+                      cursor: isOwner ? "pointer" : "default",
+                    }}
                   >
                     ★
                   </span>
@@ -398,14 +415,16 @@ export default function EditWcPage() {
               })}
             </div>
           </div>
-          <button
-            type="submit"
-            className="form-button"
-            style={styles.submitButton}
-            disabled={formLoading || !supabase}
-          >
-            {formLoading ? "Updating..." : "Update WC"}
-          </button>
+          {isOwner && (
+            <button
+              type="submit"
+              className="form-button"
+              style={styles.submitButton}
+              disabled={formLoading || !supabase}
+            >
+              {formLoading ? "Updating..." : "Update WC"}
+            </button>
+          )}
         </form>
         <Link href="/" className="form-cancel-link">
           Cancel

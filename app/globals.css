@@ -376,6 +376,17 @@ a {
     box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
 }
 
+.form-input[readonly] {
+    background-color: #f8f9fa;
+    color: #6c757d;
+    cursor: default;
+}
+
+.form-input[readonly]:focus {
+    border-color: #ddd;
+    box-shadow: none;
+}
+
 .form-button {
     padding: 0.75rem 1rem;
     border-radius: 4px;
@@ -757,6 +768,17 @@ a {
     .form-input:focus {
         border-color: #0084ff;
         box-shadow: 0 0 0 2px rgba(0, 132, 255, 0.25);
+    }
+
+    .form-input[readonly] {
+        background-color: #444;
+        color: #888;
+        cursor: default;
+    }
+
+    .form-input[readonly]:focus {
+        border-color: #555;
+        box-shadow: none;
     }
 
     .form-error {
