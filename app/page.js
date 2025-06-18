@@ -119,75 +119,11 @@ const styles = {
     color: "#333",
     textAlign: "left",
   },
-  wcActions: {
-    display: "flex",
-    flexDirection: "column", // Stack buttons vertically if space is tight, or row
-    gap: "0.5rem",
-  },
-  actionButton: {
-    padding: "0.4rem 0.8rem",
-    fontSize: "0.8rem",
-    borderRadius: "4px",
-    border: "1px solid transparent",
-    cursor: "pointer",
-    fontWeight: "500",
-    textDecoration: "none",
-    textAlign: "center",
-    minWidth: "60px",
-  },
-  editButton: {
-    backgroundColor: "#ffc107", // Amber
-    color: "#333",
-    borderColor: "#ffc107",
-  },
-  deleteButton: {
-    backgroundColor: "#dc3545", // Red
-    color: "white",
-    borderColor: "#dc3545",
-  },
+
   noWcsMessage: {
     marginTop: "1rem",
     color: "#555",
     textAlign: "left",
-  },
-  table: {
-    width: "100%",
-    borderCollapse: "collapse",
-    marginTop: "1rem",
-    tableLayout: "fixed", // Helps with column widths
-  },
-  th: {
-    borderBottom: "2px solid #ddd",
-    padding: "0.75rem",
-    textAlign: "left",
-    backgroundColor: "#f9f9f9",
-    fontWeight: "bold",
-    whiteSpace: "nowrap",
-  },
-  td: {
-    borderBottom: "1px solid #eee",
-    padding: "0.75rem",
-    verticalAlign: "middle",
-    wordWrap: "break-word", // For long text like location or UUID
-  },
-  thumbnailInTable: {
-    width: "60px",
-    height: "60px",
-    objectFit: "cover",
-    borderRadius: "4px",
-    border: "1px solid #ddd",
-  },
-  thumbnailPlaceholder: {
-    width: "60px",
-    height: "60px",
-    backgroundColor: "#e0e0e0",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    color: "#777",
-    fontSize: "0.8rem",
-    borderRadius: "4px",
-    border: "1px solid #ddd",
   },
 };
 
@@ -317,31 +253,6 @@ export default function Home() {
     console.log("[Home Page State Update] wcError:", wcError);
   }, [wcs, loadingWcs, wcError]);
 
-  const handleDeleteWc = async (wcId) => {
-    if (!window.confirm("Are you sure you want to delete this WC?")) {
-      return;
-    }
-    try {
-      if (status !== "authenticated" || !session?.user?.id) {
-        alert("You must be logged in to delete a WC.");
-        return;
-      }
-      const response = await fetch(`/api/wcs/${wcId}`, {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-      });
-      const result = await response.json();
-      if (!response.ok) {
-        throw new Error(result.message || `Server error: ${response.status}`);
-      }
-      setWcs(wcs.filter((wc) => wc.id !== wcId));
-      alert(result.message || "WC deleted successfully!");
-    } catch (err) {
-      console.error("Error deleting WC:", err);
-      alert(`Failed to delete WC: ${err.message}`);
-    }
-  };
-
   const renderAuthControls = () => {
     if (status === "loading") {
       return <div style={styles.loader}>Loading...</div>;
@@ -349,20 +260,20 @@ export default function Home() {
 
     if (session) {
       return (
-        <div style={styles.userInfo}>
+        <div className="user-info">
           {session.user?.image ? (
             <Image
               src={session.user.image}
               alt={session.user.name || "User avatar"}
               width={40}
               height={40}
-              style={styles.userImage}
+              className="user-image"
               priority // Add priority if this image is above the fold
             />
           ) : (
             <div
+              className="user-image"
               style={{
-                ...styles.userImage,
                 width: 40,
                 height: 40,
                 backgroundColor: "#ccc",
@@ -378,7 +289,7 @@ export default function Home() {
                 "U"}
             </div>
           )}
-          <span style={styles.userName}>
+          <span className="user-name">
             {session.user?.name || session.user?.email}
           </span>
           <button
@@ -404,13 +315,13 @@ export default function Home() {
   };
 
   return (
-    <div style={styles.pageContainer}>
-      <header style={styles.header}>
-        <div style={styles.appName}>WC Finder</div>
-        <div style={styles.authControls}>{renderAuthControls()}</div>
+    <div className="page-container">
+      <header className="app-header">
+        <div className="app-name">WC Finder</div>
+        <div className="auth-controls">{renderAuthControls()}</div>
       </header>
 
-      <main style={styles.mainContent}>
+      <main className="main-content">
         <Image
           src="/icons/person-searching-wc.svg"
           alt="Person searching for WC"
@@ -423,7 +334,7 @@ export default function Home() {
           <p style={styles.loader}>Checking session...</p>
         ) : session ? (
           <>
-            <h1 style={styles.welcomeMessage}>
+            <h1 className="welcome-message">
               Welcome back to WC Finder,{" "}
               {session.user?.name || session.user?.email}!
             </h1>
@@ -431,13 +342,13 @@ export default function Home() {
               You are signed in. Manage your WC locations below.
             </p>
             {/* Add New WC Button */}
-            <Link href="/wc/add" style={styles.addButton}>
+            <Link href="/wc/add" className="add-button">
               Add New WC
             </Link>
 
             {/* WC List Display */}
-            <div style={styles.wcListContainer}>
-              <h2 style={styles.wcListHeader}>Your WC Locations</h2>
+            <div className="wc-list-container">
+              <h2 className="wc-list-header">Your WC Locations</h2>
               {loadingWcs && <p style={styles.loader}>Loading WCs...</p>}
               {wcError && (
                 <p style={{ ...styles.infoMessage, color: "red" }}>{wcError}</p>
@@ -448,76 +359,63 @@ export default function Home() {
                 </p>
               )}
               {!loadingWcs && !wcError && wcs.length > 0 && (
-                <table style={styles.table}>
-                  <thead>
-                    <tr>
-                      <th style={{ ...styles.th, width: "80px" }}>Image</th>
-                      <th style={styles.th}>Name</th>
-                      <th style={styles.th}>Location</th>
-                      <th style={{ ...styles.th, width: "120px" }}>Rating</th>
-                      <th style={styles.th}>Created By (Email)</th>
-                      <th style={{ ...styles.th, width: "150px" }}>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {wcs.map((wc) => (
-                      <tr key={wc.id}>
-                        <td style={styles.td}>
-                          {wc.image_url ? (
-                            <img
-                              src={wc.image_url}
-                              alt={wc.name || "WC image"}
-                              style={styles.thumbnailInTable}
-                            />
-                          ) : (
-                            <div style={styles.thumbnailPlaceholder}>
-                              No Img
-                            </div>
-                          )}
-                        </td>
-                        <td style={styles.td}>{wc.name}</td>
-                        <td style={styles.td}>{wc.location || "N/A"}</td>
-                        <td style={styles.td}>
-                          {wc.rating
-                            ? `${"⭐".repeat(Math.min(wc.rating, 10))} (${wc.rating}/10)`
-                            : "Not rated"}
-                        </td>
-                        <td style={styles.td}>{wc.created_by || "N/A"}</td>
-                        <td style={styles.td}>
-                          {session.user?.id === wc.user_id && ( // Changed wc.created_by to wc.user_id for ownership check
-                            <div style={styles.wcActions}>
-                              <Link
-                                href={`/wc/edit/${wc.id}`}
-                                style={{
-                                  ...styles.actionButton,
-                                  ...styles.editButton,
-                                }}
-                              >
-                                Edit
-                              </Link>
-                              <button
-                                onClick={() => handleDeleteWc(wc.id)}
-                                style={{
-                                  ...styles.actionButton,
-                                  ...styles.deleteButton,
-                                }}
-                              >
-                                Delete
-                              </button>
-                            </div>
-                          )}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                <div className="responsive-table">
+                  <div className="table-header">
+                    <div className="header-cell">Image</div>
+                    <div className="header-cell">Name</div>
+                    <div className="header-cell">Location</div>
+                    <div className="header-cell">Rating</div>
+                    <div className="header-cell">Created By</div>
+                    <div className="header-cell">Actions</div>
+                  </div>
+                  {wcs.map((wc) => (
+                    <div key={wc.id} className="table-row">
+                      <div className="table-cell" data-label="Image: ">
+                        {wc.image_url ? (
+                          <img
+                            src={wc.image_url}
+                            alt={wc.name || "WC image"}
+                            className="thumbnail-in-table"
+                          />
+                        ) : (
+                          <div className="thumbnail-placeholder">No Img</div>
+                        )}
+                      </div>
+                      <div className="table-cell" data-label="Name: ">
+                        {wc.name}
+                      </div>
+                      <div className="table-cell" data-label="Location: ">
+                        {wc.location || "N/A"}
+                      </div>
+                      <div className="table-cell" data-label="Rating: ">
+                        {wc.rating
+                          ? `${"⭐".repeat(Math.min(wc.rating, 10))} (${wc.rating}/10)`
+                          : "Not rated"}
+                      </div>
+                      <div className="table-cell" data-label="Created By: ">
+                        {wc.created_by || "N/A"}
+                      </div>
+                      <div className="table-cell" data-label="Actions: ">
+                        <div className="wc-actions">
+                          <Link
+                            href={`/wc/edit/${wc.id}`}
+                            className="edit-icon"
+                            title="Edit WC"
+                          >
+                            →
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               )}
             </div>
           </>
         ) : (
           <>
-            <h1 style={styles.welcomeMessage}>Welcome to WC Finder</h1>
-            <p style={styles.infoMessage}>
+            <h1 className="welcome-message">Welcome to WC Finder</h1>
+            <p className="info-message">
               Please sign in to access the application features.
             </p>
             <Link href="/auth/signin" style={styles.signInLink}>

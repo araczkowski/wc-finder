@@ -198,48 +198,8 @@ export default function SignInPage() {
     }
   };
 
-  // Basic inline styles (assuming these are defined or similar to previous versions)
+  // Styles moved to globals.css for better responsiveness
   const styles = {
-    container: {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-      minHeight: "calc(100vh - 80px)" /* Adjust if header/footer */,
-      padding: "20px",
-      backgroundColor: "#f9f9f9",
-    },
-    card: {
-      backgroundColor: "white",
-      padding: "30px 40px",
-      borderRadius: "8px",
-      boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-      width: "100%",
-      maxWidth: "400px",
-      textAlign: "center",
-    },
-    form: { display: "flex", flexDirection: "column", gap: "15px" },
-    input: {
-      padding: "12px",
-      borderRadius: "4px",
-      border: "1px solid #ddd",
-      fontSize: "16px",
-      width: "100%",
-      boxSizing: "border-box",
-    },
-    button: {
-      // Base style for all buttons
-      padding: "10px 15px",
-      borderRadius: "4px",
-      border: "none",
-      fontSize: "15px",
-      fontWeight: "bold",
-      cursor: "pointer",
-      transition: "background-color 0.2s ease",
-      width: "100%",
-      boxSizing: "border-box",
-      marginTop: "5px",
-    },
     primaryButton: { backgroundColor: "#0070f3", color: "white" }, // For main sign-in
     googleButton: {
       backgroundColor: "#fff",
@@ -291,8 +251,8 @@ export default function SignInPage() {
 
   if (sessionStatus === "loading" || !providers) {
     return (
-      <div style={styles.container}>
-        <div style={styles.card}>
+      <div className="form-container">
+        <div className="form-card">
           <p>Loading...</p>
         </div>
       </div>
@@ -300,8 +260,8 @@ export default function SignInPage() {
   }
   if (sessionStatus === "authenticated") {
     return (
-      <div style={styles.container}>
-        <div style={styles.card}>
+      <div className="form-container">
+        <div className="form-card">
           <p>Redirecting...</p>
         </div>
       </div>
@@ -309,20 +269,18 @@ export default function SignInPage() {
   }
 
   return (
-    <div style={styles.container}>
-      <div style={styles.card}>
+    <div className="form-container">
+      <div className="form-card">
         <h2 style={{ marginBottom: "20px", color: "#333" }}>
           Sign In to WC Finder
         </h2>
 
         {/* Display general sign-in errors */}
-        {error && (
-          <p style={{ ...styles.messageBase, ...styles.error }}>{error}</p>
-        )}
+        {error && <p className="form-message form-error">{error}</p>}
 
-        {/* Display primary info message (e.g., "email not confirmed", "otp_expired") */}
+        {/* Display info messages */}
         {infoMessage && (
-          <p style={{ ...styles.messageBase, ...styles.info }}>{infoMessage}</p>
+          <p className="form-message form-success">{infoMessage}</p>
         )}
 
         {/* Display messages related to the resend action */}
@@ -355,7 +313,8 @@ export default function SignInPage() {
                 callbackUrl: searchParams.get("callbackUrl") || "/",
               })
             }
-            style={{ ...styles.button, ...styles.googleButton }}
+            className="form-button"
+            style={styles.googleButton}
             disabled={formLoading || resendLoading}
           >
             <svg
@@ -427,7 +386,8 @@ export default function SignInPage() {
             </div>
             <button
               type="submit"
-              style={{ ...styles.button, ...styles.primaryButton }}
+              className="form-button"
+              style={styles.primaryButton}
               disabled={formLoading || resendLoading}
             >
               {formLoading ? "Signing in..." : "Sign in with Email"}

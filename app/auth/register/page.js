@@ -80,61 +80,7 @@ export default function RegisterPage() {
     // Kept setLoading(false) in the catch block for robustness.
   };
 
-  // Styles (inline for simplicity, consider moving to CSS module or global CSS)
-  const containerStyle = {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    minHeight: "calc(100vh - 80px)", // Adjust if you have a header/footer
-    padding: "20px",
-    backgroundColor: "#f9f9f9",
-  };
-  const cardStyle = {
-    backgroundColor: "white",
-    padding: "30px 40px",
-    borderRadius: "8px",
-    boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-    width: "100%",
-    maxWidth: "450px", // Slightly wider for more fields
-    textAlign: "center",
-  };
-  const formStyle = {
-    display: "flex",
-    flexDirection: "column",
-    gap: "15px",
-  };
-  const inputStyle = {
-    padding: "12px",
-    borderRadius: "4px",
-    border: "1px solid #ddd",
-    fontSize: "16px",
-    width: "100%",
-    boxSizing: "border-box",
-  };
-  const buttonStyle = {
-    padding: "12px 15px",
-    borderRadius: "4px",
-    border: "none",
-    fontSize: "16px",
-    fontWeight: "bold",
-    cursor: "pointer",
-    backgroundColor: "#28a745", // Green for registration
-    color: "white",
-    transition: "background-color 0.2s ease",
-  };
-  const messageStyle = {
-    padding: "10px",
-    borderRadius: "4px",
-    marginBottom: "20px",
-    textAlign: "center",
-    fontSize: "0.9em",
-  };
-  const errorStyle = {
-    ...messageStyle,
-    color: "red",
-    backgroundColor: "rgba(255,0,0,0.1)",
-  };
+  // Styles moved to globals.css for better responsiveness
   // successStyle is no longer needed as we redirect
   // const successStyle = {
   //   ...messageStyle,
@@ -173,16 +119,16 @@ export default function RegisterPage() {
   }
 
   return (
-    <div style={containerStyle}>
-      <div style={cardStyle}>
+    <div className="form-container">
+      <div className="form-card">
         <h2 style={{ marginBottom: "25px", color: "#333" }}>
           Create an Account
         </h2>
 
-        {error && <p style={errorStyle}>{error}</p>}
+        {error && <p className="form-message form-error">{error}</p>}
         {/* Success message paragraph removed */}
 
-        <form onSubmit={handleSubmit} style={formStyle}>
+        <form onSubmit={handleSubmit} className="form">
           <div>
             <input
               id="name"
@@ -191,7 +137,7 @@ export default function RegisterPage() {
               autoComplete="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              style={inputStyle}
+              className="form-input"
               placeholder="Full Name (Optional)"
               disabled={loading}
             />
@@ -205,7 +151,7 @@ export default function RegisterPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              style={inputStyle}
+              className="form-input"
               placeholder="Email address"
               disabled={loading}
             />
@@ -219,7 +165,7 @@ export default function RegisterPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              style={inputStyle}
+              className="form-input"
               placeholder="Password (min. 8 characters)"
               disabled={loading}
             />
@@ -233,12 +179,12 @@ export default function RegisterPage() {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
-              style={inputStyle}
+              className="form-input"
               placeholder="Confirm Password"
               disabled={loading}
             />
           </div>
-          <button type="submit" style={buttonStyle} disabled={loading}>
+          <button type="submit" className="form-button" disabled={loading}>
             {loading ? "Creating Account..." : "Create Account"}
           </button>
         </form>
