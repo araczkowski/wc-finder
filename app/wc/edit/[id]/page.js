@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter, useParams } from "next/navigation";
 import { createClient } from "@supabase/supabase-js";
@@ -43,6 +43,70 @@ const styles = {
     border: "1px solid #ddd",
     objectFit: "contain", // Ensure aspect ratio is maintained
   },
+  backButton: {
+    position: "absolute",
+    top: "20px",
+    left: "20px",
+    backgroundColor: "#6c757d",
+    color: "white",
+    border: "none",
+    borderRadius: "50%",
+    width: "40px",
+    height: "40px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    cursor: "pointer",
+    fontSize: "1em",
+    textDecoration: "none",
+    zIndex: "1000",
+  },
+  formCardWithBack: {
+    position: "relative",
+  },
+  photoGallery: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
+    gap: "15px",
+    marginBottom: "1rem",
+  },
+  photoCard: {
+    position: "relative",
+    borderRadius: "8px",
+    overflow: "hidden",
+    border: "1px solid #ddd",
+    backgroundColor: "#f8f9fa",
+    transition: "transform 0.2s ease, box-shadow 0.2s ease",
+  },
+  photoCardHover: {
+    transform: "scale(1.02)",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+  },
+  photoImage: {
+    width: "100%",
+    height: "200px",
+    objectFit: "cover",
+    display: "block",
+  },
+  photoInfo: {
+    padding: "8px",
+    fontSize: "0.8rem",
+    color: "#666",
+  },
+  deletePhotoButton: {
+    marginTop: "5px",
+    padding: "2px 6px",
+    fontSize: "0.7rem",
+    backgroundColor: "#dc3545",
+    color: "white",
+    border: "none",
+    borderRadius: "3px",
+    cursor: "pointer",
+  },
+  uploadButton: {
+    backgroundColor: "#17a2b8",
+    marginTop: "5px",
+  },
 };
 
 export default function EditWcPage() {
@@ -76,6 +140,13 @@ export default function EditWcPage() {
   const [allRatings, setAllRatings] = useState([]);
   const [averageRating, setAverageRating] = useState(0);
 
+  // Photo states
+  const [wcPhotos, setWcPhotos] = useState([]);
+  const [photosLoading, setPhotosLoading] = useState(false);
+  const [selectedPhotos, setSelectedPhotos] = useState([]);
+  const [photoUploadLoading, setPhotoUploadLoading] = useState(false);
+  const [photoError, setPhotoError] = useState("");
+
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
@@ -88,6 +159,37 @@ export default function EditWcPage() {
     );
     return null;
   }, [supabaseUrl, supabaseAnonKey]);
+
+  const fetchWcPhotos = useCallback(async () => {
+    if (!wcId) return;
+
+    setPhotosLoading(true);
+    try {
+      const response = await fetch(`/api/wc-photos?wc_id=${wcId}`);
+      const result = await response.json();
+
+      if (response.ok) {
+        // Add user email information to photos
+        const photosWithUsers = await Promise.all(
+          (result.photos || []).map(async (photo) => {
+            // Try to get user email from session if it's current user
+            if (photo.user_id === session?.user?.id) {
+              return { ...photo, user_email: session.user.email };
+            }
+            // For other users, we'll show "User" for now since we removed the JOIN
+            return { ...photo, user_email: "User" };
+          }),
+        );
+        setWcPhotos(photosWithUsers);
+      } else {
+        console.error("Error fetching WC photos:", result.error);
+      }
+    } catch (err) {
+      console.error("Error fetching WC photos:", err);
+    } finally {
+      setPhotosLoading(false);
+    }
+  }, [wcId, session?.user?.id, session?.user?.email]);
 
   // Effect for authentication & redirect
   useEffect(() => {
@@ -139,8 +241,9 @@ export default function EditWcPage() {
         setImagePreview(fetchedWc.image_url || null);
         setRating(fetchedWc.rating || 0);
 
-        // Fetch user ratings
+        // Fetch user ratings and photos
         await fetchUserRatings();
+        await fetchWcPhotos();
       } catch (err) {
         console.error("Error fetching WC data for edit:", err);
         setError(`Failed to load WC details: ${err.message}`);
@@ -206,7 +309,7 @@ export default function EditWcPage() {
     if (sessionStatus === "authenticated") {
       fetchWcData();
     }
-  }, [wcId, supabase, sessionStatus, session?.user?.id]); // Re-run if user changes
+  }, [wcId, supabase, sessionStatus, session?.user?.id, fetchWcPhotos]); // Re-run if user changes
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -349,6 +452,77 @@ export default function EditWcPage() {
     }
   };
 
+  const handlePhotoSelection = (event) => {
+    const files = Array.from(event.target.files);
+    setSelectedPhotos(files);
+    setPhotoError("");
+  };
+
+  const handlePhotoUpload = async () => {
+    if (selectedPhotos.length === 0) {
+      setPhotoError("Please select at least one photo");
+      return;
+    }
+
+    setPhotoUploadLoading(true);
+    setPhotoError("");
+
+    try {
+      const uploadPromises = selectedPhotos.map(async (file) => {
+        const formData = new FormData();
+        formData.append("wc_id", wcId);
+        formData.append("photo", file);
+
+        const response = await fetch("/api/wc-photos", {
+          method: "POST",
+          body: formData,
+        });
+
+        const result = await response.json();
+        if (!response.ok) {
+          throw new Error(result.error || "Failed to upload photo");
+        }
+        return result;
+      });
+
+      await Promise.all(uploadPromises);
+
+      // Clear selected photos and refresh the gallery
+      setSelectedPhotos([]);
+      const fileInput = document.getElementById("wcPhotos");
+      if (fileInput) fileInput.value = "";
+
+      // Refresh photos
+      await fetchWcPhotos();
+    } catch (err) {
+      console.error("Error uploading photos:", err);
+      setPhotoError(err.message || "Failed to upload photos");
+    } finally {
+      setPhotoUploadLoading(false);
+    }
+  };
+
+  const handleDeletePhoto = async (photoId) => {
+    if (!confirm("Are you sure you want to delete this photo?")) return;
+
+    try {
+      const response = await fetch(`/api/wc-photos/${photoId}`, {
+        method: "DELETE",
+      });
+
+      const result = await response.json();
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to delete photo");
+      }
+
+      // Refresh photos
+      await fetchWcPhotos();
+    } catch (err) {
+      console.error("Error deleting photo:", err);
+      setPhotoError(err.message || "Failed to delete photo");
+    }
+  };
+
   if (pageLoading || sessionStatus === "loading") {
     return <div style={styles.loadingMessage}>Loading WC Details...</div>;
   }
@@ -384,7 +558,10 @@ export default function EditWcPage() {
 
   return (
     <div className="form-container">
-      <div className="form-card">
+      <div className="form-card" style={styles.formCardWithBack}>
+        <Link href="/" style={styles.backButton} title="Back to Home">
+          ←
+        </Link>
         <h2
           style={{ marginBottom: "25px", color: "#333", textAlign: "center" }}
         >
@@ -610,6 +787,47 @@ export default function EditWcPage() {
               />
             </div>
 
+            {/* Photo Upload Section */}
+            <div>
+              <label htmlFor="wcPhotos" className="form-label">
+                Add Photos
+              </label>
+              <input
+                id="wcPhotos"
+                name="wcPhotos"
+                type="file"
+                accept="image/*"
+                multiple
+                capture="environment"
+                onChange={handlePhotoSelection}
+                className="form-input"
+                style={{ padding: "8px" }}
+                disabled={photoUploadLoading}
+              />
+              {selectedPhotos.length > 0 && (
+                <div style={{ marginTop: "10px" }}>
+                  <p>Selected photos: {selectedPhotos.length}</p>
+                  <button
+                    type="button"
+                    onClick={handlePhotoUpload}
+                    className="form-button"
+                    style={styles.uploadButton}
+                    disabled={photoUploadLoading}
+                  >
+                    {photoUploadLoading ? "Uploading..." : "Upload Photos"}
+                  </button>
+                </div>
+              )}
+              {photoError && (
+                <p
+                  className="form-message form-error"
+                  style={{ marginTop: "5px" }}
+                >
+                  {photoError}
+                </p>
+              )}
+            </div>
+
             <button
               type="submit"
               className="form-button"
@@ -625,6 +843,73 @@ export default function EditWcPage() {
                   : "Save Rating"}
             </button>
           </form>
+        </div>
+
+        {/* Photo Gallery Section */}
+        <div
+          style={{
+            marginTop: "2rem",
+            borderTop: "1px solid #ddd",
+            paddingTop: "2rem",
+          }}
+        >
+          <h3 style={{ marginBottom: "1rem", color: "#333" }}>
+            Photos ({wcPhotos.length})
+          </h3>
+
+          {photosLoading ? (
+            <p style={{ textAlign: "center", color: "#666" }}>
+              Loading photos...
+            </p>
+          ) : wcPhotos.length > 0 ? (
+            <div style={styles.photoGallery}>
+              {wcPhotos.map((photo) => (
+                <div
+                  key={photo.id}
+                  style={styles.photoCard}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = "scale(1.02)";
+                    e.currentTarget.style.boxShadow =
+                      "0 4px 12px rgba(0,0,0,0.15)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = "scale(1)";
+                    e.currentTarget.style.boxShadow = "none";
+                  }}
+                >
+                  <Image
+                    src={photo.photo}
+                    alt="WC Photo"
+                    width={200}
+                    height={200}
+                    style={styles.photoImage}
+                  />
+                  <div style={styles.photoInfo}>
+                    <div>By: {photo.user_email || "Anonymous"}</div>
+                    <div>{new Date(photo.created_at).toLocaleDateString()}</div>
+                    {photo.user_id === session?.user?.id && (
+                      <button
+                        onClick={() => handleDeletePhoto(photo.id)}
+                        style={styles.deletePhotoButton}
+                      >
+                        Delete
+                      </button>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p
+              style={{
+                textAlign: "center",
+                color: "#666",
+                fontStyle: "italic",
+              }}
+            >
+              No photos yet. Be the first to add one!
+            </p>
+          )}
         </div>
 
         {/* All Ratings Section */}
@@ -688,10 +973,6 @@ export default function EditWcPage() {
             </div>
           </div>
         )}
-
-        <Link href="/" className="form-cancel-link">
-          Cancel
-        </Link>
       </div>
     </div>
   );

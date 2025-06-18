@@ -338,9 +338,7 @@ export default function Home() {
               Welcome back to WC Finder,{" "}
               {session.user?.name || session.user?.email}!
             </h1>
-            <p style={styles.infoMessage}>
-              You are signed in. Manage your WC locations below.
-            </p>
+
             {/* Add New WC Button */}
             <Link href="/wc/add" className="add-button">
               Add New WC
@@ -348,7 +346,7 @@ export default function Home() {
 
             {/* WC List Display */}
             <div className="wc-list-container">
-              <h2 className="wc-list-header">Your WC Locations</h2>
+              <h2 className="wc-list-header">WC Locations</h2>
               {loadingWcs && <p style={styles.loader}>Loading WCs...</p>}
               {wcError && (
                 <p style={{ ...styles.infoMessage, color: "red" }}>{wcError}</p>

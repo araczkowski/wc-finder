@@ -25,6 +25,12 @@ const nextConfig = {
         // This example allows any image from the 'wc-images' bucket.
         pathname: "/storage/v1/object/public/wc-images/**",
       },
+      {
+        protocol: "https",
+        hostname: "hzkvqzhvgdwlbienjgjx.supabase.co", // Your Supabase project hostname
+        port: "", // Default for https is 443, so empty string is fine
+        pathname: "/storage/v1/object/public/wc-photos/**",
+      },
       // Add other remote patterns here if you use images from other domains
       // Example:
       // {
