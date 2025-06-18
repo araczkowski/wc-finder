@@ -6,13 +6,108 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@supabase/supabase-js"; // Import Supabase client
 
-// Styles moved to globals.css for better responsiveness
+// Mobile-first styles
 const styles = {
   loadingMessage: {
     textAlign: "center",
     fontSize: "1.2rem",
     color: "#555",
     padding: "50px",
+  },
+  formContainer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: "1rem",
+    minHeight: "calc(100vh - 70px)",
+    backgroundColor: "#f9f9f9",
+    fontFamily: "sans-serif",
+    width: "100%",
+    maxWidth: "500px",
+    margin: "0 auto",
+  },
+  formCard: {
+    backgroundColor: "white",
+    padding: "2rem",
+    borderRadius: "8px",
+    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+    width: "100%",
+    textAlign: "left",
+  },
+  form: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "1.25rem",
+  },
+  formLabel: {
+    fontWeight: "bold",
+    marginBottom: "0.3rem",
+    fontSize: "0.9rem",
+    color: "#333",
+    display: "block",
+  },
+  formInput: {
+    padding: "0.75rem",
+    borderRadius: "4px",
+    border: "1px solid #ddd",
+    fontSize: "1rem",
+    width: "100%",
+    boxSizing: "border-box",
+    transition: "border-color 0.2s ease",
+  },
+  formButton: {
+    padding: "0.75rem 1rem",
+    borderRadius: "4px",
+    border: "none",
+    fontSize: "1rem",
+    fontWeight: "bold",
+    cursor: "pointer",
+    backgroundColor: "#28a745",
+    color: "white",
+    transition: "background-color 0.2s ease",
+    marginTop: "0.5rem",
+    minHeight: "44px",
+  },
+  formError: {
+    color: "#dc3545",
+    backgroundColor: "rgba(220, 53, 69, 0.1)",
+    border: "1px solid rgba(220, 53, 69, 0.2)",
+    padding: "0.75rem",
+    borderRadius: "4px",
+    marginBottom: "1.25rem",
+    textAlign: "center",
+    fontSize: "0.9em",
+  },
+  starRatingContainer: {
+    display: "flex",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    margin: "0.3rem 0",
+    gap: "0.125rem",
+  },
+  star: {
+    fontSize: "1.5rem",
+    color: "#e4e5e9",
+    cursor: "pointer",
+    transition: "color 0.2s ease-in-out",
+    minWidth: "24px",
+    minHeight: "24px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  formCancelLink: {
+    display: "inline-block",
+    marginTop: "1.25rem",
+    color: "#0070f3",
+    textDecoration: "none",
+    textAlign: "center",
+    width: "100%",
+    padding: "0.5rem",
+  },
+  imagePreview: {
+    marginTop: "0.75rem",
+    textAlign: "center",
   },
 };
 
@@ -187,19 +282,18 @@ export default function AddWcPage() {
   }
 
   return (
-    <div className="form-container">
-      <div className="form-card">
+    <div style={styles.formContainer}>
+      <div style={styles.formCard}>
         <h2
           style={{ marginBottom: "25px", color: "#333", textAlign: "center" }}
         >
           Add New WC
         </h2>
+        {error && <p style={styles.formError}>{error}</p>}
 
-        {error && <p className="form-message form-error">{error}</p>}
-
-        <form onSubmit={handleSubmit} className="form">
+        <form onSubmit={handleSubmit} style={styles.form}>
           <div>
-            <label htmlFor="name" className="form-label">
+            <label htmlFor="name" style={styles.formLabel}>
               Name*
             </label>
             <input
@@ -209,14 +303,14 @@ export default function AddWcPage() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
-              className="form-input"
+              style={styles.formInput}
               placeholder="e.g., Central Park Restroom"
               disabled={loading}
             />
           </div>
 
           <div>
-            <label htmlFor="location" className="form-label">
+            <label htmlFor="location" style={styles.formLabel}>
               Location
             </label>
             <input
@@ -225,14 +319,14 @@ export default function AddWcPage() {
               type="text"
               value={location}
               onChange={(e) => setLocation(e.target.value)}
-              className="form-input"
+              style={styles.formInput}
               placeholder="e.g., Near the fountain, Main Street"
               disabled={loading}
             />
           </div>
 
           <div>
-            <label htmlFor="imageFile" className="form-label">
+            <label htmlFor="imageFile" style={styles.formLabel}>
               Image (Optional)
             </label>
             <input
@@ -242,28 +336,33 @@ export default function AddWcPage() {
               accept="image/*"
               capture="environment" // "user" for front camera, "environment" for back
               onChange={handleFileChange}
-              className="form-input"
-              style={{ padding: "8px" }} // Adjust padding for file input aesthetics
+              style={{ ...styles.formInput, padding: "8px" }} // Adjust padding for file input aesthetics
               disabled={loading}
             />
             {imagePreview && (
-              <div className="image-preview">
+              <div style={styles.imagePreview}>
                 <img src={imagePreview} alt="Selected image preview" />
               </div>
             )}
           </div>
 
           <div>
-            <label htmlFor="rating" className="form-label">
+            <label htmlFor="rating" style={styles.formLabel}>
               Rating ({rating} / 10)
             </label>
-            <div className="star-rating-container">
+            <div style={styles.starRatingContainer}>
               {[...Array(10)].map((_, index) => {
                 const starValue = index + 1;
                 return (
                   <span
                     key={starValue}
-                    className={`star ${starValue <= (hoverRating || rating) ? "active" : ""}`}
+                    style={{
+                      ...styles.star,
+                      color:
+                        starValue <= (hoverRating || rating)
+                          ? "#ffc107"
+                          : "#e4e5e9",
+                    }}
                     onClick={() => setRating(starValue)}
                     onMouseEnter={() => setHoverRating(starValue)}
                     onMouseLeave={() => setHoverRating(0)}
@@ -282,11 +381,11 @@ export default function AddWcPage() {
             </div>
           </div>
 
-          <button type="submit" className="form-button" disabled={loading}>
+          <button type="submit" style={styles.formButton} disabled={loading}>
             {loading ? "Adding WC..." : "Add WC"}
           </button>
         </form>
-        <Link href="/" className="form-cancel-link">
+        <Link href="/" style={styles.formCancelLink}>
           Cancel
         </Link>
       </div>

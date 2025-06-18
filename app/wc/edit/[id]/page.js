@@ -64,6 +64,88 @@ const styles = {
   formCardWithBack: {
     position: "relative",
   },
+  formContainer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: "1rem",
+    minHeight: "calc(100vh - 70px)",
+    backgroundColor: "#f9f9f9",
+    fontFamily: "sans-serif",
+    width: "100%",
+    maxWidth: "500px",
+    margin: "0 auto",
+  },
+  formCard: {
+    backgroundColor: "white",
+    padding: "2rem",
+    borderRadius: "8px",
+    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+    width: "100%",
+    textAlign: "left",
+  },
+  form: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "1.25rem",
+  },
+  formLabel: {
+    fontWeight: "bold",
+    marginBottom: "0.3rem",
+    fontSize: "0.9rem",
+    color: "#333",
+    display: "block",
+  },
+  formInput: {
+    padding: "0.75rem",
+    borderRadius: "4px",
+    border: "1px solid #ddd",
+    fontSize: "1rem",
+    width: "100%",
+    boxSizing: "border-box",
+    transition: "border-color 0.2s ease",
+  },
+  formButton: {
+    padding: "0.75rem 1rem",
+    borderRadius: "4px",
+    border: "none",
+    fontSize: "1rem",
+    fontWeight: "bold",
+    cursor: "pointer",
+    backgroundColor: "#28a745",
+    color: "white",
+    transition: "background-color 0.2s ease",
+    marginTop: "0.5rem",
+    minHeight: "44px",
+  },
+  formError: {
+    color: "#dc3545",
+    backgroundColor: "rgba(220, 53, 69, 0.1)",
+    border: "1px solid rgba(220, 53, 69, 0.2)",
+    padding: "0.75rem",
+    borderRadius: "4px",
+    marginBottom: "1.25rem",
+    textAlign: "center",
+    fontSize: "0.9em",
+  },
+  starRatingContainer: {
+    display: "flex",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    margin: "0.3rem 0",
+    gap: "0.125rem",
+  },
+  star: {
+    fontSize: "1.5rem",
+    color: "#e4e5e9",
+    cursor: "pointer",
+    transition: "color 0.2s ease-in-out",
+    minWidth: "24px",
+    minHeight: "24px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   photoGallery: {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
@@ -557,8 +639,8 @@ export default function EditWcPage() {
   }
 
   return (
-    <div className="form-container">
-      <div className="form-card" style={styles.formCardWithBack}>
+    <div style={styles.formContainer}>
+      <div style={{ ...styles.formCard, ...styles.formCardWithBack }}>
         <Link href="/" style={styles.backButton} title="Back to Home">
           ←
         </Link>
@@ -567,10 +649,10 @@ export default function EditWcPage() {
         >
           {isOwner ? "Edit WC" : "View WC"}: {originalWcData.name}
         </h2>
-        {error && <p className="form-message form-error">{error}</p>}
-        <form onSubmit={handleSubmit} className="form">
+        {error && <p style={styles.formError}>{error}</p>}
+        <form onSubmit={handleSubmit} style={styles.form}>
           <div>
-            <label htmlFor="name" className="form-label">
+            <label htmlFor="name" style={styles.formLabel}>
               Name*
             </label>
             <input
@@ -580,13 +662,13 @@ export default function EditWcPage() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
-              className="form-input"
+              style={styles.formInput}
               disabled={formLoading}
               readOnly={!isOwner}
             />
           </div>
           <div>
-            <label htmlFor="location" className="form-label">
+            <label htmlFor="location" style={styles.formLabel}>
               Location
             </label>
             <input
@@ -595,13 +677,13 @@ export default function EditWcPage() {
               type="text"
               value={location}
               onChange={(e) => setLocation(e.target.value)}
-              className="form-input"
+              style={styles.formInput}
               disabled={formLoading}
               readOnly={!isOwner}
             />
           </div>
           <div>
-            <label htmlFor="imageFile" className="form-label">
+            <label htmlFor="imageFile" style={styles.formLabel}>
               Image
             </label>
             {imagePreview && !wantsToRemoveImage && (
@@ -633,8 +715,7 @@ export default function EditWcPage() {
               accept="image/*"
               capture="environment"
               onChange={handleFileChange}
-              className="form-input"
-              style={{ padding: "8px" }}
+              style={{ ...styles.formInput, padding: "8px" }}
               disabled={formLoading || !isOwner}
             />
             {isOwner && (
@@ -643,8 +724,10 @@ export default function EditWcPage() {
                   <button
                     type="button"
                     onClick={handleRemoveImageClick}
-                    className="form-button"
-                    style={styles.removeImageButton}
+                    style={{
+                      ...styles.formButton,
+                      ...styles.removeImageButton,
+                    }}
                     disabled={formLoading}
                   >
                     Remove Current Image
@@ -654,8 +737,10 @@ export default function EditWcPage() {
                   <button
                     type="button"
                     onClick={handleCancelImageChange}
-                    className="form-button"
-                    style={styles.cancelImageChangeButton}
+                    style={{
+                      ...styles.formButton,
+                      ...styles.cancelImageChangeButton,
+                    }}
                     disabled={formLoading}
                   >
                     Cancel Image Change
@@ -665,16 +750,23 @@ export default function EditWcPage() {
             )}
           </div>
           <div>
-            <label htmlFor="rating" className="form-label">
+            <label htmlFor="rating" style={styles.formLabel}>
               Rating ({rating} / 10)
             </label>
-            <div className="star-rating-container">
+            <div style={styles.starRatingContainer}>
               {[...Array(10)].map((_, index) => {
                 const starValue = index + 1;
                 return (
                   <span
                     key={starValue}
-                    className={`star ${starValue <= (hoverRating || rating) ? "active" : ""}`}
+                    style={{
+                      ...styles.star,
+                      color:
+                        starValue <= (hoverRating || rating)
+                          ? "#ffc107"
+                          : "#e4e5e9",
+                      cursor: isOwner ? "pointer" : "default",
+                    }}
                     onClick={() =>
                       !formLoading && isOwner && setRating(starValue)
                     }
@@ -696,9 +788,6 @@ export default function EditWcPage() {
                     }}
                     aria-label={`Rate ${starValue} out of 10 stars`}
                     aria-disabled={formLoading || !isOwner}
-                    style={{
-                      cursor: isOwner ? "pointer" : "default",
-                    }}
                   >
                     ★
                   </span>
@@ -709,8 +798,7 @@ export default function EditWcPage() {
           {isOwner && (
             <button
               type="submit"
-              className="form-button"
-              style={styles.submitButton}
+              style={{ ...styles.formButton, ...styles.submitButton }}
               disabled={formLoading || !supabase}
             >
               {formLoading ? "Updating..." : "Update WC"}
@@ -728,22 +816,27 @@ export default function EditWcPage() {
         >
           <h3 style={{ marginBottom: "1rem", color: "#333" }}>Your Rating</h3>
 
-          {ratingError && (
-            <p className="form-message form-error">{ratingError}</p>
-          )}
+          {ratingError && <p style={styles.formError}>{ratingError}</p>}
 
-          <form onSubmit={handleRatingSubmit} className="form">
+          <form onSubmit={handleRatingSubmit} style={styles.form}>
             <div>
-              <label className="form-label">
+              <label style={styles.formLabel}>
                 Rate this WC ({userRating} / 10)
               </label>
-              <div className="star-rating-container">
+              <div style={styles.starRatingContainer}>
                 {[...Array(10)].map((_, index) => {
                   const starValue = index + 1;
                   return (
                     <span
                       key={starValue}
-                      className={`star ${starValue <= (userHoverRating || userRating) ? "active" : ""}`}
+                      style={{
+                        ...styles.star,
+                        color:
+                          starValue <= (userHoverRating || userRating)
+                            ? "#ffc107"
+                            : "#e4e5e9",
+                        cursor: ratingLoading ? "default" : "pointer",
+                      }}
                       onClick={() => !ratingLoading && setUserRating(starValue)}
                       onMouseEnter={() =>
                         !ratingLoading && setUserHoverRating(starValue)
@@ -762,7 +855,6 @@ export default function EditWcPage() {
                       }}
                       aria-label={`Rate ${starValue} out of 10 stars`}
                       aria-disabled={ratingLoading}
-                      style={{ cursor: ratingLoading ? "default" : "pointer" }}
                     >
                       ★
                     </span>
@@ -772,7 +864,7 @@ export default function EditWcPage() {
             </div>
 
             <div>
-              <label htmlFor="userComment" className="form-label">
+              <label htmlFor="userComment" style={styles.formLabel}>
                 Comment (Optional)
               </label>
               <textarea
@@ -780,8 +872,11 @@ export default function EditWcPage() {
                 name="userComment"
                 value={userComment}
                 onChange={(e) => setUserComment(e.target.value)}
-                className="form-input"
-                style={{ minHeight: "100px", resize: "vertical" }}
+                style={{
+                  ...styles.formInput,
+                  minHeight: "100px",
+                  resize: "vertical",
+                }}
                 placeholder="Share your experience with this WC..."
                 disabled={ratingLoading}
               />
@@ -789,7 +884,7 @@ export default function EditWcPage() {
 
             {/* Photo Upload Section */}
             <div>
-              <label htmlFor="wcPhotos" className="form-label">
+              <label htmlFor="wcPhotos" style={styles.formLabel}>
                 Add Photos
               </label>
               <input
@@ -800,8 +895,7 @@ export default function EditWcPage() {
                 multiple
                 capture="environment"
                 onChange={handlePhotoSelection}
-                className="form-input"
-                style={{ padding: "8px" }}
+                style={{ ...styles.formInput, padding: "8px" }}
                 disabled={photoUploadLoading}
               />
               {selectedPhotos.length > 0 && (
@@ -810,8 +904,7 @@ export default function EditWcPage() {
                   <button
                     type="button"
                     onClick={handlePhotoUpload}
-                    className="form-button"
-                    style={styles.uploadButton}
+                    style={{ ...styles.formButton, ...styles.uploadButton }}
                     disabled={photoUploadLoading}
                   >
                     {photoUploadLoading ? "Uploading..." : "Upload Photos"}
@@ -819,10 +912,7 @@ export default function EditWcPage() {
                 </div>
               )}
               {photoError && (
-                <p
-                  className="form-message form-error"
-                  style={{ marginTop: "5px" }}
-                >
+                <p style={{ ...styles.formError, marginTop: "5px" }}>
                   {photoError}
                 </p>
               )}
@@ -830,9 +920,8 @@ export default function EditWcPage() {
 
             <button
               type="submit"
-              className="form-button"
+              style={{ ...styles.formButton, backgroundColor: "#28a745" }}
               disabled={ratingLoading || !userRating}
-              style={{ backgroundColor: "#28a745" }}
             >
               {ratingLoading
                 ? hasUserRating

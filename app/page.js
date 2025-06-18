@@ -67,9 +67,12 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    justifyContent: "center",
-    padding: "2rem",
+    justifyContent: "flex-start",
+    padding: "1rem",
     textAlign: "center",
+    maxWidth: "500px",
+    margin: "0 auto",
+    width: "100%",
   },
   loader: {
     fontSize: "1.2rem",
@@ -92,8 +95,11 @@ const styles = {
     borderRadius: "4px",
     textDecoration: "none",
     display: "inline-block",
-    marginBottom: "1.5rem", // Space below the button
+    marginBottom: "1rem", // Space below the button
     fontWeight: "bold",
+    width: "100%",
+    maxWidth: "280px",
+    textAlign: "center",
   },
   signInLink: {
     marginTop: "1rem",
@@ -105,8 +111,8 @@ const styles = {
   // Styles for WC List
   wcListContainer: {
     width: "100%",
-    maxWidth: "900px", // Wider to accommodate more columns
-    marginTop: "2rem",
+    maxWidth: "500px", // Same as form containers
+    marginTop: "1rem",
     padding: "1rem",
     backgroundColor: "#fff",
     borderRadius: "8px",
@@ -124,6 +130,51 @@ const styles = {
     marginTop: "1rem",
     color: "#555",
     textAlign: "left",
+  },
+  // Additional inline styles for mobile-first design
+  pageContainer: {
+    display: "flex",
+    flexDirection: "column",
+    minHeight: "100vh",
+    fontFamily: "sans-serif",
+    backgroundColor: "#f9f9f9",
+    width: "100%",
+    maxWidth: "500px",
+    margin: "0 auto",
+  },
+  header: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "0.75rem 1rem",
+    backgroundColor: "#f0f0f0",
+    borderBottom: "1px solid #ddd",
+    flexShrink: 0,
+    width: "100%",
+  },
+  authControls: {
+    display: "flex",
+    alignItems: "center",
+    gap: "0.5rem",
+  },
+  userInfo: {
+    display: "flex",
+    alignItems: "center",
+    gap: "0.5rem",
+  },
+  userImage: {
+    borderRadius: "50%",
+    border: "2px solid #ccc",
+    flexShrink: 0,
+  },
+  userName: {
+    fontWeight: 500,
+    display: "block",
+    fontSize: "0.9rem",
+    maxWidth: "120px",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
   },
 };
 
@@ -260,27 +311,27 @@ export default function Home() {
 
     if (session) {
       return (
-        <div className="user-info">
+        <div style={styles.userInfo}>
           {session.user?.image ? (
             <Image
               src={session.user.image}
               alt={session.user.name || "User avatar"}
-              width={40}
-              height={40}
-              className="user-image"
+              width={32}
+              height={32}
+              style={styles.userImage}
               priority // Add priority if this image is above the fold
             />
           ) : (
             <div
-              className="user-image"
               style={{
-                width: 40,
-                height: 40,
+                ...styles.userImage,
+                width: 32,
+                height: 32,
                 backgroundColor: "#ccc",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                fontSize: "1.2rem",
+                fontSize: "1rem",
                 color: "#fff", // Ensure initials are visible
               }}
             >
@@ -289,7 +340,7 @@ export default function Home() {
                 "U"}
             </div>
           )}
-          <span className="user-name">
+          <span style={styles.userName}>
             {session.user?.name || session.user?.email}
           </span>
           <button
@@ -298,8 +349,6 @@ export default function Home() {
           >
             Sign Out
           </button>
-          {/* Example: Link to a password change page (to be implemented) */}
-          {/* <Link href="/auth/change-password" style={{...styles.button, marginLeft: '0.5rem', backgroundColor: '#6c757d', color: 'white'}}>Change Password</Link> */}
         </div>
       );
     }
@@ -315,13 +364,13 @@ export default function Home() {
   };
 
   return (
-    <div className="page-container">
-      <header className="app-header">
-        <div className="app-name">WC Finder</div>
-        <div className="auth-controls">{renderAuthControls()}</div>
+    <div style={styles.pageContainer}>
+      <header style={styles.header}>
+        <div style={styles.appName}>WC Finder</div>
+        <div style={styles.authControls}>{renderAuthControls()}</div>
       </header>
 
-      <main className="main-content">
+      <main style={styles.mainContent}>
         <Image
           src="/icons/person-searching-wc.svg"
           alt="Person searching for WC"
@@ -340,13 +389,23 @@ export default function Home() {
             </h1>
 
             {/* Add New WC Button */}
-            <Link href="/wc/add" className="add-button">
+            <Link href="/wc/add" style={styles.addButton}>
               Add New WC
             </Link>
 
             {/* WC List Display */}
-            <div className="wc-list-container">
-              <h2 className="wc-list-header">WC Locations</h2>
+            <div style={styles.wcListContainer}>
+              <h2
+                style={{
+                  fontSize: "1.25rem",
+                  fontWeight: "bold",
+                  marginBottom: "1rem",
+                  color: "#333",
+                  textAlign: "center",
+                }}
+              >
+                WC Locations
+              </h2>
               {loadingWcs && <p style={styles.loader}>Loading WCs...</p>}
               {wcError && (
                 <p style={{ ...styles.infoMessage, color: "red" }}>{wcError}</p>

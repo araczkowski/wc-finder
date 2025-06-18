@@ -5,6 +5,106 @@ import { signIn, getProviders, useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 
+// Mobile-first styles
+const styles = {
+  formContainer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: "1rem",
+    minHeight: "100vh",
+    backgroundColor: "#f9f9f9",
+    fontFamily: "sans-serif",
+    width: "100%",
+    maxWidth: "500px",
+    margin: "0 auto",
+  },
+  formCard: {
+    backgroundColor: "white",
+    padding: "2rem",
+    borderRadius: "8px",
+    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+    width: "100%",
+    textAlign: "left",
+    marginTop: "2rem",
+  },
+  formLabel: {
+    fontWeight: "bold",
+    marginBottom: "0.3rem",
+    fontSize: "0.9rem",
+    color: "#333",
+    display: "block",
+  },
+  formInput: {
+    padding: "0.75rem",
+    borderRadius: "4px",
+    border: "1px solid #ddd",
+    fontSize: "1rem",
+    width: "100%",
+    boxSizing: "border-box",
+    transition: "border-color 0.2s ease",
+    marginBottom: "1rem",
+  },
+  formButton: {
+    padding: "0.75rem 1rem",
+    borderRadius: "4px",
+    border: "none",
+    fontSize: "1rem",
+    fontWeight: "bold",
+    cursor: "pointer",
+    backgroundColor: "#28a745",
+    color: "white",
+    transition: "background-color 0.2s ease",
+    marginTop: "0.5rem",
+    minHeight: "44px",
+    width: "100%",
+  },
+  googleButton: {
+    backgroundColor: "#4285F4",
+    color: "white",
+    marginBottom: "1rem",
+  },
+  formError: {
+    color: "#dc3545",
+    backgroundColor: "rgba(220, 53, 69, 0.1)",
+    border: "1px solid rgba(220, 53, 69, 0.2)",
+    padding: "0.75rem",
+    borderRadius: "4px",
+    marginBottom: "1.25rem",
+    textAlign: "center",
+    fontSize: "0.9em",
+  },
+  formSuccess: {
+    color: "#28a745",
+    backgroundColor: "rgba(40, 167, 69, 0.1)",
+    border: "1px solid rgba(40, 167, 69, 0.2)",
+    padding: "0.75rem",
+    borderRadius: "4px",
+    marginBottom: "1.25rem",
+    textAlign: "center",
+    fontSize: "0.9em",
+  },
+  formInfo: {
+    color: "#0070f3",
+    backgroundColor: "rgba(0, 112, 243, 0.1)",
+    border: "1px solid rgba(0, 112, 243, 0.2)",
+    padding: "0.75rem",
+    borderRadius: "4px",
+    marginBottom: "1.25rem",
+    textAlign: "center",
+    fontSize: "0.9em",
+  },
+  formCancelLink: {
+    display: "inline-block",
+    marginTop: "1.25rem",
+    color: "#0070f3",
+    textDecoration: "none",
+    textAlign: "center",
+    width: "100%",
+    padding: "0.5rem",
+  },
+};
+
 export default function SignInPage() {
   const [providers, setProviders] = useState(null);
   const [email, setEmail] = useState("");
@@ -251,8 +351,8 @@ export default function SignInPage() {
 
   if (sessionStatus === "loading" || !providers) {
     return (
-      <div className="form-container">
-        <div className="form-card">
+      <div style={styles.formContainer}>
+        <div style={styles.formCard}>
           <p>Loading...</p>
         </div>
       </div>
@@ -260,8 +360,8 @@ export default function SignInPage() {
   }
   if (sessionStatus === "authenticated") {
     return (
-      <div className="form-container">
-        <div className="form-card">
+      <div style={styles.formContainer}>
+        <div style={styles.formCard}>
           <p>Redirecting...</p>
         </div>
       </div>
@@ -269,37 +369,31 @@ export default function SignInPage() {
   }
 
   return (
-    <div className="form-container">
-      <div className="form-card">
+    <div style={styles.formContainer}>
+      <div style={styles.formCard}>
         <h2 style={{ marginBottom: "20px", color: "#333" }}>
           Sign In to WC Finder
         </h2>
 
         {/* Display general sign-in errors */}
-        {error && <p className="form-message form-error">{error}</p>}
+        {error && <p style={styles.formError}>{error}</p>}
 
         {/* Display info messages */}
-        {infoMessage && (
-          <p className="form-message form-success">{infoMessage}</p>
-        )}
+        {infoMessage && <p style={styles.formInfo}>{infoMessage}</p>}
 
         {/* Display messages related to the resend action */}
         {resendErrorMessage && (
-          <p style={{ ...styles.messageBase, ...styles.error }}>
-            {resendErrorMessage}
-          </p>
+          <p style={styles.formError}>{resendErrorMessage}</p>
         )}
         {resendSuccessMessage && (
-          <p style={{ ...styles.messageBase, ...styles.success }}>
-            {resendSuccessMessage}
-          </p>
+          <p style={styles.formSuccess}>{resendSuccessMessage}</p>
         )}
 
         {/* Resend button appears if conditions met */}
         {showResendButton && !resendSuccessMessage && (
           <button
             onClick={handleResendConfirmation}
-            style={{ ...styles.button, ...styles.secondaryButton }}
+            style={styles.formButton}
             disabled={resendLoading || !email} // Disable if resending or if email field is empty
           >
             {resendLoading ? "Resending..." : "Resend Confirmation Email"}
@@ -313,8 +407,7 @@ export default function SignInPage() {
                 callbackUrl: searchParams.get("callbackUrl") || "/",
               })
             }
-            className="form-button"
-            style={styles.googleButton}
+            style={{ ...styles.formButton, ...styles.googleButton }}
             disabled={formLoading || resendLoading}
           >
             <svg
@@ -355,7 +448,7 @@ export default function SignInPage() {
         )}
 
         {providers?.credentials && (
-          <form onSubmit={handleCredentialsSignIn} style={styles.form}>
+          <form onSubmit={handleCredentialsSignIn}>
             <div>
               <input
                 id="email"
@@ -365,7 +458,7 @@ export default function SignInPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                style={styles.input}
+                style={styles.formInput}
                 placeholder="Email address"
                 disabled={formLoading || resendLoading}
               />
@@ -379,15 +472,14 @@ export default function SignInPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                style={styles.input}
+                style={styles.formInput}
                 placeholder="Password"
                 disabled={formLoading || resendLoading}
               />
             </div>
             <button
               type="submit"
-              className="form-button"
-              style={styles.primaryButton}
+              style={styles.formButton}
               disabled={formLoading || resendLoading}
             >
               {formLoading ? "Signing in..." : "Sign in with Email"}
@@ -407,6 +499,9 @@ export default function SignInPage() {
             Sign up
           </Link>
         </p>
+        <Link href="/" style={styles.formCancelLink}>
+          Back to Home
+        </Link>
       </div>
     </div>
   );
