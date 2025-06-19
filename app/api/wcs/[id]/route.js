@@ -89,7 +89,7 @@ export async function PUT(request, { params }) {
     // --- Authorization & Fetch Current State: Get existing WC from DB ---
     const { data: existingWc, error: fetchError } = await supabase
       .from("wcs")
-      .select("user_id, image_url") // Select current image_url for deletion logic
+      .select("user_id, image_url, name, location, address, rating") // Select all fields needed for update
       .eq("id", wcId)
       .single();
 
@@ -98,8 +98,16 @@ export async function PUT(request, { params }) {
         "API WCS PUT: Error fetching WC for ownership/update:",
         fetchError,
       );
+      console.error("API WCS PUT: WC ID:", wcId);
+      console.error("API WCS PUT: Supabase error code:", fetchError.code);
+      console.error("API WCS PUT: Supabase error message:", fetchError.message);
+      console.error("API WCS PUT: Supabase error details:", fetchError.details);
       return NextResponse.json(
-        { message: "WC not found or error fetching existing data." },
+        {
+          message: "WC not found or error fetching existing data.",
+          error: fetchError.message,
+          code: fetchError.code,
+        },
         { status: fetchError.code === "PGRST116" ? 404 : 500 },
       );
     }
@@ -195,7 +203,7 @@ export async function PUT(request, { params }) {
           ? jsonData.address
             ? jsonData.address.trim()
             : null
-          : existingWc.address,
+          : existingWc.address || null,
       rating:
         jsonData.rating !== undefined && jsonData.rating !== null
           ? parseInt(jsonData.rating, 10)
@@ -203,6 +211,9 @@ export async function PUT(request, { params }) {
       image_url: finalImageUrl,
       updated_at: new Date().toISOString(), // Always update the timestamp
     };
+
+    console.log("API WCS PUT: Update data:", wcDataToUpdate);
+    console.log("API WCS PUT: Existing WC data:", existingWc);
 
     // Basic validation for updated values
     if (
