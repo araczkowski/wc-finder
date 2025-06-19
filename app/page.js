@@ -432,41 +432,17 @@ export default function Home() {
             if (response.ok) {
               const data = await response.json();
               if (data && data.display_name) {
-                // Extract detailed address with street and house number
-                const address = data.address || {};
+                // Use full address from display_name, but clean it up slightly
+                let fullAddress = data.display_name;
 
-                // Build detailed address with street and house number
-                let detailedAddress = "";
+                // Remove country and postal code from the end if present
+                fullAddress = fullAddress
+                  .replace(/, \d{2}-\d{3},.*$/, "") // Remove Polish postal codes and everything after
+                  .replace(/, Poland$/, "") // Remove ", Poland" at the end
+                  .replace(/, Polska$/, "") // Remove ", Polska" at the end
+                  .trim();
 
-                // Add house number and street if available
-                if (address.house_number && address.road) {
-                  detailedAddress += `${address.house_number} ${address.road}, `;
-                } else if (address.road) {
-                  detailedAddress += `${address.road}, `;
-                }
-
-                // Add neighborhood/suburb/district if available
-                if (
-                  address.suburb ||
-                  address.neighbourhood ||
-                  address.district
-                ) {
-                  detailedAddress += `${address.suburb || address.neighbourhood || address.district}, `;
-                }
-
-                // Add city/town/village
-                if (address.city || address.town || address.village) {
-                  detailedAddress += `${address.city || address.town || address.village}`;
-                }
-
-                // If we couldn't build a detailed address, use the display_name or coordinates
-                if (!detailedAddress) {
-                  detailedAddress =
-                    data.display_name ||
-                    `${latitude.toFixed(4)}, ${longitude.toFixed(4)}`;
-                }
-
-                setSearchQuery(detailedAddress);
+                setSearchQuery(fullAddress);
               } else {
                 setSearchQuery(
                   `${latitude.toFixed(4)}, ${longitude.toFixed(4)}`,

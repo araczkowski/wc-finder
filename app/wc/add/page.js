@@ -124,6 +124,7 @@ export default function AddWcPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [geocoding, setGeocoding] = useState(false);
+  const [gettingLocation, setGettingLocation] = useState(false);
 
   const router = useRouter();
   const { data: session, status: sessionStatus } = useSession();
@@ -152,6 +153,67 @@ export default function AddWcPage() {
       router.push("/auth/signin?callbackUrl=/wc/add");
     }
   }, [sessionStatus, router]);
+
+  // Auto-detect user's current location when page loads
+  useEffect(() => {
+    if (sessionStatus === "authenticated" && !address && !location) {
+      getCurrentLocation();
+    }
+  }, [sessionStatus, address, location]);
+
+  // Function to get current location and reverse geocode to address
+  const getCurrentLocation = () => {
+    if (!navigator.geolocation) {
+      return;
+    }
+
+    setGettingLocation(true);
+
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        const { latitude, longitude } = position.coords;
+        const coordinates = `${latitude},${longitude}`;
+        setLocation(coordinates);
+
+        // Reverse geocode to get address
+        try {
+          const response = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`,
+          );
+
+          if (response.ok) {
+            const data = await response.json();
+            if (data && data.display_name) {
+              // Use full address from display_name, but clean it up slightly
+              let fullAddress = data.display_name;
+
+              // Remove country and postal code from the end if present
+              fullAddress = fullAddress
+                .replace(/, \d{2}-\d{3},.*$/, "") // Remove Polish postal codes and everything after
+                .replace(/, Poland$/, "") // Remove ", Poland" at the end
+                .replace(/, Polska$/, "") // Remove ", Polska" at the end
+                .trim();
+
+              setAddress(fullAddress);
+            }
+          }
+        } catch (error) {
+          console.error("Reverse geocoding error:", error);
+        }
+
+        setGettingLocation(false);
+      },
+      (error) => {
+        console.error("Geolocation error:", error);
+        setGettingLocation(false);
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 300000, // 5 minutes
+      },
+    );
+  };
 
   // Function to geocode address to coordinates
   const geocodeAddress = async (addressText) => {
@@ -323,6 +385,39 @@ export default function AddWcPage() {
         >
           Add New WC
         </h2>
+        {gettingLocation && (
+          <div
+            style={{
+              backgroundColor: "#e3f2fd",
+              border: "1px solid #2196F3",
+              borderRadius: "4px",
+              padding: "12px",
+              marginBottom: "20px",
+              textAlign: "center",
+              color: "#1976D2",
+              fontSize: "0.9rem",
+            }}
+          >
+            📍 Automatycznie wykrywamy Twoją bieżącą lokalizację...
+          </div>
+        )}
+        {!gettingLocation && address && (
+          <div
+            style={{
+              backgroundColor: "#e8f5e8",
+              border: "1px solid #4CAF50",
+              borderRadius: "4px",
+              padding: "12px",
+              marginBottom: "20px",
+              textAlign: "center",
+              color: "#2E7D32",
+              fontSize: "0.9rem",
+            }}
+          >
+            ✓ Lokalizacja została automatycznie wykryta. Możesz ją edytować w
+            razie potrzeby.
+          </div>
+        )}
         {error && <p style={styles.formError}>{error}</p>}
 
         <form onSubmit={handleSubmit} style={styles.form}>
@@ -355,9 +450,20 @@ export default function AddWcPage() {
               onChange={(e) => setAddress(e.target.value)}
               style={styles.formInput}
               placeholder="e.g., ul. Marszałkowska 1, Warszawa"
-              disabled={loading || geocoding}
+              disabled={loading || geocoding || gettingLocation}
               required
             />
+            {gettingLocation && (
+              <p
+                style={{
+                  fontSize: "0.8rem",
+                  color: "#2196F3",
+                  marginTop: "0.25rem",
+                }}
+              >
+                📍 Pobieranie bieżącej lokalizacji...
+              </p>
+            )}
             {geocoding && (
               <p
                 style={{
@@ -368,6 +474,42 @@ export default function AddWcPage() {
               >
                 📍 Pobieranie współrzędnych...
               </p>
+            )}
+            {!gettingLocation && !geocoding && address && (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginTop: "0.25rem",
+                }}
+              >
+                <p
+                  style={{
+                    fontSize: "0.75rem",
+                    color: "#4CAF50",
+                    margin: 0,
+                  }}
+                >
+                  ✓ Lokalizacja automatycznie wykryta
+                </p>
+                <button
+                  type="button"
+                  onClick={getCurrentLocation}
+                  disabled={gettingLocation}
+                  style={{
+                    padding: "4px 8px",
+                    fontSize: "0.7rem",
+                    backgroundColor: "#2196F3",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "3px",
+                    cursor: "pointer",
+                  }}
+                >
+                  🔄 Odśwież
+                </button>
+              </div>
             )}
           </div>
 
@@ -382,8 +524,8 @@ export default function AddWcPage() {
               value={location}
               onChange={(e) => setLocation(e.target.value)}
               style={styles.formInput}
-              placeholder="(auto-filled from your location)"
-              disabled={loading}
+              placeholder="e.g., 52.2297,21.0122 (will be auto-filled from address)"
+              disabled={loading || gettingLocation}
             />
             <p
               style={{
@@ -459,13 +601,15 @@ export default function AddWcPage() {
           <button
             type="submit"
             style={styles.formButton}
-            disabled={loading || geocoding}
+            disabled={loading || geocoding || gettingLocation}
           >
-            {geocoding
+            {gettingLocation
               ? "Pobieranie lokalizacji..."
-              : loading
-                ? "Adding WC..."
-                : "Add WC"}
+              : geocoding
+                ? "Pobieranie współrzędnych..."
+                : loading
+                  ? "Adding WC..."
+                  : "Add WC"}
           </button>
         </form>
         <Link href="/" style={styles.formCancelLink}>

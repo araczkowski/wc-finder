@@ -35,17 +35,26 @@ CREATE INDEX idx_wcs_address ON wcs USING gin(to_tsvector('english', address));
 
 ### 1. Add WC Form (`/wc/add`)
 **New Features:**
-- **Address field**: Required field for entering readable address
+- **Automatic location detection**: Automatically gets user's current location when page loads
+- **Address field**: Required field, auto-filled with current address or manually editable
 - **Geocoding**: Automatically converts address to coordinates using Nominatim API
-- **Coordinates field**: Optional field, auto-filled from address
-- **Loading states**: Shows "Pobieranie lokalizacji..." during geocoding
+- **Coordinates field**: Optional field, auto-filled from current location or address
+- **Loading states**: Shows status during location detection and geocoding
+- **Refresh button**: Allows user to update location manually
 
 **Form Fields:**
 - Name* (required)
-- Address* (required) - e.g., "ul. Marszałkowska 1, Warszawa"
-- Coordinates (optional) - auto-filled from address
+- Address* (required) - auto-filled from GPS or manually entered
+- Coordinates (optional) - auto-filled from current location or address
 - Image (optional)
 - Rating (1-10)
+
+**User Flow:**
+1. Page loads → automatically detects current GPS location
+2. Reverse geocodes GPS coordinates to readable address
+3. Both address and coordinates fields are pre-filled
+4. User can edit address if needed or refresh location
+5. Manual address changes trigger geocoding to update coordinates
 
 ### 2. Edit WC Form (`/wc/edit/[id]`)
 **Updated:**
@@ -73,25 +82,27 @@ const geocodeAddress = async (addressText) => {
 ```
 
 ### 2. Coordinates to Address (My Location)
-Enhanced reverse geocoding that extracts:
-- House number and street name
-- Neighborhood/suburb/district
-- City/town/village
-- Builds detailed address: "ul. Marszałkowska 1, Śródmieście, Warszawa"
+Enhanced reverse geocoding that uses full address from Nominatim:
+- Uses complete `display_name` from reverse geocoding API
+- Cleans up by removing postal codes and country names
+- Provides full detailed address: "ul. Marszałkowska 1, Śródmieście, Warszawa, województwo mazowieckie"
 
 ## Usage Flow
 
 ### Adding New WC:
-1. User enters readable address (e.g., "ul. Marszałkowska 1, Warszawa")
-2. System automatically geocodes to coordinates
-3. Address stored in `address` column
-4. Coordinates stored in `location` column
+1. User navigates to Add WC page while physically at the WC location
+2. System automatically detects user's current GPS coordinates
+3. System reverse geocodes coordinates to full readable address (complete address from Nominatim)
+4. Both full address and coordinates are pre-filled in the form
+5. User can edit address if needed or click refresh to re-detect location
+6. If address is manually changed, system geocodes it to update coordinates
+7. Full address stored in `address` column, coordinates stored in `location` column
 
 ### Using "My Location":
 1. User clicks "Dokładna lokalizacja"
 2. System gets GPS coordinates
-3. Reverse geocodes to detailed address with street and house number
-4. Address displayed in search field
+3. Reverse geocodes to full detailed address (complete address from Nominatim)
+4. Full address displayed in search field
 
 ### Searching:
 - Search now works on readable addresses
@@ -127,19 +138,25 @@ CREATE INDEX idx_wcs_address ON wcs USING gin(to_tsvector('english', address));
 
 ### 1. Smart Geocoding
 - Automatic address to coordinates conversion
+- Uses full address from Nominatim API for maximum detail
 - Error handling for failed geocoding
 - Fallback to coordinates if geocoding fails
 
 ### 2. Enhanced Location Detection
-- Detailed reverse geocoding with street and house numbers
+- Full address reverse geocoding using complete Nominatim display_name
+- Automatic cleanup of postal codes and country information
 - Polish language support
-- Better address formatting
+- Complete address formatting with all available details
 
 ### 3. Improved UX
+- Automatic location detection when adding WC (user is assumed to be at the location)
+- Pre-filled address and coordinates from current GPS position
+- Manual refresh option for location updates
 - Required address field for better data quality
-- Loading states during geocoding
+- Loading states during location detection and geocoding
 - Clear separation between address and coordinates
 - Search by readable addresses
+- Visual feedback for successful location detection
 
 ## Next Steps
 
@@ -153,8 +170,12 @@ CREATE INDEX idx_wcs_address ON wcs USING gin(to_tsvector('english', address));
 
 ## Benefits
 
-- **Better User Experience**: Users enter and see readable addresses
-- **Improved Search**: Search by street names instead of coordinates  
-- **More Accurate Location**: Street-level precision with house numbers
-- **Data Quality**: Structured address data for future features
-- **Geocoding Integration**: Automatic coordinate generation from addresses
+- **Seamless UX**: Location automatically detected when user is at the WC
+- **No Manual Entry**: Full address and coordinates pre-filled from GPS
+- **Complete Address Data**: Uses full Nominatim address including all available details
+- **Better User Experience**: Users see complete, detailed addresses
+- **Improved Search**: Search by full addresses instead of coordinates  
+- **Maximum Location Detail**: Complete address with street, house number, district, and city
+- **Data Quality**: Complete structured address data for future features
+- **Geocoding Integration**: Bi-directional conversion between full addresses and coordinates
+- **Real-world Usage**: Reflects actual usage pattern (user adds WC while being there)
