@@ -351,8 +351,8 @@ export default function SignInPage() {
 
   if (sessionStatus === "loading" || !providers) {
     return (
-      <div style={styles.formContainer}>
-        <div style={styles.formCard}>
+      <div className="form-container">
+        <div className="form-card">
           <p>Loading...</p>
         </div>
       </div>
@@ -360,8 +360,8 @@ export default function SignInPage() {
   }
   if (sessionStatus === "authenticated") {
     return (
-      <div style={styles.formContainer}>
-        <div style={styles.formCard}>
+      <div className="form-container">
+        <div className="form-card">
           <p>Redirecting...</p>
         </div>
       </div>
@@ -369,31 +369,37 @@ export default function SignInPage() {
   }
 
   return (
-    <div style={styles.formContainer}>
-      <div style={styles.formCard}>
+    <div className="form-container">
+      <div className="form-card">
         <h2 style={{ marginBottom: "20px", color: "#333" }}>
           Sign In to WC Finder
         </h2>
 
         {/* Display general sign-in errors */}
-        {error && <p style={styles.formError}>{error}</p>}
+        {error && <p className="form-message form-error">{error}</p>}
 
         {/* Display info messages */}
-        {infoMessage && <p style={styles.formInfo}>{infoMessage}</p>}
+        {infoMessage && (
+          <p className="form-message form-success">{infoMessage}</p>
+        )}
 
         {/* Display messages related to the resend action */}
         {resendErrorMessage && (
-          <p style={styles.formError}>{resendErrorMessage}</p>
+          <p style={{ ...styles.messageBase, ...styles.error }}>
+            {resendErrorMessage}
+          </p>
         )}
         {resendSuccessMessage && (
-          <p style={styles.formSuccess}>{resendSuccessMessage}</p>
+          <p style={{ ...styles.messageBase, ...styles.success }}>
+            {resendSuccessMessage}
+          </p>
         )}
 
         {/* Resend button appears if conditions met */}
         {showResendButton && !resendSuccessMessage && (
           <button
             onClick={handleResendConfirmation}
-            style={styles.formButton}
+            style={{ ...styles.button, ...styles.secondaryButton }}
             disabled={resendLoading || !email} // Disable if resending or if email field is empty
           >
             {resendLoading ? "Resending..." : "Resend Confirmation Email"}
@@ -407,7 +413,8 @@ export default function SignInPage() {
                 callbackUrl: searchParams.get("callbackUrl") || "/",
               })
             }
-            style={{ ...styles.formButton, ...styles.googleButton }}
+            className="form-button"
+            style={styles.googleButton}
             disabled={formLoading || resendLoading}
           >
             <svg
@@ -448,7 +455,11 @@ export default function SignInPage() {
         )}
 
         {providers?.credentials && (
-          <form onSubmit={handleCredentialsSignIn}>
+          <form
+            onSubmit={handleCredentialsSignIn}
+            style={styles.form}
+            className="form"
+          >
             <div>
               <input
                 id="email"
@@ -458,9 +469,10 @@ export default function SignInPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                style={styles.formInput}
+                style={styles.input}
                 placeholder="Email address"
                 disabled={formLoading || resendLoading}
+                className="form-input"
               />
             </div>
             <div>
@@ -472,14 +484,16 @@ export default function SignInPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                style={styles.formInput}
+                style={styles.input}
                 placeholder="Password"
                 disabled={formLoading || resendLoading}
+                className="form-input"
               />
             </div>
             <button
               type="submit"
-              style={styles.formButton}
+              className="form-button"
+              style={styles.primaryButton}
               disabled={formLoading || resendLoading}
             >
               {formLoading ? "Signing in..." : "Sign in with Email"}
@@ -499,9 +513,6 @@ export default function SignInPage() {
             Sign up
           </Link>
         </p>
-        <Link href="/" style={styles.formCancelLink}>
-          Back to Home
-        </Link>
       </div>
     </div>
   );
