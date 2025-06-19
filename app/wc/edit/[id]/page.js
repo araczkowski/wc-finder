@@ -200,6 +200,7 @@ export default function EditWcPage() {
 
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
+  const [address, setAddress] = useState("");
   const [currentImageUrl, setCurrentImageUrl] = useState(null); // URL of the image when page loads
   const [selectedFile, setSelectedFile] = useState(null); // New file selected by user
   const [imagePreview, setImagePreview] = useState(null); // URL for preview (blob or currentImageUrl)
@@ -319,6 +320,7 @@ export default function EditWcPage() {
         setOriginalWcData(fetchedWc);
         setName(fetchedWc.name || "");
         setLocation(fetchedWc.location || "");
+        setAddress(fetchedWc.address || "");
         setCurrentImageUrl(fetchedWc.image_url || null);
         setImagePreview(fetchedWc.image_url || null);
         setRating(fetchedWc.rating || 0);
@@ -453,6 +455,7 @@ export default function EditWcPage() {
     const payload = {
       name: name.trim(),
       location: location.trim() || null,
+      address: address.trim() || null,
       rating: rating > 0 ? parseInt(rating, 10) : null,
       // Information for the backend to handle image logic:
       current_image_url_on_client: currentImageUrl, // The URL of the image at the start of editing
@@ -668,8 +671,24 @@ export default function EditWcPage() {
             />
           </div>
           <div>
+            <label htmlFor="address" style={styles.formLabel}>
+              Address
+            </label>
+            <input
+              id="address"
+              name="address"
+              type="text"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              style={styles.formInput}
+              placeholder="e.g., ul. Marszałkowska 1, Warszawa"
+              disabled={formLoading}
+            />
+          </div>
+
+          <div>
             <label htmlFor="location" style={styles.formLabel}>
-              Location
+              Coordinates
             </label>
             <input
               id="location"
@@ -678,8 +697,8 @@ export default function EditWcPage() {
               value={location}
               onChange={(e) => setLocation(e.target.value)}
               style={styles.formInput}
+              placeholder="e.g., 52.2297,21.0122"
               disabled={formLoading}
-              readOnly={!isOwner}
             />
           </div>
           <div>

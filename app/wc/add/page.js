@@ -108,12 +108,14 @@ const styles = {
   imagePreview: {
     marginTop: "0.75rem",
     textAlign: "center",
+    width: "100%",
   },
 };
 
 export default function AddWcPage() {
   const [name, setName] = useState("");
-  const [location, setLocation] = useState("");
+  const [address, setAddress] = useState("");
+  const [location, setLocation] = useState(""); // Will store coordinates
   // State for image handling
   const [selectedFile, setSelectedFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
@@ -121,6 +123,7 @@ export default function AddWcPage() {
   const [hoverRating, setHoverRating] = useState(0);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [geocoding, setGeocoding] = useState(false);
 
   const router = useRouter();
   const { data: session, status: sessionStatus } = useSession();
@@ -150,6 +153,28 @@ export default function AddWcPage() {
     }
   }, [sessionStatus, router]);
 
+  // Function to geocode address to coordinates
+  const geocodeAddress = async (addressText) => {
+    if (!addressText.trim()) return null;
+
+    try {
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(addressText)}&limit=1&addressdetails=1`,
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        if (data && data.length > 0) {
+          const result = data[0];
+          return `${result.lat},${result.lon}`;
+        }
+      }
+    } catch (error) {
+      console.error("Geocoding error:", error);
+    }
+    return null;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -172,6 +197,14 @@ export default function AddWcPage() {
       setError("Rating must be between 1 and 10.");
       setLoading(false);
       return;
+    }
+
+    // Geocode address to coordinates if address is provided
+    let coordinates = location; // Use existing location if provided
+    if (address.trim() && !coordinates) {
+      setGeocoding(true);
+      coordinates = await geocodeAddress(address.trim());
+      setGeocoding(false);
     }
 
     try {
@@ -214,7 +247,8 @@ export default function AddWcPage() {
       const wcData = {
         user_login: session.user.id,
         name: name.trim(),
-        location: location.trim() || null,
+        address: address.trim() || null,
+        location: coordinates || location.trim() || null,
         image_url: uploadedImageUrl, // Use the uploaded image URL
         rating: parseInt(rating, 10),
       };
@@ -310,8 +344,36 @@ export default function AddWcPage() {
           </div>
 
           <div>
+            <label htmlFor="address" style={styles.formLabel}>
+              Address*
+            </label>
+            <input
+              id="address"
+              name="address"
+              type="text"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              style={styles.formInput}
+              placeholder="e.g., ul. Marszałkowska 1, Warszawa"
+              disabled={loading || geocoding}
+              required
+            />
+            {geocoding && (
+              <p
+                style={{
+                  fontSize: "0.8rem",
+                  color: "#666",
+                  marginTop: "0.25rem",
+                }}
+              >
+                📍 Pobieranie współrzędnych...
+              </p>
+            )}
+          </div>
+
+          <div>
             <label htmlFor="location" style={styles.formLabel}>
-              Location
+              Coordinates
             </label>
             <input
               id="location"
@@ -320,9 +382,18 @@ export default function AddWcPage() {
               value={location}
               onChange={(e) => setLocation(e.target.value)}
               style={styles.formInput}
-              placeholder="e.g., Near the fountain, Main Street"
+              placeholder="(auto-filled from your location)"
               disabled={loading}
             />
+            <p
+              style={{
+                fontSize: "0.75rem",
+                color: "#666",
+                marginTop: "0.25rem",
+              }}
+            >
+              Współrzędne będą automatycznie pobrane z podanego adresu
+            </p>
           </div>
 
           <div>
@@ -341,7 +412,11 @@ export default function AddWcPage() {
             />
             {imagePreview && (
               <div style={styles.imagePreview}>
-                <img src={imagePreview} alt="Selected image preview" />
+                <img
+                  src={imagePreview}
+                  alt="Selected image preview"
+                  style={{ width: "100%" }}
+                />
               </div>
             )}
           </div>
@@ -381,8 +456,16 @@ export default function AddWcPage() {
             </div>
           </div>
 
-          <button type="submit" style={styles.formButton} disabled={loading}>
-            {loading ? "Adding WC..." : "Add WC"}
+          <button
+            type="submit"
+            style={styles.formButton}
+            disabled={loading || geocoding}
+          >
+            {geocoding
+              ? "Pobieranie lokalizacji..."
+              : loading
+                ? "Adding WC..."
+                : "Add WC"}
           </button>
         </form>
         <Link href="/" style={styles.formCancelLink}>

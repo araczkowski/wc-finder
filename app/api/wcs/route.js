@@ -26,7 +26,7 @@ export async function POST(request) {
     );
   }
 
-  const { name, location, image_url, rating } = reqBody;
+  const { name, location, address, image_url, rating } = reqBody;
 
   // Validate required fields
   if (!name || typeof name !== "string" || name.trim() === "") {
@@ -44,6 +44,16 @@ export async function POST(request) {
   ) {
     return NextResponse.json(
       { message: "Location must be a string if provided, or null." },
+      { status: 400 },
+    );
+  }
+  if (
+    address !== undefined &&
+    address !== null &&
+    typeof address !== "string"
+  ) {
+    return NextResponse.json(
+      { message: "Address must be a string if provided, or null." },
       { status: 400 },
     );
   }
@@ -104,6 +114,7 @@ export async function POST(request) {
     created_by: session.user.email, // Store the user's email in created_by
     name: name.trim(),
     location: location && typeof location === "string" ? location.trim() : null,
+    address: address && typeof address === "string" ? address.trim() : null,
     image_url:
       image_url && typeof image_url === "string" ? image_url.trim() : null,
     rating:

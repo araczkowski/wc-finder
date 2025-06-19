@@ -190,6 +190,12 @@ export async function PUT(request, { params }) {
             ? jsonData.location.trim()
             : null
           : existingWc.location,
+      address:
+        jsonData.address !== undefined
+          ? jsonData.address
+            ? jsonData.address.trim()
+            : null
+          : existingWc.address,
       rating:
         jsonData.rating !== undefined && jsonData.rating !== null
           ? parseInt(jsonData.rating, 10)

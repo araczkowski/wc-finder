@@ -193,7 +193,7 @@ const styles = {
     backgroundColor: "#f8f9fa",
     outline: "none",
     fontFamily: "sans-serif",
-    color: "black"
+    color: "black",
   },
   locationButton: {
     position: "absolute",
@@ -359,7 +359,7 @@ export default function Home() {
     } else {
       const filtered = wcs.filter(
         (wc) =>
-          wc.location?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          wc.address?.toLowerCase().includes(searchQuery.toLowerCase()) ||
           wc.name?.toLowerCase().includes(searchQuery.toLowerCase()),
       );
       setFilteredWcs(filtered);
@@ -606,7 +606,7 @@ export default function Home() {
               )}
               <input
                 type="text"
-                placeholder="Search WCs by location..."
+                placeholder="Search WCs by address..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 style={styles.searchInput}
@@ -723,7 +723,7 @@ export default function Home() {
                           className="table-cell"
                           style={{ textAlign: "center" }}
                         >
-                          {wc.location || "N/A"}
+                          {wc.address || "N/A"}
                         </div>
                         <div
                           className="table-cell"
