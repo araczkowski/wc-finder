@@ -100,6 +100,7 @@ const styles = {
     width: "100%",
     maxWidth: "280px",
     textAlign: "center",
+    marginTop: "1rem",
   },
   signInLink: {
     marginTop: "1rem",
@@ -195,6 +196,7 @@ export default function Home() {
   const [locationPermission, setLocationPermission] = useState(null);
   const [locationPrompted, setLocationPrompted] = useState(false);
   const [userLocation, setUserLocation] = useState(null); // { lat, lng }
+  const [geolocationSupported, setGeolocationSupported] = useState(true);
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -370,6 +372,13 @@ export default function Home() {
 
   // Check geolocation permission on mount and ask for permission after login
   useEffect(() => {
+    // Check if geolocation is supported
+    if (!navigator.geolocation) {
+      setGeolocationSupported(false);
+      setLocationPermission("unsupported");
+      return;
+    }
+
     if (session && navigator.geolocation) {
       navigator.permissions
         .query({ name: "geolocation" })
@@ -429,6 +438,47 @@ export default function Home() {
         });
     }
   }, [session, locationPrompted, userLocation]);
+
+  const requestLocationPermission = () => {
+    if (!navigator.geolocation) {
+      alert("Geolocation is not supported by this browser.");
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        setUserLocation({ lat: latitude, lng: longitude });
+        setLocationPermission("granted");
+      },
+      (error) => {
+        console.error("Geolocation error:", error);
+        setLocationPermission("denied");
+
+        switch (error.code) {
+          case error.PERMISSION_DENIED:
+            alert(
+              "Dostęp do lokalizacji został odrzucony. Włącz lokalizację w ustawieniach przeglądarki i odśwież stronę.",
+            );
+            break;
+          case error.POSITION_UNAVAILABLE:
+            alert("Informacje o lokalizacji są niedostępne.");
+            break;
+          case error.TIMEOUT:
+            alert("Żądanie lokalizacji przekroczyło limit czasu.");
+            break;
+          default:
+            alert("Wystąpił nieznany błąd podczas pobierania lokalizacji.");
+            break;
+        }
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 300000,
+      },
+    );
+  };
 
   const renderAuthControls = () => {
     if (status === "loading") {
@@ -518,9 +568,120 @@ export default function Home() {
                 </p>
               )}
 
+              {/* Geolocation not supported */}
+              {!loadingWcs &&
+                !wcError &&
+                wcs.length > 0 &&
+                !geolocationSupported && (
+                  <div
+                    style={{
+                      textAlign: "center",
+                      padding: "20px",
+                      backgroundColor: "#f8d7da",
+                      border: "1px solid #f5c6cb",
+                      borderRadius: "8px",
+                      marginBottom: "20px",
+                      color: "#721c24",
+                    }}
+                  >
+                    <div style={{ fontSize: "2rem", marginBottom: "10px" }}>
+                      ❌
+                    </div>
+                    <h3 style={{ margin: "0 0 10px 0", color: "#721c24" }}>
+                      Geolokalizacja nie jest wspierana
+                    </h3>
+                    <p style={{ margin: "0", lineHeight: "1.5" }}>
+                      Twoja przeglądarka nie obsługuje geolokalizacji. WCs będą
+                      wyświetlane w kolejności dodania, bez sortowania według
+                      odległości.
+                    </p>
+                  </div>
+                )}
+
+              {/* Location Permission Message */}
+              {!loadingWcs &&
+                !wcError &&
+                wcs.length > 0 &&
+                !userLocation &&
+                geolocationSupported &&
+                (locationPermission === "denied" ||
+                  locationPermission === "prompt") && (
+                  <div
+                    style={{
+                      textAlign: "center",
+                      padding: "20px",
+                      backgroundColor: "#fff3cd",
+                      border: "1px solid #ffeaa7",
+                      borderRadius: "8px",
+                      marginBottom: "20px",
+                      color: "#856404",
+                    }}
+                  >
+                    <div style={{ fontSize: "2rem", marginBottom: "10px" }}>
+                      📍
+                    </div>
+                    <h3 style={{ margin: "0 0 10px 0", color: "#856404" }}>
+                      Lokalizacja wymagana
+                    </h3>
+                    <p style={{ margin: "0 0 15px 0", lineHeight: "1.5" }}>
+                      Aby korzystać z aplikacji i zobaczyć najbliższe WC, musisz
+                      zezwolić aplikacji na używanie danych o lokalizacji.
+                    </p>
+                    <button
+                      onClick={requestLocationPermission}
+                      style={{
+                        padding: "12px 24px",
+                        backgroundColor: "#007bff",
+                        color: "white",
+                        border: "none",
+                        borderRadius: "6px",
+                        fontSize: "1rem",
+                        fontWeight: "bold",
+                        cursor: "pointer",
+                        transition: "background-color 0.3s ease",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.backgroundColor = "#0056b3";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.backgroundColor = "#007bff";
+                      }}
+                    >
+                      Włącz dostęp do lokalizacji
+                    </button>
+                  </div>
+                )}
+
+              {/* Location not available but permission granted */}
+              {!loadingWcs &&
+                !wcError &&
+                wcs.length > 0 &&
+                !userLocation &&
+                locationPermission === "granted" && (
+                  <div
+                    style={{
+                      textAlign: "center",
+                      padding: "15px",
+                      backgroundColor: "#e8f4f8",
+                      border: "1px solid #bee5eb",
+                      borderRadius: "8px",
+                      marginBottom: "20px",
+                      color: "#0c5460",
+                    }}
+                  >
+                    <div style={{ fontSize: "1.5rem", marginBottom: "5px" }}>
+                      🔄
+                    </div>
+                    <p style={{ margin: "0", fontSize: "0.9rem" }}>
+                      Pobieranie lokalizacji... WCs będą posortowane według
+                      odległości gdy lokalizacja zostanie wykryta.
+                    </p>
+                  </div>
+                )}
+
               {!loadingWcs && !wcError && filteredWcs.length > 0 && (
                 <>
-                  {userLocation && (
+                  {userLocation && geolocationSupported && (
                     <div
                       style={{
                         textAlign: "center",
@@ -534,6 +695,23 @@ export default function Home() {
                       }}
                     >
                       📍 WCs sorted by distance from your location
+                    </div>
+                  )}
+                  {!userLocation && !geolocationSupported && (
+                    <div
+                      style={{
+                        textAlign: "center",
+                        marginBottom: "15px",
+                        padding: "8px",
+                        backgroundColor: "#fff3cd",
+                        borderRadius: "4px",
+                        fontSize: "0.85rem",
+                        color: "#856404",
+                        border: "1px solid #ffeaa7",
+                      }}
+                    >
+                      📝 WCs displayed in order of addition (location
+                      unavailable)
                     </div>
                   )}
                   <div className="responsive-table">

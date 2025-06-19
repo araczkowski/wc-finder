@@ -169,6 +169,10 @@ CREATE INDEX idx_wcs_address ON wcs USING gin(to_tsvector('english', address));
 - **Distance indicators**: Clear display of how far each WC is from user
 - **Clean design**: Removed search inputs for streamlined experience
 - **Auto-sorting**: WCs automatically ordered from nearest to farthest
+- **Location permission handling**: Clear messages and prompts for location access
+- **Graceful degradation**: Works without location (shows WCs in order of addition)
+- **Permission requests**: Button to enable location access when denied
+- **Browser compatibility**: Handles unsupported geolocation gracefully
 - Automatic location detection when adding WC (user is assumed to be at the location)  
 - Pre-filled address and coordinates from current GPS position
 - Manual refresh option for location updates
@@ -177,14 +181,41 @@ CREATE INDEX idx_wcs_address ON wcs USING gin(to_tsvector('english', address));
 - Clear separation between address and coordinates
 - Visual feedback for successful location detection and distance sorting
 
+## Location Permission States
+
+The application handles multiple location permission scenarios:
+
+### 1. **Location Granted**
+- Automatic GPS detection on page load
+- WCs sorted by distance from user
+- Distance indicators shown for each WC
+- Green info banner: "📍 WCs sorted by distance from your location"
+
+### 2. **Location Denied/Prompt**
+- Warning message with location requirement explanation
+- "Włącz dostęp do lokalizacji" button to request permission
+- Clear instructions for enabling location in browser settings
+- Fallback: WCs displayed in order of addition
+
+### 3. **Location Loading**
+- Blue info message: "🔄 Pobieranie lokalizacji..."
+- Shows while GPS coordinates are being detected
+- Temporary state before switching to granted/denied
+
+### 4. **Geolocation Unsupported**
+- Red warning for browsers without geolocation support
+- Message: "Geolokalizacja nie jest wspierana"
+- Graceful fallback to chronological ordering
+- Yellow info banner: "📝 WCs displayed in order of addition"
+
 ## Next Steps
 
 1. **Run the database migration** in Supabase
 2. **Deploy the updated code** to Vercel
 3. **Test the new functionality**:
    - Add new WC with address
-   - Use "My Location" button
-   - Search by address
+   - Test location permission scenarios (grant/deny/unsupported)
+   - Verify distance sorting and fallback behavior
    - Edit existing WC
 
 ## Benefits
@@ -193,6 +224,9 @@ CREATE INDEX idx_wcs_address ON wcs USING gin(to_tsvector('english', address));
 - **Distance transparency**: Users see exactly how far each WC is 
 - **Streamlined experience**: No search input needed - automatic proximity sorting
 - **Real-world utility**: Find the nearest WC quickly and efficiently
+- **Robust permission handling**: Clear guidance for enabling location access
+- **Graceful degradation**: Works without location permissions (chronological order)
+- **User education**: Explains why location access is beneficial
 - **Seamless UX**: Location automatically detected when user is at the WC
 - **No Manual Entry**: Full address and coordinates pre-filled from GPS
 - **Complete Address Data**: Uses full Nominatim address including all available details
