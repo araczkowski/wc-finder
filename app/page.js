@@ -176,49 +176,6 @@ const styles = {
     textOverflow: "ellipsis",
     whiteSpace: "nowrap",
   },
-  searchContainer: {
-    width: "100%",
-    marginBottom: "1.5rem",
-    position: "relative",
-  },
-  searchInput: {
-    padding: "1rem",
-    paddingRight: "120px",
-    borderRadius: "12px",
-    border: "2px solid #e1e5e9",
-    fontSize: "1rem",
-    width: "100%",
-    boxSizing: "border-box",
-    transition: "all 0.3s ease",
-    backgroundColor: "#f8f9fa",
-    outline: "none",
-    fontFamily: "sans-serif",
-    color: "black",
-  },
-  locationButton: {
-    position: "absolute",
-    right: "8px",
-    top: "50%",
-    transform: "translateY(-50%)",
-    padding: "0.5rem 0.75rem",
-    borderRadius: "8px",
-    border: "none",
-    fontSize: "0.8rem",
-    fontWeight: "600",
-    cursor: "pointer",
-    backgroundColor: "#667eea",
-    color: "white",
-    transition: "all 0.3s ease",
-    minHeight: "36px",
-    display: "flex",
-    alignItems: "center",
-    gap: "4px",
-  },
-  locationButtonDisabled: {
-    backgroundColor: "#6c757d",
-    cursor: "not-allowed",
-    opacity: 0.6,
-  },
 };
 
 export default function Home() {
@@ -234,11 +191,10 @@ export default function Home() {
   const [wcs, setWcs] = useState([]);
   const [loadingWcs, setLoadingWcs] = useState(false);
   const [wcError, setWcError] = useState("");
-  const [searchQuery, setSearchQuery] = useState("");
   const [filteredWcs, setFilteredWcs] = useState([]);
-  const [locationLoading, setLocationLoading] = useState(false);
   const [locationPermission, setLocationPermission] = useState(null);
   const [locationPrompted, setLocationPrompted] = useState(false);
+  const [userLocation, setUserLocation] = useState(null); // { lat, lng }
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -352,19 +308,65 @@ export default function Home() {
     console.log("[Home Page State Update] wcError:", wcError);
   }, [wcs, loadingWcs, wcError]);
 
-  // Filter WCs based on search query
-  useEffect(() => {
-    if (!searchQuery.trim()) {
-      setFilteredWcs(wcs);
+  // Calculate distance between two coordinates using Haversine formula
+  const calculateDistance = (lat1, lng1, lat2, lng2) => {
+    const R = 6371; // Earth's radius in kilometers
+    const dLat = (lat2 - lat1) * (Math.PI / 180);
+    const dLng = (lng2 - lng1) * (Math.PI / 180);
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(lat1 * (Math.PI / 180)) *
+        Math.cos(lat2 * (Math.PI / 180)) *
+        Math.sin(dLng / 2) *
+        Math.sin(dLng / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c; // Distance in kilometers
+  };
+
+  // Format distance for display
+  const formatDistance = (distanceKm) => {
+    if (distanceKm < 1) {
+      return `${Math.round(distanceKm * 1000)}m`;
+    } else if (distanceKm < 10) {
+      return `${distanceKm.toFixed(1)}km`;
     } else {
-      const filtered = wcs.filter(
-        (wc) =>
-          wc.address?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          wc.name?.toLowerCase().includes(searchQuery.toLowerCase()),
-      );
-      setFilteredWcs(filtered);
+      return `${Math.round(distanceKm)}km`;
     }
-  }, [wcs, searchQuery]);
+  };
+
+  // Sort WCs based on location distance
+  useEffect(() => {
+    let filtered = [...wcs];
+
+    // Add distance calculations and sort by distance if user location is available
+    if (userLocation) {
+      filtered = filtered
+        .map((wc) => {
+          if (wc.location) {
+            const [lat, lng] = wc.location.split(",").map(Number);
+            if (!isNaN(lat) && !isNaN(lng)) {
+              const distance = calculateDistance(
+                userLocation.lat,
+                userLocation.lng,
+                lat,
+                lng,
+              );
+              return { ...wc, distance };
+            }
+          }
+          return { ...wc, distance: null };
+        })
+        .sort((a, b) => {
+          // Sort by distance (nearest first), put items without distance at the end
+          if (a.distance === null && b.distance === null) return 0;
+          if (a.distance === null) return 1;
+          if (b.distance === null) return -1;
+          return a.distance - b.distance;
+        });
+    }
+
+    setFilteredWcs(filtered);
+  }, [wcs, userLocation]);
 
   // Check geolocation permission on mount and ask for permission after login
   useEffect(() => {
@@ -381,13 +383,30 @@ export default function Home() {
           if (permission.state === "prompt" && !locationPrompted) {
             setLocationPrompted(true);
             navigator.geolocation.getCurrentPosition(
-              () => {
+              (position) => {
                 setLocationPermission("granted");
+                const { latitude, longitude } = position.coords;
+                setUserLocation({ lat: latitude, lng: longitude });
               },
               () => {
                 setLocationPermission("denied");
               },
-              { timeout: 5000 },
+            );
+          } else if (permission.state === "granted" && !userLocation) {
+            // Auto-detect location for distance sorting
+            navigator.geolocation.getCurrentPosition(
+              (position) => {
+                const { latitude, longitude } = position.coords;
+                setUserLocation({ lat: latitude, lng: longitude });
+              },
+              (error) => {
+                console.log("Auto location detection failed:", error);
+              },
+              {
+                enableHighAccuracy: false,
+                timeout: 5000,
+                maximumAge: 300000,
+              },
             );
           }
         })
@@ -397,102 +416,19 @@ export default function Home() {
           if (!locationPrompted) {
             setLocationPrompted(true);
             navigator.geolocation.getCurrentPosition(
-              () => {
+              (position) => {
                 setLocationPermission("granted");
+                const { latitude, longitude } = position.coords;
+                setUserLocation({ lat: latitude, lng: longitude });
               },
               () => {
                 setLocationPermission("denied");
               },
-              { timeout: 5000 },
             );
           }
         });
     }
-  }, [session, locationPrompted]);
-
-  const handleMyLocation = () => {
-    if (!navigator.geolocation) {
-      alert("Geolocation is not supported by this browser.");
-      return;
-    }
-
-    setLocationLoading(true);
-
-    navigator.geolocation.getCurrentPosition(
-      async (position) => {
-        const { latitude, longitude } = position.coords;
-
-        try {
-          // Try to use free reverse geocoding API
-          try {
-            const response = await fetch(
-              `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`,
-            );
-
-            if (response.ok) {
-              const data = await response.json();
-              if (data && data.display_name) {
-                // Use full address from display_name, but clean it up slightly
-                let fullAddress = data.display_name;
-
-                // Remove country and postal code from the end if present
-                fullAddress = fullAddress
-                  .replace(/, \d{2}-\d{3},.*$/, "") // Remove Polish postal codes and everything after
-                  .replace(/, Poland$/, "") // Remove ", Poland" at the end
-                  .replace(/, Polska$/, "") // Remove ", Polska" at the end
-                  .trim();
-
-                setSearchQuery(fullAddress);
-              } else {
-                setSearchQuery(
-                  `${latitude.toFixed(4)}, ${longitude.toFixed(4)}`,
-                );
-              }
-            } else {
-              // Fallback to coordinates if geocoding fails
-              setSearchQuery(`${latitude.toFixed(4)}, ${longitude.toFixed(4)}`);
-            }
-          } catch (geocodingError) {
-            console.error("Geocoding error:", geocodingError);
-            // Fallback to coordinates
-            setSearchQuery(`${latitude.toFixed(4)}, ${longitude.toFixed(4)}`);
-          }
-        } catch (error) {
-          console.error("Location error:", error);
-          setSearchQuery(`${latitude.toFixed(4)}, ${longitude.toFixed(4)}`);
-        }
-
-        setLocationLoading(false);
-      },
-      (error) => {
-        setLocationLoading(false);
-        console.error("Geolocation error:", error);
-
-        switch (error.code) {
-          case error.PERMISSION_DENIED:
-            alert(
-              "Location access denied. Please enable location access and try again.",
-            );
-            setLocationPermission("denied");
-            break;
-          case error.POSITION_UNAVAILABLE:
-            alert("Location information is unavailable.");
-            break;
-          case error.TIMEOUT:
-            alert("Location request timed out.");
-            break;
-          default:
-            alert("An unknown error occurred while retrieving location.");
-            break;
-        }
-      },
-      {
-        enableHighAccuracy: true,
-        timeout: 10000,
-        maximumAge: 300000, // 5 minutes
-      },
-    );
-  };
+  }, [session, locationPrompted, userLocation]);
 
   const renderAuthControls = () => {
     if (status === "loading") {
@@ -565,80 +501,6 @@ export default function Home() {
           <p style={styles.loader}>Checking session...</p>
         ) : session ? (
           <>
-            {/* Search Container */}
-            <div style={styles.searchContainer}>
-              {locationPermission === "denied" && (
-                <p
-                  style={{
-                    fontSize: "0.8rem",
-                    color: "#e74c3c",
-                    marginBottom: "0.5rem",
-                    textAlign: "center",
-                  }}
-                >
-                  📍 Location access denied. Enable in browser settings for
-                  better search.
-                </p>
-              )}
-              <input
-                type="text"
-                placeholder="Search WCs by address..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                style={styles.searchInput}
-                onFocus={(e) => {
-                  e.target.style.borderColor = "#667eea";
-                  e.target.style.boxShadow =
-                    "0 0 0 3px rgba(102, 126, 234, 0.1)";
-                  e.target.style.backgroundColor = "#ffffff";
-                }}
-                onBlur={(e) => {
-                  e.target.style.borderColor = "#e1e5e9";
-                  e.target.style.boxShadow = "none";
-                  e.target.style.backgroundColor = "#f8f9fa";
-                }}
-              />
-              <button
-                onClick={handleMyLocation}
-                disabled={locationLoading}
-                style={{
-                  ...styles.locationButton,
-                  ...(locationLoading ? styles.locationButtonDisabled : {}),
-                }}
-                onMouseEnter={(e) => {
-                  if (!locationLoading) {
-                    e.target.style.backgroundColor = "#5a67d8";
-                    e.target.style.transform = "translateY(-50%) scale(1.05)";
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (!locationLoading) {
-                    e.target.style.backgroundColor = "#667eea";
-                    e.target.style.transform = "translateY(-50%) scale(1)";
-                  }
-                }}
-                title="Use my current location"
-              >
-                {locationLoading ? (
-                  <>
-                    <div
-                      style={{
-                        width: "12px",
-                        height: "12px",
-                        border: "2px solid transparent",
-                        borderTop: "2px solid white",
-                        borderRadius: "50%",
-                        animation: "spin 1s linear infinite",
-                      }}
-                    ></div>
-                    GPS
-                  </>
-                ) : (
-                  <>📍Lokalizacja</>
-                )}
-              </button>
-            </div>
-
             {/* Add New WC Button */}
             <Link href="/wc/add" style={styles.addButton}>
               Add New WC
@@ -655,64 +517,88 @@ export default function Home() {
                   No WCs found. Click Add New WC to add one!
                 </p>
               )}
-              {!loadingWcs &&
-                !wcError &&
-                searchQuery &&
-                filteredWcs.length === 0 &&
-                wcs.length > 0 && (
-                  <p style={styles.noWcsMessage}>
-                    No WCs found matching &quot;{searchQuery}&quot;. Try a
-                    different search term.
-                  </p>
-                )}
+
               {!loadingWcs && !wcError && filteredWcs.length > 0 && (
-                <div className="responsive-table">
-                  {filteredWcs.map((wc) => (
-                    <Link
-                      key={wc.id}
-                      href={`/wc/edit/${wc.id}`}
-                      className="edit-icon"
-                      title="Edit WC"
+                <>
+                  {userLocation && (
+                    <div
+                      style={{
+                        textAlign: "center",
+                        marginBottom: "15px",
+                        padding: "8px",
+                        backgroundColor: "#e8f5e8",
+                        borderRadius: "4px",
+                        fontSize: "0.85rem",
+                        color: "#2E7D32",
+                        border: "1px solid #4CAF50",
+                      }}
                     >
-                      <div className="table-row">
-                        <div
-                          className="table-cell"
-                          style={{ textAlign: "center" }}
-                        >
-                          {wc.image_url ? (
-                            <img
-                              src={wc.image_url}
-                              alt={wc.name || "WC image"}
-                              className="thumbnail-in-table"
-                            />
-                          ) : (
-                            <div className="thumbnail-placeholder">No Img</div>
-                          )}
+                      📍 WCs sorted by distance from your location
+                    </div>
+                  )}
+                  <div className="responsive-table">
+                    {filteredWcs.map((wc) => (
+                      <Link
+                        key={wc.id}
+                        href={`/wc/edit/${wc.id}`}
+                        className="edit-icon"
+                        title="Edit WC"
+                      >
+                        <div className="table-row">
+                          <div
+                            className="table-cell"
+                            style={{ textAlign: "center" }}
+                          >
+                            {wc.image_url ? (
+                              <img
+                                src={wc.image_url}
+                                alt={wc.name || "WC image"}
+                                className="thumbnail-in-table"
+                              />
+                            ) : (
+                              <div className="thumbnail-placeholder">
+                                No Img
+                              </div>
+                            )}
+                          </div>
+                          <div
+                            className="table-cell"
+                            style={{ textAlign: "center" }}
+                          >
+                            {wc.name}
+                          </div>
+                          <div
+                            className="table-cell"
+                            style={{ textAlign: "center" }}
+                          >
+                            <div>{wc.address || "N/A"}</div>
+                            {wc.distance !== null &&
+                              wc.distance !== undefined && (
+                                <div
+                                  style={{
+                                    fontSize: "0.8rem",
+                                    color: "#2196F3",
+                                    marginTop: "2px",
+                                    fontWeight: "bold",
+                                  }}
+                                >
+                                  📍 {formatDistance(wc.distance)}
+                                </div>
+                              )}
+                          </div>
+                          <div
+                            className="table-cell"
+                            style={{ textAlign: "center" }}
+                          >
+                            {wc.rating
+                              ? `${"⭐".repeat(Math.min(wc.rating, 10))} (${wc.rating}/10)`
+                              : "Not rated"}
+                          </div>
                         </div>
-                        <div
-                          className="table-cell"
-                          style={{ textAlign: "center" }}
-                        >
-                          {wc.name}
-                        </div>
-                        <div
-                          className="table-cell"
-                          style={{ textAlign: "center" }}
-                        >
-                          {wc.address || "N/A"}
-                        </div>
-                        <div
-                          className="table-cell"
-                          style={{ textAlign: "center" }}
-                        >
-                          {wc.rating
-                            ? `${"⭐".repeat(Math.min(wc.rating, 10))} (${wc.rating}/10)`
-                            : "Not rated"}
-                        </div>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
+                      </Link>
+                    ))}
+                  </div>
+                </>
               )}
             </div>
           </>

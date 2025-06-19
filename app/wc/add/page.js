@@ -524,7 +524,7 @@ export default function AddWcPage() {
               value={location}
               onChange={(e) => setLocation(e.target.value)}
               style={styles.formInput}
-              placeholder="e.g., 52.2297,21.0122 (will be auto-filled from address)"
+              placeholder="will be auto-filled from current location"
               disabled={loading || gettingLocation}
             />
             <p

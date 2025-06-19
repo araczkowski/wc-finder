@@ -64,10 +64,11 @@ CREATE INDEX idx_wcs_address ON wcs USING gin(to_tsvector('english', address));
 
 ### 3. Main Page (`/`)
 **Changes:**
-- Search now searches by address instead of coordinates
-- Display shows address instead of coordinates
-- "My Location" button text changed to "Dokładna lokalizacja"
-- Enhanced reverse geocoding for detailed address with street and house number
+- **Automatic location-based sorting**: Automatically detects user location and sorts WCs by distance
+- **Distance display**: Shows distance in meters/kilometers for each WC
+- **Smart sorting**: Nearest WCs first when location is available
+- **Simplified interface**: Removed search field - sorting by distance is automatic
+- **Clean UI**: Focus on location-based results without manual search inputs
 
 ## Geocoding Features
 
@@ -87,6 +88,18 @@ Enhanced reverse geocoding that uses full address from Nominatim:
 - Cleans up by removing postal codes and country names
 - Provides full detailed address: "ul. Marszałkowska 1, Śródmieście, Warszawa, województwo mazowieckie"
 
+### 3. Distance Calculation (Location-based Search)
+```javascript
+const calculateDistance = (lat1, lng1, lat2, lng2) => {
+  // Haversine formula for calculating distance between coordinates
+  // Returns distance in kilometers
+};
+
+const formatDistance = (distanceKm) => {
+  // Formats: "150m" for <1km, "2.3km" for <10km, "15km" for >=10km
+};
+```
+
 ## Usage Flow
 
 ### Adding New WC:
@@ -98,16 +111,19 @@ Enhanced reverse geocoding that uses full address from Nominatim:
 6. If address is manually changed, system geocodes it to update coordinates
 7. Full address stored in `address` column, coordinates stored in `location` column
 
-### Using "My Location":
-1. User clicks "Dokładna lokalizacja"
-2. System gets GPS coordinates
-3. Reverse geocodes to full detailed address (complete address from Nominatim)
-4. Full address displayed in search field
+### Main Page WC Display:
+1. **Automatic location detection**: User location detected on page load for distance sorting
+2. **Distance calculation**: All WCs automatically sorted by proximity to user's current location
+3. **No manual search needed**: WCs displayed from nearest to farthest automatically
+4. **Distance indicators**: Each WC shows exact distance (e.g., "150m", "2.3km")
+5. **Simple interface**: Clean list focused on proximity-based results
 
-### Searching:
-- Search now works on readable addresses
-- Users can search by street name, district, or city
-- More intuitive than searching coordinates
+### Location-Based Sorting:
+- **Automatic GPS detection** on page load
+- **Haversine formula** for accurate distance calculations
+- **Smart formatting**: Shows meters for <1km, kilometers for longer distances
+- **Real-time sorting**: Updates when location permission is granted
+- **No search input required**: Results automatically ordered by proximity
 
 ## Database Migration Required
 
@@ -149,14 +165,17 @@ CREATE INDEX idx_wcs_address ON wcs USING gin(to_tsvector('english', address));
 - Complete address formatting with all available details
 
 ### 3. Improved UX
-- Automatic location detection when adding WC (user is assumed to be at the location)
+- **Simplified interface**: Automatic distance-based sorting without search complexity
+- **Distance indicators**: Clear display of how far each WC is from user
+- **Clean design**: Removed search inputs for streamlined experience
+- **Auto-sorting**: WCs automatically ordered from nearest to farthest
+- Automatic location detection when adding WC (user is assumed to be at the location)  
 - Pre-filled address and coordinates from current GPS position
 - Manual refresh option for location updates
 - Required address field for better data quality
 - Loading states during location detection and geocoding
 - Clear separation between address and coordinates
-- Search by readable addresses
-- Visual feedback for successful location detection
+- Visual feedback for successful location detection and distance sorting
 
 ## Next Steps
 
@@ -170,12 +189,16 @@ CREATE INDEX idx_wcs_address ON wcs USING gin(to_tsvector('english', address));
 
 ## Benefits
 
+- **Location-first approach**: WCs automatically sorted by proximity to user
+- **Distance transparency**: Users see exactly how far each WC is 
+- **Streamlined experience**: No search input needed - automatic proximity sorting
+- **Real-world utility**: Find the nearest WC quickly and efficiently
 - **Seamless UX**: Location automatically detected when user is at the WC
 - **No Manual Entry**: Full address and coordinates pre-filled from GPS
 - **Complete Address Data**: Uses full Nominatim address including all available details
-- **Better User Experience**: Users see complete, detailed addresses
-- **Improved Search**: Search by full addresses instead of coordinates  
+- **Better User Experience**: Users see complete, detailed addresses with distances
+- **Simplified Interface**: Automatic location-based sorting without manual search
 - **Maximum Location Detail**: Complete address with street, house number, district, and city
 - **Data Quality**: Complete structured address data for future features
 - **Geocoding Integration**: Bi-directional conversion between full addresses and coordinates
-- **Real-world Usage**: Reflects actual usage pattern (user adds WC while being there)
+- **Real-world Usage**: Reflects actual usage pattern (find nearest WC, add WC while being there)
