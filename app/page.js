@@ -68,7 +68,7 @@ const styles = {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "space-evenly",
-    padding: "1rem",
+    padding: "3px",
     textAlign: "center",
     maxWidth: "500px",
     margin: "0 auto",
