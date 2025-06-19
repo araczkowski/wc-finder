@@ -6,7 +6,7 @@
 @media (prefers-color-scheme: dark) {
     :root {
         --background: #0a0a0a;
-        --foreground: #ededed;
+        --foreground: #171717;
     }
 }
 
@@ -48,7 +48,6 @@ a {
 /* Responsive Table Styles - Mobile First */
 .responsive-table {
     width: 100%;
-    margin-top: 1rem;
     padding: 0;
 }
 
@@ -65,6 +64,7 @@ a {
     border-radius: 8px;
     background-color: #fafafa;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
 }
 
 .table-cell {
@@ -74,6 +74,7 @@ a {
     border-bottom: 1px solid #eee;
     min-height: 44px; /* Better touch target */
     word-break: break-word;
+   justify-content: center;
 }
 
 .table-cell:last-child {
@@ -177,6 +178,7 @@ a {
     justify-content: center;
     transition: color 0.2s ease;
     background-color: transparent;
+    width: 100%;
 }
 
 .edit-icon:hover {
@@ -871,14 +873,6 @@ textarea.form-input {
 
     .main-content {
         color: #fff;
-    }
-
-    .welcome-message {
-        color: #fff;
-    }
-
-    .info-message {
-        color: #ccc;
     }
 
     .wc-list-container {

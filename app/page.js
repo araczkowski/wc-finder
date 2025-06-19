@@ -193,6 +193,7 @@ const styles = {
     backgroundColor: "#f8f9fa",
     outline: "none",
     fontFamily: "sans-serif",
+    color: "black"
   },
   locationButton: {
     position: "absolute",
@@ -749,7 +750,7 @@ export default function Home() {
               style={{ marginBottom: "1.5rem" }}
               priority
             />
-            <h1 className="welcome-message">Welcome to Public WC Finder</h1>
+            <h1 className="welcome-message">Welcome to WC Finder</h1>
             <p className="info-message">
               Please sign in to access the application features.
             </p>

@@ -371,7 +371,7 @@ export default function SignInPage() {
   return (
     <div className="form-container">
       <div className="form-card">
-        <h2 style={{ marginBottom: "20px", color: "#333" }}>
+        <h2 style={{ marginBottom: "20px", color: "grey" }}>
           Sign In to WC Finder
         </h2>
 
@@ -500,7 +500,7 @@ export default function SignInPage() {
             </button>
           </form>
         )}
-        <p style={{ marginTop: "25px", fontSize: "0.9em", color: "#555" }}>
+        <p style={{ marginTop: "25px", fontSize: "0.9em", color: "grey" }}>
           Don&apos;t have an account?{" "}
           <Link
             href="/auth/register"
