@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "WC Finder", // Updated title
+  title: "Public WC Finder", // Updated title
   description: "Find word counts easily with WC Finder", // Updated description
 };
 

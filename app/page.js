@@ -677,17 +677,12 @@ export default function Home() {
                 )}
               {!loadingWcs && !wcError && filteredWcs.length > 0 && (
                 <div className="responsive-table">
-                  <div className="table-header">
-                    <div className="header-cell">Image</div>
-                    <div className="header-cell">Name</div>
-                    <div className="header-cell">Location</div>
-                    <div className="header-cell">Rating</div>
-                    <div className="header-cell">Created By</div>
-                    <div className="header-cell">Actions</div>
-                  </div>
                   {filteredWcs.map((wc) => (
                     <div key={wc.id} className="table-row">
-                      <div className="table-cell" data-label="Image: ">
+                      <div
+                        className="table-cell"
+                        style={{ textAlign: "center" }}
+                      >
                         {wc.image_url ? (
                           <img
                             src={wc.image_url}
@@ -698,21 +693,30 @@ export default function Home() {
                           <div className="thumbnail-placeholder">No Img</div>
                         )}
                       </div>
-                      <div className="table-cell" data-label="Name: ">
+                      <div
+                        className="table-cell"
+                        style={{ textAlign: "center" }}
+                      >
                         {wc.name}
                       </div>
-                      <div className="table-cell" data-label="Location: ">
+                      <div
+                        className="table-cell"
+                        style={{ textAlign: "center" }}
+                      >
                         {wc.location || "N/A"}
                       </div>
-                      <div className="table-cell" data-label="Rating: ">
+                      <div
+                        className="table-cell"
+                        style={{ textAlign: "center" }}
+                      >
                         {wc.rating
                           ? `${"⭐".repeat(Math.min(wc.rating, 10))} (${wc.rating}/10)`
                           : "Not rated"}
                       </div>
-                      <div className="table-cell" data-label="Created By: ">
-                        {wc.created_by || "N/A"}
-                      </div>
-                      <div className="table-cell" data-label="Actions: ">
+                      <div
+                        className="table-cell"
+                        style={{ textAlign: "center" }}
+                      >
                         <div className="wc-actions">
                           <Link
                             href={`/wc/edit/${wc.id}`}
@@ -739,7 +743,7 @@ export default function Home() {
               style={{ marginBottom: "1.5rem" }}
               priority
             />
-            <h1 className="welcome-message">Welcome to WC Finder</h1>
+            <h1 className="welcome-message">Welcome to Public WC Finder</h1>
             <p className="info-message">
               Please sign in to access the application features.
             </p>
