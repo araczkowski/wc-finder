@@ -431,17 +431,41 @@ export default function Home() {
             if (response.ok) {
               const data = await response.json();
               if (data && data.display_name) {
-                // Extract city/town from the address
+                // Extract detailed address with street and house number
                 const address = data.address || {};
-                const locationName =
-                  address.city ||
-                  address.town ||
-                  address.village ||
-                  address.hamlet ||
+
+                // Build detailed address with street and house number
+                let detailedAddress = "";
+
+                // Add house number and street if available
+                if (address.house_number && address.road) {
+                  detailedAddress += `${address.house_number} ${address.road}, `;
+                } else if (address.road) {
+                  detailedAddress += `${address.road}, `;
+                }
+
+                // Add neighborhood/suburb/district if available
+                if (
                   address.suburb ||
-                  data.display_name.split(",")[0] ||
-                  `${latitude.toFixed(4)}, ${longitude.toFixed(4)}`;
-                setSearchQuery(locationName);
+                  address.neighbourhood ||
+                  address.district
+                ) {
+                  detailedAddress += `${address.suburb || address.neighbourhood || address.district}, `;
+                }
+
+                // Add city/town/village
+                if (address.city || address.town || address.village) {
+                  detailedAddress += `${address.city || address.town || address.village}`;
+                }
+
+                // If we couldn't build a detailed address, use the display_name or coordinates
+                if (!detailedAddress) {
+                  detailedAddress =
+                    data.display_name ||
+                    `${latitude.toFixed(4)}, ${longitude.toFixed(4)}`;
+                }
+
+                setSearchQuery(detailedAddress);
               } else {
                 setSearchQuery(
                   `${latitude.toFixed(4)}, ${longitude.toFixed(4)}`,
@@ -633,7 +657,7 @@ export default function Home() {
                     GPS
                   </>
                 ) : (
-                  <>📍 My location</>
+                  <>📍Lokalizacja</>
                 )}
               </button>
             </div>
@@ -667,48 +691,49 @@ export default function Home() {
               {!loadingWcs && !wcError && filteredWcs.length > 0 && (
                 <div className="responsive-table">
                   {filteredWcs.map((wc) => (
-                  <Link
-                            href={`/wc/edit/${wc.id}`}
-                            className="edit-icon"
-                            title="Edit WC"
-                          >
-                    <div key={wc.id} className="table-row">
-                      <div
-                        className="table-cell"
-                        style={{ textAlign: "center" }}
-                      >
-                        {wc.image_url ? (
-                          <img
-                            src={wc.image_url}
-                            alt={wc.name || "WC image"}
-                            className="thumbnail-in-table"
-                          />
-                        ) : (
-                          <div className="thumbnail-placeholder">No Img</div>
-                        )}
+                    <Link
+                      key={wc.id}
+                      href={`/wc/edit/${wc.id}`}
+                      className="edit-icon"
+                      title="Edit WC"
+                    >
+                      <div className="table-row">
+                        <div
+                          className="table-cell"
+                          style={{ textAlign: "center" }}
+                        >
+                          {wc.image_url ? (
+                            <img
+                              src={wc.image_url}
+                              alt={wc.name || "WC image"}
+                              className="thumbnail-in-table"
+                            />
+                          ) : (
+                            <div className="thumbnail-placeholder">No Img</div>
+                          )}
+                        </div>
+                        <div
+                          className="table-cell"
+                          style={{ textAlign: "center" }}
+                        >
+                          {wc.name}
+                        </div>
+                        <div
+                          className="table-cell"
+                          style={{ textAlign: "center" }}
+                        >
+                          {wc.location || "N/A"}
+                        </div>
+                        <div
+                          className="table-cell"
+                          style={{ textAlign: "center" }}
+                        >
+                          {wc.rating
+                            ? `${"⭐".repeat(Math.min(wc.rating, 10))} (${wc.rating}/10)`
+                            : "Not rated"}
+                        </div>
                       </div>
-                      <div
-                        className="table-cell"
-                        style={{ textAlign: "center" }}
-                      >
-                        {wc.name}
-                      </div>
-                      <div
-                        className="table-cell"
-                        style={{ textAlign: "center" }}
-                      >
-                        {wc.location || "N/A"}
-                      </div>
-                      <div
-                        className="table-cell"
-                        style={{ textAlign: "center" }}
-                      >
-                        {wc.rating
-                          ? `${"⭐".repeat(Math.min(wc.rating, 10))} (${wc.rating}/10)`
-                          : "Not rated"}
-                      </div>
-                    </div>
-                  </Link>
+                    </Link>
                   ))}
                 </div>
               )}
