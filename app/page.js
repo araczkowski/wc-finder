@@ -176,6 +176,48 @@ const styles = {
     textOverflow: "ellipsis",
     whiteSpace: "nowrap",
   },
+  searchContainer: {
+    width: "100%",
+    marginBottom: "1.5rem",
+    position: "relative",
+  },
+  searchInput: {
+    padding: "1rem",
+    paddingRight: "120px",
+    borderRadius: "12px",
+    border: "2px solid #e1e5e9",
+    fontSize: "1rem",
+    width: "100%",
+    boxSizing: "border-box",
+    transition: "all 0.3s ease",
+    backgroundColor: "#f8f9fa",
+    outline: "none",
+    fontFamily: "sans-serif",
+  },
+  locationButton: {
+    position: "absolute",
+    right: "8px",
+    top: "50%",
+    transform: "translateY(-50%)",
+    padding: "0.5rem 0.75rem",
+    borderRadius: "8px",
+    border: "none",
+    fontSize: "0.8rem",
+    fontWeight: "600",
+    cursor: "pointer",
+    backgroundColor: "#667eea",
+    color: "white",
+    transition: "all 0.3s ease",
+    minHeight: "36px",
+    display: "flex",
+    alignItems: "center",
+    gap: "4px",
+  },
+  locationButtonDisabled: {
+    backgroundColor: "#6c757d",
+    cursor: "not-allowed",
+    opacity: 0.6,
+  },
 };
 
 export default function Home() {
@@ -191,6 +233,11 @@ export default function Home() {
   const [wcs, setWcs] = useState([]);
   const [loadingWcs, setLoadingWcs] = useState(false);
   const [wcError, setWcError] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredWcs, setFilteredWcs] = useState([]);
+  const [locationLoading, setLocationLoading] = useState(false);
+  const [locationPermission, setLocationPermission] = useState(null);
+  const [locationPrompted, setLocationPrompted] = useState(false);
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -304,6 +351,148 @@ export default function Home() {
     console.log("[Home Page State Update] wcError:", wcError);
   }, [wcs, loadingWcs, wcError]);
 
+  // Filter WCs based on search query
+  useEffect(() => {
+    if (!searchQuery.trim()) {
+      setFilteredWcs(wcs);
+    } else {
+      const filtered = wcs.filter(
+        (wc) =>
+          wc.location?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          wc.name?.toLowerCase().includes(searchQuery.toLowerCase()),
+      );
+      setFilteredWcs(filtered);
+    }
+  }, [wcs, searchQuery]);
+
+  // Check geolocation permission on mount and ask for permission after login
+  useEffect(() => {
+    if (session && navigator.geolocation) {
+      navigator.permissions
+        .query({ name: "geolocation" })
+        .then((permission) => {
+          setLocationPermission(permission.state);
+          permission.addEventListener("change", () => {
+            setLocationPermission(permission.state);
+          });
+
+          // Automatically ask for location permission after login if not prompted yet
+          if (permission.state === "prompt" && !locationPrompted) {
+            setLocationPrompted(true);
+            navigator.geolocation.getCurrentPosition(
+              () => {
+                setLocationPermission("granted");
+              },
+              () => {
+                setLocationPermission("denied");
+              },
+              { timeout: 5000 },
+            );
+          }
+        })
+        .catch(() => {
+          setLocationPermission("prompt");
+          // Try to ask for permission anyway
+          if (!locationPrompted) {
+            setLocationPrompted(true);
+            navigator.geolocation.getCurrentPosition(
+              () => {
+                setLocationPermission("granted");
+              },
+              () => {
+                setLocationPermission("denied");
+              },
+              { timeout: 5000 },
+            );
+          }
+        });
+    }
+  }, [session, locationPrompted]);
+
+  const handleMyLocation = () => {
+    if (!navigator.geolocation) {
+      alert("Geolocation is not supported by this browser.");
+      return;
+    }
+
+    setLocationLoading(true);
+
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        const { latitude, longitude } = position.coords;
+
+        try {
+          // Try to use free reverse geocoding API
+          try {
+            const response = await fetch(
+              `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`,
+            );
+
+            if (response.ok) {
+              const data = await response.json();
+              if (data && data.display_name) {
+                // Extract city/town from the address
+                const address = data.address || {};
+                const locationName =
+                  address.city ||
+                  address.town ||
+                  address.village ||
+                  address.hamlet ||
+                  address.suburb ||
+                  data.display_name.split(",")[0] ||
+                  `${latitude.toFixed(4)}, ${longitude.toFixed(4)}`;
+                setSearchQuery(locationName);
+              } else {
+                setSearchQuery(
+                  `${latitude.toFixed(4)}, ${longitude.toFixed(4)}`,
+                );
+              }
+            } else {
+              // Fallback to coordinates if geocoding fails
+              setSearchQuery(`${latitude.toFixed(4)}, ${longitude.toFixed(4)}`);
+            }
+          } catch (geocodingError) {
+            console.error("Geocoding error:", geocodingError);
+            // Fallback to coordinates
+            setSearchQuery(`${latitude.toFixed(4)}, ${longitude.toFixed(4)}`);
+          }
+        } catch (error) {
+          console.error("Location error:", error);
+          setSearchQuery(`${latitude.toFixed(4)}, ${longitude.toFixed(4)}`);
+        }
+
+        setLocationLoading(false);
+      },
+      (error) => {
+        setLocationLoading(false);
+        console.error("Geolocation error:", error);
+
+        switch (error.code) {
+          case error.PERMISSION_DENIED:
+            alert(
+              "Location access denied. Please enable location access and try again.",
+            );
+            setLocationPermission("denied");
+            break;
+          case error.POSITION_UNAVAILABLE:
+            alert("Location information is unavailable.");
+            break;
+          case error.TIMEOUT:
+            alert("Location request timed out.");
+            break;
+          default:
+            alert("An unknown error occurred while retrieving location.");
+            break;
+        }
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 300000, // 5 minutes
+      },
+    );
+  };
+
   const renderAuthControls = () => {
     if (status === "loading") {
       return <div style={styles.loader}>Loading...</div>;
@@ -371,22 +560,83 @@ export default function Home() {
       </header>
 
       <main style={styles.mainContent}>
-        <Image
-          src="/icons/person-searching-wc.svg"
-          alt="Person searching for WC"
-          width={128}
-          height={128}
-          style={{ marginBottom: "1.5rem" }}
-          priority // Good to add if it's a primary visual element
-        />
         {status === "loading" ? (
           <p style={styles.loader}>Checking session...</p>
         ) : session ? (
           <>
-            <h1 className="welcome-message">
-              Welcome back to WC Finder,{" "}
-              {session.user?.name || session.user?.email}!
-            </h1>
+            {/* Search Container */}
+            <div style={styles.searchContainer}>
+              {locationPermission === "denied" && (
+                <p
+                  style={{
+                    fontSize: "0.8rem",
+                    color: "#e74c3c",
+                    marginBottom: "0.5rem",
+                    textAlign: "center",
+                  }}
+                >
+                  📍 Location access denied. Enable in browser settings for
+                  better search.
+                </p>
+              )}
+              <input
+                type="text"
+                placeholder="Search WCs by location..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                style={styles.searchInput}
+                onFocus={(e) => {
+                  e.target.style.borderColor = "#667eea";
+                  e.target.style.boxShadow =
+                    "0 0 0 3px rgba(102, 126, 234, 0.1)";
+                  e.target.style.backgroundColor = "#ffffff";
+                }}
+                onBlur={(e) => {
+                  e.target.style.borderColor = "#e1e5e9";
+                  e.target.style.boxShadow = "none";
+                  e.target.style.backgroundColor = "#f8f9fa";
+                }}
+              />
+              <button
+                onClick={handleMyLocation}
+                disabled={locationLoading}
+                style={{
+                  ...styles.locationButton,
+                  ...(locationLoading ? styles.locationButtonDisabled : {}),
+                }}
+                onMouseEnter={(e) => {
+                  if (!locationLoading) {
+                    e.target.style.backgroundColor = "#5a67d8";
+                    e.target.style.transform = "translateY(-50%) scale(1.05)";
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!locationLoading) {
+                    e.target.style.backgroundColor = "#667eea";
+                    e.target.style.transform = "translateY(-50%) scale(1)";
+                  }
+                }}
+                title="Use my current location"
+              >
+                {locationLoading ? (
+                  <>
+                    <div
+                      style={{
+                        width: "12px",
+                        height: "12px",
+                        border: "2px solid transparent",
+                        borderTop: "2px solid white",
+                        borderRadius: "50%",
+                        animation: "spin 1s linear infinite",
+                      }}
+                    ></div>
+                    GPS
+                  </>
+                ) : (
+                  <>📍 My location</>
+                )}
+              </button>
+            </div>
 
             {/* Add New WC Button */}
             <Link href="/wc/add" style={styles.addButton}>
@@ -415,7 +665,17 @@ export default function Home() {
                   No WCs found. Click Add New WC to add one!
                 </p>
               )}
-              {!loadingWcs && !wcError && wcs.length > 0 && (
+              {!loadingWcs &&
+                !wcError &&
+                searchQuery &&
+                filteredWcs.length === 0 &&
+                wcs.length > 0 && (
+                  <p style={styles.noWcsMessage}>
+                    No WCs found matching &quot;{searchQuery}&quot;. Try a
+                    different search term.
+                  </p>
+                )}
+              {!loadingWcs && !wcError && filteredWcs.length > 0 && (
                 <div className="responsive-table">
                   <div className="table-header">
                     <div className="header-cell">Image</div>
@@ -425,7 +685,7 @@ export default function Home() {
                     <div className="header-cell">Created By</div>
                     <div className="header-cell">Actions</div>
                   </div>
-                  {wcs.map((wc) => (
+                  {filteredWcs.map((wc) => (
                     <div key={wc.id} className="table-row">
                       <div className="table-cell" data-label="Image: ">
                         {wc.image_url ? (
@@ -471,6 +731,14 @@ export default function Home() {
           </>
         ) : (
           <>
+            <Image
+              src="/icons/person-searching-wc.svg"
+              alt="Person searching for WC"
+              width={128}
+              height={128}
+              style={{ marginBottom: "1.5rem" }}
+              priority
+            />
             <h1 className="welcome-message">Welcome to WC Finder</h1>
             <p className="info-message">
               Please sign in to access the application features.
