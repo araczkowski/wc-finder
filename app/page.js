@@ -67,7 +67,7 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    justifyContent: "flex-start",
+    justifyContent: "space-evenly",
     padding: "1rem",
     textAlign: "center",
     maxWidth: "500px",
@@ -645,17 +645,6 @@ export default function Home() {
 
             {/* WC List Display */}
             <div style={styles.wcListContainer}>
-              <h2
-                style={{
-                  fontSize: "1.25rem",
-                  fontWeight: "bold",
-                  marginBottom: "1rem",
-                  color: "#333",
-                  textAlign: "center",
-                }}
-              >
-                WC Locations
-              </h2>
               {loadingWcs && <p style={styles.loader}>Loading WCs...</p>}
               {wcError && (
                 <p style={{ ...styles.infoMessage, color: "red" }}>{wcError}</p>
@@ -678,6 +667,11 @@ export default function Home() {
               {!loadingWcs && !wcError && filteredWcs.length > 0 && (
                 <div className="responsive-table">
                   {filteredWcs.map((wc) => (
+                  <Link
+                            href={`/wc/edit/${wc.id}`}
+                            className="edit-icon"
+                            title="Edit WC"
+                          >
                     <div key={wc.id} className="table-row">
                       <div
                         className="table-cell"
@@ -713,21 +707,8 @@ export default function Home() {
                           ? `${"⭐".repeat(Math.min(wc.rating, 10))} (${wc.rating}/10)`
                           : "Not rated"}
                       </div>
-                      <div
-                        className="table-cell"
-                        style={{ textAlign: "center" }}
-                      >
-                        <div className="wc-actions">
-                          <Link
-                            href={`/wc/edit/${wc.id}`}
-                            className="edit-icon"
-                            title="Edit WC"
-                          >
-                            →
-                          </Link>
-                        </div>
-                      </div>
                     </div>
+                  </Link>
                   ))}
                 </div>
               )}

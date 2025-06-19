@@ -80,16 +80,6 @@ a {
     border-bottom: none;
 }
 
-.table-cell::before {
-    content: attr(data-label);
-    font-weight: bold;
-    margin-right: 1rem;
-    min-width: 120px;
-    color: #333;
-    font-size: 0.9rem;
-    flex-shrink: 0;
-}
-
 .thumbnail-in-table {
     width: 160px;
     height: 160px;
@@ -149,20 +139,10 @@ a {
         border-bottom: none;
     }
 
-    .table-cell::before {
-        content: attr(data-label);
-        font-weight: bold;
-        margin-right: 1rem;
-        min-width: 120px;
-        color: #333;
-        font-size: 0.9rem;
-        flex-shrink: 0;
-    }
-
     .thumbnail-in-table,
     .thumbnail-placeholder {
-        width: 160px;
-        height: 160px;
+        width: 100%;
+        height: auto;
     }
 }
 
@@ -189,20 +169,14 @@ a {
 }
 
 .edit-icon {
-    font-size: 1.5rem;
-    padding: 0.75rem 1rem;
-    color: #007bff;
+    font-size: 1rem;
+    color: black;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 120px;
-    min-height: 44px;
     transition: color 0.2s ease;
-    border: 1px solid #007bff;
-    border-radius: 4px;
     background-color: transparent;
-    font-weight: bold;
 }
 
 .edit-icon:hover {
@@ -211,21 +185,6 @@ a {
     background-color: rgba(0, 123, 255, 0.1);
 }
 
-/* Keep mobile actions layout on all screen sizes */
-@media (min-width: 768px) {
-    .wc-actions {
-        justify-content: center;
-        margin-top: 0.5rem;
-        width: 100%;
-    }
-
-    .edit-icon {
-        font-size: 1.5rem;
-        padding: 0.75rem 1rem;
-        min-width: 120px;
-        min-height: 44px;
-    }
-}
 
 /* Accessibility improvements */
 .responsive-table {
@@ -664,7 +623,7 @@ textarea.form-input {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: flex-star;
     padding: 1rem;
     text-align: center;
     width: 100%;
