@@ -189,6 +189,8 @@ export default function Home() {
     status,
     "Session object:",
     session ? "Exists" : "Null",
+    "Full session:",
+    session,
   );
   const searchParams = useSearchParams();
   const [filteredWcs, setFilteredWcs] = useState([]);

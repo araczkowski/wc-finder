@@ -17,7 +17,17 @@ export const authOptions = {
           prompt: "consent",
           access_type: "offline",
           response_type: "code",
+          scope: "openid email profile",
         },
+      },
+      profile(profile) {
+        console.log("[Google Profile]", profile);
+        return {
+          id: profile.sub,
+          name: profile.name,
+          email: profile.email,
+          image: profile.picture,
+        };
       },
     }),
     CredentialsProvider({
@@ -263,10 +273,30 @@ export const authOptions = {
   },
   callbacks: {
     async jwt({ token, user, account, profile }) {
+      console.log("[NextAuth JWT] Called with:", {
+        hasUser: !!user,
+        hasAccount: !!account,
+        hasProfile: !!profile,
+        provider: account?.provider,
+        email: user?.email || profile?.email,
+        tokenId: token?.id,
+      });
+
       // Handle both OAuth and Credentials login
       if (user) {
         // For OAuth (Google), create/find user in Supabase
-        if (account?.provider === "google" && profile) {
+        if (account?.provider === "google") {
+          const userEmail = user.email || profile?.email;
+          const userName = user.name || profile?.name;
+          const userImage = user.image || profile?.picture;
+
+          console.log("[NextAuth JWT] Processing Google OAuth for:", userEmail);
+
+          if (!userEmail) {
+            console.error("[NextAuth JWT] No email provided by Google OAuth");
+            return token;
+          }
+
           try {
             const supabaseUrl = process.env.SUPABASE_URL;
             const supabaseServiceRoleKey =
@@ -280,47 +310,105 @@ export const authOptions = {
 
               // Check if user exists in auth.users
               const { data: authUser, error: authError } =
-                await supabase.auth.admin.getUserByEmail(profile.email);
+                await supabase.auth.admin.getUserByEmail(userEmail);
+
+              console.log("[NextAuth JWT] Supabase user lookup:", {
+                found: !!authUser?.user,
+                error: authError?.message,
+              });
 
               if (authError || !authUser.user) {
                 // Create user in Supabase auth
+                console.log("[NextAuth JWT] Creating new user in Supabase");
                 const { data: newUser, error: createError } =
                   await supabase.auth.admin.createUser({
-                    email: profile.email,
+                    email: userEmail,
                     email_confirm: true,
                     user_metadata: {
-                      name: profile.name,
-                      picture: profile.picture,
+                      name: userName || userEmail.split("@")[0],
+                      picture: userImage,
                       provider: "google",
                     },
                   });
 
                 if (!createError && newUser.user) {
                   token.id = newUser.user.id;
+                  console.log(
+                    "[NextAuth JWT] Created user with ID:",
+                    newUser.user.id,
+                  );
+                } else {
+                  console.error(
+                    "[NextAuth JWT] Failed to create user:",
+                    createError,
+                  );
+                  // Fallback: use a temporary ID to allow session creation
+                  token.id = `temp_${Date.now()}`;
                 }
               } else {
                 token.id = authUser.user.id;
+                console.log(
+                  "[NextAuth JWT] Found existing user with ID:",
+                  authUser.user.id,
+                );
               }
+            } else {
+              console.error("[NextAuth JWT] Missing Supabase credentials");
+              // Fallback: use a temporary ID to allow session creation
+              token.id = `temp_${Date.now()}`;
             }
           } catch (error) {
-            console.error("Error handling OAuth user:", error);
+            console.error("[NextAuth JWT] Error handling OAuth user:", error);
+            // Fallback: use a temporary ID to allow session creation
+            token.id = `temp_${Date.now()}`;
           }
+
+          // Set token data with fallbacks
+          token.email = userEmail;
+          token.name = userName || userEmail.split("@")[0];
+          token.picture = userImage;
         } else {
           // For Credentials login, user.id is already set
           token.id = user.id;
+          token.email = user.email;
+          token.name = user.name;
+          token.picture = user.image;
+          console.log("[NextAuth JWT] Credentials login, user ID:", user.id);
         }
-
-        token.email = user.email;
-        token.name = user.name;
-        token.picture = user.image;
       }
+
+      console.log("[NextAuth JWT] Final token:", {
+        id: token.id,
+        email: token.email,
+        name: token.name,
+      });
+
       return token;
     },
     async session({ session, token }) {
+      console.log("[NextAuth Session] Called with:", {
+        hasSession: !!session,
+        hasToken: !!token,
+        tokenId: token?.id,
+        sessionUserEmail: session?.user?.email,
+      });
+
       // Add user ID to session
       if (token?.id && session.user) {
         session.user.id = token.id;
+        console.log("[NextAuth Session] Added user ID to session:", token.id);
+      } else {
+        console.warn(
+          "[NextAuth Session] Could not add user ID - missing token.id or session.user",
+        );
       }
+
+      console.log("[NextAuth Session] Final session:", {
+        userId: session?.user?.id,
+        userEmail: session?.user?.email,
+        userName: session?.user?.name,
+      });
+
       return session;
     },
   },
