@@ -45,6 +45,16 @@ a {
     }
 }
 
+/* Spinner animation */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 /* Responsive Table Styles - Mobile First */
 .responsive-table {
     width: 100%;
@@ -74,7 +84,7 @@ a {
     border-bottom: 1px solid #eee;
     min-height: 44px; /* Better touch target */
     word-break: break-word;
-   justify-content: center;
+    justify-content: center;
 }
 
 .table-cell:last-child {
@@ -186,7 +196,6 @@ a {
     border-color: #0056b3;
     background-color: rgba(0, 123, 255, 0.1);
 }
-
 
 /* Accessibility improvements */
 .responsive-table {

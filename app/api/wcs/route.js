@@ -3,6 +3,95 @@ import { getServerSession } from "next-auth/next";
 import { authOptions } from "../auth/[...nextauth]/route"; // Ensure this path is correct
 import { createClient } from "@supabase/supabase-js";
 
+export async function GET(request) {
+  const session = await getServerSession(authOptions);
+
+  if (!session || !session.user || !session.user.id) {
+    return NextResponse.json(
+      { message: "Unauthorized: You must be logged in to view WCs." },
+      { status: 401 },
+    );
+  }
+
+  const { searchParams } = new URL(request.url);
+  const page = parseInt(searchParams.get("page") || "0", 10);
+  const limit = parseInt(searchParams.get("limit") || "5", 10);
+
+  // Validate pagination parameters
+  if (page < 0 || limit < 1 || limit > 50) {
+    return NextResponse.json(
+      {
+        message:
+          "Invalid pagination parameters. Page must be >= 0, limit must be 1-50.",
+      },
+      { status: 400 },
+    );
+  }
+
+  const offset = page * limit;
+
+  const supabaseUrl = process.env.SUPABASE_URL;
+  const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+  if (!supabaseUrl || !supabaseServiceRoleKey) {
+    console.error(
+      "API WCS GET: Supabase URL or Service Role Key is not defined in .env.local. Ensure these are correctly set.",
+    );
+    return NextResponse.json(
+      { message: "Server configuration error. Please try again later." },
+      { status: 500 },
+    );
+  }
+
+  const supabase = createClient(supabaseUrl, supabaseServiceRoleKey);
+
+  try {
+    const {
+      data: wcs,
+      error,
+      count,
+    } = await supabase
+      .from("wcs")
+      .select("*", { count: "exact" })
+      .order("created_at", { ascending: false })
+      .range(offset, offset + limit - 1);
+
+    if (error) {
+      console.error(
+        "API WCS GET: Supabase fetch error:",
+        JSON.stringify(error, null, 2),
+      );
+      return NextResponse.json(
+        { message: `Failed to fetch WCs: ${error.message}` },
+        { status: 500 },
+      );
+    }
+
+    const hasMore = count > offset + limit;
+    const totalPages = Math.ceil(count / limit);
+
+    return NextResponse.json(
+      {
+        data: wcs || [],
+        pagination: {
+          page,
+          limit,
+          total: count,
+          totalPages,
+          hasMore,
+        },
+      },
+      { status: 200 },
+    );
+  } catch (err) {
+    console.error("API WCS GET: Unexpected error during WC fetch:", err);
+    return NextResponse.json(
+      { message: "An unexpected server error occurred." },
+      { status: 500 },
+    );
+  }
+}
+
 export async function POST(request) {
   const session = await getServerSession(authOptions);
 

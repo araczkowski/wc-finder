@@ -3,9 +3,9 @@
 import { useSession, signIn, signOut } from "next-auth/react";
 import Image from "next/image"; // For user icon placeholder
 import Link from "next/link"; // <<< CRUCIAL IMPORT FOR THE LINK COMPONENT
-import { useState, useEffect, useMemo } from "react"; // Added useState, useEffect, useMemo
+import { useState, useEffect, useMemo, useCallback, useRef } from "react"; // Added useState, useEffect, useMemo, useCallback, useRef
 import { useSearchParams } from "next/navigation"; // Added useSearchParams
-import { createClient } from "@supabase/supabase-js"; // Added Supabase client
+import { useInfiniteScroll } from "./hooks/useInfiniteScroll";
 
 // Basic inline styles for layout - consider moving to CSS modules or global CSS
 const styles = {
@@ -189,119 +189,68 @@ export default function Home() {
     session ? "Exists" : "Null",
   );
   const searchParams = useSearchParams();
-  const [wcs, setWcs] = useState([]);
-  const [loadingWcs, setLoadingWcs] = useState(false);
-  const [wcError, setWcError] = useState("");
   const [filteredWcs, setFilteredWcs] = useState([]);
   const [locationPermission, setLocationPermission] = useState(null);
   const [locationPrompted, setLocationPrompted] = useState(false);
   const [userLocation, setUserLocation] = useState(null); // { lat, lng }
   const [geolocationSupported, setGeolocationSupported] = useState(true);
 
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  // Fetch function for infinite scroll
+  const fetchWcs = useCallback(
+    async (page, limit) => {
+      if (!session) {
+        throw new Error("No session available");
+      }
 
-  const supabase = useMemo(() => {
-    if (supabaseUrl && supabaseAnonKey) {
-      console.log(
-        "[Home Page] Initializing Supabase client with URL:",
-        supabaseUrl,
-      );
-      return createClient(supabaseUrl, supabaseAnonKey);
-    }
-    console.warn(
-      "[Home Page] Supabase URL or Anon Key is missing. Supabase client not initialized. Check .env.local and restart server.",
-    );
-    return null;
-  }, [supabaseUrl, supabaseAnonKey]);
+      const response = await fetch(`/api/wcs?page=${page}&limit=${limit}`);
 
+      if (!response.ok) {
+        throw new Error(`Failed to fetch WCs: ${response.statusText}`);
+      }
+
+      return await response.json();
+    },
+    [session],
+  );
+
+  // Initialize infinite scroll
+  const {
+    data: wcs,
+    loading: loadingWcs,
+    loadingMore,
+    error: wcError,
+    hasMore,
+    loadInitialData,
+    reset,
+  } = useInfiniteScroll(fetchWcs, 5);
+
+  // Store stable references to functions
+  const loadInitialDataRef = useRef(loadInitialData);
+  const resetRef = useRef(reset);
+
+  // Update refs when functions change
   useEffect(() => {
-    // Log when this effect runs and the state of its dependencies
+    loadInitialDataRef.current = loadInitialData;
+    resetRef.current = reset;
+  }, [loadInitialData, reset]);
+
+  // Separate useEffect for handling authentication state changes
+  useEffect(() => {
     console.log(
-      "[Home Page] Main useEffect triggered. Deps - Status:",
+      "[Home Page] Auth useEffect triggered. Status:",
       status,
       "Session:",
       session ? "Exists" : "Null",
-      "Supabase Client:",
-      supabase ? "Exists" : "Null",
-      "SearchParams:",
-      searchParams.toString(),
     );
 
-    const fetchWcs = async () => {
-      console.log(
-        "[Home Page] fetchWcs called. Session status:",
-        status,
-        "Supabase client available:",
-        !!supabase,
-      );
-      if (!supabase || !session) {
-        console.log(
-          "[Home Page] fetchWcs: Aborting fetch - Supabase client or session not available.",
-        );
-        if (!session && status !== "loading") {
-          setWcs([]); // Ensure WCs are cleared if unauthenticated and not loading
-          setLoadingWcs(false);
-        }
-        return;
-      }
-
-      setLoadingWcs(true);
-      setWcError("");
-      try {
-        console.log(
-          "[Home Page] fetchWcs: Attempting to fetch from 'wcs' table.",
-        );
-        const { data: fetchedWcs, error } = await supabase
-          .from("wcs")
-          .select("*") // Fetches all columns, including created_by
-          .order("created_at", { ascending: false });
-
-        console.log(
-          "[Home Page] Supabase fetch result - Error:",
-          JSON.stringify(error, null, 2),
-        );
-        console.log(
-          "[Home Page] Supabase fetch result - Data (fetchedWcs):",
-          JSON.stringify(fetchedWcs, null, 2),
-        );
-
-        if (error) {
-          throw error;
-        }
-        setWcs(fetchedWcs || []);
-        console.log("[Home Page] WCs state set with:", fetchedWcs || []);
-      } catch (err) {
-        console.error("[Home Page] Error in fetchWcs catch block:", err);
-        setWcError(`Failed to fetch WCs: ${err.message}`);
-      } finally {
-        setLoadingWcs(false);
-        console.log("[Home Page] fetchWcs finished.");
-      }
-    };
-
-    if (status === "authenticated" && supabase) {
-      console.log(
-        "[Home Page] Main useEffect: Conditions met (authenticated and supabase client exists), calling fetchWcs().",
-      );
-      fetchWcs();
+    if (status === "authenticated" && session) {
+      console.log("[Home Page] User authenticated, loading initial data.");
+      loadInitialDataRef.current();
     } else if (status === "unauthenticated") {
-      console.log(
-        "[Home Page] Main useEffect: User unauthenticated, clearing WCs list and ensuring loading is false.",
-      );
-      setWcs([]);
-      setLoadingWcs(false);
-    } else if (status === "loading") {
-      console.log(
-        "[Home Page] Main useEffect: Session is loading, will not fetch WCs yet.",
-      );
-    } else if (!supabase) {
-      console.warn(
-        "[Home Page] Main useEffect: Supabase client not available (likely due to missing env vars), cannot fetch WCs.",
-      );
-      setLoadingWcs(false);
+      console.log("[Home Page] User unauthenticated, resetting data.");
+      resetRef.current();
     }
-  }, [status, session, supabase, searchParams]);
+  }, [status, session]); // Depend on auth status and session
 
   // New useEffect for logging state changes, for better insight
   useEffect(() => {
@@ -778,6 +727,63 @@ export default function Home() {
                       </Link>
                     ))}
                   </div>
+
+                  {/* Loading more indicator */}
+                  {loadingMore && (
+                    <div
+                      style={{
+                        textAlign: "center",
+                        padding: "20px",
+                        fontSize: "1rem",
+                        color: "#666",
+                        backgroundColor: "#f8f9fa",
+                        border: "1px solid #e9ecef",
+                        borderRadius: "8px",
+                        margin: "20px 0",
+                        transition: "opacity 0.3s ease",
+                      }}
+                    >
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          gap: "10px",
+                        }}
+                      >
+                        <div
+                          style={{
+                            width: "20px",
+                            height: "20px",
+                            border: "2px solid #e9ecef",
+                            borderTop: "2px solid #007bff",
+                            borderRadius: "50%",
+                            animation: "spin 1s linear infinite",
+                          }}
+                        ></div>
+                        Loading more WCs...
+                      </div>
+                    </div>
+                  )}
+
+                  {/* No more data indicator */}
+                  {!hasMore && wcs.length > 0 && (
+                    <div
+                      style={{
+                        textAlign: "center",
+                        padding: "20px",
+                        fontSize: "0.9rem",
+                        color: "#6c757d",
+                        backgroundColor: "#f8f9fa",
+                        border: "1px solid #e9ecef",
+                        borderRadius: "8px",
+                        margin: "20px 0",
+                        fontStyle: "italic",
+                      }}
+                    >
+                      ✓ All WCs loaded ({wcs.length} total)
+                    </div>
+                  )}
                 </>
               )}
             </div>
