@@ -10,6 +10,7 @@ export const authOptions = {
     url: process.env.SUPABASE_URL,
     secret: process.env.SUPABASE_SERVICE_ROLE_KEY,
   }),
+  debug: process.env.NODE_ENV === "development",
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
@@ -160,6 +161,35 @@ export const authOptions = {
   session: {
     strategy: "jwt",
   },
+  cookies: {
+    sessionToken: {
+      name: `next-auth.session-token`,
+      options: {
+        httpOnly: true,
+        sameSite: "lax",
+        path: "/",
+        secure: process.env.NODE_ENV === "production",
+      },
+    },
+    callbackUrl: {
+      name: `next-auth.callback-url`,
+      options: {
+        sameSite: "lax",
+        path: "/",
+        secure: process.env.NODE_ENV === "production",
+      },
+    },
+    csrfToken: {
+      name: `next-auth.csrf-token`,
+      options: {
+        httpOnly: true,
+        sameSite: "lax",
+        path: "/",
+        secure: process.env.NODE_ENV === "production",
+      },
+    },
+  },
+  useSecureCookies: process.env.NODE_ENV === "production",
   pages: {
     signIn: "/auth/signin",
     // error: '/auth/error', // A custom error page can be useful
@@ -180,8 +210,8 @@ export const authOptions = {
       return session;
     },
   },
-  // secret: process.env.NEXTAUTH_SECRET, // Already required by NextAuth
-  // debug: process.env.NODE_ENV === 'development', // Enable for more NextAuth logs
+  secret: process.env.NEXTAUTH_SECRET,
+  debug: true, // Enable debug logs to help with Vercel issues
 };
 
 const handler = NextAuth(authOptions);

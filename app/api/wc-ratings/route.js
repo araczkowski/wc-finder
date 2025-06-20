@@ -20,39 +20,35 @@ const supabase = createClient(supabaseUrl, supabaseServiceKey, {
 // GET /api/wc-ratings - Get all ratings for a specific WC
 export async function GET(request) {
   try {
-    const session = await getServerSession(authOptions);
-    if (!session?.user?.id) {
-      return NextResponse.json(
-        { error: "Authentication required" },
-        { status: 401 },
-      );
-    }
+    console.log("[wc-ratings GET] Starting ratings fetch");
 
     const { searchParams } = new URL(request.url);
     const wcId = searchParams.get("wc_id");
 
+    console.log("[wc-ratings GET] WC ID:", wcId);
+
     if (!wcId) {
+      console.log("[wc-ratings GET] Missing wc_id parameter");
       return NextResponse.json(
         { error: "wc_id parameter is required" },
         { status: 400 },
       );
     }
 
-    // Get all ratings for the specified WC
+    console.log("[wc-ratings GET] Attempting to fetch ratings from database");
+
+    // Get all ratings for the specified WC (simplified query without user info)
     const { data: ratings, error } = await supabase
       .from("wc_rating")
-      .select(
-        `
-        id,
-        rating,
-        comment,
-        created_at,
-        updated_at,
-        user_id
-      `,
-      )
+      .select("id, rating, comment, created_at, updated_at, user_id")
       .eq("wc_id", wcId)
       .order("created_at", { ascending: false });
+
+    console.log("[wc-ratings GET] Database query result:", {
+      ratings: ratings || [],
+      error: error || null,
+      ratingCount: ratings?.length || 0,
+    });
 
     if (error) {
       console.error("Error fetching WC ratings:", error);
@@ -95,10 +91,14 @@ export async function GET(request) {
 }
 
 // POST /api/wc-ratings - Create or update a rating
+// POST /api/wc-ratings - Create a new rating for a WC
 export async function POST(request) {
   try {
+    console.log("[wc-ratings POST] Starting rating creation");
+
     const session = await getServerSession(authOptions);
     if (!session?.user?.id) {
+      console.log("[wc-ratings POST] No session found");
       return NextResponse.json(
         { error: "Authentication required" },
         { status: 401 },

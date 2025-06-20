@@ -32,7 +32,7 @@ export async function GET(request) {
 
     console.log("[wc-photos GET] Attempting to fetch photos from database");
 
-    // Fetch photos (simplified query without JOIN)
+    // Fetch photos (no session required for viewing)
     const { data: photos, error } = await supabase
       .from("wc_photos")
       .select("id, wc_id, user_id, photo, created_at, updated_at")
