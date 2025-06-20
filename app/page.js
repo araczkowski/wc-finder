@@ -728,10 +728,12 @@ export default function Home() {
                             style={{ textAlign: "center" }}
                           >
                             {wc.image_url ? (
-                              <img
+                              <Image
                                 src={wc.image_url}
                                 alt={wc.name || "WC image"}
                                 className="thumbnail-in-table"
+                                width={80}
+                                height={80}
                               />
                             ) : (
                               <div className="thumbnail-placeholder">

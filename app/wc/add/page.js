@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { createClient } from "@supabase/supabase-js"; // Import Supabase client
 
 // Mobile-first styles
@@ -554,10 +555,12 @@ export default function AddWcPage() {
             />
             {imagePreview && (
               <div style={styles.imagePreview}>
-                <img
+                <Image
                   src={imagePreview}
                   alt="Selected image preview"
-                  style={{ width: "100%" }}
+                  width={400}
+                  height={300}
+                  style={{ width: "100%", height: "auto" }}
                 />
               </div>
             )}
