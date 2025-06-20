@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "./components/AuthProvider"; // Updated path
+import { TranslationProvider } from "./hooks/useTranslation";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "./api/auth/[...nextauth]/route"; // Updated path
 
@@ -15,17 +16,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Public WC Finder", // Updated title
-  description: "Find word counts easily with WC Finder", // Updated description
+  title: "WC Finder - Znajdź najbliższe WC",
+  description: "Znajdź i oceniaj publiczne toalety w swojej okolicy",
 };
 
 export default async function RootLayout({ children }) {
   const session = await getServerSession(authOptions);
 
   return (
-    <html lang="en">
+    <html lang="pl">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <AuthProvider session={session}>{children}</AuthProvider>
+        <TranslationProvider defaultLanguage="pl">
+          <AuthProvider session={session}>{children}</AuthProvider>
+        </TranslationProvider>
       </body>
     </html>
   );

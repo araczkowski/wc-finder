@@ -6,6 +6,7 @@ import Link from "next/link"; // <<< CRUCIAL IMPORT FOR THE LINK COMPONENT
 import { useState, useEffect, useMemo, useCallback, useRef } from "react"; // Added useState, useEffect, useMemo, useCallback, useRef
 import { useSearchParams } from "next/navigation"; // Added useSearchParams
 import { useInfiniteScroll } from "./hooks/useInfiniteScroll";
+import { useTranslation } from "./hooks/useTranslation";
 
 // Basic inline styles for layout - consider moving to CSS modules or global CSS
 const styles = {
@@ -181,6 +182,7 @@ const styles = {
 
 export default function Home() {
   const { data: session, status } = useSession();
+  const { t } = useTranslation();
   // Log component rendering and current session status
   console.log(
     "[Home Page] Component rendering. Session status:",
@@ -194,23 +196,24 @@ export default function Home() {
   const [locationPrompted, setLocationPrompted] = useState(false);
   const [userLocation, setUserLocation] = useState(null); // { lat, lng }
   const [geolocationSupported, setGeolocationSupported] = useState(true);
+  const [locationError, setLocationError] = useState(null);
 
   // Fetch function for infinite scroll
   const fetchWcs = useCallback(
     async (page, limit) => {
       if (!session) {
-        throw new Error("No session available");
+        throw new Error(t("noSessionAvailable"));
       }
 
       const response = await fetch(`/api/wcs?page=${page}&limit=${limit}`);
 
       if (!response.ok) {
-        throw new Error(`Failed to fetch WCs: ${response.statusText}`);
+        throw new Error(`${t("failedToLoad")} WCs: ${response.statusText}`);
       }
 
       return await response.json();
     },
-    [session],
+    [session, t],
   );
 
   // Initialize infinite scroll
@@ -390,15 +393,17 @@ export default function Home() {
 
   const requestLocationPermission = () => {
     if (!navigator.geolocation) {
-      alert("Geolocation is not supported by this browser.");
+      setLocationError(t("locationNotSupported"));
       return;
     }
 
+    setLocationError(null);
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { latitude, longitude } = position.coords;
         setUserLocation({ lat: latitude, lng: longitude });
         setLocationPermission("granted");
+        setLocationError(null);
       },
       (error) => {
         console.error("Geolocation error:", error);
@@ -406,18 +411,16 @@ export default function Home() {
 
         switch (error.code) {
           case error.PERMISSION_DENIED:
-            alert(
-              "Dostęp do lokalizacji został odrzucony. Włącz lokalizację w ustawieniach przeglądarki i odśwież stronę.",
-            );
+            setLocationError(t("locationDenied"));
             break;
           case error.POSITION_UNAVAILABLE:
-            alert("Informacje o lokalizacji są niedostępne.");
+            setLocationError(t("locationUnavailableError"));
             break;
           case error.TIMEOUT:
-            alert("Żądanie lokalizacji przekroczyło limit czasu.");
+            setLocationError(t("locationTimeout"));
             break;
           default:
-            alert("Wystąpił nieznany błąd podczas pobierania lokalizacji.");
+            setLocationError(t("locationUnknownError"));
             break;
         }
       },
@@ -431,7 +434,7 @@ export default function Home() {
 
   const renderAuthControls = () => {
     if (status === "loading") {
-      return <div style={styles.loader}>Loading...</div>;
+      return <div style={styles.loader}>{t("loading")}</div>;
     }
 
     if (session) {
@@ -440,7 +443,7 @@ export default function Home() {
           {session.user?.image ? (
             <Image
               src={session.user.image}
-              alt={session.user.name || "User avatar"}
+              alt={session.user.name || t("userAvatar")}
               width={32}
               height={32}
               style={styles.userImage}
@@ -472,7 +475,7 @@ export default function Home() {
             onClick={() => signOut({ callbackUrl: "/" })}
             style={{ ...styles.button, ...styles.signOutButton }}
           >
-            Sign Out
+            {t("signOut")}
           </button>
         </div>
       );
@@ -491,7 +494,7 @@ export default function Home() {
   return (
     <div style={styles.pageContainer}>
       <header style={styles.header}>
-        <div style={styles.appName}>WC Finder</div>
+        <div style={styles.appName}>{t("appName")}</div>
         <div style={styles.authControls}>{renderAuthControls()}</div>
       </header>
 
@@ -502,19 +505,17 @@ export default function Home() {
           <>
             {/* Add New WC Button */}
             <Link href="/wc/add" style={styles.addButton}>
-              Add New WC
+              {t("addNewWc")}
             </Link>
 
             {/* WC List Display */}
             <div style={styles.wcListContainer}>
-              {loadingWcs && <p style={styles.loader}>Loading WCs...</p>}
+              {loadingWcs && <p style={styles.loader}>{t("loadingWcs")}</p>}
               {wcError && (
                 <p style={{ ...styles.infoMessage, color: "red" }}>{wcError}</p>
               )}
               {!loadingWcs && !wcError && wcs.length === 0 && (
-                <p style={styles.noWcsMessage}>
-                  No WCs found. Click Add New WC to add one!
-                </p>
+                <p style={styles.noWcsMessage}>{t("noWcsFound")}</p>
               )}
 
               {/* Geolocation not supported */}
@@ -570,12 +571,25 @@ export default function Home() {
                       📍
                     </div>
                     <h3 style={{ margin: "0 0 10px 0", color: "#856404" }}>
-                      Lokalizacja wymagana
+                      {t("locationRequired")}
                     </h3>
                     <p style={{ margin: "0 0 15px 0", lineHeight: "1.5" }}>
-                      Aby korzystać z aplikacji i zobaczyć najbliższe WC, musisz
-                      zezwolić aplikacji na używanie danych o lokalizacji.
+                      {t("locationPermissionMessage")}
                     </p>
+                    {locationError && (
+                      <div
+                        style={{
+                          backgroundColor: "#f8d7da",
+                          color: "#721c24",
+                          padding: "10px",
+                          borderRadius: "4px",
+                          marginBottom: "15px",
+                          fontSize: "0.9rem",
+                        }}
+                      >
+                        {locationError}
+                      </div>
+                    )}
                     <button
                       onClick={requestLocationPermission}
                       style={{
@@ -596,7 +610,7 @@ export default function Home() {
                         e.target.style.backgroundColor = "#007bff";
                       }}
                     >
-                      Włącz dostęp do lokalizacji
+                      {t("enableLocationAccess")}
                     </button>
                   </div>
                 )}
@@ -622,8 +636,7 @@ export default function Home() {
                       🔄
                     </div>
                     <p style={{ margin: "0", fontSize: "0.9rem" }}>
-                      Pobieranie lokalizacji... WCs będą posortowane według
-                      odległości gdy lokalizacja zostanie wykryta.
+                      {t("gettingLocation")}
                     </p>
                   </div>
                 )}
@@ -643,7 +656,7 @@ export default function Home() {
                         border: "1px solid #4CAF50",
                       }}
                     >
-                      📍 WCs sorted by distance from your location
+                      {t("locationSorted")}
                     </div>
                   )}
                   {!userLocation && !geolocationSupported && (
@@ -659,8 +672,7 @@ export default function Home() {
                         border: "1px solid #ffeaa7",
                       }}
                     >
-                      📝 WCs displayed in order of addition (location
-                      unavailable)
+                      {t("locationUnavailable")}
                     </div>
                   )}
                   <div className="responsive-table">
@@ -669,7 +681,7 @@ export default function Home() {
                         key={wc.id}
                         href={`/wc/edit/${wc.id}`}
                         className="edit-icon"
-                        title="Edit WC"
+                        title={t("editIconTitle")}
                       >
                         <div className="table-row">
                           <div
@@ -679,14 +691,14 @@ export default function Home() {
                             {wc.image_url ? (
                               <Image
                                 src={wc.image_url}
-                                alt={wc.name || "WC image"}
+                                alt={wc.name || t("wcImage")}
                                 className="thumbnail-in-table"
                                 width={80}
                                 height={80}
                               />
                             ) : (
                               <div className="thumbnail-placeholder">
-                                No Img
+                                {t("noImage")}
                               </div>
                             )}
                           </div>
@@ -720,8 +732,8 @@ export default function Home() {
                             style={{ textAlign: "center" }}
                           >
                             {wc.rating
-                              ? `${"⭐".repeat(Math.min(wc.rating, 10))} (${wc.rating}/10)`
-                              : "Not rated"}
+                              ? `${t("stars").repeat(Math.min(wc.rating, 10))} ${t("ratingOutOf10", { rating: wc.rating })}`
+                              : t("notRated")}
                           </div>
                         </div>
                       </Link>
@@ -761,7 +773,7 @@ export default function Home() {
                             animation: "spin 1s linear infinite",
                           }}
                         ></div>
-                        Loading more WCs...
+                        {t("loadingMore")}
                       </div>
                     </div>
                   )}
@@ -781,7 +793,7 @@ export default function Home() {
                         fontStyle: "italic",
                       }}
                     >
-                      ✓ All WCs loaded ({wcs.length} total)
+                      {t("allWcsLoaded", { count: wcs.length })}
                     </div>
                   )}
                 </>
@@ -792,18 +804,16 @@ export default function Home() {
           <>
             <Image
               src="/icons/person-searching-wc.svg"
-              alt="Person searching for WC"
+              alt={t("searchingIcon")}
               width={128}
               height={128}
               style={{ marginBottom: "1.5rem" }}
               priority
             />
-            <h1 className="welcome-message">Welcome to WC Finder</h1>
-            <p className="info-message">
-              Please sign in to access the application features.
-            </p>
+            <h1 className="welcome-message">{t("welcome")}</h1>
+            <p className="info-message">{t("pleaseSignIn")}</p>
             <Link href="/auth/signin" style={styles.signInLink}>
-              Sign In Here
+              {t("signInHere")}
             </Link>
           </>
         )}
