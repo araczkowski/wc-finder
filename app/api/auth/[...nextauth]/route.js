@@ -11,10 +11,19 @@ export const authOptions = {
     secret: process.env.SUPABASE_SERVICE_ROLE_KEY,
   }),
   debug: process.env.NODE_ENV === "development",
+  trustHost: true,
+  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      authorization: {
+        params: {
+          prompt: "consent",
+          access_type: "offline",
+          response_type: "code",
+        },
+      },
     }),
     CredentialsProvider({
       name: "Email and Password",
@@ -163,7 +172,10 @@ export const authOptions = {
   },
   cookies: {
     sessionToken: {
-      name: `next-auth.session-token`,
+      name:
+        process.env.NODE_ENV === "production"
+          ? "__Secure-next-auth.session-token"
+          : "next-auth.session-token",
       options: {
         httpOnly: true,
         sameSite: "lax",
@@ -172,7 +184,10 @@ export const authOptions = {
       },
     },
     callbackUrl: {
-      name: `next-auth.callback-url`,
+      name:
+        process.env.NODE_ENV === "production"
+          ? "__Secure-next-auth.callback-url"
+          : "next-auth.callback-url",
       options: {
         sameSite: "lax",
         path: "/",
@@ -180,7 +195,48 @@ export const authOptions = {
       },
     },
     csrfToken: {
-      name: `next-auth.csrf-token`,
+      name:
+        process.env.NODE_ENV === "production"
+          ? "__Host-next-auth.csrf-token"
+          : "next-auth.csrf-token",
+      options: {
+        httpOnly: true,
+        sameSite: "lax",
+        path: "/",
+        secure: process.env.NODE_ENV === "production",
+      },
+    },
+    pkceCodeVerifier: {
+      name:
+        process.env.NODE_ENV === "production"
+          ? "__Secure-next-auth.pkce.code_verifier"
+          : "next-auth.pkce.code_verifier",
+      options: {
+        httpOnly: true,
+        sameSite: "lax",
+        path: "/",
+        secure: process.env.NODE_ENV === "production",
+        maxAge: 60 * 15, // 15 minutes
+      },
+    },
+    state: {
+      name:
+        process.env.NODE_ENV === "production"
+          ? "__Secure-next-auth.state"
+          : "next-auth.state",
+      options: {
+        httpOnly: true,
+        sameSite: "lax",
+        path: "/",
+        secure: process.env.NODE_ENV === "production",
+        maxAge: 60 * 15, // 15 minutes
+      },
+    },
+    nonce: {
+      name:
+        process.env.NODE_ENV === "production"
+          ? "__Secure-next-auth.nonce"
+          : "next-auth.nonce",
       options: {
         httpOnly: true,
         sameSite: "lax",
@@ -190,6 +246,7 @@ export const authOptions = {
     },
   },
   useSecureCookies: process.env.NODE_ENV === "production",
+  basePath: "/api/auth",
   pages: {
     signIn: "/auth/signin",
     // error: '/auth/error', // A custom error page can be useful
@@ -210,8 +267,6 @@ export const authOptions = {
       return session;
     },
   },
-  secret: process.env.NEXTAUTH_SECRET,
-  debug: true, // Enable debug logs to help with Vercel issues
 };
 
 const handler = NextAuth(authOptions);
