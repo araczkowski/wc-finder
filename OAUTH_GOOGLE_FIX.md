@@ -93,6 +93,26 @@ Jeśli problem nadal występuje:
 
 4. **Wyczyść cookies** przeglądarki dla domeny
 
+5. **JWT Session Error - "decryption operation failed"**:
+   
+   Ten błąd oznacza problem z `NEXTAUTH_SECRET`:
+   
+   ```bash
+   # Wygeneruj nowy klucz
+   openssl rand -base64 32
+   ```
+   
+   **Krytyczne**: Użyj TEGO SAMEGO klucza w:
+   - `.env.local` (development)
+   - Vercel Environment Variables (production)
+   
+   **Rozwiązanie**:
+   - Usuń wszystkie sesje/cookies
+   - Wygeneruj nowy `NEXTAUTH_SECRET`
+   - Ustaw ten sam klucz w dev i prod
+   - Redeploy aplikację
+   - Restart local dev server
+
 ### 7. Konfiguracja dla lokalnego developmentu
 
 Jeśli testujesz na `localhost:3000`:

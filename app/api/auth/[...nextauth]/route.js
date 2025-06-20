@@ -1,15 +1,10 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { SupabaseAdapter } from "@next-auth/supabase-adapter";
 import { createClient } from "@supabase/supabase-js";
 import jwt from "jsonwebtoken"; // Ensure this is installed: npm install jsonwebtoken
 
 export const authOptions = {
-  adapter: SupabaseAdapter({
-    url: process.env.SUPABASE_URL,
-    secret: process.env.SUPABASE_SERVICE_ROLE_KEY,
-  }),
   debug: process.env.NODE_ENV === "development",
   trustHost: true,
   secret: process.env.NEXTAUTH_SECRET,
@@ -169,6 +164,10 @@ export const authOptions = {
   ],
   session: {
     strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60, // 30 days
+  },
+  jwt: {
+    maxAge: 60 * 60 * 24 * 30, // 30 days
   },
   cookies: {
     sessionToken: {
@@ -249,18 +248,76 @@ export const authOptions = {
   basePath: "/api/auth",
   pages: {
     signIn: "/auth/signin",
-    // error: '/auth/error', // A custom error page can be useful
+    error: "/auth/signin", // Redirect errors to sign in page
+  },
+  events: {
+    async signIn({ user, account, profile, isNewUser }) {
+      console.log(`[NextAuth] Sign in: ${user.email} via ${account.provider}`);
+    },
+    async signOut({ session, token }) {
+      console.log(`[NextAuth] Sign out: ${token.email}`);
+    },
+    async session({ session, token }) {
+      console.log(`[NextAuth] Session accessed: ${token.email}`);
+    },
   },
   callbacks: {
-    async jwt({ token, user, account, profile, isNewUser }) {
-      // `user` object is what's returned from `authorize` or OAuth profile
+    async jwt({ token, user, account, profile }) {
+      // Handle both OAuth and Credentials login
       if (user) {
-        token.id = user.id; // Ensure Supabase user ID is in the JWT `sub` and custom `id`
+        // For OAuth (Google), create/find user in Supabase
+        if (account?.provider === "google" && profile) {
+          try {
+            const supabaseUrl = process.env.SUPABASE_URL;
+            const supabaseServiceRoleKey =
+              process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+            if (supabaseUrl && supabaseServiceRoleKey) {
+              const supabase = createClient(
+                supabaseUrl,
+                supabaseServiceRoleKey,
+              );
+
+              // Check if user exists in auth.users
+              const { data: authUser, error: authError } =
+                await supabase.auth.admin.getUserByEmail(profile.email);
+
+              if (authError || !authUser.user) {
+                // Create user in Supabase auth
+                const { data: newUser, error: createError } =
+                  await supabase.auth.admin.createUser({
+                    email: profile.email,
+                    email_confirm: true,
+                    user_metadata: {
+                      name: profile.name,
+                      picture: profile.picture,
+                      provider: "google",
+                    },
+                  });
+
+                if (!createError && newUser.user) {
+                  token.id = newUser.user.id;
+                }
+              } else {
+                token.id = authUser.user.id;
+              }
+            }
+          } catch (error) {
+            console.error("Error handling OAuth user:", error);
+          }
+        } else {
+          // For Credentials login, user.id is already set
+          token.id = user.id;
+        }
+
+        token.email = user.email;
+        token.name = user.name;
+        token.picture = user.image;
       }
       return token;
     },
-    async session({ session, token, user }) {
-      // `token` is the JWT token from the `jwt` callback
+    async session({ session, token }) {
+      // Add user ID to session
       if (token?.id && session.user) {
         session.user.id = token.id;
       }

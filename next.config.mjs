@@ -33,12 +33,12 @@ const nextConfig = {
       },
       // Add other remote patterns here if you use images from other domains
       // Example:
-      // {
-      //   protocol: 'https',
-      //   hostname: 'lh3.googleusercontent.com', // For Google User Avatars
-      //   port: '',
-      //   pathname: '/a/**',
-      // },
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com", // For Google User Avatars
+        port: "",
+        pathname: "/a/**",
+      },
     ],
   },
   // If you have other Next.js configurations, they would go here, for example:
