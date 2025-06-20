@@ -294,7 +294,7 @@ export const authOptions = {
 
           if (!userEmail) {
             console.error("[NextAuth JWT] No email provided by Google OAuth");
-            return token;
+            throw new Error("No email provided by Google OAuth");
           }
 
           try {
@@ -302,68 +302,107 @@ export const authOptions = {
             const supabaseServiceRoleKey =
               process.env.SUPABASE_SERVICE_ROLE_KEY;
 
-            if (supabaseUrl && supabaseServiceRoleKey) {
-              const supabase = createClient(
-                supabaseUrl,
-                supabaseServiceRoleKey,
+            if (!supabaseUrl || !supabaseServiceRoleKey) {
+              console.error("[NextAuth JWT] Missing Supabase credentials");
+              throw new Error(
+                "Missing Supabase credentials for OAuth user creation",
               );
+            }
 
-              // Check if user exists in auth.users
-              const { data: authUser, error: authError } =
-                await supabase.auth.admin.getUserByEmail(userEmail);
+            const supabase = createClient(supabaseUrl, supabaseServiceRoleKey);
 
-              console.log("[NextAuth JWT] Supabase user lookup:", {
-                found: !!authUser?.user,
-                error: authError?.message,
+            // Try to create user - if user already exists, we'll get an error and can handle it
+            console.log("[NextAuth JWT] Attempting to create user in Supabase");
+            const { data: newUser, error: createError } =
+              await supabase.auth.admin.createUser({
+                email: userEmail,
+                email_confirm: true,
+                user_metadata: {
+                  name: userName || userEmail.split("@")[0],
+                  picture: userImage,
+                  provider: "google",
+                },
               });
 
-              if (authError || !authUser.user) {
-                // Create user in Supabase auth
-                console.log("[NextAuth JWT] Creating new user in Supabase");
-                const { data: newUser, error: createError } =
-                  await supabase.auth.admin.createUser({
-                    email: userEmail,
-                    email_confirm: true,
-                    user_metadata: {
-                      name: userName || userEmail.split("@")[0],
-                      picture: userImage,
-                      provider: "google",
-                    },
-                  });
+            if (createError) {
+              console.log(
+                "[NextAuth JWT] Create user error:",
+                createError.message,
+              );
 
-                if (!createError && newUser.user) {
-                  token.id = newUser.user.id;
-                  console.log(
-                    "[NextAuth JWT] Created user with ID:",
-                    newUser.user.id,
-                  );
-                } else {
+              // If user already exists, try to find them using admin.listUsers
+              if (
+                createError.message.includes("already registered") ||
+                createError.message.includes("User already exists") ||
+                createError.message.includes("already been registered")
+              ) {
+                console.log(
+                  "[NextAuth JWT] User exists, searching for existing user",
+                );
+                const { data: usersList, error: listError } =
+                  await supabase.auth.admin.listUsers();
+
+                if (listError) {
                   console.error(
-                    "[NextAuth JWT] Failed to create user:",
-                    createError,
+                    "[NextAuth JWT] Failed to list users:",
+                    listError,
                   );
-                  // Fallback: use a temporary ID to allow session creation
-                  token.id = `temp_${Date.now()}`;
+                  throw new Error(
+                    `Failed to find existing user: ${listError.message}`,
+                  );
                 }
-              } else {
-                token.id = authUser.user.id;
+
+                const existingUser = usersList?.users?.find(
+                  (user) => user.email === userEmail,
+                );
+
+                if (!existingUser) {
+                  console.error(
+                    "[NextAuth JWT] User should exist but not found in list",
+                  );
+                  throw new Error("User should exist but not found");
+                }
+
+                token.id = existingUser.id;
                 console.log(
                   "[NextAuth JWT] Found existing user with ID:",
-                  authUser.user.id,
+                  existingUser.id,
+                );
+              } else {
+                // Other creation error
+                console.error(
+                  "[NextAuth JWT] Failed to create user:",
+                  createError,
+                );
+                throw new Error(
+                  `Failed to create user in Supabase: ${createError.message}`,
                 );
               }
             } else {
-              console.error("[NextAuth JWT] Missing Supabase credentials");
-              // Fallback: use a temporary ID to allow session creation
-              token.id = `temp_${Date.now()}`;
+              // User created successfully
+              if (!newUser?.user?.id) {
+                console.error("[NextAuth JWT] User created but no ID returned");
+                throw new Error(
+                  "User created but no ID returned from Supabase",
+                );
+              }
+
+              token.id = newUser.user.id;
+              console.log(
+                "[NextAuth JWT] Created new user with ID:",
+                newUser.user.id,
+              );
             }
           } catch (error) {
-            console.error("[NextAuth JWT] Error handling OAuth user:", error);
-            // Fallback: use a temporary ID to allow session creation
-            token.id = `temp_${Date.now()}`;
+            console.error(
+              "[NextAuth JWT] Critical error handling OAuth user:",
+              error,
+            );
+            // Instead of fallback temp ID, throw error to prevent invalid session
+            throw new Error(`OAuth user creation failed: ${error.message}`);
           }
 
-          // Set token data with fallbacks
+          // Set token data
           token.email = userEmail;
           token.name = userName || userEmail.split("@")[0];
           token.picture = userImage;
@@ -393,14 +432,35 @@ export const authOptions = {
         sessionUserEmail: session?.user?.email,
       });
 
-      // Add user ID to session
+      // Validate token ID before adding to session
       if (token?.id && session.user) {
+        // Check if token.id is a valid UUID (not a temp ID)
+        const uuidRegex =
+          /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+        if (typeof token.id === "string" && token.id.startsWith("temp_")) {
+          console.error(
+            "[NextAuth Session] Detected temp ID in session, rejecting:",
+            token.id,
+          );
+          throw new Error("Invalid session: temporary user ID detected");
+        }
+
+        if (typeof token.id === "string" && !uuidRegex.test(token.id)) {
+          console.error(
+            "[NextAuth Session] Invalid UUID format in session:",
+            token.id,
+          );
+          throw new Error("Invalid session: malformed user ID");
+        }
+
         session.user.id = token.id;
         console.log("[NextAuth Session] Added user ID to session:", token.id);
       } else {
-        console.warn(
+        console.error(
           "[NextAuth Session] Could not add user ID - missing token.id or session.user",
         );
+        throw new Error("Invalid session: missing user ID");
       }
 
       console.log("[NextAuth Session] Final session:", {
