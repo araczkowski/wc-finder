@@ -189,6 +189,22 @@ const styles = {
     backgroundColor: "#17a2b8",
     marginTop: "5px",
   },
+  viewText: {
+    padding: "12px 0",
+    fontSize: "16px",
+    color: "#333",
+    fontWeight: "500",
+    borderBottom: "1px solid #f0f0f0",
+    minHeight: "20px",
+  },
+  viewTextEmpty: {
+    padding: "12px 0",
+    fontSize: "16px",
+    color: "#777",
+    fontStyle: "italic",
+    borderBottom: "1px solid #f0f0f0",
+    minHeight: "20px",
+  },
 };
 
 export default function EditWcPage() {
@@ -653,91 +669,90 @@ export default function EditWcPage() {
           {isOwner ? "Edit WC" : "View WC"}: {originalWcData.name}
         </h2>
         {error && <p style={styles.formError}>{error}</p>}
-        <form onSubmit={handleSubmit} style={styles.form}>
-          <div>
-            <label htmlFor="name" style={styles.formLabel}>
-              Name*
-            </label>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-              style={styles.formInput}
-              disabled={formLoading}
-              readOnly={!isOwner}
-            />
-          </div>
-          <div>
-            <label htmlFor="address" style={styles.formLabel}>
-              Address
-            </label>
-            <input
-              id="address"
-              name="address"
-              type="text"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              style={styles.formInput}
-              placeholder="e.g., ul. Marszałkowska 1, Warszawa"
-              disabled={formLoading}
-            />
-          </div>
+        {isOwner ? (
+          <form onSubmit={handleSubmit} style={styles.form}>
+            <div>
+              <label htmlFor="name" style={styles.formLabel}>
+                Name*
+              </label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+                style={styles.formInput}
+                disabled={formLoading}
+              />
+            </div>
+            <div>
+              <label htmlFor="address" style={styles.formLabel}>
+                Address
+              </label>
+              <input
+                id="address"
+                name="address"
+                type="text"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                style={styles.formInput}
+                placeholder="e.g., ul. Marszałkowska 1, Warszawa"
+                disabled={formLoading}
+              />
+            </div>
 
-          <div>
-            <label htmlFor="location" style={styles.formLabel}>
-              Coordinates
-            </label>
-            <input
-              id="location"
-              name="location"
-              type="text"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-              style={styles.formInput}
-              placeholder="e.g., 52.2297,21.0122"
-              disabled={formLoading}
-            />
-          </div>
-          <div>
-            <label htmlFor="imageFile" style={styles.formLabel}>
-              Image
-            </label>
-            {imagePreview && !wantsToRemoveImage && (
-              <div className="image-preview">
-                <Image
-                  src={imagePreview}
-                  alt="WC Preview"
-                  width={200}
-                  height={200}
-                  style={styles.imagePreview}
-                />
-              </div>
-            )}
-            {wantsToRemoveImage && (
-              <p
-                style={{
-                  textAlign: "center",
-                  fontStyle: "italic",
-                  color: "#777",
-                }}
-              >
-                Image will be removed.
-              </p>
-            )}
-            <input
-              id="imageFile"
-              name="imageFile"
-              type="file"
-              accept="image/*"
-              capture="environment"
-              onChange={handleFileChange}
-              style={{ ...styles.formInput, padding: "8px" }}
-              disabled={formLoading || !isOwner}
-            />
-            {isOwner && (
+            <div>
+              <label htmlFor="location" style={styles.formLabel}>
+                Coordinates
+              </label>
+              <input
+                id="location"
+                name="location"
+                type="text"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+                style={styles.formInput}
+                placeholder="e.g., 52.2297,21.0122"
+                disabled={formLoading}
+              />
+            </div>
+            <div>
+              <label htmlFor="imageFile" style={styles.formLabel}>
+                Image
+              </label>
+              {imagePreview && !wantsToRemoveImage && (
+                <div className="image-preview">
+                  <Image
+                    src={imagePreview}
+                    alt="WC Preview"
+                    width={200}
+                    height={200}
+                    style={styles.imagePreview}
+                  />
+                </div>
+              )}
+              {wantsToRemoveImage && (
+                <p
+                  style={{
+                    textAlign: "center",
+                    fontStyle: "italic",
+                    color: "#777",
+                  }}
+                >
+                  Image will be removed.
+                </p>
+              )}
+              <input
+                id="imageFile"
+                name="imageFile"
+                type="file"
+                accept="image/*"
+                capture="environment"
+                onChange={handleFileChange}
+                style={{ ...styles.formInput, padding: "8px" }}
+                disabled={formLoading}
+              />
               <div style={styles.imageActionsContainer}>
                 {currentImageUrl && !wantsToRemoveImage && !selectedFile && (
                   <button
@@ -766,55 +781,48 @@ export default function EditWcPage() {
                   </button>
                 )}
               </div>
-            )}
-          </div>
-          <div>
-            <label htmlFor="rating" style={styles.formLabel}>
-              Rating ({rating} / 10)
-            </label>
-            <div style={styles.starRatingContainer}>
-              {[...Array(10)].map((_, index) => {
-                const starValue = index + 1;
-                return (
-                  <span
-                    key={starValue}
-                    style={{
-                      ...styles.star,
-                      color:
-                        starValue <= (hoverRating || rating)
-                          ? "#ffc107"
-                          : "#e4e5e9",
-                      cursor: isOwner ? "pointer" : "default",
-                    }}
-                    onClick={() =>
-                      !formLoading && isOwner && setRating(starValue)
-                    }
-                    onMouseEnter={() =>
-                      !formLoading && isOwner && setHoverRating(starValue)
-                    }
-                    onMouseLeave={() =>
-                      !formLoading && isOwner && setHoverRating(0)
-                    }
-                    role="button"
-                    tabIndex={formLoading || !isOwner ? -1 : 0}
-                    onKeyDown={(e) => {
-                      if (
-                        !formLoading &&
-                        isOwner &&
-                        (e.key === "Enter" || e.key === " ")
-                      )
-                        setRating(starValue);
-                    }}
-                    aria-label={`Rate ${starValue} out of 10 stars`}
-                    aria-disabled={formLoading || !isOwner}
-                  >
-                    ★
-                  </span>
-                );
-              })}
             </div>
-          </div>
-          {isOwner && (
+            <div>
+              <label htmlFor="rating" style={styles.formLabel}>
+                Rating ({rating} / 10)
+              </label>
+              <div style={styles.starRatingContainer}>
+                {[...Array(10)].map((_, index) => {
+                  const starValue = index + 1;
+                  return (
+                    <span
+                      key={starValue}
+                      style={{
+                        ...styles.star,
+                        color:
+                          starValue <= (hoverRating || rating)
+                            ? "#ffc107"
+                            : "#e4e5e9",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => !formLoading && setRating(starValue)}
+                      onMouseEnter={() =>
+                        !formLoading && setHoverRating(starValue)
+                      }
+                      onMouseLeave={() => !formLoading && setHoverRating(0)}
+                      role="button"
+                      tabIndex={formLoading ? -1 : 0}
+                      onKeyDown={(e) => {
+                        if (
+                          !formLoading &&
+                          (e.key === "Enter" || e.key === " ")
+                        )
+                          setRating(starValue);
+                      }}
+                      aria-label={`Rate ${starValue} out of 10 stars`}
+                      aria-disabled={formLoading}
+                    >
+                      ★
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
             <button
               type="submit"
               style={{ ...styles.formButton, ...styles.submitButton }}
@@ -822,8 +830,63 @@ export default function EditWcPage() {
             >
               {formLoading ? "Updating..." : "Update WC"}
             </button>
-          )}
-        </form>
+          </form>
+        ) : (
+          <div style={styles.form}>
+            <div>
+              <label style={styles.formLabel}>Nazwa</label>
+              <div style={styles.viewText}>{name}</div>
+            </div>
+            <div>
+              <label style={styles.formLabel}>Adres</label>
+              <div style={address ? styles.viewText : styles.viewTextEmpty}>
+                {address || "Nie podano"}
+              </div>
+            </div>
+            <div>
+              <label style={styles.formLabel}>Współrzędne</label>
+              <div style={location ? styles.viewText : styles.viewTextEmpty}>
+                {location || "Nie podano"}
+              </div>
+            </div>
+            <div>
+              <label style={styles.formLabel}>Zdjęcie</label>
+              {imagePreview ? (
+                <div className="image-preview" style={{ marginTop: "10px" }}>
+                  <Image
+                    src={imagePreview}
+                    alt="WC Preview"
+                    width={200}
+                    height={200}
+                    style={styles.imagePreview}
+                  />
+                </div>
+              ) : (
+                <div style={styles.viewTextEmpty}>Brak zdjęcia</div>
+              )}
+            </div>
+            <div>
+              <label style={styles.formLabel}>Ocena ({rating} / 10)</label>
+              <div style={styles.starRatingContainer}>
+                {[...Array(10)].map((_, index) => {
+                  const starValue = index + 1;
+                  return (
+                    <span
+                      key={starValue}
+                      style={{
+                        ...styles.star,
+                        color: starValue <= rating ? "#ffc107" : "#e4e5e9",
+                        cursor: "default",
+                      }}
+                    >
+                      ★
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* User Rating Section */}
         <div
