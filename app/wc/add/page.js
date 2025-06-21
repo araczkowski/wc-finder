@@ -3,9 +3,14 @@
 import { useState, useEffect, useMemo } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { createClient } from "@supabase/supabase-js";
 import Link from "next/link";
+import {
+  optimizeImage,
+  validateImageFile,
+  WC_MAIN_IMAGE_CONFIG,
+} from "../../utils/imageOptimizer";
 import Image from "next/image";
-import { createClient } from "@supabase/supabase-js"; // Import Supabase client
 
 // Mobile-first styles
 const styles = {
@@ -120,10 +125,12 @@ export default function AddWcPage() {
   // State for image handling
   const [selectedFile, setSelectedFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
-  const [rating, setRating] = useState(5); // Default to 5 stars (1-10 scale)
+  const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [imageOptimizing, setImageOptimizing] = useState(false);
+  const [optimizationInfo, setOptimizationInfo] = useState(null);
   const [geocoding, setGeocoding] = useState(false);
   const [gettingLocation, setGettingLocation] = useState(false);
 
@@ -342,17 +349,67 @@ export default function AddWcPage() {
     }
   };
 
-  const handleFileChange = (e) => {
+  const handleFileChange = async (e) => {
     const file = e.target.files[0];
     if (file) {
-      setSelectedFile(file);
-      // Create a preview URL
-      const previewUrl = URL.createObjectURL(file);
-      setImagePreview(previewUrl);
+      // Validate image file first
+      const validation = validateImageFile(file);
+      if (!validation.isValid) {
+        setError(`Image validation failed: ${validation.errors.join(", ")}`);
+        e.target.value = ""; // Clear the input
+        return;
+      }
+
+      try {
+        setError(""); // Clear any previous errors
+        setOptimizationInfo(null);
+        setImageOptimizing(true);
+        console.log("[AddWC] Optimizing image before preview...");
+
+        // Optimize the image for main WC image
+        const optimizedFile = await optimizeImage(file, WC_MAIN_IMAGE_CONFIG);
+
+        // Calculate optimization info
+        const compressionRatio = (
+          (1 - optimizedFile.size / file.size) *
+          100
+        ).toFixed(1);
+        const optimizationResult = {
+          originalSize: formatFileSize(file.size),
+          optimizedSize: formatFileSize(optimizedFile.size),
+          compressionRatio: compressionRatio + "%",
+          saved: formatFileSize(file.size - optimizedFile.size),
+        };
+
+        setSelectedFile(optimizedFile);
+        setOptimizationInfo(optimizationResult);
+
+        // Create a preview URL with optimized image
+        const previewUrl = URL.createObjectURL(optimizedFile);
+        setImagePreview(previewUrl);
+
+        console.log("[AddWC] Image optimization complete");
+      } catch (optimizationError) {
+        console.error("[AddWC] Image optimization failed:", optimizationError);
+        setError(`Image optimization failed: ${optimizationError.message}`);
+        e.target.value = ""; // Clear the input
+      } finally {
+        setImageOptimizing(false);
+      }
     } else {
       setSelectedFile(null);
       setImagePreview(null);
+      setOptimizationInfo(null);
     }
+  };
+
+  // Helper function to format file size
+  const formatFileSize = (bytes) => {
+    if (bytes === 0) return "0 Bytes";
+    const k = 1024;
+    const sizes = ["Bytes", "KB", "MB", "GB"];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
   };
 
   // Clean up the object URL to prevent memory leaks
@@ -551,8 +608,46 @@ export default function AddWcPage() {
               capture="environment" // "user" for front camera, "environment" for back
               onChange={handleFileChange}
               style={{ ...styles.formInput, padding: "8px" }} // Adjust padding for file input aesthetics
-              disabled={loading}
+              disabled={loading || imageOptimizing}
             />
+
+            {imageOptimizing && (
+              <div
+                style={{
+                  padding: "10px",
+                  backgroundColor: "#e3f2fd",
+                  border: "1px solid #2196F3",
+                  borderRadius: "4px",
+                  marginTop: "10px",
+                  fontSize: "0.9rem",
+                  color: "#1976d2",
+                }}
+              >
+                🔄 Optymalizowanie zdjęcia...
+              </div>
+            )}
+
+            {optimizationInfo && (
+              <div
+                style={{
+                  padding: "10px",
+                  backgroundColor: "#e8f5e8",
+                  border: "1px solid #4caf50",
+                  borderRadius: "4px",
+                  marginTop: "10px",
+                  fontSize: "0.85rem",
+                  color: "#2e7d32",
+                }}
+              >
+                ✅ Zdjęcie zoptymalizowane!
+                <br />
+                📦 Rozmiar: {optimizationInfo.originalSize} →{" "}
+                {optimizationInfo.optimizedSize}
+                <br />
+                💾 Oszczędność: {optimizationInfo.saved} (
+                {optimizationInfo.compressionRatio})
+              </div>
+            )}
             {imagePreview && (
               <div style={styles.imagePreview}>
                 <Image

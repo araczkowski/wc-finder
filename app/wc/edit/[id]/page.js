@@ -6,6 +6,11 @@ import { useRouter, useParams } from "next/navigation";
 import { createClient } from "@supabase/supabase-js";
 import Link from "next/link";
 import Image from "next/image"; // For <Image> component
+import {
+  optimizeImages,
+  validateImageFile,
+  WC_GALLERY_CONFIG,
+} from "../../../utils/imageOptimizer";
 
 // Styles moved to globals.css for better responsiveness
 const styles = {
@@ -553,10 +558,52 @@ export default function EditWcPage() {
     }
   };
 
-  const handlePhotoSelection = (event) => {
+  const handlePhotoSelection = async (event) => {
     const files = Array.from(event.target.files);
-    setSelectedPhotos(files);
-    setPhotoError("");
+
+    if (files.length === 0) {
+      setSelectedPhotos([]);
+      setPhotoError("");
+      return;
+    }
+
+    try {
+      setPhotoError("");
+      console.log("[EditWC] Validating and optimizing photos...");
+
+      // Validate all files first
+      const validationErrors = [];
+      files.forEach((file, index) => {
+        const validation = validateImageFile(file);
+        if (!validation.isValid) {
+          validationErrors.push(
+            `Photo ${index + 1}: ${validation.errors.join(", ")}`,
+          );
+        }
+      });
+
+      if (validationErrors.length > 0) {
+        setPhotoError(
+          `Photo validation failed: ${validationErrors.join("; ")}`,
+        );
+        event.target.value = ""; // Clear the input
+        return;
+      }
+
+      // Optimize all images for gallery
+      const optimizedFiles = await optimizeImages(files, WC_GALLERY_CONFIG);
+
+      setSelectedPhotos(optimizedFiles);
+      console.log(
+        "[EditWC] Photo optimization complete for",
+        optimizedFiles.length,
+        "photos",
+      );
+    } catch (optimizationError) {
+      console.error("[EditWC] Photo optimization failed:", optimizationError);
+      setPhotoError(`Photo optimization failed: ${optimizationError.message}`);
+      event.target.value = ""; // Clear the input
+    }
   };
 
   const handlePhotoUpload = async () => {

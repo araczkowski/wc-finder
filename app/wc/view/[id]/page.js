@@ -6,6 +6,11 @@ import { useRouter, useParams } from "next/navigation";
 import { createClient } from "@supabase/supabase-js";
 import Link from "next/link";
 import Image from "next/image";
+import {
+  optimizeImages,
+  validateImageFile,
+  WC_GALLERY_CONFIG,
+} from "../../../utils/imageOptimizer";
 
 const styles = {
   loadingMessage: {
@@ -216,6 +221,8 @@ export default function ViewWcPage() {
   const [selectedPhotos, setSelectedPhotos] = useState([]);
   const [photoUploadLoading, setPhotoUploadLoading] = useState(false);
   const [photoError, setPhotoError] = useState("");
+  const [photoOptimizing, setPhotoOptimizing] = useState(false);
+  const [optimizationInfo, setOptimizationInfo] = useState(null);
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -260,7 +267,9 @@ export default function ViewWcPage() {
     if (!wcId || !session?.user?.id) return;
 
     try {
-      const response = await fetch(`/api/wc-ratings?wc_id=${wcId}&user_id=${session.user.id}`);
+      const response = await fetch(
+        `/api/wc-ratings?wc_id=${wcId}&user_id=${session.user.id}`,
+      );
       const result = await response.json();
 
       if (response.ok && result.rating) {
@@ -339,7 +348,15 @@ export default function ViewWcPage() {
     if (sessionStatus !== "loading") {
       fetchWcData();
     }
-  }, [wcId, supabase, session?.user?.id, sessionStatus, fetchWcPhotos, fetchUserRating, fetchAllRatings]);
+  }, [
+    wcId,
+    supabase,
+    session?.user?.id,
+    sessionStatus,
+    fetchWcPhotos,
+    fetchUserRating,
+    fetchAllRatings,
+  ]);
 
   const handleRatingSubmit = async (e) => {
     e.preventDefault();
@@ -386,10 +403,93 @@ export default function ViewWcPage() {
     }
   };
 
-  const handlePhotoSelection = (event) => {
+  const handlePhotoSelection = async (event) => {
     const files = Array.from(event.target.files);
-    setSelectedPhotos(files);
-    setPhotoError("");
+
+    if (files.length === 0) {
+      setSelectedPhotos([]);
+      setPhotoError("");
+      setOptimizationInfo(null);
+      return;
+    }
+
+    try {
+      setPhotoError("");
+      setOptimizationInfo(null);
+      setPhotoOptimizing(true);
+      console.log("[ViewWC] Validating and optimizing photos...");
+
+      // Validate all files first
+      const validationErrors = [];
+      files.forEach((file, index) => {
+        const validation = validateImageFile(file);
+        if (!validation.isValid) {
+          validationErrors.push(
+            `Zdjęcie ${index + 1}: ${validation.errors.join(", ")}`,
+          );
+        }
+      });
+
+      if (validationErrors.length > 0) {
+        setPhotoError(
+          `Walidacja zdjęć nie powiodła się: ${validationErrors.join("; ")}`,
+        );
+        event.target.value = ""; // Clear the input
+        return;
+      }
+
+      // Calculate original total size
+      const originalTotalSize = files.reduce((sum, file) => sum + file.size, 0);
+
+      // Optimize all images for gallery
+      const optimizedFiles = await optimizeImages(files, WC_GALLERY_CONFIG);
+
+      // Calculate optimization results
+      const optimizedTotalSize = optimizedFiles.reduce(
+        (sum, file) => sum + file.size,
+        0,
+      );
+      const compressionRatio = (
+        (1 - optimizedTotalSize / originalTotalSize) *
+        100
+      ).toFixed(1);
+
+      const optimizationResult = {
+        originalSize: formatFileSize(originalTotalSize),
+        optimizedSize: formatFileSize(optimizedTotalSize),
+        compressionRatio: compressionRatio + "%",
+        saved: formatFileSize(originalTotalSize - optimizedTotalSize),
+        count: optimizedFiles.length,
+      };
+
+      setSelectedPhotos(optimizedFiles);
+      setOptimizationInfo(optimizationResult);
+      console.log(
+        "[ViewWC] Optymalizacja zdjęć zakończona dla",
+        optimizedFiles.length,
+        "zdjęć",
+      );
+    } catch (optimizationError) {
+      console.error(
+        "[ViewWC] Optymalizacja zdjęć nie powiodła się:",
+        optimizationError,
+      );
+      setPhotoError(
+        `Optymalizacja zdjęć nie powiodła się: ${optimizationError.message}`,
+      );
+      event.target.value = ""; // Clear the input
+    } finally {
+      setPhotoOptimizing(false);
+    }
+  };
+
+  // Helper function to format file size
+  const formatFileSize = (bytes) => {
+    if (bytes === 0) return "0 Bytes";
+    const k = 1024;
+    const sizes = ["Bytes", "KB", "MB", "GB"];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
   };
 
   const handlePhotoUpload = async () => {
@@ -487,7 +587,11 @@ export default function ViewWcPage() {
   return (
     <div style={styles.formContainer}>
       <div style={styles.formCard}>
-        <Link href="/" style={styles.backButton} title="Powrót do strony głównej">
+        <Link
+          href="/"
+          style={styles.backButton}
+          title="Powrót do strony głównej"
+        >
           ←
         </Link>
         {isOwner && (
@@ -500,7 +604,9 @@ export default function ViewWcPage() {
           </Link>
         )}
 
-        <h2 style={{ marginBottom: "25px", color: "#333", textAlign: "center" }}>
+        <h2
+          style={{ marginBottom: "25px", color: "#333", textAlign: "center" }}
+        >
           {wcData.name}
         </h2>
 
@@ -514,14 +620,18 @@ export default function ViewWcPage() {
 
           <div>
             <label style={styles.formLabel}>Adres</label>
-            <div style={wcData.address ? styles.viewText : styles.viewTextEmpty}>
+            <div
+              style={wcData.address ? styles.viewText : styles.viewTextEmpty}
+            >
               {wcData.address || "Nie podano"}
             </div>
           </div>
 
           <div>
             <label style={styles.formLabel}>Współrzędne</label>
-            <div style={wcData.location ? styles.viewText : styles.viewTextEmpty}>
+            <div
+              style={wcData.location ? styles.viewText : styles.viewTextEmpty}
+            >
               {wcData.location || "Nie podano"}
             </div>
           </div>
@@ -555,7 +665,10 @@ export default function ViewWcPage() {
                     key={starValue}
                     style={{
                       ...styles.star,
-                      color: starValue <= (wcData.rating || 0) ? "#ffc107" : "#e4e5e9",
+                      color:
+                        starValue <= (wcData.rating || 0)
+                          ? "#ffc107"
+                          : "#e4e5e9",
                     }}
                   >
                     ★
@@ -568,11 +681,13 @@ export default function ViewWcPage() {
 
         {/* User Rating Section */}
         {sessionStatus === "authenticated" && (
-          <div style={{
-            marginTop: "2rem",
-            borderTop: "1px solid #ddd",
-            paddingTop: "2rem",
-          }}>
+          <div
+            style={{
+              marginTop: "2rem",
+              borderTop: "1px solid #ddd",
+              paddingTop: "2rem",
+            }}
+          >
             <h3 style={{ marginBottom: "1rem", color: "#333" }}>Twoja ocena</h3>
 
             {ratingError && <p style={styles.formError}>{ratingError}</p>}
@@ -590,12 +705,21 @@ export default function ViewWcPage() {
                         key={starValue}
                         style={{
                           ...styles.star,
-                          color: starValue <= (userHoverRating || userRating) ? "#ffc107" : "#e4e5e9",
+                          color:
+                            starValue <= (userHoverRating || userRating)
+                              ? "#ffc107"
+                              : "#e4e5e9",
                           cursor: ratingLoading ? "default" : "pointer",
                         }}
-                        onClick={() => !ratingLoading && setUserRating(starValue)}
-                        onMouseEnter={() => !ratingLoading && setUserHoverRating(starValue)}
-                        onMouseLeave={() => !ratingLoading && setUserHoverRating(0)}
+                        onClick={() =>
+                          !ratingLoading && setUserRating(starValue)
+                        }
+                        onMouseEnter={() =>
+                          !ratingLoading && setUserHoverRating(starValue)
+                        }
+                        onMouseLeave={() =>
+                          !ratingLoading && setUserHoverRating(0)
+                        }
                       >
                         ★
                       </span>
@@ -630,25 +754,67 @@ export default function ViewWcPage() {
                 </label>
                 <input
                   id="wcPhotos"
-                  name="wcPhotos"
                   type="file"
-                  accept="image/*"
                   multiple
-                  capture="environment"
+                  accept="image/*"
                   onChange={handlePhotoSelection}
                   style={{ ...styles.formInput, padding: "8px" }}
-                  disabled={photoUploadLoading}
+                  disabled={photoUploadLoading || photoOptimizing}
                 />
+
+                {photoOptimizing && (
+                  <div
+                    style={{
+                      padding: "10px",
+                      backgroundColor: "#e3f2fd",
+                      border: "1px solid #2196F3",
+                      borderRadius: "4px",
+                      marginTop: "10px",
+                      fontSize: "0.9rem",
+                      color: "#1976d2",
+                    }}
+                  >
+                    🔄 Optymalizowanie {selectedPhotos.length || "zdjęć"}...
+                  </div>
+                )}
+
+                {optimizationInfo && (
+                  <div
+                    style={{
+                      padding: "10px",
+                      backgroundColor: "#e8f5e8",
+                      border: "1px solid #4caf50",
+                      borderRadius: "4px",
+                      marginTop: "10px",
+                      fontSize: "0.85rem",
+                      color: "#2e7d32",
+                    }}
+                  >
+                    ✅ {optimizationInfo.count} zdjęć zoptymalizowano!
+                    <br />
+                    📦 Rozmiar: {optimizationInfo.originalSize} →{" "}
+                    {optimizationInfo.optimizedSize}
+                    <br />
+                    💾 Oszczędność: {optimizationInfo.saved} (
+                    {optimizationInfo.compressionRatio})
+                  </div>
+                )}
+
                 {selectedPhotos.length > 0 && (
                   <div style={{ marginTop: "10px" }}>
                     <p>Wybrane zdjęcia: {selectedPhotos.length}</p>
                     <button
                       type="button"
                       onClick={handlePhotoUpload}
-                      style={{ ...styles.formButton, backgroundColor: "#17a2b8" }}
+                      style={{
+                        ...styles.formButton,
+                        backgroundColor: "#17a2b8",
+                      }}
                       disabled={photoUploadLoading}
                     >
-                      {photoUploadLoading ? "Przesyłanie..." : "Prześlij zdjęcia"}
+                      {photoUploadLoading
+                        ? "Przesyłanie..."
+                        : "Prześlij zdjęcia"}
                     </button>
                   </div>
                 )}
@@ -677,11 +843,13 @@ export default function ViewWcPage() {
         )}
 
         {/* Photo Gallery Section */}
-        <div style={{
-          marginTop: "2rem",
-          borderTop: "1px solid #ddd",
-          paddingTop: "2rem",
-        }}>
+        <div
+          style={{
+            marginTop: "2rem",
+            borderTop: "1px solid #ddd",
+            paddingTop: "2rem",
+          }}
+        >
           <h3 style={{ marginBottom: "1rem", color: "#333" }}>
             Zdjęcia ({wcPhotos.length})
           </h3>
@@ -717,11 +885,13 @@ export default function ViewWcPage() {
               ))}
             </div>
           ) : (
-            <p style={{
-              textAlign: "center",
-              color: "#666",
-              fontStyle: "italic",
-            }}>
+            <p
+              style={{
+                textAlign: "center",
+                color: "#666",
+                fontStyle: "italic",
+              }}
+            >
               Brak zdjęć. Bądź pierwszą osobą, która doda zdjęcie!
             </p>
           )}
@@ -729,13 +899,16 @@ export default function ViewWcPage() {
 
         {/* All Ratings Section */}
         {allRatings.length > 0 && (
-          <div style={{
-            marginTop: "2rem",
-            borderTop: "1px solid #ddd",
-            paddingTop: "2rem",
-          }}>
+          <div
+            style={{
+              marginTop: "2rem",
+              borderTop: "1px solid #ddd",
+              paddingTop: "2rem",
+            }}
+          >
             <h3 style={{ marginBottom: "1rem", color: "#333" }}>
-              Wszystkie oceny ({allRatings.length}) - Średnia: {averageRating.toFixed(1)} ⭐
+              Wszystkie oceny ({allRatings.length}) - Średnia:{" "}
+              {averageRating.toFixed(1)} ⭐
             </h3>
 
             <div style={{ maxHeight: "400px", overflowY: "auto" }}>
@@ -750,12 +923,14 @@ export default function ViewWcPage() {
                     border: "1px solid #e9ecef",
                   }}
                 >
-                  <div style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "flex-start",
-                    marginBottom: "0.5rem",
-                  }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "flex-start",
+                      marginBottom: "0.5rem",
+                    }}
+                  >
                     <div>
                       <strong>{rating.user_email || "Anonim"}</strong>
                       <span style={{ marginLeft: "1rem", color: "#666" }}>
@@ -768,11 +943,13 @@ export default function ViewWcPage() {
                   </div>
 
                   {rating.comment && (
-                    <p style={{
-                      color: "#555",
-                      fontStyle: "italic",
-                      marginTop: "0.5rem",
-                    }}>
+                    <p
+                      style={{
+                        color: "#555",
+                        fontStyle: "italic",
+                        marginTop: "0.5rem",
+                      }}
+                    >
                       &ldquo;{rating.comment}&rdquo;
                     </p>
                   )}
