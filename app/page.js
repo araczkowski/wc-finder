@@ -278,6 +278,22 @@ export default function Home() {
     console.log("[Home Page State Update] wcError:", wcError);
   }, [wcs, loadingWcs, wcError]);
 
+  // Manage background class based on authentication status
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      // Add background for unauthenticated users
+      document.body.classList.add("auth-background");
+    } else if (status === "authenticated") {
+      // Remove background for authenticated users
+      document.body.classList.remove("auth-background");
+    }
+
+    // Cleanup on component unmount
+    return () => {
+      document.body.classList.remove("auth-background");
+    };
+  }, [status]);
+
   // Calculate distance between two coordinates using Haversine formula
   const calculateDistance = (lat1, lng1, lat2, lng2) => {
     const R = 6371; // Earth's radius in kilometers

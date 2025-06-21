@@ -18,6 +18,17 @@ export default function RegisterPage() {
   const router = useRouter();
   const { data: session, status: sessionStatus } = useSession();
 
+  // Manage background class for register page
+  useEffect(() => {
+    // Add background class when component mounts
+    document.body.classList.add("auth-background");
+
+    // Cleanup on component unmount
+    return () => {
+      document.body.classList.remove("auth-background");
+    };
+  }, []);
+
   // Redirect if already signed in
   useEffect(() => {
     if (sessionStatus === "authenticated") {

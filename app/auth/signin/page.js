@@ -123,6 +123,17 @@ export default function SignInPage() {
   const searchParams = useSearchParams();
   const { data: session, status: sessionStatus } = useSession();
 
+  // Manage background class for signin page
+  useEffect(() => {
+    // Add background class when component mounts
+    document.body.classList.add("auth-background");
+
+    // Cleanup on component unmount
+    return () => {
+      document.body.classList.remove("auth-background");
+    };
+  }, []);
+
   // Redirect if already signed in
   useEffect(() => {
     if (sessionStatus === "authenticated") {

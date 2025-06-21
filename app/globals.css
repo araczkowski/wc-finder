@@ -26,7 +26,11 @@ body {
     margin: 0 auto;
     min-height: 100vh;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    background-image: url("../public/toilets.png");
+}
+
+/* Background for unauthenticated pages */
+.auth-background {
+    background-image: url("/toilets.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
