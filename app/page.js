@@ -695,8 +695,9 @@ export default function Home() {
                                 src={wc.image_url}
                                 alt={wc.name || t("wcImage")}
                                 className="thumbnail-in-table"
-                                width={80}
-                                height={80}
+                                width={400}
+                                height={400}
+                                object-fit="cover"
                               />
                             ) : (
                               <div className="thumbnail-placeholder">
