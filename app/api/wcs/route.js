@@ -46,13 +46,31 @@ export async function GET(request) {
   const supabase = createClient(supabaseUrl, supabaseServiceRoleKey);
 
   try {
-    const {
-      data: wcs,
-      error,
-      count,
-    } = await supabase
+    // First get the total count
+    const { count } = await supabase
       .from("wcs")
-      .select("*", { count: "exact" })
+      .select("*", { count: "exact", head: true });
+
+    // Check if offset exceeds available records
+    if (count !== null && offset >= count) {
+      return NextResponse.json(
+        {
+          data: [],
+          pagination: {
+            page,
+            limit,
+            total: count,
+            totalPages: Math.ceil(count / limit),
+            hasMore: false,
+          },
+        },
+        { status: 200 },
+      );
+    }
+
+    const { data: wcs, error } = await supabase
+      .from("wcs")
+      .select("*")
       .order("created_at", { ascending: false })
       .range(offset, offset + limit - 1);
 

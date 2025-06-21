@@ -210,10 +210,22 @@ export default function Home() {
       const response = await fetch(`/api/wcs?page=${page}&limit=${limit}`);
 
       if (!response.ok) {
+        const errorText = await response.text();
+        // Try to parse JSON error response
+        try {
+          const errorData = JSON.parse(errorText);
+          if (errorData.code === "PGRST103") {
+            // This is expected when we reach the end of data
+            throw new Error("PGRST103: Requested range not satisfiable");
+          }
+        } catch (parseError) {
+          // If JSON parsing fails, use the original error
+        }
         throw new Error(`${t("failedToLoad")} WCs: ${response.statusText}`);
       }
 
-      return await response.json();
+      const data = await response.json();
+      return data;
     },
     [session, t],
   );
@@ -225,6 +237,8 @@ export default function Home() {
     loadingMore,
     error: wcError,
     hasMore,
+    totalCount,
+    allDataLoaded,
     loadInitialData,
     reset,
   } = useInfiniteScroll(fetchWcs, 5);
@@ -782,21 +796,25 @@ export default function Home() {
                   )}
 
                   {/* No more data indicator */}
-                  {!hasMore && wcs.length > 0 && (
+                  {(allDataLoaded || !hasMore) && wcs.length > 0 && (
                     <div
                       style={{
                         textAlign: "center",
                         padding: "20px",
                         fontSize: "0.9rem",
-                        color: "#6c757d",
+                        color: "#28a745",
                         backgroundColor: "#f8f9fa",
-                        border: "1px solid #e9ecef",
+                        border: "1px solid #d4edda",
                         borderRadius: "8px",
                         margin: "20px 0",
-                        fontStyle: "italic",
+                        fontWeight: "500",
                       }}
                     >
-                      {t("allWcsLoaded", { count: wcs.length })}
+                      ✓ Wczytano {wcs.length}{" "}
+                      {totalCount > 0 && totalCount === wcs.length
+                        ? `z ${totalCount}`
+                        : ""}{" "}
+                      rekordów
                     </div>
                   )}
                 </>
