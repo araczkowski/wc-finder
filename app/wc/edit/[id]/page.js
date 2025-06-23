@@ -7,9 +7,11 @@ import { createClient } from "@supabase/supabase-js";
 import Link from "next/link";
 import Image from "next/image"; // For <Image> component
 import {
+  optimizeImage,
   optimizeImages,
   validateImageFile,
   WC_GALLERY_CONFIG,
+  WC_MAIN_IMAGE_CONFIG,
 } from "../../../utils/imageOptimizer";
 import AddressAutocomplete from "../../../components/AddressAutocomplete";
 
@@ -291,6 +293,8 @@ export default function EditWcPage() {
   const [currentImageUrl, setCurrentImageUrl] = useState(null); // URL of the image when page loads
   const [selectedFile, setSelectedFile] = useState(null); // New file selected by user
   const [imagePreview, setImagePreview] = useState(null); // URL for preview (blob or currentImageUrl)
+  const [imageOptimizing, setImageOptimizing] = useState(false); // Loading state for image optimization
+  const [optimizationInfo, setOptimizationInfo] = useState(null); // Information about image optimization
   const [wantsToRemoveImage, setWantsToRemoveImage] = useState(false); // Flag if user wants to remove existing image
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
@@ -521,13 +525,54 @@ export default function EditWcPage() {
     }
   };
 
-  const handleFileChange = (event) => {
+  const handleFileChange = async (event) => {
     const file = event.target.files[0];
     if (file) {
-      setSelectedFile(file);
-      setWantsToRemoveImage(false); // If a new file is selected, user doesn't want to "just remove"
-      const objectUrl = URL.createObjectURL(file);
-      setImagePreview(objectUrl);
+      // Validate image file first
+      const validation = validateImageFile(file);
+      if (!validation.isValid) {
+        setError(`Image validation failed: ${validation.errors.join(", ")}`);
+        event.target.value = ""; // Clear the input
+        return;
+      }
+
+      try {
+        setError(""); // Clear any previous errors
+        setOptimizationInfo(null);
+        setImageOptimizing(true);
+        console.log("[EditWC] Optimizing image before preview...");
+
+        // Optimize the image for main WC image
+        const optimizedFile = await optimizeImage(file, WC_MAIN_IMAGE_CONFIG);
+
+        // Calculate optimization info
+        const compressionRatio = (
+          (1 - optimizedFile.size / file.size) *
+          100
+        ).toFixed(1);
+        const optimizationResult = {
+          originalSize: formatFileSize(file.size),
+          optimizedSize: formatFileSize(optimizedFile.size),
+          compressionRatio: compressionRatio + "%",
+          saved: formatFileSize(file.size - optimizedFile.size),
+        };
+
+        setSelectedFile(optimizedFile);
+        setOptimizationInfo(optimizationResult);
+        setWantsToRemoveImage(false); // If a new file is selected, user doesn't want to "just remove"
+
+        // Create a preview URL with optimized image
+        const previewUrl = URL.createObjectURL(optimizedFile);
+        setImagePreview(previewUrl);
+
+        console.log("[EditWC] Image optimization complete");
+      } catch (optimizationError) {
+        console.error("[EditWC] Image optimization failed:", optimizationError);
+        setError(`Image optimization failed: ${optimizationError.message}`);
+        event.target.value = ""; // Clear the input
+      } finally {
+        setImageOptimizing(false);
+      }
     } else {
       // File selection cancelled
       setSelectedFile(null);
@@ -547,8 +592,18 @@ export default function EditWcPage() {
     setSelectedFile(null);
     setImagePreview(currentImageUrl); // Revert preview to the original image URL
     setWantsToRemoveImage(false);
+    setOptimizationInfo(null); // Clear optimization info
     const fileInput = document.getElementById("imageFile");
     if (fileInput) fileInput.value = ""; // Reset the file input field
+  };
+
+  // Helper function to format file size
+  const formatFileSize = (bytes) => {
+    if (bytes === 0) return "0 Bytes";
+    const k = 1024;
+    const sizes = ["Bytes", "KB", "MB", "GB"];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
   };
 
   // Cleanup for imagePreview Object URL
@@ -951,8 +1006,45 @@ export default function EditWcPage() {
                 capture="environment"
                 onChange={handleFileChange}
                 style={{ ...styles.formInput, padding: "8px" }}
-                disabled={formLoading}
+                disabled={formLoading || imageOptimizing}
               />
+
+              {/* Image optimization loading state */}
+              {imageOptimizing && (
+                <div
+                  style={{
+                    textAlign: "center",
+                    color: "#666",
+                    fontSize: "0.9rem",
+                    marginTop: "10px",
+                  }}
+                >
+                  🔄 Optimizing image...
+                </div>
+              )}
+
+              {/* Image optimization info */}
+              {optimizationInfo && (
+                <div
+                  style={{
+                    backgroundColor: "#e8f5e8",
+                    border: "1px solid #c3e6c3",
+                    borderRadius: "4px",
+                    padding: "10px",
+                    marginTop: "10px",
+                    fontSize: "0.85rem",
+                    color: "#2e7d32",
+                  }}
+                >
+                  <div style={{ fontWeight: "bold", marginBottom: "5px" }}>
+                    ✅ Image optimized successfully
+                  </div>
+                  <div>Original: {optimizationInfo.originalSize}</div>
+                  <div>Optimized: {optimizationInfo.optimizedSize}</div>
+                  <div>Compressed: {optimizationInfo.compressionRatio}</div>
+                  <div>Saved: {optimizationInfo.saved}</div>
+                </div>
+              )}
               <div style={styles.imageActionsContainer}>
                 {currentImageUrl && !wantsToRemoveImage && !selectedFile && (
                   <button

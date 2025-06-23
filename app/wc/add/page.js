@@ -7,9 +7,11 @@ import { createClient } from "@supabase/supabase-js";
 import Link from "next/link";
 import Image from "next/image";
 import {
+  optimizeImage,
   optimizeImages,
   validateImageFile,
   WC_GALLERY_CONFIG,
+  WC_MAIN_IMAGE_CONFIG,
 } from "../../utils/imageOptimizer";
 import AddressAutocomplete from "../../components/AddressAutocomplete";
 
