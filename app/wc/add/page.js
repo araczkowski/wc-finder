@@ -5,12 +5,13 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@supabase/supabase-js";
 import Link from "next/link";
-import {
-  optimizeImage,
-  validateImageFile,
-  WC_MAIN_IMAGE_CONFIG,
-} from "../../utils/imageOptimizer";
 import Image from "next/image";
+import {
+  optimizeImages,
+  validateImageFile,
+  WC_GALLERY_CONFIG,
+} from "../../utils/imageOptimizer";
+import AddressAutocomplete from "../../components/AddressAutocomplete";
 
 // Mobile-first styles
 const styles = {
@@ -122,6 +123,13 @@ export default function AddWcPage() {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [location, setLocation] = useState(""); // Will store coordinates
+  const [coordinates, setCoordinates] = useState(null); // For GPS coordinates
+
+  // Enhanced address setter with debugging
+  const handleAddressChange = (newAddress) => {
+    console.log("[AddWC] Address changed to:", newAddress);
+    setAddress(newAddress);
+  };
   // State for image handling
   const [selectedFile, setSelectedFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
@@ -223,7 +231,7 @@ export default function AddWcPage() {
     );
   };
 
-  // Function to geocode address to coordinates
+  // Function to geocode address to coordinates (fallback for manual address changes)
   const geocodeAddress = async (addressText) => {
     if (!addressText.trim()) return null;
 
@@ -243,6 +251,22 @@ export default function AddWcPage() {
       console.error("Geocoding error:", error);
     }
     return null;
+  };
+
+  // Handle coordinates change from AddressAutocomplete
+  const handleCoordinatesChange = (coords) => {
+    console.log("[AddWC] handleCoordinatesChange called with:", coords);
+    if (coords && coords.lat && coords.lng) {
+      console.log("[AddWC] Setting coordinates:", coords);
+      setCoordinates(coords);
+      setLocation(`${coords.lat},${coords.lng}`);
+      console.log(
+        "[AddWC] Updated location state:",
+        `${coords.lat},${coords.lng}`,
+      );
+    } else {
+      console.warn("[AddWC] Invalid coordinates received:", coords);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -269,12 +293,14 @@ export default function AddWcPage() {
       return;
     }
 
-    // Geocode address to coordinates if address is provided
-    let coordinates = location; // Use existing location if provided
-    if (address.trim() && !coordinates) {
+    // Geocode address to coordinates if address is provided and coordinates not already set
+    let coordsString = location; // Use existing location if provided
+    if (address.trim() && !coordsString && !coordinates) {
       setGeocoding(true);
-      coordinates = await geocodeAddress(address.trim());
+      coordsString = await geocodeAddress(address.trim());
       setGeocoding(false);
+    } else if (coordinates) {
+      coordsString = `${coordinates.lat},${coordinates.lng}`;
     }
 
     try {
@@ -500,16 +526,14 @@ export default function AddWcPage() {
             <label htmlFor="address" style={styles.formLabel}>
               Address*
             </label>
-            <input
-              id="address"
-              name="address"
-              type="text"
+            <AddressAutocomplete
               value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              style={styles.formInput}
-              placeholder="e.g., ul. Marszałkowska 1, Warszawa"
-              disabled={loading || geocoding || gettingLocation}
+              onChange={handleAddressChange}
+              onCoordinatesChange={handleCoordinatesChange}
+              placeholder="Wpisz adres, np. ul. Marszałkowska 1, Warszawa"
+              disabled={loading || gettingLocation}
               required
+              style={styles.formInput}
             />
             {gettingLocation && (
               <p
@@ -522,18 +546,7 @@ export default function AddWcPage() {
                 📍 Pobieranie bieżącej lokalizacji...
               </p>
             )}
-            {geocoding && (
-              <p
-                style={{
-                  fontSize: "0.8rem",
-                  color: "#666",
-                  marginTop: "0.25rem",
-                }}
-              >
-                📍 Pobieranie współrzędnych...
-              </p>
-            )}
-            {!gettingLocation && !geocoding && address && (
+            {!gettingLocation && address && (
               <div
                 style={{
                   display: "flex",
@@ -549,7 +562,7 @@ export default function AddWcPage() {
                     margin: 0,
                   }}
                 >
-                  ✓ Lokalizacja automatycznie wykryta
+                  ✓ Adres z podpowiadaniem i automatycznym geokodowaniem
                 </p>
                 <button
                   type="button"
@@ -565,7 +578,7 @@ export default function AddWcPage() {
                     cursor: "pointer",
                   }}
                 >
-                  🔄 Odśwież
+                  🔄 Użyj GPS
                 </button>
               </div>
             )}
@@ -592,8 +605,20 @@ export default function AddWcPage() {
                 marginTop: "0.25rem",
               }}
             >
-              Współrzędne będą automatycznie pobrane z podanego adresu
+              Współrzędne będą automatycznie pobrane z podanego adresu lub GPS
             </p>
+            {coordinates && (
+              <p
+                style={{
+                  fontSize: "0.75rem",
+                  color: "#4CAF50",
+                  marginTop: "0.25rem",
+                }}
+              >
+                ✓ GPS: {coordinates.lat.toFixed(6)},{" "}
+                {coordinates.lng.toFixed(6)}
+              </p>
+            )}
           </div>
 
           <div>

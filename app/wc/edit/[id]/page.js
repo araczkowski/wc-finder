@@ -11,6 +11,7 @@ import {
   validateImageFile,
   WC_GALLERY_CONFIG,
 } from "../../../utils/imageOptimizer";
+import AddressAutocomplete from "../../../components/AddressAutocomplete";
 
 // Styles moved to globals.css for better responsiveness
 const styles = {
@@ -280,6 +281,13 @@ export default function EditWcPage() {
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
   const [address, setAddress] = useState("");
+  const [coordinates, setCoordinates] = useState(null); // For GPS coordinates
+
+  // Enhanced address setter with debugging
+  const handleAddressChange = (newAddress) => {
+    console.log("[EditWC] Address changed to:", newAddress);
+    setAddress(newAddress);
+  };
   const [currentImageUrl, setCurrentImageUrl] = useState(null); // URL of the image when page loads
   const [selectedFile, setSelectedFile] = useState(null); // New file selected by user
   const [imagePreview, setImagePreview] = useState(null); // URL for preview (blob or currentImageUrl)
@@ -404,6 +412,18 @@ export default function EditWcPage() {
         setName(fetchedWc.name || "");
         setLocation(fetchedWc.location || "");
         setAddress(fetchedWc.address || "");
+
+        // Parse existing coordinates if available
+        if (fetchedWc.location) {
+          const coords = fetchedWc.location.split(",");
+          if (coords.length === 2) {
+            const lat = parseFloat(coords[0]);
+            const lng = parseFloat(coords[1]);
+            if (!isNaN(lat) && !isNaN(lng)) {
+              setCoordinates({ lat, lng });
+            }
+          }
+        }
         setCurrentImageUrl(fetchedWc.image_url || null);
         setImagePreview(fetchedWc.image_url || null);
         setRating(fetchedWc.rating || 0);
@@ -484,6 +504,22 @@ export default function EditWcPage() {
     session?.user?.email,
     fetchWcPhotos,
   ]); // Re-run if user changes
+
+  // Handle coordinates change from AddressAutocomplete
+  const handleCoordinatesChange = (coords) => {
+    console.log("[EditWC] handleCoordinatesChange called with:", coords);
+    if (coords && coords.lat && coords.lng) {
+      console.log("[EditWC] Setting coordinates:", coords);
+      setCoordinates(coords);
+      setLocation(`${coords.lat},${coords.lng}`);
+      console.log(
+        "[EditWC] Updated location state:",
+        `${coords.lat},${coords.lng}`,
+      );
+    } else {
+      console.warn("[EditWC] Invalid coordinates received:", coords);
+    }
+  };
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -835,15 +871,13 @@ export default function EditWcPage() {
               <label htmlFor="address" style={styles.formLabel}>
                 Address
               </label>
-              <input
-                id="address"
-                name="address"
-                type="text"
+              <AddressAutocomplete
                 value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                style={styles.formInput}
-                placeholder="e.g., ul. Marszałkowska 1, Warszawa"
+                onChange={handleAddressChange}
+                onCoordinatesChange={handleCoordinatesChange}
+                placeholder="Wpisz adres, np. ul. Marszałkowska 1, Warszawa"
                 disabled={formLoading}
+                style={styles.formInput}
               />
             </div>
 
@@ -861,6 +895,27 @@ export default function EditWcPage() {
                 placeholder="e.g., 52.2297,21.0122"
                 disabled={formLoading}
               />
+              <p
+                style={{
+                  fontSize: "0.75rem",
+                  color: "#666",
+                  marginTop: "0.25rem",
+                }}
+              >
+                Współrzędne będą automatycznie pobrane z podanego adresu
+              </p>
+              {coordinates && (
+                <p
+                  style={{
+                    fontSize: "0.75rem",
+                    color: "#4CAF50",
+                    marginTop: "0.25rem",
+                  }}
+                >
+                  ✓ GPS: {coordinates.lat.toFixed(6)},{" "}
+                  {coordinates.lng.toFixed(6)}
+                </p>
+              )}
             </div>
             <div>
               <label htmlFor="imageFile" style={styles.formLabel}>
