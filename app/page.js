@@ -674,9 +674,36 @@ export default function Home() {
                     <div style={{ fontSize: "1.5rem", marginBottom: "5px" }}>
                       🔄
                     </div>
-                    <p style={{ margin: "0", fontSize: "0.9rem" }}>
+                    <p
+                      style={{
+                        margin: "0",
+                        fontSize: "0.9rem",
+                        marginBottom: "10px",
+                      }}
+                    >
                       {t("gettingLocation")}
                     </p>
+                    <button
+                      onClick={() => window.location.reload()}
+                      style={{
+                        padding: "8px 16px",
+                        backgroundColor: "#007bff",
+                        color: "white",
+                        border: "none",
+                        borderRadius: "4px",
+                        fontSize: "0.8rem",
+                        cursor: "pointer",
+                        transition: "background-color 0.2s",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.backgroundColor = "#0056b3";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.backgroundColor = "#007bff";
+                      }}
+                    >
+                      🔄 Odśwież stronę
+                    </button>
                   </div>
                 )}
 
