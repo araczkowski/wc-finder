@@ -364,11 +364,19 @@ export default function AddWcPage() {
         uploadedImageUrl = publicUrlData.publicUrl;
       }
 
+      // Prepare location string from coordinates object or location string
+      let locationString = null;
+      if (coordinates && coordinates.lat && coordinates.lng) {
+        locationString = `${coordinates.lat},${coordinates.lng}`;
+      } else if (location && typeof location === "string" && location.trim()) {
+        locationString = location.trim();
+      }
+
       const wcData = {
         user_login: session.user.id,
         name: name.trim(),
         address: address.trim() || null,
-        location: coordinates || location.trim() || null,
+        location: locationString,
         image_url: uploadedImageUrl, // Use the uploaded image URL
         rating: parseInt(rating, 10),
       };
