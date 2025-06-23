@@ -910,3 +910,198 @@ textarea.form-input {
         color: #66b3ff;
     }
 }
+
+/* Image Slideshow Styles */
+.slideshow-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.slideshow-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 123, 255, 0.6);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition: all 0.2s ease;
+    user-select: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.slideshow-nav:hover {
+    background: rgba(0, 123, 255, 0.8);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.slideshow-nav:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.slideshow-prev {
+    left: 5px;
+}
+
+.slideshow-next {
+    right: 5px;
+}
+
+.slideshow-dots {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 4px;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 4px 8px;
+    border-radius: 12px;
+    backdrop-filter: blur(4px);
+}
+
+.slideshow-dots button {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.slideshow-dots button:hover {
+    transform: scale(1.2);
+}
+
+.slideshow-counter {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(0, 123, 255, 0.8);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    z-index: 2;
+    user-select: none;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.slideshow-autoplay-indicator {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    z-index: 2;
+    user-select: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.slideshow-autoplay-indicator:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+/* Slideshow animations */
+@keyframes slideshow-fade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.slideshow-container .thumbnail-in-table {
+    animation: slideshow-fade 0.3s ease-in-out;
+}
+
+/* Multiple images indicator */
+.slideshow-container[data-multiple="true"] {
+    position: relative;
+}
+
+.slideshow-container[data-multiple="true"]::before {
+    content: "📸";
+    position: absolute;
+    top: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 123, 255, 0.9);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 8px;
+    font-size: 0.7rem;
+    z-index: 1;
+    opacity: 0.8;
+}
+
+/* Responsive slideshow adjustments */
+@media (max-width: 767px) {
+    .slideshow-nav {
+        width: 25px;
+        height: 25px;
+        font-size: 14px;
+    }
+
+    .slideshow-prev {
+        left: 3px;
+    }
+
+    .slideshow-next {
+        right: 3px;
+    }
+
+    .slideshow-dots {
+        padding: 3px 6px;
+    }
+
+    .slideshow-dots button {
+        width: 6px;
+        height: 6px;
+    }
+
+    .slideshow-counter,
+    .slideshow-autoplay-indicator {
+        font-size: 0.65rem;
+        padding: 2px 6px;
+    }
+
+    .slideshow-container[data-multiple="true"]::before {
+        font-size: 0.6rem;
+        padding: 1px 4px;
+    }
+}
+
+/* Touch support for mobile */
+@media (hover: none) and (pointer: coarse) {
+    .slideshow-nav {
+        opacity: 0.8;
+    }
+
+    .slideshow-nav:active {
+        opacity: 1;
+        background: rgba(0, 0, 0, 0.8);
+    }
+}

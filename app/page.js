@@ -7,6 +7,7 @@ import { useState, useEffect, useMemo, useCallback, useRef } from "react"; // Ad
 import { useSearchParams } from "next/navigation"; // Added useSearchParams
 import { useInfiniteScroll } from "./hooks/useInfiniteScroll";
 import { useTranslation } from "./hooks/useTranslation";
+import ImageSlideshow from "./components/ImageSlideshow";
 
 // Basic inline styles for layout - consider moving to CSS modules or global CSS
 const styles = {
@@ -720,14 +721,14 @@ export default function Home() {
                             className="table-cell"
                             style={{ textAlign: "center" }}
                           >
-                            {wc.image_url ? (
-                              <Image
-                                src={wc.image_url}
+                            {wc.gallery_photos &&
+                            wc.gallery_photos.length > 0 ? (
+                              <ImageSlideshow
+                                images={wc.gallery_photos}
                                 alt={wc.name || t("wcImage")}
                                 className="thumbnail-in-table"
                                 width={400}
                                 height={400}
-                                object-fit="cover"
                               />
                             ) : (
                               <div className="thumbnail-placeholder">

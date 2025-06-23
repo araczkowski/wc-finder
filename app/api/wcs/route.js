@@ -85,12 +85,70 @@ export async function GET(request) {
       );
     }
 
+    // Enhance WCs with gallery photos and combine with main image
+    const enhancedWcs = await Promise.all(
+      (wcs || []).map(async (wc) => {
+        // Always fetch gallery photos for this WC
+        try {
+          const { data: photos, error: photoError } = await supabase
+            .from("wc_photos")
+            .select("photo")
+            .eq("wc_id", wc.id)
+            .order("created_at", { ascending: true });
+
+          if (!photoError && photos && photos.length > 0) {
+            // Combine main image with gallery photos
+            const allImages = [];
+
+            // Add main image first if it exists
+            if (wc.image_url) {
+              allImages.push(wc.image_url);
+            }
+
+            // Add gallery photos
+            photos.forEach((photo) => {
+              // Avoid duplicates if main image is also in gallery
+              if (!allImages.includes(photo.photo)) {
+                allImages.push(photo.photo);
+              }
+            });
+
+            return {
+              ...wc,
+              gallery_photos: allImages,
+              image_url: allImages[0], // Use first image as main display
+              has_multiple_images: allImages.length > 1,
+            };
+          } else {
+            // No gallery photos, return with main image only
+            return {
+              ...wc,
+              gallery_photos: wc.image_url ? [wc.image_url] : [],
+              has_multiple_images: false,
+            };
+          }
+        } catch (photoFetchError) {
+          console.error(
+            "Error fetching gallery photos for WC:",
+            wc.id,
+            photoFetchError,
+          );
+          // Return with main image only on error
+          return {
+            ...wc,
+            gallery_photos: wc.image_url ? [wc.image_url] : [],
+            has_multiple_images: false,
+          };
+        }
+      }),
+    );
+
     const hasMore = count > offset + limit;
     const totalPages = Math.ceil(count / limit);
 
     return NextResponse.json(
       {
-        data: wcs || [],
+        data: enhancedWcs,
         pagination: {
           page,
           limit,
