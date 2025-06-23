@@ -12,6 +12,48 @@ if (!supabaseUrl || !supabaseServiceKey) {
 
 const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
+// Helper function to sanitize filename for Supabase storage
+const sanitizeFilename = (filename) => {
+  if (!filename) return "";
+
+  // Replace Polish characters with ASCII equivalents
+  const polishChars = {
+    ą: "a",
+    ć: "c",
+    ę: "e",
+    ł: "l",
+    ń: "n",
+    ó: "o",
+    ś: "s",
+    ź: "z",
+    ż: "z",
+    Ą: "A",
+    Ć: "C",
+    Ę: "E",
+    Ł: "L",
+    Ń: "N",
+    Ó: "O",
+    Ś: "S",
+    Ź: "Z",
+    Ż: "Z",
+  };
+
+  let sanitized = filename;
+
+  // Replace Polish characters
+  Object.keys(polishChars).forEach((polish) => {
+    sanitized = sanitized.replace(new RegExp(polish, "g"), polishChars[polish]);
+  });
+
+  // Remove or replace other problematic characters for URL safety
+  sanitized = sanitized
+    .replace(/[^a-zA-Z0-9.-_]/g, "_") // Replace non-alphanumeric chars (except dots, dashes, underscores) with underscore
+    .replace(/_{2,}/g, "_") // Replace multiple consecutive underscores with single underscore
+    .replace(/^_+|_+$/g, ""); // Remove leading/trailing underscores
+
+  return sanitized;
+};
+
 // GET /api/wc-photos?wc_id={id} - Get all photos for a specific WC
 export async function GET(request) {
   try {
@@ -149,8 +191,9 @@ export async function POST(request) {
 
     console.log("[wc-photos POST] WC verified:", wc.id);
 
-    // Generate unique filename
-    const fileExtension = imageFile.name.split(".").pop();
+    // Generate unique filename with sanitized original name
+    const sanitizedOriginalName = sanitizeFilename(imageFile.name);
+    const fileExtension = sanitizedOriginalName.split(".").pop() || "jpg";
     const timestamp = Date.now();
     const fileName = `${wcId}/${session.user.id}_${timestamp}.${fileExtension}`;
 

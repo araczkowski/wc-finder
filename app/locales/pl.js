@@ -3,6 +3,8 @@ export const pl = {
   appName: "WC Finder",
   signIn: "Zaloguj się",
   signOut: "Wyloguj się",
+  aboutApp: "O aplikacji",
+  backToHome: "Powrót do strony głównej",
 
   // Welcome and Authentication
   welcome: "Witaj w WC Finder",
@@ -18,6 +20,13 @@ export const pl = {
   addNewWc: "Dodaj nowe WC",
   editWc: "Edytuj WC",
   deleteWc: "Usuń WC",
+  confirmDeleteWc: "Potwierdź usunięcie WC",
+  deleteWcConfirmation:
+    "Czy na pewno chcesz usunąć to WC? Ta operacja jest nieodwracalna i usunie wszystkie powiązane zdjęcia, oceny i komentarze.",
+  deletingWc: "Usuwanie WC...",
+  wcDeletedSuccessfully: "WC zostało pomyślnie usunięte.",
+  wcUpdatedSuccessfully: "WC zostało pomyślnie zaktualizowane.",
+  wcAddedSuccessfully: "WC zostało pomyślnie dodane.",
   noWcsFound: "Nie znaleziono WC. Kliknij Dodaj nowe WC, aby dodać pierwsze!",
   allWcsLoaded: "✓ Wszystkie WC załadowane ({count} łącznie)",
 
@@ -31,18 +40,24 @@ export const pl = {
 
   // Location and Permissions
   locationRequired: "Lokalizacja wymagana",
-  locationPermissionMessage: "Aby korzystać z aplikacji i zobaczyć najbliższe WC, musisz zezwolić aplikacji na używanie danych o lokalizacji.",
+  locationPermissionMessage:
+    "Aby korzystać z aplikacji i zobaczyć najbliższe WC, musisz zezwolić aplikacji na używanie danych o lokalizacji.",
   enableLocationAccess: "Włącz dostęp do lokalizacji",
-  gettingLocation: "Pobieranie lokalizacji... WC będą posortowane według odległości gdy lokalizacja zostanie wykryta.",
+  gettingLocation:
+    "Pobieranie lokalizacji... WC będą posortowane według odległości gdy lokalizacja zostanie wykryta.",
   locationSorted: "📍 WC posortowane według odległości od Twojej lokalizacji",
-  locationUnavailable: "📝 WC wyświetlane w kolejności dodania (lokalizacja niedostępna)",
+  locationUnavailable:
+    "📝 WC wyświetlane w kolejności dodania (lokalizacja niedostępna)",
 
   // Location Errors
-  locationDenied: "Dostęp do lokalizacji został odrzucony. Włącz lokalizację w ustawieniach przeglądarki i odśwież stronę.",
+  locationDenied:
+    "Dostęp do lokalizacji został odrzucony. Włącz lokalizację w ustawieniach przeglądarki i odśwież stronę.",
   locationUnavailableError: "Informacje o lokalizacji są niedostępne.",
   locationTimeout: "Żądanie lokalizacji przekroczyło limit czasu.",
-  locationUnknownError: "Wystąpił nieznany błąd podczas pobierania lokalizacji.",
-  locationNotSupported: "Geolokalizacja nie jest obsługiwana przez tę przeglądarkę.",
+  locationUnknownError:
+    "Wystąpił nieznany błąd podczas pobierania lokalizacji.",
+  locationNotSupported:
+    "Geolokalizacja nie jest obsługiwana przez tę przeglądarkę.",
 
   // Forms
   save: "Zapisz",
@@ -105,6 +120,9 @@ export const pl = {
   back: "Wstecz",
   next: "Dalej",
   previous: "Poprzedni",
+  confirm: "Potwierdź",
+  cancel: "Anuluj",
+  administrator: "Administrator",
 
   // Validation
   required: "Wymagane",
@@ -117,5 +135,5 @@ export const pl = {
   fileSelected: "Plik wybrany",
   uploadFailed: "Przesyłanie nie powiodło się",
   fileTooLarge: "Plik jest za duży",
-  invalidFileType: "Nieprawidłowy typ pliku"
+  invalidFileType: "Nieprawidłowy typ pliku",
 };

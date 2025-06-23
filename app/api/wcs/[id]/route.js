@@ -22,6 +22,48 @@ async function parseFormData(request) {
   return { jsonData, imageFile };
 }
 
+// Helper function to sanitize filename for Supabase storage
+const sanitizeFilename = (filename) => {
+  if (!filename) return "";
+
+  // Replace Polish characters with ASCII equivalents
+  const polishChars = {
+    ą: "a",
+    ć: "c",
+    ę: "e",
+    ł: "l",
+    ń: "n",
+    ó: "o",
+    ś: "s",
+    ź: "z",
+    ż: "z",
+    Ą: "A",
+    Ć: "C",
+    Ę: "E",
+    Ł: "L",
+    Ń: "N",
+    Ó: "O",
+    Ś: "S",
+    Ź: "Z",
+    Ż: "Z",
+  };
+
+  let sanitized = filename;
+
+  // Replace Polish characters
+  Object.keys(polishChars).forEach((polish) => {
+    sanitized = sanitized.replace(new RegExp(polish, "g"), polishChars[polish]);
+  });
+
+  // Remove or replace other problematic characters for URL safety
+  sanitized = sanitized
+    .replace(/[^a-zA-Z0-9.-_]/g, "_") // Replace non-alphanumeric chars (except dots, dashes, underscores) with underscore
+    .replace(/_{2,}/g, "_") // Replace multiple consecutive underscores with single underscore
+    .replace(/^_+|_+$/g, ""); // Remove leading/trailing underscores
+
+  return sanitized;
+};
+
 // Helper function to extract storage path from public URL
 const getPathFromSupabaseUrl = (url) => {
   if (!url || typeof url !== "string") return null;
@@ -65,6 +107,7 @@ export async function PUT(request, { params }) {
     );
   }
   const userId = session.user.id;
+  const isAdmin = session.user.email === "admin@sviete.pl";
 
   const supabaseUrl = process.env.SUPABASE_URL;
   const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -114,7 +157,8 @@ export async function PUT(request, { params }) {
     if (!existingWc) {
       return NextResponse.json({ message: "WC not found." }, { status: 404 });
     }
-    if (existingWc.user_id !== userId) {
+    // Check authorization: owner or admin can edit
+    if (existingWc.user_id !== userId && !isAdmin) {
       return NextResponse.json(
         { message: "Forbidden: You are not authorized to edit this WC." },
         { status: 403 },
@@ -126,7 +170,8 @@ export async function PUT(request, { params }) {
 
     // 1. Handle new image file upload
     if (imageFile) {
-      const newFilePath = `${userId}/${Date.now()}_${imageFile.name}`; // Unique path
+      const sanitizedFileName = sanitizeFilename(imageFile.name);
+      const newFilePath = `${userId}/${Date.now()}_${sanitizedFileName}`; // Unique path with sanitized filename
       const { data: uploadData, error: uploadError } = await supabase.storage
         .from(BUCKET_NAME)
         .upload(newFilePath, imageFile, { upsert: false });
@@ -269,6 +314,7 @@ export async function DELETE(request, { params }) {
     return NextResponse.json({ message: "Unauthorized." }, { status: 401 });
   }
   const userId = session.user.id;
+  const isAdmin = session.user.email === "admin@sviete.pl";
 
   const supabaseUrl = process.env.SUPABASE_URL;
   const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -305,32 +351,65 @@ export async function DELETE(request, { params }) {
     if (!wcToDelete) {
       return NextResponse.json({ message: "WC not found." }, { status: 404 });
     }
-    if (wcToDelete.user_id !== userId) {
+
+    // Check authorization: owner or admin can delete
+    if (wcToDelete.user_id !== userId && !isAdmin) {
       return NextResponse.json(
         { message: "Forbidden: You are not authorized to delete this WC." },
         { status: 403 },
       );
     }
 
-    // If image exists, delete from Supabase Storage
+    // Get all related photos to delete from storage
+    const { data: photosToDelete, error: photosError } = await supabase
+      .from("wc_photos")
+      .select("photo")
+      .eq("wc_id", wcId);
+
+    if (photosError) {
+      console.warn(
+        "API WCS DELETE: Error fetching photos for deletion:",
+        photosError,
+      );
+    }
+
+    // Delete main WC image from storage if exists
+    const imagesToDelete = [];
     if (wcToDelete.image_url) {
       const imagePath = getPathFromSupabaseUrl(wcToDelete.image_url);
       if (imagePath) {
-        console.log("API WCS DELETE: Deleting image from storage:", imagePath);
-        const { error: storageDeleteError } = await supabase.storage
-          .from(BUCKET_NAME)
-          .remove([imagePath]);
-        if (storageDeleteError) {
-          // Log error but proceed with DB deletion, as DB integrity is more critical.
-          console.warn(
-            "API WCS DELETE: Failed to delete image from storage, but proceeding with DB record deletion:",
-            storageDeleteError.message,
-          );
-        }
+        imagesToDelete.push(imagePath);
       }
     }
 
-    // Delete from database
+    // Add all photo URLs to deletion list
+    if (photosToDelete && photosToDelete.length > 0) {
+      photosToDelete.forEach((photo) => {
+        const photoPath = getPathFromSupabaseUrl(photo.photo);
+        if (photoPath) {
+          imagesToDelete.push(photoPath);
+        }
+      });
+    }
+
+    // Delete all images from storage
+    if (imagesToDelete.length > 0) {
+      console.log(
+        "API WCS DELETE: Deleting images from storage:",
+        imagesToDelete,
+      );
+      const { error: storageDeleteError } = await supabase.storage
+        .from(BUCKET_NAME)
+        .remove(imagesToDelete);
+      if (storageDeleteError) {
+        console.warn(
+          "API WCS DELETE: Failed to delete some images from storage, but proceeding with DB record deletion:",
+          storageDeleteError.message,
+        );
+      }
+    }
+
+    // Delete WC from database (CASCADE will automatically delete related records)
     const { error: dbDeleteError } = await supabase
       .from("wcs")
       .delete()
@@ -342,9 +421,9 @@ export async function DELETE(request, { params }) {
     }
 
     return NextResponse.json(
-      { message: "WC deleted successfully." },
+      { message: "WC and all related data deleted successfully." },
       { status: 200 },
-    ); // Or 204 No Content
+    );
   } catch (err) {
     console.error("API WCS DELETE: Unexpected error during WC deletion:", err);
     return NextResponse.json(

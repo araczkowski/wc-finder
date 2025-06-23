@@ -197,6 +197,7 @@ export default function Home() {
   const searchParams = useSearchParams();
   const [filteredWcs, setFilteredWcs] = useState([]);
   const [locationPermission, setLocationPermission] = useState(null);
+  const [statusMessage, setStatusMessage] = useState("");
   const [locationPrompted, setLocationPrompted] = useState(false);
   const [userLocation, setUserLocation] = useState(null); // { lat, lng }
   const [geolocationSupported, setGeolocationSupported] = useState(true);
@@ -295,6 +296,33 @@ export default function Home() {
       document.body.classList.remove("auth-background");
     };
   }, [status]);
+
+  // Handle status messages from URL parameters
+  useEffect(() => {
+    const status = searchParams.get("status");
+    if (status) {
+      switch (status) {
+        case "wc_updated":
+          setStatusMessage("WC zostało pomyślnie zaktualizowane.");
+          break;
+        case "wc_deleted":
+          setStatusMessage("WC zostało pomyślnie usunięte.");
+          break;
+        case "wc_added":
+          setStatusMessage("WC zostało pomyślnie dodane.");
+          break;
+        default:
+          break;
+      }
+
+      // Clear the status message after 5 seconds
+      const timer = setTimeout(() => {
+        setStatusMessage("");
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [searchParams]);
 
   // Calculate distance between two coordinates using Haversine formula
   const calculateDistance = (lat1, lng1, lat2, lng2) => {
@@ -497,6 +525,23 @@ export default function Home() {
           <p style={styles.loader}>Checking session...</p>
         ) : session ? (
           <>
+            {/* Status Message */}
+            {statusMessage && (
+              <div
+                style={{
+                  backgroundColor: "#d4edda",
+                  color: "#155724",
+                  padding: "1rem",
+                  borderRadius: "8px",
+                  marginBottom: "1rem",
+                  border: "1px solid #c3e6cb",
+                  textAlign: "center",
+                }}
+              >
+                {statusMessage}
+              </div>
+            )}
+
             {/* Add New WC Button */}
             <Link href="/wc/add" style={styles.addButton}>
               {t("addNewWc")}

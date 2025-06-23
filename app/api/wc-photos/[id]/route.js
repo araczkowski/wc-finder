@@ -46,8 +46,9 @@ export async function DELETE(request, { params }) {
       return NextResponse.json({ error: "Photo not found" }, { status: 404 });
     }
 
-    // Check if the current user is the owner of the photo
-    if (photo.user_id !== session.user.id) {
+    // Check if the current user is the owner of the photo or admin
+    const isAdmin = session.user.email === "admin@sviete.pl";
+    if (photo.user_id !== session.user.id && !isAdmin) {
       return NextResponse.json(
         { error: "You can only delete your own photos" },
         { status: 403 },
@@ -72,8 +73,7 @@ export async function DELETE(request, { params }) {
     const { error: deleteError } = await supabase
       .from("wc_photos")
       .delete()
-      .eq("id", photoId)
-      .eq("user_id", session.user.id); // Double-check ownership
+      .eq("id", photoId);
 
     if (deleteError) {
       console.error("Error deleting photo record:", deleteError);

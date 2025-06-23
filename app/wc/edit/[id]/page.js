@@ -30,6 +30,64 @@ const styles = {
     padding: "8px 12px",
     width: "auto",
   },
+  deleteButton: {
+    backgroundColor: "#dc3545", // Red for delete
+    marginTop: "1rem",
+    fontSize: "0.9rem",
+  },
+  modalOverlay: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    zIndex: 1000,
+  },
+  modalContent: {
+    backgroundColor: "white",
+    padding: "2rem",
+    borderRadius: "8px",
+    maxWidth: "400px",
+    width: "90%",
+    textAlign: "center",
+  },
+  modalTitle: {
+    fontSize: "1.2rem",
+    fontWeight: "bold",
+    marginBottom: "1rem",
+    color: "#dc3545",
+  },
+  modalText: {
+    marginBottom: "1.5rem",
+    color: "#333",
+    lineHeight: "1.5",
+  },
+  modalButtons: {
+    display: "flex",
+    gap: "1rem",
+    justifyContent: "center",
+  },
+  modalButton: {
+    padding: "0.75rem 1.5rem",
+    borderRadius: "4px",
+    border: "none",
+    cursor: "pointer",
+    fontSize: "1rem",
+    fontWeight: "500",
+    transition: "all 0.2s ease",
+  },
+  modalConfirmButton: {
+    backgroundColor: "#dc3545",
+    color: "white",
+  },
+  modalCancelButton: {
+    backgroundColor: "#6c757d",
+    color: "white",
+  },
   imageActionsContainer: {
     marginTop: "5px",
     display: "flex",
@@ -233,6 +291,9 @@ export default function EditWcPage() {
   const [formLoading, setFormLoading] = useState(false); // For form submission
   const [pageLoading, setPageLoading] = useState(true); // For initial data fetch
   const [isOwner, setIsOwner] = useState(false); // Check if current user is the owner
+  const [deleteLoading, setDeleteLoading] = useState(false); // For delete operation
+  const [deleteError, setDeleteError] = useState(""); // For delete errors
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false); // For delete confirmation modal
 
   // User rating state
   const [userRating, setUserRating] = useState(0);
@@ -335,8 +396,9 @@ export default function EditWcPage() {
           setPageLoading(false);
           return;
         }
-        // Allow all authenticated users to view any WC, but only owners can edit
-        setIsOwner(fetchedWc.user_id === session.user.id);
+        // Allow all authenticated users to view any WC, but only owners and admin can edit
+        const isAdmin = session.user.email === "admin@sviete.pl";
+        setIsOwner(fetchedWc.user_id === session.user.id || isAdmin);
 
         setOriginalWcData(fetchedWc);
         setName(fetchedWc.name || "");
@@ -414,7 +476,14 @@ export default function EditWcPage() {
     if (sessionStatus === "authenticated") {
       fetchWcData();
     }
-  }, [wcId, supabase, sessionStatus, session?.user?.id, fetchWcPhotos]); // Re-run if user changes
+  }, [
+    wcId,
+    supabase,
+    sessionStatus,
+    session?.user?.id,
+    session?.user?.email,
+    fetchWcPhotos,
+  ]); // Re-run if user changes
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -508,6 +577,35 @@ export default function EditWcPage() {
       setError(err.message || "An unexpected error occurred during update.");
     } finally {
       setFormLoading(false);
+    }
+  };
+
+  const handleDeleteWC = async () => {
+    setDeleteLoading(true);
+    setDeleteError("");
+
+    try {
+      const response = await fetch(`/api/wcs/${wcId}`, {
+        method: "DELETE",
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || "Failed to delete WC.");
+      }
+
+      // Redirect to home page with success message
+      router.push("/?status=wc_deleted");
+      router.refresh();
+    } catch (err) {
+      console.error("Client-side error deleting WC:", err);
+      setDeleteError(
+        err.message || "An unexpected error occurred during deletion.",
+      );
+    } finally {
+      setDeleteLoading(false);
+      setShowDeleteConfirm(false);
     }
   };
 
@@ -877,6 +975,21 @@ export default function EditWcPage() {
             >
               {formLoading ? "Updating..." : "Update WC"}
             </button>
+
+            {/* Delete WC Button - only show for admin */}
+            {session?.user?.email === "admin@sviete.pl" && (
+              <>
+                {deleteError && <p style={styles.formError}>{deleteError}</p>}
+                <button
+                  type="button"
+                  onClick={() => setShowDeleteConfirm(true)}
+                  style={{ ...styles.formButton, ...styles.deleteButton }}
+                  disabled={deleteLoading || formLoading}
+                >
+                  {deleteLoading ? "Usuwanie..." : "Usuń WC"}
+                </button>
+              </>
+            )}
           </form>
         ) : (
           <div style={styles.form}>
@@ -1192,6 +1305,39 @@ export default function EditWcPage() {
           </div>
         )}
       </div>
+
+      {/* Delete Confirmation Modal */}
+      {showDeleteConfirm && (
+        <div style={styles.modalOverlay}>
+          <div style={styles.modalContent}>
+            <h3 style={styles.modalTitle}>Potwierdź usunięcie</h3>
+            <p style={styles.modalText}>
+              Czy na pewno chcesz usunąć to WC:{" "}
+              <strong>{originalWcData?.name}</strong>?
+              <br />
+              <br />
+              Ta operacja jest nieodwracalna i usunie wszystkie powiązane
+              zdjęcia, oceny i komentarze.
+            </p>
+            <div style={styles.modalButtons}>
+              <button
+                style={{ ...styles.modalButton, ...styles.modalCancelButton }}
+                onClick={() => setShowDeleteConfirm(false)}
+                disabled={deleteLoading}
+              >
+                Anuluj
+              </button>
+              <button
+                style={{ ...styles.modalButton, ...styles.modalConfirmButton }}
+                onClick={handleDeleteWC}
+                disabled={deleteLoading}
+              >
+                {deleteLoading ? "Usuwanie..." : "Usuń WC"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
