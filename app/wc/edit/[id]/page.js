@@ -251,10 +251,7 @@ const styles = {
     borderRadius: "3px",
     cursor: "pointer",
   },
-  uploadButton: {
-    backgroundColor: "#17a2b8",
-    marginTop: "5px",
-  },
+
   viewText: {
     padding: "12px 0",
     fontSize: "16px",
@@ -270,6 +267,28 @@ const styles = {
     fontStyle: "italic",
     borderBottom: "1px solid #f0f0f0",
     minHeight: "20px",
+  },
+  photoButton: {
+    padding: "0.75rem 1rem",
+    borderRadius: "4px",
+    border: "2px solid #007bff",
+    fontSize: "1rem",
+    fontWeight: "bold",
+    cursor: "pointer",
+    backgroundColor: "#007bff",
+    color: "white",
+    transition: "all 0.2s ease",
+    marginTop: "0.5rem",
+    minHeight: "44px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "0.5rem",
+    width: "100%",
+    boxSizing: "border-box",
+  },
+  hiddenFileInput: {
+    display: "none",
   },
 };
 
@@ -320,7 +339,7 @@ export default function EditWcPage() {
   // Photo states
   const [wcPhotos, setWcPhotos] = useState([]);
   const [photosLoading, setPhotosLoading] = useState(false);
-  const [selectedPhotos, setSelectedPhotos] = useState([]);
+
   const [photoUploadLoading, setPhotoUploadLoading] = useState(false);
   const [photoError, setPhotoError] = useState("");
 
@@ -751,13 +770,14 @@ export default function EditWcPage() {
     const files = Array.from(event.target.files);
 
     if (files.length === 0) {
-      setSelectedPhotos([]);
       setPhotoError("");
       return;
     }
 
+    setPhotoUploadLoading(true);
+    setPhotoError("");
+
     try {
-      setPhotoError("");
       console.log("[EditWC] Validating and optimizing photos...");
 
       // Validate all files first
@@ -776,36 +796,21 @@ export default function EditWcPage() {
           `Photo validation failed: ${validationErrors.join("; ")}`,
         );
         event.target.value = ""; // Clear the input
+        setPhotoUploadLoading(false);
         return;
       }
 
       // Optimize all images for gallery
       const optimizedFiles = await optimizeImages(files, WC_GALLERY_CONFIG);
 
-      setSelectedPhotos(optimizedFiles);
       console.log(
         "[EditWC] Photo optimization complete for",
         optimizedFiles.length,
-        "photos",
+        "photos, starting upload...",
       );
-    } catch (optimizationError) {
-      console.error("[EditWC] Photo optimization failed:", optimizationError);
-      setPhotoError(`Photo optimization failed: ${optimizationError.message}`);
-      event.target.value = ""; // Clear the input
-    }
-  };
 
-  const handlePhotoUpload = async () => {
-    if (selectedPhotos.length === 0) {
-      setPhotoError("Please select at least one photo");
-      return;
-    }
-
-    setPhotoUploadLoading(true);
-    setPhotoError("");
-
-    try {
-      const uploadPromises = selectedPhotos.map(async (file) => {
+      // Upload photos automatically
+      const uploadPromises = optimizedFiles.map(async (file) => {
         const formData = new FormData();
         formData.append("wc_id", wcId);
         formData.append("photo", file);
@@ -824,16 +829,15 @@ export default function EditWcPage() {
 
       await Promise.all(uploadPromises);
 
-      // Clear selected photos and refresh the gallery
-      setSelectedPhotos([]);
-      const fileInput = document.getElementById("wcPhotos");
-      if (fileInput) fileInput.value = "";
-
-      // Refresh photos
+      // Clear the input and refresh the gallery
+      event.target.value = "";
       await fetchWcPhotos();
-    } catch (err) {
-      console.error("Error uploading photos:", err);
-      setPhotoError(err.message || "Failed to upload photos");
+
+      console.log("[EditWC] Photos uploaded successfully");
+    } catch (error) {
+      console.error("[EditWC] Photo upload failed:", error);
+      setPhotoError(`Photo upload failed: ${error.message}`);
+      event.target.value = ""; // Clear the input
     } finally {
       setPhotoUploadLoading(false);
     }
@@ -973,9 +977,7 @@ export default function EditWcPage() {
               )}
             </div>
             <div>
-              <label htmlFor="imageFile" style={styles.formLabel}>
-                Image
-              </label>
+              <label style={styles.formLabel}>Zdjęcie</label>
               {imagePreview && !wantsToRemoveImage && (
                 <div className="image-preview">
                   <Image
@@ -1005,9 +1007,22 @@ export default function EditWcPage() {
                 accept="image/*"
                 capture="environment"
                 onChange={handleFileChange}
-                style={{ ...styles.formInput, padding: "8px" }}
+                style={styles.hiddenFileInput}
                 disabled={formLoading || imageOptimizing}
               />
+              <button
+                type="button"
+                onClick={() => document.getElementById("imageFile").click()}
+                style={{
+                  ...styles.photoButton,
+                  opacity: formLoading || imageOptimizing ? 0.6 : 1,
+                  cursor:
+                    formLoading || imageOptimizing ? "not-allowed" : "pointer",
+                }}
+                disabled={formLoading || imageOptimizing}
+              >
+                📷 Dodaj zdjęcie
+              </button>
 
               {/* Image optimization loading state */}
               {imageOptimizing && (
@@ -1273,9 +1288,7 @@ export default function EditWcPage() {
 
             {/* Photo Upload Section */}
             <div>
-              <label htmlFor="wcPhotos" style={styles.formLabel}>
-                Add Photos
-              </label>
+              <label style={styles.formLabel}>Dodaj zdjęcia</label>
               <input
                 id="wcPhotos"
                 name="wcPhotos"
@@ -1284,20 +1297,26 @@ export default function EditWcPage() {
                 multiple
                 capture="environment"
                 onChange={handlePhotoSelection}
-                style={{ ...styles.formInput, padding: "8px" }}
+                style={styles.hiddenFileInput}
                 disabled={photoUploadLoading}
               />
-              {selectedPhotos.length > 0 && (
-                <div style={{ marginTop: "10px" }}>
-                  <p>Selected photos: {selectedPhotos.length}</p>
-                  <button
-                    type="button"
-                    onClick={handlePhotoUpload}
-                    style={{ ...styles.formButton, ...styles.uploadButton }}
-                    disabled={photoUploadLoading}
-                  >
-                    {photoUploadLoading ? "Uploading..." : "Upload Photos"}
-                  </button>
+              <button
+                type="button"
+                onClick={() => document.getElementById("wcPhotos").click()}
+                style={{
+                  ...styles.photoButton,
+                  opacity: photoUploadLoading ? 0.6 : 1,
+                  cursor: photoUploadLoading ? "not-allowed" : "pointer",
+                }}
+                disabled={photoUploadLoading}
+              >
+                📷 Dodaj zdjęcia
+              </button>
+              {photoUploadLoading && (
+                <div style={{ marginTop: "10px", textAlign: "center" }}>
+                  <p style={{ color: "#007bff", fontSize: "0.9rem" }}>
+                    📤 Uploading photos...
+                  </p>
                 </div>
               )}
               {photoError && (

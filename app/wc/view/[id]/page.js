@@ -191,6 +191,28 @@ const styles = {
     borderRadius: "3px",
     cursor: "pointer",
   },
+  photoButton: {
+    padding: "0.75rem 1rem",
+    borderRadius: "4px",
+    border: "2px solid #007bff",
+    fontSize: "1rem",
+    fontWeight: "bold",
+    cursor: "pointer",
+    backgroundColor: "#007bff",
+    color: "white",
+    transition: "all 0.2s ease",
+    marginTop: "0.5rem",
+    minHeight: "44px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "0.5rem",
+    width: "100%",
+    boxSizing: "border-box",
+  },
+  hiddenFileInput: {
+    display: "none",
+  },
 };
 
 export default function ViewWcPage() {
@@ -218,7 +240,6 @@ export default function ViewWcPage() {
   // Photo states
   const [wcPhotos, setWcPhotos] = useState([]);
   const [photosLoading, setPhotosLoading] = useState(false);
-  const [selectedPhotos, setSelectedPhotos] = useState([]);
   const [photoUploadLoading, setPhotoUploadLoading] = useState(false);
   const [photoError, setPhotoError] = useState("");
   const [photoOptimizing, setPhotoOptimizing] = useState(false);
@@ -407,16 +428,17 @@ export default function ViewWcPage() {
     const files = Array.from(event.target.files);
 
     if (files.length === 0) {
-      setSelectedPhotos([]);
       setPhotoError("");
       setOptimizationInfo(null);
       return;
     }
 
+    setPhotoUploadLoading(true);
+    setPhotoOptimizing(true);
+    setPhotoError("");
+    setOptimizationInfo(null);
+
     try {
-      setPhotoError("");
-      setOptimizationInfo(null);
-      setPhotoOptimizing(true);
       console.log("[ViewWC] Validating and optimizing photos...");
 
       // Validate all files first
@@ -435,6 +457,8 @@ export default function ViewWcPage() {
           `Walidacja zdjęć nie powiodła się: ${validationErrors.join("; ")}`,
         );
         event.target.value = ""; // Clear the input
+        setPhotoOptimizing(false);
+        setPhotoUploadLoading(false);
         return;
       }
 
@@ -462,47 +486,17 @@ export default function ViewWcPage() {
         count: optimizedFiles.length,
       };
 
-      setSelectedPhotos(optimizedFiles);
       setOptimizationInfo(optimizationResult);
+      setPhotoOptimizing(false);
+
       console.log(
         "[ViewWC] Optymalizacja zdjęć zakończona dla",
         optimizedFiles.length,
-        "zdjęć",
+        "zdjęć, rozpoczynanie uploadu...",
       );
-    } catch (optimizationError) {
-      console.error(
-        "[ViewWC] Optymalizacja zdjęć nie powiodła się:",
-        optimizationError,
-      );
-      setPhotoError(
-        `Optymalizacja zdjęć nie powiodła się: ${optimizationError.message}`,
-      );
-      event.target.value = ""; // Clear the input
-    } finally {
-      setPhotoOptimizing(false);
-    }
-  };
 
-  // Helper function to format file size
-  const formatFileSize = (bytes) => {
-    if (bytes === 0) return "0 Bytes";
-    const k = 1024;
-    const sizes = ["Bytes", "KB", "MB", "GB"];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
-  };
-
-  const handlePhotoUpload = async () => {
-    if (selectedPhotos.length === 0) {
-      setPhotoError("Please select at least one photo");
-      return;
-    }
-
-    setPhotoUploadLoading(true);
-    setPhotoError("");
-
-    try {
-      const uploadPromises = selectedPhotos.map(async (file) => {
+      // Upload photos automatically
+      const uploadPromises = optimizedFiles.map(async (file) => {
         const formData = new FormData();
         formData.append("wc_id", wcId);
         formData.append("photo", file);
@@ -521,17 +515,28 @@ export default function ViewWcPage() {
 
       await Promise.all(uploadPromises);
 
-      setSelectedPhotos([]);
-      const fileInput = document.getElementById("wcPhotos");
-      if (fileInput) fileInput.value = "";
-
+      // Clear the input and refresh the gallery
+      event.target.value = "";
       await fetchWcPhotos();
-    } catch (err) {
-      console.error("Error uploading photos:", err);
-      setPhotoError(err.message || "Failed to upload photos");
+
+      console.log("[ViewWC] Zdjęcia zostały pomyślnie przesłane");
+    } catch (error) {
+      console.error("[ViewWC] Przesyłanie zdjęć nie powiodło się:", error);
+      setPhotoError(`Przesyłanie zdjęć nie powiodło się: ${error.message}`);
+      event.target.value = ""; // Clear the input
     } finally {
+      setPhotoOptimizing(false);
       setPhotoUploadLoading(false);
     }
+  };
+
+  // Helper function to format file size
+  const formatFileSize = (bytes) => {
+    if (bytes === 0) return "0 Bytes";
+    const k = 1024;
+    const sizes = ["Bytes", "KB", "MB", "GB"];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
   };
 
   const handleDeletePhoto = async (photoId) => {
@@ -749,18 +754,32 @@ export default function ViewWcPage() {
 
               {/* Photo Upload Section */}
               <div>
-                <label htmlFor="wcPhotos" style={styles.formLabel}>
-                  Dodaj zdjęcia
-                </label>
+                <label style={styles.formLabel}>Dodaj zdjęcia</label>
                 <input
                   id="wcPhotos"
                   type="file"
                   multiple
                   accept="image/*"
+                  capture="environment"
                   onChange={handlePhotoSelection}
-                  style={{ ...styles.formInput, padding: "8px" }}
+                  style={styles.hiddenFileInput}
                   disabled={photoUploadLoading || photoOptimizing}
                 />
+                <button
+                  type="button"
+                  onClick={() => document.getElementById("wcPhotos").click()}
+                  style={{
+                    ...styles.photoButton,
+                    opacity: photoUploadLoading || photoOptimizing ? 0.6 : 1,
+                    cursor:
+                      photoUploadLoading || photoOptimizing
+                        ? "not-allowed"
+                        : "pointer",
+                  }}
+                  disabled={photoUploadLoading || photoOptimizing}
+                >
+                  📷 Dodaj zdjęcia
+                </button>
 
                 {photoOptimizing && (
                   <div
@@ -774,7 +793,7 @@ export default function ViewWcPage() {
                       color: "#1976d2",
                     }}
                   >
-                    🔄 Optymalizowanie {selectedPhotos.length || "zdjęć"}...
+                    🔄 Optymalizowanie zdjęć...
                   </div>
                 )}
 
@@ -800,22 +819,11 @@ export default function ViewWcPage() {
                   </div>
                 )}
 
-                {selectedPhotos.length > 0 && (
-                  <div style={{ marginTop: "10px" }}>
-                    <p>Wybrane zdjęcia: {selectedPhotos.length}</p>
-                    <button
-                      type="button"
-                      onClick={handlePhotoUpload}
-                      style={{
-                        ...styles.formButton,
-                        backgroundColor: "#17a2b8",
-                      }}
-                      disabled={photoUploadLoading}
-                    >
-                      {photoUploadLoading
-                        ? "Przesyłanie..."
-                        : "Prześlij zdjęcia"}
-                    </button>
+                {photoUploadLoading && (
+                  <div style={{ marginTop: "10px", textAlign: "center" }}>
+                    <p style={{ color: "#007bff", fontSize: "0.9rem" }}>
+                      📤 Przesyłanie zdjęć...
+                    </p>
                   </div>
                 )}
                 {photoError && (

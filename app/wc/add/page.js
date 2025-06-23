@@ -77,6 +77,28 @@ const styles = {
     marginTop: "0.5rem",
     minHeight: "44px",
   },
+  photoButton: {
+    padding: "0.75rem 1rem",
+    borderRadius: "4px",
+    border: "2px solid #007bff",
+    fontSize: "1rem",
+    fontWeight: "bold",
+    cursor: "pointer",
+    backgroundColor: "#007bff",
+    color: "white",
+    transition: "all 0.2s ease",
+    marginTop: "0.5rem",
+    minHeight: "44px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "0.5rem",
+    width: "100%",
+    boxSizing: "border-box",
+  },
+  hiddenFileInput: {
+    display: "none",
+  },
   formError: {
     color: "#dc3545",
     backgroundColor: "rgba(220, 53, 69, 0.1)",
@@ -624,9 +646,7 @@ export default function AddWcPage() {
           </div>
 
           <div>
-            <label htmlFor="imageFile" style={styles.formLabel}>
-              Image (Optional)
-            </label>
+            <label style={styles.formLabel}>Zdjęcie (Opcjonalne)</label>
             <input
               id="imageFile"
               name="imageFile"
@@ -634,9 +654,21 @@ export default function AddWcPage() {
               accept="image/*"
               capture="environment" // "user" for front camera, "environment" for back
               onChange={handleFileChange}
-              style={{ ...styles.formInput, padding: "8px" }} // Adjust padding for file input aesthetics
+              style={styles.hiddenFileInput}
               disabled={loading || imageOptimizing}
             />
+            <button
+              type="button"
+              onClick={() => document.getElementById("imageFile").click()}
+              style={{
+                ...styles.photoButton,
+                opacity: loading || imageOptimizing ? 0.6 : 1,
+                cursor: loading || imageOptimizing ? "not-allowed" : "pointer",
+              }}
+              disabled={loading || imageOptimizing}
+            >
+              📷 Dodaj zdjęcie
+            </button>
 
             {imageOptimizing && (
               <div
