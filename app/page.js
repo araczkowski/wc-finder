@@ -8,6 +8,7 @@ import { useSearchParams } from "next/navigation"; // Added useSearchParams
 import { useInfiniteScroll } from "./hooks/useInfiniteScroll";
 import { useTranslation } from "./hooks/useTranslation";
 import ImageSlideshow from "./components/ImageSlideshow";
+import UserDropdown from "./components/UserDropdown";
 
 // Basic inline styles for layout - consider moving to CSS modules or global CSS
 const styles = {
@@ -471,47 +472,7 @@ export default function Home() {
     }
 
     if (session) {
-      return (
-        <div style={styles.userInfo}>
-          {session.user?.image ? (
-            <Image
-              src={session.user.image}
-              alt={session.user.name || t("userAvatar")}
-              width={32}
-              height={32}
-              style={styles.userImage}
-              priority // Add priority if this image is above the fold
-            />
-          ) : (
-            <div
-              style={{
-                ...styles.userImage,
-                width: 32,
-                height: 32,
-                backgroundColor: "#ccc",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "1rem",
-                color: "#fff", // Ensure initials are visible
-              }}
-            >
-              {session.user?.name?.charAt(0).toUpperCase() ||
-                session.user?.email?.charAt(0).toUpperCase() ||
-                "U"}
-            </div>
-          )}
-          <span style={styles.userName}>
-            {session.user?.name || session.user?.email}
-          </span>
-          <button
-            onClick={() => signOut({ callbackUrl: "/" })}
-            style={{ ...styles.button, ...styles.signOutButton }}
-          >
-            {t("signOut")}
-          </button>
-        </div>
-      );
+      return <UserDropdown session={session} />;
     }
 
     return (
@@ -728,7 +689,7 @@ export default function Home() {
                                 alt={wc.name || t("wcImage")}
                                 className="thumbnail-in-table"
                                 width={400}
-                                height={400}
+                                height={300}
                               />
                             ) : (
                               <div className="thumbnail-placeholder">

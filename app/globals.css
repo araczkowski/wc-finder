@@ -101,7 +101,7 @@ a {
 
 .thumbnail-in-table {
     width: 100%;
-    height: auto;
+    height: 300px;
     object-fit: cover;
     border-radius: 4px;
     border: 1px solid #ddd;
@@ -110,7 +110,7 @@ a {
 
 .thumbnail-placeholder {
     width: 60px;
-    height: 60px;
+    height: 100px;
     background-color: #e0e0e0;
     display: flex;
     align-items: center;
@@ -161,7 +161,7 @@ a {
     .thumbnail-in-table,
     .thumbnail-placeholder {
         width: 100%;
-        height: auto;
+        height: 300px;
     }
 }
 
@@ -170,7 +170,7 @@ a {
     .thumbnail-in-table,
     .thumbnail-placeholder {
         width: 100%;
-        height: auto;
+        height: 300px;
     }
 
     .table-cell {
@@ -1097,11 +1097,205 @@ textarea.form-input {
 /* Touch support for mobile */
 @media (hover: none) and (pointer: coarse) {
     .slideshow-nav {
-        opacity: 0.8;
+        opacity: 0.7;
     }
 
     .slideshow-nav:active {
         opacity: 1;
         background: rgba(0, 0, 0, 0.8);
+    }
+}
+
+/* UserDropdown styles */
+.user-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.user-dropdown-trigger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 8px;
+    padding: 0.5rem;
+    transition: background-color 0.2s ease;
+}
+
+.user-dropdown-trigger:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.user-image {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    object-fit: cover;
+}
+
+.user-name {
+    font-weight: 500;
+    color: #333;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dropdown-arrow {
+    transition: transform 0.2s ease;
+    color: #666;
+}
+
+.dropdown-arrow.open {
+    transform: rotate(180deg);
+}
+
+.user-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    min-width: 200px;
+    z-index: 1000;
+    overflow: hidden;
+    margin-top: 0.25rem;
+}
+
+.dropdown-header {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    background-color: #f8f9fa;
+}
+
+.user-email {
+    font-size: 0.875rem;
+    color: #666;
+    margin-bottom: 0.25rem;
+}
+
+.admin-badge {
+    background-color: #dc3545;
+    color: white;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.dropdown-divider {
+    height: 1px;
+    background-color: #eee;
+}
+
+.dropdown-items {
+    padding: 0.5rem 0;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: none;
+    background: none;
+    text-align: left;
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-size: 0.875rem;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+}
+
+.dropdown-item svg {
+    flex-shrink: 0;
+    color: #666;
+}
+
+.logout-item {
+    color: #dc3545;
+}
+
+.logout-item:hover {
+    background-color: #fff5f5;
+}
+
+.logout-item svg {
+    color: #dc3545;
+}
+
+@media (prefers-color-scheme: dark) {
+    .user-dropdown-trigger:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .user-name {
+        color: #e0e0e0;
+    }
+
+    .dropdown-arrow {
+        color: #aaa;
+    }
+
+    .user-dropdown-menu {
+        background: #2a2a2a;
+        border-color: #444;
+    }
+
+    .dropdown-header {
+        background-color: #333;
+        border-bottom-color: #444;
+    }
+
+    .user-email {
+        color: #aaa;
+    }
+
+    .dropdown-divider {
+        background-color: #444;
+    }
+
+    .dropdown-item {
+        color: #e0e0e0;
+    }
+
+    .dropdown-item:hover {
+        background-color: #333;
+    }
+
+    .dropdown-item svg {
+        color: #aaa;
+    }
+
+    .logout-item:hover {
+        background-color: #3a1f1f;
+    }
+}
+
+@media (max-width: 767px) {
+    .user-name {
+        display: none;
+    }
+
+    .user-dropdown-menu {
+        min-width: 180px;
     }
 }
