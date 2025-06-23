@@ -292,7 +292,7 @@ a {
     align-items: center;
     padding: 1rem;
     min-height: calc(100vh - 70px);
-    background-color: #f9f9f9;
+    background-color: #f9f9f9e3;
     font-family: sans-serif;
     width: 100%;
     max-width: 500px;

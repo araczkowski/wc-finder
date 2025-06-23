@@ -139,7 +139,7 @@ const styles = {
     flexDirection: "column",
     minHeight: "100vh",
     fontFamily: "sans-serif",
-    backgroundColor: "#f9f9f9",
+    backgroundColor: "#f9f9f9e3",
     width: "100%",
     maxWidth: "500px",
     margin: "0 auto",
