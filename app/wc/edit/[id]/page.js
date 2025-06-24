@@ -23,6 +23,7 @@ import {
   WC_MAIN_IMAGE_CONFIG,
 } from "../../../utils/imageOptimizer";
 import AddressAutocomplete from "../../../components/AddressAutocomplete";
+import { useTranslation } from "../../../hooks/useTranslation";
 
 // Styles moved to globals.css for better responsiveness
 const styles = {
@@ -354,6 +355,8 @@ export default function EditWcPage() {
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  const { t } = useTranslation();
 
   const supabase = useMemo(() => {
     if (supabaseUrl && supabaseAnonKey) {
@@ -918,14 +921,14 @@ export default function EditWcPage() {
         <h2
           style={{ marginBottom: "25px", color: "#333", textAlign: "center" }}
         >
-          {isOwner ? "Edit WC" : "View WC"}: {originalWcData.name}
+          {originalWcData.name}
         </h2>
         {error && <p style={styles.formError}>{error}</p>}
         {isOwner ? (
           <form onSubmit={handleSubmit} style={styles.form}>
             <div>
               <label htmlFor="name" style={styles.formLabel}>
-                Name*
+                {t("Name")}
               </label>
               <input
                 id="name"
@@ -940,7 +943,7 @@ export default function EditWcPage() {
             </div>
             <div>
               <label htmlFor="address" style={styles.formLabel}>
-                Address
+                {t("Address")}
               </label>
               <AddressAutocomplete
                 value={address}
@@ -954,7 +957,7 @@ export default function EditWcPage() {
 
             <div>
               <label htmlFor="location" style={styles.formLabel}>
-                Coordinates
+                {t("Coordinates")}
               </label>
               <input
                 id="location"
@@ -1155,23 +1158,11 @@ export default function EditWcPage() {
         ) : (
           <div style={styles.form}>
             <div>
-              <label style={styles.formLabel}>Nazwa</label>
-              <div style={styles.viewText}>{name}</div>
-            </div>
-            <div>
-              <label style={styles.formLabel}>Adres</label>
               <div style={address ? styles.viewText : styles.viewTextEmpty}>
                 {address || "Nie podano"}
               </div>
             </div>
             <div>
-              <label style={styles.formLabel}>Współrzędne</label>
-              <div style={location ? styles.viewText : styles.viewTextEmpty}>
-                {location || "Nie podano"}
-              </div>
-            </div>
-            <div>
-              <label style={styles.formLabel}>Zdjęcie</label>
               {imagePreview ? (
                 <div className="image-preview" style={{ marginTop: "10px" }}>
                   <Image
@@ -1187,7 +1178,9 @@ export default function EditWcPage() {
               )}
             </div>
             <div>
-              <label style={styles.formLabel}>Ocena ({rating} / 10)</label>
+              <label style={styles.formLabel}>
+                Ocena średnia ({rating} / 10):
+              </label>
               <div style={styles.starRatingContainer}>
                 {[...Array(10)].map((_, index) => {
                   const starValue = index + 1;
@@ -1217,15 +1210,14 @@ export default function EditWcPage() {
             paddingTop: "2rem",
           }}
         >
-          <h3 style={{ marginBottom: "1rem", color: "#333" }}>Your Rating</h3>
+          <h3 style={{ marginBottom: "1rem", color: "#333" }}>
+            {t("YourRating")} ({userRating} / 10)
+          </h3>
 
           {ratingError && <p style={styles.formError}>{ratingError}</p>}
 
           <div style={styles.form}>
             <div>
-              <label style={styles.formLabel}>
-                Rate this WC ({userRating} / 10)
-              </label>
               <div style={styles.starRatingContainer}>
                 {[...Array(10)].map((_, index) => {
                   const starValue = index + 1;
@@ -1273,7 +1265,7 @@ export default function EditWcPage() {
 
             <div>
               <label htmlFor="userComment" style={styles.formLabel}>
-                Comment (Optional)
+                {t("optionalComment")}
               </label>
               <textarea
                 id="userComment"
@@ -1295,7 +1287,7 @@ export default function EditWcPage() {
 
             {/* Photo Upload Section */}
             <div>
-              <label style={styles.formLabel}>Dodaj zdjęcia</label>
+              {" "}
               <input
                 id="wcPhotos"
                 name="wcPhotos"
@@ -1354,7 +1346,7 @@ export default function EditWcPage() {
           }}
         >
           <h3 style={{ marginBottom: "1rem", color: "#333" }}>
-            Photos ({wcPhotos.length})
+            Galeria zdjęć ({wcPhotos.length})
           </h3>
 
           {photosLoading ? (
@@ -1422,7 +1414,7 @@ export default function EditWcPage() {
             }}
           >
             <h3 style={{ marginBottom: "1rem", color: "#333" }}>
-              All Ratings ({allRatings.length}) - Average:{" "}
+              Wszystkie Oceny ({allRatings.length}) - Średnia:{" "}
               {averageRating.toFixed(1)} ⭐
             </h3>
 

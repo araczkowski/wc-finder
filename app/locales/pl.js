@@ -28,6 +28,15 @@ export const pl = {
   creatingAccount: "Tworzenie Konta...",
   alreadyHaveAccount: "Masz już konto?",
 
+  // Your Rating
+  YourRating: "Twoja Ocena",
+  ratingError: "Wystąpił błąd podczas oceniania WC.",
+  ratingSuccess: "Ocena została pomyślnie zapisana.",
+  optionalComment: "Komentarzdo oceny (opcjonalny)",
+  Name: "Nazwa*",
+  Address: "Adres*",
+  Coordinates: "Współrzędne*",
+
   // Loading States
   loading: "Ładowanie...",
   loadingWcs: "Ładowanie WC...",
