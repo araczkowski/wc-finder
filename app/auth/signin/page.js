@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { signIn, getProviders, useSession } from "next-auth/react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams, useContext } from "next/navigation";
 import Link from "next/link";
+import { useTranslation } from "../../hooks/useTranslation";
 
 // Mobile-first styles
 const styles = {
@@ -122,6 +123,8 @@ export default function SignInPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { data: session, status: sessionStatus } = useSession();
+
+  const { t } = useTranslation();
 
   // Manage background class for signin page
   useEffect(() => {
@@ -383,7 +386,7 @@ export default function SignInPage() {
     <div className="form-container">
       <div className="form-card">
         <h2 style={{ marginBottom: "20px", color: "grey" }}>
-          Sign In to WC Finder
+          {t("signInToApp")}
         </h2>
 
         {/* Display general sign-in errors */}
@@ -453,14 +456,14 @@ export default function SignInPage() {
               ></path>
               <path fill="none" d="M1 1h22v22H1z"></path>
             </svg>
-            Sign in with Google
+            {t("signInWithGoogle")}
           </button>
         )}
 
         {providers?.google && providers?.credentials && (
           <div style={styles.divider}>
             <span style={styles.line}></span>
-            <span style={{ padding: "0 10px" }}>Or</span>
+            <span style={{ padding: "0 10px" }}>{t("Or")}</span>
             <span style={styles.line}></span>
           </div>
         )}
@@ -507,12 +510,12 @@ export default function SignInPage() {
               style={styles.primaryButton}
               disabled={formLoading || resendLoading}
             >
-              {formLoading ? "Signing in..." : "Sign in with Email"}
+              {formLoading ? t("loginInProgress") : t("signInWithEmail")}
             </button>
           </form>
         )}
         <p style={{ marginTop: "25px", fontSize: "0.9em", color: "grey" }}>
-          Don&apos;t have an account?{" "}
+          {t("noAccount")}{" "}
           <Link
             href="/auth/register"
             style={{
@@ -521,7 +524,7 @@ export default function SignInPage() {
               fontWeight: "bold",
             }}
           >
-            Sign up
+            {t("createAccount")}
           </Link>
         </p>
       </div>

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useTranslation } from "../../hooks/useTranslation";
 
 export default function RegisterPage() {
   const [name, setName] = useState("");
@@ -17,6 +18,8 @@ export default function RegisterPage() {
 
   const router = useRouter();
   const { data: session, status: sessionStatus } = useSession();
+
+  const { t } = useTranslation();
 
   // Manage background class for register page
   useEffect(() => {
@@ -133,7 +136,7 @@ export default function RegisterPage() {
     <div className="form-container">
       <div className="form-card">
         <h2 style={{ marginBottom: "25px", color: "#333" }}>
-          Create an Account
+          {t("createAnAcccount")}
         </h2>
 
         {error && <p className="form-message form-error">{error}</p>}
@@ -149,7 +152,7 @@ export default function RegisterPage() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="form-input"
-              placeholder="Full Name (Optional)"
+              placeholder={t("fullNameOptional")}
               disabled={loading}
             />
           </div>
@@ -163,7 +166,7 @@ export default function RegisterPage() {
               onChange={(e) => setEmail(e.target.value)}
               required
               className="form-input"
-              placeholder="Email address"
+              placeholder={t("emailAddress")}
               disabled={loading}
             />
           </div>
@@ -177,7 +180,7 @@ export default function RegisterPage() {
               onChange={(e) => setPassword(e.target.value)}
               required
               className="form-input"
-              placeholder="Password (min. 8 characters)"
+              placeholder={t("passwordMin8Characters")}
               disabled={loading}
             />
           </div>
@@ -191,16 +194,16 @@ export default function RegisterPage() {
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
               className="form-input"
-              placeholder="Confirm Password"
+              placeholder={t("confirmPassword")}
               disabled={loading}
             />
           </div>
           <button type="submit" className="form-button" disabled={loading}>
-            {loading ? "Creating Account..." : "Create Account"}
+            {loading ? t("creatingAccount") : t("createAccount")}
           </button>
         </form>
         <p style={{ marginTop: "25px", fontSize: "0.9em", color: "#555" }}>
-          Already have an account?{" "}
+          {t("alreadyHaveAccount")}{" "}
           <Link
             href="/auth/signin"
             style={{
@@ -209,7 +212,7 @@ export default function RegisterPage() {
               fontWeight: "bold",
             }}
           >
-            Sign In
+            {t("signIn")}
           </Link>
         </p>
       </div>

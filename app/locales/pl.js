@@ -8,8 +8,25 @@ export const pl = {
 
   // Welcome and Authentication
   welcome: "Witaj w WC Finder",
-  pleaseSignIn: "Zaloguj się, aby korzystać z funkcji aplikacji.",
+  pleaseSignIn: "Zaloguj się, aby korzystać z aplikacji.",
   signInHere: "Zaloguj się tutaj",
+  signInWithGoogle: "Zaloguj z Google",
+  signInWithEmail: "Zaloguj z Email",
+  createAccount: "Utwórz Konto",
+  noAccount: "Nie masz konta?",
+  loginInProgress: "Logowanie...",
+  Or: "Lub",
+  signInToApp: "Zaloguj się do aplikacji",
+
+  // create an Account
+  createAnAcccount: "Utwórz Konto",
+  fullNameOptional: "Imię i Nazwisko (opcjonalne)",
+  emailAddress: "Adres Email",
+  passwordMin8Characters: "Hasło (min. 8 znaków)",
+  confirmPassword: "Potwierdź Hasło",
+  createAccount: "Utwórz Konto",
+  creatingAccount: "Tworzenie Konta...",
+  alreadyHaveAccount: "Masz już konto?",
 
   // Loading States
   loading: "Ładowanie...",
