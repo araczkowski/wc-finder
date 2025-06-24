@@ -450,13 +450,30 @@ export default function EditWcPage() {
 
         // Parse existing coordinates if available
         if (fetchedWc.location) {
-          const coords = fetchedWc.location.split(",");
-          if (coords.length === 2) {
-            const lat = parseFloat(coords[0]);
-            const lng = parseFloat(coords[1]);
-            if (!isNaN(lat) && !isNaN(lng)) {
-              setCoordinates({ lat, lng });
+          try {
+            // Handle PostGIS geography format - call API to get coordinates
+            const coordsResponse = await fetch(`/api/wcs/${wcId}/coordinates`);
+            if (coordsResponse.ok) {
+              const coordsData = await coordsResponse.json();
+              if (coordsData.latitude && coordsData.longitude) {
+                setCoordinates({
+                  lat: coordsData.latitude,
+                  lng: coordsData.longitude,
+                });
+              }
+            } else {
+              // Fallback: try to parse as old format "lat,lng"
+              const coords = fetchedWc.location.split(",");
+              if (coords.length === 2) {
+                const lat = parseFloat(coords[0]);
+                const lng = parseFloat(coords[1]);
+                if (!isNaN(lat) && !isNaN(lng)) {
+                  setCoordinates({ lat, lng });
+                }
+              }
             }
+          } catch (error) {
+            console.warn("Could not parse coordinates:", error);
           }
         }
         setCurrentImageUrl(fetchedWc.image_url || null);

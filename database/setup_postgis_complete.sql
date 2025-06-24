@@ -157,6 +157,7 @@ END;
 $$;
 
 -- Function to update WC with PostGIS location and other fields
+DROP FUNCTION IF EXISTS update_wc_with_location;
 CREATE OR REPLACE FUNCTION update_wc_with_location(
     p_wc_id UUID,
     p_name TEXT,
@@ -356,6 +357,27 @@ BEGIN
 END;
 $$;
 
+-- Step 14: Test function creation and permissions
+DO $$
+DECLARE
+    func_count INTEGER;
+BEGIN
+    RAISE NOTICE 'Verifying PostGIS functions...';
+
+    SELECT COUNT(*) INTO func_count
+    FROM pg_proc
+    WHERE proname IN ('get_wcs_by_distance', 'insert_wc_with_location', 'update_wc_with_location', 'get_wc_coordinates');
+
+    RAISE NOTICE 'Created % PostGIS functions', func_count;
+
+    IF func_count < 4 THEN
+        RAISE WARNING 'Some PostGIS functions may not have been created properly. Check the logs above.';
+    ELSE
+        RAISE NOTICE 'All PostGIS functions created successfully!';
+    END IF;
+END;
+$$;
+
 COMMIT;
 
 -- Final verification queries you can run manually:
@@ -385,4 +407,21 @@ SELECT
     COUNT(location) as records_with_location,
     COUNT(*) - COUNT(location) as records_without_location
 FROM wcs;
+
+-- 6. Test coordinate extraction function
+SELECT latitude, longitude
+FROM get_wc_coordinates('your-wc-id-here');
+
+-- 7. List all PostGIS functions
+SELECT proname, pronargs
+FROM pg_proc
+WHERE proname LIKE '%wc%'
+ORDER BY proname;
+
+-- TROUBLESHOOTING:
+-- If you get function errors:
+-- 1. Make sure PostGIS extension is enabled: CREATE EXTENSION IF NOT EXISTS postgis;
+-- 2. Run the individual function creation statements manually
+-- 3. Check function permissions: GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA public TO authenticated;
+-- 4. Verify RLS policies don't block function execution
 */

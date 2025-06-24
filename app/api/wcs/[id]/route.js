@@ -298,7 +298,7 @@ export async function PUT(request, { params }) {
     let updatedDbWc, updateDbError;
 
     if (needsLocationUpdate) {
-      // Use RPC call to update with PostGIS location
+      // Try RPC call to update with PostGIS location first
       const { data, error } = await supabase.rpc("update_wc_with_location", {
         p_wc_id: wcId,
         p_name: wcDataToUpdate.name,
@@ -308,8 +308,28 @@ export async function PUT(request, { params }) {
         p_longitude: locationLng,
         p_latitude: locationLat,
       });
-      updatedDbWc = data;
-      updateDbError = error;
+
+      if (
+        error &&
+        error.message.includes("function public.update_wc_with_location")
+      ) {
+        console.warn(
+          "PostGIS function not available, falling back to regular update with location as text",
+        );
+        // Fallback: update with location as text format
+        wcDataToUpdate.location = `${locationLat},${locationLng}`;
+        const { data: fallbackData, error: fallbackError } = await supabase
+          .from("wcs")
+          .update(wcDataToUpdate)
+          .eq("id", wcId)
+          .select()
+          .single();
+        updatedDbWc = fallbackData;
+        updateDbError = fallbackError;
+      } else {
+        updatedDbWc = data;
+        updateDbError = error;
+      }
     } else {
       // Regular update without location change
       const { data, error } = await supabase

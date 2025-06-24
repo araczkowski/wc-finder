@@ -201,7 +201,144 @@ const AddressAutocomplete = ({
     }
   }, []);
 
-  // Geocode address to coordinates
+  // Geocode address to coordinates only (don't update address text)
+  const geocodeAddressForCoordinates = async (address) => {
+    if (!address || !address.trim()) {
+      console.log(`[AddressAutocomplete] Empty address, skipping geocoding`);
+      return;
+    }
+
+    console.log(
+      `[AddressAutocomplete] Geocoding for coordinates only: ${address}`,
+    );
+    setGeocodingStatus("Pobieranie współrzędnych...");
+    addDebugInfo(`Geocoding: ${address}`);
+
+    // Try Google Geocoding first
+    if (geocoder.current) {
+      console.log("[AddressAutocomplete] Using Google Geocoding");
+      try {
+        geocoder.current.geocode(
+          { address: address, region: "pl" },
+          (results, status) => {
+            console.log(
+              `[AddressAutocomplete] Google Geocoding status: ${status}`,
+            );
+            if (status === "OK" && results[0]) {
+              const location = results[0].geometry.location;
+              const coordinates = {
+                lat: location.lat(),
+                lng: location.lng(),
+              };
+              console.log(
+                `[AddressAutocomplete] Google coordinates:`,
+                coordinates,
+              );
+              if (onCoordinatesChange) {
+                console.log(
+                  `[AddressAutocomplete] Calling onCoordinatesChange with:`,
+                  coordinates,
+                );
+                onCoordinatesChange(coordinates);
+                addDebugInfo(
+                  `✓ GPS: ${coordinates.lat.toFixed(6)}, ${coordinates.lng.toFixed(6)}`,
+                );
+              } else {
+                console.warn(
+                  `[AddressAutocomplete] onCoordinatesChange callback not provided`,
+                );
+              }
+              setGeocodingStatus("✓ Współrzędne pobrane (Google)");
+              setTimeout(() => setGeocodingStatus(""), 2000);
+            } else {
+              console.log(
+                "[AddressAutocomplete] Google failed, trying Nominatim",
+              );
+              // Fallback to Nominatim
+              fallbackGeocode(address).then((result) => {
+                if (result && onCoordinatesChange) {
+                  const coords = { lat: result.lat, lng: result.lng };
+                  console.log(
+                    `[AddressAutocomplete] Nominatim coordinates:`,
+                    coords,
+                  );
+                  onCoordinatesChange(coords);
+                  addDebugInfo(
+                    `✓ GPS: ${coords.lat.toFixed(6)}, ${coords.lng.toFixed(6)} (Nominatim)`,
+                  );
+                  setGeocodingStatus("✓ Współrzędne pobrane (Nominatim)");
+                  setTimeout(() => setGeocodingStatus(""), 2000);
+                } else {
+                  setGeocodingStatus("⚠ Nie udało się pobrać współrzędnych");
+                  addDebugInfo("❌ Geocoding failed");
+                  setTimeout(() => setGeocodingStatus(""), 3000);
+                  if (!onCoordinatesChange) {
+                    console.warn(
+                      `[AddressAutocomplete] onCoordinatesChange callback not provided for Nominatim fallback`,
+                    );
+                  }
+                }
+              });
+            }
+          },
+        );
+      } catch (error) {
+        console.error("Google Geocoding error:", error);
+        // Fallback to Nominatim
+        const result = await fallbackGeocode(address);
+        if (result && onCoordinatesChange) {
+          const coords = { lat: result.lat, lng: result.lng };
+          console.log(
+            `[AddressAutocomplete] Nominatim fallback coordinates:`,
+            coords,
+          );
+          onCoordinatesChange(coords);
+          addDebugInfo(
+            `✓ GPS: ${coords.lat.toFixed(6)}, ${coords.lng.toFixed(6)} (Fallback)`,
+          );
+          setGeocodingStatus("✓ Współrzędne pobrane (fallback)");
+          setTimeout(() => setGeocodingStatus(""), 2000);
+        } else {
+          setGeocodingStatus("⚠ Nie udało się pobrać współrzędnych");
+          addDebugInfo("❌ Geocoding failed");
+          setTimeout(() => setGeocodingStatus(""), 3000);
+          if (!onCoordinatesChange) {
+            console.warn(
+              `[AddressAutocomplete] onCoordinatesChange callback not provided for fallback`,
+            );
+          }
+        }
+      }
+    } else {
+      console.log("[AddressAutocomplete] Using Nominatim only");
+      // Use Nominatim fallback
+      const result = await fallbackGeocode(address);
+      if (result && onCoordinatesChange) {
+        const coords = { lat: result.lat, lng: result.lng };
+        console.log(
+          `[AddressAutocomplete] Nominatim-only coordinates:`,
+          coords,
+        );
+        onCoordinatesChange(coords);
+        addDebugInfo(
+          `✓ GPS: ${coords.lat.toFixed(6)}, ${coords.lng.toFixed(6)} (Nominatim)`,
+        );
+        setGeocodingStatus("✓ Współrzędne pobrane (Nominatim)");
+        setTimeout(() => setGeocodingStatus(""), 2000);
+      } else {
+        setGeocodingStatus("⚠ Nie udało się pobrać współrzędnych");
+        addDebugInfo("❌ Geocoding failed");
+        setTimeout(() => setGeocodingStatus(""), 3000);
+        if (!onCoordinatesChange) {
+          console.warn(
+            `[AddressAutocomplete] onCoordinatesChange callback not provided for Nominatim-only`,
+          );
+        }
+      }
+    }
+  };
+
+  // Geocode address to coordinates (legacy function for manual typing)
   const geocodeAddress = async (address) => {
     if (!address || !address.trim()) {
       console.log(`[AddressAutocomplete] Empty address, skipping geocoding`);
@@ -375,8 +512,8 @@ const AddressAutocomplete = ({
     setSelectedIndex(-1);
     addDebugInfo(`Selected: ${selectedAddress}`);
 
-    // Immediate geocoding without delay
-    geocodeAddress(selectedAddress);
+    // Geocode the selected address to get coordinates, but don't change the address text
+    geocodeAddressForCoordinates(selectedAddress);
   };
 
   // Handle keyboard navigation

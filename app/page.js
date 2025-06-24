@@ -295,6 +295,8 @@ export default function Home() {
   const [isGeolocatingAddress, setIsGeolocatingAddress] = useState(false);
   const [addressDetected, setAddressDetected] = useState(false);
   const [addressManuallyChanged, setAddressManuallyChanged] = useState(false);
+  const [userExplicitlyClearedAddress, setUserExplicitlyClearedAddress] =
+    useState(false);
 
   // Fetch function for infinite scroll with location-based sorting
   const fetchWcs = useCallback(
@@ -447,33 +449,70 @@ export default function Home() {
     }
   }, []);
 
-  // Update address when location changes
+  // Update address when location changes and refresh WC list
   useEffect(() => {
     if (userLocation && userLocation.lat && userLocation.lng) {
-      reverseGeocode(userLocation.lat, userLocation.lng);
+      // Only reverse geocode if no address is manually entered and user hasn't explicitly cleared it
+      if (
+        (!userAddress || userAddress === "") &&
+        !userExplicitlyClearedAddress
+      ) {
+        reverseGeocode(userLocation.lat, userLocation.lng);
+      }
+      // Always refresh WC list with new location for distance sorting
+      if (resetRef.current && loadInitialDataRef.current) {
+        resetRef.current();
+        setTimeout(() => {
+          loadInitialDataRef.current();
+        }, 100);
+      }
     }
-  }, [userLocation, reverseGeocode]);
+  }, [userLocation, userAddress, userExplicitlyClearedAddress, reverseGeocode]);
 
   // Handle manual address change
-  const handleAddressChange = useCallback(async (address, coordinates) => {
-    console.log(
-      "[Home] Address changed:",
-      address,
-      "Coordinates:",
-      coordinates,
-    );
-    setUserAddress(address);
-    setAddressDetected(true);
-    setAddressManuallyChanged(true);
-    if (coordinates) {
-      setUserLocation({ lat: coordinates.lat, lng: coordinates.lng });
-      // Refresh WC list with new location for distance sorting
-      resetRef.current();
-      setTimeout(() => {
-        loadInitialDataRef.current();
-      }, 100);
-    }
-  }, []);
+  const handleAddressChange = useCallback(
+    async (address, coordinates) => {
+      console.log(
+        "[Home] Address changed:",
+        address,
+        "Coordinates:",
+        coordinates,
+      );
+      setUserAddress(address);
+
+      // If address is cleared, mark as explicitly cleared and clear coordinates
+      if (!address || address.trim() === "") {
+        console.log("[Home] Address explicitly cleared by user");
+        setUserExplicitlyClearedAddress(true);
+        setAddressManuallyChanged(false);
+        setAddressDetected(false);
+        setUserLocation(null);
+
+        // Clear WC list to show no results when no address/location
+        if (resetRef.current && loadInitialDataRef.current) {
+          resetRef.current();
+          setTimeout(() => {
+            loadInitialDataRef.current();
+          }, 100);
+        }
+      } else {
+        // Address has content, reset the explicitly cleared flag
+        setUserExplicitlyClearedAddress(false);
+        setAddressDetected(true);
+        setAddressManuallyChanged(true);
+
+        if (coordinates) {
+          setUserLocation({ lat: coordinates.lat, lng: coordinates.lng });
+          // Refresh WC list with new location for distance sorting
+          resetRef.current();
+          setTimeout(() => {
+            loadInitialDataRef.current();
+          }, 100);
+        }
+      }
+    },
+    [resetRef, loadInitialDataRef],
+  );
 
   // Handle coordinates change from AddressAutocomplete
   const handleCoordinatesChange = useCallback((coordinates) => {
@@ -488,6 +527,46 @@ export default function Home() {
       }, 100);
     }
   }, []);
+
+  // Watch for address clearing to trigger automatic location detection (only if not explicitly cleared)
+  useEffect(() => {
+    // If address is cleared and we don't have automatic location yet, but user hasn't explicitly cleared it
+    if (
+      !userAddress &&
+      !addressManuallyChanged &&
+      !userLocation &&
+      !userExplicitlyClearedAddress &&
+      navigator.geolocation &&
+      locationPermission === "granted"
+    ) {
+      console.log(
+        "[Home] Address cleared (not explicitly by user), triggering automatic location detection",
+      );
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setUserLocation({ lat: latitude, lng: longitude });
+        },
+        (error) => {
+          console.log(
+            "Auto location detection after address clear failed:",
+            error,
+          );
+        },
+        {
+          enableHighAccuracy: false,
+          timeout: 5000,
+          maximumAge: 300000,
+        },
+      );
+    }
+  }, [
+    userAddress,
+    addressManuallyChanged,
+    userLocation,
+    userExplicitlyClearedAddress,
+    locationPermission,
+  ]);
 
   // Manage background class based on authentication status
   useEffect(() => {
@@ -569,21 +648,26 @@ export default function Home() {
               },
             );
           } else if (permission.state === "granted" && !userLocation) {
-            // Auto-detect location for distance sorting
-            navigator.geolocation.getCurrentPosition(
-              (position) => {
-                const { latitude, longitude } = position.coords;
-                setUserLocation({ lat: latitude, lng: longitude });
-              },
-              (error) => {
-                console.log("Auto location detection failed:", error);
-              },
-              {
-                enableHighAccuracy: false,
-                timeout: 5000,
-                maximumAge: 300000,
-              },
-            );
+            // Auto-detect location for distance sorting only if no manual address and not explicitly cleared
+            if (
+              (!userAddress || userAddress === "") &&
+              !userExplicitlyClearedAddress
+            ) {
+              navigator.geolocation.getCurrentPosition(
+                (position) => {
+                  const { latitude, longitude } = position.coords;
+                  setUserLocation({ lat: latitude, lng: longitude });
+                },
+                (error) => {
+                  console.log("Auto location detection failed:", error);
+                },
+                {
+                  enableHighAccuracy: false,
+                  timeout: 5000,
+                  maximumAge: 300000,
+                },
+              );
+            }
           }
         })
         .catch(() => {
@@ -595,7 +679,13 @@ export default function Home() {
               (position) => {
                 setLocationPermission("granted");
                 const { latitude, longitude } = position.coords;
-                setUserLocation({ lat: latitude, lng: longitude });
+                // Only set location if no manual address is entered and not explicitly cleared
+                if (
+                  (!userAddress || userAddress === "") &&
+                  !userExplicitlyClearedAddress
+                ) {
+                  setUserLocation({ lat: latitude, lng: longitude });
+                }
               },
               () => {
                 setLocationPermission("denied");
@@ -604,7 +694,13 @@ export default function Home() {
           }
         });
     }
-  }, [session, locationPrompted, userLocation]);
+  }, [
+    session,
+    locationPrompted,
+    userLocation,
+    userAddress,
+    userExplicitlyClearedAddress,
+  ]);
 
   const requestLocationPermission = () => {
     if (!navigator.geolocation) {
@@ -616,7 +712,13 @@ export default function Home() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { latitude, longitude } = position.coords;
-        setUserLocation({ lat: latitude, lng: longitude });
+        // Only set location if no manual address is entered and not explicitly cleared
+        if (
+          (!userAddress || userAddress === "") &&
+          !userExplicitlyClearedAddress
+        ) {
+          setUserLocation({ lat: latitude, lng: longitude });
+        }
         setLocationPermission("granted");
         setLocationError(null);
       },
@@ -792,16 +894,81 @@ export default function Home() {
                     )}
                   </div>
                 )}
-                {!userLocation && !userAddress && !isGeolocatingAddress && (
+                {!userLocation &&
+                  !userAddress &&
+                  !isGeolocatingAddress &&
+                  !userExplicitlyClearedAddress && (
+                    <div
+                      style={{
+                        ...styles.coordinatesText,
+                        color: "#999",
+                        marginTop: "0.5rem",
+                        fontStyle: "italic",
+                      }}
+                    >
+                      🔍 {t("detectingLocation")}
+                    </div>
+                  )}
+                {userExplicitlyClearedAddress && !userAddress && (
                   <div
                     style={{
                       ...styles.coordinatesText,
-                      color: "#999",
+                      color: "#666",
                       marginTop: "0.5rem",
-                      fontStyle: "italic",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.5rem",
                     }}
                   >
-                    🔍 {t("detectingLocation")}
+                    <span>📍 Lokalizacja wyłączona</span>
+                    <button
+                      onClick={() => {
+                        setUserExplicitlyClearedAddress(false);
+                        if (
+                          navigator.geolocation &&
+                          locationPermission === "granted"
+                        ) {
+                          navigator.geolocation.getCurrentPosition(
+                            (position) => {
+                              const { latitude, longitude } = position.coords;
+                              setUserLocation({
+                                lat: latitude,
+                                lng: longitude,
+                              });
+                            },
+                            (error) => {
+                              console.log(
+                                "Auto location detection after re-enable failed:",
+                                error,
+                              );
+                            },
+                            {
+                              enableHighAccuracy: false,
+                              timeout: 5000,
+                              maximumAge: 300000,
+                            },
+                          );
+                        }
+                      }}
+                      style={{
+                        padding: "4px 8px",
+                        backgroundColor: "#007bff",
+                        color: "white",
+                        border: "none",
+                        borderRadius: "4px",
+                        fontSize: "0.8rem",
+                        cursor: "pointer",
+                        transition: "background-color 0.2s ease",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.backgroundColor = "#0056b3";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.backgroundColor = "#007bff";
+                      }}
+                    >
+                      Włącz ponownie
+                    </button>
                   </div>
                 )}
               </div>
