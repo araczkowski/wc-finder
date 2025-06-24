@@ -1,6 +1,15 @@
 "use client";
 
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useEffect, useMemo, useCallback, useRef } from "react";
+
+// Simple debounce function
+const debounce = (func, delay) => {
+  let timeoutId;
+  return (...args) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => func.apply(null, args), delay);
+  };
+};
 import { useSession } from "next-auth/react";
 import { useRouter, useParams } from "next/navigation";
 import { createClient } from "@supabase/supabase-js";
@@ -599,14 +608,6 @@ export default function EditWcPage() {
     }
   };
 
-  const handleRemoveImageClick = () => {
-    setWantsToRemoveImage(true);
-    setSelectedFile(null); // Clear any selected file
-    setImagePreview(null); // No preview if image is to be removed
-    const fileInput = document.getElementById("imageFile");
-    if (fileInput) fileInput.value = ""; // Reset the file input field
-  };
-
   const handleCancelImageChange = () => {
     setSelectedFile(null);
     setImagePreview(currentImageUrl); // Revert preview to the original image URL
@@ -719,16 +720,13 @@ export default function EditWcPage() {
     }
   };
 
-  const handleRatingSubmit = async (e) => {
-    e.preventDefault();
-    setRatingError("");
-    setRatingLoading(true);
-
-    if (!userRating || userRating < 1 || userRating > 10) {
-      setRatingError("Please select a rating between 1 and 10 stars.");
-      setRatingLoading(false);
+  const handleAutoSaveRating = async (rating, comment) => {
+    if (!rating || rating < 1 || rating > 10) {
       return;
     }
+
+    setRatingError("");
+    setRatingLoading(true);
 
     try {
       const response = await fetch("/api/wc-ratings", {
@@ -738,8 +736,8 @@ export default function EditWcPage() {
         },
         body: JSON.stringify({
           wc_id: wcId,
-          rating: userRating,
-          comment: userComment.trim() || null,
+          rating: rating,
+          comment: comment?.trim() || null,
         }),
       });
 
@@ -764,6 +762,20 @@ export default function EditWcPage() {
     } finally {
       setRatingLoading(false);
     }
+  };
+
+  // Debounced version for comment changes using useRef
+  const debounceTimeoutRef = useRef(null);
+
+  const handleAutoSaveRatingDebounced = (rating, comment) => {
+    if (debounceTimeoutRef.current) {
+      clearTimeout(debounceTimeoutRef.current);
+    }
+    debounceTimeoutRef.current = setTimeout(() => {
+      if (rating && rating >= 1 && rating <= 10) {
+        handleAutoSaveRating(rating, comment);
+      }
+    }, 1000);
   };
 
   const handlePhotoSelection = async (event) => {
@@ -1061,19 +1073,6 @@ export default function EditWcPage() {
                 </div>
               )}
               <div style={styles.imageActionsContainer}>
-                {currentImageUrl && !wantsToRemoveImage && !selectedFile && (
-                  <button
-                    type="button"
-                    onClick={handleRemoveImageClick}
-                    style={{
-                      ...styles.formButton,
-                      ...styles.removeImageButton,
-                    }}
-                    disabled={formLoading}
-                  >
-                    Remove Current Image
-                  </button>
-                )}
                 {selectedFile && (
                   <button
                     type="button"
@@ -1222,7 +1221,7 @@ export default function EditWcPage() {
 
           {ratingError && <p style={styles.formError}>{ratingError}</p>}
 
-          <form onSubmit={handleRatingSubmit} style={styles.form}>
+          <div style={styles.form}>
             <div>
               <label style={styles.formLabel}>
                 Rate this WC ({userRating} / 10)
@@ -1241,21 +1240,26 @@ export default function EditWcPage() {
                             : "#e4e5e9",
                         cursor: ratingLoading ? "default" : "pointer",
                       }}
-                      onClick={() => !ratingLoading && setUserRating(starValue)}
+                      onClick={() => {
+                        if (!ratingLoading) {
+                          setUserRating(starValue);
+                          handleAutoSaveRating(starValue, userComment);
+                        }
+                      }}
                       onMouseEnter={() =>
                         !ratingLoading && setUserHoverRating(starValue)
                       }
                       onMouseLeave={() =>
                         !ratingLoading && setUserHoverRating(0)
                       }
-                      role="button"
-                      tabIndex={ratingLoading ? -1 : 0}
                       onKeyDown={(e) => {
                         if (
                           !ratingLoading &&
                           (e.key === "Enter" || e.key === " ")
-                        )
+                        ) {
                           setUserRating(starValue);
+                          handleAutoSaveRating(starValue, userComment);
+                        }
                       }}
                       aria-label={`Rate ${starValue} out of 10 stars`}
                       aria-disabled={ratingLoading}
@@ -1275,7 +1279,10 @@ export default function EditWcPage() {
                 id="userComment"
                 name="userComment"
                 value={userComment}
-                onChange={(e) => setUserComment(e.target.value)}
+                onChange={(e) => {
+                  setUserComment(e.target.value);
+                  handleAutoSaveRatingDebounced(userRating, e.target.value);
+                }}
                 style={{
                   ...styles.formInput,
                   minHeight: "100px",
@@ -1300,6 +1307,16 @@ export default function EditWcPage() {
                 style={styles.hiddenFileInput}
                 disabled={photoUploadLoading}
               />
+              {ratingLoading && (
+                <div style={{ textAlign: "center", marginBottom: "10px" }}>
+                  <p style={{ color: "#007bff", fontSize: "0.9rem" }}>
+                    💾{" "}
+                    {hasUserRating
+                      ? "Aktualizowanie oceny..."
+                      : "Zapisywanie oceny..."}
+                  </p>
+                </div>
+              )}
               <button
                 type="button"
                 onClick={() => document.getElementById("wcPhotos").click()}
@@ -1310,7 +1327,7 @@ export default function EditWcPage() {
                 }}
                 disabled={photoUploadLoading}
               >
-                📷 Dodaj zdjęcia
+                📷 Dodaj zdjęcie
               </button>
               {photoUploadLoading && (
                 <div style={{ marginTop: "10px", textAlign: "center" }}>
@@ -1325,21 +1342,7 @@ export default function EditWcPage() {
                 </p>
               )}
             </div>
-
-            <button
-              type="submit"
-              style={{ ...styles.formButton, backgroundColor: "#28a745" }}
-              disabled={ratingLoading || !userRating}
-            >
-              {ratingLoading
-                ? hasUserRating
-                  ? "Updating..."
-                  : "Saving..."
-                : hasUserRating
-                  ? "Update Rating"
-                  : "Save Rating"}
-            </button>
-          </form>
+          </div>
         </div>
 
         {/* Photo Gallery Section */}

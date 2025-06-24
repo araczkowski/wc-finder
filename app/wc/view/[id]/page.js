@@ -1,12 +1,23 @@
 "use client";
 
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useEffect, useMemo, useCallback, useRef } from "react";
+
+// Simple debounce function
+const debounce = (func, delay) => {
+  let timeoutId;
+  return (...args) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => func.apply(null, args), delay);
+  };
+};
+
 import { useSession } from "next-auth/react";
 import { useRouter, useParams } from "next/navigation";
 import { createClient } from "@supabase/supabase-js";
 import Link from "next/link";
 import Image from "next/image";
 import {
+  optimizeImage,
   optimizeImages,
   validateImageFile,
   WC_GALLERY_CONFIG,
@@ -379,16 +390,13 @@ export default function ViewWcPage() {
     fetchAllRatings,
   ]);
 
-  const handleRatingSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!userRating) {
-      setRatingError("Please select a rating.");
+  const handleAutoSaveRating = async (rating, comment) => {
+    if (!rating || rating < 1 || rating > 10) {
       return;
     }
 
-    setRatingLoading(true);
     setRatingError("");
+    setRatingLoading(true);
 
     if (sessionStatus !== "authenticated") {
       setRatingError("You must be logged in to rate.");
@@ -404,8 +412,8 @@ export default function ViewWcPage() {
         },
         body: JSON.stringify({
           wc_id: wcId,
-          rating: userRating,
-          comment: userComment.trim() || null,
+          rating: rating,
+          comment: comment?.trim() || null,
         }),
       });
 
@@ -422,6 +430,20 @@ export default function ViewWcPage() {
     } finally {
       setRatingLoading(false);
     }
+  };
+
+  // Debounced version for comment changes using useRef
+  const debounceTimeoutRef = useRef(null);
+
+  const handleAutoSaveRatingDebounced = (rating, comment) => {
+    if (debounceTimeoutRef.current) {
+      clearTimeout(debounceTimeoutRef.current);
+    }
+    debounceTimeoutRef.current = setTimeout(() => {
+      if (rating && rating >= 1 && rating <= 10) {
+        handleAutoSaveRating(rating, comment);
+      }
+    }, 1000);
   };
 
   const handlePhotoSelection = async (event) => {
@@ -697,7 +719,7 @@ export default function ViewWcPage() {
 
             {ratingError && <p style={styles.formError}>{ratingError}</p>}
 
-            <form onSubmit={handleRatingSubmit} style={styles.form}>
+            <div style={styles.form}>
               <div>
                 <label style={styles.formLabel}>
                   Oceń to WC ({userRating} / 10)
@@ -716,9 +738,12 @@ export default function ViewWcPage() {
                               : "#e4e5e9",
                           cursor: ratingLoading ? "default" : "pointer",
                         }}
-                        onClick={() =>
-                          !ratingLoading && setUserRating(starValue)
-                        }
+                        onClick={() => {
+                          if (!ratingLoading) {
+                            setUserRating(starValue);
+                            handleAutoSaveRating(starValue, userComment);
+                          }
+                        }}
                         onMouseEnter={() =>
                           !ratingLoading && setUserHoverRating(starValue)
                         }
@@ -741,7 +766,10 @@ export default function ViewWcPage() {
                   id="userComment"
                   name="userComment"
                   value={userComment}
-                  onChange={(e) => setUserComment(e.target.value)}
+                  onChange={(e) => {
+                    setUserComment(e.target.value);
+                    handleAutoSaveRatingDebounced(userRating, e.target.value);
+                  }}
                   style={{
                     ...styles.formInput,
                     minHeight: "100px",
@@ -833,20 +861,17 @@ export default function ViewWcPage() {
                 )}
               </div>
 
-              <button
-                type="submit"
-                style={styles.formButton}
-                disabled={ratingLoading || !userRating}
-              >
-                {ratingLoading
-                  ? hasUserRating
-                    ? "Aktualizowanie..."
-                    : "Zapisywanie..."
-                  : hasUserRating
-                    ? "Aktualizuj ocenę"
-                    : "Zapisz ocenę"}
-              </button>
-            </form>
+              {ratingLoading && (
+                <div style={{ textAlign: "center", marginBottom: "10px" }}>
+                  <p style={{ color: "#007bff", fontSize: "0.9rem" }}>
+                    💾{" "}
+                    {hasUserRating
+                      ? "Aktualizowanie oceny..."
+                      : "Zapisywanie oceny..."}
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
         )}
 
