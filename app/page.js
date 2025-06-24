@@ -9,6 +9,7 @@ import { useInfiniteScroll } from "./hooks/useInfiniteScroll";
 import { useTranslation } from "./hooks/useTranslation";
 import ImageSlideshow from "./components/ImageSlideshow";
 import UserDropdown from "./components/UserDropdown";
+import AddressAutocomplete from "./components/AddressAutocomplete";
 
 // Basic inline styles for layout - consider moving to CSS modules or global CSS
 const styles = {
@@ -21,6 +22,7 @@ const styles = {
   header: {
     display: "flex",
     justifyContent: "space-between",
+    width: "100%",
     alignItems: "center",
     padding: "1rem 2rem",
     backgroundColor: "#f0f0f0",
@@ -198,7 +200,7 @@ const styles = {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: "0.75rem 1rem",
+    padding: "0.5rem 0.75rem",
     backgroundColor: "#f0f0f0",
     borderBottom: "1px solid #ddd",
     flexShrink: 0,
@@ -208,6 +210,7 @@ const styles = {
     display: "flex",
     alignItems: "center",
     gap: "0.5rem",
+    width: "100%",
   },
   userInfo: {
     display: "flex",
@@ -227,6 +230,43 @@ const styles = {
     overflow: "hidden",
     textOverflow: "ellipsis",
     whiteSpace: "nowrap",
+  },
+  headerAddButton: {
+    backgroundColor: "#28a745",
+    color: "white",
+    padding: "0.8rem 0.8rem",
+    fontSize: "0.8rem",
+    borderRadius: "4px",
+    textDecoration: "none",
+    fontWeight: "bold",
+    transition: "background-color 0.2s ease",
+    whiteSpace: "nowrap",
+  },
+  addressSection: {
+    width: "100%",
+    maxWidth: "500px",
+    marginBottom: "1.5rem",
+    padding: "1rem",
+    backgroundColor: "#fff",
+    borderRadius: "8px",
+    boxShadow: "0 2px 10px rgba(0,0,0,0.05)",
+    border: "1px solid #e9ecef",
+  },
+  addressField: {
+    width: "100%",
+    padding: "0.75rem",
+    border: "1px solid #ddd",
+    borderRadius: "6px",
+    fontSize: "1rem",
+    marginBottom: "0.5rem",
+    outline: "none",
+    transition: "border-color 0.2s ease",
+    boxSizing: "border-box",
+  },
+  coordinatesText: {
+    fontSize: "0.8rem",
+    color: "#666",
+    fontStyle: "italic",
   },
 };
 
@@ -250,6 +290,10 @@ export default function Home() {
   const [userLocation, setUserLocation] = useState(null); // { lat, lng }
   const [geolocationSupported, setGeolocationSupported] = useState(true);
   const [locationError, setLocationError] = useState(null);
+  const [userAddress, setUserAddress] = useState("");
+  const [isGeolocatingAddress, setIsGeolocatingAddress] = useState(false);
+  const [addressDetected, setAddressDetected] = useState(false);
+  const [addressManuallyChanged, setAddressManuallyChanged] = useState(false);
 
   // Fetch function for infinite scroll
   const fetchWcs = useCallback(
@@ -328,6 +372,62 @@ export default function Home() {
     console.log("[Home Page State Update] loadingWcs:", loadingWcs);
     console.log("[Home Page State Update] wcError:", wcError);
   }, [wcs, loadingWcs, wcError]);
+
+  // Reverse geocode user location to get address
+  const reverseGeocode = useCallback(async (lat, lng) => {
+    setIsGeolocatingAddress(true);
+    try {
+      const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+
+      if (apiKey) {
+        // Use Google Maps API
+        const response = await fetch(
+          `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}&language=pl`,
+        );
+        const data = await response.json();
+
+        if (data.status === "OK" && data.results.length > 0) {
+          setUserAddress(data.results[0].formatted_address);
+          setAddressDetected(true);
+          return;
+        }
+      }
+
+      // Fallback to Nominatim (OpenStreetMap)
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=16&addressdetails=1&accept-language=pl`,
+      );
+      const data = await response.json();
+
+      if (data && data.display_name) {
+        setUserAddress(data.display_name);
+        setAddressDetected(true);
+      }
+    } catch (error) {
+      console.error("Reverse geocoding failed:", error);
+      setUserAddress(`${lat.toFixed(6)}, ${lng.toFixed(6)}`);
+      setAddressDetected(true);
+    } finally {
+      setIsGeolocatingAddress(false);
+    }
+  }, []);
+
+  // Update address when location changes
+  useEffect(() => {
+    if (userLocation && userLocation.lat && userLocation.lng) {
+      reverseGeocode(userLocation.lat, userLocation.lng);
+    }
+  }, [userLocation, reverseGeocode]);
+
+  // Handle manual address change
+  const handleAddressChange = useCallback(async (address, coordinates) => {
+    setUserAddress(address);
+    setAddressDetected(true);
+    setAddressManuallyChanged(true);
+    if (coordinates) {
+      setUserLocation({ lat: coordinates.lat, lng: coordinates.lng });
+    }
+  }, []);
 
   // Manage background class based on authentication status
   useEffect(() => {
@@ -548,7 +648,38 @@ export default function Home() {
     }
 
     if (session) {
-      return <UserDropdown session={session} />;
+      return (
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <div
+            style={{
+              lineHeight: "2em",
+              display: "inline-block",
+              alignItems: "center",
+              gap: "0.5rem",
+            }}
+          >
+            <Link href="/wc/add" style={styles.headerAddButton}>
+              {t("addNewWC")}
+            </Link>
+          </div>
+          <div
+            style={{
+              display: "inline-block",
+              alignItems: "center",
+              gap: "0.5rem",
+            }}
+          >
+            <UserDropdown session={session} />
+          </div>
+        </div>
+      );
     }
 
     return (
@@ -561,7 +692,7 @@ export default function Home() {
   return (
     <div style={styles.pageContainer}>
       <header style={styles.header}>
-        <div style={styles.appName}>{t("appName")}</div>
+        <div></div>
         <div style={styles.authControls}>{renderAuthControls()}</div>
       </header>
 
@@ -587,10 +718,93 @@ export default function Home() {
               </div>
             )}
 
-            {/* Add New WC Button */}
-            <Link href="/wc/add" style={styles.addButton}>
-              {t("addNewWc")}
-            </Link>
+            {/* Address Section */}
+            <div style={styles.addressSection}>
+              <label
+                style={{
+                  fontSize: "1rem",
+                  fontWeight: "600",
+                  marginBottom: "0.75rem",
+                  display: "block",
+                  color: "#333",
+                }}
+              >
+                📍 {t("userAddress")}
+              </label>
+              <div style={{ position: "relative" }}>
+                <AddressAutocomplete
+                  value={userAddress}
+                  onChange={handleAddressChange}
+                  placeholder={t("addressPlaceholder")}
+                  style={{
+                    ...styles.addressField,
+                    borderColor: addressManuallyChanged ? "#28a745" : "#ddd",
+                  }}
+                />
+                {isGeolocatingAddress && (
+                  <div
+                    style={{
+                      ...styles.coordinatesText,
+                      color: "#007bff",
+                      marginTop: "0.5rem",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.5rem",
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: "12px",
+                        height: "12px",
+                        border: "2px solid #e9ecef",
+                        borderTop: "2px solid #007bff",
+                        borderRadius: "50%",
+                        animation: "spin 1s linear infinite",
+                      }}
+                    ></div>
+                    {t("geolocatingAddress")}
+                  </div>
+                )}
+                {userLocation && !isGeolocatingAddress && (
+                  <div
+                    style={{
+                      ...styles.coordinatesText,
+                      marginTop: "0.5rem",
+                      padding: "0.5rem",
+                      backgroundColor: "#f8f9fa",
+                      borderRadius: "4px",
+                      border: "1px solid #e9ecef",
+                    }}
+                  >
+                    {t("coordinates")}: {userLocation.lat.toFixed(6)},{" "}
+                    {userLocation.lng.toFixed(6)}
+                    {addressManuallyChanged && (
+                      <span
+                        style={{
+                          color: "#28a745",
+                          marginLeft: "0.5rem",
+                          fontWeight: "500",
+                        }}
+                      >
+                        ✓ zaktualizowano
+                      </span>
+                    )}
+                  </div>
+                )}
+                {!userLocation && !userAddress && !isGeolocatingAddress && (
+                  <div
+                    style={{
+                      ...styles.coordinatesText,
+                      color: "#999",
+                      marginTop: "0.5rem",
+                      fontStyle: "italic",
+                    }}
+                  >
+                    🔍 {t("detectingLocation")}
+                  </div>
+                )}
+              </div>
+            </div>
 
             {/* WC List Display */}
             <div style={styles.wcListContainer}>

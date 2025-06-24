@@ -5,6 +5,7 @@ export const pl = {
   signOut: "Wyloguj się",
   aboutApp: "O aplikacji",
   backToHome: "Powrót do strony głównej",
+  addNewWC: "+ Dodaj nowe WC",
 
   // Welcome and Authentication
   welcome: "Witaj w WC Finder",
@@ -74,6 +75,11 @@ export const pl = {
   locationSorted: "📍 WC posortowane według odległości od Twojej lokalizacji",
   locationUnavailable:
     "📝 WC wyświetlane w kolejności dodania (lokalizacja niedostępna)",
+  userAddress: "Twój adres",
+  detectingLocation: "Wykrywanie lokalizacji...",
+  coordinates: "Współrzędne",
+  addressPlaceholder: "Wpisz swój adres...",
+  geolocatingAddress: "Geokodowanie adresu...",
 
   // Location Errors
   locationDenied:
