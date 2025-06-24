@@ -298,6 +298,59 @@ export default function Home() {
   const [userExplicitlyClearedAddress, setUserExplicitlyClearedAddress] =
     useState(false);
 
+  // Load address state from localStorage on component mount
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const savedAddress = localStorage.getItem("userAddress");
+      const savedManuallyChanged = localStorage.getItem(
+        "addressManuallyChanged",
+      );
+      const savedExplicitlyCleared = localStorage.getItem(
+        "userExplicitlyClearedAddress",
+      );
+
+      if (savedAddress) {
+        setUserAddress(savedAddress);
+        setAddressDetected(true);
+      }
+      if (savedManuallyChanged === "true") {
+        setAddressManuallyChanged(true);
+      }
+      if (savedExplicitlyCleared === "true") {
+        setUserExplicitlyClearedAddress(true);
+      }
+    }
+  }, []);
+
+  // Save address state to localStorage when it changes
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (userAddress) {
+        localStorage.setItem("userAddress", userAddress);
+      } else {
+        localStorage.removeItem("userAddress");
+      }
+    }
+  }, [userAddress]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem(
+        "addressManuallyChanged",
+        addressManuallyChanged.toString(),
+      );
+    }
+  }, [addressManuallyChanged]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem(
+        "userExplicitlyClearedAddress",
+        userExplicitlyClearedAddress.toString(),
+      );
+    }
+  }, [userExplicitlyClearedAddress]);
+
   // Fetch function for infinite scroll with location-based sorting
   const fetchWcs = useCallback(
     async (page, limit) => {
@@ -411,43 +464,67 @@ export default function Home() {
   }, [wcs, loadingWcs, wcError]);
 
   // Reverse geocode user location to get address
-  const reverseGeocode = useCallback(async (lat, lng) => {
-    setIsGeolocatingAddress(true);
-    try {
-      const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+  const reverseGeocode = useCallback(
+    async (lat, lng) => {
+      setIsGeolocatingAddress(true);
+      try {
+        const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
-      if (apiKey) {
-        // Use Google Maps API
+        if (apiKey) {
+          // Use Google Maps API
+          const response = await fetch(
+            `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}&language=pl`,
+          );
+          const data = await response.json();
+
+          if (data.status === "OK" && data.results.length > 0) {
+            // Only set address if no manual address exists and user hasn't explicitly cleared it
+            if (
+              (!userAddress || userAddress === "") &&
+              !addressManuallyChanged &&
+              !userExplicitlyClearedAddress
+            ) {
+              setUserAddress(data.results[0].formatted_address);
+              setAddressDetected(true);
+            }
+            return;
+          }
+        }
+
+        // Fallback to Nominatim (OpenStreetMap)
         const response = await fetch(
-          `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}&language=pl`,
+          `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=16&addressdetails=1&accept-language=pl`,
         );
         const data = await response.json();
 
-        if (data.status === "OK" && data.results.length > 0) {
-          setUserAddress(data.results[0].formatted_address);
-          setAddressDetected(true);
-          return;
+        if (data && data.display_name) {
+          // Only set address if no manual address exists and user hasn't explicitly cleared it
+          if (
+            (!userAddress || userAddress === "") &&
+            !addressManuallyChanged &&
+            !userExplicitlyClearedAddress
+          ) {
+            setUserAddress(data.display_name);
+            setAddressDetected(true);
+          }
         }
+      } catch (error) {
+        console.error("Reverse geocoding failed:", error);
+        // Only set coordinate address if no manual address exists and user hasn't explicitly cleared it
+        if (
+          (!userAddress || userAddress === "") &&
+          !addressManuallyChanged &&
+          !userExplicitlyClearedAddress
+        ) {
+          setUserAddress(`${lat.toFixed(6)}, ${lng.toFixed(6)}`);
+          setAddressDetected(true);
+        }
+      } finally {
+        setIsGeolocatingAddress(false);
       }
-
-      // Fallback to Nominatim (OpenStreetMap)
-      const response = await fetch(
-        `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=16&addressdetails=1&accept-language=pl`,
-      );
-      const data = await response.json();
-
-      if (data && data.display_name) {
-        setUserAddress(data.display_name);
-        setAddressDetected(true);
-      }
-    } catch (error) {
-      console.error("Reverse geocoding failed:", error);
-      setUserAddress(`${lat.toFixed(6)}, ${lng.toFixed(6)}`);
-      setAddressDetected(true);
-    } finally {
-      setIsGeolocatingAddress(false);
-    }
-  }, []);
+    },
+    [userAddress, addressManuallyChanged, userExplicitlyClearedAddress],
+  );
 
   // Update address when location changes
   useEffect(() => {
@@ -455,12 +532,19 @@ export default function Home() {
       // Only reverse geocode if no address is manually entered and user hasn't explicitly cleared it
       if (
         (!userAddress || userAddress === "") &&
+        !addressManuallyChanged &&
         !userExplicitlyClearedAddress
       ) {
         reverseGeocode(userLocation.lat, userLocation.lng);
       }
     }
-  }, [userLocation, userAddress, userExplicitlyClearedAddress, reverseGeocode]);
+  }, [
+    userLocation,
+    userAddress,
+    addressManuallyChanged,
+    userExplicitlyClearedAddress,
+    reverseGeocode,
+  ]);
 
   // Handle manual address change
   const handleAddressChange = useCallback(async (address, coordinates) => {
@@ -637,6 +721,7 @@ export default function Home() {
             // Auto-detect location for distance sorting only if no manual address and not explicitly cleared
             if (
               (!userAddress || userAddress === "") &&
+              !addressManuallyChanged &&
               !userExplicitlyClearedAddress
             ) {
               navigator.geolocation.getCurrentPosition(
@@ -668,6 +753,7 @@ export default function Home() {
                 // Only set location if no manual address is entered and not explicitly cleared
                 if (
                   (!userAddress || userAddress === "") &&
+                  !addressManuallyChanged &&
                   !userExplicitlyClearedAddress
                 ) {
                   setUserLocation({ lat: latitude, lng: longitude });
@@ -685,6 +771,7 @@ export default function Home() {
     locationPrompted,
     userLocation,
     userAddress,
+    addressManuallyChanged,
     userExplicitlyClearedAddress,
   ]);
 
@@ -701,6 +788,7 @@ export default function Home() {
         // Only set location if no manual address is entered and not explicitly cleared
         if (
           (!userAddress || userAddress === "") &&
+          !addressManuallyChanged &&
           !userExplicitlyClearedAddress
         ) {
           setUserLocation({ lat: latitude, lng: longitude });
