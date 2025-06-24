@@ -449,7 +449,7 @@ export default function Home() {
     }
   }, []);
 
-  // Update address when location changes and refresh WC list
+  // Update address when location changes
   useEffect(() => {
     if (userLocation && userLocation.lat && userLocation.lng) {
       // Only reverse geocode if no address is manually entered and user hasn't explicitly cleared it
@@ -459,60 +459,33 @@ export default function Home() {
       ) {
         reverseGeocode(userLocation.lat, userLocation.lng);
       }
-      // Always refresh WC list with new location for distance sorting
-      if (resetRef.current && loadInitialDataRef.current) {
-        resetRef.current();
-        setTimeout(() => {
-          loadInitialDataRef.current();
-        }, 100);
-      }
     }
   }, [userLocation, userAddress, userExplicitlyClearedAddress, reverseGeocode]);
 
   // Handle manual address change
-  const handleAddressChange = useCallback(
-    async (address, coordinates) => {
-      console.log(
-        "[Home] Address changed:",
-        address,
-        "Coordinates:",
-        coordinates,
-      );
-      setUserAddress(address);
+  const handleAddressChange = useCallback(async (address, coordinates) => {
+    console.log(
+      "[Home] Address changed:",
+      address,
+      "Coordinates:",
+      coordinates,
+    );
+    setUserAddress(address);
 
-      // If address is cleared, mark as explicitly cleared and clear coordinates
-      if (!address || address.trim() === "") {
-        console.log("[Home] Address explicitly cleared by user");
-        setUserExplicitlyClearedAddress(true);
-        setAddressManuallyChanged(false);
-        setAddressDetected(false);
-        setUserLocation(null);
-
-        // Clear WC list to show no results when no address/location
-        if (resetRef.current && loadInitialDataRef.current) {
-          resetRef.current();
-          setTimeout(() => {
-            loadInitialDataRef.current();
-          }, 100);
-        }
-      } else {
-        // Address has content, reset the explicitly cleared flag
-        setUserExplicitlyClearedAddress(false);
-        setAddressDetected(true);
-        setAddressManuallyChanged(true);
-
-        if (coordinates) {
-          setUserLocation({ lat: coordinates.lat, lng: coordinates.lng });
-          // Refresh WC list with new location for distance sorting
-          resetRef.current();
-          setTimeout(() => {
-            loadInitialDataRef.current();
-          }, 100);
-        }
-      }
-    },
-    [resetRef, loadInitialDataRef],
-  );
+    // If address is cleared, mark as explicitly cleared and clear coordinates
+    if (!address || address.trim() === "") {
+      console.log("[Home] Address explicitly cleared by user");
+      setUserExplicitlyClearedAddress(true);
+      setAddressManuallyChanged(false);
+      setAddressDetected(false);
+      setUserLocation(null);
+    } else {
+      // Address has content, reset the explicitly cleared flag
+      setUserExplicitlyClearedAddress(false);
+      setAddressDetected(true);
+      setAddressManuallyChanged(true);
+    }
+  }, []);
 
   // Handle coordinates change from AddressAutocomplete
   const handleCoordinatesChange = useCallback((coordinates) => {
@@ -520,13 +493,26 @@ export default function Home() {
     if (coordinates) {
       setUserLocation({ lat: coordinates.lat, lng: coordinates.lng });
       setAddressManuallyChanged(true);
-      // Refresh WC list with new location for distance sorting
+    } else {
+      // Clear coordinates
+      setUserLocation(null);
+    }
+  }, []);
+
+  // Watch for userLocation changes to refresh WC list
+  useEffect(() => {
+    if (resetRef.current && loadInitialDataRef.current) {
+      console.log(
+        "[Home] UserLocation changed, refreshing WC list:",
+        userLocation,
+      );
+      // Refresh WC list when location changes (including when set to null)
       resetRef.current();
       setTimeout(() => {
         loadInitialDataRef.current();
       }, 100);
     }
-  }, []);
+  }, [userLocation]);
 
   // Watch for address clearing to trigger automatic location detection (only if not explicitly cleared)
   useEffect(() => {
@@ -843,6 +829,9 @@ export default function Home() {
                   value={userAddress}
                   onChange={handleAddressChange}
                   onCoordinatesChange={handleCoordinatesChange}
+                  onBlur={() => {
+                    console.log("[Home] Address field blur event");
+                  }}
                   placeholder={t("addressPlaceholder")}
                   style={{
                     ...styles.addressField,
