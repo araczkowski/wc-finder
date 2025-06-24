@@ -245,12 +245,13 @@ const styles = {
   addressSection: {
     width: "100%",
     maxWidth: "500px",
-    marginBottom: "1.5rem",
+    marginBottom: "0rem",
     padding: "1rem",
     backgroundColor: "#fff",
     borderRadius: "8px",
     boxShadow: "0 2px 10px rgba(0,0,0,0.05)",
     border: "1px solid #e9ecef",
+    textAlign: "left",
   },
   addressField: {
     width: "100%",
@@ -295,14 +296,20 @@ export default function Home() {
   const [addressDetected, setAddressDetected] = useState(false);
   const [addressManuallyChanged, setAddressManuallyChanged] = useState(false);
 
-  // Fetch function for infinite scroll
+  // Fetch function for infinite scroll with location-based sorting
   const fetchWcs = useCallback(
     async (page, limit) => {
       if (!session) {
         throw new Error(t("noSessionAvailable"));
       }
 
-      const response = await fetch(`/api/wcs?page=${page}&limit=${limit}`);
+      // Add location parameters if available
+      let url = `/api/wcs?page=${page}&limit=${limit}`;
+      if (userLocation && userLocation.lat && userLocation.lng) {
+        url += `&lat=${userLocation.lat}&lng=${userLocation.lng}`;
+      }
+
+      const response = await fetch(url);
 
       if (!response.ok) {
         const errorText = await response.text();
@@ -320,10 +327,38 @@ export default function Home() {
       }
 
       const data = await response.json();
+
+      // PostGIS handles distance calculation and sorting on the server side
+      // Data comes pre-sorted with distance_km field included
+
       return data;
     },
-    [session, t],
+    [session, t, userLocation],
   );
+
+  // Calculate distance between two points in kilometers
+  const calculateDistance = (lat1, lng1, lat2, lng2) => {
+    const R = 6371; // Earth's radius in kilometers
+    const dLat = ((lat2 - lat1) * Math.PI) / 180;
+    const dLng = ((lng2 - lng1) * Math.PI) / 180;
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos((lat1 * Math.PI) / 180) *
+        Math.cos((lat2 * Math.PI) / 180) *
+        Math.sin(dLng / 2) *
+        Math.sin(dLng / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+  };
+
+  // Format distance for display
+  const formatDistance = (distance) => {
+    if (distance < 1) {
+      return `${Math.round(distance * 1000)} ${t("meters")}`;
+    } else {
+      return `${distance.toFixed(1)} ${t("kilometers")}`;
+    }
+  };
 
   // Initialize infinite scroll
   const {
@@ -421,11 +456,36 @@ export default function Home() {
 
   // Handle manual address change
   const handleAddressChange = useCallback(async (address, coordinates) => {
+    console.log(
+      "[Home] Address changed:",
+      address,
+      "Coordinates:",
+      coordinates,
+    );
     setUserAddress(address);
     setAddressDetected(true);
     setAddressManuallyChanged(true);
     if (coordinates) {
       setUserLocation({ lat: coordinates.lat, lng: coordinates.lng });
+      // Refresh WC list with new location for distance sorting
+      resetRef.current();
+      setTimeout(() => {
+        loadInitialDataRef.current();
+      }, 100);
+    }
+  }, []);
+
+  // Handle coordinates change from AddressAutocomplete
+  const handleCoordinatesChange = useCallback((coordinates) => {
+    console.log("[Home] Coordinates changed:", coordinates);
+    if (coordinates) {
+      setUserLocation({ lat: coordinates.lat, lng: coordinates.lng });
+      setAddressManuallyChanged(true);
+      // Refresh WC list with new location for distance sorting
+      resetRef.current();
+      setTimeout(() => {
+        loadInitialDataRef.current();
+      }, 100);
     }
   }, []);
 
@@ -472,65 +532,10 @@ export default function Home() {
     }
   }, [searchParams]);
 
-  // Calculate distance between two coordinates using Haversine formula
-  const calculateDistance = (lat1, lng1, lat2, lng2) => {
-    const R = 6371; // Earth's radius in kilometers
-    const dLat = (lat2 - lat1) * (Math.PI / 180);
-    const dLng = (lng2 - lng1) * (Math.PI / 180);
-    const a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(lat1 * (Math.PI / 180)) *
-        Math.cos(lat2 * (Math.PI / 180)) *
-        Math.sin(dLng / 2) *
-        Math.sin(dLng / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return R * c; // Distance in kilometers
-  };
-
-  // Format distance for display
-  const formatDistance = (distanceKm) => {
-    if (distanceKm < 1) {
-      return `${Math.round(distanceKm * 1000)}m`;
-    } else if (distanceKm < 10) {
-      return `${distanceKm.toFixed(1)}km`;
-    } else {
-      return `${Math.round(distanceKm)}km`;
-    }
-  };
-
-  // Sort WCs based on location distance
+  // Set filtered WCs - no client-side sorting needed as PostGIS handles it
   useEffect(() => {
-    let filtered = [...wcs];
-
-    // Add distance calculations and sort by distance if user location is available
-    if (userLocation) {
-      filtered = filtered
-        .map((wc) => {
-          if (wc.location) {
-            const [lat, lng] = wc.location.split(",").map(Number);
-            if (!isNaN(lat) && !isNaN(lng)) {
-              const distance = calculateDistance(
-                userLocation.lat,
-                userLocation.lng,
-                lat,
-                lng,
-              );
-              return { ...wc, distance };
-            }
-          }
-          return { ...wc, distance: null };
-        })
-        .sort((a, b) => {
-          // Sort by distance (nearest first), put items without distance at the end
-          if (a.distance === null && b.distance === null) return 0;
-          if (a.distance === null) return 1;
-          if (b.distance === null) return -1;
-          return a.distance - b.distance;
-        });
-    }
-
-    setFilteredWcs(filtered);
-  }, [wcs, userLocation]);
+    setFilteredWcs(wcs);
+  }, [wcs]);
 
   // Check geolocation permission on mount and ask for permission after login
   useEffect(() => {
@@ -735,6 +740,7 @@ export default function Home() {
                 <AddressAutocomplete
                   value={userAddress}
                   onChange={handleAddressChange}
+                  onCoordinatesChange={handleCoordinatesChange}
                   placeholder={t("addressPlaceholder")}
                   style={{
                     ...styles.addressField,
@@ -769,11 +775,6 @@ export default function Home() {
                   <div
                     style={{
                       ...styles.coordinatesText,
-                      marginTop: "0.5rem",
-                      padding: "0.5rem",
-                      backgroundColor: "#f8f9fa",
-                      borderRadius: "4px",
-                      border: "1px solid #e9ecef",
                     }}
                   >
                     {t("coordinates")}: {userLocation.lat.toFixed(6)},{" "}
@@ -974,16 +975,23 @@ export default function Home() {
                         textAlign: "center",
                         marginBottom: "15px",
                         padding: "8px",
-                        backgroundColor: "#e8f5e8",
+                        backgroundColor: addressManuallyChanged
+                          ? "#e3f2fd"
+                          : "#e8f5e8",
                         borderRadius: "4px",
                         fontSize: "0.85rem",
-                        color: "#2E7D32",
-                        border: "1px solid #4CAF50",
+                        color: addressManuallyChanged ? "#1976d2" : "#2E7D32",
+                        border: addressManuallyChanged
+                          ? "1px solid #2196F3"
+                          : "1px solid #4CAF50",
                       }}
                     >
-                      {t("locationSorted")}
+                      {addressManuallyChanged
+                        ? t("locationSortedByAddress")
+                        : t("locationSorted")}
                     </div>
                   )}
+
                   {!userLocation && !geolocationSupported && (
                     <div
                       style={{
@@ -998,6 +1006,22 @@ export default function Home() {
                       }}
                     >
                       {t("locationUnavailable")}
+                    </div>
+                  )}
+                  {!userLocation && geolocationSupported && (
+                    <div
+                      style={{
+                        textAlign: "center",
+                        marginBottom: "15px",
+                        padding: "8px",
+                        backgroundColor: "#f0f9ff",
+                        borderRadius: "4px",
+                        fontSize: "0.85rem",
+                        color: "#0369a1",
+                        border: "1px solid #bae6fd",
+                      }}
+                    >
+                      {t("distancesAfterLocation")}
                     </div>
                   )}
                   <div className="responsive-table">
@@ -1038,20 +1062,29 @@ export default function Home() {
                             className="table-cell"
                             style={{ textAlign: "center" }}
                           >
-                            <div>{wc.address || "N/A"}</div>
-                            {wc.distance !== null &&
-                              wc.distance !== undefined && (
-                                <div
-                                  style={{
-                                    fontSize: "0.8rem",
-                                    color: "#2196F3",
-                                    marginTop: "2px",
-                                    fontWeight: "bold",
-                                  }}
-                                >
-                                  📍 {formatDistance(wc.distance)}
-                                </div>
-                              )}
+                            <div style={{ marginBottom: "4px" }}>
+                              {wc.address || "N/A"}
+                            </div>
+                            {(wc.distance_km !== null &&
+                              wc.distance_km !== undefined) ||
+                            (wc.distance !== null &&
+                              wc.distance !== undefined) ? (
+                              <div
+                                style={{
+                                  fontSize: "0.9rem",
+                                  color: "#ffffff",
+                                  backgroundColor: "#2196F3",
+                                  padding: "2px 6px",
+                                  borderRadius: "12px",
+                                  fontWeight: "bold",
+                                  display: "inline-block",
+                                  marginTop: "2px",
+                                }}
+                              >
+                                📍{" "}
+                                {formatDistance(wc.distance_km || wc.distance)}
+                              </div>
+                            ) : null}
                           </div>
                           <div
                             className="table-cell"

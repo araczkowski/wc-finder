@@ -16,6 +16,8 @@ export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const page = parseInt(searchParams.get("page") || "0", 10);
   const limit = parseInt(searchParams.get("limit") || "5", 10);
+  const userLat = parseFloat(searchParams.get("lat"));
+  const userLng = parseFloat(searchParams.get("lng"));
 
   // Validate pagination parameters
   if (page < 0 || limit < 1 || limit > 50) {
@@ -29,6 +31,7 @@ export async function GET(request) {
   }
 
   const offset = page * limit;
+  const hasUserLocation = !isNaN(userLat) && !isNaN(userLng);
 
   const supabaseUrl = process.env.SUPABASE_URL;
   const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -68,11 +71,49 @@ export async function GET(request) {
       );
     }
 
-    const { data: wcs, error } = await supabase
-      .from("wcs")
-      .select("*")
-      .order("created_at", { ascending: false })
-      .range(offset, offset + limit - 1);
+    let query;
+    let wcs;
+    let error;
+
+    // If user location is provided, use PostGIS for distance-based sorting
+    if (hasUserLocation) {
+      // Use raw SQL for PostGIS distance sorting
+      const { data, error: sqlError } = await supabase.rpc(
+        "get_wcs_by_distance",
+        {
+          user_lat: userLat,
+          user_lng: userLng,
+          page_offset: offset,
+          page_limit: limit,
+        },
+      );
+
+      if (sqlError) {
+        console.log(
+          "PostGIS query failed, falling back to regular query:",
+          sqlError,
+        );
+        // Fallback to regular query without distance sorting
+        query = supabase
+          .from("wcs")
+          .select("*")
+          .order("created_at", { ascending: false });
+        const result = await query.range(offset, offset + limit - 1);
+        wcs = result.data;
+        error = result.error;
+      } else {
+        wcs = data;
+        error = null;
+      }
+    } else {
+      query = supabase
+        .from("wcs")
+        .select("*")
+        .order("created_at", { ascending: false });
+      const result = await query.range(offset, offset + limit - 1);
+      wcs = result.data;
+      error = result.error;
+    }
 
     if (error) {
       console.error(
@@ -88,6 +129,10 @@ export async function GET(request) {
     // Enhance WCs with gallery photos and combine with main image
     const enhancedWcs = await Promise.all(
       (wcs || []).map(async (wc) => {
+        // Distance is already calculated by PostGIS if user location was provided
+        // and included in the wc object as distance_km field
+        // For non-PostGIS queries, distance_km will be undefined
+
         // Always fetch gallery photos for this WC
         try {
           const { data: photos, error: photoError } = await supabase
@@ -118,6 +163,7 @@ export async function GET(request) {
               gallery_photos: allImages,
               image_url: allImages[0], // Use first image as main display
               has_multiple_images: allImages.length > 1,
+              distance: wc.distance_km !== undefined ? wc.distance_km : null,
             };
           } else {
             // No gallery photos, return with main image only
@@ -125,6 +171,7 @@ export async function GET(request) {
               ...wc,
               gallery_photos: wc.image_url ? [wc.image_url] : [],
               has_multiple_images: false,
+              distance: wc.distance_km !== undefined ? wc.distance_km : null,
             };
           }
         } catch (photoFetchError) {
@@ -138,10 +185,14 @@ export async function GET(request) {
             ...wc,
             gallery_photos: wc.image_url ? [wc.image_url] : [],
             has_multiple_images: false,
+            distance: wc.distance_km !== undefined ? wc.distance_km : null,
           };
         }
       }),
     );
+
+    // Data is already sorted by PostGIS if user location was provided
+    // No additional sorting needed here
 
     const hasMore = count > offset + limit;
     const totalPages = Math.ceil(count / limit);
@@ -156,6 +207,8 @@ export async function GET(request) {
           totalPages,
           hasMore,
         },
+        sorted_by_distance: hasUserLocation,
+        user_location: hasUserLocation ? { lat: userLat, lng: userLng } : null,
       },
       { status: 200 },
     );
@@ -274,11 +327,24 @@ export async function POST(request) {
 
   const supabase = createClient(supabaseUrl, supabaseServiceRoleKey);
 
+  // Parse location coordinates if provided
+  let locationGeo = null;
+  if (location && typeof location === "string") {
+    const coords = location.trim().split(",");
+    if (coords.length === 2) {
+      const lat = parseFloat(coords[0].trim());
+      const lng = parseFloat(coords[1].trim());
+      if (!isNaN(lat) && !isNaN(lng)) {
+        // Create PostGIS Point using ST_Point(longitude, latitude)
+        locationGeo = `ST_Point(${lng}, ${lat})::geography`;
+      }
+    }
+  }
+
   const wcDataToInsert = {
     user_id: userLoginId, // userLoginId is session.user.id (UUID)
     created_by: session.user.email, // Store the user's email in created_by
     name: name.trim(),
-    location: location && typeof location === "string" ? location.trim() : null,
     address: address && typeof address === "string" ? address.trim() : null,
     image_url:
       image_url && typeof image_url === "string" ? image_url.trim() : null,
@@ -288,11 +354,32 @@ export async function POST(request) {
   };
 
   try {
-    const { data: newWc, error: insertError } = await supabase
-      .from("wcs")
-      .insert(wcDataToInsert)
-      .select() // Optionally return the inserted row
-      .single(); // Expecting a single row to be inserted and returned
+    let newWc, insertError;
+
+    if (locationGeo) {
+      // Use RPC call to insert with PostGIS location
+      const { data, error } = await supabase.rpc("insert_wc_with_location", {
+        p_user_id: wcDataToInsert.user_id,
+        p_created_by: wcDataToInsert.created_by,
+        p_name: wcDataToInsert.name,
+        p_address: wcDataToInsert.address,
+        p_image_url: wcDataToInsert.image_url,
+        p_rating: wcDataToInsert.rating,
+        p_longitude: parseFloat(location.trim().split(",")[1]),
+        p_latitude: parseFloat(location.trim().split(",")[0]),
+      });
+      newWc = data;
+      insertError = error;
+    } else {
+      // Regular insert without location
+      const { data, error } = await supabase
+        .from("wcs")
+        .insert(wcDataToInsert)
+        .select()
+        .single();
+      newWc = data;
+      insertError = error;
+    }
 
     if (insertError) {
       console.error(

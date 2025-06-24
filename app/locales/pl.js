@@ -75,11 +75,15 @@ export const pl = {
   locationSorted: "📍 WC posortowane według odległości od Twojej lokalizacji",
   locationUnavailable:
     "📝 WC wyświetlane w kolejności dodania (lokalizacja niedostępna)",
-  userAddress: "Twój adres",
+  locationSortedByAddress:
+    "📍 WC posortowane według odległości od wybranego adresu",
+  userAddress: "Twoja lokalizacja:",
   detectingLocation: "Wykrywanie lokalizacji...",
   coordinates: "Współrzędne",
   addressPlaceholder: "Wpisz swój adres...",
   geolocatingAddress: "Geokodowanie adresu...",
+  distancesAfterLocation:
+    "📏 Odległości będą wyświetlane po wykryciu lokalizacji",
 
   // Location Errors
   locationDenied:

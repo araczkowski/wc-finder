@@ -235,14 +235,8 @@ export async function PUT(request, { params }) {
     // If no new file uploaded AND not explicitly removing, finalImageUrl remains existingWc.image_url (no change to image)
 
     // --- Prepare data for DB update ---
-    const wcDataToUpdate = {
+    let wcDataToUpdate = {
       name: jsonData.name ? jsonData.name.trim() : existingWc.name,
-      location:
-        jsonData.location !== undefined
-          ? jsonData.location
-            ? jsonData.location.trim()
-            : null
-          : existingWc.location,
       address:
         jsonData.address !== undefined
           ? jsonData.address
@@ -256,6 +250,29 @@ export async function PUT(request, { params }) {
       image_url: finalImageUrl,
       updated_at: new Date().toISOString(), // Always update the timestamp
     };
+
+    // Handle PostGIS location update separately
+    let needsLocationUpdate = false;
+    let locationLat = null;
+    let locationLng = null;
+
+    if (jsonData.location !== undefined) {
+      if (jsonData.location && typeof jsonData.location === "string") {
+        const coords = jsonData.location.trim().split(",");
+        if (coords.length === 2) {
+          const lat = parseFloat(coords[0].trim());
+          const lng = parseFloat(coords[1].trim());
+          if (!isNaN(lat) && !isNaN(lng)) {
+            needsLocationUpdate = true;
+            locationLat = lat;
+            locationLng = lng;
+          }
+        }
+      } else if (jsonData.location === null || jsonData.location === "") {
+        // Set location to null
+        wcDataToUpdate.location = null;
+      }
+    }
 
     console.log("API WCS PUT: Update data:", wcDataToUpdate);
     console.log("API WCS PUT: Existing WC data:", existingWc);
@@ -278,12 +295,32 @@ export async function PUT(request, { params }) {
     }
 
     // --- Update database record ---
-    const { data: updatedDbWc, error: updateDbError } = await supabase
-      .from("wcs")
-      .update(wcDataToUpdate)
-      .eq("id", wcId)
-      .select()
-      .single();
+    let updatedDbWc, updateDbError;
+
+    if (needsLocationUpdate) {
+      // Use RPC call to update with PostGIS location
+      const { data, error } = await supabase.rpc("update_wc_with_location", {
+        p_wc_id: wcId,
+        p_name: wcDataToUpdate.name,
+        p_address: wcDataToUpdate.address,
+        p_image_url: wcDataToUpdate.image_url,
+        p_rating: wcDataToUpdate.rating,
+        p_longitude: locationLng,
+        p_latitude: locationLat,
+      });
+      updatedDbWc = data;
+      updateDbError = error;
+    } else {
+      // Regular update without location change
+      const { data, error } = await supabase
+        .from("wcs")
+        .update(wcDataToUpdate)
+        .eq("id", wcId)
+        .select()
+        .single();
+      updatedDbWc = data;
+      updateDbError = error;
+    }
 
     if (updateDbError) {
       console.error("API WCS PUT: Supabase DB update error:", updateDbError);
