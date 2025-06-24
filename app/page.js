@@ -297,6 +297,66 @@ export default function Home() {
   const [addressManuallyChanged, setAddressManuallyChanged] = useState(false);
   const [userExplicitlyClearedAddress, setUserExplicitlyClearedAddress] =
     useState(false);
+  const [isStateRestored, setIsStateRestored] = useState(false);
+
+  // Early geocoding function for restored addresses
+  const geocodeRestoredAddress = useCallback(async (address) => {
+    console.log("[Home] Geocoding restored address:", address);
+    try {
+      const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+
+      if (apiKey) {
+        // Use Google Maps API
+        const response = await fetch(
+          `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}&language=pl`,
+        );
+        const data = await response.json();
+
+        if (data.status === "OK" && data.results.length > 0) {
+          const location = data.results[0].geometry.location;
+          const coordinates = {
+            lat: location.lat,
+            lng: location.lng,
+          };
+          console.log("[Home] Restored address coordinates:", coordinates);
+          setUserLocation(coordinates);
+          // Load data after setting coordinates
+          setTimeout(() => {
+            if (loadInitialDataRef.current) {
+              loadInitialDataRef.current();
+            }
+          }, 100);
+          return;
+        }
+      }
+
+      // Fallback to Nominatim (OpenStreetMap)
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}&limit=1&addressdetails=1&countrycodes=pl`,
+      );
+      const data = await response.json();
+
+      if (data && data.length > 0) {
+        const coordinates = {
+          lat: parseFloat(data[0].lat),
+          lng: parseFloat(data[0].lon),
+        };
+        console.log(
+          "[Home] Restored address coordinates (Nominatim):",
+          coordinates,
+        );
+        setUserLocation(coordinates);
+        // Load data after setting coordinates
+        setTimeout(() => {
+          if (loadInitialDataRef.current) {
+            loadInitialDataRef.current();
+          }
+        }, 100);
+      }
+    } catch (error) {
+      console.error("Early geocoding failed:", error);
+    }
+  }, []);
 
   // Load address state from localStorage on component mount
   useEffect(() => {
@@ -319,8 +379,18 @@ export default function Home() {
       if (savedExplicitlyCleared === "true") {
         setUserExplicitlyClearedAddress(true);
       }
+
+      // Mark state as restored
+      setIsStateRestored(true);
+
+      // If we have a saved address that was manually changed, geocode it
+      if (savedAddress && savedManuallyChanged === "true") {
+        setTimeout(() => {
+          geocodeRestoredAddress(savedAddress);
+        }, 500);
+      }
     }
-  }, []);
+  }, [geocodeRestoredAddress]);
 
   // Save address state to localStorage when it changes
   useEffect(() => {
@@ -445,6 +515,8 @@ export default function Home() {
       status,
       "Session:",
       session ? "Exists" : "Null",
+      "State restored:",
+      isStateRestored,
     );
 
     if (status === "authenticated" && session) {
@@ -454,7 +526,7 @@ export default function Home() {
       console.log("[Home Page] User unauthenticated, resetting data.");
       resetRef.current();
     }
-  }, [status, session]); // Depend on auth status and session
+  }, [status, session, isStateRestored]);
 
   // New useEffect for logging state changes, for better insight
   useEffect(() => {
@@ -585,7 +657,12 @@ export default function Home() {
 
   // Watch for userLocation changes to refresh WC list
   useEffect(() => {
-    if (resetRef.current && loadInitialDataRef.current) {
+    if (
+      resetRef.current &&
+      loadInitialDataRef.current &&
+      isStateRestored &&
+      status === "authenticated"
+    ) {
       console.log(
         "[Home] UserLocation changed, refreshing WC list:",
         userLocation,
@@ -596,7 +673,7 @@ export default function Home() {
         loadInitialDataRef.current();
       }, 100);
     }
-  }, [userLocation]);
+  }, [userLocation, isStateRestored, status]);
 
   // Watch for address clearing to trigger automatic location detection (only if not explicitly cleared)
   useEffect(() => {
