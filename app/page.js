@@ -301,7 +301,7 @@ export default function Home() {
     useState(false);
   const [hasSetAddress, setHasSetAddress] = useState(false);
 
-  // Clear localStorage only on first login, preserve location data on subsequent visits
+  // Clear localStorage completely on first login to start fresh
   useEffect(() => {
     console.log("[DEBUG localStorage] Login useEffect triggered:", {
       status,
@@ -317,49 +317,29 @@ export default function Home() {
 
       if (!hasLoggedInThisSession) {
         console.log(
-          "[DEBUG localStorage] First login detected - clearing localStorage and preserving location data:",
+          "[DEBUG localStorage] First login detected - clearing all localStorage data including location data",
         );
 
-        // Preserve location data before clearing
-        const userAddress = localStorage.getItem("userAddress");
-        const userLocation = localStorage.getItem("userLocation");
-        const addressDetected = localStorage.getItem("addressDetected");
-        const addressManuallyChanged = localStorage.getItem(
-          "addressManuallyChanged",
-        );
-        const hasSetAddress = localStorage.getItem("hasSetAddress");
-
-        console.log("[DEBUG localStorage] Preserving location data:", {
-          userAddress,
-          userLocation,
-          addressDetected,
-          addressManuallyChanged,
-          hasSetAddress,
-        });
-
+        // Clear all localStorage data
         localStorage.clear();
-
-        // Restore location data after clearing
-        if (userAddress) localStorage.setItem("userAddress", userAddress);
-        if (userLocation) localStorage.setItem("userLocation", userLocation);
-        if (addressDetected)
-          localStorage.setItem("addressDetected", addressDetected);
-        if (addressManuallyChanged)
-          localStorage.setItem(
-            "addressManuallyChanged",
-            addressManuallyChanged,
-          );
-        if (hasSetAddress) localStorage.setItem("hasSetAddress", hasSetAddress);
 
         // Mark that user has logged in this session
         localStorage.setItem("hasLoggedInThisSession", "true");
 
+        // Clear all location-related React states to start fresh
+        setUserAddress("");
+        setAddressDetected(false);
+        setAddressManuallyChanged(false);
+        setUserExplicitlyClearedAddress(false);
+        setUserLocation(null);
+        setHasSetAddress(false);
+
         console.log(
-          "[DEBUG localStorage] localStorage cleared and location data restored",
+          "[DEBUG localStorage] localStorage completely cleared and location states reset",
         );
       } else {
         console.log(
-          "[DEBUG localStorage] User already logged in this session - preserving localStorage",
+          "[DEBUG localStorage] User already logged in this session - preserving current state",
         );
       }
     } else {
@@ -417,6 +397,17 @@ export default function Home() {
   // Load address state from localStorage on component mount
   useEffect(() => {
     if (typeof window !== "undefined") {
+      // Don't load localStorage data if this is a fresh login session
+      const hasLoggedInThisSession = localStorage.getItem(
+        "hasLoggedInThisSession",
+      );
+      if (!hasLoggedInThisSession) {
+        console.log(
+          "[DEBUG localStorage] Skipping localStorage loading - fresh login session",
+        );
+        return;
+      }
+
       console.log("[DEBUG localStorage] Loading data from localStorage...");
       const savedAddress = localStorage.getItem("userAddress");
       const savedManuallyChanged = localStorage.getItem(
