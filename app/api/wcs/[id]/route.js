@@ -257,18 +257,58 @@ export async function PUT(request, { params }) {
     let locationLng = null;
 
     if (jsonData.location !== undefined) {
+      console.log(
+        "API WCS PUT: Processing location:",
+        jsonData.location,
+        "Type:",
+        typeof jsonData.location,
+      );
       if (jsonData.location && typeof jsonData.location === "string") {
-        const coords = jsonData.location.trim().split(",");
+        const trimmedLocation = jsonData.location.trim();
+        console.log("API WCS PUT: Trimmed location:", trimmedLocation);
+        const coords = trimmedLocation.split(",");
+        console.log(
+          "API WCS PUT: Split coords:",
+          coords,
+          "Length:",
+          coords.length,
+        );
         if (coords.length === 2) {
           const lat = parseFloat(coords[0].trim());
           const lng = parseFloat(coords[1].trim());
+          console.log(
+            "API WCS PUT: Parsed lat:",
+            lat,
+            "lng:",
+            lng,
+            "lat isNaN:",
+            isNaN(lat),
+            "lng isNaN:",
+            isNaN(lng),
+          );
           if (!isNaN(lat) && !isNaN(lng)) {
             needsLocationUpdate = true;
             locationLat = lat;
             locationLng = lng;
+            console.log(
+              "API WCS PUT: Will update location with lat:",
+              locationLat,
+              "lng:",
+              locationLng,
+            );
+          } else {
+            console.error(
+              "API WCS PUT: Invalid coordinates - lat or lng is NaN",
+            );
           }
+        } else {
+          console.error(
+            "API WCS PUT: Invalid coordinates format - expected 2 parts, got:",
+            coords.length,
+          );
         }
       } else if (jsonData.location === null || jsonData.location === "") {
+        console.log("API WCS PUT: Setting location to null");
         // Set location to null
         wcDataToUpdate.location = null;
       }
@@ -298,52 +338,37 @@ export async function PUT(request, { params }) {
     let updatedDbWc, updateDbError;
 
     if (needsLocationUpdate) {
-      // Try RPC call to update with PostGIS location first
-      const { data, error } = await supabase.rpc("update_wc_with_location", {
-        p_wc_id: wcId,
-        p_name: wcDataToUpdate.name,
-        p_address: wcDataToUpdate.address,
-        p_image_url: wcDataToUpdate.image_url,
-        p_rating: wcDataToUpdate.rating,
-        p_longitude: locationLng,
-        p_latitude: locationLat,
-      });
+      console.log(
+        "API WCS PUT: Using WKT POINT format for location:",
+        `${locationLat},${locationLng}`,
+      );
 
-      if (
-        error &&
-        error.message.includes("function public.update_wc_with_location")
-      ) {
-        console.warn(
-          "PostGIS function not available, falling back to regular update with location as text",
-        );
-        // Fallback: update with location as text format
-        wcDataToUpdate.location = `${locationLat},${locationLng}`;
-        const { data: fallbackData, error: fallbackError } = await supabase
-          .from("wcs")
-          .update(wcDataToUpdate)
-          .eq("id", wcId)
-          .select()
-          .single();
-        updatedDbWc = fallbackData;
-        updateDbError = fallbackError;
-      } else {
-        updatedDbWc = data;
-        updateDbError = error;
-      }
-    } else {
-      // Regular update without location change
-      const { data, error } = await supabase
-        .from("wcs")
-        .update(wcDataToUpdate)
-        .eq("id", wcId)
-        .select()
-        .single();
-      updatedDbWc = data;
-      updateDbError = error;
+      // Use WKT POINT format that PostGIS understands
+      const wktPoint = `POINT(${locationLng} ${locationLat})`;
+      console.log("API WCS PUT: WKT Point:", wktPoint);
+
+      // Update with PostGIS WKT format
+      wcDataToUpdate.location = wktPoint;
     }
+
+    // Single update operation
+    const { data, error } = await supabase
+      .from("wcs")
+      .update(wcDataToUpdate)
+      .eq("id", wcId)
+      .select()
+      .single();
+    updatedDbWc = data;
+    updateDbError = error;
 
     if (updateDbError) {
       console.error("API WCS PUT: Supabase DB update error:", updateDbError);
+      console.error("API WCS PUT: Error details:", {
+        message: updateDbError.message,
+        details: updateDbError.details,
+        hint: updateDbError.hint,
+        code: updateDbError.code,
+      });
       throw new Error(`Database update failed: ${updateDbError.message}`);
     }
 
