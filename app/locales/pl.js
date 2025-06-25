@@ -81,7 +81,7 @@ export const pl = {
   addressPlaceholder: "Wpisz swój adres...",
   geolocatingAddress: "Geokodowanie adresu...",
   distancesAfterLocation:
-    "📏 Odległości będą wyświetlane po wykryciu lokalizacji",
+    "📏 Odległości do WC będą wyświetlane po wykryciu lokalizacji",
 
   // Location Errors
   locationDenied:

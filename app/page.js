@@ -299,12 +299,38 @@ export default function Home() {
   const [addressManuallyChanged, setAddressManuallyChanged] = useState(false);
   const [userExplicitlyClearedAddress, setUserExplicitlyClearedAddress] =
     useState(false);
+  const [hasSetAddress, setHasSetAddress] = useState(false);
 
   // Clear localStorage after successful login
   useEffect(() => {
+    console.log("[DEBUG localStorage] Login useEffect triggered:", {
+      status,
+      session: !!session,
+      sessionUser: session?.user?.email,
+    });
+
     if (status === "authenticated" && session) {
-      console.log("[Home] Clearing localStorage after login");
+      console.log(
+        "[DEBUG localStorage] Clearing localStorage after login - checking current data first:",
+      );
+      console.log(
+        "[DEBUG localStorage] Current localStorage keys:",
+        Object.keys(localStorage),
+      );
+      console.log(
+        "[DEBUG localStorage] Current userAddress:",
+        localStorage.getItem("userAddress"),
+      );
+      console.log(
+        "[DEBUG localStorage] Current userLocation:",
+        localStorage.getItem("userLocation"),
+      );
+
       localStorage.clear();
+      console.log(
+        "[DEBUG localStorage] localStorage cleared - keys now:",
+        Object.keys(localStorage),
+      );
 
       // Reset address-related state
       setUserAddress("");
@@ -312,6 +338,12 @@ export default function Home() {
       setAddressManuallyChanged(false);
       setUserExplicitlyClearedAddress(false);
       setUserLocation(null);
+      setHasSetAddress(false);
+      console.log("[DEBUG localStorage] All states reset after login");
+    } else {
+      console.log(
+        "[DEBUG localStorage] NOT clearing localStorage - conditions not met",
+      );
     }
   }, [status, session]);
 
@@ -363,6 +395,7 @@ export default function Home() {
   // Load address state from localStorage on component mount
   useEffect(() => {
     if (typeof window !== "undefined") {
+      console.log("[DEBUG localStorage] Loading data from localStorage...");
       const savedAddress = localStorage.getItem("userAddress");
       const savedManuallyChanged = localStorage.getItem(
         "addressManuallyChanged",
@@ -370,12 +403,48 @@ export default function Home() {
       const savedExplicitlyCleared = localStorage.getItem(
         "userExplicitlyClearedAddress",
       );
+      const savedHasSetAddress = localStorage.getItem("hasSetAddress");
+      const savedUserLocation = localStorage.getItem("userLocation");
+      const savedAddressDetected = localStorage.getItem("addressDetected");
+
+      console.log("[DEBUG localStorage] Loaded values:", {
+        savedAddress,
+        savedManuallyChanged,
+        savedExplicitlyCleared,
+        savedHasSetAddress,
+        savedUserLocation,
+        savedAddressDetected,
+      });
 
       if (savedAddress) {
+        console.log("[DEBUG localStorage] Setting userAddress:", savedAddress);
         setUserAddress(savedAddress);
+        setAddressDetected(true);
+        setHasSetAddress(true);
+      }
+      if (savedHasSetAddress === "true") {
+        console.log("[DEBUG localStorage] Setting hasSetAddress: true");
+        setHasSetAddress(true);
+      }
+      if (savedUserLocation) {
+        try {
+          const location = JSON.parse(savedUserLocation);
+          if (location && location.lat && location.lng) {
+            console.log("[DEBUG localStorage] Setting userLocation:", location);
+            setUserLocation(location);
+          }
+        } catch (error) {
+          console.error("Failed to parse saved userLocation:", error);
+        }
+      }
+      if (savedAddressDetected === "true") {
+        console.log("[DEBUG localStorage] Setting addressDetected: true");
         setAddressDetected(true);
       }
       if (savedManuallyChanged === "true") {
+        console.log(
+          "[DEBUG localStorage] Setting addressManuallyChanged: true",
+        );
         setAddressManuallyChanged(true);
 
         // Geocode saved address to get coordinates
@@ -388,6 +457,9 @@ export default function Home() {
         }
       }
       if (savedExplicitlyCleared === "true") {
+        console.log(
+          "[DEBUG localStorage] Setting userExplicitlyClearedAddress: true",
+        );
         setUserExplicitlyClearedAddress(true);
       }
     }
@@ -397,8 +469,10 @@ export default function Home() {
   useEffect(() => {
     if (typeof window !== "undefined") {
       if (userAddress) {
+        console.log("[DEBUG localStorage] Saving userAddress:", userAddress);
         localStorage.setItem("userAddress", userAddress);
       } else {
+        console.log("[DEBUG localStorage] Removing userAddress");
         localStorage.removeItem("userAddress");
       }
     }
@@ -406,6 +480,10 @@ export default function Home() {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
+      console.log(
+        "[DEBUG localStorage] Saving addressManuallyChanged:",
+        addressManuallyChanged,
+      );
       localStorage.setItem(
         "addressManuallyChanged",
         addressManuallyChanged.toString(),
@@ -415,12 +493,45 @@ export default function Home() {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
+      console.log(
+        "[DEBUG localStorage] Saving userExplicitlyClearedAddress:",
+        userExplicitlyClearedAddress,
+      );
       localStorage.setItem(
         "userExplicitlyClearedAddress",
         userExplicitlyClearedAddress.toString(),
       );
     }
   }, [userExplicitlyClearedAddress]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      console.log("[DEBUG localStorage] Saving hasSetAddress:", hasSetAddress);
+      localStorage.setItem("hasSetAddress", hasSetAddress.toString());
+    }
+  }, [hasSetAddress]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (userLocation) {
+        console.log("[DEBUG localStorage] Saving userLocation:", userLocation);
+        localStorage.setItem("userLocation", JSON.stringify(userLocation));
+      } else {
+        console.log("[DEBUG localStorage] Removing userLocation");
+        localStorage.removeItem("userLocation");
+      }
+    }
+  }, [userLocation]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      console.log(
+        "[DEBUG localStorage] Saving addressDetected:",
+        addressDetected,
+      );
+      localStorage.setItem("addressDetected", addressDetected.toString());
+    }
+  }, [addressDetected]);
 
   // Fetch function for infinite scroll with location-based sorting
   const fetchWcs = useCallback(
@@ -532,8 +643,16 @@ export default function Home() {
     console.log("[Home Page State Update] wcError:", wcError);
   }, [wcs, loadingWcs, wcError]);
 
-  // Reverse geocode user location to get address
+  // Reverse geocode user location to get address (ONLY for GPS button)
   const reverseGeocode = useCallback(async (lat, lng) => {
+    console.log("[DEBUG] reverseGeocode called from GPS button with:", {
+      lat,
+      lng,
+    });
+    console.log("[DEBUG] reverseGeocode - current localStorage before:", {
+      userAddress: localStorage.getItem("userAddress"),
+      userLocation: localStorage.getItem("userLocation"),
+    });
     setIsGeolocatingAddress(true);
     try {
       const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
@@ -546,8 +665,16 @@ export default function Home() {
         const data = await response.json();
 
         if (data.status === "OK" && data.results.length > 0) {
+          console.log(
+            "[DEBUG] reverseGeocode setting address from Google:",
+            data.results[0].formatted_address,
+          );
+          console.log(
+            "[DEBUG] reverseGeocode - calling setUserAddress, setAddressDetected, setHasSetAddress",
+          );
           setUserAddress(data.results[0].formatted_address);
           setAddressDetected(true);
+          setHasSetAddress(true);
           return;
         }
       }
@@ -559,45 +686,47 @@ export default function Home() {
       const data = await response.json();
 
       if (data && data.display_name) {
+        console.log(
+          "[DEBUG] reverseGeocode setting address from Nominatim:",
+          data.display_name,
+        );
+        console.log(
+          "[DEBUG] reverseGeocode - calling setUserAddress, setAddressDetected, setHasSetAddress",
+        );
         setUserAddress(data.display_name);
         setAddressDetected(true);
+        setHasSetAddress(true);
       }
     } catch (error) {
       console.error("Reverse geocoding failed:", error);
+      console.log(
+        "[DEBUG] reverseGeocode fallback to coordinates:",
+        `${lat.toFixed(6)}, ${lng.toFixed(6)}`,
+      );
+      console.log(
+        "[DEBUG] reverseGeocode - calling setUserAddress, setAddressDetected, setHasSetAddress (fallback)",
+      );
       setUserAddress(`${lat.toFixed(6)}, ${lng.toFixed(6)}`);
       setAddressDetected(true);
+      setHasSetAddress(true);
     } finally {
       setIsGeolocatingAddress(false);
     }
   }, []);
 
-  // Update address when location changes (only for automatic location detection, not GPS button)
-  useEffect(() => {
-    if (
-      userLocation &&
-      (!userAddress || userAddress === "") &&
-      !addressManuallyChanged &&
-      !userExplicitlyClearedAddress &&
-      !isGeolocatingAddress // Don't interfere with GPS button geocoding
-    ) {
-      reverseGeocode(userLocation.lat, userLocation.lng);
-    }
-  }, [
-    userLocation,
-    userAddress,
-    addressManuallyChanged,
-    userExplicitlyClearedAddress,
-    reverseGeocode,
-    isGeolocatingAddress,
-  ]);
-
   // Handle manual address change
   const handleAddressChange = useCallback(async (address, coordinates) => {
-    console.log(
-      "[Home] Address changed:",
+    console.log("[DEBUG] handleAddressChange called with:", {
       address,
-      "Coordinates:",
       coordinates,
+    });
+    console.log("[DEBUG] handleAddressChange - current localStorage before:", {
+      userAddress: localStorage.getItem("userAddress"),
+      userLocation: localStorage.getItem("userLocation"),
+    });
+    console.log(
+      "[DEBUG] handleAddressChange - calling setUserAddress:",
+      address,
     );
     setUserAddress(address);
 
@@ -608,8 +737,10 @@ export default function Home() {
       setAddressManuallyChanged(false);
       setAddressDetected(false);
       setUserLocation(null);
+      setHasSetAddress(false);
     } else {
       // Address has content, reset the explicitly cleared flag
+      setHasSetAddress(true);
       setUserExplicitlyClearedAddress(false);
       setAddressDetected(true);
       setAddressManuallyChanged(true);
@@ -618,11 +749,25 @@ export default function Home() {
 
   // Handle coordinates change from AddressAutocomplete
   const handleCoordinatesChange = useCallback((coordinates) => {
-    console.log("[Home] Coordinates changed:", coordinates);
+    console.log("[DEBUG] handleCoordinatesChange called with:", coordinates);
+    console.log(
+      "[DEBUG] handleCoordinatesChange - current localStorage before:",
+      {
+        userAddress: localStorage.getItem("userAddress"),
+        userLocation: localStorage.getItem("userLocation"),
+      },
+    );
     if (coordinates) {
+      console.log(
+        "[DEBUG] handleCoordinatesChange - calling setUserLocation, setAddressManuallyChanged, setHasSetAddress",
+      );
       setUserLocation({ lat: coordinates.lat, lng: coordinates.lng });
       setAddressManuallyChanged(true);
+      setHasSetAddress(true);
     } else {
+      console.log(
+        "[DEBUG] handleCoordinatesChange - calling setUserLocation(null)",
+      );
       setUserLocation(null);
     }
   }, []);
@@ -643,44 +788,6 @@ export default function Home() {
       loadInitialDataRef.current();
     }
   }, [userLocation, status, session]);
-
-  // Automatic geolocation only for new users (no saved address, not manually changed, not explicitly cleared)
-  useEffect(() => {
-    if (
-      status === "authenticated" &&
-      session &&
-      !userAddress &&
-      !addressManuallyChanged &&
-      !userExplicitlyClearedAddress &&
-      !userLocation &&
-      navigator.geolocation &&
-      locationPermission === "granted"
-    ) {
-      console.log("[Home] New user - starting automatic geolocation");
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          setUserLocation({ lat: latitude, lng: longitude });
-        },
-        (error) => {
-          console.log("Automatic geolocation failed:", error);
-        },
-        {
-          enableHighAccuracy: false,
-          timeout: 5000,
-          maximumAge: 300000,
-        },
-      );
-    }
-  }, [
-    status,
-    session,
-    userAddress,
-    addressManuallyChanged,
-    userExplicitlyClearedAddress,
-    userLocation,
-    locationPermission,
-  ]);
 
   // Manage background class based on authentication status
   useEffect(() => {
@@ -730,8 +837,13 @@ export default function Home() {
     setFilteredWcs(wcs);
   }, [wcs]);
 
-  // Check geolocation permission on mount and ask for permission after login
+  // Check geolocation permission on mount - NO automatic location detection here
   useEffect(() => {
+    console.log("[DEBUG] Permission check useEffect triggered with:", {
+      session: !!session,
+      geolocationSupported: !!navigator.geolocation,
+    });
+
     // Check if geolocation is supported
     if (!navigator.geolocation) {
       setGeolocationSupported(false);
@@ -743,81 +855,18 @@ export default function Home() {
       navigator.permissions
         .query({ name: "geolocation" })
         .then((permission) => {
+          console.log("[DEBUG] Permission state:", permission.state);
           setLocationPermission(permission.state);
           permission.addEventListener("change", () => {
             setLocationPermission(permission.state);
           });
-
-          // Automatically ask for location permission after login if not prompted yet
-          if (permission.state === "prompt" && !locationPrompted) {
-            setLocationPrompted(true);
-            navigator.geolocation.getCurrentPosition(
-              (position) => {
-                setLocationPermission("granted");
-                const { latitude, longitude } = position.coords;
-                setUserLocation({ lat: latitude, lng: longitude });
-              },
-              () => {
-                setLocationPermission("denied");
-              },
-            );
-          } else if (permission.state === "granted" && !userLocation) {
-            // Auto-detect location for distance sorting only if no manual address and not explicitly cleared
-            if (
-              (!userAddress || userAddress === "") &&
-              !addressManuallyChanged &&
-              !userExplicitlyClearedAddress
-            ) {
-              navigator.geolocation.getCurrentPosition(
-                (position) => {
-                  const { latitude, longitude } = position.coords;
-                  setUserLocation({ lat: latitude, lng: longitude });
-                },
-                (error) => {
-                  console.log("Auto location detection failed:", error);
-                },
-                {
-                  enableHighAccuracy: false,
-                  timeout: 5000,
-                  maximumAge: 300000,
-                },
-              );
-            }
-          }
         })
         .catch(() => {
           setLocationPermission("prompt");
-          // Try to ask for permission anyway
-          if (!locationPrompted) {
-            setLocationPrompted(true);
-            navigator.geolocation.getCurrentPosition(
-              (position) => {
-                setLocationPermission("granted");
-                const { latitude, longitude } = position.coords;
-                // Only set location if no manual address is entered and not explicitly cleared
-                if (
-                  (!userAddress || userAddress === "") &&
-                  !addressManuallyChanged &&
-                  !userExplicitlyClearedAddress
-                ) {
-                  setUserLocation({ lat: latitude, lng: longitude });
-                }
-              },
-              () => {
-                setLocationPermission("denied");
-              },
-            );
-          }
+          console.log("[DEBUG] Permission query failed");
         });
     }
-  }, [
-    session,
-    locationPrompted,
-    userLocation,
-    userAddress,
-    addressManuallyChanged,
-    userExplicitlyClearedAddress,
-  ]);
+  }, [session]);
 
   const requestLocationPermission = () => {
     if (!navigator.geolocation) {
@@ -828,15 +877,10 @@ export default function Home() {
     setLocationError(null);
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        const { latitude, longitude } = position.coords;
-        // Only set location if no manual address is entered and not explicitly cleared
-        if (
-          (!userAddress || userAddress === "") &&
-          !addressManuallyChanged &&
-          !userExplicitlyClearedAddress
-        ) {
-          setUserLocation({ lat: latitude, lng: longitude });
-        }
+        // NIE ustawiamy lokalizacji automatycznie - tylko sprawdzamy uprawnienia
+        console.log(
+          "[DEBUG] Location permission granted, but NOT setting location automatically",
+        );
         setLocationPermission("granted");
         setLocationError(null);
       },
@@ -986,6 +1030,7 @@ export default function Home() {
                       setAddressManuallyChanged(false);
                       setUserExplicitlyClearedAddress(false);
                       setUserLocation(null);
+                      setHasSetAddress(false);
 
                       // Resetujemy listę WC aby wyczyścić poprzednie wyniki
                       if (resetRef.current) {
@@ -1004,70 +1049,8 @@ export default function Home() {
                               longitude,
                             );
 
-                            // 3. Zamieniamy uzyskaną pozycję na adres
-                            try {
-                              const apiKey =
-                                process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
-                              let addressFound = false;
-
-                              if (apiKey) {
-                                // Próbujemy z Google Maps API
-                                const response = await fetch(
-                                  `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}&language=pl`,
-                                );
-                                const data = await response.json();
-
-                                if (
-                                  data.status === "OK" &&
-                                  data.results.length > 0
-                                ) {
-                                  setUserAddress(
-                                    data.results[0].formatted_address,
-                                  );
-                                  setAddressDetected(true);
-                                  addressFound = true;
-                                  console.log(
-                                    "[GPS Button] Address from Google:",
-                                    data.results[0].formatted_address,
-                                  );
-                                }
-                              }
-
-                              if (!addressFound) {
-                                // Fallback do Nominatim
-                                const response = await fetch(
-                                  `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=16&addressdetails=1&accept-language=pl`,
-                                );
-                                const data = await response.json();
-
-                                if (data && data.display_name) {
-                                  setUserAddress(data.display_name);
-                                  setAddressDetected(true);
-                                  console.log(
-                                    "[GPS Button] Address from Nominatim:",
-                                    data.display_name,
-                                  );
-                                } else {
-                                  // Fallback do współrzędnych
-                                  setUserAddress(
-                                    `${latitude.toFixed(6)}, ${longitude.toFixed(6)}`,
-                                  );
-                                  setAddressDetected(true);
-                                }
-                              }
-                            } catch (error) {
-                              console.error(
-                                "[GPS Button] Reverse geocoding failed:",
-                                error,
-                              );
-                              // Fallback do współrzędnych
-                              setUserAddress(
-                                `${latitude.toFixed(6)}, ${longitude.toFixed(6)}`,
-                              );
-                              setAddressDetected(true);
-                            }
-
-                            setIsGeolocatingAddress(false);
+                            // 3. Zamieniamy uzyskaną pozycję na adres używając reverseGeocode
+                            reverseGeocode(latitude, longitude);
 
                             // 4. Na końcu wywołujemy handleCoordinatesChange tak jak po Enter w polu adresu
                             setTimeout(() => {
