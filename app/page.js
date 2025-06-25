@@ -1179,6 +1179,7 @@ export default function Home() {
                       lineHeight: "3em",
                       padding: "4px 8px",
                       fontWeight: "bold",
+                      width: "4em",
                       opacity:
                         !geolocationSupported ||
                         locationPermission === "denied" ||
@@ -1301,7 +1302,8 @@ export default function Home() {
                       fontSize: "1.1rem",
                     }}
                   >
-                    📍 Wprowadź adres aby zobaczyć toalety w okolicy
+                    ⚠️ Wprowadź adres lub wykryj automatycznie przyciskiem GPS
+                    aby zobaczyć toalety w okolicy
                   </div>
                 )}
 
