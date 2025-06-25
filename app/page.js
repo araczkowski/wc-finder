@@ -799,6 +799,7 @@ export default function Home() {
     if (
       status === "authenticated" &&
       session &&
+      userLocation &&
       resetRef.current &&
       loadInitialDataRef.current
     ) {
@@ -1233,9 +1234,13 @@ export default function Home() {
               {wcError && (
                 <p style={{ ...styles.infoMessage, color: "red" }}>{wcError}</p>
               )}
-              {!loadingWcs && !wcError && wcs.length === 0 && userLocation && (
-                <p style={styles.noWcsMessage}>{t("noWcsFound")}</p>
-              )}
+              {!loadingWcs &&
+                !wcError &&
+                wcs.length === 0 &&
+                userLocation &&
+                !isGeolocatingAddress && (
+                  <p style={styles.noWcsMessage}>{t("noWcsFound")}</p>
+                )}
               {!loadingWcs && !wcError && wcs.length === 0 && !userLocation && (
                 <div
                   style={{
