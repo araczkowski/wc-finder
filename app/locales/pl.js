@@ -70,8 +70,6 @@ export const pl = {
   locationPermissionMessage:
     "Aby korzystać z aplikacji i zobaczyć najbliższe WC, musisz zezwolić aplikacji na używanie danych o lokalizacji.",
   enableLocationAccess: "Włącz dostęp do lokalizacji",
-  gettingLocation:
-    "Pobieranie lokalizacji... WC będą posortowane według odległości gdy lokalizacja zostanie wykryta.",
   locationSorted: "📍 WC posortowane według odległości od Twojej lokalizacji",
   locationUnavailable:
     "📝 WC wyświetlane w kolejności dodania (lokalizacja niedostępna)",

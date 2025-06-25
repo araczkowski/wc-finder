@@ -263,6 +263,8 @@ const styles = {
     outline: "none",
     transition: "border-color 0.2s ease",
     boxSizing: "border-box",
+    display: "inline-block",
+    height: "4em",
   },
   coordinatesText: {
     fontSize: "0.8rem",
@@ -297,16 +299,13 @@ export default function Home() {
   const [addressManuallyChanged, setAddressManuallyChanged] = useState(false);
   const [userExplicitlyClearedAddress, setUserExplicitlyClearedAddress] =
     useState(false);
-  const [isStateRestored, setIsStateRestored] = useState(false);
 
-  // Early geocoding function for restored addresses
-  const geocodeRestoredAddress = useCallback(async (address) => {
-    console.log("[Home] Geocoding restored address:", address);
+  // Geocode saved address function
+  const geocodeSavedAddress = useCallback(async (address) => {
     try {
       const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
       if (apiKey) {
-        // Use Google Maps API
         const response = await fetch(
           `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}&language=pl`,
         );
@@ -318,19 +317,13 @@ export default function Home() {
             lat: location.lat,
             lng: location.lng,
           };
-          console.log("[Home] Restored address coordinates:", coordinates);
+          console.log("[Home] Saved address coordinates:", coordinates);
           setUserLocation(coordinates);
-          // Load data after setting coordinates
-          setTimeout(() => {
-            if (loadInitialDataRef.current) {
-              loadInitialDataRef.current();
-            }
-          }, 100);
           return;
         }
       }
 
-      // Fallback to Nominatim (OpenStreetMap)
+      // Fallback to Nominatim
       const response = await fetch(
         `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}&limit=1&addressdetails=1&countrycodes=pl`,
       );
@@ -342,19 +335,13 @@ export default function Home() {
           lng: parseFloat(data[0].lon),
         };
         console.log(
-          "[Home] Restored address coordinates (Nominatim):",
+          "[Home] Saved address coordinates (Nominatim):",
           coordinates,
         );
         setUserLocation(coordinates);
-        // Load data after setting coordinates
-        setTimeout(() => {
-          if (loadInitialDataRef.current) {
-            loadInitialDataRef.current();
-          }
-        }, 100);
       }
     } catch (error) {
-      console.error("Early geocoding failed:", error);
+      console.error("Geocoding saved address failed:", error);
     }
   }, []);
 
@@ -375,22 +362,21 @@ export default function Home() {
       }
       if (savedManuallyChanged === "true") {
         setAddressManuallyChanged(true);
+
+        // Geocode saved address to get coordinates
+        if (savedAddress) {
+          console.log("[Home] Geocoding saved address:", savedAddress);
+          // Use AddressAutocomplete's geocoding by triggering coordinate change
+          setTimeout(() => {
+            geocodeSavedAddress(savedAddress);
+          }, 500);
+        }
       }
       if (savedExplicitlyCleared === "true") {
         setUserExplicitlyClearedAddress(true);
       }
-
-      // Mark state as restored
-      setIsStateRestored(true);
-
-      // If we have a saved address that was manually changed, geocode it
-      if (savedAddress && savedManuallyChanged === "true") {
-        setTimeout(() => {
-          geocodeRestoredAddress(savedAddress);
-        }, 500);
-      }
     }
-  }, [geocodeRestoredAddress]);
+  }, [geocodeSavedAddress]);
 
   // Save address state to localStorage when it changes
   useEffect(() => {
@@ -508,25 +494,12 @@ export default function Home() {
     resetRef.current = reset;
   }, [loadInitialData, reset]);
 
-  // Separate useEffect for handling authentication state changes
+  // Reset data when user is unauthenticated
   useEffect(() => {
-    console.log(
-      "[Home Page] Auth useEffect triggered. Status:",
-      status,
-      "Session:",
-      session ? "Exists" : "Null",
-      "State restored:",
-      isStateRestored,
-    );
-
-    if (status === "authenticated" && session) {
-      console.log("[Home Page] User authenticated, loading initial data.");
-      loadInitialDataRef.current();
-    } else if (status === "unauthenticated") {
-      console.log("[Home Page] User unauthenticated, resetting data.");
+    if (status === "unauthenticated") {
       resetRef.current();
     }
-  }, [status, session, isStateRestored]);
+  }, [status]);
 
   // New useEffect for logging state changes, for better insight
   useEffect(() => {
@@ -601,7 +574,7 @@ export default function Home() {
   // Update address when location changes
   useEffect(() => {
     if (userLocation && userLocation.lat && userLocation.lng) {
-      // Only reverse geocode if no address is manually entered and user hasn't explicitly cleared it
+      // Auto-reverse geocode only if no manual address and not explicitly cleared
       if (
         (!userAddress || userAddress === "") &&
         !addressManuallyChanged &&
@@ -650,55 +623,47 @@ export default function Home() {
       setUserLocation({ lat: coordinates.lat, lng: coordinates.lng });
       setAddressManuallyChanged(true);
     } else {
-      // Clear coordinates
       setUserLocation(null);
     }
   }, []);
 
-  // Watch for userLocation changes to refresh WC list
+  // Simple rule: Load WC data only when userLocation has actual coordinates
   useEffect(() => {
     if (
+      status === "authenticated" &&
+      session &&
       resetRef.current &&
-      loadInitialDataRef.current &&
-      isStateRestored &&
-      status === "authenticated"
+      loadInitialDataRef.current
     ) {
       console.log(
-        "[Home] UserLocation changed, refreshing WC list:",
+        "[Home] UserLocation changed, loading WC data:",
         userLocation,
       );
-      // Refresh WC list when location changes (including when set to null)
       resetRef.current();
-      setTimeout(() => {
-        loadInitialDataRef.current();
-      }, 100);
+      loadInitialDataRef.current();
     }
-  }, [userLocation, isStateRestored, status]);
+  }, [userLocation, status, session]);
 
-  // Watch for address clearing to trigger automatic location detection (only if not explicitly cleared)
+  // Automatic geolocation only for new users (no saved address, not manually changed, not explicitly cleared)
   useEffect(() => {
-    // If address is cleared and we don't have automatic location yet, but user hasn't explicitly cleared it
     if (
+      status === "authenticated" &&
+      session &&
       !userAddress &&
       !addressManuallyChanged &&
-      !userLocation &&
       !userExplicitlyClearedAddress &&
+      !userLocation &&
       navigator.geolocation &&
       locationPermission === "granted"
     ) {
-      console.log(
-        "[Home] Address cleared (not explicitly by user), triggering automatic location detection",
-      );
+      console.log("[Home] New user - starting automatic geolocation");
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
           setUserLocation({ lat: latitude, lng: longitude });
         },
         (error) => {
-          console.log(
-            "Auto location detection after address clear failed:",
-            error,
-          );
+          console.log("Automatic geolocation failed:", error);
         },
         {
           enableHighAccuracy: false,
@@ -708,10 +673,12 @@ export default function Home() {
       );
     }
   }, [
+    status,
+    session,
     userAddress,
     addressManuallyChanged,
-    userLocation,
     userExplicitlyClearedAddress,
+    userLocation,
     locationPermission,
   ]);
 
@@ -990,19 +957,80 @@ export default function Home() {
                 📍 {t("userAddress")}
               </label>
               <div style={{ position: "relative" }}>
-                <AddressAutocomplete
-                  value={userAddress}
-                  onChange={handleAddressChange}
-                  onCoordinatesChange={handleCoordinatesChange}
-                  onBlur={() => {
-                    console.log("[Home] Address field blur event");
-                  }}
-                  placeholder={t("addressPlaceholder")}
-                  style={{
-                    ...styles.addressField,
-                    borderColor: addressManuallyChanged ? "#28a745" : "#ddd",
-                  }}
-                />
+                <div style={{ position: "relative", display: "flex" }}>
+                  <AddressAutocomplete
+                    value={userAddress}
+                    onChange={handleAddressChange}
+                    onCoordinatesChange={handleCoordinatesChange}
+                    onBlur={() => {
+                      console.log("[Home] Address field blur event");
+                    }}
+                    placeholder={t("addressPlaceholder")}
+                    style={{
+                      ...styles.addressField,
+                      borderColor: addressManuallyChanged ? "#28a745" : "#ddd",
+                    }}
+                  />
+                  <button
+                    onClick={() => {
+                      setUserExplicitlyClearedAddress(false);
+                      if (
+                        navigator.geolocation &&
+                        locationPermission === "granted"
+                      ) {
+                        navigator.geolocation.getCurrentPosition(
+                          (position) => {
+                            const { latitude, longitude } = position.coords;
+                            setUserLocation({
+                              lat: latitude,
+                              lng: longitude,
+                            });
+                          },
+                          (error) => {
+                            console.log(
+                              "Auto location detection after re-enable failed:",
+                              error,
+                            );
+                          },
+                          {
+                            enableHighAccuracy: false,
+                            timeout: 5000,
+                            maximumAge: 300000,
+                          },
+                        );
+                      }
+                    }}
+                    style={{
+                      position: "absolute",
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                      width: 40,
+                      backgroundColor: "transparent",
+                      border: "none",
+                      cursor: "pointer",
+                      display: "inline-block",
+                      height: "5em",
+                      backgroundColor: "#007bff",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "4px",
+                      fontSize: "0.8rem",
+                      transition: "background-color 0.2s ease",
+                      lineHeight: "3em",
+                      padding: "4px 8px",
+                      fontWeight: "bold",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.backgroundColor = "#0056b3";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.backgroundColor = "#007bff";
+                    }}
+                  >
+                    GPS
+                  </button>
+                </div>
                 {isGeolocatingAddress && (
                   <div
                     style={{
@@ -1051,7 +1079,8 @@ export default function Home() {
                 {!userLocation &&
                   !userAddress &&
                   !isGeolocatingAddress &&
-                  !userExplicitlyClearedAddress && (
+                  !userExplicitlyClearedAddress &&
+                  status === "authenticated" && (
                     <div
                       style={{
                         ...styles.coordinatesText,
@@ -1073,57 +1102,7 @@ export default function Home() {
                       alignItems: "center",
                       gap: "0.5rem",
                     }}
-                  >
-                    <span>📍 Lokalizacja wyłączona</span>
-                    <button
-                      onClick={() => {
-                        setUserExplicitlyClearedAddress(false);
-                        if (
-                          navigator.geolocation &&
-                          locationPermission === "granted"
-                        ) {
-                          navigator.geolocation.getCurrentPosition(
-                            (position) => {
-                              const { latitude, longitude } = position.coords;
-                              setUserLocation({
-                                lat: latitude,
-                                lng: longitude,
-                              });
-                            },
-                            (error) => {
-                              console.log(
-                                "Auto location detection after re-enable failed:",
-                                error,
-                              );
-                            },
-                            {
-                              enableHighAccuracy: false,
-                              timeout: 5000,
-                              maximumAge: 300000,
-                            },
-                          );
-                        }
-                      }}
-                      style={{
-                        padding: "4px 8px",
-                        backgroundColor: "#007bff",
-                        color: "white",
-                        border: "none",
-                        borderRadius: "4px",
-                        fontSize: "0.8rem",
-                        cursor: "pointer",
-                        transition: "background-color 0.2s ease",
-                      }}
-                      onMouseEnter={(e) => {
-                        e.target.style.backgroundColor = "#0056b3";
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.style.backgroundColor = "#007bff";
-                      }}
-                    >
-                      Włącz ponownie
-                    </button>
-                  </div>
+                  ></div>
                 )}
               </div>
             </div>
@@ -1134,8 +1113,20 @@ export default function Home() {
               {wcError && (
                 <p style={{ ...styles.infoMessage, color: "red" }}>{wcError}</p>
               )}
-              {!loadingWcs && !wcError && wcs.length === 0 && (
+              {!loadingWcs && !wcError && wcs.length === 0 && userLocation && (
                 <p style={styles.noWcsMessage}>{t("noWcsFound")}</p>
+              )}
+              {!loadingWcs && !wcError && wcs.length === 0 && !userLocation && (
+                <div
+                  style={{
+                    textAlign: "center",
+                    padding: "40px 20px",
+                    color: "#666",
+                    fontSize: "1.1rem",
+                  }}
+                >
+                  📍 Wprowadź adres aby zobaczyć toalety w okolicy
+                </div>
               )}
 
               {/* Geolocation not supported */}
@@ -1231,59 +1222,6 @@ export default function Home() {
                       }}
                     >
                       {t("enableLocationAccess")}
-                    </button>
-                  </div>
-                )}
-
-              {/* Location not available but permission granted */}
-              {!loadingWcs &&
-                !wcError &&
-                wcs.length > 0 &&
-                !userLocation &&
-                locationPermission === "granted" && (
-                  <div
-                    style={{
-                      textAlign: "center",
-                      padding: "15px",
-                      backgroundColor: "#e8f4f8",
-                      border: "1px solid #bee5eb",
-                      borderRadius: "8px",
-                      marginBottom: "20px",
-                      color: "#0c5460",
-                    }}
-                  >
-                    <div style={{ fontSize: "1.5rem", marginBottom: "5px" }}>
-                      🔄
-                    </div>
-                    <p
-                      style={{
-                        margin: "0",
-                        fontSize: "0.9rem",
-                        marginBottom: "10px",
-                      }}
-                    >
-                      {t("gettingLocation")}
-                    </p>
-                    <button
-                      onClick={() => window.location.reload()}
-                      style={{
-                        padding: "8px 16px",
-                        backgroundColor: "#007bff",
-                        color: "white",
-                        border: "none",
-                        borderRadius: "4px",
-                        fontSize: "0.8rem",
-                        cursor: "pointer",
-                        transition: "background-color 0.2s",
-                      }}
-                      onMouseEnter={(e) => {
-                        e.target.style.backgroundColor = "#0056b3";
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.style.backgroundColor = "#007bff";
-                      }}
-                    >
-                      🔄 Odśwież stronę
                     </button>
                   </div>
                 )}
