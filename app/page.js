@@ -553,6 +553,11 @@ export default function Home() {
         throw new Error(t("noSessionAvailable"));
       }
 
+      // Don't fetch data if no address and no location
+      if (!userAddress && !userLocation) {
+        return [];
+      }
+
       // Add location parameters if available
       let url = `/api/wcs?page=${page}&limit=${limit}`;
       if (userLocation && userLocation.lat && userLocation.lng) {
@@ -583,7 +588,7 @@ export default function Home() {
 
       return data;
     },
-    [session, t, userLocation],
+    [session, t, userLocation, userAddress],
   );
 
   // Calculate distance between two points in kilometers
@@ -751,6 +756,10 @@ export default function Home() {
       setAddressDetected(false);
       setUserLocation(null);
       setHasSetAddress(false);
+      // Reset WC list when address is cleared
+      if (resetRef.current) {
+        resetRef.current();
+      }
     } else {
       // Address has content, reset the explicitly cleared flag
       setHasSetAddress(true);
@@ -1232,7 +1241,7 @@ export default function Home() {
                 !isGeolocatingAddress && (
                   <p style={styles.noWcsMessage}>{t("noWcsFound")}</p>
                 )}
-              {!loadingWcs && !wcError && wcs.length === 0 && !userLocation && (
+              {!loadingWcs && !wcError && !userAddress && !userLocation && (
                 <div
                   style={{
                     textAlign: "center",
@@ -1342,200 +1351,205 @@ export default function Home() {
                   </div>
                 )}
 
-              {!loadingWcs && !wcError && filteredWcs.length > 0 && (
-                <>
-                  {userLocation && geolocationSupported && (
-                    <div
-                      style={{
-                        textAlign: "center",
-                        marginBottom: "15px",
-                        padding: "8px",
-                        backgroundColor: addressManuallyChanged
-                          ? "#e3f2fd"
-                          : "#e8f5e8",
-                        borderRadius: "4px",
-                        fontSize: "0.85rem",
-                        color: addressManuallyChanged ? "#1976d2" : "#2E7D32",
-                        border: addressManuallyChanged
-                          ? "1px solid #2196F3"
-                          : "1px solid #4CAF50",
-                      }}
-                    >
-                      {addressManuallyChanged
-                        ? t("locationSortedByAddress")
-                        : t("locationSorted")}
-                    </div>
-                  )}
-
-                  {!userLocation && !geolocationSupported && (
-                    <div
-                      style={{
-                        textAlign: "center",
-                        marginBottom: "15px",
-                        padding: "8px",
-                        backgroundColor: "#fff3cd",
-                        borderRadius: "4px",
-                        fontSize: "0.85rem",
-                        color: "#856404",
-                        border: "1px solid #ffeaa7",
-                      }}
-                    >
-                      {t("locationUnavailable")}
-                    </div>
-                  )}
-                  {!userLocation && geolocationSupported && (
-                    <div
-                      style={{
-                        textAlign: "center",
-                        marginBottom: "15px",
-                        padding: "8px",
-                        backgroundColor: "#f0f9ff",
-                        borderRadius: "4px",
-                        fontSize: "0.85rem",
-                        color: "#0369a1",
-                        border: "1px solid #bae6fd",
-                      }}
-                    >
-                      {t("distancesAfterLocation")}
-                    </div>
-                  )}
-                  <div className="responsive-table">
-                    {filteredWcs.map((wc) => (
-                      <Link
-                        key={wc.id}
-                        href={`/wc/edit/${wc.id}`}
-                        className="edit-icon"
-                        title={t("editIconTitle")}
-                      >
-                        <div className="table-row">
-                          <div
-                            className="table-cell"
-                            style={{ textAlign: "center" }}
-                          >
-                            {wc.gallery_photos &&
-                            wc.gallery_photos.length > 0 ? (
-                              <ImageSlideshow
-                                images={wc.gallery_photos}
-                                alt={wc.name || t("wcImage")}
-                                className="thumbnail-in-table"
-                                width={400}
-                                height={300}
-                              />
-                            ) : (
-                              <div className="thumbnail-placeholder">
-                                {t("noImage")}
-                              </div>
-                            )}
-                          </div>
-                          <div
-                            className="table-cell"
-                            style={{ textAlign: "center" }}
-                          >
-                            {wc.name}
-                          </div>
-                          <div
-                            className="table-cell"
-                            style={{ textAlign: "center" }}
-                          >
-                            <div style={{ marginBottom: "4px" }}>
-                              {wc.address || "N/A"}
-                            </div>
-                            {(wc.distance_km !== null &&
-                              wc.distance_km !== undefined) ||
-                            (wc.distance !== null &&
-                              wc.distance !== undefined) ? (
-                              <div
-                                style={{
-                                  fontSize: "0.9rem",
-                                  color: "#ffffff",
-                                  backgroundColor: "#2196F3",
-                                  padding: "2px 6px",
-                                  borderRadius: "12px",
-                                  fontWeight: "bold",
-                                  display: "inline-block",
-                                  marginTop: "2px",
-                                }}
-                              >
-                                📍{" "}
-                                {formatDistance(wc.distance_km || wc.distance)}
-                              </div>
-                            ) : null}
-                          </div>
-                          <div
-                            className="table-cell"
-                            style={{ textAlign: "center" }}
-                          >
-                            {wc.rating
-                              ? `${t("stars").repeat(Math.min(wc.rating, 10))} ${t("ratingOutOf10", { rating: wc.rating })}`
-                              : t("notRated")}
-                          </div>
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-
-                  {/* Loading more indicator */}
-                  {loadingMore && (
-                    <div
-                      style={{
-                        textAlign: "center",
-                        padding: "20px",
-                        fontSize: "1rem",
-                        color: "#666",
-                        backgroundColor: "#f8f9fa",
-                        border: "1px solid #e9ecef",
-                        borderRadius: "8px",
-                        margin: "20px 0",
-                        transition: "opacity 0.3s ease",
-                      }}
-                    >
+              {!loadingWcs &&
+                !wcError &&
+                filteredWcs.length > 0 &&
+                (userAddress || userLocation) && (
+                  <>
+                    {userLocation && geolocationSupported && (
                       <div
                         style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          gap: "10px",
+                          textAlign: "center",
+                          marginBottom: "15px",
+                          padding: "8px",
+                          backgroundColor: addressManuallyChanged
+                            ? "#e3f2fd"
+                            : "#e8f5e8",
+                          borderRadius: "4px",
+                          fontSize: "0.85rem",
+                          color: addressManuallyChanged ? "#1976d2" : "#2E7D32",
+                          border: addressManuallyChanged
+                            ? "1px solid #2196F3"
+                            : "1px solid #4CAF50",
+                        }}
+                      >
+                        {addressManuallyChanged
+                          ? t("locationSortedByAddress")
+                          : t("locationSorted")}
+                      </div>
+                    )}
+
+                    {!userLocation && !geolocationSupported && (
+                      <div
+                        style={{
+                          textAlign: "center",
+                          marginBottom: "15px",
+                          padding: "8px",
+                          backgroundColor: "#fff3cd",
+                          borderRadius: "4px",
+                          fontSize: "0.85rem",
+                          color: "#856404",
+                          border: "1px solid #ffeaa7",
+                        }}
+                      >
+                        {t("locationUnavailable")}
+                      </div>
+                    )}
+                    {!userLocation && geolocationSupported && (
+                      <div
+                        style={{
+                          textAlign: "center",
+                          marginBottom: "15px",
+                          padding: "8px",
+                          backgroundColor: "#f0f9ff",
+                          borderRadius: "4px",
+                          fontSize: "0.85rem",
+                          color: "#0369a1",
+                          border: "1px solid #bae6fd",
+                        }}
+                      >
+                        {t("distancesAfterLocation")}
+                      </div>
+                    )}
+                    <div className="responsive-table">
+                      {filteredWcs.map((wc) => (
+                        <Link
+                          key={wc.id}
+                          href={`/wc/edit/${wc.id}`}
+                          className="edit-icon"
+                          title={t("editIconTitle")}
+                        >
+                          <div className="table-row">
+                            <div
+                              className="table-cell"
+                              style={{ textAlign: "center" }}
+                            >
+                              {wc.gallery_photos &&
+                              wc.gallery_photos.length > 0 ? (
+                                <ImageSlideshow
+                                  images={wc.gallery_photos}
+                                  alt={wc.name || t("wcImage")}
+                                  className="thumbnail-in-table"
+                                  width={400}
+                                  height={300}
+                                />
+                              ) : (
+                                <div className="thumbnail-placeholder">
+                                  {t("noImage")}
+                                </div>
+                              )}
+                            </div>
+                            <div
+                              className="table-cell"
+                              style={{ textAlign: "center" }}
+                            >
+                              {wc.name}
+                            </div>
+                            <div
+                              className="table-cell"
+                              style={{ textAlign: "center" }}
+                            >
+                              <div style={{ marginBottom: "4px" }}>
+                                {wc.address || "N/A"}
+                              </div>
+                              {(wc.distance_km !== null &&
+                                wc.distance_km !== undefined) ||
+                              (wc.distance !== null &&
+                                wc.distance !== undefined) ? (
+                                <div
+                                  style={{
+                                    fontSize: "0.9rem",
+                                    color: "#ffffff",
+                                    backgroundColor: "#2196F3",
+                                    padding: "2px 6px",
+                                    borderRadius: "12px",
+                                    fontWeight: "bold",
+                                    display: "inline-block",
+                                    marginTop: "2px",
+                                  }}
+                                >
+                                  📍{" "}
+                                  {formatDistance(
+                                    wc.distance_km || wc.distance,
+                                  )}
+                                </div>
+                              ) : null}
+                            </div>
+                            <div
+                              className="table-cell"
+                              style={{ textAlign: "center" }}
+                            >
+                              {wc.rating
+                                ? `${t("stars").repeat(Math.min(wc.rating, 10))} ${t("ratingOutOf10", { rating: wc.rating })}`
+                                : t("notRated")}
+                            </div>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+
+                    {/* Loading more indicator */}
+                    {loadingMore && (
+                      <div
+                        style={{
+                          textAlign: "center",
+                          padding: "20px",
+                          fontSize: "1rem",
+                          color: "#666",
+                          backgroundColor: "#f8f9fa",
+                          border: "1px solid #e9ecef",
+                          borderRadius: "8px",
+                          margin: "20px 0",
+                          transition: "opacity 0.3s ease",
                         }}
                       >
                         <div
                           style={{
-                            width: "20px",
-                            height: "20px",
-                            border: "2px solid #e9ecef",
-                            borderTop: "2px solid #007bff",
-                            borderRadius: "50%",
-                            animation: "spin 1s linear infinite",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            gap: "10px",
                           }}
-                        ></div>
-                        {t("loadingMore")}
+                        >
+                          <div
+                            style={{
+                              width: "20px",
+                              height: "20px",
+                              border: "2px solid #e9ecef",
+                              borderTop: "2px solid #007bff",
+                              borderRadius: "50%",
+                              animation: "spin 1s linear infinite",
+                            }}
+                          ></div>
+                          {t("loadingMore")}
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
 
-                  {/* No more data indicator */}
-                  {(allDataLoaded || !hasMore) && wcs.length > 0 && (
-                    <div
-                      style={{
-                        textAlign: "center",
-                        padding: "20px",
-                        fontSize: "0.9rem",
-                        color: "#28a745",
-                        backgroundColor: "#f8f9fa",
-                        border: "1px solid #d4edda",
-                        borderRadius: "8px",
-                        margin: "20px 0",
-                        fontWeight: "500",
-                      }}
-                    >
-                      ✓ Wczytano {wcs.length}{" "}
-                      {totalCount > 0 && totalCount === wcs.length
-                        ? `z ${totalCount}`
-                        : ""}{" "}
-                      rekordów
-                    </div>
-                  )}
-                </>
-              )}
+                    {/* No more data indicator */}
+                    {(allDataLoaded || !hasMore) && wcs.length > 0 && (
+                      <div
+                        style={{
+                          textAlign: "center",
+                          padding: "20px",
+                          fontSize: "0.9rem",
+                          color: "#28a745",
+                          backgroundColor: "#f8f9fa",
+                          border: "1px solid #d4edda",
+                          borderRadius: "8px",
+                          margin: "20px 0",
+                          fontWeight: "500",
+                        }}
+                      >
+                        ✓ Wczytano {wcs.length}{" "}
+                        {totalCount > 0 && totalCount === wcs.length
+                          ? `z ${totalCount}`
+                          : ""}{" "}
+                        rekordów
+                      </div>
+                    )}
+                  </>
+                )}
             </div>
           </>
         ) : (
