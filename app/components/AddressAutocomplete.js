@@ -20,10 +20,12 @@ const AddressAutocomplete = ({
   const [geocodingStatus, setGeocodingStatus] = useState("");
   const [debugInfo, setDebugInfo] = useState("");
   const [addressFromSuggestion, setAddressFromSuggestion] = useState(false);
+  const [isGeocoding, setIsGeocoding] = useState(false);
 
   const inputRef = useRef(null);
   const suggestionsRef = useRef(null);
   const debounceRef = useRef(null);
+  const geocodingTimeoutRef = useRef(null);
   const autocompleteService = useRef(null);
   const geocoder = useRef(null);
   const placesService = useRef(null);
@@ -69,6 +71,9 @@ const AddressAutocomplete = ({
       window.removeEventListener("google-maps-loaded", initializeGoogleMaps);
       if (debounceRef.current) {
         clearTimeout(debounceRef.current);
+      }
+      if (geocodingTimeoutRef.current) {
+        clearTimeout(geocodingTimeoutRef.current);
       }
     };
   }, []);
@@ -347,6 +352,20 @@ const AddressAutocomplete = ({
       return;
     }
 
+    // Prevent multiple geocoding calls
+    if (isGeocoding) {
+      console.log(
+        `[AddressAutocomplete] Geocoding already in progress, skipping`,
+      );
+      return;
+    }
+
+    // Clear any existing timeout
+    if (geocodingTimeoutRef.current) {
+      clearTimeout(geocodingTimeoutRef.current);
+    }
+
+    setIsGeocoding(true);
     console.log(
       `[AddressAutocomplete] Geocoding (delayed) for coordinates: ${address}`,
     );
@@ -375,7 +394,7 @@ const AddressAutocomplete = ({
               );
 
               // Delay the callback by 500ms to avoid rapid updates
-              setTimeout(() => {
+              geocodingTimeoutRef.current = setTimeout(() => {
                 if (onCoordinatesChange) {
                   console.log(
                     `[AddressAutocomplete] Calling delayed onCoordinatesChange with:`,
@@ -390,6 +409,7 @@ const AddressAutocomplete = ({
                     `[AddressAutocomplete] onCoordinatesChange callback not provided (delayed)`,
                   );
                 }
+                setIsGeocoding(false);
               }, 500);
 
               setGeocodingStatus("✓ Współrzędne pobrane (Google)");
@@ -398,6 +418,7 @@ const AddressAutocomplete = ({
               console.log(
                 "[AddressAutocomplete] Google failed (delayed), trying Nominatim",
               );
+              setIsGeocoding(false);
               // Fallback to Nominatim
               fallbackGeocode(address).then((result) => {
                 if (result && onCoordinatesChange) {
@@ -408,11 +429,12 @@ const AddressAutocomplete = ({
                   );
 
                   // Delay the callback by 500ms
-                  setTimeout(() => {
+                  geocodingTimeoutRef.current = setTimeout(() => {
                     onCoordinatesChange(coords);
                     addDebugInfo(
                       `✓ GPS: ${coords.lat.toFixed(6)}, ${coords.lng.toFixed(6)} (Nominatim, delayed)`,
                     );
+                    setIsGeocoding(false);
                   }, 500);
 
                   setGeocodingStatus("✓ Współrzędne pobrane (Nominatim)");
@@ -421,6 +443,7 @@ const AddressAutocomplete = ({
                   setGeocodingStatus("⚠ Nie udało się pobrać współrzędnych");
                   addDebugInfo("❌ Geocoding failed (delayed)");
                   setTimeout(() => setGeocodingStatus(""), 3000);
+                  setIsGeocoding(false);
                   if (!onCoordinatesChange) {
                     console.warn(
                       `[AddressAutocomplete] onCoordinatesChange callback not provided for Nominatim fallback (delayed)`,
@@ -464,22 +487,23 @@ const AddressAutocomplete = ({
         }
       }
     } else {
-      console.log("[AddressAutocomplete] Using Nominatim only (delayed)");
-      // Use Nominatim fallback
+      // No Google Geocoding available, use Nominatim directly
+      console.log("[AddressAutocomplete] Using Nominatim directly (delayed)");
       const result = await fallbackGeocode(address);
       if (result && onCoordinatesChange) {
         const coords = { lat: result.lat, lng: result.lng };
         console.log(
-          `[AddressAutocomplete] Nominatim-only coordinates (delayed):`,
+          `[AddressAutocomplete] Nominatim coordinates (delayed):`,
           coords,
         );
 
         // Delay the callback by 500ms
-        setTimeout(() => {
+        geocodingTimeoutRef.current = setTimeout(() => {
           onCoordinatesChange(coords);
           addDebugInfo(
-            `✓ GPS: ${coords.lat.toFixed(6)}, ${coords.lng.toFixed(6)} (Nominatim, delayed)`,
+            `✓ GPS: ${coords.lat.toFixed(6)}, ${coords.lng.toFixed(6)} (Nominatim direct, delayed)`,
           );
+          setIsGeocoding(false);
         }, 500);
 
         setGeocodingStatus("✓ Współrzędne pobrane (Nominatim)");
@@ -488,9 +512,10 @@ const AddressAutocomplete = ({
         setGeocodingStatus("⚠ Nie udało się pobrać współrzędnych");
         addDebugInfo("❌ Geocoding failed (delayed)");
         setTimeout(() => setGeocodingStatus(""), 3000);
+        setIsGeocoding(false);
         if (!onCoordinatesChange) {
           console.warn(
-            `[AddressAutocomplete] onCoordinatesChange callback not provided for Nominatim-only (delayed)`,
+            `[AddressAutocomplete] onCoordinatesChange callback not provided for Nominatim direct (delayed)`,
           );
         }
       }

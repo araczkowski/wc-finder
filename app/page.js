@@ -300,6 +300,7 @@ export default function Home() {
   const [userExplicitlyClearedAddress, setUserExplicitlyClearedAddress] =
     useState(false);
   const [hasSetAddress, setHasSetAddress] = useState(false);
+  const [isLoadingLocation, setIsLoadingLocation] = useState(false);
 
   // Clear localStorage completely on first login to start fresh
   useEffect(() => {
@@ -555,7 +556,13 @@ export default function Home() {
 
       // Don't fetch data if no address and no location
       if (!userAddress && !userLocation) {
-        return [];
+        return {
+          data: [],
+          pagination: {
+            total: 0,
+            hasMore: false,
+          },
+        };
       }
 
       // Add location parameters if available
@@ -631,6 +638,7 @@ export default function Home() {
   // Store stable references to functions
   const loadInitialDataRef = useRef(loadInitialData);
   const resetRef = useRef(reset);
+  const locationTimeoutRef = useRef(null);
 
   // Update refs when functions change
   useEffect(() => {
@@ -645,13 +653,37 @@ export default function Home() {
     }
   }, [status]);
 
-  // Refresh WC list when user location changes (for GPS functionality)
+  // Refresh WC list when user location changes (for GPS functionality) with debouncing
   useEffect(() => {
-    if (status === "authenticated" && session && userLocation) {
-      console.log("[Home] User location changed, refreshing WC list");
-      resetRef.current();
-      loadInitialDataRef.current();
+    // Clear previous timeout
+    if (locationTimeoutRef.current) {
+      clearTimeout(locationTimeoutRef.current);
     }
+
+    if (status === "authenticated" && session && userLocation) {
+      console.log("[Home] User location changed, setting up debounced refresh");
+      setIsLoadingLocation(true);
+
+      // Debounce the location update to avoid multiple rapid calls
+      locationTimeoutRef.current = setTimeout(() => {
+        console.log("[Home] Executing debounced WC list refresh");
+        if (resetRef.current && loadInitialDataRef.current) {
+          resetRef.current();
+          loadInitialDataRef.current();
+        }
+        setIsLoadingLocation(false);
+      }, 600); // 600ms debounce to account for AddressAutocomplete's 500ms delay
+    } else {
+      // Reset loading state if conditions are not met
+      setIsLoadingLocation(false);
+    }
+
+    // Cleanup function
+    return () => {
+      if (locationTimeoutRef.current) {
+        clearTimeout(locationTimeoutRef.current);
+      }
+    };
   }, [userLocation, status, session]);
 
   // New useEffect for logging state changes, for better insight
@@ -770,29 +802,41 @@ export default function Home() {
   }, []);
 
   // Handle coordinates change from AddressAutocomplete
-  const handleCoordinatesChange = useCallback((coordinates) => {
-    console.log("[DEBUG] handleCoordinatesChange called with:", coordinates);
-    console.log(
-      "[DEBUG] handleCoordinatesChange - current localStorage before:",
-      {
-        userAddress: localStorage.getItem("userAddress"),
-        userLocation: localStorage.getItem("userLocation"),
-      },
-    );
-    if (coordinates) {
+  const handleCoordinatesChange = useCallback(
+    (coordinates) => {
+      console.log("[DEBUG] handleCoordinatesChange called with:", coordinates);
       console.log(
-        "[DEBUG] handleCoordinatesChange - calling setUserLocation, setAddressManuallyChanged, setHasSetAddress",
+        "[DEBUG] handleCoordinatesChange - current localStorage before:",
+        {
+          userAddress: localStorage.getItem("userAddress"),
+          userLocation: localStorage.getItem("userLocation"),
+        },
       );
-      setUserLocation({ lat: coordinates.lat, lng: coordinates.lng });
-      setAddressManuallyChanged(true);
-      setHasSetAddress(true);
-    } else {
-      console.log(
-        "[DEBUG] handleCoordinatesChange - calling setUserLocation(null)",
-      );
-      setUserLocation(null);
-    }
-  }, []);
+
+      // Prevent updates if already loading to avoid race conditions
+      if (isLoadingLocation) {
+        console.log(
+          "[DEBUG] handleCoordinatesChange - skipping update, already loading",
+        );
+        return;
+      }
+
+      if (coordinates) {
+        console.log(
+          "[DEBUG] handleCoordinatesChange - calling setUserLocation, setAddressManuallyChanged, setHasSetAddress",
+        );
+        setUserLocation({ lat: coordinates.lat, lng: coordinates.lng });
+        setAddressManuallyChanged(true);
+        setHasSetAddress(true);
+      } else {
+        console.log(
+          "[DEBUG] handleCoordinatesChange - calling setUserLocation(null)",
+        );
+        setUserLocation(null);
+      }
+    },
+    [isLoadingLocation],
+  );
 
   // Simple rule: Load WC data only when userLocation has actual coordinates
   useEffect(() => {
@@ -1230,29 +1274,36 @@ export default function Home() {
 
             {/* WC List Display */}
             <div style={styles.wcListContainer}>
-              {loadingWcs && <p style={styles.loader}>{t("loadingWcs")}</p>}
+              {(loadingWcs || isLoadingLocation) && (
+                <p style={styles.loader}>{t("loadingWcs")}</p>
+              )}
               {wcError && (
                 <p style={{ ...styles.infoMessage, color: "red" }}>{wcError}</p>
               )}
               {!loadingWcs &&
+                !isLoadingLocation &&
                 !wcError &&
                 wcs.length === 0 &&
                 userLocation &&
                 !isGeolocatingAddress && (
                   <p style={styles.noWcsMessage}>{t("noWcsFound")}</p>
                 )}
-              {!loadingWcs && !wcError && !userAddress && !userLocation && (
-                <div
-                  style={{
-                    textAlign: "center",
-                    padding: "40px 20px",
-                    color: "#666",
-                    fontSize: "1.1rem",
-                  }}
-                >
-                  📍 Wprowadź adres aby zobaczyć toalety w okolicy
-                </div>
-              )}
+              {!loadingWcs &&
+                !isLoadingLocation &&
+                !wcError &&
+                !userAddress &&
+                !userLocation && (
+                  <div
+                    style={{
+                      textAlign: "center",
+                      padding: "40px 20px",
+                      color: "#666",
+                      fontSize: "1.1rem",
+                    }}
+                  >
+                    📍 Wprowadź adres aby zobaczyć toalety w okolicy
+                  </div>
+                )}
 
               {/* Geolocation not supported */}
               {!loadingWcs &&
@@ -1352,6 +1403,7 @@ export default function Home() {
                 )}
 
               {!loadingWcs &&
+                !isLoadingLocation &&
                 !wcError &&
                 filteredWcs.length > 0 &&
                 (userAddress || userLocation) && (
