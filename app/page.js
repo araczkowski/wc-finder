@@ -72,7 +72,7 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    justifyContent: "space-evenly",
+    justifyContent: "flex-start",
     padding: "3px",
     textAlign: "center",
     maxWidth: "500px",
