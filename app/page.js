@@ -1302,7 +1302,7 @@ export default function Home() {
                       fontSize: "1.1rem",
                     }}
                   >
-                    ⚠️ Wprowadź adres lub wykryj automatycznie przyciskiem GPS
+                    🛟 Wprowadź adres lub wykryj automatycznie przyciskiem GPS
                     aby zobaczyć toalety w okolicy
                   </div>
                 )}

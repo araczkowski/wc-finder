@@ -32,8 +32,8 @@ const AddressAutocomplete = ({
 
   const addDebugInfo = (message) => {
     console.log(`[AddressAutocomplete] ${message}`);
-    setDebugInfo(message);
-    setTimeout(() => setDebugInfo(""), 30000);
+    // setDebugInfo(message);
+    // setTimeout(() => setDebugInfo(""), 30000);
   };
 
   // Initialize Google Maps services
