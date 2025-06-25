@@ -32,9 +32,11 @@ export default function RegisterPage() {
     };
   }, []);
 
-  // Redirect if already signed in
+  // Redirect if already signed in and clear localStorage
   useEffect(() => {
     if (sessionStatus === "authenticated") {
+      console.log("[Register] localStorage cleared after successful login");
+      localStorage.clear();
       router.push("/");
     }
   }, [sessionStatus, router]);

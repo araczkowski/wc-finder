@@ -137,9 +137,11 @@ export default function SignInPage() {
     };
   }, []);
 
-  // Redirect if already signed in
+  // Redirect if already signed in and clear localStorage
   useEffect(() => {
     if (sessionStatus === "authenticated") {
+      console.log("[SignIn] localStorage cleared after successful login");
+      localStorage.clear();
       router.push(searchParams.get("callbackUrl") || "/");
     }
   }, [sessionStatus, router, searchParams]);
