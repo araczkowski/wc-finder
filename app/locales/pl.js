@@ -68,7 +68,7 @@ export const pl = {
   // Location and Permissions
   locationRequired: "Lokalizacja wymagana",
   locationPermissionMessage:
-    "Aby korzystać z aplikacji i zobaczyć najbliższe WC, musisz zezwolić aplikacji na używanie danych o lokalizacji.",
+    "Aby wykrywać Twoją lokalizację, zezwól aplikacji na używanie danych o lokalizacji.",
   enableLocationAccess: "Włącz dostęp do lokalizacji",
   locationSorted: "📍 WC posortowane według odległości od Twojej lokalizacji",
   locationUnavailable:

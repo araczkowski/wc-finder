@@ -516,6 +516,15 @@ export default function Home() {
     }
   }, [status]);
 
+  // Refresh WC list when user location changes (for GPS functionality)
+  useEffect(() => {
+    if (status === "authenticated" && session && userLocation) {
+      console.log("[Home] User location changed, refreshing WC list");
+      resetRef.current();
+      loadInitialDataRef.current();
+    }
+  }, [userLocation, status, session]);
+
   // New useEffect for logging state changes, for better insight
   useEffect(() => {
     console.log("[Home Page State Update] wcs:", wcs);
@@ -524,79 +533,54 @@ export default function Home() {
   }, [wcs, loadingWcs, wcError]);
 
   // Reverse geocode user location to get address
-  const reverseGeocode = useCallback(
-    async (lat, lng) => {
-      setIsGeolocatingAddress(true);
-      try {
-        const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+  const reverseGeocode = useCallback(async (lat, lng) => {
+    setIsGeolocatingAddress(true);
+    try {
+      const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
-        if (apiKey) {
-          // Use Google Maps API
-          const response = await fetch(
-            `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}&language=pl`,
-          );
-          const data = await response.json();
-
-          if (data.status === "OK" && data.results.length > 0) {
-            // Only set address if no manual address exists and user hasn't explicitly cleared it
-            if (
-              (!userAddress || userAddress === "") &&
-              !addressManuallyChanged &&
-              !userExplicitlyClearedAddress
-            ) {
-              setUserAddress(data.results[0].formatted_address);
-              setAddressDetected(true);
-            }
-            return;
-          }
-        }
-
-        // Fallback to Nominatim (OpenStreetMap)
+      if (apiKey) {
+        // Use Google Maps API
         const response = await fetch(
-          `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=16&addressdetails=1&accept-language=pl`,
+          `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}&language=pl`,
         );
         const data = await response.json();
 
-        if (data && data.display_name) {
-          // Only set address if no manual address exists and user hasn't explicitly cleared it
-          if (
-            (!userAddress || userAddress === "") &&
-            !addressManuallyChanged &&
-            !userExplicitlyClearedAddress
-          ) {
-            setUserAddress(data.display_name);
-            setAddressDetected(true);
-          }
-        }
-      } catch (error) {
-        console.error("Reverse geocoding failed:", error);
-        // Only set coordinate address if no manual address exists and user hasn't explicitly cleared it
-        if (
-          (!userAddress || userAddress === "") &&
-          !addressManuallyChanged &&
-          !userExplicitlyClearedAddress
-        ) {
-          setUserAddress(`${lat.toFixed(6)}, ${lng.toFixed(6)}`);
+        if (data.status === "OK" && data.results.length > 0) {
+          setUserAddress(data.results[0].formatted_address);
           setAddressDetected(true);
+          return;
         }
-      } finally {
-        setIsGeolocatingAddress(false);
       }
-    },
-    [userAddress, addressManuallyChanged, userExplicitlyClearedAddress],
-  );
 
-  // Update address when location changes
-  useEffect(() => {
-    if (userLocation && userLocation.lat && userLocation.lng) {
-      // Auto-reverse geocode only if no manual address and not explicitly cleared
-      if (
-        (!userAddress || userAddress === "") &&
-        !addressManuallyChanged &&
-        !userExplicitlyClearedAddress
-      ) {
-        reverseGeocode(userLocation.lat, userLocation.lng);
+      // Fallback to Nominatim (OpenStreetMap)
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=16&addressdetails=1&accept-language=pl`,
+      );
+      const data = await response.json();
+
+      if (data && data.display_name) {
+        setUserAddress(data.display_name);
+        setAddressDetected(true);
       }
+    } catch (error) {
+      console.error("Reverse geocoding failed:", error);
+      setUserAddress(`${lat.toFixed(6)}, ${lng.toFixed(6)}`);
+      setAddressDetected(true);
+    } finally {
+      setIsGeolocatingAddress(false);
+    }
+  }, []);
+
+  // Update address when location changes (only for automatic location detection, not GPS button)
+  useEffect(() => {
+    if (
+      userLocation &&
+      (!userAddress || userAddress === "") &&
+      !addressManuallyChanged &&
+      !userExplicitlyClearedAddress &&
+      !isGeolocatingAddress // Don't interfere with GPS button geocoding
+    ) {
+      reverseGeocode(userLocation.lat, userLocation.lng);
     }
   }, [
     userLocation,
@@ -604,6 +588,7 @@ export default function Home() {
     addressManuallyChanged,
     userExplicitlyClearedAddress,
     reverseGeocode,
+    isGeolocatingAddress,
   ]);
 
   // Handle manual address change
@@ -987,32 +972,131 @@ export default function Home() {
                     }}
                   />
                   <button
+                    disabled={
+                      !geolocationSupported ||
+                      locationPermission === "denied" ||
+                      locationPermission === "unsupported"
+                    }
                     onClick={() => {
+                      console.log("[GPS Button] Starting GPS location request");
+
+                      // 1. Czyścimy pole Twoja lokalizacja i współrzędne GPS
+                      setUserAddress("");
+                      setAddressDetected(false);
+                      setAddressManuallyChanged(false);
                       setUserExplicitlyClearedAddress(false);
-                      if (
-                        navigator.geolocation &&
-                        locationPermission === "granted"
-                      ) {
+                      setUserLocation(null);
+
+                      // Resetujemy listę WC aby wyczyścić poprzednie wyniki
+                      if (resetRef.current) {
+                        resetRef.current();
+                      }
+
+                      // 2. Pobieramy aktualną pozycję użytkownika
+                      if (navigator.geolocation) {
+                        setIsGeolocatingAddress(true);
                         navigator.geolocation.getCurrentPosition(
-                          (position) => {
+                          async (position) => {
                             const { latitude, longitude } = position.coords;
-                            setUserLocation({
-                              lat: latitude,
-                              lng: longitude,
-                            });
+                            console.log(
+                              "[GPS Button] Got coordinates:",
+                              latitude,
+                              longitude,
+                            );
+
+                            // 3. Zamieniamy uzyskaną pozycję na adres
+                            try {
+                              const apiKey =
+                                process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+                              let addressFound = false;
+
+                              if (apiKey) {
+                                // Próbujemy z Google Maps API
+                                const response = await fetch(
+                                  `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}&language=pl`,
+                                );
+                                const data = await response.json();
+
+                                if (
+                                  data.status === "OK" &&
+                                  data.results.length > 0
+                                ) {
+                                  setUserAddress(
+                                    data.results[0].formatted_address,
+                                  );
+                                  setAddressDetected(true);
+                                  addressFound = true;
+                                  console.log(
+                                    "[GPS Button] Address from Google:",
+                                    data.results[0].formatted_address,
+                                  );
+                                }
+                              }
+
+                              if (!addressFound) {
+                                // Fallback do Nominatim
+                                const response = await fetch(
+                                  `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=16&addressdetails=1&accept-language=pl`,
+                                );
+                                const data = await response.json();
+
+                                if (data && data.display_name) {
+                                  setUserAddress(data.display_name);
+                                  setAddressDetected(true);
+                                  console.log(
+                                    "[GPS Button] Address from Nominatim:",
+                                    data.display_name,
+                                  );
+                                } else {
+                                  // Fallback do współrzędnych
+                                  setUserAddress(
+                                    `${latitude.toFixed(6)}, ${longitude.toFixed(6)}`,
+                                  );
+                                  setAddressDetected(true);
+                                }
+                              }
+                            } catch (error) {
+                              console.error(
+                                "[GPS Button] Reverse geocoding failed:",
+                                error,
+                              );
+                              // Fallback do współrzędnych
+                              setUserAddress(
+                                `${latitude.toFixed(6)}, ${longitude.toFixed(6)}`,
+                              );
+                              setAddressDetected(true);
+                            }
+
+                            setIsGeolocatingAddress(false);
+
+                            // 4. Na końcu wywołujemy handleCoordinatesChange tak jak po Enter w polu adresu
+                            setTimeout(() => {
+                              console.log(
+                                "[GPS Button] Calling handleCoordinatesChange with:",
+                                { lat: latitude, lng: longitude },
+                              );
+                              handleCoordinatesChange({
+                                lat: latitude,
+                                lng: longitude,
+                              });
+                            }, 1000);
                           },
                           (error) => {
-                            console.log(
-                              "Auto location detection after re-enable failed:",
+                            console.error(
+                              "[GPS Button] Geolocation failed:",
                               error,
                             );
+                            setLocationError(t("locationError"));
+                            setIsGeolocatingAddress(false);
                           },
                           {
-                            enableHighAccuracy: false,
-                            timeout: 5000,
-                            maximumAge: 300000,
+                            enableHighAccuracy: true,
+                            timeout: 10000,
+                            maximumAge: 0, // Zawsze pobieraj świeżą lokalizację
                           },
                         );
+                      } else {
+                        setLocationError(t("locationNotSupported"));
                       }
                     }}
                     style={{
@@ -1023,10 +1107,20 @@ export default function Home() {
                       width: 40,
                       backgroundColor: "transparent",
                       border: "none",
-                      cursor: "pointer",
+                      cursor:
+                        !geolocationSupported ||
+                        locationPermission === "denied" ||
+                        locationPermission === "unsupported"
+                          ? "not-allowed"
+                          : "pointer",
                       display: "inline-block",
                       height: "5em",
-                      backgroundColor: "#007bff",
+                      backgroundColor:
+                        !geolocationSupported ||
+                        locationPermission === "denied" ||
+                        locationPermission === "unsupported"
+                          ? "#cccccc"
+                          : "#007bff",
                       color: "white",
                       border: "none",
                       borderRadius: "4px",
@@ -1035,6 +1129,12 @@ export default function Home() {
                       lineHeight: "3em",
                       padding: "4px 8px",
                       fontWeight: "bold",
+                      opacity:
+                        !geolocationSupported ||
+                        locationPermission === "denied" ||
+                        locationPermission === "unsupported"
+                          ? 0.5
+                          : 1,
                     }}
                     onMouseEnter={(e) => {
                       e.target.style.backgroundColor = "#0056b3";
