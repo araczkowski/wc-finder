@@ -137,11 +137,46 @@ export default function SignInPage() {
     };
   }, []);
 
-  // Redirect if already signed in and clear localStorage
+  // Redirect if already signed in and preserve location data
   useEffect(() => {
     if (sessionStatus === "authenticated") {
-      console.log("[SignIn] localStorage cleared after successful login");
+      console.log(
+        "[SignIn] Preserving location data and clearing localStorage after successful login",
+      );
+
+      // Preserve location data before clearing
+      const userAddress = localStorage.getItem("userAddress");
+      const userLocation = localStorage.getItem("userLocation");
+      const addressDetected = localStorage.getItem("addressDetected");
+      const addressManuallyChanged = localStorage.getItem(
+        "addressManuallyChanged",
+      );
+      const hasSetAddress = localStorage.getItem("hasSetAddress");
+
+      console.log("[SignIn] Preserving location data:", {
+        userAddress,
+        userLocation,
+        addressDetected,
+        addressManuallyChanged,
+        hasSetAddress,
+      });
+
       localStorage.clear();
+
+      // Restore location data after clearing
+      if (userAddress) localStorage.setItem("userAddress", userAddress);
+      if (userLocation) localStorage.setItem("userLocation", userLocation);
+      if (addressDetected)
+        localStorage.setItem("addressDetected", addressDetected);
+      if (addressManuallyChanged)
+        localStorage.setItem("addressManuallyChanged", addressManuallyChanged);
+      if (hasSetAddress) localStorage.setItem("hasSetAddress", hasSetAddress);
+
+      // Mark that user has logged in this session
+      localStorage.setItem("hasLoggedInThisSession", "true");
+
+      console.log("[SignIn] Location data restored and session marked");
+
       router.push(searchParams.get("callbackUrl") || "/");
     }
   }, [sessionStatus, router, searchParams]);

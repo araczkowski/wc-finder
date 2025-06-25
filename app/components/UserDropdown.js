@@ -41,6 +41,10 @@ const UserDropdown = ({ session }) => {
 
   const handleSignOut = async () => {
     setIsOpen(false);
+    // Clear session flag from localStorage to reset login state
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("hasLoggedInThisSession");
+    }
     await signOut();
   };
 
