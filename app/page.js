@@ -1619,9 +1619,9 @@ export default function Home() {
               }}
             >
               <Image
-                src="/icons/person-searching-wc.svg"
+                src="/icons/logo.png"
                 alt={t("searchingIcon")}
-                width={128}
+                width={300}
                 height={128}
                 style={{ marginBottom: "1.5rem" }}
                 priority
