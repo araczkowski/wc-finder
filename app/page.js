@@ -211,6 +211,7 @@ const styles = {
     alignItems: "center",
     gap: "0.5rem",
     width: "100%",
+    justifyContent: "flex-end",
   },
   userInfo: {
     display: "flex",
@@ -1327,6 +1328,7 @@ export default function Home() {
                       padding: "40px 20px",
                       color: "#666",
                       fontSize: "1.1rem",
+                      marginTop: "20px",
                     }}
                   >
                     🛟 Wprowadź adres lub wykryj automatycznie przyciskiem GPS
