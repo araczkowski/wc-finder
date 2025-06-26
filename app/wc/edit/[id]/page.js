@@ -123,7 +123,6 @@ const styles = {
     position: "absolute",
     top: "20px",
     left: "20px",
-    backgroundColor: "#6c757d",
     color: "white",
     border: "none",
     borderRadius: "50%",
@@ -133,7 +132,7 @@ const styles = {
     alignItems: "center",
     justifyContent: "center",
     cursor: "pointer",
-    fontSize: "1em",
+    fontSize: "2em",
     textDecoration: "none",
     zIndex: "1000",
   },
@@ -933,7 +932,7 @@ export default function EditWcPage() {
     <div style={styles.formContainer}>
       <div style={{ ...styles.formCard, ...styles.formCardWithBack }}>
         <Link href="/" style={styles.backButton} title="Back to Home">
-          ←
+          ⬅️
         </Link>
         <h2
           style={{ marginBottom: "25px", color: "#333", textAlign: "center" }}

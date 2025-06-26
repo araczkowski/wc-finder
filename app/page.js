@@ -1365,8 +1365,8 @@ export default function Home() {
                       marginBottom: "20px",
                     }}
                   >
-                    🛟 Wpisz lokalizację lub naciśnij przycisk GPS, aby zobaczyć
-                    dostępne toalety w pobliżu.
+                    💁 Wpisz adres swojej lokalizacji lub naciśnij przycisk GPS,
+                    aby zobaczyć dostępne toalety w pobliżu.
                   </div>
                 )}
 
