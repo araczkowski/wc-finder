@@ -63,9 +63,9 @@ a {
 .table-row {
     display: flex;
     flex-direction: column;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ddd;
+    padding: 0;
+    margin-bottom: 0rem;
+    border: 0px solid #ddd;
     border-radius: 8px;
     background-color: #fafafa;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -126,7 +126,7 @@ a {
         flex-direction: column;
         padding: 1px;
         margin-bottom: 1rem;
-        border: 1px solid #ddd;
+        border: 0px;
         border-radius: 8px;
         background-color: #fafafa;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -161,7 +161,7 @@ a {
     }
 
     .table-cell {
-        padding: 0.75rem 0;
+        padding: 0;
     }
 }
 
@@ -205,6 +205,8 @@ a {
 .table-cell {
     word-break: break-word;
     overflow-wrap: break-word;
+    display: flex;
+    border: none;
 }
 
 /* Focus styles for keyboard navigation */
@@ -234,6 +236,7 @@ a {
     .table-cell {
         min-height: 44px;
         touch-action: manipulation;
+        padding: 0px;
     }
 
     .wc-actions a,

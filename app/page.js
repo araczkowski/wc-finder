@@ -1579,13 +1579,16 @@ export default function Home() {
                                     color: "#ffffff",
                                     backgroundColor: "#2196F3",
                                     padding: "2px 6px",
-                                    borderRadius: "12px",
+                                    borderRadius: "2em",
                                     fontWeight: "bold",
                                     display: "inline-block",
                                     marginTop: "2px",
+                                    whiteSpace: "nowrap",
+                                    height: "4em",
+                                    lineHeight: "4em",
                                   }}
                                 >
-                                  📍{" "}
+                                  🧭{" "}
                                   {formatDistance(
                                     wc.distance_km || wc.distance,
                                   )}
