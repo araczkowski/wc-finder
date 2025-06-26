@@ -109,18 +109,7 @@ const UserDropdown = ({ session }) => {
               className="dropdown-item"
               onClick={() => setIsOpen(false)}
             >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="currentColor"
-              >
-                <path
-                  d="M10,16c1.105,0,2,0.895,2,2v8c0,1.105-0.895,2-2,2H8v4h16v-4h-1.992c-1.102,0-2-0.895-2-2L20,12H8
-				v4H10z"
-                />
-              </svg>
-              O aplikacji
+              O aplikacji 🚾 🔎
             </Link>
 
             <button

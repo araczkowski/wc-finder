@@ -158,18 +158,23 @@ export default function AboutPage() {
       <main style={styles.mainContent}>
         <Link href="/" style={styles.backLink}>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-            <path fillRule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+            <path
+              fillRule="evenodd"
+              d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+            />
           </svg>
           Powrót do strony głównej
         </Link>
 
-        <h1 style={styles.title}>O aplikacji WC Finder</h1>
+        <h1 style={styles.title}>O aplikacji 🚾 🔎</h1>
 
         <div style={styles.section}>
           <p style={styles.paragraph}>
-            <strong>WC Finder</strong> to innowacyjna aplikacja webowa stworzona z myślą o pomocy użytkownikom
-            w znalezieniu najbliższych publicznych toalet. Nasza platforma łączy w sobie nowoczesne technologie
-            z praktycznym zastosowaniem, oferując kompleksowe rozwiązanie dla codziennych potrzeb.
+            <strong>WC Finder</strong> to innowacyjna aplikacja webowa stworzona
+            z myślą o pomocy użytkownikom w znalezieniu najbliższych publicznych
+            toalet. Nasza platforma łączy w sobie nowoczesne technologie z
+            praktycznym zastosowaniem, oferując kompleksowe rozwiązanie dla
+            codziennych potrzeb.
           </p>
         </div>
 
@@ -181,7 +186,8 @@ export default function AboutPage() {
               <div style={styles.featureText}>
                 <div style={styles.featureTitle}>Lokalizacja toalet</div>
                 <div style={styles.featureDescription}>
-                  Znajdź najbliższe publiczne toalety na podstawie Twojej aktualnej lokalizacji
+                  Znajdź najbliższe publiczne toalety na podstawie Twojej
+                  aktualnej lokalizacji
                 </div>
               </div>
             </li>
@@ -199,7 +205,8 @@ export default function AboutPage() {
               <div style={styles.featureText}>
                 <div style={styles.featureTitle}>Galeria zdjęć</div>
                 <div style={styles.featureDescription}>
-                  Przeglądaj zdjęcia toalet przed wizytą, dodawaj własne fotografie
+                  Przeglądaj zdjęcia toalet przed wizytą, dodawaj własne
+                  fotografie
                 </div>
               </div>
             </li>
@@ -227,7 +234,8 @@ export default function AboutPage() {
         <div style={styles.section}>
           <h2 style={styles.sectionTitle}>🚀 Technologie</h2>
           <p style={styles.paragraph}>
-            Aplikacja została zbudowana z wykorzystaniem najnowszych technologii webowych:
+            Aplikacja została zbudowana z wykorzystaniem najnowszych technologii
+            webowych:
           </p>
           <div style={styles.techStack}>
             <div style={styles.techItem}>Next.js 15</div>
@@ -242,23 +250,40 @@ export default function AboutPage() {
         <div style={styles.section}>
           <h2 style={styles.sectionTitle}>📱 Responsywność</h2>
           <p style={styles.paragraph}>
-            Aplikacja została zaprojektowana z myślą o urządzeniach mobilnych i jest w pełni responsywna.
-            Działa równie dobrze na smartfonach, tabletach i komputerach desktop. Interfejs automatycznie
-            dostosowuje się do rozmiaru ekranu, zapewniając optymalną funkcjonalność na każdym urządzeniu.
+            Aplikacja została zaprojektowana z myślą o urządzeniach mobilnych i
+            jest w pełni responsywna. Działa równie dobrze na smartfonach,
+            tabletach i komputerach desktop. Interfejs automatycznie dostosowuje
+            się do rozmiaru ekranu, zapewniając optymalną funkcjonalność na
+            każdym urządzeniu.
           </p>
         </div>
 
         <div style={styles.section}>
           <h2 style={styles.sectionTitle}>🌟 Dla kogo?</h2>
-          <p style={styles.paragraph}>
-            WC Finder jest idealny dla:
-          </p>
-          <ul style={{ ...styles.featureList, listStyle: "disc", paddingLeft: "2rem" }}>
-            <li style={{ marginBottom: "0.5rem", color: "#666" }}>Turystów zwiedzających nowe miasta</li>
-            <li style={{ marginBottom: "0.5rem", color: "#666" }}>Rodziców z małymi dziećmi</li>
-            <li style={{ marginBottom: "0.5rem", color: "#666" }}>Osób z problemami zdrowotnymi wymagającymi częstego korzystania z toalet</li>
-            <li style={{ marginBottom: "0.5rem", color: "#666" }}>Kierowców na długich trasach</li>
-            <li style={{ marginBottom: "0.5rem", color: "#666" }}>Wszystkich, którzy chcą mieć pewność dostępu do czystych toalet</li>
+          <p style={styles.paragraph}>WC Finder jest idealny dla:</p>
+          <ul
+            style={{
+              ...styles.featureList,
+              listStyle: "disc",
+              paddingLeft: "2rem",
+            }}
+          >
+            <li style={{ marginBottom: "0.5rem", color: "#666" }}>
+              Turystów zwiedzających nowe miasta
+            </li>
+            <li style={{ marginBottom: "0.5rem", color: "#666" }}>
+              Rodziców z małymi dziećmi
+            </li>
+            <li style={{ marginBottom: "0.5rem", color: "#666" }}>
+              Osób z problemami zdrowotnymi wymagającymi częstego korzystania z
+              toalet
+            </li>
+            <li style={{ marginBottom: "0.5rem", color: "#666" }}>
+              Kierowców na długich trasach
+            </li>
+            <li style={{ marginBottom: "0.5rem", color: "#666" }}>
+              Wszystkich, którzy chcą mieć pewność dostępu do czystych toalet
+            </li>
           </ul>
         </div>
 
@@ -266,8 +291,8 @@ export default function AboutPage() {
           <h2 style={styles.sectionTitle}>💡 Przyszłość projektu</h2>
           <p style={styles.paragraph}>
             Planujemy dalszy rozwój aplikacji, w tym dodanie funkcji offline,
-            powiadomień push o nowych toaletach w pobliżu, oraz integrację z mapami Google.
-            Twoje opinie i sugestie są dla nas bardzo ważne!
+            powiadomień push o nowych toaletach w pobliżu, oraz integrację z
+            mapami Google. Twoje opinie i sugestie są dla nas bardzo ważne!
           </p>
         </div>
 
@@ -277,8 +302,8 @@ export default function AboutPage() {
             <strong>Email:</strong> admin@sviete.pl
           </p>
           <p style={{ margin: "0.5rem 0", color: "#666" }}>
-            Jesteśmy otwarci na Twoje sugestie i zgłoszenia błędów.
-            Razem możemy uczynić tę aplikację jeszcze lepszą!
+            Jesteśmy otwarci na Twoje sugestie i zgłoszenia błędów. Razem możemy
+            uczynić tę aplikację jeszcze lepszą!
           </p>
         </div>
       </main>
