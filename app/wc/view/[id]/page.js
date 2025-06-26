@@ -11,7 +11,7 @@ const debounce = (func, delay) => {
   };
 };
 
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 import { useRouter, useParams } from "next/navigation";
 import { createClient } from "@supabase/supabase-js";
 import Link from "next/link";
@@ -715,163 +715,216 @@ export default function ViewWcPage() {
               paddingTop: "2rem",
             }}
           >
-            <h3 style={{ marginBottom: "1rem", color: "#333" }}>Twoja ocena</h3>
-
-            {ratingError && <p style={styles.formError}>{ratingError}</p>}
-
-            <div style={styles.form}>
-              <div>
-                <label style={styles.formLabel}>
-                  Oceń to WC ({userRating} / 10)
-                </label>
-                <div style={styles.starRatingContainer}>
-                  {[...Array(10)].map((_, index) => {
-                    const starValue = index + 1;
-                    return (
-                      <span
-                        key={starValue}
-                        style={{
-                          ...styles.star,
-                          color:
-                            starValue <= (userHoverRating || userRating)
-                              ? "#ffc107"
-                              : "#e4e5e9",
-                          cursor: ratingLoading ? "default" : "pointer",
-                        }}
-                        onClick={() => {
-                          if (!ratingLoading) {
-                            setUserRating(starValue);
-                            handleAutoSaveRating(starValue, userComment);
-                          }
-                        }}
-                        onMouseEnter={() =>
-                          !ratingLoading && setUserHoverRating(starValue)
-                        }
-                        onMouseLeave={() =>
-                          !ratingLoading && setUserHoverRating(0)
-                        }
-                      >
-                        ★
-                      </span>
-                    );
-                  })}
-                </div>
-              </div>
-
-              <div>
-                <label htmlFor="userComment" style={styles.formLabel}>
-                  Komentarz (opcjonalnie)
-                </label>
-                <textarea
-                  id="userComment"
-                  name="userComment"
-                  value={userComment}
-                  onChange={(e) => {
-                    setUserComment(e.target.value);
-                    handleAutoSaveRatingDebounced(userRating, e.target.value);
-                  }}
+            {session?.user?.email === "public@sviete.pl" ? (
+              <div
+                style={{
+                  textAlign: "center",
+                  padding: "2rem",
+                  backgroundColor: "#f8f9fa",
+                  borderRadius: "8px",
+                  border: "1px solid #dee2e6",
+                }}
+              >
+                <p
                   style={{
-                    ...styles.formInput,
-                    minHeight: "100px",
-                    resize: "vertical",
+                    fontSize: "1.1rem",
+                    color: "#333",
+                    marginBottom: "1rem",
                   }}
-                  placeholder="Podziel się swoim doświadczeniem z tym WC..."
-                  disabled={ratingLoading}
-                />
-              </div>
-
-              {/* Photo Upload Section */}
-              <div>
-                <label style={styles.formLabel}>Dodaj zdjęcia</label>
-                <input
-                  id="wcPhotos"
-                  type="file"
-                  multiple
-                  accept="image/*"
-                  capture="environment"
-                  onChange={handlePhotoSelection}
-                  style={styles.hiddenFileInput}
-                  disabled={photoUploadLoading || photoOptimizing}
-                />
-                <button
-                  type="button"
-                  onClick={() => document.getElementById("wcPhotos").click()}
-                  style={{
-                    ...styles.photoButton,
-                    opacity: photoUploadLoading || photoOptimizing ? 0.6 : 1,
-                    cursor:
-                      photoUploadLoading || photoOptimizing
-                        ? "not-allowed"
-                        : "pointer",
-                  }}
-                  disabled={photoUploadLoading || photoOptimizing}
                 >
-                  📷 Dodaj zdjęcia
-                </button>
-
-                {photoOptimizing && (
-                  <div
+                  Aby dodawać ocenę, komentować i dodawać zdjęcia musisz się{" "}
+                  <button
+                    onClick={async () => {
+                      // Clear session flag from localStorage
+                      if (typeof window !== "undefined") {
+                        localStorage.removeItem("hasLoggedInThisSession");
+                      }
+                      // Sign out and redirect to signin page
+                      await signOut({ callbackUrl: "/auth/signin" });
+                    }}
                     style={{
-                      padding: "10px",
-                      backgroundColor: "#e3f2fd",
-                      border: "1px solid #2196F3",
-                      borderRadius: "4px",
-                      marginTop: "10px",
-                      fontSize: "0.9rem",
-                      color: "#1976d2",
+                      background: "none",
+                      border: "none",
+                      color: "#007bff",
+                      textDecoration: "underline",
+                      cursor: "pointer",
+                      fontSize: "inherit",
+                      padding: 0,
                     }}
                   >
-                    🔄 Optymalizowanie zdjęć...
-                  </div>
-                )}
-
-                {optimizationInfo && (
-                  <div
-                    style={{
-                      padding: "10px",
-                      backgroundColor: "#e8f5e8",
-                      border: "1px solid #4caf50",
-                      borderRadius: "4px",
-                      marginTop: "10px",
-                      fontSize: "0.85rem",
-                      color: "#2e7d32",
-                    }}
-                  >
-                    ✅ {optimizationInfo.count} zdjęć zoptymalizowano!
-                    <br />
-                    📦 Rozmiar: {optimizationInfo.originalSize} →{" "}
-                    {optimizationInfo.optimizedSize}
-                    <br />
-                    💾 Oszczędność: {optimizationInfo.saved} (
-                    {optimizationInfo.compressionRatio})
-                  </div>
-                )}
-
-                {photoUploadLoading && (
-                  <div style={{ marginTop: "10px", textAlign: "center" }}>
-                    <p style={{ color: "#007bff", fontSize: "0.9rem" }}>
-                      📤 Przesyłanie zdjęć...
-                    </p>
-                  </div>
-                )}
-                {photoError && (
-                  <p style={{ ...styles.formError, marginTop: "5px" }}>
-                    {photoError}
-                  </p>
-                )}
+                    zalogować do aplikacji
+                  </button>
+                </p>
               </div>
+            ) : (
+              <>
+                <h3 style={{ marginBottom: "1rem", color: "#333" }}>
+                  Twoja ocena
+                </h3>
 
-              {ratingLoading && (
-                <div style={{ textAlign: "center", marginBottom: "10px" }}>
-                  <p style={{ color: "#007bff", fontSize: "0.9rem" }}>
-                    💾{" "}
-                    {hasUserRating
-                      ? "Aktualizowanie oceny..."
-                      : "Zapisywanie oceny..."}
-                  </p>
+                {ratingError && <p style={styles.formError}>{ratingError}</p>}
+
+                <div style={styles.form}>
+                  <div>
+                    <label style={styles.formLabel}>
+                      Oceń to WC ({userRating} / 10)
+                    </label>
+                    <div style={styles.starRatingContainer}>
+                      {[...Array(10)].map((_, index) => {
+                        const starValue = index + 1;
+                        return (
+                          <span
+                            key={starValue}
+                            style={{
+                              ...styles.star,
+                              color:
+                                starValue <= (userHoverRating || userRating)
+                                  ? "#ffc107"
+                                  : "#e4e5e9",
+                              cursor: ratingLoading ? "default" : "pointer",
+                            }}
+                            onClick={() => {
+                              if (!ratingLoading) {
+                                setUserRating(starValue);
+                                handleAutoSaveRating(starValue, userComment);
+                              }
+                            }}
+                            onMouseEnter={() =>
+                              !ratingLoading && setUserHoverRating(starValue)
+                            }
+                            onMouseLeave={() =>
+                              !ratingLoading && setUserHoverRating(0)
+                            }
+                          >
+                            ★
+                          </span>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="userComment" style={styles.formLabel}>
+                      Komentarz (opcjonalnie)
+                    </label>
+                    <textarea
+                      id="userComment"
+                      name="userComment"
+                      value={userComment}
+                      onChange={(e) => {
+                        setUserComment(e.target.value);
+                        handleAutoSaveRatingDebounced(
+                          userRating,
+                          e.target.value,
+                        );
+                      }}
+                      style={{
+                        ...styles.formInput,
+                        minHeight: "100px",
+                        resize: "vertical",
+                      }}
+                      placeholder="Podziel się swoim doświadczeniem z tym WC..."
+                      disabled={ratingLoading}
+                    />
+                  </div>
+
+                  {/* Photo Upload Section */}
+                  <div>
+                    <label style={styles.formLabel}>Dodaj zdjęcia</label>
+                    <input
+                      id="wcPhotos"
+                      type="file"
+                      multiple
+                      accept="image/*"
+                      capture="environment"
+                      onChange={handlePhotoSelection}
+                      style={styles.hiddenFileInput}
+                      disabled={photoUploadLoading || photoOptimizing}
+                    />
+                    <button
+                      type="button"
+                      onClick={() =>
+                        document.getElementById("wcPhotos").click()
+                      }
+                      style={{
+                        ...styles.photoButton,
+                        opacity:
+                          photoUploadLoading || photoOptimizing ? 0.6 : 1,
+                        cursor:
+                          photoUploadLoading || photoOptimizing
+                            ? "not-allowed"
+                            : "pointer",
+                      }}
+                      disabled={photoUploadLoading || photoOptimizing}
+                    >
+                      📷 Dodaj zdjęcia
+                    </button>
+
+                    {photoOptimizing && (
+                      <div
+                        style={{
+                          padding: "10px",
+                          backgroundColor: "#e3f2fd",
+                          border: "1px solid #2196F3",
+                          borderRadius: "4px",
+                          marginTop: "10px",
+                          fontSize: "0.9rem",
+                          color: "#1976d2",
+                        }}
+                      >
+                        🔄 Optymalizowanie zdjęć...
+                      </div>
+                    )}
+
+                    {optimizationInfo && (
+                      <div
+                        style={{
+                          padding: "10px",
+                          backgroundColor: "#e8f5e8",
+                          border: "1px solid #4caf50",
+                          borderRadius: "4px",
+                          marginTop: "10px",
+                          fontSize: "0.85rem",
+                          color: "#2e7d32",
+                        }}
+                      >
+                        ✅ {optimizationInfo.count} zdjęć zoptymalizowano!
+                        <br />
+                        📦 Rozmiar: {optimizationInfo.originalSize} →{" "}
+                        {optimizationInfo.optimizedSize}
+                        <br />
+                        💾 Oszczędność: {optimizationInfo.saved} (
+                        {optimizationInfo.compressionRatio})
+                      </div>
+                    )}
+
+                    {photoUploadLoading && (
+                      <div style={{ marginTop: "10px", textAlign: "center" }}>
+                        <p style={{ color: "#007bff", fontSize: "0.9rem" }}>
+                          📤 Przesyłanie zdjęć...
+                        </p>
+                      </div>
+                    )}
+                    {photoError && (
+                      <p style={{ ...styles.formError, marginTop: "5px" }}>
+                        {photoError}
+                      </p>
+                    )}
+                  </div>
+
+                  {ratingLoading && (
+                    <div style={{ textAlign: "center", marginBottom: "10px" }}>
+                      <p style={{ color: "#007bff", fontSize: "0.9rem" }}>
+                        💾{" "}
+                        {hasUserRating
+                          ? "Aktualizowanie oceny..."
+                          : "Zapisywanie oceny..."}
+                      </p>
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
+              </>
+            )}
           </div>
         )}
 

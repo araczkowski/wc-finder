@@ -10,7 +10,7 @@ const debounce = (func, delay) => {
     timeoutId = setTimeout(() => func.apply(null, args), delay);
   };
 };
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 import { useRouter, useParams } from "next/navigation";
 import { createClient } from "@supabase/supabase-js";
 import Link from "next/link";
@@ -1227,131 +1227,176 @@ export default function EditWcPage() {
             paddingTop: "2rem",
           }}
         >
-          <h3 style={{ marginBottom: "1rem", color: "#333" }}>
-            {t("YourRating")} ({userRating} / 10)
-          </h3>
-
-          {ratingError && <p style={styles.formError}>{ratingError}</p>}
-
-          <div style={styles.form}>
-            <div>
-              <div style={styles.starRatingContainer}>
-                {[...Array(10)].map((_, index) => {
-                  const starValue = index + 1;
-                  return (
-                    <span
-                      key={starValue}
-                      style={{
-                        ...styles.star,
-                        color:
-                          starValue <= (userHoverRating || userRating)
-                            ? "#ffc107"
-                            : "#e4e5e9",
-                        cursor: ratingLoading ? "default" : "pointer",
-                      }}
-                      onClick={() => {
-                        if (!ratingLoading) {
-                          setUserRating(starValue);
-                          handleAutoSaveRating(starValue, userComment);
-                        }
-                      }}
-                      onMouseEnter={() =>
-                        !ratingLoading && setUserHoverRating(starValue)
-                      }
-                      onMouseLeave={() =>
-                        !ratingLoading && setUserHoverRating(0)
-                      }
-                      onKeyDown={(e) => {
-                        if (
-                          !ratingLoading &&
-                          (e.key === "Enter" || e.key === " ")
-                        ) {
-                          setUserRating(starValue);
-                          handleAutoSaveRating(starValue, userComment);
-                        }
-                      }}
-                      aria-label={`Rate ${starValue} out of 10 stars`}
-                      aria-disabled={ratingLoading}
-                    >
-                      ★
-                    </span>
-                  );
-                })}
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="userComment" style={styles.formLabel}>
-                {t("optionalComment")}
-              </label>
-              <textarea
-                id="userComment"
-                name="userComment"
-                value={userComment}
-                onChange={(e) => {
-                  setUserComment(e.target.value);
-                  handleAutoSaveRatingDebounced(userRating, e.target.value);
-                }}
+          {session?.user?.email === "public@sviete.pl" ? (
+            <div
+              style={{
+                textAlign: "center",
+                padding: "2rem",
+                backgroundColor: "#f8f9fa",
+                borderRadius: "8px",
+                border: "1px solid #dee2e6",
+              }}
+            >
+              <p
                 style={{
-                  ...styles.formInput,
-                  minHeight: "100px",
-                  resize: "vertical",
+                  fontSize: "1.1rem",
+                  color: "#333",
+                  marginBottom: "1rem",
                 }}
-                placeholder="Share your experience with this WC..."
-                disabled={ratingLoading}
-              />
-            </div>
-
-            {/* Photo Upload Section */}
-            <div>
-              {" "}
-              <input
-                id="wcPhotos"
-                name="wcPhotos"
-                type="file"
-                accept="image/*"
-                multiple
-                capture="environment"
-                onChange={handlePhotoSelection}
-                style={styles.hiddenFileInput}
-                disabled={photoUploadLoading}
-              />
-              {ratingLoading && (
-                <div style={{ textAlign: "center", marginBottom: "10px" }}>
-                  <p style={{ color: "#007bff", fontSize: "0.9rem" }}>
-                    💾{" "}
-                    {hasUserRating
-                      ? "Aktualizowanie oceny..."
-                      : "Zapisywanie oceny..."}
-                  </p>
-                </div>
-              )}
-              <button
-                type="button"
-                onClick={() => document.getElementById("wcPhotos").click()}
-                style={{
-                  ...styles.photoButton,
-                  opacity: photoUploadLoading ? 0.6 : 1,
-                  cursor: photoUploadLoading ? "not-allowed" : "pointer",
-                }}
-                disabled={photoUploadLoading}
               >
-                📷 Dodaj zdjęcie
-              </button>
-              {photoUploadLoading && (
-                <div style={{ marginTop: "10px", textAlign: "center" }}>
-                  <p style={{ color: "#007bff", fontSize: "0.9rem" }}>
-                    📤 Uploading photos...
-                  </p>
-                </div>
-              )}
-              {photoError && (
-                <p style={{ ...styles.formError, marginTop: "5px" }}>
-                  {photoError}
-                </p>
-              )}
+                Aby oceniać, komentować i dodawać zdjęcia musisz się{" "}
+                <button
+                  onClick={async () => {
+                    // Clear session flag from localStorage
+                    if (typeof window !== "undefined") {
+                      localStorage.removeItem("hasLoggedInThisSession");
+                    }
+                    // Sign out and redirect to signin page
+                    await signOut({ callbackUrl: "/auth/signin" });
+                  }}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    color: "#007bff",
+                    textDecoration: "underline",
+                    cursor: "pointer",
+                    fontSize: "inherit",
+                    padding: 0,
+                  }}
+                >
+                  zalogować do aplikacji
+                </button>
+              </p>
             </div>
-          </div>
+          ) : (
+            <>
+              <h3 style={{ marginBottom: "1rem", color: "#333" }}>
+                {t("YourRating")} ({userRating} / 10)
+              </h3>
+
+              {ratingError && <p style={styles.formError}>{ratingError}</p>}
+
+              <div style={styles.form}>
+                <div>
+                  <div style={styles.starRatingContainer}>
+                    {[...Array(10)].map((_, index) => {
+                      const starValue = index + 1;
+                      return (
+                        <span
+                          key={starValue}
+                          style={{
+                            ...styles.star,
+                            color:
+                              starValue <= (userHoverRating || userRating)
+                                ? "#ffc107"
+                                : "#e4e5e9",
+                            cursor: ratingLoading ? "default" : "pointer",
+                          }}
+                          onClick={() => {
+                            if (!ratingLoading) {
+                              setUserRating(starValue);
+                              handleAutoSaveRating(starValue, userComment);
+                            }
+                          }}
+                          onMouseEnter={() =>
+                            !ratingLoading && setUserHoverRating(starValue)
+                          }
+                          onMouseLeave={() =>
+                            !ratingLoading && setUserHoverRating(0)
+                          }
+                          onKeyDown={(e) => {
+                            if (
+                              !ratingLoading &&
+                              (e.key === "Enter" || e.key === " ")
+                            ) {
+                              setUserRating(starValue);
+                              handleAutoSaveRating(starValue, userComment);
+                            }
+                          }}
+                          aria-label={`Rate ${starValue} out of 10 stars`}
+                          aria-disabled={ratingLoading}
+                        >
+                          ★
+                        </span>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="userComment" style={styles.formLabel}>
+                    {t("optionalComment")}
+                  </label>
+                  <textarea
+                    id="userComment"
+                    name="userComment"
+                    value={userComment}
+                    onChange={(e) => {
+                      setUserComment(e.target.value);
+                      handleAutoSaveRatingDebounced(userRating, e.target.value);
+                    }}
+                    style={{
+                      ...styles.formInput,
+                      minHeight: "100px",
+                      resize: "vertical",
+                    }}
+                    placeholder="Share your experience with this WC..."
+                    disabled={ratingLoading}
+                  />
+                </div>
+
+                {/* Photo Upload Section */}
+                <div>
+                  {" "}
+                  <input
+                    id="wcPhotos"
+                    name="wcPhotos"
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    capture="environment"
+                    onChange={handlePhotoSelection}
+                    style={styles.hiddenFileInput}
+                    disabled={photoUploadLoading}
+                  />
+                  {ratingLoading && (
+                    <div style={{ textAlign: "center", marginBottom: "10px" }}>
+                      <p style={{ color: "#007bff", fontSize: "0.9rem" }}>
+                        💾{" "}
+                        {hasUserRating
+                          ? "Aktualizowanie oceny..."
+                          : "Zapisywanie oceny..."}
+                      </p>
+                    </div>
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => document.getElementById("wcPhotos").click()}
+                    style={{
+                      ...styles.photoButton,
+                      opacity: photoUploadLoading ? 0.6 : 1,
+                      cursor: photoUploadLoading ? "not-allowed" : "pointer",
+                    }}
+                    disabled={photoUploadLoading}
+                  >
+                    📷 Dodaj zdjęcie
+                  </button>
+                  {photoUploadLoading && (
+                    <div style={{ marginTop: "10px", textAlign: "center" }}>
+                      <p style={{ color: "#007bff", fontSize: "0.9rem" }}>
+                        📤 Uploading photos...
+                      </p>
+                    </div>
+                  )}
+                  {photoError && (
+                    <p style={{ ...styles.formError, marginTop: "5px" }}>
+                      {photoError}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </>
+          )}
         </div>
 
         {/* Photo Gallery Section */}
