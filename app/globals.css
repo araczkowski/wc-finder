@@ -657,6 +657,7 @@ textarea.form-input {
 .info-message {
     font-size: 1rem;
     color: #333;
+    padding-bottom: 10px;
 }
 
 .add-button {
