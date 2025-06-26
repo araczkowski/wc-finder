@@ -1537,6 +1537,37 @@ export default function Home() {
                           title={t("editIconTitle")}
                         >
                           <div className="table-row">
+                            {(wc.distance_km !== null &&
+                              wc.distance_km !== undefined) ||
+                            (wc.distance !== null &&
+                              wc.distance !== undefined) ? (
+                              <div
+                                style={{
+                                  fontSize: "0.9rem",
+                                  color: "#ffffff",
+                                  backgroundColor: "#2196F3",
+                                  padding: "2px 6px",
+                                  borderRadius: "2em",
+                                  fontWeight: "bold",
+                                  display: "inline-block",
+                                  marginTop: "2px",
+                                  whiteSpace: "nowrap",
+                                  height: "4em",
+                                  lineHeight: "4em",
+                                  position: "relative",
+                                  top: "5em",
+                                  left: "1em",
+                                  width: "10em",
+                                  zIndex: 1000,
+                                  display: "flex",
+                                  alignItems: "center",
+                                  justifyContent: "center",
+                                }}
+                              >
+                                🧭{" "}
+                                {formatDistance(wc.distance_km || wc.distance)}
+                              </div>
+                            ) : null}
                             <div
                               className="table-cell"
                               style={{ textAlign: "center" }}
@@ -1569,31 +1600,6 @@ export default function Home() {
                               <div style={{ marginBottom: "4px" }}>
                                 {wc.address || "N/A"}
                               </div>
-                              {(wc.distance_km !== null &&
-                                wc.distance_km !== undefined) ||
-                              (wc.distance !== null &&
-                                wc.distance !== undefined) ? (
-                                <div
-                                  style={{
-                                    fontSize: "0.9rem",
-                                    color: "#ffffff",
-                                    backgroundColor: "#2196F3",
-                                    padding: "2px 6px",
-                                    borderRadius: "2em",
-                                    fontWeight: "bold",
-                                    display: "inline-block",
-                                    marginTop: "2px",
-                                    whiteSpace: "nowrap",
-                                    height: "4em",
-                                    lineHeight: "4em",
-                                  }}
-                                >
-                                  🧭{" "}
-                                  {formatDistance(
-                                    wc.distance_km || wc.distance,
-                                  )}
-                                </div>
-                              ) : null}
                             </div>
                             <div
                               className="table-cell"
