@@ -18,6 +18,7 @@ export const pl = {
   loginInProgress: "Logowanie...",
   Or: "Lub",
   signInToApp: "Zaloguj się do aplikacji",
+  findToilet: "Znajdź Toaletę",
 
   // create an Account
   createAnAcccount: "Utwórz Konto",

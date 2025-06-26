@@ -276,6 +276,7 @@ const styles = {
 export default function Home() {
   const { data: session, status } = useSession();
   const { t } = useTranslation();
+  const [isAutoLogging, setIsAutoLogging] = useState(false);
   // Log component rendering and current session status
   console.log(
     "[Home Page] Component rendering. Session status:",
@@ -301,6 +302,32 @@ export default function Home() {
     useState(false);
   const [hasSetAddress, setHasSetAddress] = useState(false);
   const [isLoadingLocation, setIsLoadingLocation] = useState(false);
+
+  // Funkcja automatycznego logowania
+  const handleAutoLogin = async () => {
+    setIsAutoLogging(true);
+    try {
+      const result = await signIn("credentials", {
+        redirect: false,
+        email: "public@sviete.pl",
+        password: "public",
+      });
+
+      if (result?.error) {
+        console.error("Auto login failed:", result.error);
+        // Fallback - jeśli credentials nie działają, użyj Google
+        signIn("google");
+      } else if (result?.ok) {
+        console.log("Auto login successful");
+        // Strona zostanie automatycznie odświeżona przez useSession
+      }
+    } catch (error) {
+      console.error("Auto login error:", error);
+      // Fallback - użyj Google login
+      signIn("google");
+    }
+    setIsAutoLogging(false);
+  };
 
   // Clear localStorage completely on first login to start fresh
   useEffect(() => {
@@ -1627,6 +1654,35 @@ export default function Home() {
                 priority
               />
               <h1 className="welcome-message">{t("welcome")}</h1>
+
+              <button
+                onClick={handleAutoLogin}
+                disabled={isAutoLogging}
+                style={{
+                  ...styles.loginButton,
+                  backgroundColor: "#28a745",
+                  color: "white",
+                  fontSize: "1.2rem",
+                  padding: "1rem 2rem",
+                  marginTop: "1rem",
+                  marginBottom: "1rem",
+                  minWidth: "200px",
+                  opacity: isAutoLogging ? 0.7 : 1,
+                  cursor: isAutoLogging ? "not-allowed" : "pointer",
+                }}
+                onMouseEnter={(e) => {
+                  if (!isAutoLogging) {
+                    e.target.style.backgroundColor = "#218838";
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!isAutoLogging) {
+                    e.target.style.backgroundColor = "#28a745";
+                  }
+                }}
+              >
+                {isAutoLogging ? "Logowanie..." : t("findToilet")}
+              </button>
 
               <div
                 style={{
