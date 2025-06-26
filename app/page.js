@@ -1029,7 +1029,16 @@ export default function Home() {
               gap: "0.5rem",
             }}
           >
-            <Link href="/wc/add" style={styles.headerAddButton}>
+            <Link
+              href="/wc/add"
+              style={{
+                ...styles.headerAddButton,
+                display:
+                  session?.user?.email === "public@sviete.pl"
+                    ? "none"
+                    : styles.headerAddButton.display,
+              }}
+            >
               {t("addNewWC")}
             </Link>
           </div>
