@@ -1049,7 +1049,30 @@ export default function Home() {
               gap: "0.5rem",
             }}
           >
-            <UserDropdown session={session} />
+            {session?.user?.email === "public@sviete.pl" ? (
+              <button
+                onClick={async () => {
+                  // Clear session flag from localStorage
+                  if (typeof window !== "undefined") {
+                    localStorage.removeItem("hasLoggedInThisSession");
+                  }
+                  // Sign out and redirect to signin page
+                  await signOut({ callbackUrl: "/auth/signin" });
+                }}
+                style={{
+                  ...styles.button,
+                  ...styles.signInButton,
+                  padding: "0.8rem 0.8rem",
+                  fontSize: "0.8rem",
+                  fontWeight: "bold",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {t("signIn")}
+              </button>
+            ) : (
+              <UserDropdown session={session} />
+            )}
           </div>
         </div>
       );
