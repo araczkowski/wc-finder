@@ -9,7 +9,7 @@ export const pl = {
 
   // Welcome and Authentication
   welcome: "Witaj w WC Finder",
-  pleaseSignIn: "Zaloguj się, aby korzystać z aplikacji.",
+  pleaseSignIn: "Zaloguj się, aby odblokować dodatkowe funkcje w aplikacji",
   signInHere: "Zaloguj się tutaj",
   signInWithGoogle: "Zaloguj z Google",
   signInWithEmail: "Zaloguj z Email",

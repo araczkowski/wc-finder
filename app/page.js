@@ -1627,7 +1627,6 @@ export default function Home() {
                 priority
               />
               <h1 className="welcome-message">{t("welcome")}</h1>
-              <p className="info-message">{t("pleaseSignIn")}</p>
 
               <div
                 style={{
@@ -1639,6 +1638,7 @@ export default function Home() {
                   width: "100%",
                 }}
               >
+                <p className="info-message">{t("pleaseSignIn")}</p>
                 <button
                   onClick={() => signIn("google")}
                   style={{ ...styles.loginButton, ...styles.googleButton }}
