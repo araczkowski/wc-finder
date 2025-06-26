@@ -896,7 +896,7 @@ export default function EditWcPage() {
   };
 
   if (pageLoading || sessionStatus === "loading") {
-    return <div style={styles.loadingMessage}>Loading WC Details...</div>;
+    return <div style={styles.loadingMessage}>Wczytuje szczegóły WC...</div>;
   }
   if (sessionStatus === "unauthenticated") {
     return <div style={styles.loadingMessage}>Redirecting to sign in...</div>;
@@ -1339,7 +1339,7 @@ export default function EditWcPage() {
                       minHeight: "100px",
                       resize: "vertical",
                     }}
-                    placeholder="Share your experience with this WC..."
+                    placeholder="Podziel się swoim doświadczeniem z tym WC..."
                     disabled={ratingLoading}
                   />
                 </div>
@@ -1460,7 +1460,7 @@ export default function EditWcPage() {
                 fontStyle: "italic",
               }}
             >
-              No photos yet. Be the first to add one!
+              Brak zdjęć. Bądź pierwszy, który doda jedno!
             </p>
           )}
         </div>
