@@ -499,7 +499,7 @@ export default function AddWcPage() {
         <h2
           style={{ marginBottom: "25px", color: "#333", textAlign: "center" }}
         >
-          Add New WC
+          Dodaj nowe WC
         </h2>
         {gettingLocation && (
           <div
@@ -539,7 +539,7 @@ export default function AddWcPage() {
         <form onSubmit={handleSubmit} style={styles.form}>
           <div>
             <label htmlFor="name" style={styles.formLabel}>
-              Name*
+              Nazwa*
             </label>
             <input
               id="name"
@@ -556,17 +556,49 @@ export default function AddWcPage() {
 
           <div>
             <label htmlFor="address" style={styles.formLabel}>
-              Address*
+              Adres*
             </label>
-            <AddressAutocomplete
-              value={address}
-              onChange={handleAddressChange}
-              onCoordinatesChange={handleCoordinatesChange}
-              placeholder="Wpisz adres, np. ul. Marszałkowska 1, Warszawa"
-              disabled={loading || gettingLocation}
-              required
-              style={styles.formInput}
-            />
+            <div style={{ position: "relative", display: "flex" }}>
+              <AddressAutocomplete
+                value={address}
+                onChange={handleAddressChange}
+                onCoordinatesChange={handleCoordinatesChange}
+                placeholder="Wpisz adres, np. ul. Marszałkowska 1, Warszawa"
+                disabled={loading || gettingLocation}
+                required
+                style={
+                  (styles.formInput, { height: "4em", paddingRight: "2em" })
+                }
+              />
+              <button
+                type="button"
+                onClick={getCurrentLocation}
+                disabled={gettingLocation}
+                style={{
+                  position: "absolute",
+                  right: 0,
+                  top: 0,
+                  bottom: 0,
+                  width: 40,
+                  backgroundColor: "transparent",
+                  border: "none",
+                  display: "inline-block",
+                  height: "5em",
+                  backgroundColor: "#2196F3",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "4px",
+                  fontSize: "0.8rem",
+                  transition: "background-color 0.2s ease",
+                  lineHeight: "3em",
+                  padding: "4px 8px",
+                  fontWeight: "bold",
+                  width: "4em",
+                }}
+              >
+                GPS
+              </button>
+            </div>
             {gettingLocation && (
               <p
                 style={{
@@ -596,29 +628,13 @@ export default function AddWcPage() {
                 >
                   ✓ Adres z podpowiadaniem i automatycznym geokodowaniem
                 </p>
-                <button
-                  type="button"
-                  onClick={getCurrentLocation}
-                  disabled={gettingLocation}
-                  style={{
-                    padding: "4px 8px",
-                    fontSize: "0.7rem",
-                    backgroundColor: "#2196F3",
-                    color: "white",
-                    border: "none",
-                    borderRadius: "3px",
-                    cursor: "pointer",
-                  }}
-                >
-                  🔄 Użyj GPS
-                </button>
               </div>
             )}
           </div>
 
           <div>
             <label htmlFor="location" style={styles.formLabel}>
-              Coordinates
+              Współrzędne
             </label>
             <input
               id="location"
@@ -730,7 +746,7 @@ export default function AddWcPage() {
 
           <div>
             <label htmlFor="rating" style={styles.formLabel}>
-              Rating ({rating} / 10)
+              Ocena ({rating} / 10)
             </label>
             <div style={styles.starRatingContainer}>
               {[...Array(10)].map((_, index) => {

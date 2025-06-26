@@ -266,6 +266,7 @@ const styles = {
     boxSizing: "border-box",
     display: "inline-block",
     height: "4em",
+    paddingRight: "3em",
   },
   coordinatesText: {
     fontSize: "0.8rem",
@@ -1357,14 +1358,15 @@ export default function Home() {
                   <div
                     style={{
                       textAlign: "center",
-                      padding: "40px 20px",
+                      padding: "40px 40px",
                       color: "#666",
                       fontSize: "1.1rem",
                       marginTop: "20px",
+                      marginBottom: "20px",
                     }}
                   >
-                    🛟 Wprowadź adres lub wykryj automatycznie przyciskiem GPS
-                    aby zobaczyć toalety w okolicy
+                    🛟 Wpisz lokalizację lub naciśnij przycisk GPS, aby zobaczyć
+                    dostępne toalety w pobliżu.
                   </div>
                 )}
 

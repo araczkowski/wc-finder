@@ -776,7 +776,7 @@ const AddressAutocomplete = ({
 
   return (
     <div style={{ position: "relative", width: "100%" }}>
-      <input
+      <textarea
         ref={inputRef}
         type="text"
         value={value}
