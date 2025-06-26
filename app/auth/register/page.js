@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useTranslation } from "../../hooks/useTranslation";
+import AuthHeader from "../../components/AuthHeader";
 
 export default function RegisterPage() {
   const [name, setName] = useState("");
@@ -170,89 +171,92 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="form-container">
-      <div className="form-card">
-        <h2 style={{ marginBottom: "25px", color: "#333" }}>
-          {t("createAnAcccount")}
-        </h2>
+    <>
+      <AuthHeader />
+      <div className="form-container">
+        <div className="form-card">
+          <h2 style={{ marginBottom: "25px", color: "#333" }}>
+            {t("createAnAcccount")}
+          </h2>
 
-        {error && <p className="form-message form-error">{error}</p>}
-        {/* Success message paragraph removed */}
+          {error && <p className="form-message form-error">{error}</p>}
+          {/* Success message paragraph removed */}
 
-        <form onSubmit={handleSubmit} className="form">
-          <div>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              autoComplete="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="form-input"
-              placeholder={t("fullNameOptional")}
-              disabled={loading}
-            />
-          </div>
-          <div>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              autoComplete="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="form-input"
-              placeholder={t("emailAddress")}
-              disabled={loading}
-            />
-          </div>
-          <div>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              autoComplete="new-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="form-input"
-              placeholder={t("passwordMin8Characters")}
-              disabled={loading}
-            />
-          </div>
-          <div>
-            <input
-              id="confirmPassword"
-              name="confirmPassword"
-              type="password"
-              autoComplete="new-password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-              className="form-input"
-              placeholder={t("confirmPassword")}
-              disabled={loading}
-            />
-          </div>
-          <button type="submit" className="form-button" disabled={loading}>
-            {loading ? t("creatingAccount") : t("createAccount")}
-          </button>
-        </form>
-        <p style={{ marginTop: "25px", fontSize: "0.9em", color: "#555" }}>
-          {t("alreadyHaveAccount")}{" "}
-          <Link
-            href="/auth/signin"
-            style={{
-              color: "#0070f3",
-              textDecoration: "none",
-              fontWeight: "bold",
-            }}
-          >
-            {t("signIn")}
-          </Link>
-        </p>
+          <form onSubmit={handleSubmit} className="form">
+            <div>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                autoComplete="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="form-input"
+                placeholder={t("fullNameOptional")}
+                disabled={loading}
+              />
+            </div>
+            <div>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="form-input"
+                placeholder={t("emailAddress")}
+                disabled={loading}
+              />
+            </div>
+            <div>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                autoComplete="new-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="form-input"
+                placeholder={t("passwordMin8Characters")}
+                disabled={loading}
+              />
+            </div>
+            <div>
+              <input
+                id="confirmPassword"
+                name="confirmPassword"
+                type="password"
+                autoComplete="new-password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+                className="form-input"
+                placeholder={t("confirmPassword")}
+                disabled={loading}
+              />
+            </div>
+            <button type="submit" className="form-button" disabled={loading}>
+              {loading ? t("creatingAccount") : t("createAccount")}
+            </button>
+          </form>
+          <p style={{ marginTop: "25px", fontSize: "0.9em", color: "#555" }}>
+            {t("alreadyHaveAccount")}{" "}
+            <Link
+              href="/auth/signin"
+              style={{
+                color: "#0070f3",
+                textDecoration: "none",
+                fontWeight: "bold",
+              }}
+            >
+              {t("signIn")}
+            </Link>
+          </p>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
