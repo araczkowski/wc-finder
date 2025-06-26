@@ -644,7 +644,7 @@ export default function AddWcPage() {
               onChange={(e) => setLocation(e.target.value)}
               style={styles.formInput}
               placeholder="will be auto-filled from current location"
-              disabled={loading || gettingLocation}
+              disabled="true"
             />
             <p
               style={{
