@@ -143,8 +143,8 @@ const styles = {
     boxShadow: "0 4px 8px rgba(0,0,0,0.15)",
   },
   emailButton: {
-    backgroundColor: "#0070f3",
-    color: "white",
+    backgroundColor: "white",
+    color: "black",
   },
   emailButtonHover: {
     backgroundColor: "#005cc5",
@@ -1812,7 +1812,8 @@ export default function Home() {
                     });
                   }}
                 >
-                  📧 {t("signInWithEmail")}
+                  <span style={{ fontSize: "1.1em" }}>📧</span>{" "}
+                  {t("signInWithEmail")}
                 </Link>
 
                 <Link
