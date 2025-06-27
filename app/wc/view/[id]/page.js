@@ -657,12 +657,26 @@ export default function ViewWcPage() {
           <div>
             <label style={styles.formLabel}>{pl.placeType}</label>
             <div style={styles.viewText}>
-              <PlaceTypeDisplay
-                placeType={wcData.place_type || "toilet"}
-                showIcon={true}
-                showText={true}
-                iconSize={18}
-              />
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  fontSize: "16px",
+                  fontWeight: "500",
+                  color: "#333",
+                }}
+              >
+                <PlaceTypeDisplay
+                  placeType={wcData.place_type || "toilet"}
+                  showIcon={true}
+                  showText={true}
+                  iconSize={18}
+                  iconProps={{ style: { color: "#333" } }}
+                  textStyle={{ color: "#333" }}
+                  className="view-place-type"
+                />
+              </div>
             </div>
           </div>
 

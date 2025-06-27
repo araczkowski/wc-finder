@@ -8,17 +8,21 @@ export default function PlaceTypeDisplay({
   iconSize = 16,
   className = "",
   iconProps = {},
+  textStyle = {},
 }) {
   const label = getPlaceTypeLabel(placeType || "toilet", pl);
 
   if (showIcon && showText) {
     return (
-      <span className={`icon-text place-type-icon ${className}`}>
+      <span
+        className={`icon-text place-type-icon ${className}`}
+        style={{ color: "white", ...textStyle }}
+      >
         {getPlaceTypeIcon(placeType || "toilet", {
           size: iconSize,
           ...iconProps,
         })}
-        <span>{label}</span>
+        <span style={{ color: "white", ...textStyle }}>{label}</span>
       </span>
     );
   }
@@ -35,7 +39,11 @@ export default function PlaceTypeDisplay({
   }
 
   if (showText) {
-    return <span className={className}>{label}</span>;
+    return (
+      <span className={className} style={{ color: "#333", ...textStyle }}>
+        {label}
+      </span>
+    );
   }
 
   return null;

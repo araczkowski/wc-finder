@@ -1553,6 +1553,29 @@ export default function Home() {
                               position: "relative",
                             }}
                           >
+                            <div
+                              className="edit-cell"
+                              style={{
+                                textAlign: "center",
+                                position: "absolute",
+                                width: "60px",
+                              }}
+                            >
+                              {session?.user?.email === wc.created_by && (
+                                <Link
+                                  href={`/wc/edit/${wc.id}`}
+                                  onClick={(e) => e.stopPropagation()}
+                                  className="edit-button"
+                                  title={t("editIconTitle")}
+                                >
+                                  <SquarePen
+                                    size={14}
+                                    style={{ marginRight: "4px" }}
+                                  />
+                                </Link>
+                              )}
+                            </div>
+
                             {(wc.distance_km !== null &&
                               wc.distance_km !== undefined) ||
                             (wc.distance !== null &&
@@ -1666,28 +1689,6 @@ export default function Home() {
                             style={{ textAlign: "left" }}
                           >
                             <WCTags wcId={wc.id} isEditable={false} />
-                          </div>
-                          <div
-                            className="table-cell edit-cell"
-                            style={{
-                              textAlign: "center",
-                              position: "relative",
-                              width: "60px",
-                            }}
-                          >
-                            {session?.user?.email === wc.created_by && (
-                              <Link
-                                href={`/wc/edit/${wc.id}`}
-                                onClick={(e) => e.stopPropagation()}
-                                className="edit-button"
-                                title={t("editIconTitle")}
-                              >
-                                <SquarePen
-                                  size={14}
-                                  style={{ marginRight: "4px" }}
-                                />
-                              </Link>
-                            )}
                           </div>
                         </div>
                       ))}
