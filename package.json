@@ -6,7 +6,10 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cleanup:storage": "node scripts/cleanup-storage.js",
+    "cleanup:interactive": "node scripts/interactive-cleanup.js",
+    "cleanup:all": "echo 'Run database/cleanup_all_data.sql in Supabase first, then:' && npm run cleanup:storage"
   },
   "dependencies": {
     "@next-auth/supabase-adapter": "^0.2.1",

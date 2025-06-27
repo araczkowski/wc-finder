@@ -33,6 +33,7 @@ import { pl } from "../../../locales/pl";
 import { useTranslation } from "../../../hooks/useTranslation";
 import PlaceTypeDisplay from "../../../components/PlaceTypeDisplay";
 import WCTags from "../../../components/WCTags";
+import { CircleChevronLeft } from "lucide-react";
 
 // Styles moved to globals.css for better responsiveness
 const styles = {
@@ -132,7 +133,7 @@ const styles = {
     position: "absolute",
     top: "20px",
     left: "20px",
-    color: "white",
+    color: "black",
     border: "none",
     borderRadius: "50%",
     width: "40px",
@@ -944,7 +945,7 @@ export default function EditWcPage() {
     <div style={styles.formContainer}>
       <div style={{ ...styles.formCard, ...styles.formCardWithBack }}>
         <Link href="/" style={styles.backButton} title="Back to Home">
-          ⬅️
+          <CircleChevronLeft size={24} />
         </Link>
         <h2
           style={{ marginBottom: "25px", color: "#333", textAlign: "center" }}

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import AddressAutocomplete from "../components/AddressAutocomplete";
+import { CircleChevronLeft } from "lucide-react";
 
 export default function DebugAddressPage() {
   const [address, setAddress] = useState("");
@@ -331,7 +332,8 @@ export default function DebugAddressPage() {
             borderRadius: "4px",
           }}
         >
-          ← Back to Home
+          <CircleChevronLeft size={20} style={{ marginRight: "8px" }} />
+          Back to Home
         </Link>
       </div>
     </div>

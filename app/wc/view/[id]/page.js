@@ -26,6 +26,7 @@ import { getPlaceTypeLabel } from "../../../utils/placeTypes";
 import { pl } from "../../../locales/pl";
 import PlaceTypeDisplay from "../../../components/PlaceTypeDisplay";
 import WCTags from "../../../components/WCTags";
+import { CircleChevronLeft } from "lucide-react";
 
 const styles = {
   loadingMessage: {
@@ -623,7 +624,7 @@ export default function ViewWcPage() {
           style={styles.backButton}
           title="Powrót do strony głównej"
         >
-          ←
+          <CircleChevronLeft size={24} />
         </Link>
         {isOwner && (
           <Link
