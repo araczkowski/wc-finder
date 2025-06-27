@@ -28,6 +28,7 @@ import {
   getPlaceTypeLabel,
   DEFAULT_PLACE_TYPE,
 } from "../../../utils/placeTypes";
+import PlaceTypeSelect from "../../../components/PlaceTypeSelect";
 import { pl } from "../../../locales/pl";
 import { useTranslation } from "../../../hooks/useTranslation";
 import PlaceTypeDisplay from "../../../components/PlaceTypeDisplay";
@@ -1022,24 +1023,14 @@ export default function EditWcPage() {
               <label htmlFor="placeType" style={styles.formLabel}>
                 {pl.placeType}*
               </label>
-              <select
-                id="placeType"
-                name="placeType"
+              <PlaceTypeSelect
                 value={placeType}
-                onChange={(e) => setPlaceType(e.target.value)}
-                required
-                style={styles.formInput}
+                onChange={setPlaceType}
+                translations={pl}
                 disabled={formLoading}
-              >
-                <option value="" disabled>
-                  {pl.selectPlaceType}
-                </option>
-                {getPlaceTypeOptions(pl).map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
+                required={true}
+                placeholder={pl.selectPlaceType}
+              />
             </div>
 
             <div>

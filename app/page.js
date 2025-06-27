@@ -14,6 +14,7 @@ import PlaceTypeDisplay from "./components/PlaceTypeDisplay";
 import RatingDisplay from "./components/RatingDisplay";
 import { getPlaceTypeLabel } from "./utils/placeTypes";
 import { pl } from "./locales/pl";
+import { LocateFixed } from "lucide-react";
 
 // Basic inline styles for layout - consider moving to CSS modules or global CSS
 const styles = {
@@ -1148,11 +1149,6 @@ export default function Home() {
                     }}
                   />
                   <button
-                    disabled={
-                      !geolocationSupported ||
-                      locationPermission === "denied" ||
-                      locationPermission === "unsupported"
-                    }
                     onClick={() => {
                       console.log("[GPS Button] Starting GPS location request");
 
@@ -1214,6 +1210,12 @@ export default function Home() {
                         setLocationError(t("locationNotSupported"));
                       }
                     }}
+                    disabled={
+                      !geolocationSupported ||
+                      locationPermission === "denied" ||
+                      locationPermission === "unsupported"
+                    }
+                    title="Pobierz moją lokalizację GPS"
                     style={{
                       position: "absolute",
                       right: 0,
@@ -1228,7 +1230,9 @@ export default function Home() {
                         locationPermission === "unsupported"
                           ? "not-allowed"
                           : "pointer",
-                      display: "inline-block",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
                       height: "5em",
                       backgroundColor:
                         !geolocationSupported ||
@@ -1241,8 +1245,6 @@ export default function Home() {
                       borderRadius: "4px",
                       fontSize: "0.8rem",
                       transition: "background-color 0.2s ease",
-                      lineHeight: "3em",
-                      padding: "4px 8px",
                       fontWeight: "bold",
                       width: "4em",
                       opacity:
@@ -1259,7 +1261,7 @@ export default function Home() {
                       e.target.style.backgroundColor = "#007bff";
                     }}
                   >
-                    GPS
+                    <LocateFixed size={26} />
                   </button>
                 </div>
                 {isGeolocatingAddress && (

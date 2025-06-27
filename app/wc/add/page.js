@@ -18,8 +18,9 @@ import {
   getPlaceTypeOptions,
   DEFAULT_PLACE_TYPE,
 } from "../../utils/placeTypes";
+import PlaceTypeSelect from "../../components/PlaceTypeSelect";
 import { pl } from "../../locales/pl";
-import { Navigation, Camera } from "lucide-react";
+import { LocateFixed, Camera } from "lucide-react";
 
 // Mobile-first styles
 const styles = {
@@ -605,7 +606,7 @@ export default function AddWcPage() {
                   width: "4em",
                 }}
               >
-                <Navigation size={16} />
+                <LocateFixed size={26} />
               </button>
             </div>
             {gettingLocation && (
@@ -682,24 +683,14 @@ export default function AddWcPage() {
             <label htmlFor="placeType" style={styles.formLabel}>
               {pl.placeType}*
             </label>
-            <select
-              id="placeType"
-              name="placeType"
+            <PlaceTypeSelect
               value={placeType}
-              onChange={(e) => setPlaceType(e.target.value)}
-              required
-              style={styles.formInput}
+              onChange={setPlaceType}
+              translations={pl}
               disabled={loading}
-            >
-              <option value="" disabled>
-                {pl.selectPlaceType}
-              </option>
-              {getPlaceTypeOptions(pl).map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
+              required={true}
+              placeholder={pl.selectPlaceType}
+            />
           </div>
 
           <div>
