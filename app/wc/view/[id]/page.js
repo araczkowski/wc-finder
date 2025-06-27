@@ -668,7 +668,7 @@ export default function ViewWcPage() {
           <div>
             <label style={styles.formLabel}>{pl.placeType}</label>
             <div style={styles.viewText}>
-              {getPlaceTypeLabel(wcData.place_type, pl)}
+              {getPlaceTypeLabel(wcData.place_type || "toilet", pl)}
             </div>
           </div>
 

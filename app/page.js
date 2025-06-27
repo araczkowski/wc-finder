@@ -1613,7 +1613,10 @@ export default function Home() {
                               style={{ textAlign: "center" }}
                             >
                               <div style={{ marginBottom: "4px" }}>
-                                {getPlaceTypeLabel(wc.place_type, pl)}
+                                {getPlaceTypeLabel(
+                                  wc.place_type || "toilet",
+                                  pl,
+                                )}
                               </div>
                             </div>
                             <div

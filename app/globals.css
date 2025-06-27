@@ -426,6 +426,24 @@ textarea.form-input {
     text-decoration: underline;
 }
 
+.viewText {
+    padding: 12px 0;
+    font-size: 16px;
+    color: #333;
+    font-weight: 500;
+    border-bottom: 1px solid #f0f0f0;
+    min-height: 20px;
+}
+
+.viewTextEmpty {
+    padding: 12px 0;
+    font-size: 16px;
+    color: #777;
+    font-style: italic;
+    border-bottom: 1px solid #f0f0f0;
+    min-height: 20px;
+}
+
 .star-rating-container {
     display: flex;
     justify-content: flex-start;

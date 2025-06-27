@@ -25,6 +25,7 @@ import {
 import AddressAutocomplete from "../../../components/AddressAutocomplete";
 import {
   getPlaceTypeOptions,
+  getPlaceTypeLabel,
   DEFAULT_PLACE_TYPE,
 } from "../../../utils/placeTypes";
 import { pl } from "../../../locales/pl";
@@ -1207,11 +1208,26 @@ export default function EditWcPage() {
         ) : (
           <div style={styles.form}>
             <div>
-              <div style={address ? styles.viewText : styles.viewTextEmpty}>
+              <label style={styles.formLabel}>{t("Name")}</label>
+              <div className="viewText">{name}</div>
+            </div>
+
+            <div>
+              <label style={styles.formLabel}>{t("Address")}</label>
+              <div className={address ? "viewText" : "viewTextEmpty"}>
                 {address || "Nie podano"}
               </div>
             </div>
+
             <div>
+              <label style={styles.formLabel}>{pl.placeType}</label>
+              <div className="viewText">
+                {getPlaceTypeLabel(placeType || "toilet", pl)}
+              </div>
+            </div>
+
+            <div>
+              <label style={styles.formLabel}>Zdjęcie</label>
               {imagePreview ? (
                 <div className="image-preview" style={{ marginTop: "10px" }}>
                   <Image
@@ -1223,7 +1239,7 @@ export default function EditWcPage() {
                   />
                 </div>
               ) : (
-                <div style={styles.viewTextEmpty}>Brak zdjęcia</div>
+                <div className="viewTextEmpty">Brak zdjęcia</div>
               )}
             </div>
             <div>
