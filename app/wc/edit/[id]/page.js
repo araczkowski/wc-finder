@@ -32,6 +32,7 @@ import PlaceTypeSelect from "../../../components/PlaceTypeSelect";
 import { pl } from "../../../locales/pl";
 import { useTranslation } from "../../../hooks/useTranslation";
 import PlaceTypeDisplay from "../../../components/PlaceTypeDisplay";
+import WCTags from "../../../components/WCTags";
 
 // Styles moved to globals.css for better responsiveness
 const styles = {
@@ -1031,6 +1032,10 @@ export default function EditWcPage() {
                 required={true}
                 placeholder={pl.selectPlaceType}
               />
+            </div>
+
+            <div>
+              <WCTags wcId={wcId} isEditable={true} />
             </div>
 
             <div>

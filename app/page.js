@@ -12,6 +12,7 @@ import UserDropdown from "./components/UserDropdown";
 import AddressAutocomplete from "./components/AddressAutocomplete";
 import PlaceTypeDisplay from "./components/PlaceTypeDisplay";
 import RatingDisplay from "./components/RatingDisplay";
+import WCTags from "./components/WCTags";
 import { getPlaceTypeLabel } from "./utils/placeTypes";
 import { pl } from "./locales/pl";
 import { LocateFixed } from "lucide-react";
@@ -1638,6 +1639,12 @@ export default function Home() {
                               ) : (
                                 t("notRated")
                               )}
+                            </div>
+                            <div
+                              className="table-cell sixth-cell"
+                              style={{ textAlign: "center" }}
+                            >
+                              <WCTags wcId={wc.id} isEditable={false} />
                             </div>
                           </div>
                         </Link>

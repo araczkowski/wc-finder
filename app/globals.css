@@ -232,6 +232,10 @@ div.hidden-div {
     padding: 2px;
 }
 
+.sixth-cell {
+    padding: 2px;
+}
+
 .table-cell:hover {
     color: black;
 }

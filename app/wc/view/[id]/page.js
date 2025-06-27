@@ -25,6 +25,7 @@ import {
 import { getPlaceTypeLabel } from "../../../utils/placeTypes";
 import { pl } from "../../../locales/pl";
 import PlaceTypeDisplay from "../../../components/PlaceTypeDisplay";
+import WCTags from "../../../components/WCTags";
 
 const styles = {
   loadingMessage: {
@@ -676,6 +677,10 @@ export default function ViewWcPage() {
                 iconSize={18}
               />
             </div>
+          </div>
+
+          <div>
+            <WCTags wcId={wcId} isEditable={true} />
           </div>
 
           <div>

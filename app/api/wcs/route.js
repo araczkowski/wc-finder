@@ -167,20 +167,48 @@ export async function GET(request) {
       );
     }
 
-    // Enhance WCs with gallery photos and combine with main image
+    // Enhance WCs with gallery photos, tags and combine with main image
     const enhancedWcs = await Promise.all(
       (wcs || []).map(async (wc) => {
         // Distance is already calculated by PostGIS if user location was provided
         // and included in the wc object as distance_km field
         // For non-PostGIS queries, distance_km will be undefined
 
-        // Always fetch gallery photos for this WC
+        // Fetch gallery photos and tags for this WC
         try {
-          const { data: photos, error: photoError } = await supabase
-            .from("wc_photos")
-            .select("photo")
-            .eq("wc_id", wc.id)
-            .order("created_at", { ascending: true });
+          const [photosResult, tagsResult] = await Promise.all([
+            supabase
+              .from("wc_photos")
+              .select("photo")
+              .eq("wc_id", wc.id)
+              .order("created_at", { ascending: true }),
+            supabase
+              .from("wc_tags")
+              .select("tag, user_id")
+              .eq("wc_id", wc.id)
+              .order("created_at", { ascending: true }),
+          ]);
+
+          const { data: photos, error: photoError } = photosResult;
+          const { data: tags, error: tagsError } = tagsResult;
+
+          // Process tags
+          let tagCounts = {};
+          if (!tagsError && tags && tags.length > 0) {
+            tags.forEach((tagRecord) => {
+              if (tagCounts[tagRecord.tag]) {
+                tagCounts[tagRecord.tag].count += 1;
+                tagCounts[tagRecord.tag].users.push(tagRecord.user_id);
+              } else {
+                tagCounts[tagRecord.tag] = {
+                  tag: tagRecord.tag,
+                  count: 1,
+                  users: [tagRecord.user_id],
+                };
+              }
+            });
+          }
+          const wcTags = Object.values(tagCounts);
 
           if (!photoError && photos && photos.length > 0) {
             // Combine main image with gallery photos
@@ -205,6 +233,7 @@ export async function GET(request) {
               image_url: allImages[0], // Use first image as main display
               has_multiple_images: allImages.length > 1,
               distance: wc.distance_km !== undefined ? wc.distance_km : null,
+              tags: wcTags,
             };
           } else {
             // No gallery photos, return with main image only
@@ -213,20 +242,22 @@ export async function GET(request) {
               gallery_photos: wc.image_url ? [wc.image_url] : [],
               has_multiple_images: false,
               distance: wc.distance_km !== undefined ? wc.distance_km : null,
+              tags: wcTags,
             };
           }
-        } catch (photoFetchError) {
+        } catch (fetchError) {
           console.error(
-            "Error fetching gallery photos for WC:",
+            "Error fetching gallery photos or tags for WC:",
             wc.id,
-            photoFetchError,
+            fetchError,
           );
-          // Return with main image only on error
+          // Return with main image only and no tags on error
           return {
             ...wc,
             gallery_photos: wc.image_url ? [wc.image_url] : [],
             has_multiple_images: false,
             distance: wc.distance_km !== undefined ? wc.distance_km : null,
+            tags: [],
           };
         }
       }),
