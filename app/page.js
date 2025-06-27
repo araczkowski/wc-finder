@@ -1538,7 +1538,7 @@ export default function Home() {
                         >
                           <div className="table-row">
                             <div
-                              className="table-cell"
+                              className="table-cell, first-cell"
                               style={{
                                 textAlign: "center",
                                 position: "relative",
@@ -1564,7 +1564,7 @@ export default function Home() {
                                     position: "absolute",
                                     top: "2em",
                                     right: "2em",
-                                    width: "10em",
+                                    width: "6em",
                                     zIndex: 1000,
                                     display: "flex",
                                     alignItems: "center",
@@ -1593,13 +1593,13 @@ export default function Home() {
                               )}
                             </div>
                             <div
-                              className="table-cell"
+                              className="table-cell second-cell"
                               style={{ textAlign: "center" }}
                             >
                               {wc.name}
                             </div>
                             <div
-                              className="table-cell"
+                              className="table-cell third-cell"
                               style={{ textAlign: "center" }}
                             >
                               <div style={{ marginBottom: "4px" }}>
@@ -1607,7 +1607,7 @@ export default function Home() {
                               </div>
                             </div>
                             <div
-                              className="table-cell"
+                              className="table-cell fourth-cell"
                               style={{ textAlign: "center" }}
                             >
                               {wc.rating
