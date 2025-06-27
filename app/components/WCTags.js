@@ -210,7 +210,7 @@ const WCTags = ({ wcId, isEditable = false, onTagsChange }) => {
 
       <div style={styles.tagsContainer}>
         {tags.length === 0 ? (
-          <div style={styles.noTags}>Brak tagów</div>
+          <div style={styles.noTags}>Brak tagów. Byłeś tam? Dodaj je!</div>
         ) : (
           tags.map((tagData) => {
             const config = TAG_CONFIG[tagData.tag] || TAG_CONFIG["darmowa"];

@@ -4,30 +4,52 @@ import { useState } from "react";
 import WCTags from "../components/WCTags";
 
 export default function TestTagsPage() {
-  const [selectedWcId, setSelectedWcId] = useState("de1b2c45-e850-4cee-b4e3-b0f3d600601c");
+  const [selectedWcId, setSelectedWcId] = useState(
+    "de1b2c45-e850-4cee-b4e3-b0f3d600601c",
+  );
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted - this should NOT happen when clicking tag buttons");
-    alert("Form was submitted! This indicates the buttons are not preventing form submission.");
+    console.log(
+      "Form submitted - this should NOT happen when clicking tag buttons",
+    );
+    alert(
+      "Form was submitted! This indicates the buttons are not preventing form submission.",
+    );
   };
 
   return (
     <div style={{ padding: "2rem", maxWidth: "600px", margin: "0 auto" }}>
       <h1>Test WCTags Component</h1>
 
-      <div style={{ marginBottom: "2rem", padding: "1rem", border: "1px solid #ddd" }}>
+      <div
+        style={{
+          marginBottom: "2rem",
+          padding: "1rem",
+          border: "1px solid #ddd",
+        }}
+      >
         <h2>Test outside form (should work fine)</h2>
         <WCTags wcId={selectedWcId} isEditable={true} />
       </div>
 
-      <div style={{ marginBottom: "2rem", padding: "1rem", border: "1px solid #ddd" }}>
+      <div
+        style={{
+          marginBottom: "2rem",
+          padding: "1rem",
+          border: "1px solid #ddd",
+        }}
+      >
         <h2>Test inside form (this is where the problem occurs)</h2>
         <form onSubmit={handleFormSubmit}>
           <div style={{ marginBottom: "1rem" }}>
             <label>
               Test Input:
-              <input type="text" placeholder="Type something" style={{ marginLeft: "1rem" }} />
+              <input
+                type="text"
+                placeholder="Type something"
+                style={{ marginLeft: "1rem" }}
+              />
             </label>
           </div>
 
@@ -35,7 +57,15 @@ export default function TestTagsPage() {
             <WCTags wcId={selectedWcId} isEditable={true} />
           </div>
 
-          <button type="submit" style={{ padding: "0.5rem 1rem", backgroundColor: "#007bff", color: "white", border: "none" }}>
+          <button
+            type="submit"
+            style={{
+              padding: "0.5rem 1rem",
+              backgroundColor: "#007bff",
+              color: "white",
+              border: "none",
+            }}
+          >
             Submit Form
           </button>
         </form>
@@ -56,14 +86,23 @@ export default function TestTagsPage() {
         </label>
       </div>
 
-      <div style={{ marginTop: "2rem", padding: "1rem", backgroundColor: "#f8f9fa" }}>
+      <div
+        style={{
+          marginTop: "2rem",
+          padding: "1rem",
+          backgroundColor: "#f8f9fa",
+        }}
+      >
         <h3>Instructions:</h3>
         <ol>
           <li>Try clicking the + button to expand tags in both sections</li>
           <li>Try adding/removing tags in both sections</li>
           <li>The first section (outside form) should work fine</li>
-          <li>The second section (inside form) should NOT submit the form when clicking tag buttons</li>
-          <li>Only the "Submit Form" button should submit the form</li>
+          <li>
+            The second section (inside form) should NOT submit the form when
+            clicking tag buttons
+          </li>
+          <li>Only the Submit Form button should submit the form</li>
         </ol>
       </div>
     </div>
