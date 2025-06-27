@@ -20,7 +20,53 @@ import {
 } from "../../utils/placeTypes";
 import PlaceTypeSelect from "../../components/PlaceTypeSelect";
 import { pl } from "../../locales/pl";
-import { LocateFixed, Camera } from "lucide-react";
+import {
+  LocateFixed,
+  Camera,
+  Plus,
+  X,
+  Tag,
+  Coins,
+  Heart,
+  Baby,
+  Accessibility,
+} from "lucide-react";
+
+// Tag configuration with icons and colors
+const TAG_CONFIG = {
+  płatna: {
+    icon: Coins,
+    color: "#dc3545",
+    bgColor: "#fff5f5",
+    borderColor: "#fecaca",
+  },
+  darmowa: {
+    icon: Heart,
+    color: "#28a745",
+    bgColor: "#f0fff4",
+    borderColor: "#c6f6d5",
+  },
+  przewijak: {
+    icon: Baby,
+    color: "#17a2b8",
+    bgColor: "#f0fdff",
+    borderColor: "#b3f0ff",
+  },
+  dostępnaDlaNiepełnosprawnych: {
+    icon: Accessibility,
+    color: "#6f42c1",
+    bgColor: "#f8f5ff",
+    borderColor: "#d6d1f5",
+  },
+};
+
+// Available tags for new WC
+const AVAILABLE_TAGS = [
+  "płatna",
+  "darmowa",
+  "przewijak",
+  "dostępnaDlaNiepełnosprawnych",
+];
 
 // Mobile-first styles
 const styles = {
@@ -148,6 +194,140 @@ const styles = {
     textAlign: "center",
     width: "100%",
   },
+  // Tags styles
+  tagsContainer: {
+    marginBottom: "1rem",
+  },
+  tagsHeader: {
+    display: "flex",
+    alignItems: "center",
+    marginBottom: "0.75rem",
+    gap: "0.5rem",
+  },
+  tagsHeaderIcon: {
+    color: "#666",
+  },
+  tagsHeaderText: {
+    fontSize: "0.9rem",
+    fontWeight: "bold",
+    color: "#333",
+    flex: 1,
+  },
+  addTagButton: {
+    background: "#007bff",
+    color: "white",
+    border: "none",
+    borderRadius: "50%",
+    width: "28px",
+    height: "28px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    cursor: "pointer",
+    transition: "all 0.2s ease",
+  },
+  addTagButtonActive: {
+    background: "#dc3545",
+    transform: "rotate(45deg)",
+  },
+  selectedTagsContainer: {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "0.5rem",
+    marginBottom: "0.5rem",
+  },
+  noSelectedTags: {
+    color: "#999",
+    fontStyle: "italic",
+    fontSize: "0.9rem",
+  },
+  tagChip: {
+    display: "flex",
+    alignItems: "center",
+    gap: "0.25rem",
+    padding: "0.375rem 0.75rem",
+    borderRadius: "20px",
+    border: "1px solid",
+    fontSize: "0.875rem",
+    fontWeight: "500",
+    transition: "all 0.2s ease",
+  },
+  tagIcon: {
+    flexShrink: 0,
+  },
+  tagText: {
+    whiteSpace: "nowrap",
+  },
+  removeTagButton: {
+    background: "none",
+    border: "none",
+    cursor: "pointer",
+    padding: "2px",
+    marginLeft: "0.25rem",
+    borderRadius: "50%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    opacity: 0.7,
+    transition: "all 0.2s ease",
+    width: "18px",
+    height: "18px",
+  },
+  tagSelector: {
+    marginTop: "1rem",
+    padding: "1rem",
+    backgroundColor: "#f8f9fa",
+    borderRadius: "8px",
+    border: "1px solid #e9ecef",
+  },
+  tagSelectorHeader: {
+    fontSize: "0.9rem",
+    fontWeight: "600",
+    color: "#333",
+    marginBottom: "0.75rem",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  closeSelectorButton: {
+    background: "none",
+    border: "none",
+    cursor: "pointer",
+    padding: "4px",
+    borderRadius: "50%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    opacity: 0.7,
+    transition: "all 0.2s ease",
+    width: "24px",
+    height: "24px",
+  },
+  availableTagsContainer: {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "0.5rem",
+  },
+  availableTagButton: {
+    display: "flex",
+    alignItems: "center",
+    gap: "0.25rem",
+    padding: "0.5rem 0.75rem",
+    borderRadius: "20px",
+    border: "1px solid",
+    fontSize: "0.875rem",
+    fontWeight: "500",
+    cursor: "pointer",
+    transition: "all 0.2s ease",
+    background: "white",
+  },
+  noAvailableTags: {
+    color: "#666",
+    fontStyle: "italic",
+    fontSize: "0.9rem",
+    textAlign: "center",
+    padding: "1rem",
+  },
 };
 
 export default function AddWcPage() {
@@ -156,6 +336,10 @@ export default function AddWcPage() {
   const [location, setLocation] = useState(""); // Will store coordinates
   const [coordinates, setCoordinates] = useState(null); // For GPS coordinates
   const [placeType, setPlaceType] = useState(DEFAULT_PLACE_TYPE);
+
+  // State for tags
+  const [selectedTags, setSelectedTags] = useState([]);
+  const [showTagSelector, setShowTagSelector] = useState(false);
 
   // Enhanced address setter with debugging
   const handleAddressChange = (newAddress) => {
@@ -301,6 +485,21 @@ export default function AddWcPage() {
     }
   };
 
+  // Tag management functions
+  const addTag = (tagName) => {
+    if (!selectedTags.includes(tagName)) {
+      setSelectedTags([...selectedTags, tagName]);
+    }
+  };
+
+  const removeTag = (tagName) => {
+    setSelectedTags(selectedTags.filter((tag) => tag !== tagName));
+  };
+
+  const getAvailableTagsToAdd = () => {
+    return AVAILABLE_TAGS.filter((tag) => !selectedTags.includes(tag));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -402,6 +601,34 @@ export default function AddWcPage() {
         throw new Error(
           result.message || "Failed to add WC. Please try again.",
         );
+      }
+
+      // If WC was created successfully and there are selected tags, add them
+      // API returns array of WCs, so we need to access the first element
+      const createdWC = Array.isArray(result) ? result[0] : result;
+      if (createdWC && createdWC.id && selectedTags.length > 0) {
+        try {
+          // Add each selected tag
+          for (const tag of selectedTags) {
+            const tagResponse = await fetch("/api/wc-tags", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                wc_id: createdWC.id,
+                tag: tag,
+              }),
+            });
+
+            const tagResult = await tagResponse.json();
+
+            if (!tagResponse.ok) {
+              console.error("Failed to add tag:", tag, tagResult.message);
+            }
+          }
+        } catch (tagError) {
+          console.error("Error adding tags:", tagError);
+          // Don't fail the whole operation if tags fail to add
+        }
       }
 
       router.push("/?status=wc_added");
@@ -802,6 +1029,122 @@ export default function AddWcPage() {
                 );
               })}
             </div>
+          </div>
+
+          {/* Tags Section */}
+          <div style={styles.tagsContainer}>
+            <div style={styles.tagsHeader}>
+              <Tag size={18} style={styles.tagsHeaderIcon} />
+              <span style={styles.tagsHeaderText}>Tagi (Opcjonalne)</span>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setShowTagSelector(!showTagSelector);
+                }}
+                style={{
+                  ...styles.addTagButton,
+                  ...(showTagSelector ? styles.addTagButtonActive : {}),
+                }}
+                disabled={loading}
+              >
+                <Plus size={16} />
+              </button>
+            </div>
+
+            <div style={styles.selectedTagsContainer}>
+              {selectedTags.length === 0 ? (
+                <div style={styles.noSelectedTags}>
+                  Nie wybrano tagów. Dodaj tagi, aby opisać to WC!
+                </div>
+              ) : (
+                selectedTags.map((tagName) => {
+                  const config = TAG_CONFIG[tagName] || TAG_CONFIG["darmowa"];
+                  const IconComponent = config.icon;
+
+                  return (
+                    <div
+                      key={tagName}
+                      style={{
+                        ...styles.tagChip,
+                        backgroundColor: config.bgColor,
+                        borderColor: config.borderColor,
+                        color: config.color,
+                      }}
+                    >
+                      <IconComponent size={14} style={styles.tagIcon} />
+                      <span style={styles.tagText}>#{tagName}</span>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          removeTag(tagName);
+                        }}
+                        style={styles.removeTagButton}
+                        title="Usuń tag"
+                      >
+                        <X size={12} />
+                      </button>
+                    </div>
+                  );
+                })
+              )}
+            </div>
+
+            {showTagSelector && (
+              <div style={styles.tagSelector}>
+                <div style={styles.tagSelectorHeader}>
+                  <span>
+                    Wybierz tagi do dodania ({getAvailableTagsToAdd().length}{" "}
+                    dostępnych):
+                  </span>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setShowTagSelector(false);
+                    }}
+                    style={styles.closeSelectorButton}
+                    title="Zamknij wybór tagów"
+                  >
+                    <X size={14} />
+                  </button>
+                </div>
+                <div style={styles.availableTagsContainer}>
+                  {getAvailableTagsToAdd().map((tagName) => {
+                    const config = TAG_CONFIG[tagName] || TAG_CONFIG["darmowa"];
+                    const IconComponent = config.icon;
+
+                    return (
+                      <button
+                        type="button"
+                        key={tagName}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          addTag(tagName);
+                        }}
+                        disabled={loading}
+                        style={{
+                          ...styles.availableTagButton,
+                          backgroundColor: config.bgColor,
+                          borderColor: config.borderColor,
+                          color: config.color,
+                          opacity: loading ? 0.6 : 1,
+                        }}
+                      >
+                        <IconComponent size={14} style={styles.tagIcon} />
+                        <span>#{tagName}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+                {getAvailableTagsToAdd().length === 0 && (
+                  <div style={styles.noAvailableTags}>
+                    ✅ Wybrano już wszystkie dostępne tagi
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
           <button
