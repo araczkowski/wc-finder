@@ -104,6 +104,47 @@ export async function GET(request) {
       } else {
         wcs = data;
         error = null;
+
+        // Check if PostGIS function is missing place_type and fallback to supplement it
+        if (wcs && wcs.length > 0 && wcs[0].place_type === undefined) {
+          try {
+            // Get WC IDs from PostGIS result
+            const wcIds = wcs.map((wc) => wc.id);
+
+            // Fetch place_type data for these WCs using regular query
+            const { data: placeTypeData, error: placeTypeError } =
+              await supabase
+                .from("wcs")
+                .select("id, place_type")
+                .in("id", wcIds);
+
+            if (!placeTypeError && placeTypeData) {
+              // Create a map of id -> place_type
+              const placeTypeMap = {};
+              placeTypeData.forEach((wc) => {
+                placeTypeMap[wc.id] = wc.place_type || "toilet";
+              });
+
+              // Add place_type to PostGIS results
+              wcs = wcs.map((wc) => ({
+                ...wc,
+                place_type: placeTypeMap[wc.id] || "toilet",
+              }));
+            } else {
+              // Set default place_type for all records
+              wcs = wcs.map((wc) => ({
+                ...wc,
+                place_type: "toilet",
+              }));
+            }
+          } catch (supplementErr) {
+            // Set default place_type for all records
+            wcs = wcs.map((wc) => ({
+              ...wc,
+              place_type: "toilet",
+            }));
+          }
+        }
       }
     } else {
       query = supabase

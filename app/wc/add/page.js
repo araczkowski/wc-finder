@@ -19,6 +19,7 @@ import {
   DEFAULT_PLACE_TYPE,
 } from "../../utils/placeTypes";
 import { pl } from "../../locales/pl";
+import { Navigation, Camera } from "lucide-react";
 
 // Mobile-first styles
 const styles = {
@@ -589,7 +590,9 @@ export default function AddWcPage() {
                   width: 40,
                   backgroundColor: "transparent",
                   border: "none",
-                  display: "inline-block",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                   height: "5em",
                   backgroundColor: "#2196F3",
                   color: "white",
@@ -597,13 +600,12 @@ export default function AddWcPage() {
                   borderRadius: "4px",
                   fontSize: "0.8rem",
                   transition: "background-color 0.2s ease",
-                  lineHeight: "3em",
                   padding: "4px 8px",
                   fontWeight: "bold",
                   width: "4em",
                 }}
               >
-                GPS
+                <Navigation size={16} />
               </button>
             </div>
             {gettingLocation && (
@@ -722,7 +724,8 @@ export default function AddWcPage() {
               }}
               disabled={loading || imageOptimizing}
             >
-              📷 Dodaj zdjęcie
+              <Camera size={18} style={{ marginRight: "0.5rem" }} />
+              Dodaj zdjęcie
             </button>
 
             {imageOptimizing && (

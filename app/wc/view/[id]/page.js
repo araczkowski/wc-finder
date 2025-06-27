@@ -24,6 +24,7 @@ import {
 } from "../../../utils/imageOptimizer";
 import { getPlaceTypeLabel } from "../../../utils/placeTypes";
 import { pl } from "../../../locales/pl";
+import PlaceTypeDisplay from "../../../components/PlaceTypeDisplay";
 
 const styles = {
   loadingMessage: {
@@ -668,7 +669,12 @@ export default function ViewWcPage() {
           <div>
             <label style={styles.formLabel}>{pl.placeType}</label>
             <div style={styles.viewText}>
-              {getPlaceTypeLabel(wcData.place_type || "toilet", pl)}
+              <PlaceTypeDisplay
+                placeType={wcData.place_type || "toilet"}
+                showIcon={true}
+                showText={true}
+                iconSize={18}
+              />
             </div>
           </div>
 

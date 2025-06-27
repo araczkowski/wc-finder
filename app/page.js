@@ -10,6 +10,8 @@ import { useTranslation } from "./hooks/useTranslation";
 import ImageSlideshow from "./components/ImageSlideshow";
 import UserDropdown from "./components/UserDropdown";
 import AddressAutocomplete from "./components/AddressAutocomplete";
+import PlaceTypeDisplay from "./components/PlaceTypeDisplay";
+import RatingDisplay from "./components/RatingDisplay";
 import { getPlaceTypeLabel } from "./utils/placeTypes";
 import { pl } from "./locales/pl";
 
@@ -1613,19 +1615,27 @@ export default function Home() {
                               style={{ textAlign: "center" }}
                             >
                               <div style={{ marginBottom: "4px" }}>
-                                {getPlaceTypeLabel(
-                                  wc.place_type || "toilet",
-                                  pl,
-                                )}
+                                <PlaceTypeDisplay
+                                  placeType={wc.place_type}
+                                  showIcon={true}
+                                  showText={true}
+                                  iconSize={20}
+                                />
                               </div>
                             </div>
                             <div
                               className="table-cell fifth-cell"
                               style={{ textAlign: "center" }}
                             >
-                              {wc.rating
-                                ? `${t("stars").repeat(Math.min(wc.rating, 10))} ${t("ratingOutOf10", { rating: wc.rating })}`
-                                : t("notRated")}
+                              {wc.rating ? (
+                                <RatingDisplay
+                                  rating={wc.rating}
+                                  size={14}
+                                  showNumeric={true}
+                                />
+                              ) : (
+                                t("notRated")
+                              )}
                             </div>
                           </div>
                         </Link>

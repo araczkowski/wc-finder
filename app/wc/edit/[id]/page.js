@@ -30,6 +30,7 @@ import {
 } from "../../../utils/placeTypes";
 import { pl } from "../../../locales/pl";
 import { useTranslation } from "../../../hooks/useTranslation";
+import PlaceTypeDisplay from "../../../components/PlaceTypeDisplay";
 
 // Styles moved to globals.css for better responsiveness
 const styles = {
@@ -1222,7 +1223,12 @@ export default function EditWcPage() {
             <div>
               <label style={styles.formLabel}>{pl.placeType}</label>
               <div className="viewText">
-                {getPlaceTypeLabel(placeType || "toilet", pl)}
+                <PlaceTypeDisplay
+                  placeType={placeType || "toilet"}
+                  showIcon={true}
+                  showText={true}
+                  iconSize={18}
+                />
               </div>
             </div>
 
