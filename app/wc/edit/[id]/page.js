@@ -980,7 +980,7 @@ export default function EditWcPage() {
               />
             </div>
 
-            <div>
+            <div className="hidden-div">
               <label htmlFor="location" style={styles.formLabel}>
                 {t("Coordinates")}
               </label>

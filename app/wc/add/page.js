@@ -639,7 +639,7 @@ export default function AddWcPage() {
             )}
           </div>
 
-          <div>
+          <div class="hidden-div">
             <label htmlFor="location" style={styles.formLabel}>
               Współrzędne
             </label>

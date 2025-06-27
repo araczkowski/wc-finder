@@ -192,6 +192,11 @@ a {
     background-color: rgba(0, 123, 255, 0.1);
 }
 
+div.hidden-div {
+    visibility: hidden;
+    height: 0px;
+}
+
 /* Accessibility improvements */
 .responsive-table {
     position: relative;
