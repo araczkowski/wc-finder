@@ -11,7 +11,12 @@ export default function TestTagAPI() {
   const [loading, setLoading] = useState(false);
   const [existingWCs, setExistingWCs] = useState([]);
 
-  const availableTags = ["płatna", "darmowa", "przewijak", "dostępnaDlaNiepełnosprawnych"];
+  const availableTags = [
+    "płatna",
+    "darmowa",
+    "przewijak",
+    "dostępnaDlaNiepełnosprawnych",
+  ];
 
   useEffect(() => {
     fetchExistingWCs();
@@ -104,7 +109,7 @@ Time: ${new Date().toLocaleTimeString()}
     try {
       const response = await fetch(
         `/api/wc-tags?wc_id=${wcId}&tag=${encodeURIComponent(selectedTag)}`,
-        { method: "DELETE" }
+        { method: "DELETE" },
       );
 
       const data = await response.json();
@@ -145,9 +150,12 @@ Time: ${new Date().toLocaleTimeString()}
       <h1>Test Tag API</h1>
 
       <div style={styles.sessionInfo}>
-        <strong>Session Info:</strong><br/>
-        User ID: {session?.user?.id}<br/>
-        Email: {session?.user?.email}<br/>
+        <strong>Session Info:</strong>
+        <br />
+        User ID: {session?.user?.id}
+        <br />
+        Email: {session?.user?.email}
+        <br />
         Status: {status}
       </div>
 
@@ -159,7 +167,7 @@ Time: ${new Date().toLocaleTimeString()}
           style={styles.select}
         >
           <option value="">-- Select WC --</option>
-          {existingWCs.map(wc => (
+          {existingWCs.map((wc) => (
             <option key={wc.id} value={wc.id}>
               {wc.name} ({wc.id.substring(0, 8)}...)
             </option>
@@ -185,8 +193,10 @@ Time: ${new Date().toLocaleTimeString()}
           onChange={(e) => setSelectedTag(e.target.value)}
           style={styles.select}
         >
-          {availableTags.map(tag => (
-            <option key={tag} value={tag}>{tag}</option>
+          {availableTags.map((tag) => (
+            <option key={tag} value={tag}>
+              {tag}
+            </option>
           ))}
         </select>
       </div>
@@ -215,10 +225,7 @@ Time: ${new Date().toLocaleTimeString()}
           >
             Remove Tag
           </button>
-          <button
-            onClick={clearResult}
-            style={styles.clearButton}
-          >
+          <button onClick={clearResult} style={styles.clearButton}>
             Clear Result
           </button>
         </div>
@@ -236,9 +243,12 @@ Time: ${new Date().toLocaleTimeString()}
         <ol style={styles.instructions}>
           <li>Select a WC from the dropdown or enter a WC ID manually</li>
           <li>Select a tag to work with</li>
-          <li>Click "Get Tags" to see existing tags for the WC</li>
-          <li>Click "Add Tag" to add the selected tag</li>
-          <li>Click "Remove Tag" to remove your tag (only works for your own tags)</li>
+          <li>Click &quot;Get Tags&quot; to see existing tags for the WC</li>
+          <li>Click &quot;Add Tag&quot; to add the selected tag</li>
+          <li>
+            Click &quot;Remove Tag&quot; to remove your tag (only works for your
+            own tags)
+          </li>
           <li>Check the result section for API responses</li>
         </ol>
       </div>

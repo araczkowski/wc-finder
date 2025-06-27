@@ -646,25 +646,11 @@ export default function ViewWcPage() {
 
         <div style={styles.form}>
           <div>
-            <label style={styles.formLabel}>Nazwa</label>
-            <div style={styles.viewText}>{wcData.name}</div>
-          </div>
-
-          <div>
             <label style={styles.formLabel}>Adres</label>
             <div
               style={wcData.address ? styles.viewText : styles.viewTextEmpty}
             >
               {wcData.address || "Nie podano"}
-            </div>
-          </div>
-
-          <div>
-            <label style={styles.formLabel}>Współrzędne</label>
-            <div
-              style={wcData.location ? styles.viewText : styles.viewTextEmpty}
-            >
-              {wcData.location || "Nie podano"}
             </div>
           </div>
 
