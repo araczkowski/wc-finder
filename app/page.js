@@ -15,7 +15,7 @@ import RatingDisplay from "./components/RatingDisplay";
 import WCTags from "./components/WCTags";
 import { getPlaceTypeLabel } from "./utils/placeTypes";
 import { pl } from "./locales/pl";
-import { LocateFixed } from "lucide-react";
+import { LocateFixed, RulerDimensionLine } from "lucide-react";
 
 // Basic inline styles for layout - consider moving to CSS modules or global CSS
 const styles = {
@@ -1557,13 +1557,12 @@ export default function Home() {
                                 wc.distance !== undefined) ? (
                                 <div
                                   style={{
-                                    fontSize: "0.9rem",
+                                    fontSize: "1rem",
                                     color: "#ffffff",
                                     backgroundColor: "#2196F3",
                                     padding: "2px 6px",
                                     borderRadius: "2em",
                                     fontWeight: "bold",
-                                    display: "inline-block",
                                     marginTop: "2px",
                                     whiteSpace: "nowrap",
                                     height: "4em",
@@ -1578,12 +1577,47 @@ export default function Home() {
                                     justifyContent: "center",
                                   }}
                                 >
-                                  🧭{" "}
+                                  <RulerDimensionLine
+                                    size={22}
+                                    style={{ marginRight: "4px" }}
+                                  />
                                   {formatDistance(
                                     wc.distance_km || wc.distance,
                                   )}
                                 </div>
                               ) : null}
+                              <div
+                                className="place-type-cell"
+                                style={{ textAlign: "center" }}
+                              >
+                                <div
+                                  style={{
+                                    marginBottom: "4px",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    position: "absolute",
+                                    top: "7em",
+                                    right: "2em",
+                                    zIndex: 1000,
+                                    fzeontSize: "1rem",
+                                    color: "white",
+                                    backgroundColor: "#2196F3",
+                                    padding: "2px 6px",
+                                    borderRadius: "2em",
+                                    fontWeight: "bold",
+                                    height: "4em",
+                                    lineHeight: "4em",
+                                  }}
+                                >
+                                  <PlaceTypeDisplay
+                                    placeType={wc.place_type}
+                                    showIcon={true}
+                                    showText={true}
+                                    iconSize={22}
+                                  />
+                                </div>
+                              </div>
                               {wc.gallery_photos &&
                               wc.gallery_photos.length > 0 ? (
                                 <ImageSlideshow
@@ -1614,19 +1648,6 @@ export default function Home() {
                               </div>
                             </div>
                             <div
-                              className="table-cell fourth-cell"
-                              style={{ textAlign: "center" }}
-                            >
-                              <div style={{ marginBottom: "4px" }}>
-                                <PlaceTypeDisplay
-                                  placeType={wc.place_type}
-                                  showIcon={true}
-                                  showText={true}
-                                  iconSize={20}
-                                />
-                              </div>
-                            </div>
-                            <div
                               className="table-cell fifth-cell"
                               style={{ textAlign: "center" }}
                             >
@@ -1642,7 +1663,7 @@ export default function Home() {
                             </div>
                             <div
                               className="table-cell sixth-cell"
-                              style={{ textAlign: "center" }}
+                              style={{ textAlign: "left" }}
                             >
                               <WCTags wcId={wc.id} isEditable={false} />
                             </div>

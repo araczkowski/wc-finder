@@ -455,10 +455,9 @@ textarea.form-input {
 
 /* Icon styles for place types */
 .place-type-icon {
-    display: inline-flex;
     align-items: center;
-    gap: 0.375rem;
-    color: #495057;
+    gap: 0;
+    color: white;
 }
 
 .place-type-icon svg {
