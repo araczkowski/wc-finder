@@ -112,7 +112,7 @@ export const getPlaceTypeIcon = (placeType, props = {}) => {
     case "department_store":
       return <Store {...defaultProps} />;
     default:
-      return <Home {...defaultProps} />;
+      return <Toilet {...defaultProps} />;
   }
 };
 
