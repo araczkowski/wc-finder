@@ -132,7 +132,7 @@ export async function PUT(request, { params }) {
     // --- Authorization & Fetch Current State: Get existing WC from DB ---
     const { data: existingWc, error: fetchError } = await supabase
       .from("wcs")
-      .select("user_id, image_url, name, location, address, rating") // Select all fields needed for update
+      .select("user_id, image_url, name, location, address, rating, place_type") // Select all fields needed for update
       .eq("id", wcId)
       .single();
 
@@ -234,6 +234,36 @@ export async function PUT(request, { params }) {
     }
     // If no new file uploaded AND not explicitly removing, finalImageUrl remains existingWc.image_url (no change to image)
 
+    // Validate place_type if provided
+    const validPlaceTypes = [
+      "toilet",
+      "public_toilet",
+      "tourist_attraction",
+      "shopping_mall",
+      "restaurant",
+      "cafe",
+      "bar",
+      "park",
+      "train_station",
+      "subway_station",
+      "bus_station",
+      "airport",
+      "gas_station",
+      "library",
+      "museum",
+      "movie_theater",
+      "city_hall",
+      "supermarket",
+      "department_store",
+    ];
+
+    if (jsonData.place_type && !validPlaceTypes.includes(jsonData.place_type)) {
+      return NextResponse.json(
+        { message: "Invalid place type provided." },
+        { status: 400 },
+      );
+    }
+
     // --- Prepare data for DB update ---
     let wcDataToUpdate = {
       name: jsonData.name ? jsonData.name.trim() : existingWc.name,
@@ -247,6 +277,7 @@ export async function PUT(request, { params }) {
         jsonData.rating !== undefined && jsonData.rating !== null
           ? parseInt(jsonData.rating, 10)
           : null,
+      place_type: jsonData.place_type || existingWc.place_type || "toilet",
       image_url: finalImageUrl,
       updated_at: new Date().toISOString(), // Always update the timestamp
     };

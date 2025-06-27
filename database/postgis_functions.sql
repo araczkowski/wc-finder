@@ -17,6 +17,7 @@ RETURNS TABLE (
     address TEXT,
     image_url TEXT,
     rating INTEGER,
+    place_type TEXT,
     created_at TIMESTAMPTZ,
     updated_at TIMESTAMPTZ,
     distance_km DOUBLE PRECISION
@@ -34,6 +35,7 @@ BEGIN
         w.address,
         w.image_url,
         w.rating,
+        w.place_type,
         w.created_at,
         w.updated_at,
         -- Calculate distance in kilometers
@@ -54,6 +56,7 @@ CREATE OR REPLACE FUNCTION insert_wc_with_location(
     p_address TEXT DEFAULT NULL,
     p_image_url TEXT DEFAULT NULL,
     p_rating INTEGER DEFAULT NULL,
+    p_place_type TEXT DEFAULT 'toilet',
     p_longitude DOUBLE PRECISION,
     p_latitude DOUBLE PRECISION
 )
@@ -66,6 +69,7 @@ RETURNS TABLE (
     address TEXT,
     image_url TEXT,
     rating INTEGER,
+    place_type TEXT,
     created_at TIMESTAMPTZ,
     updated_at TIMESTAMPTZ
 )
@@ -81,7 +85,8 @@ BEGIN
         location,
         address,
         image_url,
-        rating
+        rating,
+        place_type
     )
     VALUES (
         p_user_id,
@@ -90,7 +95,8 @@ BEGIN
         ST_Point(p_longitude, p_latitude)::GEOGRAPHY,
         p_address,
         p_image_url,
-        p_rating
+        p_rating,
+        p_place_type
     )
     RETURNING wcs.id INTO new_id;
 
@@ -104,6 +110,7 @@ BEGIN
         w.address,
         w.image_url,
         w.rating,
+        w.place_type,
         w.created_at,
         w.updated_at
     FROM wcs w
@@ -166,6 +173,7 @@ RETURNS TABLE (
     address TEXT,
     image_url TEXT,
     rating INTEGER,
+    place_type TEXT,
     created_at TIMESTAMPTZ,
     updated_at TIMESTAMPTZ,
     distance_km DOUBLE PRECISION
@@ -183,6 +191,7 @@ BEGIN
         w.address,
         w.image_url,
         w.rating,
+        w.place_type,
         w.created_at,
         w.updated_at,
         ST_Distance(w.location, ST_Point(user_lng, user_lat)::GEOGRAPHY) / 1000.0 as distance_km
@@ -202,6 +211,7 @@ CREATE OR REPLACE FUNCTION update_wc_with_location(
     p_address TEXT DEFAULT NULL,
     p_image_url TEXT DEFAULT NULL,
     p_rating INTEGER DEFAULT NULL,
+    p_place_type TEXT DEFAULT NULL,
     p_longitude DOUBLE PRECISION,
     p_latitude DOUBLE PRECISION
 )
@@ -214,6 +224,7 @@ RETURNS TABLE (
     address TEXT,
     image_url TEXT,
     rating INTEGER,
+    place_type TEXT,
     created_at TIMESTAMPTZ,
     updated_at TIMESTAMPTZ
 )
@@ -227,6 +238,7 @@ BEGIN
         address = p_address,
         image_url = p_image_url,
         rating = p_rating,
+        place_type = COALESCE(p_place_type, place_type),
         updated_at = TIMEZONE('utc'::text, NOW())
     WHERE wcs.id = p_wc_id;
 
@@ -240,6 +252,7 @@ BEGIN
         w.address,
         w.image_url,
         w.rating,
+        w.place_type,
         w.created_at,
         w.updated_at
     FROM wcs w

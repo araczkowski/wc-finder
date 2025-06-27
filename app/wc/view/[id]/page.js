@@ -22,6 +22,8 @@ import {
   validateImageFile,
   WC_GALLERY_CONFIG,
 } from "../../../utils/imageOptimizer";
+import { getPlaceTypeLabel } from "../../../utils/placeTypes";
+import { pl } from "../../../locales/pl";
 
 const styles = {
   loadingMessage: {
@@ -660,6 +662,13 @@ export default function ViewWcPage() {
               style={wcData.location ? styles.viewText : styles.viewTextEmpty}
             >
               {wcData.location || "Nie podano"}
+            </div>
+          </div>
+
+          <div>
+            <label style={styles.formLabel}>{pl.placeType}</label>
+            <div style={styles.viewText}>
+              {getPlaceTypeLabel(wcData.place_type, pl)}
             </div>
           </div>
 

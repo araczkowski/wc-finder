@@ -14,6 +14,11 @@ import {
   WC_MAIN_IMAGE_CONFIG,
 } from "../../utils/imageOptimizer";
 import AddressAutocomplete from "../../components/AddressAutocomplete";
+import {
+  getPlaceTypeOptions,
+  DEFAULT_PLACE_TYPE,
+} from "../../utils/placeTypes";
+import { pl } from "../../locales/pl";
 
 // Mobile-first styles
 const styles = {
@@ -148,6 +153,7 @@ export default function AddWcPage() {
   const [address, setAddress] = useState("");
   const [location, setLocation] = useState(""); // Will store coordinates
   const [coordinates, setCoordinates] = useState(null); // For GPS coordinates
+  const [placeType, setPlaceType] = useState(DEFAULT_PLACE_TYPE);
 
   // Enhanced address setter with debugging
   const handleAddressChange = (newAddress) => {
@@ -379,6 +385,7 @@ export default function AddWcPage() {
         location: locationString,
         image_url: uploadedImageUrl, // Use the uploaded image URL
         rating: parseInt(rating, 10),
+        place_type: placeType,
       };
 
       const response = await fetch("/api/wcs", {
@@ -667,6 +674,30 @@ export default function AddWcPage() {
                 {coordinates.lng.toFixed(6)}
               </p>
             )}
+          </div>
+
+          <div>
+            <label htmlFor="placeType" style={styles.formLabel}>
+              {pl.placeType}*
+            </label>
+            <select
+              id="placeType"
+              name="placeType"
+              value={placeType}
+              onChange={(e) => setPlaceType(e.target.value)}
+              required
+              style={styles.formInput}
+              disabled={loading}
+            >
+              <option value="" disabled>
+                {pl.selectPlaceType}
+              </option>
+              {getPlaceTypeOptions(pl).map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div>

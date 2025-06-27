@@ -244,7 +244,7 @@ export async function POST(request) {
     );
   }
 
-  const { name, location, address, image_url, rating } = reqBody;
+  const { name, location, address, image_url, rating, place_type } = reqBody;
 
   // Validate required fields
   if (!name || typeof name !== "string" || name.trim() === "") {
@@ -312,6 +312,40 @@ export async function POST(request) {
     }
   }
 
+  // Validate place_type
+  const validPlaceTypes = [
+    "toilet",
+    "public_toilet",
+    "tourist_attraction",
+    "shopping_mall",
+    "restaurant",
+    "cafe",
+    "bar",
+    "park",
+    "train_station",
+    "subway_station",
+    "bus_station",
+    "airport",
+    "gas_station",
+    "library",
+    "museum",
+    "movie_theater",
+    "city_hall",
+    "supermarket",
+    "department_store",
+  ];
+
+  // Validate place_type if provided (make it optional for now)
+  if (
+    place_type &&
+    (typeof place_type !== "string" || !validPlaceTypes.includes(place_type))
+  ) {
+    return NextResponse.json(
+      { message: "Place type must be one of the valid types if provided." },
+      { status: 400 },
+    );
+  }
+
   const supabaseUrl = process.env.SUPABASE_URL;
   const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
@@ -350,6 +384,7 @@ export async function POST(request) {
       image_url && typeof image_url === "string" ? image_url.trim() : null,
     rating:
       rating !== null && rating !== undefined ? parseInt(rating, 10) : null,
+    place_type: place_type || "toilet",
     // 'created_at' and 'updated_at' are assumed to be handled by Supabase table defaults/triggers if set up
   };
 
@@ -357,28 +392,76 @@ export async function POST(request) {
     let newWc, insertError;
 
     if (locationGeo) {
-      // Use RPC call to insert with PostGIS location
-      const { data, error } = await supabase.rpc("insert_wc_with_location", {
-        p_user_id: wcDataToInsert.user_id,
-        p_created_by: wcDataToInsert.created_by,
-        p_name: wcDataToInsert.name,
-        p_address: wcDataToInsert.address,
-        p_image_url: wcDataToInsert.image_url,
-        p_rating: wcDataToInsert.rating,
-        p_longitude: parseFloat(location.trim().split(",")[1]),
-        p_latitude: parseFloat(location.trim().split(",")[0]),
-      });
-      newWc = data;
-      insertError = error;
+      try {
+        // Try RPC call to insert with PostGIS location
+        const { data, error } = await supabase.rpc("insert_wc_with_location", {
+          p_user_id: wcDataToInsert.user_id,
+          p_created_by: wcDataToInsert.created_by,
+          p_name: wcDataToInsert.name,
+          p_address: wcDataToInsert.address,
+          p_image_url: wcDataToInsert.image_url,
+          p_rating: wcDataToInsert.rating,
+          p_place_type: wcDataToInsert.place_type || "toilet",
+          p_longitude: parseFloat(location.trim().split(",")[1]),
+          p_latitude: parseFloat(location.trim().split(",")[0]),
+        });
+        newWc = data;
+        insertError = error;
+      } catch (rpcError) {
+        console.warn(
+          "RPC function not found, falling back to raw SQL insert:",
+          rpcError,
+        );
+        // Fallback: try raw SQL insert with PostGIS
+        const coords = location.trim().split(",");
+        const lat = parseFloat(coords[0].trim());
+        const lng = parseFloat(coords[1].trim());
+
+        const { data, error } = await supabase
+          .from("wcs")
+          .insert({
+            ...wcDataToInsert,
+            location: `POINT(${lng} ${lat})`,
+          })
+          .select()
+          .single();
+        newWc = data;
+        insertError = error;
+      }
     } else {
-      // Regular insert without location
-      const { data, error } = await supabase
-        .from("wcs")
-        .insert(wcDataToInsert)
-        .select()
-        .single();
-      newWc = data;
-      insertError = error;
+      try {
+        // Try RPC call for insert without location
+        const { data, error } = await supabase.rpc(
+          "insert_wc_without_location",
+          {
+            p_user_id: wcDataToInsert.user_id,
+            p_created_by: wcDataToInsert.created_by,
+            p_name: wcDataToInsert.name,
+            p_address: wcDataToInsert.address,
+            p_image_url: wcDataToInsert.image_url,
+            p_rating: wcDataToInsert.rating,
+            p_place_type: wcDataToInsert.place_type,
+          },
+        );
+        newWc = data;
+        insertError = error;
+      } catch (rpcError) {
+        console.warn(
+          "RPC function not found, falling back to regular insert:",
+          rpcError,
+        );
+        // Fallback: regular insert without place_type if column doesn't exist
+        const wcDataForFallback = { ...wcDataToInsert };
+        delete wcDataForFallback.place_type; // Remove place_type as fallback
+
+        const { data, error } = await supabase
+          .from("wcs")
+          .insert(wcDataForFallback)
+          .select()
+          .single();
+        newWc = data;
+        insertError = error;
+      }
     }
 
     if (insertError) {

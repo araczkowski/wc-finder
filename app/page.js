@@ -10,6 +10,8 @@ import { useTranslation } from "./hooks/useTranslation";
 import ImageSlideshow from "./components/ImageSlideshow";
 import UserDropdown from "./components/UserDropdown";
 import AddressAutocomplete from "./components/AddressAutocomplete";
+import { getPlaceTypeLabel } from "./utils/placeTypes";
+import { pl } from "./locales/pl";
 
 // Basic inline styles for layout - consider moving to CSS modules or global CSS
 const styles = {
@@ -1608,6 +1610,14 @@ export default function Home() {
                             </div>
                             <div
                               className="table-cell fourth-cell"
+                              style={{ textAlign: "center" }}
+                            >
+                              <div style={{ marginBottom: "4px" }}>
+                                {getPlaceTypeLabel(wc.place_type, pl)}
+                              </div>
+                            </div>
+                            <div
+                              className="table-cell fifth-cell"
                               style={{ textAlign: "center" }}
                             >
                               {wc.rating

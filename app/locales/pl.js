@@ -159,6 +159,31 @@ export const pl = {
   cancel: "Anuluj",
   administrator: "Administrator",
 
+  // Place Types
+  placeType: "Typ miejsca",
+  placeTypes: {
+    toilet: "Toaleta",
+    public_toilet: "Toaleta publiczna",
+    tourist_attraction: "Atrakcja turystyczna",
+    shopping_mall: "Centrum handlowe",
+    restaurant: "Restauracja",
+    cafe: "Kawiarnia",
+    bar: "Bar",
+    park: "Park",
+    train_station: "Stacja kolejowa",
+    subway_station: "Dworzec metra",
+    bus_station: "Dworzec autobusowy",
+    airport: "Lotnisko",
+    gas_station: "Stacja benzynowa",
+    library: "Biblioteka",
+    museum: "Muzeum",
+    movie_theater: "Kino",
+    city_hall: "Ratusz",
+    supermarket: "Supermarket",
+    department_store: "Dom towarowy",
+  },
+  selectPlaceType: "Wybierz typ miejsca...",
+
   // Validation
   required: "Wymagane",
   invalidEmail: "Nieprawidłowy adres email",

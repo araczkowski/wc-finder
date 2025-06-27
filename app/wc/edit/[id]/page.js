@@ -23,6 +23,11 @@ import {
   WC_MAIN_IMAGE_CONFIG,
 } from "../../../utils/imageOptimizer";
 import AddressAutocomplete from "../../../components/AddressAutocomplete";
+import {
+  getPlaceTypeOptions,
+  DEFAULT_PLACE_TYPE,
+} from "../../../utils/placeTypes";
+import { pl } from "../../../locales/pl";
 import { useTranslation } from "../../../hooks/useTranslation";
 
 // Styles moved to globals.css for better responsiveness
@@ -312,6 +317,7 @@ export default function EditWcPage() {
   const [location, setLocation] = useState("");
   const [address, setAddress] = useState("");
   const [coordinates, setCoordinates] = useState(null); // For GPS coordinates
+  const [placeType, setPlaceType] = useState(DEFAULT_PLACE_TYPE);
 
   // Enhanced address setter with debugging
   const handleAddressChange = (newAddress) => {
@@ -478,6 +484,7 @@ export default function EditWcPage() {
         setCurrentImageUrl(fetchedWc.image_url || null);
         setImagePreview(fetchedWc.image_url || null);
         setRating(fetchedWc.rating || 0);
+        setPlaceType(fetchedWc.place_type || DEFAULT_PLACE_TYPE);
 
         // Fetch user ratings and photos
         await fetchUserRatings();
@@ -677,6 +684,7 @@ export default function EditWcPage() {
       location: location.trim() || null,
       address: address.trim() || null,
       rating: rating > 0 ? parseInt(rating, 10) : null,
+      place_type: placeType,
       // Information for the backend to handle image logic:
       current_image_url_on_client: currentImageUrl, // The URL of the image at the start of editing
       remove_image: wantsToRemoveImage,
@@ -1007,6 +1015,31 @@ export default function EditWcPage() {
                 </p>
               )}
             </div>
+
+            <div>
+              <label htmlFor="placeType" style={styles.formLabel}>
+                {pl.placeType}*
+              </label>
+              <select
+                id="placeType"
+                name="placeType"
+                value={placeType}
+                onChange={(e) => setPlaceType(e.target.value)}
+                required
+                style={styles.formInput}
+                disabled={formLoading}
+              >
+                <option value="" disabled>
+                  {pl.selectPlaceType}
+                </option>
+                {getPlaceTypeOptions(pl).map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+
             <div>
               <label style={styles.formLabel}>Zdjęcie</label>
               {imagePreview && !wantsToRemoveImage && (
