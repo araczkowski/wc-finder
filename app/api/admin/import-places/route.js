@@ -46,18 +46,6 @@ const getAddressFromCoordinates = async (lat, lng) => {
     const hasGoogleMapsApi = !!process.env.GOOGLE_MAPS_API_KEY;
     console.log(`Google Maps API available: ${hasGoogleMapsApi}`);
 
-    if (!hasGoogleMapsApi) {
-      // TEMPORARY BYPASS: Return basic coordinates as address to avoid 403 errors
-      const basicAddress = `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
-      console.log(
-        `BYPASSING GEOCODING - Using coordinates as address: ${basicAddress}`,
-      );
-      console.log(
-        "To enable proper geocoding, add GOOGLE_MAPS_API_KEY to environment",
-      );
-      return basicAddress;
-    }
-
     // Try Google Maps API first if available
     const googleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY;
     if (googleMapsApiKey) {
@@ -104,13 +92,37 @@ const getAddressFromCoordinates = async (lat, lng) => {
         console.error(
           "Rate limit exceeded or blocked by Nominatim. Consider adding GOOGLE_MAPS_API_KEY to environment variables.",
         );
-        // Return coordinates as fallback instead of throwing error
+        // Wait and retry once for 403 errors
+        console.log("Waiting 5 seconds and retrying...");
+        await new Promise((resolve) => setTimeout(resolve, 5000));
+
+        // Try one more time
+        const retryResponse = await fetch(
+          `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1`,
+          {
+            headers: {
+              "User-Agent": USER_AGENT,
+            },
+          },
+        );
+
+        if (retryResponse.ok) {
+          const retryData = await retryResponse.json();
+          if (retryData.display_name) {
+            console.log(`Retry successful: ${retryData.display_name}`);
+            return retryData.display_name;
+          }
+        }
+
+        // If retry fails, return coordinates as fallback
         return `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
       } else if (response.status === 429) {
         console.error(
           "Too many requests. Nominatim allows max 1 request per second.",
         );
-        // Return coordinates as fallback instead of throwing error
+        // Wait longer for rate limit errors
+        console.log("Waiting 10 seconds for rate limit...");
+        await new Promise((resolve) => setTimeout(resolve, 10000));
         return `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
       }
 
@@ -151,59 +163,162 @@ const getAddressFromCoordinates = async (lat, lng) => {
   }
 };
 
+// Advanced photo search with multiple strategies
+const searchRealPlacePhoto = async (placeName, address, city = "") => {
+  console.log(`Searching for real photo: ${placeName} at ${address}`);
+
+  // Strategy 1: Try Bing Images (more lenient than Google)
+  try {
+    const searchQuery = `${placeName} ${address} ${city}`.trim();
+    const encodedQuery = encodeURIComponent(searchQuery);
+    const bingUrl = `https://www.bing.com/images/search?q=${encodedQuery}&form=HDRSC2&first=1&tsc=ImageBasicHover`;
+
+    console.log(`Trying Bing Images search: ${searchQuery}`);
+
+    const response = await fetch(bingUrl, {
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+        Accept:
+          "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+        "Accept-Language": "pl-PL,pl;q=0.9,en;q=0.8",
+        "Accept-Encoding": "gzip, deflate, br",
+        DNT: "1",
+        Connection: "keep-alive",
+        "Upgrade-Insecure-Requests": "1",
+      },
+    });
+
+    if (response.ok) {
+      const html = await response.text();
+
+      // Extract image URLs from Bing results
+      const imageMatches = html.match(/imgurl&quot;:&quot;([^&]+)&quot;/g);
+
+      if (imageMatches && imageMatches.length > 0) {
+        for (let i = 0; i < Math.min(5, imageMatches.length); i++) {
+          const match = imageMatches[i].match(
+            /imgurl&quot;:&quot;([^&]+)&quot;/,
+          );
+          if (match) {
+            let imageUrl = decodeURIComponent(match[1]);
+
+            // Validate URL and filter out unwanted domains
+            if (
+              imageUrl.startsWith("http") &&
+              !imageUrl.includes("bing.com") &&
+              !imageUrl.includes("microsoft.com") &&
+              !imageUrl.includes("msn.com") &&
+              (imageUrl.includes(".jpg") ||
+                imageUrl.includes(".jpeg") ||
+                imageUrl.includes(".png") ||
+                imageUrl.includes(".webp"))
+            ) {
+              console.log(`Found Bing image: ${imageUrl}`);
+              return imageUrl;
+            }
+          }
+        }
+      }
+    }
+  } catch (error) {
+    console.log(`Bing search failed: ${error.message}`);
+  }
+
+  // Strategy 2: Try DuckDuckGo Images (privacy-focused)
+  try {
+    const searchQuery = `${placeName} ${address}`.trim();
+    const encodedQuery = encodeURIComponent(searchQuery);
+    const ddgUrl = `https://duckduckgo.com/?q=${encodedQuery}&t=h_&iax=images&ia=images`;
+
+    console.log(`Trying DuckDuckGo Images: ${searchQuery}`);
+
+    const response = await fetch(ddgUrl, {
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+        Accept:
+          "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+      },
+    });
+
+    if (response.ok) {
+      const html = await response.text();
+
+      // Look for image URLs in DuckDuckGo format
+      const imageMatches = html.match(/"image":"([^"]+)"/g);
+
+      if (imageMatches && imageMatches.length > 0) {
+        for (let i = 0; i < Math.min(3, imageMatches.length); i++) {
+          const match = imageMatches[i].match(/"image":"([^"]+)"/);
+          if (match) {
+            let imageUrl = match[1].replace(/\\u002F/g, "/");
+
+            if (
+              imageUrl.startsWith("http") &&
+              (imageUrl.includes(".jpg") ||
+                imageUrl.includes(".jpeg") ||
+                imageUrl.includes(".png") ||
+                imageUrl.includes(".webp"))
+            ) {
+              console.log(`Found DuckDuckGo image: ${imageUrl}`);
+              return imageUrl;
+            }
+          }
+        }
+      }
+    }
+  } catch (error) {
+    console.log(`DuckDuckGo search failed: ${error.message}`);
+  }
+
+  return null;
+};
+
 // Simple photo fallback function - returns placeholder based on place type
 const getDefaultPhotoForPlace = (placeName, placeType) => {
-  // Create simple placeholder images based on place type with fallbacks
   const typeImages = {
-    toilet: [
+    toilet:
       "https://images.unsplash.com/photo-1584622781564-1d987dda5de4?w=400&h=300&fit=crop",
-      "https://picsum.photos/400/300?random=1",
-    ],
-    public_toilet: [
+    public_toilet:
       "https://images.unsplash.com/photo-1584622781564-1d987dda5de4?w=400&h=300&fit=crop",
-      "https://picsum.photos/400/300?random=2",
-    ],
-    restaurant: [
+    restaurant:
       "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop",
-      "https://picsum.photos/400/300?random=3",
-    ],
-    cafe: [
-      "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400&h=300&fit=crop",
-      "https://picsum.photos/400/300?random=4",
-    ],
-    park: [
-      "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=300&fit=crop",
-      "https://picsum.photos/400/300?random=5",
-    ],
-    shopping_mall: [
+    cafe: "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400&h=300&fit=crop",
+    park: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=300&fit=crop",
+    shopping_mall:
       "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=300&fit=crop",
-      "https://picsum.photos/400/300?random=6",
-    ],
-    gas_station: [
+    gas_station:
       "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop",
-      "https://picsum.photos/400/300?random=7",
-    ],
-    default: [
+    default:
       "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=300&fit=crop",
-      "https://picsum.photos/400/300?random=8",
-      "https://via.placeholder.com/400x300?text=No+Photo+Available",
-    ],
   };
 
-  const imageOptions = typeImages[placeType] || typeImages.default;
-  const imageUrl = imageOptions[0]; // Use first option for now
+  const imageUrl = typeImages[placeType] || typeImages.default;
   console.log(
-    `Using default image for ${placeName} (${placeType}): ${imageUrl}`,
+    `Using fallback image for ${placeName} (${placeType}): ${imageUrl}`,
   );
   return imageUrl;
 };
 
-// Simplified photo search - just return placeholder for now to avoid scraping issues
+// Enhanced photo search - try real images first, then fallback
 const searchPlacePhoto = async (placeName, address, placeType) => {
   console.log(`Searching for photo: ${placeName} at ${address}`);
 
-  // For now, skip complex scraping and return default photos
-  // This avoids potential blocking and rate limiting issues
+  // Extract city from address for better search
+  const addressParts = address.split(",");
+  const city =
+    addressParts.length > 1 ? addressParts[addressParts.length - 2].trim() : "";
+
+  // Try to get real photos first
+  const realPhoto = await searchRealPlacePhoto(placeName, address, city);
+
+  if (realPhoto) {
+    return realPhoto;
+  }
+
+  // Fallback to type-based placeholder
+  console.log(`No real photo found for ${placeName}, using placeholder`);
   return getDefaultPhotoForPlace(placeName, placeType);
 };
 
@@ -647,9 +762,11 @@ export async function POST(request) {
           const hasGoogleMapsApi = !!process.env.GOOGLE_MAPS_API_KEY;
           if (!hasGoogleMapsApi) {
             console.log(
-              "Waiting 2 seconds to respect Nominatim rate limits...",
+              "Waiting 3 seconds to respect Nominatim rate limits...",
             );
-            await delay(2000);
+            await delay(3000);
+          } else {
+            console.log("Using Google Maps API - no delay needed");
           }
           const geocodedAddress = await getAddressFromCoordinates(
             place.geometry.location.lat,
@@ -666,7 +783,7 @@ export async function POST(request) {
         // Search for photo - bardzo ważne jest zdjęcie miejsca
         console.log(`Getting photo for ${place.name}...`);
 
-        // Get photo (will return default placeholder based on place type)
+        // Get photo with enhanced search
         const placeType = place.actualPlaceType || "default";
         const imageUrl = await searchPlacePhoto(
           place.name,
@@ -676,8 +793,8 @@ export async function POST(request) {
 
         console.log(`Found photo for ${place.name}: ${imageUrl}`);
 
-        // Add delay to avoid rate limiting
-        await delay(1000);
+        // Add delay to avoid rate limiting for image searches
+        await delay(2000);
 
         // Calculate basic rating
         let rating = 0;

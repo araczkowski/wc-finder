@@ -57,6 +57,90 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "www.bing.com", // For Bing image search
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "tse1.mm.bing.net", // For Bing image thumbnails
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "tse2.mm.bing.net", // For Bing image thumbnails
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "tse3.mm.bing.net", // For Bing image thumbnails
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "tse4.mm.bing.net", // For Bing image thumbnails
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "external-content.duckduckgo.com", // For DuckDuckGo images
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "*.wikimedia.org", // For Wikimedia images
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "upload.wikimedia.org", // For Wikipedia images
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "*.githubusercontent.com", // For GitHub hosted images
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "raw.githubusercontent.com", // For GitHub raw images
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "*.imgur.com", // For Imgur images
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "i.imgur.com", // For Imgur images
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "*.flickr.com", // For Flickr images
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "live.staticflickr.com", // For Flickr images
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
   // If you have other Next.js configurations, they would go here, for example:
