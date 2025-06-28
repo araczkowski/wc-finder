@@ -89,9 +89,13 @@ export async function GET(request) {
       );
 
       if (sqlError) {
-        console.log(
+        console.error(
           "PostGIS query failed, falling back to regular query:",
           sqlError,
+        );
+        console.error(
+          "PostGIS error details:",
+          JSON.stringify(sqlError, null, 2),
         );
         // Fallback to regular query without distance sorting
         query = supabase
@@ -101,9 +105,31 @@ export async function GET(request) {
         const result = await query.range(offset, offset + limit - 1);
         wcs = result.data;
         error = result.error;
+        console.log(
+          "Fallback query result - sample WC:",
+          wcs?.[0]
+            ? {
+                id: wcs[0].id,
+                name: wcs[0].name,
+                google_place_id: wcs[0].google_place_id,
+                has_google_place_id: !!wcs[0].google_place_id,
+              }
+            : "No WCs",
+        );
       } else {
         wcs = data;
         error = null;
+        console.log(
+          "PostGIS query successful - sample WC:",
+          wcs?.[0]
+            ? {
+                id: wcs[0].id,
+                name: wcs[0].name,
+                google_place_id: wcs[0].google_place_id,
+                has_google_place_id: !!wcs[0].google_place_id,
+              }
+            : "No WCs",
+        );
 
         // Check if PostGIS function is missing place_type and fallback to supplement it
         if (wcs && wcs.length > 0 && wcs[0].place_type === undefined) {
@@ -147,6 +173,7 @@ export async function GET(request) {
         }
       }
     } else {
+      console.log("No user location provided, using regular query");
       query = supabase
         .from("wcs")
         .select("*")
@@ -154,6 +181,17 @@ export async function GET(request) {
       const result = await query.range(offset, offset + limit - 1);
       wcs = result.data;
       error = result.error;
+      console.log(
+        "Regular query result - sample WC:",
+        wcs?.[0]
+          ? {
+              id: wcs[0].id,
+              name: wcs[0].name,
+              google_place_id: wcs[0].google_place_id,
+              has_google_place_id: !!wcs[0].google_place_id,
+            }
+          : "No WCs",
+      );
     }
 
     if (error) {

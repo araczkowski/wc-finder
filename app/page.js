@@ -1561,7 +1561,8 @@ export default function Home() {
                                 width: "60px",
                               }}
                             >
-                              {session?.user?.email === wc.created_by && (
+                              {session?.user?.email === wc.created_by ||
+                              (wc.google_place_id && session?.user?.email) ? (
                                 <Link
                                   href={`/wc/edit/${wc.id}`}
                                   onClick={(e) => e.stopPropagation()}
@@ -1573,6 +1574,8 @@ export default function Home() {
                                     style={{ marginRight: "4px" }}
                                   />
                                 </Link>
+                              ) : (
+                                <span>WC Google: {wc.google_place_id}</span>
                               )}
                             </div>
 
