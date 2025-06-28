@@ -104,6 +104,16 @@ const UserDropdown = ({ session }) => {
           <div className="dropdown-divider"></div>
 
           <div className="dropdown-items">
+            {session.user.email === "admin@sviete.pl" && (
+              <Link
+                href="/admin/import-wc"
+                className="dropdown-item"
+                onClick={() => setIsOpen(false)}
+              >
+                📥 Pobieranie WC
+              </Link>
+            )}
+
             <Link
               href="/about"
               className="dropdown-item"

@@ -39,6 +39,24 @@ const nextConfig = {
         port: "",
         pathname: "/a/**",
       },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com", // For placeholder images
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "via.placeholder.com", // For fallback placeholder images
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "picsum.photos", // For alternative placeholder images
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
   // If you have other Next.js configurations, they would go here, for example:

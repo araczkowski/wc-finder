@@ -2,7 +2,7 @@
 
 ## Overview
 
-This guide explains how to set up Google Maps API for the WC Finder application's address autocomplete and geocoding features. The API integration provides enhanced address suggestions and automatic GPS coordinate retrieval.
+This guide explains how to set up Google Maps API for the WC Finder application's address autocomplete, geocoding features, and admin import functionality. The API integration provides enhanced address suggestions, automatic GPS coordinate retrieval, and improved geocoding for bulk place imports.
 
 ## Prerequisites
 
@@ -26,7 +26,7 @@ Navigate to "APIs & Services" → "Library" and enable:
 
 #### Required APIs:
 - **Places API** - For address autocomplete
-- **Geocoding API** - For address to coordinates conversion
+- **Geocoding API** - For address to coordinates conversion and admin import geocoding
 - **Maps JavaScript API** - For map functionality
 
 #### Steps to enable each API:
@@ -79,16 +79,23 @@ Create or update `.env.local` in your project root:
 ```bash
 # Google Maps API Configuration
 NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_api_key_here
+
+# Server-side Google Maps API (for admin import geocoding)
+GOOGLE_MAPS_API_KEY=your_api_key_here
 ```
+
+**Note**: You need both keys:
+- `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` - For client-side features (address autocomplete)
+- `GOOGLE_MAPS_API_KEY` - For server-side features (admin import geocoding)
 
 ### Production Environment
 
 For production deployments (Vercel, Netlify, etc.):
 
 1. Go to your deployment platform settings
-2. Add environment variable:
-   - Name: `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY`
-   - Value: Your API key
+2. Add environment variables:
+   - Name: `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY`, Value: Your API key
+   - Name: `GOOGLE_MAPS_API_KEY`, Value: Your API key (same key, different variable)
 
 ## API Usage and Quotas
 
@@ -187,7 +194,12 @@ fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=Warsaw&key=YOUR
    - Press Enter
    - Verify coordinates are retrieved
 
-3. **Error Handling**:
+3. **Admin Import Geocoding**:
+   - Go to admin import page
+   - Import places without addresses
+   - Verify geocoding works without rate limits
+
+4. **Error Handling**:
    - Test with invalid API key
    - Test with no internet connection
    - Verify fallback to Nominatim works
@@ -268,7 +280,8 @@ If you don't want to use Google Maps API:
 1. **OpenStreetMap/Nominatim Only**:
    - Remove Google Maps API key
    - Application automatically uses Nominatim
-   - Free but rate-limited
+   - Free but rate-limited (max 1 request/second)
+   - Admin import will be slower due to required delays
 
 2. **Mock Data for Testing**:
    ```javascript
@@ -308,6 +321,7 @@ Setting up Google Maps API enhances the WC Finder application with:
 - Accurate GPS coordinate retrieval
 - Better user experience
 - Reliable geocoding services
+- Faster admin import functionality without rate limits
 
 The fallback to OpenStreetMap ensures the application works even without Google Maps API, making this enhancement optional but highly recommended for production use.
 
