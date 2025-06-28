@@ -47,7 +47,12 @@ const TAG_CONFIG = {
   },
 };
 
-const WCTags = ({ wcId, isEditable = false, onTagsChange }) => {
+const WCTags = ({
+  wcId,
+  isEditable = false,
+  isHeaderText = true,
+  onTagsChange,
+}) => {
   const { data: session } = useSession();
   const [tags, setTags] = useState([]);
   const [availableTags, setAvailableTags] = useState([]);
@@ -198,8 +203,8 @@ const WCTags = ({ wcId, isEditable = false, onTagsChange }) => {
   return (
     <div style={styles.container}>
       <div style={styles.header}>
-        <Tag size={18} style={styles.headerIcon} />
-        <span style={styles.headerText}>Tagi</span>
+        {isHeaderText && <Tag size={18} style={styles.headerIcon} />}
+        {isHeaderText && <span style={styles.headerText}>Tagi</span>}
         {isEditable && session?.user?.id && (
           <button
             type="button"

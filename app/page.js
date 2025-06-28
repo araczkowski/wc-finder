@@ -1590,11 +1590,11 @@ export default function Home() {
                                   fontWeight: "bold",
                                   marginTop: "2px",
                                   whiteSpace: "nowrap",
-                                  height: "4em",
+                                  height: "3em",
                                   lineHeight: "4em",
                                   position: "absolute",
-                                  top: "2em",
-                                  right: "2em",
+                                  top: "1em",
+                                  right: "1em",
                                   width: "6em",
                                   zIndex: 1000,
                                   display: "flex",
@@ -1620,8 +1620,8 @@ export default function Home() {
                                   alignItems: "center",
                                   justifyContent: "center",
                                   position: "absolute",
-                                  top: "7em",
-                                  right: "2em",
+                                  top: "5em",
+                                  right: "1em",
                                   zIndex: 1000,
                                   fzeontSize: "1rem",
                                   color: "white",
@@ -1629,7 +1629,7 @@ export default function Home() {
                                   padding: "2px 6px",
                                   borderRadius: "2em",
                                   fontWeight: "bold",
-                                  height: "4em",
+                                  height: "3em",
                                   lineHeight: "4em",
                                 }}
                               >
@@ -1641,20 +1641,25 @@ export default function Home() {
                                 />
                               </div>
                             </div>
-                            {wc.gallery_photos &&
-                            wc.gallery_photos.length > 0 ? (
-                              <ImageSlideshow
-                                images={wc.gallery_photos}
-                                alt={wc.name || t("wcImage")}
-                                className="thumbnail-in-table"
-                                width={400}
-                                height={300}
-                              />
-                            ) : (
-                              <div className="thumbnail-placeholder">
-                                {t("noImage")}
-                              </div>
-                            )}
+                            <div
+                              className="image-container"
+                              style={{ textAlign: "left", width: "100%" }}
+                            >
+                              {wc.gallery_photos &&
+                              wc.gallery_photos.length > 0 ? (
+                                <ImageSlideshow
+                                  images={wc.gallery_photos}
+                                  alt={wc.name || t("wcImage")}
+                                  className="thumbnail-in-table"
+                                  width={400}
+                                  height={300}
+                                />
+                              ) : (
+                                <div className="thumbnail-placeholder">
+                                  {t("noImage")}
+                                </div>
+                              )}
+                            </div>
                           </div>
                           <div
                             className="table-cell second-cell"
@@ -1688,7 +1693,11 @@ export default function Home() {
                             className="table-cell sixth-cell"
                             style={{ textAlign: "left" }}
                           >
-                            <WCTags wcId={wc.id} isEditable={false} />
+                            <WCTags
+                              wcId={wc.id}
+                              isEditable={false}
+                              isHeaderText={false}
+                            />
                           </div>
                         </div>
                       ))}
