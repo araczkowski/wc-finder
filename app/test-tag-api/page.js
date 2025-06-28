@@ -16,6 +16,7 @@ export default function TestTagAPI() {
     "darmowa",
     "przewijak",
     "dostępnaDlaNiepełnosprawnych",
+    "dostępna24h",
   ];
 
   useEffect(() => {

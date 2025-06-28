@@ -30,6 +30,7 @@ import {
   Heart,
   Baby,
   Accessibility,
+  Clock,
 } from "lucide-react";
 
 // Tag configuration with icons and colors
@@ -58,6 +59,12 @@ const TAG_CONFIG = {
     bgColor: "#f8f5ff",
     borderColor: "#d6d1f5",
   },
+  dostępna24h: {
+    icon: Clock,
+    color: "#0056b3ed",
+    bgColor: "#0056b312",
+    borderColor: "#0056b3ed",
+  },
 };
 
 // Available tags for new WC
@@ -66,6 +73,7 @@ const AVAILABLE_TAGS = [
   "darmowa",
   "przewijak",
   "dostępnaDlaNiepełnosprawnych",
+  "dostępna24h",
 ];
 
 // Mobile-first styles

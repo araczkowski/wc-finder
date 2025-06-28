@@ -11,7 +11,7 @@ The WC tags feature allows logged-in users to add tags to WC locations to help c
 The system supports the following predefined tags:
 
 - **#płatna** - Paid toilet (Coins icon, red color)
-- **#darmowa** - Free toilet (Heart icon, green color)  
+- **#darmowa** - Free toilet (Heart icon, green color)
 - **#przewijak** - Baby changing facilities (Baby icon, blue color)
 - **#dostępnaDlaNiepełnosprawnych** - Wheelchair accessible (Wheelchair icon, purple color)
 
@@ -55,7 +55,7 @@ Get tags for a specific WC.
       "users": ["user-uuid-1", "user-uuid-2"]
     }
   ],
-  "availableTags": ["płatna", "darmowa", "przewijak", "dostępnaDlaNiepełnosprawnych"]
+  "availableTags": ["płatna", "darmowa", "przewijak", "dostępnaDlaNiepełnosprawnych", "dostępna24h"]
 }
 ```
 
@@ -179,11 +179,11 @@ Check that the tables and functions were created:
 
 ```sql
 -- Verify tables exist
-SELECT table_name FROM information_schema.tables 
+SELECT table_name FROM information_schema.tables
 WHERE table_name IN ('wcs', 'wc_tags', 'wc_photos', 'wc_ratings');
 
 -- Check RLS policies
-SELECT tablename, policyname FROM pg_policies 
+SELECT tablename, policyname FROM pg_policies
 WHERE tablename = 'wc_tags';
 ```
 
@@ -274,7 +274,7 @@ VALUES (auth.uid(), 'test@example.com', 'Test WC', 'Test Address', ST_Point(21.0
 
 -- Insert test tags
 INSERT INTO wc_tags (wc_id, tag, user_id)
-VALUES 
+VALUES
   ('your-wc-id', 'płatna', auth.uid()),
   ('your-wc-id', 'przewijak', auth.uid());
 ```

@@ -9,6 +9,7 @@ const AVAILABLE_TAGS = [
   "darmowa",
   "przewijak",
   "dostępnaDlaNiepełnosprawnych",
+  "dostępna24h",
 ];
 
 // GET - Fetch tags for a specific WC

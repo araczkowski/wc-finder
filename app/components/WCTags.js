@@ -2,7 +2,16 @@
 
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
-import { Plus, X, Tag, Coins, Heart, Baby, Accessibility } from "lucide-react";
+import {
+  Plus,
+  X,
+  Tag,
+  Coins,
+  Heart,
+  Baby,
+  Accessibility,
+  Clock,
+} from "lucide-react";
 
 // Tag configuration with icons and colors
 const TAG_CONFIG = {
@@ -29,6 +38,12 @@ const TAG_CONFIG = {
     color: "#6f42c1",
     bgColor: "#f8f5ff",
     borderColor: "#d6d1f5",
+  },
+  dostępna24h: {
+    icon: Clock,
+    color: "#0056b3ed",
+    bgColor: "#0056b312",
+    borderColor: "#0056b3ed",
   },
 };
 
