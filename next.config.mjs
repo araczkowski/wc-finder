@@ -141,6 +141,12 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "*", // For Flickr images
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
   // If you have other Next.js configurations, they would go here, for example:

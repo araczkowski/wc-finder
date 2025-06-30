@@ -9,12 +9,16 @@
     "lint": "next lint",
     "cleanup:storage": "node scripts/cleanup-storage.js",
     "cleanup:interactive": "node scripts/interactive-cleanup.js",
-    "cleanup:all": "echo 'Run database/cleanup_all_data.sql in Supabase first, then:' && npm run cleanup:storage"
+    "cleanup:all": "echo 'Run database/cleanup_all_data.sql in Supabase first, then:' && npm run cleanup:storage",
+    "csv-to-sql": "node scripts/csv-to-sql.js",
+    "import-poland": "node scripts/import-poland-data.js",
+    "cleanup:test-files": "rm -f test_import*.sql example_data.csv debug-*.png"
   },
   "dependencies": {
     "@next-auth/supabase-adapter": "^0.2.1",
     "@supabase/supabase-js": "^2.50.0",
     "cheerio": "^1.1.0",
+    "csv-parse": "^5.6.0",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.523.0",
     "next": "15.3.3",

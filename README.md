@@ -114,11 +114,46 @@ The enhanced image system works by:
 - [`ADDRESS_AUTOCOMPLETE_GPS_FEATURE.md`](./ADDRESS_AUTOCOMPLETE_GPS_FEATURE.md) - Detailed address autocomplete documentation
 - [`GOOGLE_MAPS_API_SETUP.md`](./GOOGLE_MAPS_API_SETUP.md) - Google Maps API configuration guide
 - [`POLISH_FILENAME_FIX.md`](./POLISH_FILENAME_FIX.md) - Polish character handling in file uploads
+- [`CSV_IMPORT_GUIDE.md`](./CSV_IMPORT_GUIDE.md) - Complete guide for CSV data import
+- [`IMAGE_SYSTEM_IMPROVEMENTS.md`](./IMAGE_SYSTEM_IMPROVEMENTS.md) - Enhanced image system documentation
+
+## CSV Import Tool
+
+The application includes a powerful CSV-to-SQL conversion script for bulk importing WC data:
+
+```bash
+# Basic usage
+npm run csv-to-sql your_data.csv
+
+# Advanced usage with custom options
+node scripts/csv-to-sql.js your_data.csv -o import.sql --user-id "your-admin-uuid"
+```
+
+**Features:**
+- Automatic CSV column mapping to database fields
+- PostGIS geography conversion for coordinates
+- JSON photo parsing and individual photo record creation
+- Data validation and sanitization
+- Place type mapping with fallback defaults
+- Transaction-based SQL generation
+
+**CSV Column Mapping:**
+- Column 1 → `google_place_id`
+- Column 3 → `name` 
+- Column 4 → `place_type` (mapped to enum values)
+- Column 5 → `address`
+- Column 12 → `rating` (multiplied by 2, capped at 1-10)
+- Column 14,15 → `location` (lat,lng converted to PostGIS geography)
+- Column 20 → `image_url`
+- Column 24 → `wc_photos` (JSON array parsed into separate records)
+
+See [`CSV_IMPORT_GUIDE.md`](./CSV_IMPORT_GUIDE.md) for detailed usage instructions.
 
 ## Demo Pages
 
 - [`/test-images`](http://localhost:3000/test-images) - Image system demonstration showing how contextual images are selected for different place types
 
+## Documentation
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
 ## Learn More
