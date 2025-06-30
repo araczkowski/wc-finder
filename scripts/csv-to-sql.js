@@ -42,7 +42,7 @@ const PLACE_TYPE_MAPPING = {
 
 // Default user ID for imported data (should be replaced with actual admin user ID)
 const DEFAULT_USER_ID = "cac878bb-3f77-42a7-9221-919238bfae76";
-const DEFAULT_CREATED_BY = "admin@sviete.pl";
+const DEFAULT_CREATED_BY = "public@sviete.pl";
 
 function printUsage() {
   console.log(`
@@ -83,6 +83,70 @@ function sanitizeNumber(num) {
 }
 
 function mapPlaceType(originalType) {
+  // toilet: ["toaleta", "wc", "restroom", "toilet"],
+  // public_toilet: ["toaleta publiczna", "public toilet", "wc publiczne"],
+  // tourist_attraction: ["atrakcja turystyczna", "tourist attraction", "zabytki"],
+  // shopping_mall: ["centrum handlowe", "galeria", "shopping mall"],
+  // restaurant: ["restauracja", "restaurant"],
+  // cafe: ["kawiarnia", "cafe", "coffee"],
+  // bar: ["bar", "pub"],
+  // park: ["park"],
+  // train_station: ["dworzec kolejowy", "stacja kolejowa", "train station"],
+  // subway_station: ["metro", "subway"],
+  // bus_station: ["dworzec autobusowy", "bus station"],
+  // airport: ["lotnisko", "airport"],
+  // gas_station: ["stacja benzynowa", "gas station", "orlen", "bp", "shell"],
+  // library: ["biblioteka", "library"],
+  // museum: ["muzeum", "museum"],
+  // movie_theater: ["kino", "cinema", "movie theater"],
+  // city_hall: ["ratusz", "urząd miasta", "city hall"],
+  // supermarket: ["supermarket", "sklep spożywczy"],
+  // department_store: ["dom handlowy", "department store"],
+
+  if (originalType in "Public bathroom") {
+    return "public_toilet";
+  }
+
+  if (originalType in "Train station") {
+    return "train_station";
+  }
+
+  if (originalType in "Bus station") {
+    return "bus_station";
+  }
+
+  if ((originalType in "Airport", "Airport parking lot")) {
+    return "airport";
+  }
+
+  if (originalType in "Gas station") {
+    return "gas_station";
+  }
+
+  if (originalType in "Library") {
+    return "library";
+  }
+
+  if (originalType in "Museum") {
+    return "museum";
+  }
+
+  if (originalType in "Movie theater") {
+    return "movie_theater";
+  }
+
+  if (originalType in "City hall") {
+    return "city_hall";
+  }
+
+  if (originalType in "Supermarket") {
+    return "supermarket";
+  }
+
+  if (originalType in "Department store") {
+    return "department_store";
+  }
+
   if (!originalType || originalType === "NULL" || originalType === "") {
     return "toilet";
   }
@@ -146,47 +210,10 @@ function generateWcInsert(row, userId, createdBy, wcIndex) {
   let longitude = null;
   let imageUrl = null;
 
-  // Try to find numeric latitude/longitude to locate correct columns
-  for (let i = 10; i < Math.min(20, row.length); i++) {
-    const val = sanitizeNumber(row[i]);
-    if (val && val >= 49 && val <= 55) {
-      // Poland latitude range
-      latitude = val;
-      longitude = sanitizeNumber(row[i + 1]);
-      if (longitude && longitude >= 14 && longitude <= 25) {
-        // Poland longitude range
-        // Found coordinates, try to find rating nearby
-        for (let j = Math.max(0, i - 5); j < i; j++) {
-          const ratingVal = sanitizeNumber(row[j]);
-          if (ratingVal && ratingVal >= 0 && ratingVal <= 5) {
-            rating = ratingVal;
-            break;
-          }
-        }
-        // Look for image URL after coordinates
-        for (let k = i + 2; k < Math.min(i + 8, row.length); k++) {
-          const urlVal = sanitizeString(row[k]);
-          if (
-            urlVal &&
-            urlVal.startsWith("http") &&
-            urlVal.includes("google")
-          ) {
-            imageUrl = urlVal;
-            break;
-          }
-        }
-        break;
-      }
-    }
-  }
-
-  // Fallback to original indices if smart detection fails
-  if (!latitude) {
-    rating = sanitizeNumber(row[12]); // kolumna L - review_rating
-    latitude = sanitizeNumber(row[13]);
-    longitude = sanitizeNumber(row[14]);
-    imageUrl = sanitizeString(row[19]); // kolumna T - thumbnail
-  }
+  imageUrl = sanitizeString(row[19]);
+  latitude = sanitizeNumber(row[13]);
+  longitude = sanitizeNumber(row[14]);
+  rating = sanitizeNumber(row[11]);
 
   // Walidacja wymaganych pól
   if (!name) {
@@ -206,9 +233,15 @@ function generateWcInsert(row, userId, createdBy, wcIndex) {
   const addressValue = address ? `'${address}'` : "NULL";
   const imageUrlValue = imageUrl ? `'${imageUrl}'` : "NULL";
   const googlePlaceIdValue = googlePlaceId ? `'${googlePlaceId}'` : "NULL";
-  const ratingValue = rating
-    ? Math.min(10, Math.max(1, Math.round(rating * 2)))
-    : "NULL";
+
+  if (name === "Pizzeria GRAN TORINO") {
+    console.log("Pizzeria GRAN TORINO rating/: ", rating);
+    console.log(
+      "Pizzeria GRAN TORINO rating/: ",
+      Math.max(Math.min(Math.floor(rating * 2), 10), 1),
+    );
+  }
+  const ratingValue = Math.max(Math.min(Math.floor(rating * 2), 10), 1);
   const locationValue = `ST_Point(${longitude}, ${latitude})::GEOGRAPHY`;
 
   return {
@@ -299,8 +332,10 @@ function main() {
     sqlStatements.push(`-- Source file: ${csvFile}`);
     sqlStatements.push(`-- User ID: ${userId}`);
     sqlStatements.push(`-- Created by: ${createdBy}`);
-    sqlStatements.push("");
-    sqlStatements.push("BEGIN;");
+    sqlStatements.push("DO $$");
+    sqlStatements.push("DECLARE");
+    sqlStatements.push("l_context text;");
+    sqlStatements.push("BEGIN");
     sqlStatements.push("");
 
     // Process each row
@@ -335,7 +370,7 @@ function main() {
         // Generate photo inserts
         const photoInserts = generatePhotoInserts(
           row[2] || "Unnamed",
-          row[5] || "",
+          row[4] || "",
           wcInsert.photos,
           userId,
           createdBy,
@@ -358,8 +393,19 @@ function main() {
       sqlStatements.push(...photoStatements);
     }
 
-    sqlStatements.push("COMMIT;");
+    // sqlStatements.push("COMMIT;");
     sqlStatements.push("");
+    sqlStatements.push("EXCEPTION WHEN OTHERS THEN");
+    sqlStatements.push("RAISE NOTICE 'Error Name:%', SQLERRM;");
+    sqlStatements.push("RAISE NOTICE 'Error State:%', SQLSTATE;");
+    sqlStatements.push(
+      "GET STACKED DIAGNOSTICS l_context = PG_EXCEPTION_CONTEXT;",
+    );
+    sqlStatements.push("RAISE NOTICE 'ERROR:%', l_context;");
+    sqlStatements.push("END;");
+    sqlStatements.push("$$;");
+    sqlStatements.push("");
+
     sqlStatements.push(
       `-- Summary: ${processedCount} WC locations processed, ${skippedCount} skipped`,
     );
