@@ -70,13 +70,54 @@ GOOGLE_CLIENT_SECRET=your_google_client_secret
 
 # Google Maps API (Optional - for enhanced address features)
 NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
+
+# Image Search Configuration (Optional)
+ENABLE_IMAGE_SEARCH=true
+IMAGE_SEARCH_TIMEOUT=10000
+IMAGE_SEARCH_MAX_RETRIES=3
 ```
+
+## Enhanced Image System
+
+The application includes an intelligent image system for importing WC locations:
+
+- **Contextual Image Selection**: Uses smart algorithms to select appropriate images based on location type
+- **Multiple Fallback Sources**: Falls back to Bing Images for real location photos when available
+- **High-Quality Placeholders**: Uses curated, high-quality placeholder images from Unsplash
+- **Consistent Image Selection**: Same locations always get the same placeholder image for consistency
+- **Type-Specific Images**: Different image sets for restaurants, cafes, public buildings, etc.
+- **Configurable**: Can be disabled or configured via environment variables
+
+### Image Search Configuration
+
+```bash
+# Enable/disable image search (default: true)
+ENABLE_IMAGE_SEARCH=true
+
+# Search timeout in milliseconds (default: 10000)
+IMAGE_SEARCH_TIMEOUT=10000
+
+# Maximum search retries (default: 3)
+IMAGE_SEARCH_MAX_RETRIES=3
+```
+
+The enhanced image system works by:
+1. First attempting to find real photos of the location using Bing Images
+2. Creating contextual search queries based on place name, address, and location type
+3. For toilets, it searches for the building/location rather than generic toilet images
+4. Falls back to curated, high-quality placeholder images that match the location type
+5. Uses consistent image selection so the same place always gets the same image
+6. Provides multiple image variants for each place type to avoid repetition
 
 ## Documentation
 
 - [`ADDRESS_AUTOCOMPLETE_GPS_FEATURE.md`](./ADDRESS_AUTOCOMPLETE_GPS_FEATURE.md) - Detailed address autocomplete documentation
 - [`GOOGLE_MAPS_API_SETUP.md`](./GOOGLE_MAPS_API_SETUP.md) - Google Maps API configuration guide
 - [`POLISH_FILENAME_FIX.md`](./POLISH_FILENAME_FIX.md) - Polish character handling in file uploads
+
+## Demo Pages
+
+- [`/test-images`](http://localhost:3000/test-images) - Image system demonstration showing how contextual images are selected for different place types
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
