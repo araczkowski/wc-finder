@@ -103,47 +103,47 @@ function mapPlaceType(originalType) {
   // supermarket: ["supermarket", "sklep spożywczy"],
   // department_store: ["dom handlowy", "department store"],
 
-  if (originalType in "Public bathroom") {
+  if (originalType === "Public bathroom") {
     return "public_toilet";
   }
 
-  if (originalType in "Train station") {
+  if (originalType === "Train station") {
     return "train_station";
   }
 
-  if (originalType in "Bus station") {
+  if (originalType === "Bus station") {
     return "bus_station";
   }
 
-  if ((originalType in "Airport", "Airport parking lot")) {
+  if (originalType === "Airport") {
     return "airport";
   }
 
-  if (originalType in "Gas station") {
+  if (originalType === "Gas station") {
     return "gas_station";
   }
 
-  if (originalType in "Library") {
+  if (originalType === "Library") {
     return "library";
   }
 
-  if (originalType in "Museum") {
+  if (originalType === "Museum") {
     return "museum";
   }
 
-  if (originalType in "Movie theater") {
+  if (originalType === "Movie theater") {
     return "movie_theater";
   }
 
-  if (originalType in "City hall") {
+  if (originalType === "City hall") {
     return "city_hall";
   }
 
-  if (originalType in "Supermarket") {
+  if (originalType === "Supermarket") {
     return "supermarket";
   }
 
-  if (originalType in "Department store") {
+  if (originalType === "Department store") {
     return "department_store";
   }
 
