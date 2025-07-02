@@ -1568,6 +1568,9 @@ export default function Home() {
                                   onClick={(e) => e.stopPropagation()}
                                   className="edit-button"
                                   title={t("editIconTitle")}
+                                  style={{
+                                    zIndex: "100000",
+                                  }}
                                 >
                                   <SquarePen
                                     size={14}
@@ -1654,8 +1657,8 @@ export default function Home() {
                                   images={wc.gallery_photos}
                                   alt={wc.name || t("wcImage")}
                                   className="thumbnail-in-table"
-                                  width={400}
-                                  height={300}
+                                  width={200}
+                                  height={150}
                                 />
                               ) : (
                                 <div className="thumbnail-placeholder">

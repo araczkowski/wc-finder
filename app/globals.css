@@ -77,7 +77,7 @@ a {
     display: flex;
     align-items: center;
     border-bottom: 1px solid #eee;
-    min-height: 44px; /* Better touch target */
+    min-height: 24px; /* Better touch target */
     word-break: break-word;
     justify-content: center;
 }
@@ -87,8 +87,8 @@ a {
 }
 
 .thumbnail-in-table {
-    width: 100%;
-    height: 300px;
+    width: 50%;
+    height: 150px;
     object-fit: cover;
     border-radius: 4px;
     border: 1px solid #ddd;
@@ -147,8 +147,8 @@ a {
 
     .thumbnail-in-table,
     .thumbnail-placeholder {
-        width: 100%;
-        height: 300px;
+        width: 50%;
+        height: 150px;
     }
 }
 
@@ -156,8 +156,8 @@ a {
 @media (min-width: 1024px) {
     .thumbnail-in-table,
     .thumbnail-placeholder {
-        width: 100%;
-        height: 300px;
+        width: 50%;
+        height: 150px;
     }
 
     .table-cell {
@@ -212,6 +212,7 @@ div.hidden-div {
     overflow-wrap: break-word;
     display: flex;
     border: none;
+    min-height: 28px !important;
 }
 
 .second-cell {
@@ -238,8 +239,9 @@ div.hidden-div {
 
 .edit-cell {
     padding: 8px;
-    width: 80px;
-    min-width: 80px;
+    left: 0em;
+    top: 0em;
+    z-index: 999999;
 }
 
 .edit-cell a {
@@ -247,18 +249,17 @@ div.hidden-div {
     align-items: center;
     justify-content: center;
     padding: 6px 10px;
-    background-color: #007bff;
+    background-color: #2196f3;
     color: white;
     text-decoration: none;
-    border-radius: 4px;
+    border-0radius: 4px;
     font-size: 0.8rem;
     font-weight: bold;
     transition: all 0.2s ease;
     min-height: 32px;
     gap: 4px;
 }
-
-.edit-cell a:hover {
+BREXPLPWBIA .edit-cell a:hover {
     background-color: #0056b3;
     transform: translateY(-1px);
 }
@@ -916,8 +917,8 @@ textarea.form-input {
 /* Image Slideshow Styles */
 .slideshow-container {
     position: relative;
-    width: 100%;
-    height: auto;
+    width: 50%;
+    height: 150px;
     border-radius: 4px;
     overflow: hidden;
 }
@@ -1037,6 +1038,8 @@ textarea.form-input {
 
 .slideshow-container .thumbnail-in-table {
     animation: slideshow-fade 0.3s ease-in-out;
+    width: 100%;
+    height: 100%;
 }
 
 /* Multiple images indicator */
@@ -1045,16 +1048,16 @@ textarea.form-input {
 }
 
 .slideshow-container[data-multiple="true"]::before {
-    content: "📸";
+    content: "";
     position: absolute;
-    top: 4px;
+    top: 2px;
     left: 50%;
     transform: translateX(-50%);
     background: rgba(0, 123, 255, 0.9);
     color: white;
-    padding: 2px 6px;
-    border-radius: 8px;
-    font-size: 0.7rem;
+    padding: 1px 4px;
+    border-radius: 6px;
+    font-size: 0.6rem;
     z-index: 1;
     opacity: 0.8;
 }

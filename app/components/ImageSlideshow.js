@@ -128,13 +128,13 @@ const ImageSlideshow = ({ images, alt, className, width, height }) => {
     );
   }
 
-  // Multiple images - show slideshow
+  // Multiple images - show slideshow without controls
   return (
     <div
       ref={containerRef}
       className="slideshow-container"
       data-multiple={images.length > 1 ? "true" : "false"}
-      style={{ position: "relative", width: "100%", height: "300px" }}
+      style={{ position: "relative", width: "50%", height: "150px" }}
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
@@ -144,197 +144,15 @@ const ImageSlideshow = ({ images, alt, className, width, height }) => {
       role="img"
       aria-label={`${alt} - slideshow z ${images.length} zdjęciami`}
     >
-      {/* Main image */}
+      {/* Main image - no controls shown */}
       <Image
         src={images[currentIndex]}
         alt={`${alt} ${currentIndex + 1}`}
         className={className}
         width={width}
         height={height}
-        style={{ objectFit: "cover" }}
+        style={{ objectFit: "cover", width: "100%", height: "100%" }}
       />
-
-      {/* Navigation arrows - only show for multiple images */}
-      {images.length > 1 && (
-        <button
-          onClick={goToPrevious}
-          className="slideshow-nav slideshow-prev"
-          style={{
-            position: "absolute",
-            left: "5px",
-            top: "50%",
-            transform: "translateY(-50%)",
-            background: "rgba(0, 123, 255, 0.6)",
-            color: "white",
-            border: "none",
-            borderRadius: "50%",
-            width: "30px",
-            height: "30px",
-            fontSize: "16px",
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 2,
-            transition: "background 0.2s ease",
-          }}
-          onMouseEnter={(e) =>
-            (e.target.style.background = "rgba(0, 123, 255, 0.8)")
-          }
-          onMouseLeave={(e) =>
-            (e.target.style.background = "rgba(0, 123, 255, 0.6)")
-          }
-          title="Poprzednie zdjęcie"
-        >
-          ‹
-        </button>
-      )}
-
-      {images.length > 1 && (
-        <button
-          onClick={goToNext}
-          className="slideshow-nav slideshow-next"
-          style={{
-            position: "absolute",
-            right: "5px",
-            top: "50%",
-            transform: "translateY(-50%)",
-            background: "rgba(0, 123, 255, 0.6)",
-            color: "white",
-            border: "none",
-            borderRadius: "50%",
-            width: "30px",
-            height: "30px",
-            fontSize: "16px",
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 2,
-            transition: "background 0.2s ease",
-          }}
-          onMouseEnter={(e) =>
-            (e.target.style.background = "rgba(0, 123, 255, 0.8)")
-          }
-          onMouseLeave={(e) =>
-            (e.target.style.background = "rgba(0, 123, 255, 0.6)")
-          }
-          title="Następne zdjęcie"
-        >
-          ›
-        </button>
-      )}
-
-      {/* Dots indicator - only show for multiple images */}
-      {images.length > 1 && (
-        <div
-          className="slideshow-dots"
-          style={{
-            position: "absolute",
-            bottom: "8px",
-            left: "50%",
-            transform: "translateX(-50%)",
-            display: "flex",
-            gap: "4px",
-            zIndex: 2,
-            background: "rgba(0, 0, 0, 0.3)",
-            padding: "4px 8px",
-            borderRadius: "12px",
-          }}
-        >
-          {images.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToSlide(index)}
-              style={{
-                width: "8px",
-                height: "8px",
-                borderRadius: "50%",
-                border: "none",
-                background:
-                  currentIndex === index
-                    ? "rgba(0, 123, 255, 1)"
-                    : "rgba(255, 255, 255, 0.6)",
-                cursor: "pointer",
-                transition: "all 0.2s ease",
-                transform: currentIndex === index ? "scale(1.3)" : "scale(1)",
-              }}
-              title={`Zdjęcie ${index + 1}`}
-            />
-          ))}
-        </div>
-      )}
-
-      {/* Image counter */}
-      <div
-        className="slideshow-counter"
-        style={{
-          position: "absolute",
-          top: "8px",
-          right: "8px",
-          background:
-            images.length > 1 ? "rgba(0, 123, 255, 0.8)" : "rgba(0, 0, 0, 0.7)",
-          color: "white",
-          padding: "2px 6px",
-          borderRadius: "12px",
-          fontSize: "0.75rem",
-          zIndex: 2,
-          fontWeight: images.length > 1 ? "bold" : "normal",
-        }}
-      >
-        {images.length > 1 ? `📷 ${currentIndex + 1}/${images.length}` : "📷"}
-      </div>
-
-      {/* Auto-play indicator */}
-      {images.length > 1 && (
-        <div
-          className="slideshow-autoplay-indicator"
-          style={{
-            position: "absolute",
-            top: "8px",
-            left: "8px",
-            background: isAutoPlaying
-              ? "rgba(0, 150, 0, 0.8)"
-              : "rgba(150, 150, 0, 0.8)",
-            color: "white",
-            padding: "3px 8px",
-            borderRadius: "12px",
-            fontSize: "0.7rem",
-            zIndex: 2,
-            cursor: "pointer",
-            fontWeight: "bold",
-          }}
-          title={
-            isAutoPlaying
-              ? "Slideshow aktywny - kliknij aby zatrzymać (spacja)"
-              : "Slideshow zatrzymany - kliknij aby uruchomić (spacja)"
-          }
-          onClick={() => setIsAutoPlaying((prev) => !prev)}
-        >
-          {isAutoPlaying ? "▶ AUTO" : "⏸ PAUZA"}
-        </div>
-      )}
-
-      {/* Keyboard navigation hint */}
-      {isFocused && images.length > 1 && (
-        <div
-          style={{
-            position: "absolute",
-            bottom: "30px",
-            left: "50%",
-            transform: "translateX(-50%)",
-            background: "rgba(0, 0, 0, 0.8)",
-            color: "white",
-            padding: "4px 8px",
-            borderRadius: "4px",
-            fontSize: "0.7rem",
-            zIndex: 2,
-            whiteSpace: "nowrap",
-          }}
-        >
-          ← → nawigacja | spacja: pauza | esc: wyjście
-        </div>
-      )}
     </div>
   );
 };
