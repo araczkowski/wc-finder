@@ -1569,7 +1569,7 @@ export default function Home() {
                                   className="edit-button"
                                   title={t("editIconTitle")}
                                   style={{
-                                    zIndex: "100000",
+                                    zIndex: "10000",
                                   }}
                                 >
                                   <SquarePen
@@ -1581,72 +1581,122 @@ export default function Home() {
                                 <span>WC Google: {wc.google_place_id}</span>
                               )}
                             </div>
-
-                            {(wc.distance_km !== null &&
-                              wc.distance_km !== undefined) ||
-                            (wc.distance !== null &&
-                              wc.distance !== undefined) ? (
-                              <div
-                                style={{
-                                  fontSize: "1rem",
-                                  color: "#ffffff",
-                                  backgroundColor: "#2196F3",
-                                  padding: "2px 6px",
-                                  borderRadius: "2em",
-                                  fontWeight: "bold",
-                                  marginTop: "2px",
-                                  whiteSpace: "nowrap",
-                                  height: "3em",
-                                  lineHeight: "4em",
-                                  position: "absolute",
-                                  top: "1em",
-                                  right: "1em",
-                                  width: "6em",
-                                  zIndex: 1000,
-                                  display: "flex",
-                                  alignItems: "center",
-                                  justifyContent: "center",
-                                }}
-                              >
-                                <RulerDimensionLine
-                                  size={22}
-                                  style={{ marginRight: "4px" }}
-                                />
-                                {formatDistance(wc.distance_km || wc.distance)}
-                              </div>
-                            ) : null}
                             <div
-                              className="place-type-cell"
-                              style={{ textAlign: "center" }}
+                              style={{
+                                fontSize: "1rem",
+                                width: "50%",
+                                position: "absolute",
+                                height: "auto",
+                                right: "0px",
+                                zIndex: "1000000",
+                                textAlign: "center",
+                                alignItems: "center",
+                                justifyContent: "center",
+                              }}
                             >
+                              {(wc.distance_km !== null &&
+                                wc.distance_km !== undefined) ||
+                              (wc.distance !== null &&
+                                wc.distance !== undefined) ? (
+                                <div
+                                  style={{
+                                    fontSize: "1rem",
+                                    color: "#ffffff",
+                                    backgroundColor: "#2196F3",
+                                    borderRadius: "2em",
+                                    fontWeight: "bold",
+                                    marginTop: "2px",
+                                    whiteSpace: "nowrap",
+                                    height: "3em",
+                                    lineHeight: "3.5em",
+                                    position: "relative",
+                                    right: "1em",
+                                    width: "6em",
+                                    zIndex: 1000,
+                                    justifyContent: "center",
+                                    marginLeft: "auto",
+                                    marginRight: "auto",
+                                    verticalAlign: "middle",
+                                    textAlign: "center",
+                                    display: "inline-flex",
+                                    alignItems: "center",
+                                  }}
+                                >
+                                  <RulerDimensionLine
+                                    size={22}
+                                    style={{ marginRight: "4px" }}
+                                  />
+                                  {formatDistance(
+                                    wc.distance_km || wc.distance,
+                                  )}
+                                </div>
+                              ) : null}
                               <div
+                                className="place-type-cell"
                                 style={{
-                                  marginBottom: "4px",
-                                  display: "flex",
-                                  alignItems: "center",
-                                  justifyContent: "center",
-                                  position: "absolute",
-                                  top: "5em",
-                                  right: "1em",
-                                  zIndex: 1000,
-                                  fzeontSize: "1rem",
-                                  color: "white",
-                                  backgroundColor: "#2196F3",
-                                  padding: "2px 6px",
-                                  borderRadius: "2em",
-                                  fontWeight: "bold",
-                                  height: "3em",
-                                  lineHeight: "4em",
+                                  textAlign: "center",
+                                  display: "inline-block",
                                 }}
                               >
-                                <PlaceTypeDisplay
-                                  placeType={wc.place_type}
-                                  showIcon={true}
-                                  showText={true}
-                                  iconSize={22}
-                                />
+                                <div
+                                  style={{
+                                    fontSize: "1rem",
+                                    color: "#ffffff",
+                                    backgroundColor: "#2196F3",
+                                    padding: "0px",
+                                    borderRadius: "2em",
+                                    fontWeight: "bold",
+                                    marginTop: "p0x",
+                                    whiteSpace: "nowrap",
+                                    height: "3em",
+                                    lineHeight: "4em",
+                                    position: "relative",
+                                    right: "1em",
+                                    width: "3em",
+                                    zIndex: 1000,
+                                    display: "inline-block",
+                                    alignItems: "center",
+                                    justifyContent: "space-evenly",
+                                    flexWrap: "wrap",
+                                    flexDirection: "column",
+                                    alignContent: "center",
+
+                                    margin: "auto",
+                                    verticalAlign: "middle",
+                                    marginLeft: "1em",
+                                  }}
+                                >
+                                  <PlaceTypeDisplay
+                                    placeType={wc.place_type}
+                                    showIcon={true}
+                                    showText={false}
+                                    iconSize={22}
+                                  />
+                                </div>
                               </div>
                             </div>
+                            <div
+                              className="table-cell name-cell"
+                              style={{ textAlign: "center" }}
+                            >
+                              {wc.name}
+                            </div>
+
+                            <div
+                              className="table-cell rating-cell"
+                              style={{ textAlign: "center" }}
+                            >
+                              {wc.rating ? (
+                                <RatingDisplay
+                                  rating={wc.rating}
+                                  size={14}
+                                  showNumeric={true}
+                                />
+                              ) : (
+                                t("notRated")
+                              )}
+                            </div>
+
                             <div
                               className="image-container"
                               style={{ textAlign: "left", width: "100%" }}
@@ -1667,12 +1717,7 @@ export default function Home() {
                               )}
                             </div>
                           </div>
-                          <div
-                            className="table-cell second-cell"
-                            style={{ textAlign: "center" }}
-                          >
-                            {wc.name}
-                          </div>
+
                           <div
                             className="table-cell third-cell"
                             style={{ textAlign: "center" }}
@@ -1681,20 +1726,7 @@ export default function Home() {
                               {wc.address || "N/A"}
                             </div>
                           </div>
-                          <div
-                            className="table-cell fifth-cell"
-                            style={{ textAlign: "center" }}
-                          >
-                            {wc.rating ? (
-                              <RatingDisplay
-                                rating={wc.rating}
-                                size={14}
-                                showNumeric={true}
-                              />
-                            ) : (
-                              t("notRated")
-                            )}
-                          </div>
+
                           <div
                             className="table-cell sixth-cell"
                             style={{ textAlign: "left" }}

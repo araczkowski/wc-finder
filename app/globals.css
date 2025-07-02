@@ -96,8 +96,8 @@ a {
 }
 
 .thumbnail-placeholder {
-    width: 100%;
-    height: 300px;
+    width: 50%;
+    height: 150px;
     background-color: #e0e0e0;
     display: flex;
     align-items: center;
@@ -215,22 +215,31 @@ div.hidden-div {
     min-height: 28px !important;
 }
 
-.second-cell {
-    font-size: x-large;
+.name-cell {
+    font-size: large;
     font-weight: bold;
-    padding: 2px;
+    padding: 10px;
+    position: absolute;
+    right: 0.5em;
+    top: 4em;
+    width: 50%;
+    word-wrap: break-word;
 }
 
 .third-cell {
-    padding: 2px;
+    padding: 10px;
 }
 
 .fourth-cell {
     padding: 2px;
 }
 
-.fifth-cell {
+.rating-cell {
     padding: 2px;
+    position: absolute;
+    right: 0em;
+    top: 8em;
+    width: 50%;
 }
 
 .sixth-cell {
