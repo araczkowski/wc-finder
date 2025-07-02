@@ -1,6 +1,6 @@
 -- Import WC data from CSV
--- Generated on: 2025-07-01T09:39:38.600Z
--- Source file: results.csv
+-- Generated on: 2025-07-02T07:16:17.347Z
+-- Source file: ./scraper/results.csv
 -- User ID: cac878bb-3f77-42a7-9221-919238bfae76
 -- Created by: public@sviete.pl
 DO $$
@@ -8,4075 +8,2408 @@ DECLARE
 l_context text;
 BEGIN
 
--- WC #1: Stacja Paliw ORLEN
+-- WC #1: Toaleta w Warsaw Hub
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Stacja Paliw ORLEN', 'Tęczowa 5, 53-601 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipNjrQbV0mCVyOnU5lvsEfck6htAREbA_7Z-BAtL=w408-h306-k-no', '99eee902-3fd3-4761-9fb3-f7af6c8f7281', 8, ST_Point(17.018194, 51.106712)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta w Warsaw Hub', 'ul, rondo Ignacego Daszyńskiego 2, 00-843 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqo4QtdJy8T39KE0PJU8yL6_kz_yzHmCeCYxxpPM37EgsOHlqT2hpvpf5HFeo-5K0Ki6rQAjESUK9JRLOSYFGmkKm4MzdpeUeupb0-GhVgGiz5BvOnECwKFv-36PO_vsKnnR_U=w426-h240-k-no', 'a2e0ce3b-f129-4656-a3e4-77abdfa0ec64', 9, ST_Point(20.984421, 52.229383)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #2: Circle K
+-- WC #2: WC
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Circle K', 'Romana Dmowskiego 5, 50-203 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np96YrT5uDCgyB0Iyy8fJk_cVzsgxSnm8GmIFPaPr8oYM1zoUWj8f4heKQyQEuEJsIO1e-L2fA44gwg8w7XdRgQvZb9KWRxlMLLwYWKNgF9AZIEVmC9fojJAb_LYMRRU0eBcnbrzxsz7UR5=w408-h306-k-no', '99eee902-3fd3-4761-9fb3-f7af6c8f7281', 8, ST_Point(17.021664, 51.117145)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC', '00-001 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noHpKGa5g6xtq4VlmntdbuJbNTAihMJvjLChuAc_gNcO7BMB_B1iDX2PXipdladEzIpcaehBlv24BBzdFafdCB8VTuQVLlypAYx6DueyUAzcgEikTj8Wh84ILjhhw-lph7e8d3r6g=w425-h240-k-no', 'a2e0ce3b-f129-4656-a3e4-77abdfa0ec64', 4, ST_Point(20.998444, 52.209513)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #3: Stacja Paliw ORLEN
+-- WC #3: Toalety
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Stacja Paliw ORLEN', 'Grabiszyńska 187, 53-234 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipPtmMLtS4EXF3TQagPGHGOedPhrBjqWTMxfvX6y=w501-h240-k-no', '99eee902-3fd3-4761-9fb3-f7af6c8f7281', 7, ST_Point(16.992823, 51.098058)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toalety', 'Muranów, 00-001 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=ecHiHs4N-_zFf5IoZ-x0bw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=263.12213&pitch=0&thumbfov=100', 'a2e0ce3b-f129-4656-a3e4-77abdfa0ec64', 9, ST_Point(20.985477, 52.256652)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #4: Circle K
+-- WC #4: Toaleta Bezpłatna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Circle K', 'Sucha 15C, 50-086 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrbBUngfyZbp6REHWN1w0B0jbeenXJefUkNX0Aq7_1ezRLu3p2amQ6GMmlef1pnYr3EppsQHVuRYLtbpKayy_JTBmcu9YUGGmWScLWHEvVUyPzCpWBk2McIJ5-DbrTXiS7tiQ0=w425-h240-k-no', '99eee902-3fd3-4761-9fb3-f7af6c8f7281', 8, ST_Point(17.039986, 51.096172)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Bezpłatna', '00-017 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=RU21a3pUvSJs09b3cXTp_w&cb_client=search.gws-prod.gps&w=408&h=240&yaw=68.982796&pitch=0&thumbfov=100', 'a2e0ce3b-f129-4656-a3e4-77abdfa0ec64', 6, ST_Point(21.007486, 52.235887)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #5: Stacja Paliw ORLEN
+-- WC #5: Toaleta publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Stacja Paliw ORLEN', 'Księcia Witolda 55, 50-203 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipOeN37TzJ9hOiFz8Bq42WeDwgY1TYdk_ERPOXVE=w410-h240-k-no', '99eee902-3fd3-4761-9fb3-f7af6c8f7281', 8, ST_Point(17.022956, 51.116392)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna', '00-001 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=nLPE5IYQQkfXaCEfdLNxMw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=62.80075&pitch=0&thumbfov=100', 'a2e0ce3b-f129-4656-a3e4-77abdfa0ec64', 7, ST_Point(21.014409, 52.253014)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #6: bp
+-- WC #6: Toaleta w Metrze
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'bp', 'Krakowska 6/7, 50-425 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr65cIBdcljq8CEpldeZhrh6-15Wp1n7Br03ZBW_cO1dxnZEsYV_3fr5C9-hNoWOArvEaadXsibyxibYJclNqZDBczBHDHA9IVZVdhQqVbtT6oVC-0C4RHFxKyZXTtzAdwBkTsd=w408-h306-k-no', '99eee902-3fd3-4761-9fb3-f7af6c8f7281', 8, ST_Point(17.05672, 51.0953)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta w Metrze', 'Stacja Metra Świętokrzyska 00-001', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrS0dEYsR88p7mGgjDcZ5JRGgzV1CtjX_5ucMc9rYNKyTCe82kCVW-gNpArzW1KQxylhkHwJmIbb0KD4EpZeDRqZGFl-OQ_jnv7zC1UjrdmSZRvmwgJZuQDNUTzhhQowgQm_nhT=w408-h544-k-no', 'a2e0ce3b-f129-4656-a3e4-77abdfa0ec64', 8, ST_Point(21.007447, 52.2363)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #7: Stacja Paliw E.Leclerc
+-- WC #7: Toaleta Publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Stacja Paliw E.Leclerc', '2-4, Zakładowa, 50-231 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nppe8jOdl3WfrnIXjtBKRo8Oy_3j5JQnc_lNvaJEmIq2UCUNmoNgTimDve52Ean-ZgSF5LYEVA5tg8XbQbRmK3SDaqI9XC_vt5TITj9IGTdYuWCQ_tKkE2iD-yAFq7SeCulvzZF0w=w408-h305-k-no', '99eee902-3fd3-4761-9fb3-f7af6c8f7281', 8, ST_Point(17.03875, 51.130215)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Publiczna', 'Kościelna, 00-001 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrg-ZCSWuxoClsA7j2M8pMFLT72H0UdCjarHcSxEpKq2W8TQ-PfTIG5d30dzSldD44ua-KyV6AKZ62yTlPK8iCMJt35hPuyuShAPiyJUiaWSiSm5TZu0RsqTjR_LjXNAMsYzw7vBg=w408-h306-k-no', 'a2e0ce3b-f129-4656-a3e4-77abdfa0ec64', 4, ST_Point(21.010029, 52.254102)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #8: Stacja Paliw ORLEN
+-- WC #8: Toaleta Publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Stacja Paliw ORLEN', 'Plac ks. Stanisława Staszica 6A, 50-221 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipP2NdO-pMaE6g-ankkz91sFWXwe_pxgKDajKhGJ=w408-h328-k-no', '99eee902-3fd3-4761-9fb3-f7af6c8f7281', 9, ST_Point(17.029606, 51.123321)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Publiczna', 'Pałac Lubomirskich w, 00-001 Warszawa', 'https://lh3.googleusercontent.com/p/AF1QipOgVFKl-h2vEQ7T57hTrmlUOOxn3CwKPS3JZraT=w408-h306-k-no', 'a2e0ce3b-f129-4656-a3e4-77abdfa0ec64', 8, ST_Point(21.001589, 52.239154)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #9: MOYA Stacja Paliw
+-- WC #9: WC metro station Nowy Świat
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'MOYA Stacja Paliw', 'Długa 47A, 53-633 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqNv6lnta0_8AFp-6COSg_xJFyGOI4-n8SGHQclCbqsdpwh7Hk7C0HDnpgATVW5NH9XJm_TXipLzSbh_KTNceBWDd0eGgdPZzwCqrm3RHuNLUMQMSxBgWUBkdY4nnK3Wq6MgXzBjg=w408-h544-k-no', '99eee902-3fd3-4761-9fb3-f7af6c8f7281', 8, ST_Point(17.014179, 51.120435)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC metro station Nowy Świat', 'Stacja metra Nowy Świat, Świętokrzyska, 00-001 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noX08T3c0sOkhqhZcXJpzl5SE2umWib9Ps48gltozep-ZowbeyKkUbXvjGCzB7uGYtjOUw7xJ7g-8WA7SlsxDq3ZXZFoNOl0J7lLl60N4gojnQJ5v6SHOjScmAGqVAX87l7vrNsQw=w408-h306-k-no', 'a2e0ce3b-f129-4656-a3e4-77abdfa0ec64', 9, ST_Point(21.016672, 52.236872)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #10: Stacja Paliw ORLEN
+-- WC #10: WC
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Stacja Paliw ORLEN', 'Jedności Narodowej 156, 50-303 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipPV0vB1MR4iApNxrQNfH0hht4fRXDIR1-dvI_kk=w508-h240-k-no', '99eee902-3fd3-4761-9fb3-f7af6c8f7281', 8, ST_Point(17.046451, 51.126682)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC', 'Wybrzeże Gdańskie, 00-001 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noInasOg-ZPZAo33oxfLKmHSjeG9lw6XhjJ_huR7EfRNrM43jhhnABCC1Mte43mbEp4s0_I7MIuBLxHtMv2Zs53Q_OcnY9nqn_6fQzigdRiO8uktD07mt1GaG8b650VobLHHH04=w408-h725-k-no', 'a2e0ce3b-f129-4656-a3e4-77abdfa0ec64', 6, ST_Point(21.012174, 52.25553)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #11: Stacja Paliw ORLEN
+-- WC #11: Toaleta „Lapsiu”
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Stacja Paliw ORLEN', 'Krakowska 11, 50-424 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipPeOd1_rUmk6DaHLFFz5cOH4rkLAc8m8EqTJViU=w448-h240-k-no', '99eee902-3fd3-4761-9fb3-f7af6c8f7281', 8, ST_Point(17.057635, 51.094605)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta „Lapsiu”', 'Rynek 48, 05-079 Okuniew', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=lHaU0WQA8imP2kvOoIwdtg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=316.32266&pitch=0&thumbfov=100', '41bbc8c4-5491-483d-bfa2-860852216094', 1, ST_Point(21.306498, 52.272988)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #12: bp
+-- WC #12: Toi Toi
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'bp', 'Słubicka 18, 53-615 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqzHHMeHu199r4Ms67NS0ojHIzaVndhVSN-FPGa7jsRS__TOdXzjxCfaLA4ngNNoCAMizrYKMXkXQZAXgjwuAYJuBsrVh3mHcHDXwSpLjU3ZWql4EdBfZBPNZ_fDyMtTI5XLdi0=w408-h306-k-no', '99eee902-3fd3-4761-9fb3-f7af6c8f7281', 8, ST_Point(17.000025, 51.117774)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toi Toi', 'Stanisława Żółkiewskiego 17, 05-075 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=cFmPFYFDcdiNjel20D6ZmQ&cb_client=search.gws-prod.gps&w=408&h=240&yaw=101.0444&pitch=0&thumbfov=100', '41bbc8c4-5491-483d-bfa2-860852216094', 1, ST_Point(21.244245, 52.248482)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #13: Stacja Paliw ORLEN
+-- WC #13: Toaleta „Lapsiu”
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Stacja Paliw ORLEN', 'Ślężna 129A, 53-301 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipPaWdyyxDyceMo35Qgc24roFcTJn2WaMNtxCJrw=w464-h240-k-no', '99eee902-3fd3-4761-9fb3-f7af6c8f7281', 8, ST_Point(17.02476, 51.084427)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta „Lapsiu”', 'Rynek 48, 05-079 Okuniew', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=lHaU0WQA8imP2kvOoIwdtg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=316.32266&pitch=0&thumbfov=100', '93e61dab-03c2-4342-81fc-b93dc8430586', 1, ST_Point(21.306498, 52.272988)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #14: Gas Station
+-- WC #14: Toaleta „Lapsiu”
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Gas Station', 'Romana Dmowskiego 5, 50-203 Wrocław', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=stbxvgWs1xRPPF1QoJdkcA&cb_client=search.gws-prod.gps&w=408&h=240&yaw=33.28626&pitch=0&thumbfov=100', '99eee902-3fd3-4761-9fb3-f7af6c8f7281', 10, ST_Point(17.021652, 51.117189)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta „Lapsiu”', 'Rynek 48, 05-079 Okuniew', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=lHaU0WQA8imP2kvOoIwdtg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=316.32266&pitch=0&thumbfov=100', '71027812-c523-48fb-bb79-990ea06a5c4c', 1, ST_Point(21.306498, 52.272988)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #15: Circle K
+-- WC #15: Toalety Darmowe
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Circle K', 'Braniborska 84, 53-680 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no93MV5wFtOntHHmoNpPad50XI8CJFbzmN7bIfU2h2AmrOtV3tSwDQfp2TZZiktKIeOZfZCeBav2-Ak79-rp847CPmQD5B9SJ_HXF6x3d-n3Tm02-H9MolyZ88K13WoGZqWgUGr4ur3YMQ8=w408-h306-k-no', '99eee902-3fd3-4761-9fb3-f7af6c8f7281', 8, ST_Point(17.006191, 51.111832)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toalety Darmowe', '01-999, Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqU8Xeir5qe96HxzFRDnqrB1bKFTr2ffmdpi20ISs6vgiQcTaRagx_YLkNOqxUISip0EkJUZbe0gR4RzWhMwYszbWK6_WrldCksS58ZiihchwCR7zVh_QOdR25wg7HkEo3kM51U6bN-HpkK=w408-h306-k-no', '1c048624-1d1a-4e06-9fc0-e75c9fb0333c', 8, ST_Point(21.038071, 52.213086)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #16: MYJNIA SAMOOBSŁUGOWA INWASH
+-- WC #16: toaleta w parku
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'MYJNIA SAMOOBSŁUGOWA INWASH', 'Tęczowa 51, 53-601 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq8efWNvEZ4lXdfK-tmMbCvZdnRv8a5SvlHMhpTtdTYI48JBOB_H5KpdofvaMsfRPzFc4_y0A5iFENgv9gTflJFaIbb2XfJ05YMtR8yqMUBH6uOOz6SCxTnLMIuZBQG_sxaeOQCfw=w408-h544-k-no', '99eee902-3fd3-4761-9fb3-f7af6c8f7281', 9, ST_Point(17.013399, 51.105401)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'toaleta w parku', 'Biedronki 6, 02-946 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqGms_x_d2LtR9TaTGn2HHg1ckM06bSX8eR1G3E4X5wfVhAIu_Leo4NdwiSkWVkUpjmMP40xAtKB4ERKPhRHKFDHkiPNlds91dnil8diafMtsBE1mMXcESFnh7V8XBt0teZiZgocg=w408-h306-k-no', '1c048624-1d1a-4e06-9fc0-e75c9fb0333c', 8, ST_Point(21.09011, 52.166838)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #17: Stacja Paliw MOL
+-- WC #17: Toaleta
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Stacja Paliw MOL', 'Trzebnicka 39/41, 50-231 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq-B7Wy0tsxzLpe0T2f2gdNJ2EapjDGNUjt-Lj6idg2mh4LtLMEKejaPFsJ8umWFvoTwjB2DdC69j5owNkfdj6VPvGccvoEQ_QgricxxZSTBPrmL8eoUgbKwdtfZ8YA-MFcwaRPaA=w408-h306-k-no', '99eee902-3fd3-4761-9fb3-f7af6c8f7281', 8, ST_Point(17.037571, 51.130409)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', 'Łukiska 29, 04-123 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=rMeJDPo0W8NFN5QacQRHgA&cb_client=search.gws-prod.gps&w=408&h=240&yaw=279.5524&pitch=0&thumbfov=100', '1c048624-1d1a-4e06-9fc0-e75c9fb0333c', 1, ST_Point(21.096869, 52.23758)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #18: Myjnia bezdotykowa 24h
+-- WC #18: Toaleta
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Myjnia bezdotykowa 24h', 'Długa 37, 53-633 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np8WptgbftUEpSw_gE7n6MIUMADaI9mhIX2qYcZ3YodUF7qIfOaYT_G6gYVCEIg7fXAIRRjSZ4d07aMytKYrVOlUnTAmcQZWJgyAfHAa-iEofFMez7bTB1B4WlSVm8spdAR1bgV=w408-h464-k-no', '99eee902-3fd3-4761-9fb3-f7af6c8f7281', 7, ST_Point(17.014249, 51.120117)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', 'Książęca, 00-418 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrbGfQAmgOjMdIntBeEj_W9Y-WVOuWKdsGg4BSCxeW9eJSv6GP2rjUlRbBHWmDs0XY-4OwMHuVBvG5RtTPMBH_9uRqJSrT_bmdp8nS3R3kobSXs0EjIGnbDEW43P6wM0dH9tKpOPA=w408-h306-k-no', '1c048624-1d1a-4e06-9fc0-e75c9fb0333c', 5, ST_Point(21.029911, 52.230324)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #19: Stacja Paliw ORLEN
+-- WC #19: Stable
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Stacja Paliw ORLEN', 'Curie-Skłodowskiej 14, 50-381 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipPuwq3XIngJPTE5HQM2RM5pMJ4BAzJupJv6aMuA=w464-h240-k-no', '99eee902-3fd3-4761-9fb3-f7af6c8f7281', 8, ST_Point(17.058467, 51.112217)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Stable', 'Majdan 63, 05-462 Majdan', NULL, '1c048624-1d1a-4e06-9fc0-e75c9fb0333c', 2, ST_Point(21.263022, 52.203889)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #20: BlueBerryOil - Oddział we Wrocławiu
+-- WC #20: Toaleta WC
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'BlueBerryOil - Oddział we Wrocławiu', 'Grabarska 1, 50-079 Wrocław', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=SgR2VMsAT8BdrqKQ4BJonA&cb_client=search.gws-prod.gps&w=408&h=240&yaw=280.0678&pitch=0&thumbfov=100', '99eee902-3fd3-4761-9fb3-f7af6c8f7281', 1, ST_Point(17.024948, 51.111058)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta WC', 'Chyleniecka 4, 99-416 Nieborów', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npLNi3zNMQiuHfpuFAKxvppmRkm0ejh3WpGMm0Bsf14ucH-QUllHGS2oaahOLSUaY9hfl5mmwEr4sJ0x_K_jtoMnGYrPCPx8U3GjQ1MoqUxVDq8rwG8ZRpZVBiUiFsElILtOIzA=w426-h240-k-no', '7200a66b-bd18-4dc6-8230-8065eb6b4cd1', 9, ST_Point(20.071135, 52.067625)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #21: Kaffe Bageri Stockholm
+-- WC #21: WC
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Kaffe Bageri Stockholm', 'Nożownicza 37, 50-147 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqWhhqNVd0uZJI9lPuzLkzs_wQ0gF5HHcvQKUj3vSBCzsVrZhJgna4b97e5H2GGadtPj2ZBRcUxDZSQunAdUBrtpZkwlFCKtqgzPwjn0oUBtsIg-D4c9n-DfbnLwgnIweQrJnLzSQ=w408-h544-k-no', '0f3bfa86-0bcf-430c-b2aa-285bc7c3478c', 9, ST_Point(17.036568, 51.111804)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC', 'WC', NULL, '7200a66b-bd18-4dc6-8230-8065eb6b4cd1', 1, ST_Point(19.145136, 51.919438)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #22: Chmiel kawę - Specialty Coffee Concept
+-- WC #22: Toaleta
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Chmiel kawę - Specialty Coffee Concept', 'Szewska 27A, 50-139 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipNB1mo7G2XPS8HPeI8CrtfIJ1EfWQ0uxA87Av3t=w408-h510-k-no', '0f3bfa86-0bcf-430c-b2aa-285bc7c3478c', 9, ST_Point(17.035236, 51.11136)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', '89Q4+96 Toaleta, Niedrzew Drugi', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqxrgpgJWIwadCwwvvRsDJLl4JDTJLe7roZ8QjO7CHvTKxyt5npy10tjt5h_KYCCv3COYopXPNN3R1GWzNfKt1UFSzzQAfccQ3eysSM5tgTG3uTCalRlK989Qo5gG1dLeAVKYhV=w408-h306-k-no', '7200a66b-bd18-4dc6-8230-8065eb6b4cd1', 10, ST_Point(19.355503, 52.338433)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #23: BANANA KAWIARNIA
+-- WC #23: Toaleta (płatna)
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'BANANA KAWIARNIA', 'Hugona Kołłątaja 29, 50-004 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipPUtxCde_1A7I-NO0lrmDuUENpKhfI74j3uBQAj=w408-h306-k-no', '0f3bfa86-0bcf-430c-b2aa-285bc7c3478c', 9, ST_Point(17.037126, 51.102557)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta (płatna)', 'Parkowa 15, 05-850 Ożarów Mazowiecki', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrAsfnE1pne2w7gtppLN07dBjmSZj5GFLPDGbSoLV0BraBdt2lzQr5EuryiQLNt1kfuxRCbHuy0Ee1IShe1NGqoR77KRKcUNZhOeRBJYAg0jQj-0rwu-NH3UcL5GNR4S3kwgj8nrQ=w408-h725-k-no', '7200a66b-bd18-4dc6-8230-8065eb6b4cd1', 6, ST_Point(20.776667, 52.214933)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #24: Kocia Kawiarnia "Cat&Alice"
+-- WC #24: toaleta
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Kocia Kawiarnia "Cat&Alice"', 'Igielna 14/15, 50-117 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipPcXRgPkqr3_wRiw2esLfDV-KtnBU1BEpxJTJu7=w408-h408-k-no', '0f3bfa86-0bcf-430c-b2aa-285bc7c3478c', 9, ST_Point(17.032096, 51.11148)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'toaleta', 'RMR6+QH toaleta, 95-060 Nowe Skoszewy', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np8JDcRuSz878VvxxTNCZVElQCaX2Bm4mt8HsAr4mqZHavI6sfq8oBxTcfCxPlENtyVeTonprHHUbRXafuxZFV1l298epJRIIL1QS1kOXlmXjlndUJgRjRcxpbYx-NZ_iUB1WtcbA=w408-h306-k-no', '7200a66b-bd18-4dc6-8230-8065eb6b4cd1', 6, ST_Point(19.661257, 51.841809)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #25: cafe rozrusznik
+-- WC #25: Toaleta
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'cafe rozrusznik', 'Wojciecha Cybulskiego 15, 50-205 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrF23zkT3CTyMj1T5V9WCYKL6srPowv0xwdfvtuTAjrYiHfmGIqku0szb81ebBpeHYxyrTW-Ycv0jHz2MLjFeoA2VpdF6Cpbva_Hg7iDK2SX1uRbFu-FESWI3rynPQXwhWcEp5j=w408-h306-k-no', '0f3bfa86-0bcf-430c-b2aa-285bc7c3478c', 9, ST_Point(17.031215, 51.11672)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', 'Nowe Skoszewy 13, 92-701', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noIswkjxL8F38_kj8MDXhxLZxYRH8m98MUKbXG-g5LiNqJhOBNDEaSQayQf0mCprCyOXPf-CfG-hk2P--9PtPA4UWJjQ9oo8gR1k3IvCeh-i1S1WCVNrYADf5DeRA0E8tIjO6Y=w408-h306-k-no', '7200a66b-bd18-4dc6-8230-8065eb6b4cd1', 7, ST_Point(19.656722, 51.841817)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #26: Cafe Równik
+-- WC #26: Toaleta
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Cafe Równik', 'Jedności Narodowej 47, 50-260 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipOUli3hHpNQTwPdNNkJrQNxoMkxXzFZ7YJZ1oRs=w426-h240-k-no', '0f3bfa86-0bcf-430c-b2aa-285bc7c3478c', 9, ST_Point(17.038821, 51.119195)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', 'Mąkolice 9, 95-015 Mąkolice', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nooommvWKk41-8vjeQXDqTDxHBo7I5Ox1PpJ0SbOygnQCOH1sTVZV5nRNQ91vb4vfkO03GeicWXR92tAW5myrsbwmzycj06G79VXrGjZulooT8cK7ERqU8Kp0vZkvkAVuCnDNOC6g=w408-h306-k-no', '7200a66b-bd18-4dc6-8230-8065eb6b4cd1', 7, ST_Point(19.544953, 52.007567)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #27: Cafe Targowa
+-- WC #27: Toalety
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Cafe Targowa', 'Piaskowa 17, Stoisko 11, 50-158, 50-001 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipNfOZSO6AnskyEJDx-Nu7Ar6J7xyUxYnNYz3vWC=w426-h240-k-no', '0f3bfa86-0bcf-430c-b2aa-285bc7c3478c', 9, ST_Point(17.040693, 51.112579)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toalety', '95-100 Zgierz', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=wj8wshofFOrvpMgl73v8zA&cb_client=search.gws-prod.gps&w=408&h=240&yaw=16.459145&pitch=0&thumbfov=100', '7200a66b-bd18-4dc6-8230-8065eb6b4cd1', 1, ST_Point(19.409571, 51.919959)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #28: El Gato Specialty Coffee Roasters
+-- WC #28: WC
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'El Gato Specialty Coffee Roasters', 'Odrzańska 8/1, 50-113 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipOShGFXxTtq-Og_P-gw1Gi9EwxDdjM5zPpCx-7e=w425-h240-k-no', '0f3bfa86-0bcf-430c-b2aa-285bc7c3478c', 9, ST_Point(17.031398, 51.112206)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC', 'Zielona, 99-200 Poddębice', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=R4104rNBklQlFT6RLybPNg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=120.69012&pitch=0&thumbfov=100', '7200a66b-bd18-4dc6-8230-8065eb6b4cd1', 10, ST_Point(18.959453, 51.885494)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #29: OTO Coffee Bar
+-- WC #29: WC (toaleta damska/męska)
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'OTO Coffee Bar', 'Świętego Antoniego 28, 50-073 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noBjWA3gkIpT1JL6F5hemQcWffDscf_eh5mcmen9tjn-YWvxjgDjMGqFGtu82WodRsGRr1MN69GnNRJJpfnWW-tHix9HfLEZb7Sl33NGiKYZJeqJqLu4frNh6I9GBwwpDGqxv_r=w408-h544-k-no', '0f3bfa86-0bcf-430c-b2aa-285bc7c3478c', 9, ST_Point(17.024554, 51.109349)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC (toaleta damska/męska)', 'Przygraniczna 96, 95-100 Zgierz', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=6MgQQxIVpTF_JnUgkp6sOg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=337.29236&pitch=0&thumbfov=100', '7200a66b-bd18-4dc6-8230-8065eb6b4cd1', 1, ST_Point(19.425109, 51.882082)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #30: Kawiarenka św. Jadwigi
+-- WC #30: Toaleta
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Kawiarenka św. Jadwigi', 'Świętego Marcina 12, 50-327 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipMYLPHtKlalKQGfc01d2sA0uyP-vyknyJKyo-aI=w408-h271-k-no', '0f3bfa86-0bcf-430c-b2aa-285bc7c3478c', 9, ST_Point(17.043437, 51.115943)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', '99-314 Krzyżanów', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nphqiSKb-LOx6OShd8pnA6MyzXy2XP0LepFl-D4yIc51PZARynLZ9QreDFz0aNnfvJURvryBfERNR7cbH41nTRPpHQmpxhb3D6o9sObqOVfsC9uY9AomARc7YFilhz9fbdPEM6Eww=w408-h306-k-no', '7200a66b-bd18-4dc6-8230-8065eb6b4cd1', 7, ST_Point(19.489123, 52.184304)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #31: Cherubinowy Wędrowiec
+-- WC #31: Toilette
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Cherubinowy Wędrowiec', 'plac Nankiera 17a, 50-140 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nroLWO0bG2l4YHfXInEaBLWavJuZWBHSjGDXlV3grlQtRegccZFJ_s9yMSV8FZiE6ZwgIS_Kvb1SaHZAbZvWsWGEi6HbGpz6ajobSzKh1a0wBRJUXMPLKa8hDQ0UPN8dooUcdJ7=w408-h544-k-no', '0f3bfa86-0bcf-430c-b2aa-285bc7c3478c', 9, ST_Point(17.036593, 51.113195)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toilette', 'Północna, Nowomiejska, 90-001 Łódź', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no-VnAo8UheaMoKgnNvIodhqGkvBNSCNFVPBcOPcZ266K_wFMo-dFXisNKMwLy2NrEI-bXwtzoIblm2KjdtNvHyMpXDltN9HD_OhkbgPXV_7BDN0SajoebRIw5v3idAe_Mhmb8FSg=w408-h544-k-no', '7200a66b-bd18-4dc6-8230-8065eb6b4cd1', 4, ST_Point(19.455138, 51.779511)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #32: Parrot Coffee
+-- WC #32: Toaleta
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Parrot Coffee', 'Generała Józefa Bema 2, 50-265 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqzQ3i2_MZNIjoQdSt-5deuA4BwFoSqE6D6zyDkJztvgJIEZjJ4K5yCKH5UOrJcDXIr4DQHoR-3O9l2czRJkVwapDYIt6uzObpMo0Sd33yOVFmYobZQBr8o4bo-bYr-nGiJ_31JBA=w408-h306-k-no', '0f3bfa86-0bcf-430c-b2aa-285bc7c3478c', 9, ST_Point(17.041745, 51.117555)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', 'Stary Rynek 5, 99-400 Łowicz', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nouqcoFMn_CGpKeIA_X6XSkLH2OUf0hpcBeL0sSKMpMngB8Rg-ak9EAMEoZYy-s-6clo9xvgdybXWcKt-mDrG8OgkRtBzgpbCVWcmIZR8BoTa4rMFm61C-2EgFvANO-iMl-VOQF=w408-h544-k-no', '7200a66b-bd18-4dc6-8230-8065eb6b4cd1', 3, ST_Point(19.946492, 52.108348)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #33: Baldachim Kawiarnia
+-- WC #33: Toaleta publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Baldachim Kawiarnia', 'Świętej Jadwigi 9/1A, 50-266 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipO37A_QDbeOW4RGoV1lfjioYlcooD-EUVzIObPI=w408-h544-k-no', '0f3bfa86-0bcf-430c-b2aa-285bc7c3478c', 9, ST_Point(17.040788, 51.115222)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna', 'Konopnickiej, 99-200 Poddębice', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr0QN52jOzQjZf-aUarpnEWu41_ki1L_8Uzfdjw-_cH7Uijl24vVsYlEBGKDPwj1TFjce5hYl-fjt-6Y33eQdWCSuoKsnI3FqPLHWiORirZNT4Nd2rKqBd70jCyo4ijQk1QCuYW=w408-h306-k-no', '7200a66b-bd18-4dc6-8230-8065eb6b4cd1', 10, ST_Point(18.95174, 51.890572)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #34: ARTCAF
+-- WC #34: WC
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'ARTCAF', 'Braniborska 10e, 53-680 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrI13BHEjuNptJz_D4lz5-YTET1iYMM9EOMFS0vwomm6WfP9xex0VUcHKIfGO7THmgePSo9m5dCXVBwSomLGflbW1kV-hA0SbdCf8SAmMckTYOmcIsUwDOFdphpkgrc4mJont34NQ=w408-h544-k-no', '0f3bfa86-0bcf-430c-b2aa-285bc7c3478c', 9, ST_Point(17.012996, 51.110104)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC', 'Al. Jerozolimskie 142, 02-305 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=YTJ1mkj_rVqHDRMEGo0mkA&cb_client=search.gws-prod.gps&w=408&h=240&yaw=295.71527&pitch=0&thumbfov=100', '7200a66b-bd18-4dc6-8230-8065eb6b4cd1', 2, ST_Point(20.966045, 52.219019)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #35: Fama cafe
+-- WC #35: bio toaleta
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Fama cafe', 'Bolesława Prusa 51A, 50-317 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipOuMcSxk4E3j_jhTKQWEEelw8fU_WQlWDzSesGB=w408-h544-k-no', '0f3bfa86-0bcf-430c-b2aa-285bc7c3478c', 9, ST_Point(17.053221, 51.119164)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'bio toaleta', 'Park Helenów w, Północna, 90-001 Łódź', NULL, '7200a66b-bd18-4dc6-8230-8065eb6b4cd1', 8, ST_Point(19.467852, 51.781954)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #36: NIECAFE
+-- WC #36: WC
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'NIECAFE', 'Tęczowa 1, 53-601 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipN46fwkAUBE9VNoconFLglD4YRVH3pHrrttkHFR=w408-h725-k-no', '0f3bfa86-0bcf-430c-b2aa-285bc7c3478c', 10, ST_Point(17.018783, 51.107013)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC', '99-101 Łęczyca', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=3p2bCtbrhjA9feUgi7H2Ig&cb_client=search.gws-prod.gps&w=408&h=240&yaw=306.70218&pitch=0&thumbfov=100', '7200a66b-bd18-4dc6-8230-8065eb6b4cd1', 2, ST_Point(19.203526, 52.058344)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #37: Vinyl Cafe
+-- WC #37: Toaleta Publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Vinyl Cafe', 'Kotlarska 35/36, 50-120 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipNSI1j0i0skUgUNaHLz88OKHKAibExBPqJgYebr=w408-h306-k-no', '0f3bfa86-0bcf-430c-b2aa-285bc7c3478c', 9, ST_Point(17.032643, 51.111728)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Publiczna', 'Chomiczówka, 00-001 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=ykpKuRD_aj37ueUtonKwzg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=161.77911&pitch=0&thumbfov=100', '31203134-4265-4dce-be20-ce07d744b640', 1, ST_Point(20.930415, 52.277888)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #38: Kofeina
+-- WC #38: Toaleta w Metrze
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Kofeina', 'Szewska 68, 50-139 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipOew7cTI5LkOeOuAsQmfwvWg1B6pqCnBuA0_6xE=w408-h544-k-no', '0f3bfa86-0bcf-430c-b2aa-285bc7c3478c', 10, ST_Point(17.034755, 51.110686)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta w Metrze', 'Stacja Metra Słodowiec 01-001, 01-001, 01-001', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npfQJY-rxpSsOMKsXL1aGWkwyHzeOWJe7x_LX8BMEl446BS1XsX14Ajx9GJtYsv9ciKH8OY0cQdi1JCfqm3JzUpMxdTfZ7M3ws4rMQZkQDnwjO1m7EtxiJXVsyj1H9LjiViQLU=w408-h544-k-no', '31203134-4265-4dce-be20-ce07d744b640', 8, ST_Point(20.961118, 52.276396)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #39: lotos - centrum handlowe
+-- WC #39: Toaleta
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'lotos - centrum handlowe', 'Grabiszyńska 3, 53-503 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npX78qBcpjqSg97BB08ci4eJrEOmGNJp8WiD1UD_la6MY7X_av2rGg3WK64UW-YPeV8gkHzFyG8J0yZrrZ2EVQ7QSipMiEi1mNIDRJdTsSHuO8cSjU3qRpKe8ombu8oWzIR6KV-=w408-h544-k-no', '359bc108-832d-47a7-a5de-581da2726272', 8, ST_Point(17.021173, 51.104577)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', 'Jana Kasprowicza 145, 01-823 Warszawa', NULL, '31203134-4265-4dce-be20-ce07d744b640', 8, ST_Point(20.927439, 52.290679)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #40: Centrum Handlowe Auchan Bielany Wrocławskie
+-- WC #40: Toaleta WC
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Centrum Handlowe Auchan Bielany Wrocławskie', 'Francuska 6, 55-040 Bielany Wrocławskie', 'https://lh3.googleusercontent.com/p/AF1QipN-SLgRJZMgjbYfasn8kqvwdPNN8W3SEmJqCvi7=w408-h306-k-no', '359bc108-832d-47a7-a5de-581da2726272', 9, ST_Point(16.971785, 51.053396)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta WC', 'Kazimierza Wóycickiego 14, 01-938 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npE193bNEglf6rOLt_vcRVshReCFvKjqf31aOeajnDlYlfAQnGTxYqdFFTsxYtEYzdH3HxRs7hoM1U7eTg_xyxn-5nfllkOX8bQcdN9bmg_hyhhsFkcYUjnUwqYjuixo1KH78IVRA=w408-h306-k-no', '31203134-4265-4dce-be20-ce07d744b640', 1, ST_Point(20.900258, 52.29809)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #41: Galeria Dominikańska
+-- WC #41: Toaleta
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Galeria Dominikańska', 'plac Dominikański 3, 50-159 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipP_Bqr1eApTbf-5n_XqrTL3bAJoTULyjevzliGj=w426-h240-k-no', '359bc108-832d-47a7-a5de-581da2726272', 8, ST_Point(17.039349, 51.10812)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', '05-082 Janów', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=cderbi-YyRSmRBYIAK1VMg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=322.65872&pitch=0&thumbfov=100', '31203134-4265-4dce-be20-ce07d744b640', 10, ST_Point(20.845591, 52.247185)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #42: Renoma
+-- WC #42: Toi toi
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Renoma', 'Świdnicka 40, 50-024 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipPF9hnxlL7tkvN7AlXLNYhdKk9uquzQKPKPIUAb=w408-h272-k-no', '359bc108-832d-47a7-a5de-581da2726272', 8, ST_Point(17.031966, 51.103857)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toi toi', '00-001 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=zRPAMiIKtF5aNtCxPQtATg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=60.55868&pitch=0&thumbfov=100', '31203134-4265-4dce-be20-ce07d744b640', 10, ST_Point(20.956361, 52.288051)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #43: Pasaż Zielińskiego
+-- WC #43: Toaleta Publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Pasaż Zielińskiego', 'Swobodna 37, 50-088 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqksOo6ADee85kay3V1c023as3YgALxDCTxB2yZXbMI_CFrMVF_vvYWef9_Ykp-A90wnBp8dykYl_FLYs5fE8Bxp1LfeAGoNj_7d8yoV8_xkPcWXsDRLiO2aC7HjoGbphFG-01M6nvbEx-M=w425-h240-k-no', '359bc108-832d-47a7-a5de-581da2726272', 8, ST_Point(17.024922, 51.100044)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Publiczna', 'Marii Konopnickiej 8, 58-100 Świdnica', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=8P4QQyHBTpAALiIL8zPfpg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=217.40114&pitch=0&thumbfov=100', '31203134-4265-4dce-be20-ce07d744b640', 9, ST_Point(16.487314, 50.844725)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #44: Pasaż Grunwaldzki
+-- WC #44: Warsztatura Hubiego
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Pasaż Grunwaldzki', 'plac Grunwaldzki 22, 50-363 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqghWOIiC_TfJGF1DRulq5LGlmAqU1Lbk-2pugfhPO6nURnB9rOu6jZGdhFseqgcTXopyHgAlXhyX5E6LcX8FaIWMbNk5vOcIWg6hQvH5s5UX9UKNq0PK9ONeRrU9WHjhvwTbEg=w408-h306-k-no', '359bc108-832d-47a7-a5de-581da2726272', 9, ST_Point(17.05972, 51.112156)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Warsztatura Hubiego', 'Dobra 28, 05-082 Zielonki-Wieś', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=bnXFEHjJIRdxjIR80iS0Fw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=195.68204&pitch=0&thumbfov=100', '31203134-4265-4dce-be20-ce07d744b640', 10, ST_Point(20.817654, 52.256404)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #45: Wroclavia
+-- WC #45: Toaleta (WC) Płatna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Wroclavia', 'Sucha 1, 50-086 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqH7nF_KKmBOkpHcQI9ky2sxLCRlzSaN93zSiacPgnb0jXgzdH0EI3KSXPqphwF3akNs8aS6kxCUEwbehNBhPGCvrPu9ZlK_llo1DVhxcczkmX-1J1jALxSK-eo3wFQHTg5a6p0WA=w408-h306-k-no', '359bc108-832d-47a7-a5de-581da2726272', 9, ST_Point(17.034842, 51.096431)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta (WC) Płatna', 'Kazimierza Wóycickiego 14, 01-001 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npkwq2ahTqdqX4bTwkLi4zDNPI2tb6sJ2PXVgPKNKqB4p5isYZDroa2Zj1_grOOaQr-O_U17O819mU_Xy6ceI-fKwI0g4Zug2uxMdx5cWzsVW-Br955A6AD0D4i6gVBTMw3eu-cWQ=w408-h306-k-no', '31203134-4265-4dce-be20-ce07d744b640', 4, ST_Point(20.90185, 52.299423)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #46: Szewska Center
+-- WC #46: Toaleta Publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Szewska Center', 'Szewska 3a, 50-053 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noCRcI-HTjKofqzcRbdmLSZUHEx5HI4OPz9t3s0NHfnujLw53eT--hNWVlWREX-oE2dYPFtU_WJJWlnHlrjpd0XLP1uSiEdxLx2zlgiAhJTkMXDiI2AVjr1D7_EwEnz7yTkovI4IS0gboWe=w408-h544-k-no', '359bc108-832d-47a7-a5de-581da2726272', 8, ST_Point(17.034312, 51.107857)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Publiczna', '00-001 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=7F0-P6TFaEaKd6PTVdnqDQ&cb_client=search.gws-prod.gps&w=408&h=240&yaw=339.37192&pitch=0&thumbfov=100', '31203134-4265-4dce-be20-ce07d744b640', 1, ST_Point(20.922488, 52.254823)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #47: Dom Handlowy Podwale
+-- WC #47: WC
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Dom Handlowy Podwale', 'Podwale 37/38, 50-040 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nphCLThH6savAVPsD87Qngrr3qW84z80svtQPtwwjsNSoyfeDwg1D6ubqa8KqjRiQoSyJwaYAizRDVpEPkphaVzUEtHIVTEkz_sL5tIMffEz1t501OeOUCoNIDaiOJZ7chm=w408-h541-k-no', '359bc108-832d-47a7-a5de-581da2726272', 8, ST_Point(17.029961, 51.104158)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC', 'Jana Kasprowicza 203, 01-949 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrfe8vHJyC4YILJO5Zq4hI_2VFvSVDt3rFHjrJyGLg4DtaopFbZEqlftGybKqEsoaqqBsxzTl6noVdiJnhlbVWB5p0k4O2X-ptDPDUAvkF7wnkxGI58i0Pka2hDqdgRqvzwMPxp=w408-h544-k-no', '31203134-4265-4dce-be20-ce07d744b640', 10, ST_Point(20.9272, 52.290808)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #48: Centrum Handlowe TGG
+-- WC #48: Toaleta Publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Centrum Handlowe TGG', 'Słubicka 18, 53-615 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipNO-vRpiNwG7UCdcIyQ1oqb6zEiLs2L2qQJmSl-=w408-h306-k-no', '359bc108-832d-47a7-a5de-581da2726272', 8, ST_Point(17.00079, 51.117829)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Publiczna', 'Wrzeciono 10C, 01-829 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=cENPVCzxHtbqtbx_nxDAHA&cb_client=search.gws-prod.gps&w=408&h=240&yaw=311.51883&pitch=0&thumbfov=100', '31203134-4265-4dce-be20-ce07d744b640', 6, ST_Point(20.939433, 52.290906)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #49: Pasaż Pod Błękitnym Słońcem
+-- WC #49: Toi Toi
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Pasaż Pod Błękitnym Słońcem', 'Kiełbaśnicza 2, 50-108 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqkpboQoMxGT8ZdXSIuyFw_S83oZJDkLNcdQVkl5Q79VY9WzIfE4R5IbMfAaasixYsL7GIN9lIDx5cGG0iJwVCr7yZItAuNy8WwqwHy2J7SKLEv2UbKTp-GCo5upMN6hu9YNDNe=w408-h545-k-no', '359bc108-832d-47a7-a5de-581da2726272', 8, ST_Point(17.029319, 51.110218)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toi Toi', '01-995 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=RqmOfrPPQZGzZrID2M-_Rw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=164.46982&pitch=0&thumbfov=100', '31203134-4265-4dce-be20-ce07d744b640', 10, ST_Point(20.942224, 52.286741)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #50: Dom Handlowy Kameleon
+-- WC #50: Toaleta Publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Dom Handlowy Kameleon', 'Szewska 6/7, 50-139 Kameleon', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqxnf9zN7tC0FIT2iUmGR-NVwOUmfpUCRHe6O84VeZHxNealoNyQg27TtJlIF4WJ-bR0Y4v6Ert6QSIE4WJhK7eP0RAgT_N5ly75jLutdu-XrUH9JKuHc2RdzvSLMbrGPBWGDDadA=w426-h240-k-no', '359bc108-832d-47a7-a5de-581da2726272', 8, ST_Point(17.034093, 51.108551)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Publiczna', '01-493 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=ZtvC4x8AeJ0gil9QJ9ewdQ&cb_client=search.gws-prod.gps&w=408&h=240&yaw=123.02154&pitch=0&thumbfov=100', '31203134-4265-4dce-be20-ce07d744b640', 1, ST_Point(20.918903, 52.256173)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #51: Sky Tower
+-- WC #51: Toaleta publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Sky Tower', 'Powstańców Śląskich 95, 53-332 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no4byL4pyou7ikO7j1oYE95Ismgn6AuFgtKNdeYFFb2WL2eiDOGDCtDUcxe-uVvknzh9TaEvl0VgJXHU99k8Bd_DgmfsszAidRpsvSoH2LqewLpVrvXNxO3FHlaSqzXFaLb0jq4WA=w426-h240-k-no', '359bc108-832d-47a7-a5de-581da2726272', 8, ST_Point(17.01895, 51.094573)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna', '05-088 Brochów', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=gYcOfw2UMxIzYAkvz1nQOw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=93.14624&pitch=0&thumbfov=100', '31203134-4265-4dce-be20-ce07d744b640', 2, ST_Point(20.263092, 52.316811)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #52: Centrum Handlowe ARENA
+-- WC #52: Toaleta w Metrze
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Centrum Handlowe ARENA', 'Komandorska 66, 53-342 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npR5iqYHsXlOH60X2GSnz2Shsxf_vWsmWozn2liYwuaRyo-K_mNbYfkng2NOMSf3erx4mnbYwRXxJqmNyAHD2umvnlKt2ZG2nz4V4rwZmRGUc-ze31suPCSIuYHAPbVG2HdkTXU=w426-h240-k-no', '359bc108-832d-47a7-a5de-581da2726272', 8, ST_Point(17.028001, 51.094836)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta w Metrze', 'Stacja Metra, 01-859 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=RI_iXA4RsoLiExjH_XZXyg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=229.49039&pitch=0&thumbfov=100', '31203134-4265-4dce-be20-ce07d744b640', 6, ST_Point(20.940452, 52.285951)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #53: Centrum Handlowe Borek
+-- WC #53: Szalet miejski
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Centrum Handlowe Borek', 'al. Generała Józefa Hallera 52, 50-984 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no6z-pwKvQU3YLL_sDzxF0WfM4ivk_BxqqbgtxSU-h0wXyg81aGKtWo8PIvsN9b-OzRddkP1oEMeOdoX6GVBfxJ9T7cEbnojqm_L5kFVSZ9RV_kOzGSlMw-YSlRQ0G1VxJtCJsa=w408-h306-k-no', '359bc108-832d-47a7-a5de-581da2726272', 8, ST_Point(16.999819, 51.089066)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Szalet miejski', 'plac Świętej Małgorzaty, 58-100 Świdnica', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=8P4QQyHBTpAALiIL8zPfpg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=20.161983&pitch=0&thumbfov=100', '31203134-4265-4dce-be20-ce07d744b640', 7, ST_Point(16.487469, 50.844915)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #54: Magnolia Park
+-- WC #54: Toalety (TOI TOI)
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Magnolia Park', 'Legnicka 58, 54-204 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipOLu8d-sezn1zHPBFrQVvbKjnbqahrw73kioBy8=w408-h240-k-no', '359bc108-832d-47a7-a5de-581da2726272', 9, ST_Point(16.989657, 51.118702)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toalety (TOI TOI)', 'Wawrzyszew 00/001, 01-912 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noXoY_y3T3QZPcpRd2_GiaDOWIA4hhF8KCXUaA4XnhJcS3VwaPi9YF4yZZSib7BE9VFVSVs0sxOfpgj17jAd7PQo_-nMZpL9JuLWuxJBNhj15LYSbxnQbQb0slo8h8sf1RzC5vUpg=w408-h544-k-no', '31203134-4265-4dce-be20-ce07d744b640', 2, ST_Point(20.93585, 52.282303)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #55: Galeria Wnętrz Domar
+-- WC #55: Sub Sole
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Galeria Wnętrz Domar', 'Braniborska 14, 53-680 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipM4GlSVKU3VVX3Ukcd6TxPP3UtOzi1L_6nONKLs=w408-h271-k-no', '359bc108-832d-47a7-a5de-581da2726272', 8, ST_Point(17.014544, 51.110489)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Sub Sole', 'Powstańców Śląskich 61, 01-355 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=99J45oOPKxAn_Cl0l6F1tg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=267.03516&pitch=0&thumbfov=100', 'bd27260d-67a0-42a7-83dd-37b94450b607', 1, ST_Point(20.914361, 52.23224)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #56: Galeria Sylwia
+-- WC #56: Toaleta Publiczna w Parku Górczewska
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Galeria Sylwia', 'Krakowska 1, 50-424 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrRyOLWbtB2n68LbqIgvcDZf73Fg7Yp1irlinMmW5Bpdv1GtfXNEJm-FJAdjFAxJ7cSE7nwB50FMLNWNXRjxGT8TNnURJLL390-5dTK10jAqJuOSOpMHb3g2af6ApBZqsxq9IeVTQ=w428-h240-k-no', '359bc108-832d-47a7-a5de-581da2726272', 7, ST_Point(17.05511, 51.095993)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Publiczna w Parku Górczewska', 'Kryształowa 45, 01-356 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noOLj_5BOqaJUnr_8o_2pz-Sdaq4hgT3L7rnU8RZ0o-duRwurXwbXnaB8mZwvYWFiuMJGPKav3s3jhDcONFPujEJ9IV74bMLSkmcPtygOpUcW_Ti4qxRfCnc4Z6zLiMlyWDe2lR=w408-h306-k-no', 'bd27260d-67a0-42a7-83dd-37b94450b607', 6, ST_Point(20.906321, 52.233099)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #57: Mamine Smaki
+-- WC #57: O'BLOCK Wojcieszyn
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Mamine Smaki', 'Pomorska 27, 50-216 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipM-CTwcOWgahyz09necr8VXVgfbIXsPfH6Kdulc=w408-h543-k-no', '850d80ab-c7c2-412c-ad08-49facc36bcd4', 9, ST_Point(17.031959, 51.118748)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'O''BLOCK Wojcieszyn', 'Trakt Królewski 74, 05-850 Wojcieszyn', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=QeSRgNd7kGX-CHKXRNqkvg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=341.46893&pitch=0&thumbfov=100', 'bd27260d-67a0-42a7-83dd-37b94450b607', 10, ST_Point(20.768335, 52.259429)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #58: Drevny Kocur OVO Wroclaw
+-- WC #58: Toaleta publiczna - bezpłatna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Drevny Kocur OVO Wroclaw', 'Podwale 83, 50-414 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipN0DwcsaMs22sIuylBOd2NepauzHv7x6z5zRlP4=w408-h507-k-no', '850d80ab-c7c2-412c-ad08-49facc36bcd4', 9, ST_Point(17.042944, 51.10793)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna - bezpłatna', 'Krakowskie Przedmieście 87/89, 01-195 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqfYjvtiMfTZS9RvMXyHjE42OpHq0uNA1QWpOcoy92bvuNiQTZ2yACnhpeGYK5SE03p71dQrf7aD4eYUAaYU_jDdJvI8TdWGVZkK8ZNNcT62XUByRwFD-W-fPoGVfIf-8DIPIvnfRbG8UQ=w408-h307-k-no', 'bd27260d-67a0-42a7-83dd-37b94450b607', 9, ST_Point(21.012974, 52.246975)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #59: The Cork
+-- WC #59: Toi Toi
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'The Cork', 'Igielna 14/15, 50-117 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no06UwY_l6vzzEkMirGVlbIkiI4-yiYw7QWVxgXMx_zbQuzNtT6IIhAHzAwrTvAFo5eQRmkM1mMPPk-o5wcxKUZ2j9twXh6b0dr_qSkZQTwNUVP7rx5mmgpSRu7PlAytDDGbD0=w408-h544-k-no', '850d80ab-c7c2-412c-ad08-49facc36bcd4', 9, ST_Point(17.031998, 51.111376)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toi Toi', 'Regulska, 00-001 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np5pbfhSw5dUgMbP9omrsCMKULBdL637wOXDjt9JtV8UhXfJKo-dAn9HosUFVXg3GjPyzUOqx1e8xhAzDo_Q_1JjQrTnWgEGHlWOvUfpmOBUYNj0oZXerU13VWs8CV13vt7Ovd9=w426-h240-k-no', 'bd27260d-67a0-42a7-83dd-37b94450b607', 10, ST_Point(20.883374, 52.195598)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #60: Jolie - Brasserie Cafe
+-- WC #60: Wc
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Jolie - Brasserie Cafe', 'Plac Solny 6, 50-062 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipPPy0oKLuc-xfEuhtuVHIRbOe48dwtdDsV06Rdl=w408-h544-k-no', '850d80ab-c7c2-412c-ad08-49facc36bcd4', 9, ST_Point(17.02881, 51.109629)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Wc', 'Unnamed Road, 05-850', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nooStI2NtXEagdesxq0y0eEfcQTrKnLyVXDvXFdeOCIBIHCP9plxjNGyIPq14U40gBhEhq2-lNvwq3nPlcxB02kdB2FFPYaSBv68qiFL67n3-7pfq7f4CxV3VIl6ObHAjna3efzmg=w408-h581-k-no', 'bd27260d-67a0-42a7-83dd-37b94450b607', 6, ST_Point(20.799987, 52.210429)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #61: Bernard
+-- WC #61: Toalety Westfield Arkadia
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Bernard', 'Rynek 35, 50-102 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr7OxS5LhvSOTjOvmx_DLU2Of00paF-tC09Tfe9XnQaYINwTMz7INfhxp9GZtxwBcBIBD_Bva_o9SRK6vWBxUhsI8tSbt0lW-7vrF6qAexlq0gMh8NRtnRL0Fxzv7VJs8zbFCVx=w426-h240-k-no', '850d80ab-c7c2-412c-ad08-49facc36bcd4', 9, ST_Point(17.033414, 51.110003)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toalety Westfield Arkadia', 'al. Jana Pawła II 82, 00-001 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrzUoDUSqDfUFL34TJP48M8Vj2MiaZ_pduSUhxnA3thgZTI5Y2bCyVL-2Jc5ZTVxCDjFLT9BuxNcONCvXPEmtg2ZuWQ53qhJdXvFEM1Neir-4dwRmxq38V-HATdBexMzE-nPfYelQ=w408-h306-k-no', 'bd27260d-67a0-42a7-83dd-37b94450b607', 8, ST_Point(20.986286, 52.258459)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #62: PAMPA
+-- WC #62: Toi Toi
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'PAMPA', 'Podwale 19/1A, 50-043 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nofr4zpBoiT2NalGA2V8TfSSIrYCWk2o3pZZmplW2GAopYQ6yjevpxJnl7Ld3qKXgtINpTJszU75u8NXro92xaiWBLtL1a7vxEs4ZS6LIY3jA72mMA-u_JXRsvm_sAM-RqIDWXL7Q=w408-h544-k-no', '850d80ab-c7c2-412c-ad08-49facc36bcd4', 9, ST_Point(17.021608, 51.109294)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toi Toi', '02-495 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq3z4lvLAxUEBCYc6qsWjDvg0Q9agjIS8I9Nt3b--N4W7bq9ooEumG_1PzJryyuIXfXHN4U77moVBLwDmb_c4kX5vGvzgnBBfETNpQp2sA8y_qBagvqBrYLtz35CAzL_XpVvS-h=w408-h306-k-no', 'bd27260d-67a0-42a7-83dd-37b94450b607', 6, ST_Point(20.885959, 52.19099)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #63: IDA kuchnia i wino
+-- WC #63: Toaleta publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'IDA kuchnia i wino', 'Łazienna 4, 50-133 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipPmLK1igzxhw2xwy5VR_W3jtdfUW6kaqJkZMlaZ=w408-h509-k-no', '850d80ab-c7c2-412c-ad08-49facc36bcd4', 9, ST_Point(17.029053, 51.112525)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna', 'Rynek 1, 64-100 Leszno', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npfiCeeyWKIffp8RNVkphJyXF7P9M4H6kBJNGomePkotdkQt1hhyh_Bn1z2CedKbIT-3-l8Yt2mRsP1pdNBH1bTZyeF3CSfTxDRDEQrb53G899tq_-8K1_rk0NA3HR4GJU6Ry_n=w408-h646-k-no', '006bf8e7-a38d-437a-a1c8-10534b448a3b', 6, ST_Point(16.574511, 51.843425)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #64: Pod przykrywką
+-- WC #64: Toaleta Publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Pod przykrywką', 'Więzienna 18/1, 50-120 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipNLVzv6r0elEVH0-ufERqPLNJM6fojZv1Giikx5=w408-h725-k-no', '850d80ab-c7c2-412c-ad08-49facc36bcd4', 9, ST_Point(17.032564, 51.113171)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Publiczna', 'Nowy Rynek 33, 64-100 Leszno', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Y0KWKNY0Wm2rMSqdNjFVOw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=32.117928&pitch=0&thumbfov=100', '006bf8e7-a38d-437a-a1c8-10534b448a3b', 6, ST_Point(16.570054, 51.841043)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #65: Małe co nieco
+-- WC #65: Toaleta
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Małe co nieco', 'Dworcowa 28/32, 50-456 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipNs7Kz6iKLPrWeUxKsrFqLIuwMKRtokY4w-aH9R=w408-h264-k-no', '850d80ab-c7c2-412c-ad08-49facc36bcd4', 9, ST_Point(17.039523, 51.100084)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', '99-314 Krzyżanów', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr6D-xplO1dVaS_Exwhte-VeJpCo0zz7JRAuHeHN4YOLkwJT70QcASt7JYYKIcMtfqRSH3ZZka8v7J0n_fx9_F9HtJRsv6TdMTAAdM53rEQptjlEkRJ39pMVCqFqOP0aNL_84pJkmSgQiiA=w448-h240-k-no', '37e61c9d-1ad5-4dd2-aa0d-7fbe6d7b09f6', 10, ST_Point(19.485349, 52.184612)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #66: Czerwona Koza Restauracja Lokalna
+-- WC #66: Toalety
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Czerwona Koza Restauracja Lokalna', 'Braniborska 48, 53-680 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipMqQDkxrVPYBTsoTzpMjvEHNScKuE7VUBDk3xbd=w408-h544-k-no', '850d80ab-c7c2-412c-ad08-49facc36bcd4', 9, ST_Point(17.011183, 51.111216)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toalety', 'Spacerowa 13, 96-515 Paprotnia', NULL, '37e61c9d-1ad5-4dd2-aa0d-7fbe6d7b09f6', 10, ST_Point(20.418447, 52.20356)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #67: Restauracja przystań&marina
+-- WC #67: WC
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Restauracja przystań&marina', 'Księcia Witolda 2, 50-202 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipNxRlb-Hlc5m6SUgR5ggyKxYrR0vfPFqS1GNplI=w408-h271-k-no', '850d80ab-c7c2-412c-ad08-49facc36bcd4', 9, ST_Point(17.03293, 51.114832)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC', 'Romualda Traugutta 2, 96-500 Sochaczew', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=f3MUEnjR3nUq3nVTmvDemw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=278.72598&pitch=0&thumbfov=100', '37e61c9d-1ad5-4dd2-aa0d-7fbe6d7b09f6', 2, ST_Point(20.237881, 52.228591)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #68: Gustaw Restauracja
+-- WC #68: Toaleta Bezpłatna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Gustaw Restauracja', 'ks. Piotra Skargi 18A, 50-082 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipOxyli49iSRq_gV3Gkpxh85TbUl6RTIDZisoTHh=w408-h272-k-no', '850d80ab-c7c2-412c-ad08-49facc36bcd4', 9, ST_Point(17.038052, 51.104906)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Bezpłatna', '05-800 Pruszków', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=2W9DXl-4C_ys6aOrQQJJTA&cb_client=search.gws-prod.gps&w=408&h=240&yaw=125.53367&pitch=0&thumbfov=100', '123026fe-2251-4770-944d-6fade8201bd6', 8, ST_Point(20.824035, 52.169809)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #69: OdNowa Bistro
+-- WC #69: Toaleta WC
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'OdNowa Bistro', 'Wojciecha Bogusławskiego 13, 50-031 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no2rU5QgUd85MEtBKX4YodNc8U23_Zn8-UJlAyGhh_aeIZIy32by6leoh7SQm_ueg6vNO_CdL06Sjr5ISja3ixBZeFdYyxsMXFmBY-rBOj8t2U1_EK_twJoHkCW0lpWjyxv_SYG=w408-h544-k-no', '850d80ab-c7c2-412c-ad08-49facc36bcd4', 9, ST_Point(17.025138, 51.101078)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta WC', '05-800 Pruszków', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=pEt3sFVdGSA2lfYB87b7CQ&cb_client=search.gws-prod.gps&w=408&h=240&yaw=180.9193&pitch=0&thumbfov=100', '123026fe-2251-4770-944d-6fade8201bd6', 10, ST_Point(20.798508, 52.16789)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #70: Restauracja Bella Storia
+-- WC #70: Toaleta
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Restauracja Bella Storia', 'plac Wolności 4, 50-071 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipNgWy9UUe6AxcqwLTqrF4U7_Y8PWLvO6J9mUyzg=w408-h544-k-no', '850d80ab-c7c2-412c-ad08-49facc36bcd4', 9, ST_Point(17.029731, 51.106473)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', 'Łopuszańska 22, 02-220 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=1kVDUGe-EDVUz5OV09VrMA&cb_client=search.gws-prod.gps&w=408&h=240&yaw=103.33082&pitch=0&thumbfov=100', '123026fe-2251-4770-944d-6fade8201bd6', 1, ST_Point(20.951037, 52.193389)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #71: House of Spices | jedzenie indyjskie | kuchnia indyjska | restauracja indyjska Wrocław
+-- WC #71: Toalety WC
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'House of Spices | jedzenie indyjskie | kuchnia indyjska | restauracja indyjska Wrocław', 'Zygmunta Krasińskiego 32/1A, 50-450 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrAS8MMmG8Q-OlKqE4zacKjSd-comN9g9ZSvjLChgIRPdp2rfNLSVjgkBEpwJCIhHjI2FbWj_GpI90M6VwPJYEjkP997qE5r-SmDf4lReON8rhbXXT2kE-kOxLOKoj5aQoAJaWQGQ=w408-h392-k-no', '850d80ab-c7c2-412c-ad08-49facc36bcd4', 9, ST_Point(17.043634, 51.106225)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toalety WC', 'Henryka Sienkiewicza 19, 05-800 Pruszków', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqAzquWuW8ldjjfPjl_eV1MR92midwGjHVkDo-5iIM_k5SinWBBR7F-rZgT7TqMCRwci1Z69UxyXdxmcUsGV-hbXqhpemBYqFG2R7fFmqXNQxQuYpc7HXdnahD2Gnter_4h-siT=w408-h544-k-no', '123026fe-2251-4770-944d-6fade8201bd6', 8, ST_Point(20.793258, 52.165253)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #72: Restauracja Wrocławska
+-- WC #72: Toaleta Publiczna bezpłatna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Restauracja Wrocławska', 'Szewska 59/60, 50-139 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipMWhUdvvKpfxRNeyp6_fyAf-g_ONqUWS05PEmbJ=w408-h544-k-no', '850d80ab-c7c2-412c-ad08-49facc36bcd4', 9, ST_Point(17.034996, 51.11114)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Publiczna bezpłatna', 'plac Czerwca 1976 Roku 1, 02-495 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=YESu1cgthRccV3VidwChfg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=339.53284&pitch=0&thumbfov=100', '123026fe-2251-4770-944d-6fade8201bd6', 10, ST_Point(20.893482, 52.200936)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #73: Peruwiana
+-- WC #73: Toi toi
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Peruwiana', 'Pawła Włodkowica 9, 50-043 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipO2HyPVuRa20wuTLa4kIiPHvvmgfG9Zo9mwMnoH=w408-h408-k-no', '850d80ab-c7c2-412c-ad08-49facc36bcd4', 9, ST_Point(17.024557, 51.108297)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toi toi', '00-001 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=-7pD_GQUHzLrcGrsjyX7jw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=74.12026&pitch=0&thumbfov=100', '123026fe-2251-4770-944d-6fade8201bd6', 8, ST_Point(20.967882, 52.195612)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #74: RAGU PRACOWNIA MAKARONU
+-- WC #74: Toaleta publiczna w Parku Kombatantów
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'RAGU PRACOWNIA MAKARONU', 'Henryka Sienkiewicza 34A, 50-335 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npvqxNnq35wYshYb4NV9wXfiRk_C78t4P15ovc9u-IyeA2FhwDcJaalX4AcrltPLEB3Hsq1QYQnCTrqvFtyNQ-wWLoHGn1jYqq7CnM93wLVOwfCigYE0yBMVweD0KYKS8itNwnv=w408-h306-k-no', '850d80ab-c7c2-412c-ad08-49facc36bcd4', 9, ST_Point(17.049017, 51.117096)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna w Parku Kombatantów', 'Obrońców Pokoju, 02-435 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqjH9ZMDli2uQWffpc2kNkFmrlskPS2LG6W_Vmqw2RqxDlZppcGYpXyLu440x4MWt9K2LlNIAv1oM7n9khbqLyofttUrhBz-Xa3fakawVk00NDSaUHSixG49x23XekQGa4BkE_G=w426-h240-k-no', '123026fe-2251-4770-944d-6fade8201bd6', 8, ST_Point(20.912109, 52.208046)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #75: Toaleta bezplatna
+-- WC #75: Toaleta publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta bezplatna', 'Skwer Wrocławianek przy ulicy Bernardyńskiej, Bernardyńska, 50-438 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npdU92AbH_VIaT_azBXq80xdp8iQuv1E1fcLNwR-IlcPDq3Jm3TGoQ_D6SrLD2TW8TrtIHh0MMtzl68s6pouOUk00a6Zih6MadG0Re7_l6vLNbMwAObZNnvZYn6FwwIKYVOJH78hA=w408-h306-k-no', 'bc82df8f-91c2-495a-8d3c-d63b2a5880c9', 6, ST_Point(17.042889, 51.109937)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna', 'Daleka 16, 05-802 Pruszków', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nozsh6MUBmEVVNCYrO48Ji456VilDa_nqPZoVowxKpyxWhDTp9kJUvbc6jPgrutUAKBTm4PLAO85wJxI7e7mJvDUnxXtdWQ7M8Ji66_F_I_Rpdm-Sxx4k6zTFxauX7U7W-WjPcmqA=w408-h544-k-no', '123026fe-2251-4770-944d-6fade8201bd6', 9, ST_Point(20.834735, 52.164354)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #76: Szalet Miejski
+-- WC #76: Toaleta
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Szalet Miejski', 'Bożego Ciała 1, 50-001 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqSBUSdjscMwMiznZv7lJ7WZwDoM0rH335DQi5IYmthn486zUBdoMNaU4n-_jjaTfx5axVw5zgGqkG77QHLDN3K9jtwqgYWowtkZdFPd0VINRQ2ZiZBzlQEwZyUnzIDRTjT2h4=w408-h544-k-no', 'bc82df8f-91c2-495a-8d3c-d63b2a5880c9', 8, ST_Point(17.031657, 51.104687)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', '05-800 Pruszków', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=zuEBqVkXgzJxkTd13Pjjig&cb_client=search.gws-prod.gps&w=408&h=240&yaw=279.1869&pitch=0&thumbfov=100', '123026fe-2251-4770-944d-6fade8201bd6', 8, ST_Point(20.810067, 52.161969)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #77: WC
+-- WC #77: Toaleta mejska
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC', '48-300 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noPIfr2Tb8F5LQoeNT6_BTmBS5_-X2aa_6skYkaVYOvVVDlFV3RCFDyJ7-NHJidLTeJbHWJgIbm4k6hd2792t9xeFZEmLYTE9AD5_N9tqCJRnwKQw_UeSBM1T4pNkfKC0flsTBRPQ=w408-h306-k-no', 'bc82df8f-91c2-495a-8d3c-d63b2a5880c9', 7, ST_Point(17.041608, 51.11659)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta mejska', 'Fryderyka Chopina 30, 05-800 Pruszków', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=w2i4yWTNT7uwjy3Nr0JByA&cb_client=search.gws-prod.gps&w=408&h=240&yaw=332.22412&pitch=0&thumbfov=100', '123026fe-2251-4770-944d-6fade8201bd6', 1, ST_Point(20.799561, 52.164112)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #78: Toalety Podziemne
+-- WC #78: Miejska toaleta publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toalety Podziemne', 'Plac Solny, 50-079 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr54dELQ2g8AXhto7kO5Ih9TSMo1QllPUFFykgKofSXFazIMXzT_FF7Et9OcjANYevvcyaE7tHWgUOj0c9zVMR3bE3Xn0S8hZJPyLRGGy5r1XlGFU2WuIrABoM2Yt-l2fSB9OFa8Q=w408-h544-k-no', 'bc82df8f-91c2-495a-8d3c-d63b2a5880c9', 6, ST_Point(17.029135, 51.109689)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Miejska toaleta publiczna', 'Unnamed Road, 05-800 Pruszków', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrl9-zcPxPtP1DM33bdNkRvyozN4g8w-PRKcfIDbQCyQbRqIo9-pbSRu8K4BeDM2_FXhGmGOhhH-36SyjHwukr9Zat2PFoxG_pNBDptii4zwJySgLLMfN7l1feq6-PrykBrrygnnQ=w408-h569-k-no', '123026fe-2251-4770-944d-6fade8201bd6', 3, ST_Point(20.801885, 52.166906)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #79: Toaleta publiczna
+-- WC #79: Toaleta publiczna (bezpłatna)
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna', 'Katedralna 1, 50-328 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr7gSS0b1LC5iY7o4-mixPeY1jtEXfQO3AdxiocGCuqGGOHJcGQzfwNwvr6SWvAwMD1MdvJdZhBYQo_0wDiiob3Ly35Dsg_kF8evG3rYrf8cF_X3_bh7ZR_BIeBDAoS2X1Eea7K=w408-h544-k-no', 'bc82df8f-91c2-495a-8d3c-d63b2a5880c9', 6, ST_Point(17.043065, 51.114547)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna (bezpłatna)', 'Gładka 18, 02-172 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=bnO_hBA1A8WoAWqVPXEHfw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=122.393166&pitch=0&thumbfov=100', '123026fe-2251-4770-944d-6fade8201bd6', 1, ST_Point(20.96068, 52.187989)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #80: Public Toilet
+-- WC #80: Toaleta
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Public Toilet', 'Kładka Słodowa, kładka Słodowa, 52-007 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no-aY3mzHMdWIZXgzEtdc9A8wLEjJFQE_YCSJyRITkgsBp5K6RbOqq63JYi0y-p1QU4Zd2wtKGVBHcsd1fwI6VwS6wk5iu7LLMMZ_cguAzAoyRHzLR2mKhdXehZKOsVRwV6oQaNfw=w408-h543-k-no', 'bc82df8f-91c2-495a-8d3c-d63b2a5880c9', 5, ST_Point(17.035337, 51.116103)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', 'Stefana Jaronia Kowalskiego 31, 05-800 Pruszków', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq71hhPAFoEVbJf_gKYw-HvfG1F5_96rxQ_VVJ0uSGcbq_rUxW-3EZ4fW1U1tbVamdbedouxrhdx5wXBM1MGctP7sKQaXhEMESBl4STOmb92QPfzXg6qrOImZoHblQh1JV2c06v=w408-h544-k-no', '123026fe-2251-4770-944d-6fade8201bd6', 8, ST_Point(20.80148, 52.183473)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #81: Toaleta Publiczna
+-- WC #81: Toi toi
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Publiczna', 'Wita Stwosza 40/41, 50-149 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npsUokZBZFnbsrZy8IVTj12GlxXcfUH0mv6u2SgTbGtvTrmFEf50UCXAYP11670kv9rEG4Anw9mRul2LlDSoX4eXRw_z023EV64_j4-spEk1p1-5zlNFj5ikh_TeqvgywuHbcgWFw=w408-h272-k-no', 'bc82df8f-91c2-495a-8d3c-d63b2a5880c9', 7, ST_Point(17.035527, 51.10996)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toi toi', '02-479 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=v6_WngtQCLGuBlz8j5TkuQ&cb_client=search.gws-prod.gps&w=408&h=240&yaw=77.25193&pitch=0&thumbfov=100', '123026fe-2251-4770-944d-6fade8201bd6', 10, ST_Point(20.915267, 52.205833)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #82: Toaleta na Dworcu
+-- WC #82: Toaleta publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta na Dworcu', 'Marszałka Józefa Piłsudskiego 105, 50-001 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np9nooQvxxEXyhWLoJaVip67tl9DOfegbCEw1DASG3dkz1ezo3Y6Qz6kpplnDvGnEu7jPDRtbXEGy2ZK6NrC_2w8JLpLT92yijKsc1533mnJ2wxyQhMhVsb6Sy3_jmW1NZb2F1Kig=w408-h544-k-no', 'bc82df8f-91c2-495a-8d3c-d63b2a5880c9', 3, ST_Point(17.036646, 51.098984)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna', 'Aleja Antoniego Nowakowskiego, 01-001 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqSKTKeeAqKhkQWhpPSU8dtnPhWFJN70Xdx55j7WkICgieTxnUbb76zL0XxHoYpiG2ActIwm-DP8HypVWgygyyr376TTaoXFtIaiXu9To1iCyeyIGUkP0zyok1rBFUld01mGuZOuQ=w426-h240-k-no', '123026fe-2251-4770-944d-6fade8201bd6', 5, ST_Point(20.923644, 52.199501)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #83: WC Toaleta
+-- WC #83: Toaleta publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC Toaleta', 'Henryka Sienkiewicza 23, 50-335 Wrocław', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=_gt1zoxSBFHFKlCNuD3NZw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=190.64644&pitch=0&thumbfov=100', 'bc82df8f-91c2-495a-8d3c-d63b2a5880c9', 10, ST_Point(17.048675, 51.116669)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna', 'Sierakowskiego, 05-509 Piaseczno', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nplvMUt9Jyo4fWgh46A8KgrGNws0-XoI34D-x-Hz-olLHJtNL_qfBNqPIVVYKTcMLQUgbgPzjIzr0jEKQTaB8kSBb1fWQyLMGo-zzGi9C2euFIOOKve6W1rH8lCe63lFA696-ying=w408-h306-k-no', '123026fe-2251-4770-944d-6fade8201bd6', 7, ST_Point(21.02855, 52.07417)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #84: WC Zb
+-- WC #84: Toaleta publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC Zb', 'Młodych Techników 58, 53-646 Wrocław', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=ToVMlerAlmDz_evTSdOnDw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=266.4841&pitch=0&thumbfov=100', 'bc82df8f-91c2-495a-8d3c-d63b2a5880c9', 1, ST_Point(17.013158, 51.118741)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna', 'Piaseczyńska, Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nohyYgLpN9hXZZAlZ5I33ICilq8UAa1SOfLTxcSNKWkO11OV5RgH7E648WjyjIQ9uM1TjLZpQIs23poz1S6hfYE21T_cyWPqgGYcJCBRcvafhuSzGhAte97tcRCmz24VI1eKqXTJA=w426-h240-k-no', '123026fe-2251-4770-944d-6fade8201bd6', 5, ST_Point(21.030667, 52.189435)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #85: Darmowa toaleta WC
+-- WC #85: Ośrodek Leczenia Uzależnień pod wezwaniem Kamila Chujowskiego
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Darmowa toaleta WC', 'Żabia Ścieżka 6, 50-422 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npJe7aP-vW8lCNUy1YBBMldnjak6heaV_1llgBNWZOJCbaPrqepdeYZVdDhpkpBRGJUJwC-rxCzwN4S3L-IJ3_O1tu7EmpasDSBApCyC2rm-ZGh44ta9sCinNgBcUyoIsJWt27diQ=w426-h240-k-no', 'bc82df8f-91c2-495a-8d3c-d63b2a5880c9', 8, ST_Point(17.055336, 51.100813)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Ośrodek Leczenia Uzależnień pod wezwaniem Kamila Chujowskiego', 'Księdza Ignacego Skorupki 81A, 05-091 Ząbki', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=IJszLWib-jyC6ocj7UpOAw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=339.49667&pitch=0&thumbfov=100', '4353dc8a-904e-41ba-b16d-9a4dff4555a0', 1, ST_Point(21.127861, 52.291591)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #86: Pisuar
+-- WC #86: WC
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Pisuar', 'Katedra, 50-329 Wrocław', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=NVJr26wxC0ZqadSxhLmXmg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=352.49072&pitch=0&thumbfov=100', 'bc82df8f-91c2-495a-8d3c-d63b2a5880c9', 4, ST_Point(17.051986, 51.113718)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC', '05-091 Ząbki', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqbmQCk4qwI-bizzMshygLgiDSRRdXwS-AyglTct8H3AW4PEvmNG4DMebnFfrEUzlMDaYAxI2iNj3WMJwc1KtWgLo9Uqki5Y2C0XH84mncpLTicTao98mBVWhFQFR2RSs4-OBI-HQ=w408-h306-k-no', '4353dc8a-904e-41ba-b16d-9a4dff4555a0', 6, ST_Point(21.113716, 52.293054)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #87: WC Lech
+-- WC #87: Samoobsługowa myjnia dla psów
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC Lech', 'Podwale 57, 50-039 Wrocław', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=FKvUAYncIZHLKk3oNr_eew&cb_client=search.gws-prod.gps&w=408&h=240&yaw=134.1046&pitch=0&thumbfov=100', 'bc82df8f-91c2-495a-8d3c-d63b2a5880c9', 1, ST_Point(17.036137, 51.10378)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Samoobsługowa myjnia dla psów', 'Powstańców 66, 05-091 Ząbki', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqJZq1Z0kC-EGOwgcAtuYTFvcq_ZK5Qa_k_NuAz2g67FefWEzKMiKrONNj171xQs2zSyl_MAq3h24ZVRRaSUU-vvqj48uRxynCAP0hDz7SngH38Ti8leq71CIHga4byuUx6_FKk=w408-h306-k-no', '4353dc8a-904e-41ba-b16d-9a4dff4555a0', 10, ST_Point(21.135245, 52.280175)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #88: WC Qub
+-- WC #88: WC toilet
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC Qub', 'Świętej Marii Magdaleny 1, 50-148 Wrocław', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=XPYuHGh9_aI7gU2kp6mYAQ&cb_client=search.gws-prod.gps&w=408&h=240&yaw=180.48201&pitch=0&thumbfov=100', 'bc82df8f-91c2-495a-8d3c-d63b2a5880c9', 1, ST_Point(17.035362, 51.109103)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC toilet', 'Malborska 39, 03-286 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=I3slB5xRrpk6ZbY8A_fbcg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=344.9086&pitch=0&thumbfov=100', '4353dc8a-904e-41ba-b16d-9a4dff4555a0', 1, ST_Point(21.078816, 52.302544)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #89: WC, toaleta, pisuar
+-- WC #89: WC
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC, toaleta, pisuar', 'Bolesława Prusa 61, Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nokRViq8JU4jBqDMRNAvZDk4QovoBAxg8MMzGUKMzlT-Y3RMcWnwuvodNsOCdOvuEm1wnNvAKCSfqhSD2Yp94B1vXBu27Vj2SyezC1U0C2tvwZLj43_LsDVaIPHFvoSARcHguoO=w408-h544-k-no', 'bc82df8f-91c2-495a-8d3c-d63b2a5880c9', 8, ST_Point(17.056272, 51.119634)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC', '00-001 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=GEpX8MntFtait16cwt2Ecw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=155.76859&pitch=0&thumbfov=100', '4353dc8a-904e-41ba-b16d-9a4dff4555a0', 7, ST_Point(21.078993, 52.304039)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
 -- WC #90: Toaleta publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna', 'plac Strzegomski, 52-443 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrPrJIK27bjnUla_lphvL4zaTPOEagVMuubF3W9-vVhqbBAuf4nIpk8hsH7KEAsmCCzY_9c-0EpsLsb001-hiL0gXMe51AR5MNEVsuavAtXmQo2ip4T_cp_b36mC_dktUdW6Ogc=w408-h544-k-no', 'bc82df8f-91c2-495a-8d3c-d63b2a5880c9', 6, ST_Point(17.006647, 51.113059)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna', 'Pułkowa 60, 01-969 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npHm3OnOv0htu2yPyfwfuXnFqkeXNjBxdoKU8OKCmXQsR95kEcz3fYDpILKjutEq2G8iREYdC9EZak2nPMiODfIPyHVpfjR8ohnXa13IppcZQNkG_UHhXL9wp1ZnpRtbAm8HI6T=w408-h306-k-no', '1a450424-d964-450b-9c38-1db5614c6e62', 8, ST_Point(20.932784, 52.311121)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #91: Toaleta Publiczna
+-- WC #91: Toaleta na placu zabaw
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Publiczna', 'skwer Pionierów Wrocławskich, 50-301 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npHPtnfcoZvgXcHvB4zH8VGXHEELlcHDZtnOZfXF4CHLjNBp8EgH9wDM2Nmghdj8W9mYfeAtRluRpJrG6RHXzLTqxvlCDXGvXyg7MFVNlbFAdwtyefSQ-uqUSgf-jJ9letYCds=w408-h305-k-no', 'bc82df8f-91c2-495a-8d3c-d63b2a5880c9', 8, ST_Point(17.043514, 51.121694)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta na placu zabaw', 'Józefa Przyłuskiego 2, 05-092 Łomianki', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrvI1kU1kFTZRDaEaR8DxL786wpkVN6VsENuUGbBs2GreVI3kkrBKnJ-VJfEzfGWhvoo9MN1Em4o4E4q5N2M6ypRPUJfUPhJ0-Nc_-KjvfqmU9BK6qkRydCFA8Y8eQp1dPlH6XiCA=w408-h306-k-no', '1a450424-d964-450b-9c38-1db5614c6e62', 10, ST_Point(20.921744, 52.323962)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #92: WC Tron - toalety przenośne
+-- WC #92: Toaleta publiczna (bezpłatna)
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC Tron - toalety przenośne', 'Wybrzeże Juliusza Słowackiego 9, 50-406 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipMukbHthnHMkQiqfYcOZjMXGLKuPEDnBCS36a9B=w408-h305-k-no', 'bc82df8f-91c2-495a-8d3c-d63b2a5880c9', 9, ST_Point(17.052047, 51.107807)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna (bezpłatna)', 'Modlińska 197, 00-001 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Op_8obpruMrwHk0Y7DRXKg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=295.13474&pitch=0&thumbfov=100', '1a450424-d964-450b-9c38-1db5614c6e62', 10, ST_Point(20.970843, 52.321054)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #93: Toaleta WC na placu Staszica
+-- WC #93: Toaleta publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta WC na placu Staszica', 'Plac ks. Stanisława Staszica 26, 52-007 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq2KvJCSKUnEDCx3T3i76_KI49vKQcGWbw6NpuqMch1gjP0AHTw9jiwajL3JgY9l_cFvg0iUInfMsDgABjW_joxnm_F7_BB5e1bhd1A_rJa5oF-9h-zF0M1j4AssDy0_nnyNnLf=w408-h510-k-no', 'bc82df8f-91c2-495a-8d3c-d63b2a5880c9', 9, ST_Point(17.030663, 51.122504)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna', 'Wyszogrodzka 4, 05-170 Zakroczym', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=l3lMJ4n53iDNu2g0KCtPWw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=164.85834&pitch=0&thumbfov=100', 'b19f9b75-ef2b-4c34-8496-720843fac7e3', 10, ST_Point(20.608373, 52.432245)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #94: Piwnia skullera
+-- WC #94: WC (Szalet Miejski)
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Piwnia skullera', 'Zachodnia 55, 53-643 Wrocław', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=hgNa4m_gKUJGK91gCp9zQw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=24.463339&pitch=0&thumbfov=100', 'bc82df8f-91c2-495a-8d3c-d63b2a5880c9', 1, ST_Point(17.008878, 51.117241)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC (Szalet Miejski)', '100, Zakroczymska 36, 05-100 Nowy Dwór Mazowiecki', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqB5Rs_RtlAM45nrNs3xXdfgM8YawTXONqrenB4ClMIygdZ5fAlt_gzhSQiaLJITNVPerWMRMe2mr33atDh8_TgKpdQs1mnljAsHk-Gy8gd1_yUN9SUoPPAkxunOg-3LnyF2YyQ=w408-h306-k-no', 'b19f9b75-ef2b-4c34-8496-720843fac7e3', 9, ST_Point(20.709138, 52.431153)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #95: Dworzec Główny PKP
+-- WC #95: Toaleta publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Dworzec Główny PKP', '50-002 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nokzfDoYd3eTnKiW_WtRpB1wtFOhoYXcfP9jyzny78N5jGZuW34hxkDneQaILOonEuAlVx6sjbE51BfW4EnIBk6q8fbQNk0-dR41x0ue2cS5UYGqvfmWDpIZnso6rFI-HAUCtqc=w408-h306-k-no', '5f2e1f2a-6138-40ec-a582-95188d1d0c27', 9, ST_Point(17.03606, 51.100771)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna', 'Ojca Honorata Koźmińskiego 67, 05-170 Zakroczym', NULL, 'b19f9b75-ef2b-4c34-8496-720843fac7e3', 10, ST_Point(20.613949, 52.436784)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #96: Centrum
+-- WC #96: Toaleta publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Centrum', '00-057 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npIFaqgEAVWpVJHHv9p6XRwI-qgcLC9LsgR4TJSdnapKrEFyUMS-Tx7J_0lIcl12xxFTBo4KUTO8p4R9E45wFUhOly8zQT8uOLfuYlEYoaX_od40g5ZYBGKk5l5-jL1QhC9gk4k=w408-h544-k-no', '5f2e1f2a-6138-40ec-a582-95188d1d0c27', 8, ST_Point(21.01021, 52.23118)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna', 'Ks. Kazimierza Konowrockiego, 05-230 Kobyłka', NULL, 'a469fd14-942b-4b58-8c75-7c95ef92ea9c', 1, ST_Point(21.197284, 52.338682)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #97: Środa Śląska
+-- WC #97: WC
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Środa Śląska', '55-300 Środa Śląska', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqGB48ddrUR-WXypvAuu5SjiQe4too8c5KvRGT0uL21LTZeMV0sqoHbMR4DtrSc0qY0GX5Mo3uWdbo_ltrV6fyebc_SkEJMvA6m5UiigsQ6NcLv4muyR2W83VZeCNMBuvuZDvY8rQ=w408-h324-k-no', '5f2e1f2a-6138-40ec-a582-95188d1d0c27', 8, ST_Point(16.605971, 51.189232)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC', '05-230 Kobyłka', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=30E6jcSha82wXjNofc2yAQ&cb_client=search.gws-prod.gps&w=408&h=240&yaw=236.9096&pitch=0&thumbfov=100', 'a469fd14-942b-4b58-8c75-7c95ef92ea9c', 1, ST_Point(21.196519, 52.338625)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #98: Rondo Daszyńskiego
+-- WC #98: Toaleta Publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Rondo Daszyńskiego', 'rondo Daszyńskiego, 00-869 Warszawa', 'https://lh3.googleusercontent.com/p/AF1QipM7EzYXPIaI3a-9-irsUHVHbdrL6ObYalXf_4GO=w408-h271-k-no', '5f2e1f2a-6138-40ec-a582-95188d1d0c27', 9, ST_Point(20.983394, 52.230247)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Publiczna', 'Tadeusza Kościuszki 8a, 05-120 Legionowo', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=0IPPPgHvUqnWbFFJPP0CJw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=40.189465&pitch=0&thumbfov=100', 'c714cd00-7614-44f0-9de0-6b939bcbd537', 10, ST_Point(20.940885, 52.401314)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #99: Stadion Narodowy
+-- WC #99: Toaleta Publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Stadion Narodowy', 'Sokola, 03-724 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq3J3h0p0Ushf1pWAPoM6hM9S_FJAEta9bmF70HIQdCzrGkaO1xlpbGs1o0Me7NlxAYXS7ox0GDx6u9k67LrZQwsDxr-Mp_5wbV9sMCDggFJ1tOC8Z3d9-8mHWjtk6H-x0gqfig=w426-h240-k-no', '5f2e1f2a-6138-40ec-a582-95188d1d0c27', 9, ST_Point(21.043252, 52.246957)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Publiczna', 'Zegrzyńska 115, 05-119 Legionowo', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=WIyQtwleIFvUo2BaAd20Xw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=77.889656&pitch=0&thumbfov=100', 'c714cd00-7614-44f0-9de0-6b939bcbd537', 1, ST_Point(20.954925, 52.408959)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #100: Centrum
+-- WC #100: Toi Toi
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Centrum', 'Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npb-_XTouyMIW9a00ciTufxhRJJlCOZS8PAEumjGC5a2ukYj-clDPDXO9guVsS5F10oBA9BeqX-7rfANPyLMb5zx-rjrlsNbs9tZiP1owF2wT7XDihjt5eX3SSnmddSmLgGuoh7=w426-h240-k-no', '5f2e1f2a-6138-40ec-a582-95188d1d0c27', 8, ST_Point(21.011392, 52.230209)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toi Toi', '05-120 Legionowo', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqwHEZEaBWb3N4nyJbD8gqSs8z4RNjf1iukqq7gtAuUacvGVhjZdop34gB8V6XYj-I0XEe3WKtWsLj4l6YDCqmrScrYWQUqj226-__kJ6UwNyquySb7Qol3MUWQywhamOkOEmQuLw=w408-h306-k-no', 'c714cd00-7614-44f0-9de0-6b939bcbd537', 7, ST_Point(20.943425, 52.412776)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #101: Świętokrzyska
+-- WC #101: Toi Toi
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Świętokrzyska', 'Marszałkowska 0, 00-004 Warszawa', 'https://lh3.googleusercontent.com/p/AF1QipM5YwUJHYsXYPoyuyJ1MAya4sFLLSvagrsKDc7s=w408-h271-k-no', '5f2e1f2a-6138-40ec-a582-95188d1d0c27', 8, ST_Point(21.008446, 52.235234)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toi Toi', 'Gdańska 05-120, 05-120 Legionowo', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=i5tIcTpVucuCcOsmmtJA8A&cb_client=search.gws-prod.gps&w=408&h=240&yaw=4.963238&pitch=0&thumbfov=100', 'c714cd00-7614-44f0-9de0-6b939bcbd537', 8, ST_Point(20.915091, 52.410842)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #102: Dworzec Gdański
+-- WC #102: Toi Toi
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Dworzec Gdański', '00-204 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noiQw-cU6--9YzjcSkxyYBhnmMtMgMQu6aRZ7SJCroCAPO2qdKmT_J-SpYJ5JiLPl0kV9apbAJsGwWZmuNR929yXdoGTChI9N_KqimY4AHD4GO2MPyvkxJ7t6cBaRsaL8TvTUUxDQ=w408-h544-k-no', '5f2e1f2a-6138-40ec-a582-95188d1d0c27', 8, ST_Point(20.994597, 52.258007)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toi Toi', 'Generała Józefa Sowińskiego 9, 05-120 Legionowo', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=cb3obnjHA35BRSF7i1oCMA&cb_client=search.gws-prod.gps&w=408&h=240&yaw=146.80948&pitch=0&thumbfov=100', '849d4c1d-7e45-4c89-822d-b83162963a8d', 8, ST_Point(20.931057, 52.394333)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #103: Centrum Nauki Kopernik
+-- WC #103: Toi Toi
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Centrum Nauki Kopernik', 'Wybrzeże Kościuszkowskie, 00-347 Warszawa', 'https://lh3.googleusercontent.com/p/AF1QipOA246W-lFV-7s2edspbzIXCi4l1QKyvZO3oShl=w408-h271-k-no', '5f2e1f2a-6138-40ec-a582-95188d1d0c27', 9, ST_Point(21.031071, 52.239644)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toi Toi', 'Długa 5-3, 05-126, 05-126 Michałów-Reginów', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npuCUO984DRAJZwauD0aKERgHxTUFp-RnbITzcxyObn52G54lDz3J_0tHpgNFxTlw0q_ckjumil21teDKALdQp1yau5M60HgM1A3-8U6FEzZYlQQIVI7gdvsavr-CuKjuS9XItabA=w408-h306-k-no', '849d4c1d-7e45-4c89-822d-b83162963a8d', 9, ST_Point(20.976194, 52.429018)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #104: Politechnika
+-- WC #104: WC KING
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Politechnika', '00-636 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nreuv79tMDCK0q8hY18iU2XIUro1hIxT--pB3o9Y74ptQw4AiBflafIiDoUkEQlJOjqOJDf275j595rw2_b13Ns6l7dLtKQYZs9k9KCBBfsC68PHnsf4I0GPhBitaWYvcomw7bS=w408-h306-k-no', '5f2e1f2a-6138-40ec-a582-95188d1d0c27', 8, ST_Point(21.01448, 52.21762)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC KING', 'Kościelna 1, 05-126 Kąty Węgierskie', 'https://lh3.googleusercontent.com/p/AF1QipN8BPo1HLt9Fp_YgDiVbkpPR9rZQKXeUkBER4Sl=w666-h240-k-no', '849d4c1d-7e45-4c89-822d-b83162963a8d', 9, ST_Point(21.013032, 52.389302)::GEOGRAPHY, 'toilet', NOW(), NOW());
 
--- WC #105: Bródno
+-- WC #105: Toaleta
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Bródno', '03-242 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npUjwjxwRVrTf35NPJGZDS-UCFT39lagDMnfvqNcu3wDLM9X0FQbAijeuuDURwUBWzTH-ms__QdbtQUwMMmbX7Y-5rzqjDryXNJlFSsLe5uRFDg9gAREQYkqJlEqgERuA-ArE2ivQ=w408-h543-k-no', '5f2e1f2a-6138-40ec-a582-95188d1d0c27', 9, ST_Point(21.02907, 52.29356)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', '05-126 Nieporęt', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqucYeaicbOA4A3TH-dTqrh03G0ZRIH8dxHxEyANpAVLWZJxEa7XRhiZEoJIpHvQq0hDHikeA-qhvAZAOdXwaGNEpcz0MY8iR9cPx6H5F_7uHkxbTkvJNfhwdgEYPrl8vgyV-R-=w426-h240-k-no', '849d4c1d-7e45-4c89-822d-b83162963a8d', 8, ST_Point(21.040441, 52.435496)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #106: Wileński
+-- WC #106: WC
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Wileński', 'al. „Solidarności” 3, 03-734 Warszawa', 'https://lh3.googleusercontent.com/p/AF1QipPxBiF4PdfYHS3CHGpVb_4O0XbBoJ1NZhaoUrU8=w408-h271-k-no', '5f2e1f2a-6138-40ec-a582-95188d1d0c27', 8, ST_Point(21.035238, 52.25418)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC', '05-126 Białobrzegi', NULL, '0a85ab12-2ab6-4b24-84b7-22e6a16d54e2', 10, ST_Point(21.043863, 52.437446)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #107: Nowy Świat-Uniwersytet
+-- WC #107: Bezpłatna pompa asenizacyjna Przepompownia do odbierania ścieków z jachtów
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Nowy Świat-Uniwersytet', 'Nowy Świat 0, 00-046 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nodICw_9RvQlFSZLhf6D4Lld5AA2dMgbsZZPwsqM_7qC0VvpqMQI4fVsgyDzAOkMkQY7xHPipAhaz2W312dCTIQ6Kgcee3kKsvKQq6Xk2ItiWy2UspsAjrQ3iObpR_wXQWluIfM=w408-h273-k-no', '5f2e1f2a-6138-40ec-a582-95188d1d0c27', 9, ST_Point(21.017133, 52.236794)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Bezpłatna pompa asenizacyjna Przepompownia do odbierania ścieków z jachtów', 'Aleja Wojska Polskiego 3, 05-126 Białobrzegi', NULL, '0a85ab12-2ab6-4b24-84b7-22e6a16d54e2', 1, ST_Point(21.041092, 52.435277)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #108: STACJA METRA ,,PŁOCKA"
+-- WC #108: Toaleta
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'STACJA METRA ,,PŁOCKA"', 'Płocka, 01-231 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq4hhlCPKm7pZM-arZUHsbVd0PChJjLQvVG-c0t1VFpb7AE3fW2YnZ4MyLB4pJflVCGkoe4xdh513qkdeezIdcxhYsFDMZOzd_LLwaf4qUaSCDTIcwHZt8SU5wt9BXPY189bSxW=w408-h544-k-no', '5f2e1f2a-6138-40ec-a582-95188d1d0c27', 9, ST_Point(20.965981, 52.232971)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', '05-126 Nieporęt', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqucYeaicbOA4A3TH-dTqrh03G0ZRIH8dxHxEyANpAVLWZJxEa7XRhiZEoJIpHvQq0hDHikeA-qhvAZAOdXwaGNEpcz0MY8iR9cPx6H5F_7uHkxbTkvJNfhwdgEYPrl8vgyV-R-=w426-h240-k-no', 'e2009973-332b-431d-a782-1469ecaa8e7c', 8, ST_Point(21.040441, 52.435496)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #109: Pole Mokotowskie
+-- WC #109: Toalety
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Pole Mokotowskie', '02-521 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no7HZhMc7fuyf-uuEWlee0E8qlI1IXVMJZqK2did1J9HvJENq3V5OGmrBqA8d-6_K8XGvoMZT-ojoqP8hQWMw7QprRF5DK_f9U9U9lITXKESuFbLRlnvZNTQIRM0AWqWXxhfC95=w408-h306-k-no', '5f2e1f2a-6138-40ec-a582-95188d1d0c27', 9, ST_Point(21.00776, 52.20858)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toalety', 'Retmańska 2, 05-140 Serock', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=uvNlwz9zuQzqpq0xAp-QCA&cb_client=search.gws-prod.gps&w=408&h=240&yaw=94.28142&pitch=0&thumbfov=100', 'ef2991bc-1640-439e-be89-d9a54c5e0d48', 1, ST_Point(21.076089, 52.515491)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #110: Stare Bielany
+-- WC #110: Szalet Miejski w Serocku
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Stare Bielany', '01-871 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq2U_hFEu97tnBjNUISn04SOdI-a0e8n78I5RmEbYpu-TXk9y_qVzKPC7AabxJ9_xZc7Gc4mFDDFkGRTgBVsG4Eyr4QghsaGR9YqS3rWcB5Suovt-BWrYhmEDq7az4tyj3WUq0HYw=w408-h306-k-no', '5f2e1f2a-6138-40ec-a582-95188d1d0c27', 9, ST_Point(20.94926, 52.281873)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Szalet Miejski w Serocku', 'Pułtuska 33, 05-140 Serock', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqUFwT2mn2MTd4Or0poDNU0loWgFvA6Js4salMwUNF2Ji3nauPE72iVLc9jMEvd_eJo97WdjpO-asCaeLHD2lIzIkCRw1uoQvwiSYNJhCpkBKHezooRxFAF4jiYyaf-PMmJAYfM6Q=w426-h240-k-no', 'ef2991bc-1640-439e-be89-d9a54c5e0d48', 6, ST_Point(21.068904, 52.514098)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #111: Plac Wilsona
+-- WC #111: Toaleta Publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Plac Wilsona', '00-001 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq9FjGWhw_A77bN7BZpqn011gSB_H7eHw_nQKEeWeL9IOmv_12N0U9hKWwIGpwvT9mTVSy--JFw4oPHnvxbJgXoxRTLzQ-lG3jWaJM9pBllB7X1TS69HAVGPM5dz8OAMpGq0D5g=w408-h306-k-no', '5f2e1f2a-6138-40ec-a582-95188d1d0c27', 9, ST_Point(20.98413, 52.26938)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Publiczna', 'Mochty-Smok 6, 05-170 Mochty-Smok', NULL, '530ec531-dfff-477b-9c25-8e5370eab2e5', 1, ST_Point(20.548791, 52.432708)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #112: Kondratowicza
+-- WC #112: Toaleta publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Kondratowicza', '03-291 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrlsqTBKbmKRPvn8bhBmilDJvHwWG4GOCiQ4IUDftaX8EjAC5YAtoyqvjK6TRdnoXqZ_dHqrAl3UQdCmKkiH63nzAGjuQfssOvw8h2oTboxLLxKyasF4wQ1inHHBHiSlPnfrqQ=w408-h306-k-no', '5f2e1f2a-6138-40ec-a582-95188d1d0c27', 9, ST_Point(21.05019, 52.29208)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna', '05-170 Smoszewo', NULL, '530ec531-dfff-477b-9c25-8e5370eab2e5', 10, ST_Point(20.504167, 52.428426)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #113: Racławicka
+-- WC #113: Toaleta publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Racławicka', '02-617 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np3h7s4aeckM_w1e_lDFqQnDOsKIO2Cvs1DJT5HfMLM31eQSfhZp3HJ7ztdL6Zzrt_p15MB9oXi2LXdDfV-Xf2DTfZL-owhP74TLOLM9gL_cRsaudmK18hikIb9_7l8iYfIjDS3=w408-h306-k-no', '5f2e1f2a-6138-40ec-a582-95188d1d0c27', 8, ST_Point(21.012146, 52.19954)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna', 'Smoszewo 6, 05-170 Smoszewo', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=McfNjYDP6n3zCHRqAE5JBg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=121.12774&pitch=0&thumbfov=100', '530ec531-dfff-477b-9c25-8e5370eab2e5', 1, ST_Point(20.500909, 52.428538)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #114: Wawrzyszew
+-- WC #114: Automatyczna toaleta publiczna (płatna)
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Wawrzyszew', 'Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=GtND2rCZo24AAAQ7LuIYjw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=180&pitch=-10&thumbfov=100', '5f2e1f2a-6138-40ec-a582-95188d1d0c27', 8, ST_Point(20.93947, 52.28637)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Automatyczna toaleta publiczna (płatna)', 'Józefa Lewartowskiego 10, 00-169 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrE6EEWBN9JzU87jukZlO-1S7ceO9gJV80KV5PvCa9lDeXaOWNlvSmonM0ACqKPbWDmmokK88_AiACiY7Q4jikQa_pa5t6cSVrHg3CbI9-323GQodAMlTOEAclG1_a6w5gX37I-3g=w408-h544-k-no', 'ebb3213f-14d1-46de-8497-02b25af1c4ca', 10, ST_Point(20.993527, 52.25031)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #115: Mistrz i Małgorzata
+-- WC #115: WC, toaleta, pisuar
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Mistrz i Małgorzata', 'Wojciecha Bogusławskiego 21, 50-023 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipPVURKjHEbp2vH58gfjjPNy_L6S3Na340i3QmvQ=w408-h544-k-no', '12e106b6-65e6-43bf-aef4-ec1f9e602740', 9, ST_Point(17.025652, 51.100969)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC, toaleta, pisuar', 'Bolesława Prusa 61, Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqjG-QUaIob59cePbgBjG64ajaLTrSiqrZhMF0WCKr50zUbGDI037YwTOJFPadXPJuC5KuNoavsnr1iIcc3aLXlYQYQkUw0OU3FBvhVLu44-D9F0RfHothOeiA7fyeL_jNW1hL-=w408-h544-k-no', '62fdda36-ac98-4863-9ac5-267d623f6449', 8, ST_Point(17.056272, 51.119634)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #116: Barbarka
+-- WC #116: Toalety Podziemne
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Barbarka', 'wyspa Słodowa, 50-266 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np1pivgzf1xqPf-H0QstwVB8IF5cKfCnnQwdKf7IYc309wIxpGNn1RvDn8-qdBETQ4YVqi5pKcMNaXW5_1DD1f2cqAA6a2O7UxjZSIve4IPNYtWvA0KexxBTi1DegLW1UHDOn3uK0tia23a=w426-h240-k-no', '12e106b6-65e6-43bf-aef4-ec1f9e602740', 8, ST_Point(17.035241, 51.11598)::GEOGRAPHY, 'bar', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toalety Podziemne', 'Plac Solny, 50-079 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr54dELQ2g8AXhto7kO5Ih9TSMo1QllPUFFykgKofSXFazIMXzT_FF7Et9OcjANYevvcyaE7tHWgUOj0c9zVMR3bE3Xn0S8hZJPyLRGGy5r1XlGFU2WuIrABoM2Yt-l2fSB9OFa8Q=w408-h544-k-no', '62fdda36-ac98-4863-9ac5-267d623f6449', 6, ST_Point(17.029135, 51.109689)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #117: Cocktail & Whisky Pub Szkocka
+-- WC #117: Toaleta publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Cocktail & Whisky Pub Szkocka', 'plac Orląt Lwowskich 20a, 53-605 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipNhM96JpDv-W0KYUfpR8pFukJTgSC25z708lkHN=w408-h272-k-no', '12e106b6-65e6-43bf-aef4-ec1f9e602740', 9, ST_Point(17.018127, 51.108193)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna', '05-180 Janowo', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=0B7baM7NO1bmF1hw-AgprQ&cb_client=search.gws-prod.gps&w=408&h=240&yaw=155.2083&pitch=0&thumbfov=100', 'ea97f692-83c9-4d70-b1b7-5fc56fab6593', 10, ST_Point(20.625682, 52.489863)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #118: Spritz Break
+-- WC #118: Publiczna toaleta
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Spritz Break', 'Odrzańska 8/1a, 50-113 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npttapV9Notq8ar3uCKp0HRcrkPoEuf7RyMdSPlnoCD1JS8zZFZwv8Sj32e-7xd-awfr_D5yYZmD0ATKIuVvBAcvkpYwV08yI0Kpx23gopv9d8Nfkow6N56no7maYiWuPEugixK=w408-h544-k-no', '12e106b6-65e6-43bf-aef4-ec1f9e602740', 9, ST_Point(17.031363, 51.112179)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Publiczna toaleta', 'Zygmunta Modzelewskiego 83, 02-679 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=oKLaLGf5V91m7RPA7q3RDA&cb_client=search.gws-prod.gps&w=408&h=240&yaw=109.040825&pitch=0&thumbfov=100', 'd9e122fe-6b76-4fe9-bf49-0c851113e32a', 10, ST_Point(21.013744, 52.193543)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #119: Dziady i Koktajle
+-- WC #119: Wc
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Dziady i Koktajle', 'Jatki 3/4, 50-111 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipPc7PeffTRH-VwP1osbSaue6f68wkJIV6fHg5qQ=w408-h306-k-no', '12e106b6-65e6-43bf-aef4-ec1f9e602740', 10, ST_Point(17.030621, 51.112105)::GEOGRAPHY, 'bar', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Wc', 'Legionów 21, 05-200 Wołomin', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=WaZrQIWnpOXqS7GxPzyqWg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=93.217705&pitch=0&thumbfov=100', 'e9d13949-bfc1-45c7-b3fb-5d51c88a02e5', 1, ST_Point(21.24253, 52.344091)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #120: Le Barometre Bistro & Cocktail Bar
+-- WC #120: Toaleta publiczna Tłuszcz-Dworzec kolejowy
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Le Barometre Bistro & Cocktail Bar', 'Rynek 42/lokal 2, 50-116 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipOn87oQJYqdc_XN-32PQbCWBgtKA79st7bCpNPu=w408-h674-k-no', '12e106b6-65e6-43bf-aef4-ec1f9e602740', 9, ST_Point(17.033385, 51.110751)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna Tłuszcz-Dworzec kolejowy', 'Warszawska 4, 05-240 Tłuszcz', NULL, '90387d54-df73-438d-ab42-be6c35984930', 2, ST_Point(21.435731, 52.430621)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #121: Przedwojenna
+-- WC #121: Toaleta płatna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Przedwojenna', 'Świętego Mikołaja 81, 50-126 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrZSgB_kQvaZvot3_a-iPSqCGJgAwdjmV-a8kPskBeFDj1FKJiLox43MZ3Fl4bZWmY2fMggTMYKcVsycv-YRdguvUI9Iu2p9hZKvafEBZg4253m1PoOkQoucu2iQmphcwxhK2JAcA=w408-h543-k-no', '12e106b6-65e6-43bf-aef4-ec1f9e602740', 9, ST_Point(17.030392, 51.111044)::GEOGRAPHY, 'bar', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta płatna', 'Stanisława Augusta Poniatowskiego 14, 05-280 Jadów', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqv2ADulAWVSPcA6IFH6Xi8Ew7EKM0jfWjHYJVg_b1KaBvtTXjDGy8uvtu5h_DnIWD53cdg3q_jYmd_jezcVi9jlcL6uB2oz_dc4xCqklkNWOkOJvDitJhDRMhXoZUjcS-EB5wu=w408-h306-k-no', '9c65f017-cee8-435d-a396-29a68003d22e', 6, ST_Point(21.634318, 52.478259)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #122: Zagrywki
+-- WC #122: Toaleta WC
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Zagrywki', 'Wojciecha Bogusławskiego 16, 50-529 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noop6zSGFuzAEaVjf7B3IDLTS5US_pm07dO3FnS0GHcNiFzVYjwhOW49hEF6gUEFRcXhS7vPncz9Hs45zAFOdvQCuM5r7ckuLbHRP-_xn-aWYxAWqIe5p5uJHYDllA3ULtwE5yR=w408-h306-k-no', '12e106b6-65e6-43bf-aef4-ec1f9e602740', 9, ST_Point(17.030047, 51.10002)::GEOGRAPHY, 'bar', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta WC', 'Międzynarodowa, 03-922 Warszawa', NULL, '9c65f017-cee8-435d-a396-29a68003d22e', 1, ST_Point(21.063375, 52.238023)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #123: Szklarnia
+-- WC #123: Toi toi
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Szklarnia', 'Ofiar Oświęcimskich 19, 50-069 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipOkVrcRbomffD56FfhRzE-zbr34Zfn8hImKxPzD=w426-h240-k-no', '12e106b6-65e6-43bf-aef4-ec1f9e602740', 9, ST_Point(17.031889, 51.10836)::GEOGRAPHY, 'bar', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toi toi', 'Międzynarodowa 2, 03-922 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npd2NjsWLJN44aTtneRmzP83nnwkibwqCvpYAE45hUGhuvsT608FFguopHCaI-PxIYNSL3q2lwJYZIiReLPaESch2Vuq-iSm7GY5D43yoqwXDhziLLlJyXBoCHP8UTEFTgYZWVwqrUHJDDY=w408-h541-k-no', '9c65f017-cee8-435d-a396-29a68003d22e', 1, ST_Point(21.057599, 52.244003)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #124: Mały Bar u Babci Jadzi
+-- WC #124: WC (Castorama)
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Mały Bar u Babci Jadzi', 'Hugona Kołłątaja 27/28, 50-529 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipOr-TAY4pz3Hjh9o7ZsQGEVAsyIfwjeH0AplKao=w408-h306-k-no', '12e106b6-65e6-43bf-aef4-ec1f9e602740', 9, ST_Point(17.036968, 51.102224)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC (Castorama)', 'Głębocka 15a, 03-287 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npjrmEbolvM7KhahyImeXSnU9z41MIEph0BzMsANb27IFnwD-_rrAbIFcq1B1r6-lQYkBTHP0Cc34tjZdgQY8KgRd7Et1I4EeXHzVtg5WrHjwtq3fsnZY0FD1o_P4toWuCQykARAQ=w408-h544-k-no', '9c65f017-cee8-435d-a396-29a68003d22e', 10, ST_Point(21.054724, 52.30319)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #125: Proof Cocktail Bar
+-- WC #125: Female Bathroom
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Proof Cocktail Bar', 'Plac Solny, 50-438 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipNsh7UyHnKC2FxvkZzc3lfglucVhtRECLfaNUJ-=w408-h271-k-no', '12e106b6-65e6-43bf-aef4-ec1f9e602740', 10, ST_Point(17.02927, 51.10932)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Female Bathroom', 'Głębocka 15, 03-287 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=wegxKHR2dee2y7SlQtF6Cg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=16.52794&pitch=0&thumbfov=100', '9c65f017-cee8-435d-a396-29a68003d22e', 1, ST_Point(21.057295, 52.302371)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #126: Sztuka na Miejscu
+-- WC #126: Female Bathroom
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Sztuka na Miejscu', 'Łaciarska 4, 50-104 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipMQzJZ3OdDOl5yEM4yaiOpRSELcaS9LtYBj54_a=w408-h272-k-no', '12e106b6-65e6-43bf-aef4-ec1f9e602740', 9, ST_Point(17.035206, 51.108282)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Female Bathroom', 'Głębocka 15, 03-287 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=F2n6-alJBoLPLNsNIXrCZQ&cb_client=search.gws-prod.gps&w=408&h=240&yaw=14.438052&pitch=0&thumbfov=100', '9c65f017-cee8-435d-a396-29a68003d22e', 1, ST_Point(21.058025, 52.302257)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #127: Przybij Piątaka – Pub Wrocław
+-- WC #127: Toaleta publiczna Płatna (2 zł)
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Przybij Piątaka – Pub Wrocław', 'Jana Ewangelisty Purkyniego 1, 11-400 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipMo6XrSrhbX265WDH9k14S2R9wOtqZq4tpypAcX=w408-h273-k-no', '12e106b6-65e6-43bf-aef4-ec1f9e602740', 9, ST_Point(17.039591, 51.110257)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna Płatna (2 zł)', 'Praga, 01-001 Warszawa', NULL, '9c65f017-cee8-435d-a396-29a68003d22e', 4, ST_Point(21.033895, 52.289995)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #128: T57 - Cocktail Bar
+-- WC #128: Bezpłatna toaleta publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'T57 - Cocktail Bar', 'Tęczowa 57, 52-007 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipPr6_nqyiP-qiZyAOzCMTTy68HvYr3L1b1FKjdg=w408-h611-k-no', '12e106b6-65e6-43bf-aef4-ec1f9e602740', 10, ST_Point(17.012761, 51.105326)::GEOGRAPHY, 'bar', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Bezpłatna toaleta publiczna', 'plac Piotra Szembeka 2, 04-142 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrsKbz4GIkFkKh_BYUdU7t-YZ0fNea2odQEVYiHcYiL79IUUfncx8YMcGoDNGahnT7vEFT5geLm25hi9ZHzkOXHgXgKWm_1KO4RU3j7qcFPivGqQhV27kJkUfILblZ-7wG8YTE=w408-h881-k-no', '9c65f017-cee8-435d-a396-29a68003d22e', 10, ST_Point(21.102645, 52.242816)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #129: BAR NA 2 NÓŻKĘ
+-- WC #129: Toaleta publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'BAR NA 2 NÓŻKĘ', 'Staromłyńska 2A, 50-266 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipPRkggq1ZHWQorbxjlPu1x1SRfCdXIb2pxFM_57=w408-h544-k-no', '12e106b6-65e6-43bf-aef4-ec1f9e602740', 9, ST_Point(17.040143, 51.115354)::GEOGRAPHY, 'bar', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna', 'Grzegorza Przemyka 5, 03-982 Warszawa', NULL, '9c65f017-cee8-435d-a396-29a68003d22e', 1, ST_Point(21.081243, 52.22945)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #130: Mixturium
+-- WC #130: Hurtownia skarpetek
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Mixturium', 'Rynek 5, 50-067 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipO9-pLk0VHKK-c4PeYdb8FrBqfIyu8b8adH5h4n=w408-h544-k-no', '12e106b6-65e6-43bf-aef4-ec1f9e602740', 9, ST_Point(17.030433, 51.110552)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Hurtownia skarpetek', 'Stanisława Moniuszki 5, 05-220 Zielonka', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrHCfzpe4fgKpZrpKxRxCO_PHxNHf8wcy9Rwz40-ngfnwj6uR5Dyv-ieiBoY6HvQ39kLOdIiMwZqBd6wiZesZm6ZgDmgAYw0giooaygIPPoehG6uYtmoIF_1BwguKgb48krJ4Vnlw=w408-h541-k-no', '9c65f017-cee8-435d-a396-29a68003d22e', 9, ST_Point(21.15199, 52.306659)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #131: Zamkowa
+-- WC #131: TOI TOI
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Zamkowa', '50-529 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noBokpBSF0XxWP10uDwsDRJr2btCYvYaMOy6Io4ZrWwe-_bdjyGZiIuLc-j8l_lD2nXspLzB-VaQaHr2B9ZME9tAUa6MreH8q0DU1bLsYK2m-UNplQKqyOV73UEcllE6CfEIsN5=w408-h306-k-no', '19a1fede-05af-433d-9e13-6e66866680f1', 9, ST_Point(17.029711, 51.107885)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'TOI TOI', 'aleja Zieleniecka 2, Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noczyfMWnWRAySB55wSxgEPY3cbVCm-B1FuMTYeLCbNCRibXiOLvmUczm8ILi0HferXSuFJ5U96yf-M2yZ_V7_1Inb-nP-MPmj3yIkGFmNw6af7Bbf69Ufdn61lyvdSyV7kSC6T2ho0yZH3=w408-h885-k-no', '9c65f017-cee8-435d-a396-29a68003d22e', 10, ST_Point(21.057171, 52.240465)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #132: Oławska
+-- WC #132: Toaleta publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Oławska', '50-529 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noJ9vHLITFEcxOu2kcpw-VaoNeVVSrFTearbtZ5uEvuqIn2SOVipd3tcFJnMYjtbVF7wrsY53qryoa7Yn8HPkcXmOOzYjmJYZym_AS3RLEaKMrAAVoHwU2U7Z452hfLVKvpRHvVTHFix48=w408-h409-k-no', '19a1fede-05af-433d-9e13-6e66866680f1', 9, ST_Point(17.033987, 51.108635)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna', 'Park Nad Balatonem, Jana Nowaka-Jeziorańskiego, 03-982 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=wIif6R8bhRY6GCoup0ywNw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=187.5721&pitch=0&thumbfov=100', '9c65f017-cee8-435d-a396-29a68003d22e', 10, ST_Point(21.088327, 52.229797)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #133: Wita Stwosza
+-- WC #133: Toaleta
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Wita Stwosza', '50-529 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np4KTBTl8unDJMPxg78S0Zsnv2O7DWIfCZ-msqGVI4f_umU3zbDGGxC3T8APuEz1EgEhYsC7lxUI0jupolS9iRLESkeKcSZ5jPuDsWE-pbYIJzSqP8f2vvivQ4cYpTPeaKXL1Q=w408-h272-k-no', '19a1fede-05af-433d-9e13-6e66866680f1', 9, ST_Point(17.034973, 51.110738)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', 'Rembielińska 20, 03-352 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=a8MUXDmzfSVa5tZVYC7GJA&cb_client=search.gws-prod.gps&w=408&h=240&yaw=146.90485&pitch=0&thumbfov=100', '9c65f017-cee8-435d-a396-29a68003d22e', 1, ST_Point(21.030168, 52.290069)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #134: Świdnicka
+-- WC #134: Male Bathroom
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Świdnicka', '11-400, Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noUi6RjRsUNWeA48G1aUAPEDVFN9JCFWQyKw7sGbyXi-T5s5iMhEsJYkZHGgWoh0APQNOaxPO7leXhokw-XmfU0EURi278vclag4NNnvZawSs_OPkwY2NudNMM-FFo1Ely6qS31=w408-h490-k-no', '19a1fede-05af-433d-9e13-6e66866680f1', 9, ST_Point(17.031992, 51.107452)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Male Bathroom', 'Głębocka 15, 03-287 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=nDXop3qVIqj4bBubmBijkw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=10.774489&pitch=0&thumbfov=100', '9c65f017-cee8-435d-a396-29a68003d22e', 1, ST_Point(21.056983, 52.302408)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #135: Świdnicka
+-- WC #135: Toaleta kompostownika 3
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Świdnicka', '50-529 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqD7eMvzw1iTPEzATcOOgaBSqQRRCqiN6L929G4zEGacTYVV7fsNyW7wqL4KDTqibDPkbWOjeS-fC5gKKJRJdvoMQFfZH9Eo0XIgSDhGSIEDerl6lSiZ5UOZf4VQbuJl4BVkRNz=w408-h401-k-no', '19a1fede-05af-433d-9e13-6e66866680f1', 10, ST_Point(17.031895, 51.107381)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta kompostownika 3', 'Gimnazjum nr 2 Miejskie, Budowlana 26, 05-300 Mińsk Mazowiecki', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=-t6OkB0Lp9jfUSF-nyfZWg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=50.149895&pitch=0&thumbfov=100', '57740b0d-7989-4fb2-bfed-c773d749ee9f', 10, ST_Point(21.572856, 52.184594)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #136: Rynek
+-- WC #136: Toaleta Publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Rynek', '50-079 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqV-vEJgGJOTHGUDq2BYVFZY4fj-tS51sND3O4DwBGfaKHvgpaL6sls2Rogh6g8zIJwQeqBW9p7en2txw_FvkBoJH8Z7B4aOPGYTuvqZQkT1pDteBhZ5m1UIdGZHLa8k763Ky-gSw=w408-h272-k-no', '19a1fede-05af-433d-9e13-6e66866680f1', 9, ST_Point(17.026714, 51.109768)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Publiczna', 'Nadrzeczna 4, 05-300, 05-300 Mińsk Mazowiecki', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=q86s5r3pT5if-rnGFO3MIA&cb_client=search.gws-prod.gps&w=408&h=240&yaw=320.27994&pitch=0&thumbfov=100', '57740b0d-7989-4fb2-bfed-c773d749ee9f', 1, ST_Point(21.570046, 52.178933)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #137: Rynek
+-- WC #137: Toaleta publiczna Tłuszcz-Dworzec kolejowy
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Rynek', '50-043 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrdkDvkPnxd47up3806-AtJDbywuTO8In8kHYvdrMkjx63wgJ8QfO4sDITPzyTFfL6cpoX1ZS1Hoin7fX-lJFGgCgqhs6ywxpIy3uwT5diFjlve6J8MQZ4-rsUCwvpburKnt-LO=w408-h306-k-no', '19a1fede-05af-433d-9e13-6e66866680f1', 9, ST_Point(17.026964, 51.111048)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna Tłuszcz-Dworzec kolejowy', 'Warszawska 4, 05-240 Tłuszcz', NULL, 'baa7cce2-e4aa-46f6-b73e-af197e45f1df', 2, ST_Point(21.435731, 52.430621)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #138: Ossolineum (Uniwersytecka)
+-- WC #138: Toaleta publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Ossolineum (Uniwersytecka)', '50-120 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noK2vWIjsGLxghOO3-uBvaS04OFz0bYQN6SCGssXz_7bJRiu1_v1kYY01nmU4slcHzXWE2cR7rpT3eXkt7Gm2s1sHUncpBO_Qy-XOLQnd71u2LH0mA7x9K00TES4QDjSGC2D3U=w408-h544-k-no', '19a1fede-05af-433d-9e13-6e66866680f1', 9, ST_Point(17.035853, 51.112632)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna', 'Park Eleonory Czartoryskiej, 11 Listopada, 05-250 Radzymin', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqBSLDkh7MwDwKRi-5WgRPM4O0WWb2zTkM8YnXIlcigoeWrD3sTVljfrjSsnXqiJwl0xOcejoCSExGsaG7ONt9IUU-GKWuMyHmBJNwVuOh6m5wCrxsQj7YOb8znB4WHtXxHPHmH=w533-h240-k-no', '4c55e78f-f3df-4cd4-9bd9-cdfe5fd46dd5', 5, ST_Point(21.181677, 52.413613)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #139: Świdnicka (Dom Europy)
+-- WC #139: 05-252 Stanisławów
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Świdnicka (Dom Europy)', '50-529 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npuGgGbZFn2dP4tY0_INKaOWWHyQ2jO4Ft8QICIT9NqF-u7kHlR759QwXnoch4cVxOsM5ssppBeY4O0WHI86pRyum7u6r5sWWP4JDHQCFF_Yw4hKlq-QAaeWIIvXWTZkpPG9oc=w408-h242-k-no', '19a1fede-05af-433d-9e13-6e66866680f1', 9, ST_Point(17.033413, 51.106812)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', '05-252 Stanisławów', '05-252 Stanisławów', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noLc5lcX9O8stNe6j24sAYBpOaSvLf24NNS7pvpM1ukp8SuO4ROtDIK0eMduypXg4jCebmUnwo2SdzW0t9pPSSYjsxThoMr-rPk1fKQNbBwETEhz72yeMA4GJmORAe-YNFRIrk=w426-h240-k-no', 'eb0d6392-e8ea-46c3-9328-c316a2f3e708', 1, ST_Point(21.299169, 52.484534)::GEOGRAPHY, 'toilet', NOW(), NOW());
 
--- WC #140: Zamkowa
+-- WC #140: 05-254 Kuligów
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Zamkowa', '50-529 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npdO9Cfu34tQ9cTJ1SBc3gtvtRVdO8XI67Ol1PNlT_XWK8X1RCKPOFzmzIf9dn7FG3cNFYBeycJFJKxXF4gBcoB6AyPkWqKvde9aYUoPC2G5QZnfB9_ZJSSc1I8Lkf5F522QMdZbuYvcew=w408-h306-k-no', '19a1fede-05af-433d-9e13-6e66866680f1', 10, ST_Point(17.02935, 51.108031)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', '05-254 Kuligów', '05-254 Kuligów', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npOGgbq-T7rDM5xhPeZlhjLgWLEXyCEU8jOvjt9lxgH-izpJLVo35L0mlyl35ymujGJo5iWnDQWzubwl7Tb50t7I5RMXiBXMQ-vWxG-xFtXfqh10xBFe6bkJiL97T3q15WqaztfkA=w408-h306-k-no', 'e3e3cc4a-20e5-4133-a482-373e905b0d62', 1, ST_Point(21.20714, 52.501822)::GEOGRAPHY, 'toilet', NOW(), NOW());
 
--- WC #141: Dworzec Autobusowy
+-- WC #141: Toaleta publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Dworzec Autobusowy', '50-086 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqelvzyY9Gp62s14SPntt04bDYJPrluhb_L8gjr55X8Kwg-aj5tqMq9oxmpPlVCH7WhmyzyIsGrQjNo7kOw_3FdCfikv41lcq-qdDRD7C50wDFWHnbb1llE0YiJcfo8Go7bFoUg=w408-h444-k-no', 'd940352a-3377-4156-aab0-c82c2f718157', 7, ST_Point(17.036343, 51.097204)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna', 'Park Eleonory Czartoryskiej, 11 Listopada, 05-250 Radzymin', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqBSLDkh7MwDwKRi-5WgRPM4O0WWb2zTkM8YnXIlcigoeWrD3sTVljfrjSsnXqiJwl0xOcejoCSExGsaG7ONt9IUU-GKWuMyHmBJNwVuOh6m5wCrxsQj7YOb8znB4WHtXxHPHmH=w533-h240-k-no', '6a1ea824-848a-487b-9bb3-4478a680d6c9', 5, ST_Point(21.181677, 52.413613)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #142: DWORZEC GŁÓWNY (Dworcowa)
+-- WC #142: Toaleta publiczna (bezpłatna)
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'DWORZEC GŁÓWNY (Dworcowa)', '50-441 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqW95uJAymK067mhJtk8jN4AOdxJ7FkqGO8GxwenHouLnSQ68gaPZTWH3WStgCRWiHnSiF9Lbu8YG7IpPP2Jm3waDeQXIpwzTkVZOIPU5IZU838zFmUpftZUdRLfep33C3b3HtS=w426-h240-k-no', 'd940352a-3377-4156-aab0-c82c2f718157', 7, ST_Point(17.039202, 51.100278)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna (bezpłatna)', '00-001 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Nlt_bjVKlZfAzu-wesd5gA&cb_client=search.gws-prod.gps&w=408&h=240&yaw=304.6072&pitch=0&thumbfov=100', '0d93fca9-ae3b-4cc7-a6d4-f8ae9aefc06c', 2, ST_Point(21.049472, 52.291471)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #143: Dworzec Główny
+-- WC #143: Male Bathroom
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Dworzec Główny', '50-529 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no5LrDh4mzU3B64Zv6TWYa9rsyW3Gy8oA-0pie3OigtW12j829pdahJe3_nzxQw_DAucoUjtT8MD8vwBPFENbfKqjDyzrx9uspSwPmim-jv_vv0vmRKngR6RK_xzA5EMCYF55SbHVq_URgb=w408-h412-k-no', 'd940352a-3377-4156-aab0-c82c2f718157', 9, ST_Point(17.034299, 51.099203)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Male Bathroom', 'Głębocka 15, 03-287 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=F2n6-alJBoLPLNsNIXrCZQ&cb_client=search.gws-prod.gps&w=408&h=240&yaw=34.433987&pitch=0&thumbfov=100', '0d93fca9-ae3b-4cc7-a6d4-f8ae9aefc06c', 1, ST_Point(21.058252, 52.302231)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #144: Dworzec Główny
+-- WC #144: Automatyczna Toaleta Publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Dworzec Główny', '50-002 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noT3V4ZXhymsi5b0CBYTu6IpwnPdDOPdkgrVF8tRIUP4KV5y1QTn_5HroZ_1wGqWnKsQP42OHRQ9oXuD3fU0WsIRztTNtT2-ESY6aPixSn7JcipvbEBVJiuOYRYFgCD_rnAk2rd=w408-h510-k-no', 'd940352a-3377-4156-aab0-c82c2f718157', 9, ST_Point(17.035309, 51.100002)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Automatyczna Toaleta Publiczna', 'Solec, 03-901 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Pr8PgegTncx2ULZ8uM6P2A&cb_client=search.gws-prod.gps&w=408&h=240&yaw=112.37773&pitch=0&thumbfov=100', '0d93fca9-ae3b-4cc7-a6d4-f8ae9aefc06c', 6, ST_Point(21.040519, 52.232542)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #145: Dworzec Główny
+-- WC #145: Toaleta publiczna płatny (2zl)
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Dworzec Główny', '50-002 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npJUi_ouSJOe4gnFgX9C0XysmYOzhae1n4GOCoLaaz73-kFOrSncWumWPN4BodTni5cs3yGQibfahXyorsStCXeMiUfn7wucOZVV3AOdltfQsqTc4j4z2w_UXldwKgeEyuNuiOEeBZKlfYS=w408-h510-k-no', 'd940352a-3377-4156-aab0-c82c2f718157', 9, ST_Point(17.035193, 51.099621)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna płatny (2zl)', 'Samarytanka, 01-001 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npDOggblt6OzZ_9ZUgAhYX0Cbc_K6hU1ighO28Vc9Z6bquZYj90BfB3IOyOnvbg-6Bo8iCgujlrOzLxrUWZ99jPbRPQV5vHsKQHVNhiYQ-4Fj1iaiHU82EOdiTwGWYL2n33FNuC=w408-h544-k-no', '0d93fca9-ae3b-4cc7-a6d4-f8ae9aefc06c', 7, ST_Point(21.051774, 52.279334)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #146: Dworzec Główny
+-- WC #146: Toaleta płatna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Dworzec Główny', '50-529 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npKct4djT_I5_4vN4ejDHqkmyxM09iEkOwzUkrT0V_neX1_QoHrUc8x8H-OQN0EpDZYhMMbv7QQmbi_WLMQJZj4rYOT61c06J6386sMhOI2zjVIdWVfx2uCr_e1RLWAtfYLexHcwA=w408-h306-k-no', 'd940352a-3377-4156-aab0-c82c2f718157', 8, ST_Point(17.037263, 51.099646)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta płatna', 'Stanisława Augusta Poniatowskiego 14, 05-280 Jadów', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqv2ADulAWVSPcA6IFH6Xi8Ew7EKM0jfWjHYJVg_b1KaBvtTXjDGy8uvtu5h_DnIWD53cdg3q_jYmd_jezcVi9jlcL6uB2oz_dc4xCqklkNWOkOJvDitJhDRMhXoZUjcS-EB5wu=w408-h306-k-no', '0b6ba721-d890-445e-9940-18ce47f617e0', 6, ST_Point(21.634318, 52.478259)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #147: Dworzec Główny (MDK)
+-- WC #147: Kibelek przykościelny
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Dworzec Główny (MDK)', '50-002 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noKVilegnB7uFILwKbxLlPv8A0B1JJYUTLhS53VaCWMXyW0mHEUnxbl4wfNERKvhLMvG1Q-ypDvkoWnxOFOl_9MD46oSa4pFpvA5ybBvxrY1nuf7Qs8ifR_M3_4Jvin9opfKx-h=w426-h240-k-no', 'd940352a-3377-4156-aab0-c82c2f718157', 9, ST_Point(17.036071, 51.100729)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Kibelek przykościelny', '05-280 Sulejów', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nof-ATcbLeNg1ISrtAtFKWZ3efohHUi9HVmVhHj6dtxAZAzE7_mEZ9cETnpDcGATLNDmGf4aEGXnr-I0iPSfPt7HIGQyHDaoqZQfYO6VC7Qd0wnBB3S1e37ctGT_U7JCcblX8o=w408-h544-k-no', '91f7e155-3b4c-47ac-97e4-775c8c052fd3', 8, ST_Point(21.562194, 52.44015)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #148: Dworzec Autobusowy
+-- WC #148: Toaleta na Dworcu
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Dworzec Autobusowy', '50-086 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no1HehLa_qaxZIvqhWWpUW3YD32hgvi8RNl5s1JolOrn0P6xZxXSr3CGChBXLq9LJeXMiSt51FJw3CImXcXoIOULMJNxIMElbw06MEp69qNzh0ZUqZP8W6C2lZIS5Dqs_EzrhCR=w408-h306-k-no', 'd940352a-3377-4156-aab0-c82c2f718157', 7, ST_Point(17.032777, 51.097464)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta na Dworcu', 'Marszałka Józefa Piłsudskiego 105, 50-001 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr1_oUOmN3l4SmbGpNIyKzmqrDI7kkJf7eVtDBeds_CkDBl3_JWxQuGk06OP8D6IMN-bLSSToHaAogEvkKN-QhFIm09XNOtgx16nApj4jEV_U3Ro-_SPKYSuSqcFAWyFz9jDWKbkQ=w408-h544-k-no', '91f7e155-3b4c-47ac-97e4-775c8c052fd3', 3, ST_Point(17.036646, 51.098984)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #149: Galeria Dominikańska
+-- WC #149: WC LEJEK
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Galeria Dominikańska', '50-529 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npXLnMFa9DssG6SBI0uUJltvMwCtx3kNoD-IAnOya2u8WueNzJdRQv1Mya0KuHqxWf5hE7sHc_Hkz6jtZGK5TsWmbO4TA9wM4vpUxJ9CDmwW_Acp8fomLXwKmI1lFYjGzXkv0ze1A=w408-h408-k-no', 'd940352a-3377-4156-aab0-c82c2f718157', 8, ST_Point(17.03991, 51.108916)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC LEJEK', 'Żelechowska 7A, 96-321 Siestrzeń', 'https://lh3.googleusercontent.com/p/AF1QipPqkyPl-9EiueRwSj19ozm2pxfEe9QfwBJH_3s_=w408-h307-k-no', '91f7e155-3b4c-47ac-97e4-775c8c052fd3', 9, ST_Point(20.722237, 52.048812)::GEOGRAPHY, 'toilet', NOW(), NOW());
 
--- WC #150: DWORZEC GŁÓWNY (Stawowa)
+-- WC #150: Wc
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'DWORZEC GŁÓWNY (Stawowa)', '50-529 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nouqwtGXsKg9stpeePWdxp4f1Er5hw2E9qYb9qoLYvvJxN8i77bUzRTSwzX20XWk3ESA13YZGkdujdmz2fDs0fM6eMs3FUIdZFlVvk2oDj7XfWSqXIjuEqTUDf3puOKbGNwWVs1=w408-h306-k-no', 'd940352a-3377-4156-aab0-c82c2f718157', 8, ST_Point(17.033884, 51.099905)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Wc', 'Konstytucji 3 Maja 2, 05-300 Mińsk Mazowiecki', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=P-3AxMpXBVvGmjobzUYwrA&cb_client=search.gws-prod.gps&w=408&h=240&yaw=193.82898&pitch=0&thumbfov=100', '17fe7bc5-0754-491d-acb5-fe5f18ce00c5', 5, ST_Point(21.558764, 52.180994)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #151: DWORZEC GŁÓWNY (Dworcowa)
+-- WC #151: Toalety
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'DWORZEC GŁÓWNY (Dworcowa)', '50-441 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npm_IHejauOdl4k-D7sLEOTzOFHt2_tNmi4OiqBHRkRokTAW6woh8vle0oWdmlXH-FLyUEO5YY6-NfEL4S5kkFgLuXJ5KnKCEjV6dAE-mC5TZbNJPKgfB0zt_gYfS9_zBGX20nhAGM9116q=w408-h403-k-no', 'd940352a-3377-4156-aab0-c82c2f718157', 7, ST_Point(17.040017, 51.101149)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toalety', 'MOP Moczydła, Moczydła 80, 05-306', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqXVG3NpnTu1SQjJ0fjNjU7I3n1tyEZUhTUvguUGrMmmANYAUyDD7pz8mTDDd5Hn0WlI9lVfmM8dneUHfYgyNFsVSrZDAfcaMfVIvKl0QMADeBiYdsvaFE8KRuNI53463YFIQKpYg=w408-h306-k-no', '331bb557-255b-414a-97c8-c2b010600f91', 4, ST_Point(21.71818, 52.204081)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #152: DWORZEC GŁÓWNY (Stawowa)
+-- WC #152: Toaleta
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'DWORZEC GŁÓWNY (Stawowa)', '53-112 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npmVnl6iSYmbUPCNXDv7KcEEOthExI_UxyF6W5ofZNxH23-5AfhN77_Ym7CCEOHIqKp0JtdKhgqM0ZymgoixZugeHAATnbfR9sioWmIDKD90FDnag1pWsSzUC3n7EhSugOEhwdnfbU5XpgG=w408-h405-k-no', 'd940352a-3377-4156-aab0-c82c2f718157', 9, ST_Point(17.033382, 51.099372)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', 'Wczasowa 1, 05-540 Zalesie Górne', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=vT2rhcusf7A55pODn94oxg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=24.760038&pitch=0&thumbfov=100', '41698b0a-45ff-45bf-884f-710802efa9e2', 1, ST_Point(21.043048, 52.028681)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #153: DWORZEC GŁÓWNY (Dworcowa)
+-- WC #153: WC Toaleta
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'DWORZEC GŁÓWNY (Dworcowa)', '50-441 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqc3N8xMQJwRwmhx9JAqR_Ez9oFtyJHqxOMiQ_Ey0S2Ge7aCn9rd7WRkwrZeZflvV4wUA7guKeEN7Clg6oZCr80YMG9d9FUtpVWhrj_76rKiD09J_zVfsw6sGqwhoC-lIC6Q-SOXZ-J-i9a=w408-h510-k-no', 'd940352a-3377-4156-aab0-c82c2f718157', 8, ST_Point(17.04038, 51.101064)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC Toaleta', '00-001 Warszawa', NULL, '41698b0a-45ff-45bf-884f-710802efa9e2', 1, ST_Point(21.043631, 52.128892)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #154: Dworzec Główny
+-- WC #154: Toaleta
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Dworzec Główny', '50-002 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noEv1MW5ItzV8qXSwHb6y5BKmlE0JigQ13ehCB0XBYM8EZl0_XpAvo1JC1dCcJpCrS5Tl3YhQv9e5S6rDiaqWg9baF2E20OrXycXCVx19vFd3JBgem_qtbQUwEQ2DRO81TLrma2az-tFels=w408-h411-k-no', 'd940352a-3377-4156-aab0-c82c2f718157', 8, ST_Point(17.035396, 51.099604)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', 'Okulickiego 10, 05-500 Piaseczno', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=OfUYT56i_cT3spkIOmJT6A&cb_client=search.gws-prod.gps&w=408&h=240&yaw=91.113594&pitch=0&thumbfov=100', '41698b0a-45ff-45bf-884f-710802efa9e2', 1, ST_Point(21.027423, 52.081424)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #155: Dworzec Autobusowy WROCŁAW WROCLAVIA
+-- WC #155: Toaleta Publiczna (bezpłatna)
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Dworzec Autobusowy WROCŁAW WROCLAVIA', 'Sucha 1, 11-400 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no5Vssa651_mFGTut_bqu_fsrdVPQ_J9r3Bvv7Zb9Da_E-KLZO49vAplcjQSKBBj2mO5AdqK_qpw56cNV_Kr1gronMaKG2RRILL_hNXbZkhX_EnHWm9vmL3uV8-bPSQCCZr4NDo3w=w425-h240-k-no', 'd940352a-3377-4156-aab0-c82c2f718157', 8, ST_Point(17.035716, 51.096761)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Publiczna (bezpłatna)', 'Franciszka Klimczaka 2, 00-001 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=DY42sw2ocPRYw7nIp98LKw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=357.7395&pitch=0&thumbfov=100', '41698b0a-45ff-45bf-884f-710802efa9e2', 10, ST_Point(21.082442, 52.164555)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #156: Galeria Dominikańska
+-- WC #156: Toaleta
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Galeria Dominikańska', '50-082 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqKgMtIdUTIFkHtD_btwXwJQjYYEJHID8ii_Vgd9v_svYML_VhcqKIaCK3lYpOtRS9l8JseA2BcVDSDespggAI5V5hJkThdp_Y-0aKNQ8SxV9qUCMPYJ0HNOcbG5NvuXUKTqyhBiYhDnJcJ=w408-h499-k-no', 'd940352a-3377-4156-aab0-c82c2f718157', 9, ST_Point(17.038271, 51.106708)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', 'Bielawska 9, 05-520 Konstancin-Jeziorna', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nou19z8QJmqyyy7EcU1ZSHe0rkWoYxWk8zqrk5k3A2hl3TTeZ288QpmGEXBs5rAN0841gfquOLrxQJb_9M5qIMCt9EkPJiQAAtfCbwEXpNASkQNT2aIGf6BUZs0OEoR7vQN7JBm=w408-h544-k-no', '41698b0a-45ff-45bf-884f-710802efa9e2', 8, ST_Point(21.119041, 52.094411)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #157: Przystanek Autobusowy
+-- WC #157: Toaleta publiczna w Parku Zdrojowym
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Przystanek Autobusowy', '50-005 Wrocław', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=KGCtd0cuhAC4O4HoHiXCvg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=270.87344&pitch=0&thumbfov=100', 'd940352a-3377-4156-aab0-c82c2f718157', 7, ST_Point(17.036933, 51.103519)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna w Parku Zdrojowym', '05-510 Konstancin-Jeziorna', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npNsSfUSOeDQbeNafIynykoDP4jlTaypXkNrMCCgOasqornNr_mXarI2YSSk5sSK-qVGZ6K6B4-JNogEf9K-Vb6bRth719HRNkw0p42n08D7bKk58J9b0s_IK75sav6gUd7JaJvAg=w408-h306-k-no', '41698b0a-45ff-45bf-884f-710802efa9e2', 9, ST_Point(21.111937, 52.085482)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #158: Dworzec Autobusowy
+-- WC #158: WC
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Dworzec Autobusowy', '50-086 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqyq1CdSkD3rwqziUV1tsaaiXzIJAQ-RKridc5_ZVphYzcoiA59RiDbxoUdUcWhA1Ut_XkcWMI9p36r25ItOUFqRjMLLSShvIJVjqLqPzSu1w0hWlRG0EDDW5Oku8Q11NUaXOQr=w408-h306-k-no', 'd940352a-3377-4156-aab0-c82c2f718157', 9, ST_Point(17.032284, 51.097268)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC', 'Karczunkowska 145, 02-871 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=n4VN7Vp5XcfF6Mt1f2zG4Q&cb_client=search.gws-prod.gps&w=408&h=240&yaw=189.53804&pitch=0&thumbfov=100', '41698b0a-45ff-45bf-884f-710802efa9e2', 1, ST_Point(20.993724, 52.109789)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #159: Dworzec Autobusowy
+-- WC #159: Toilet
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Dworzec Autobusowy', '50-086 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrtL6kD5FpMyj4O2SjyC5vq80UjpdwyjnAY-mbj_3ilzU5kfsstEd_A_BBI5DNzYB_AXk2-cVz2gcSjb99ceYr9sKag4ZEIJDNwUc1RcNKhj2oE69rvWxot_4mJccPyb8MDcrKu=w408-h306-k-no', 'd940352a-3377-4156-aab0-c82c2f718157', 8, ST_Point(17.037265, 51.097042)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toilet', '02-958 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=xHLtGk8adgbmyi1jNA3dBQ&cb_client=search.gws-prod.gps&w=408&h=240&yaw=243.9053&pitch=0&thumbfov=100', '41698b0a-45ff-45bf-884f-710802efa9e2', 2, ST_Point(21.085223, 52.166983)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #160: Port Lotniczy
+-- WC #160: Toi Toi
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Port Lotniczy', '54-530 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr1GBcmBc9CmADlLShR-C43ZM3a-LNLJhygvfX3hnebz9ukOFUA6GB2y1E5MuZQKRUKl5HFbdaKFjTiR84W-zpA9stxgM3Z8jdDstvOwyR7bqjmMOw0-qr4-YSBOzeA-4-XSit5=w408-h544-k-no', '52790b44-46ec-4096-b2bb-af145ffec0a7', 9, ST_Point(16.882459, 51.109393)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toi Toi', '00-001 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=VsOtxyUeW_b-QKFqYaOlyQ&cb_client=search.gws-prod.gps&w=408&h=240&yaw=176.29729&pitch=0&thumbfov=100', '41698b0a-45ff-45bf-884f-710802efa9e2', 10, ST_Point(21.103426, 52.120748)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #161: Port Lotniczy Wrocław S.A.
+-- WC #161: Toaleta
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Port Lotniczy Wrocław S.A.', 'Graniczna 190, 54-530 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipNp-pcFlF93mHyrMeBt50beAHW42GfAGBFyHILd=w408-h272-k-no', '52790b44-46ec-4096-b2bb-af145ffec0a7', 8, ST_Point(16.885428, 51.104235)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', 'Park Kultury w Powsinie, Maślaków 1, 02-973 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npp6Uq8CIlHADThVcyDd0GYthlavLKssga4MKQ8_lViuqhJGAPUsx8t8OD_-5Dqk3KT0UCgsOsoNmnDYad6H9dd1HOfeSSxdr4_8OCBX3InT0OzEX-AEcjJhLXuNAnFIQMtSZEVaw=w408-h306-k-no', '41698b0a-45ff-45bf-884f-710802efa9e2', 7, ST_Point(21.090737, 52.116478)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #162: Lotnisko Szymanów, Aeroklub Wrocławski
+-- WC #162: Toaleta
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Lotnisko Szymanów, Aeroklub Wrocławski', 'Szymanów, 51-188 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrD9u1ZtHye4sZ4ixSLY7wz4QPGQwewrL35-84LBkSM0pmEJLscFXPZ6SLix5gt4AK8k0ijlXIT9M5D1b5-SCqIw1aXlOBgDlkdhzJm3wLJNS6m9ZcybXoWeY5dD5dn_8AXlO4A=w408-h305-k-no', '52790b44-46ec-4096-b2bb-af145ffec0a7', 9, ST_Point(16.997387, 51.204593)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', 'Warszawska 4, 05-510 Konstancin-Jeziorna', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=TLkZtL64_vAE5G91rhQ6vw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=40.495735&pitch=0&thumbfov=100', '41698b0a-45ff-45bf-884f-710802efa9e2', 1, ST_Point(21.119411, 52.092195)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #163: Aeroklub Wrocławski
+-- WC #163: Toi toi
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Aeroklub Wrocławski', 'Henryka Sienkiewicza 108/110, 50-348 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqvd9COKX4BBLKU82bilHZYYHKSDtduC7VyRpEWaVzo2gRxta4k6tNlYEzzYMZtkCjAXKWGDxHZUWVCFexOkDZl893MzQsDSOv5n37lfZTr4lf8W1Yq9xgv8NYf6NTN7_qZsFal4Q=w408-h550-k-no', '52790b44-46ec-4096-b2bb-af145ffec0a7', 6, ST_Point(17.06031, 51.115995)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toi toi', '00-001 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=pMZdyYQFotzPQCA5DwkqBQ&cb_client=search.gws-prod.gps&w=408&h=240&yaw=247.91904&pitch=0&thumbfov=100', '41698b0a-45ff-45bf-884f-710802efa9e2', 10, ST_Point(21.10474, 52.128295)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #164: Port Lotniczy
+-- WC #164: Magazyn PandaBuy Poland
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Port Lotniczy', '54-530 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npM1kMqE6JY9qcfmWNsT6ATBVcY6dD2Eq2wCUTm-3Z7z4G2nCibRZUfG8giEVKuBeHB_1KSLMMbH1BV1KjTy14ATG04hQ-4PZGj0GY0FqLHjFdrb55ZWTFhqY-kMPt-gI4Iz0K0nw=w408-h306-k-no', '52790b44-46ec-4096-b2bb-af145ffec0a7', 8, ST_Point(16.88239, 51.109411)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Magazyn PandaBuy Poland', 'Kusocińskiego 6, 05-500 Piaseczno', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=-4EOveDJFkhDk5fS4fsNWA&cb_client=search.gws-prod.gps&w=408&h=240&yaw=316.65335&pitch=0&thumbfov=100', '41698b0a-45ff-45bf-884f-710802efa9e2', 9, ST_Point(21.021191, 52.079363)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #165: Amatorskie Lotnisko Modelarskie Wroclaw modele do max 1,9kg elektryczne zakaz latania spalinami
+-- WC #165: Toaleta
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Amatorskie Lotnisko Modelarskie Wroclaw modele do max 1,9kg elektryczne zakaz latania spalinami', '50-001 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no1vBOgOeZxeEw8uBn5VJsKPwgRrNSqBgUQF48Bo6ezqNE7NrkGr3bPsQm7OYQGigAg8bxPVg2Wx7M6KqobxlIbaxjjCxbWlZr2-rj74lDmc3DGQT261tuGVTf7nCBy_Y9LipgX=w408-h306-k-no', '52790b44-46ec-4096-b2bb-af145ffec0a7', 9, ST_Point(17.121474, 51.101273)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', '00-001 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=NFFlMKJiN3e7MxRJqciynw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=182.12122&pitch=0&thumbfov=100', '41698b0a-45ff-45bf-884f-710802efa9e2', 6, ST_Point(21.059557, 52.132894)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #166: Lotniczy Dworzec Towarowy Wrocław Sp. z o.o.
+-- WC #166: Toaleta
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Lotniczy Dworzec Towarowy Wrocław Sp. z o.o.', 'Władysława Zarembowicza 40, 54-530 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipOBnoPqqStZQfAe1D2yUjvB-rbYd-XFSMMBD9R4=w408-h306-k-no', '52790b44-46ec-4096-b2bb-af145ffec0a7', 8, ST_Point(16.885429, 51.107244)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', 'Unnamed Road, 00-001 Warszawa', 'https://lh3.googleusercontent.com/p/AF1QipMLXjRuykSGgup_FDeo0romJeoibQl8iIpLZ9s5=w408-h544-k-no', '41698b0a-45ff-45bf-884f-710802efa9e2', 5, ST_Point(21.08902, 52.11628)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #167: SkyTaxi Sp. z o.o.
+-- WC #167: Toaleta Płatna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'SkyTaxi Sp. z o.o.', 'Strzegomska 48a, 53-611 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipNPs9b3_DYPd_L8i-f9Q6N927olUCVbuwpsmqGS=w408-h267-k-no', '52790b44-46ec-4096-b2bb-af145ffec0a7', 9, ST_Point(16.984597, 51.112566)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Płatna', '26-315 Poświętne', NULL, '7a1b0738-80f9-4872-bbbf-c519c7f221d7', 1, ST_Point(20.365238, 51.530819)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #168: Parking długoterminowy
+-- WC #168: Toaleta Miejska
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Parking długoterminowy', 'Graniczna 190, 54-530 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr-snH4k29-38SCGg7eQjG6gPiIK1BuEHJqZDmj2nnX38op5vD7KCb8XbZ5U886VEaJamwK3huDQtcl4dAttCRW56Qj7YR0ExG8GuPqYWvu-DpzMOyyjDGevawYFM0aQGn_r5n2=w408-h544-k-no', '52790b44-46ec-4096-b2bb-af145ffec0a7', 7, ST_Point(16.87622, 51.111111)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Miejska', '08-530 Dęblin', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrMUfMl-6_ekBIvnCsUm3j3kwrAx1L8F4eyvo-PLKflhqXnXOlYIxOpUGH1BfzZrQQYeHhAIrriN0Mvp-FAvD0qLVE70Q7QNHSevz3kv885B-G_liuEo2iqvSOsJEkyixt0lVa7hg=w408-h544-k-no', '6740edc3-1a39-4ffb-9315-4bbe3682c333', 10, ST_Point(21.865478, 51.563025)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #169: Lotnisko Mirosławice (EPMR)
+-- WC #169: Toaleta Wc
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Lotnisko Mirosławice (EPMR)', 'Aeroklub Dolnośląski, Lotnicza 14, 55-080 Mirosławice', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr9gyqyr5hY5RXyslMceO0Myh4RPTViCkk0A4BWJcMaDVZP1J-yhQ37Rl-gzfzUvlri58J6F1SVj3-iBDqJnK6TNPRMNIEI4QdUZ58T32zGCs6UyjbwNgN5xEY-N0SRX0z5C-a-=w408-h306-k-no', '52790b44-46ec-4096-b2bb-af145ffec0a7', 9, ST_Point(16.77031, 50.959075)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Wc', 'DW805 79, 08-440 Lipówki', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=TIAjYZjIrMiuXAbAf65U5g&cb_client=search.gws-prod.gps&w=408&h=240&yaw=9.890228&pitch=0&thumbfov=100', '29a13405-69e2-428a-8590-dc3b3cdea762', 1, ST_Point(21.569157, 51.957221)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #170: Parking pod Żyrafą
+-- WC #170: WCExpress.pl | Najlepsza porównywarka ofert na wynajem toalet przenośnych. Zamawiaj online 24/7
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Parking pod Żyrafą', 'Rdestowa 22, 54-530 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipPdt-saUbu_oQZOm0_W-Nc6p_SDrNPca5A4JnJJ=w408-h305-k-no', '52790b44-46ec-4096-b2bb-af145ffec0a7', 6, ST_Point(16.887646, 51.11167)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WCExpress.pl | Najlepsza porównywarka ofert na wynajem toalet przenośnych. Zamawiaj online 24/7', 'Wiewiórki 11, 05-506 Lesznowola', 'https://lh3.googleusercontent.com/p/AF1QipMUqtvHGvmpHS_yhIXHgelqQyq21_XWpxScBZ43=w408-h304-k-no', 'd0465430-3902-49cd-b504-b459871282f6', 10, ST_Point(20.952474, 52.081992)::GEOGRAPHY, 'toilet', NOW(), NOW());
 
--- WC #171: Parking Lotnisko Wrocław - Parking Strachowice
+-- WC #171: WC
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Parking Lotnisko Wrocław - Parking Strachowice', 'Graniczna 189, 54-530 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipM6y9nzOh7CcPVl3HecXAQ7MBWw-trq6FIfP0rI=w408-h271-k-no', '52790b44-46ec-4096-b2bb-af145ffec0a7', 7, ST_Point(16.885965, 51.111563)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC', '05-420 Otwock', NULL, 'c1fbbc3e-4b5a-4f7c-bfb2-d706dd0e7f64', 8, ST_Point(21.237336, 52.124055)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #172: Port Lotniczy
+-- WC #172: Toaleta
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Port Lotniczy', 'Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqGkEJ5ozgHM3lTfxI4EHXtvNMNoX14tOhVkqshWYy0Uv3LEeUBmqfzyboM_pgFKsHvP-pkDhL7IDzQ1Gtk1kJXVfIJDmyzJmcYNd435cGrtfLky0mh9BFdtlQ31uClYWhZLJo=w426-h240-k-no', '52790b44-46ec-4096-b2bb-af145ffec0a7', 10, ST_Point(16.879911, 51.110198)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', 'Łukiska 29, 04-123 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=rMeJDPo0W8NFN5QacQRHgA&cb_client=search.gws-prod.gps&w=408&h=240&yaw=279.5524&pitch=0&thumbfov=100', 'cf754f8e-a066-4f9d-89b1-757736c60d50', 1, ST_Point(21.096869, 52.23758)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #173: Lądowisko Dla Helikopterow
+-- WC #173: Toaleta Wc
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Lądowisko Dla Helikopterow', 'Weigla, Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noONEbcwp8gLoDINCd8HTQfFlawuohEdPrtDFnv6J_lvFjzhfiY1N0PnfODWUX5gs5VjRL_7AXe987QbUgn1ec9cGPplBgHXpCW87DzT7R07jCnNU5oP9U8YukpQODCrTTOQ2bn=w408-h544-k-no', '52790b44-46ec-4096-b2bb-af145ffec0a7', 7, ST_Point(17.020084, 51.072306)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Wc', 'DW805 79, 08-440 Lipówki', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=TIAjYZjIrMiuXAbAf65U5g&cb_client=search.gws-prod.gps&w=408&h=240&yaw=9.890228&pitch=0&thumbfov=100', 'c4e57369-8db3-48e8-9906-4a06d23c6627', 1, ST_Point(21.569157, 51.957221)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #174: Wroclaw Airport ul. Graniczna 190
+-- WC #174: Toaleta publiczna
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Wroclaw Airport ul. Graniczna 190', 'Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npXFHqy6W-Ltci6qGzdZxU_YxhT3mvrfPQb_xjDCzREp1Y4KaNJ1jhkABpU2ipztx2O1R8BaLYVKW26zt7dSqs9yeNxovLPfmrHXOAVuyr8w-qsKoNOfRVFl6xjZCLEx4IWXhVs=w426-h240-k-no', '52790b44-46ec-4096-b2bb-af145ffec0a7', 6, ST_Point(16.880214, 51.110123)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna', 'Sierakowskiego, 05-509 Piaseczno', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nplvMUt9Jyo4fWgh46A8KgrGNws0-XoI34D-x-Hz-olLHJtNL_qfBNqPIVVYKTcMLQUgbgPzjIzr0jEKQTaB8kSBb1fWQyLMGo-zzGi9C2euFIOOKve6W1rH8lCe63lFA696-ying=w408-h306-k-no', 'f77f7679-e065-45ce-b616-8ed3862c3760', 7, ST_Point(21.02855, 52.07417)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #175: Transfery
+-- WC #175: Toi Toi
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Transfery', 'Nowowiejska 1/21, 50-314 Wrocław', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=rqIYHfifZTuqPlVV2NS3RA&cb_client=search.gws-prod.gps&w=408&h=240&yaw=204.16989&pitch=0&thumbfov=100', '52790b44-46ec-4096-b2bb-af145ffec0a7', 6, ST_Point(17.045825, 51.124033)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toi Toi', '05-077 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=rfcz9DYF9Qer3fJcaAICCQ&cb_client=search.gws-prod.gps&w=408&h=240&yaw=112.04782&pitch=0&thumbfov=100', '04b3d052-b9e2-458b-9197-3978ab0d62f5', 8, ST_Point(21.18881, 52.149922)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #176: Parking Rondo Lotnisko Wrocław
+-- WC #176: Toi Toi
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Parking Rondo Lotnisko Wrocław', 'Skarżyńskiego 2, 54-530 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipOztBFMoMc-KyPUVu1_ZK2v4X7JFC9jYlGlUtzE=w428-h240-k-no', '52790b44-46ec-4096-b2bb-af145ffec0a7', 8, ST_Point(16.902565, 51.109155)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toi Toi', 'Bronisława Czecha 8147, 04-555 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=vEhW4yusqQx84dJe52la3g&cb_client=search.gws-prod.gps&w=408&h=240&yaw=350.32184&pitch=0&thumbfov=100', '04b3d052-b9e2-458b-9197-3978ab0d62f5', 1, ST_Point(21.180851, 52.22584)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #177: Lądowisko Golędzinów
+-- WC #177: WC Toi Toi
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Lądowisko Golędzinów', 'DW342 28, 55-120', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqiC4OSvnjRVPIkxje1Dpdqoax_l0JT69TqH46dUyePz77YVoWRoavlNs3GSVh8oDeEA5fU3MVGXAaIKhH2rIJ-oqhDjVKca48ENCePB2a9Ac_S2NV3HYv0t9kmIoBRDD5Q0uan=w426-h240-k-no', '52790b44-46ec-4096-b2bb-af145ffec0a7', 10, ST_Point(16.925741, 51.26301)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC Toi Toi', 'Dominikańska 15, 05-530 Góra Kalwaria', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=ISqbhZ2W9-lu8HXEXxONCg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=81.7767&pitch=0&thumbfov=100', 'abb56c16-2949-403d-a16e-0ca7e875f847', 1, ST_Point(21.216022, 51.977865)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #178: 8. Baza Lotnictwa Transportowego - Komenda Obsługi Lotniska
+-- WC #178: WC (Płatne) 1zł
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', '8. Baza Lotnictwa Transportowego - Komenda Obsługi Lotniska', 'Graniczna 13, 54-530 Wrocław', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=xXw_6mNCOCRxPDXpvmv6yw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=147.80728&pitch=0&thumbfov=100', '52790b44-46ec-4096-b2bb-af145ffec0a7', 7, ST_Point(16.908503, 51.108371)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC (Płatne) 1zł', 'ks. Z. Sajny 0, 05-530 Góra Kalwaria', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=PxmaTk_11v9feuP7NP0Iag&cb_client=search.gws-prod.gps&w=408&h=240&yaw=80.610466&pitch=0&thumbfov=100', 'abb56c16-2949-403d-a16e-0ca7e875f847', 10, ST_Point(21.221335, 51.979508)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
--- WC #179: Heliport Lądowisko dla helikopterów
+-- WC #179: Toalety
 INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
-VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Heliport Lądowisko dla helikopterów', 'Generała Romualda Traugutta 118, 50-438 Wrocław', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=N2Bs6TZQ1vgSL0vW0wpwgw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=65.53822&pitch=0&thumbfov=100', '52790b44-46ec-4096-b2bb-af145ffec0a7', 1, ST_Point(17.056823, 51.099793)::GEOGRAPHY, 'toilet', NOW(), NOW());
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toalety', 'Łubińska 69, 05-532 Baniocha', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrnvdUZDlF7VMm99ISnpyINo7W0D50GWtbLx3S5CXJR18pyuTwfJKpB9jG1W1Hme7jpgxISxEVw9p4fH_eCzsdGlGTCsnGYVsABpbT_qXExeAh9n4PK2nUwByG00tfeEK5lo_nI=w408-h725-k-no', 'abb56c16-2949-403d-a16e-0ca7e875f847', 8, ST_Point(21.121469, 52.026851)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #180: Toaleta publiczna na basenie miejskim
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna na basenie miejskim', 'Pijarska 119, 05-530 Góra Kalwaria', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=gpELIWBxBJDW5qvVXF-lzw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=209.40541&pitch=0&thumbfov=100', 'abb56c16-2949-403d-a16e-0ca7e875f847', 1, ST_Point(21.199884, 51.988401)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #181: WC
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC', '3 Maja 10, 05-530 Góra Kalwaria', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=lrxFgW5yErKmaaLSwmbtcA&cb_client=search.gws-prod.gps&w=408&h=240&yaw=206.95656&pitch=0&thumbfov=100', 'abb56c16-2949-403d-a16e-0ca7e875f847', 1, ST_Point(21.218087, 51.981606)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #182: Publiczne Toalety
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Publiczne Toalety', 'plac Wolności 1, 05-600 Grójec', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=CGg24G_KAEsY1PwOjx0juQ&cb_client=search.gws-prod.gps&w=408&h=240&yaw=252.82777&pitch=0&thumbfov=100', '0e9d42fd-c92f-45c5-9f25-04e2e9d55a9e', 6, ST_Point(20.866097, 51.865819)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #183: Toaleta
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', '58-260 Bielawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=YQi0_ocP4aV0DzvDGjaiCA&cb_client=search.gws-prod.gps&w=408&h=240&yaw=153.91293&pitch=0&thumbfov=100', 'e8192609-8462-48ef-ae04-91409b8c74a6', 4, ST_Point(16.611495, 50.684926)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #184: Toaleta
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', '58-260 Bielawa', NULL, 'e8192609-8462-48ef-ae04-91409b8c74a6', 10, ST_Point(16.589378, 50.679688)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #185: Toaleta
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', 'Wojska Polskiego 39C, 58-260 Bielawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no5U9QgbQuAaQ8mSnXH43rgjovvXSi7FwSvrZMNpDBrAZhVUBrexMLBHaNicBCPGJUoO4MbaxHsXTJbKgIutLahQ_sI7wxvdoeoZNw7jYfmwi9fKSq16rhqQbOaiR4RFlCfvu9MlCGzGWtf=w408-h544-k-no', 'e8192609-8462-48ef-ae04-91409b8c74a6', 1, ST_Point(16.634616, 50.682973)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #186: Toaleta publiczna
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna', 'Wojska Polskiego, 58-260 Bielawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=6LfW2H5NURs53e1Qu6-1Bg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=272.9028&pitch=0&thumbfov=100', 'e8192609-8462-48ef-ae04-91409b8c74a6', 8, ST_Point(16.628088, 50.686457)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #187: Toalety
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toalety', '58-260 Bielawa', NULL, 'e8192609-8462-48ef-ae04-91409b8c74a6', 1, ST_Point(16.589643, 50.681056)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #188: Toaleta
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', 'Wojska Polskiego 39b, 58-260 Bielawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Lhz1Qh78D5L1MvMWsrbEJg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=70.57399&pitch=0&thumbfov=100', 'e8192609-8462-48ef-ae04-91409b8c74a6', 2, ST_Point(16.633909, 50.681236)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #189: Toaleta publiczna
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna', 'Skowronki 26, 05-622 Skowronki', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=vvVhxCmonoX1eBm2_sunyg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=299.2135&pitch=0&thumbfov=100', '5bd76395-762c-4f3c-a2b0-2d898e12811c', 1, ST_Point(20.786906, 51.797441)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #190: Publiczne Toalety
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Publiczne Toalety', 'plac Wolności 1, 05-600 Grójec', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=CGg24G_KAEsY1PwOjx0juQ&cb_client=search.gws-prod.gps&w=408&h=240&yaw=252.82777&pitch=0&thumbfov=100', '92192b9e-351f-4731-8818-6d4d06d678f2', 6, ST_Point(20.866097, 51.865819)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #191: Toaleta WC
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta WC', '05-800 Piastów', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq-OFPV-N6vOk1RUwfjDE7ZxCp5QbiwWzeYD_FKaj1tFn9sjOJ5gtWf45NXdRok6dtAwaziJQIXgJpfu-YaHlrTP3N411dVcrHnA4hLhWDLLWOh05rZpxqrZf5GdgRYxQsvPQuW=w408-h544-k-no', 'f444d944-25db-4fb8-a529-1af6ec6b8c60', 3, ST_Point(20.842155, 52.182109)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #192: WC
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC', 'Stefana Jaronia Kowalskiego 31, 05-800 Pruszków', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=eqgJSzBkNKXUrARbjn5asA&cb_client=search.gws-prod.gps&w=408&h=240&yaw=306.02206&pitch=0&thumbfov=100', 'f444d944-25db-4fb8-a529-1af6ec6b8c60', 8, ST_Point(20.799909, 52.182864)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #193: Toaleta
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', 'A2, 05-840', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrzUSBxXLjln4e34XQax6ugcvsdWfR72v6D7PiVYReXrxTPQwj8yJCXvgpqVLYWCOuoUGkW2M2FEdkfZGP3ghpUUnIUUo4z4MGWyW5jFH2BPzUJpgRI_kbAzKGyuoGMM7kzaDdz=w426-h240-k-no', 'f444d944-25db-4fb8-a529-1af6ec6b8c60', 7, ST_Point(20.687235, 52.154235)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #194: Toaleta Publiczna Bezpłatna
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Publiczna Bezpłatna', '05-800 Pruszków', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no87QfPcx-gfrYg2Pjs_ZIVcRLj56PiLTp5hC3xxL89MkTQQip_hQ1ZeSCd7v2F4K6msAul53GdHEasAHBjbFuagMrTK1Ipzs3FAIYZMQ6f0b-zvc9rBNVnZzrj2SYV9fSRgI3S=w408-h560-k-no', 'f444d944-25db-4fb8-a529-1af6ec6b8c60', 4, ST_Point(20.817124, 52.164479)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #195: WC
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC', 'Malwy, 05-800 Pruszków', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=gt4jU2UcMxB32DKYVH6XQA&cb_client=search.gws-prod.gps&w=408&h=240&yaw=12.467407&pitch=0&thumbfov=100', 'f444d944-25db-4fb8-a529-1af6ec6b8c60', 1, ST_Point(20.78569, 52.176389)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #196: Toaleta
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', 'Kotowice 17, 05-840 Kotowice', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrxXKIuajWAXiZd-Nt9etj8mo_Sthw4Oqj7ZDp0HWjWRUcBzzdWDIp7bNl5axX_Pa9yZJYg5-HAzgKdo3EaLLi1dMF7BlFQYUoJtqyGDePReZXPICXAijzYzb-X_ofGe_7-xlJ_HA=w408-h306-k-no', 'f444d944-25db-4fb8-a529-1af6ec6b8c60', 4, ST_Point(20.684502, 52.155889)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #197: Toaleta publiczna
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna', 'al. Krakowska 26, 05-820 Piastów', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=2EjvAuMI5gno3dlzyemfTg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=82.60534&pitch=0&thumbfov=100', 'f444d944-25db-4fb8-a529-1af6ec6b8c60', 9, ST_Point(20.844913, 52.189366)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #198: Przewijak plenerowy
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Przewijak plenerowy', 'Fryderyka Chopina 25, 05-800 Pruszków', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr7GoF54Cv5COps0wa4qk4_yGTWHYMRimNQ2Oh4CVH_K6H3FVnrbF78DMo0izu2zELuTLKzpYf0vOHDj2ZVT5CkYb9dDATjxkLNfniK4-64315tk2VsoFknWtgeBg2x66q2QnU_Ag=w408-h544-k-no', 'f444d944-25db-4fb8-a529-1af6ec6b8c60', 1, ST_Point(20.800232, 52.164535)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #199: WC
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC', 'Henryka Sienkiewicza 2K, 05-800 Pruszków', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nprchLMB4ehRiAkqV7gbWnYNhQp_IuYyA_r9e6UXeigE7yvSWmMNih2wszlkWjluT0Gy_nuO450N8BQoTmccQdeStOcChruTRsQ1jKczKZXueP4PtvzdZnYWZHMs_RT0pfsLDoleQ=w408-h401-k-no', 'f444d944-25db-4fb8-a529-1af6ec6b8c60', 1, ST_Point(20.797607, 52.167565)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #200: Toalet płatna
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toalet płatna', '05-800 Pruszków', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=e2Q6S7Nt6daSPx6zf6Wp2A&cb_client=search.gws-prod.gps&w=408&h=240&yaw=77.48537&pitch=0&thumbfov=100', 'f444d944-25db-4fb8-a529-1af6ec6b8c60', 1, ST_Point(20.799788, 52.163778)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #201: Toi Toi
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toi Toi', 'Marszałka Józefa Piłsudskiego 30, 05-822 Milanówek', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=hOLAENRKscpKPiWPS95RAw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=70.694374&pitch=0&thumbfov=100', 'f444d944-25db-4fb8-a529-1af6ec6b8c60', 4, ST_Point(20.666385, 52.12383)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #202: Toaleta publiczna w Eko Parku
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna w Eko Parku', 'Wolności 19, 02-496 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=BSyPQs55MLXd-DdN7lWQAA&cb_client=search.gws-prod.gps&w=408&h=240&yaw=117.83367&pitch=0&thumbfov=100', 'f444d944-25db-4fb8-a529-1af6ec6b8c60', 10, ST_Point(20.870955, 52.202208)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #203: toaleta
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'toaleta', 'Park im. Adama Mickiewicza, Zgierska 139A, 91-488 Łódź', NULL, '8dd274da-65ae-4cec-99f7-095da5422534', 10, ST_Point(19.443076, 51.805169)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #204: Toalety
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toalety', 'Międzychodzka 22, 62-045 Pniewy', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Hg43rzpdwD6fGD5wJix7EQ&cb_client=search.gws-prod.gps&w=408&h=240&yaw=11.738305&pitch=0&thumbfov=100', '8dd274da-65ae-4cec-99f7-095da5422534', 1, ST_Point(16.25572, 52.511695)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #205: Toaleta Publiczna
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Publiczna', '90-001 Łódź', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrnW-JZjSkw78d64BY7ySiy1MXPWrBgYjlVe6j2pVKcBy93pFaeP2XeidlVY8X6BGW9aQPFE6Qo8ImtLcM8QlTb2GDwuNsyGUn2SKBcGN7i_bQM2UZGZrjcsER1f0_PvQ05yCg=w408-h725-k-no', '8dd274da-65ae-4cec-99f7-095da5422534', 5, ST_Point(19.487175, 51.790431)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #206: Toaleta przy przystanku
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta przy przystanku', '05-620 Błędów', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noeTps2XBhQJN0SxT9yR7ciNYXPTSozOrGIQrMElPreQolUMCKLCoaTw3aGU2vsfsVWAy4q7Z73YspdbDx0PJOGd0yJY0ooYEmbNXS_FZlgb_TEI5jSp_AQtCkgm4V0MQuO0r6RP4NzfOLH=w408-h544-k-no', '87120190-cea2-4576-89c4-cc1641575a9e', 1, ST_Point(20.696731, 51.777225)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #207: WC szalet miejski
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC szalet miejski', 'Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqwa9pdxtYZqojeuvRV3cp5p51MoRC44qP1IuoHyHpvB1i80b7uLBq-rkGc3q6qGRY-tbw0a2KgHkL4B4uiBOXEdPwhh_hqbjrIHlmlVwDfyFfa4QRwGNyx_JQZ49CZSszULLw=w426-h240-k-no', '87120190-cea2-4576-89c4-cc1641575a9e', 10, ST_Point(20.990154, 52.280426)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #208: Toaleta publiczna
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna', 'Promyka 7, 05-830 Urzut', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npvTa2nHyEzngfIoJ4lOv8F_-IX1MEbnkapP_r3MOzSE0JQZU6fvolbrHVP9OzywuoDN23PBRLITrQjo4vl1y4Xi4MLLDnXtP3kKQPqh0p21kIXjRj52iTSXDnmWnTrv4R6bOhv=w408-h240-k-no-pi-0-ya20-ro-0-fo100', '552bc98b-8edb-482e-981a-7bdbedaf1134', 4, ST_Point(20.746891, 52.066122)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #209: WC Tron - toalety przenośne
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC Tron - toalety przenośne', 'Wybrzeże Juliusza Słowackiego 9, 50-406 Wrocław', 'https://lh3.googleusercontent.com/p/AF1QipMukbHthnHMkQiqfYcOZjMXGLKuPEDnBCS36a9B=w408-h305-k-no', '5593ef60-9372-4004-aa1f-388088909a69', 9, ST_Point(17.052047, 51.107807)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #210: Toalety i Prysznice
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toalety i Prysznice', 'Toalety i Prysznice', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npdJUhk4ARQ9pgZjTNerNKGRkDYJHo4JlBX5nhnEaCT4e4E3Andd7y6YWUWY54DUKefEY26jVKAwSmSFF7uHJNIjRguNQZeILIrJGJDD21Ea5gNWM4rvz3j6umpxsdJeAoK1tlEAJ4VLTc=w408-h306-k-no', 'be486190-a82c-486c-8ed0-28adbcdcfe08', 9, ST_Point(18.23949, 51.311559)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #211: Toaleta
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', '98-360', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npKHJ9iPX5NJAVGZNfg14oefUcjb-xJlyMo--HXNn5H2FPrgiI0V-CuEAzWQIq1mFPAhcQjJsOCly6dF8J3gzDHLLljOET0ggLzfHvHzwiwy9oUyOSmGwRCdGL6U-uyShgC1fmU=w408-h306-k-no', 'be486190-a82c-486c-8ed0-28adbcdcfe08', 9, ST_Point(18.522707, 51.357905)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #212: Toaleta publiczna im Piniaków rodaków
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna im Piniaków rodaków', 'Piniowa 3, 05-830 Stara Wieś', NULL, '28d56b09-d2bb-4dcc-80e3-ed5f0d28a76f', 4, ST_Point(20.757081, 52.080522)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #213: Toaleta miejska
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta miejska', 'Słowicza 3, 05-807 Podkowa Leśna', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr5VmRaQIbxMafIWMB7nl8L6scN-XFdlFCI-3bxZwDhbnidlCCrycMoSGSP3-tGlhbui78hYYJ6NpdOt59ukzwHei1k2Z2PvlNUn2eebGXOloGczgz5ICsg9vXQeke5UEDUfB6bSQ=w408-h272-k-no', '658bb727-e77f-4aaa-b2f2-e425b597ebdd', 3, ST_Point(20.724089, 52.122735)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #214: Toaleta Publiczna
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Publiczna', 'Elizy Orzeszkowej 5, 05-827 Grodzisk Mazowiecki', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr96VNwt9GwNDhs01r7e6P9T0HrOGqrhpGP56hklqKAuCAALMkovg_a8d5lwTHc9Cojz_5cezQJf60kUNqzZ_AKQimGSjnzNDZC6ctX_VYhRJNqMJPWH7CyPOc1TPRCtUp0lcYJ=w408-h544-k-no', '658bb727-e77f-4aaa-b2f2-e425b597ebdd', 9, ST_Point(20.6394, 52.109327)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #215: Toaleta publiczna (WC - bezpłatna)
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna (WC - bezpłatna)', '05-870 Błonie', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqHE1XPXp0dUNQlQDcmZKAN9CRmwalX_-SGXM5-DzphPPIbSbTmx1TrwqWgSAKQ-sduDJ3jxWjRyseW6axz9NfJAV_JRfhcUJ4KoXHSAWePMs6edy7BY_o-Neogd8Y-t_Vzw5M0=w408-h306-k-no', '7059329d-6d86-446c-8e92-dcd1a98b6603', 10, ST_Point(20.615504, 52.19215)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #216: Toaleta Publiczna
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Publiczna', 'Marii Skłodowskiej-Curie 5, 05-825 Grodzisk Mazowiecki', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=C7bO1YiX4qbpp7b9G6nWgQ&cb_client=search.gws-prod.gps&w=408&h=240&yaw=133.23375&pitch=0&thumbfov=100', '7059329d-6d86-446c-8e92-dcd1a98b6603', 10, ST_Point(20.630954, 52.105033)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #217: Miejska Toaleta
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Miejska Toaleta', 'Rynek 13a, 05-870 Błonie', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=YV_7aR2x1urQL9PhWNBUGw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=240.56047&pitch=0&thumbfov=100', '7059329d-6d86-446c-8e92-dcd1a98b6603', 10, ST_Point(20.616025, 52.195053)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #218: Toaleta Publiczna
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Publiczna', 'Nadarzyńska 63A, 05-825 Grodzisk Mazowiecki', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqGO3gTd3HbgQpumICaf503iWAtOpgSYDhFs5HGSAzgr_aEdS7Aq0mZpVm0KQNYDFs1i6Jbt7dR1oE3UKj5J7onyD6swdSMNQHOGjtXoSk9-vbSGman-paZtT6jBflfkZ3P46c=w408-h544-k-no', '7059329d-6d86-446c-8e92-dcd1a98b6603', 1, ST_Point(20.639047, 52.101092)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #219: Toaleta toi toi
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta toi toi', '02-495 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npnpAruAT25SI_X0OmYlh0LfYfrkUWbEFZj60OB9fdAJ7ueiaHM-GuoN4rNasMBMdvwCkCgeCcm3fM29qF1jFxCqMolSwGEZAdBtjdGygRRTTXHBGzlgR1UYVLGWtAw1jDcQfFEKg=w408-h544-k-no', 'e0e665f9-7bc4-49ca-aff0-bd90e8b30c6c', 10, ST_Point(20.902679, 52.198356)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #220: WC Partner
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC Partner', '02-495 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=tfY7NyBAzVz-p21aAiD8xg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=247.05942&pitch=0&thumbfov=100', 'e0e665f9-7bc4-49ca-aff0-bd90e8b30c6c', 4, ST_Point(20.890951, 52.185564)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #221: Toi toi
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toi toi', '00-001 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr-UO0SvCJpPkLAtGHSYaGuzm7feAmb-WJcFaV7jeuPKo-okO7-mESBULN3wGfhkZT5IRM6Q4KI1awsJJrr-AIXI1VuiN0rLz-um0Yyujyk8fjdWpMVeCk2ROmsbufpF_doaOJb=w408-h306-k-no', 'e0e665f9-7bc4-49ca-aff0-bd90e8b30c6c', 8, ST_Point(20.868754, 52.19161)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #222: WC Chatka
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC Chatka', 'Zbocze 18, 02-493 Warszawa', NULL, 'e0e665f9-7bc4-49ca-aff0-bd90e8b30c6c', 1, ST_Point(20.92407, 52.201496)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #223: Toi Toi
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toi Toi', 'Ryżowa, 02-495 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=pEOPRvRiDjCKIuFTOO9uKA&cb_client=search.gws-prod.gps&w=408&h=240&yaw=106.52042&pitch=0&thumbfov=100', 'e0e665f9-7bc4-49ca-aff0-bd90e8b30c6c', 3, ST_Point(20.911093, 52.195999)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #224: Toaleta publiczna WC
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna WC', 'Żyrardowska 16, 05-825 Grodzisk Mazowiecki', NULL, 'a40b450a-7e8d-483f-a0ac-1124b33410d1', 7, ST_Point(20.608172, 52.098562)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #225: Toaleta Publiczna
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Publiczna', '05-825 Grodzisk Mazowiecki', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=UeBDSn6ZPPSLYHn3NXX_fw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=332.57474&pitch=0&thumbfov=100', 'a40b450a-7e8d-483f-a0ac-1124b33410d1', 1, ST_Point(20.620096, 52.10353)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #226: Toaleta na dworcu w grodzisku mazowieckim
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta na dworcu w grodzisku mazowieckim', '05-825 Grodzisk Mazowiecki', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqsVSXcdzK_SaZpEe1eCO_sgnO8dnUyqnH0lOmqNJhSA2gntWb6i-Ln6bXxSB387Ub6s1mZtBMAxgqgeww_D8CKcvo3UZjmOf2YZlSS9sJG94k8q7Hy3Tu8FwjGMt5PFpIhZWyRQh4XGiB7=w408-h544-k-no', 'a40b450a-7e8d-483f-a0ac-1124b33410d1', 7, ST_Point(20.622654, 52.10987)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #227: Toaleta publiczna
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna', 'Emilii Plater, 05-825 Grodzisk Mazowiecki', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=zvKRfZwIGXGNTOTHax5b0A&cb_client=search.gws-prod.gps&w=408&h=240&yaw=349.8224&pitch=0&thumbfov=100', 'a40b450a-7e8d-483f-a0ac-1124b33410d1', 1, ST_Point(20.639349, 52.098281)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #228: Toaleta publiczna
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna', 'Juliusza Ordona 15, 05-825 Grodzisk Mazowiecki', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=HCt5PYEORfR6KZLhnKpcaA&cb_client=search.gws-prod.gps&w=408&h=240&yaw=206.79782&pitch=0&thumbfov=100', 'a40b450a-7e8d-483f-a0ac-1124b33410d1', 2, ST_Point(20.610351, 52.119303)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #229: Toaleta publiczna ekopark
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna ekopark', 'Marii Nietrzebki 2F, 96-300 Żyrardów', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=F2B31YSv9iEm6jK_hW_BVw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=273.37485&pitch=0&thumbfov=100', 'e978cb18-f185-4108-8939-d45246b3cc86', 8, ST_Point(20.433921, 52.070532)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #230: Toaleta publiczna
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna', '96-300 Żyrardów', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq3L5VVSOK7ay9LNUnTU9hgI5dra9VNbAeu4d0VBpkuelq9c6I1lV-DPrGVi4wcr8liUYoaoE-2lrMJEz9lAo-CvhGLG9M7sCbllVi25gCtAS_TYC2wsFbyH0TZA5PLVtH1zpiQ=w408-h741-k-no', 'e978cb18-f185-4108-8939-d45246b3cc86', 10, ST_Point(20.437243, 52.053496)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #231: WC
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC', 'Dittricha 3, 96-300 Żyrardów', NULL, 'e978cb18-f185-4108-8939-d45246b3cc86', 10, ST_Point(20.431959, 52.058076)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #232: Toaleta publiczna w Galerii Żyrardów
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna w Galerii Żyrardów', '96-300 Żyrardów', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=RfNqAF3w1KYM9kUcellX_Q&cb_client=search.gws-prod.gps&w=408&h=240&yaw=235.13576&pitch=0&thumbfov=100', 'e978cb18-f185-4108-8939-d45246b3cc86', 6, ST_Point(20.437129, 52.056305)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #233: Toaleta
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', 'Stanisława Staszica 35, 06-100 Pułtusk', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=XpBtXWrymxvHt5RvwEohdA&cb_client=search.gws-prod.gps&w=408&h=240&yaw=62.906605&pitch=0&thumbfov=100', 'bd139815-d1ed-463b-9d71-d6f5c4fd777a', 8, ST_Point(21.0928, 52.702997)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #234: Toaleta Publiczna
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Publiczna', 'Młodzieżowa 3, 06-100 Pułtusk', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=xz3K-TX7ytyaFMYKj1nfLg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=352.30588&pitch=0&thumbfov=100', 'bd139815-d1ed-463b-9d71-d6f5c4fd777a', 7, ST_Point(21.090284, 52.70744)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #235: WC, toaleta, pisuar
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC, toaleta, pisuar', 'Bolesława Prusa 61, Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqjG-QUaIob59cePbgBjG64ajaLTrSiqrZhMF0WCKr50zUbGDI037YwTOJFPadXPJuC5KuNoavsnr1iIcc3aLXlYQYQkUw0OU3FBvhVLu44-D9F0RfHothOeiA7fyeL_jNW1hL-=w408-h544-k-no', '4977234d-a4fd-4376-baaf-a62b31816532', 8, ST_Point(17.056272, 51.119634)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #236: 06-210 Krzyżewo Borowe
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', '06-210 Krzyżewo Borowe', '06-210 Krzyżewo Borowe', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noWAM-SFmgoROay5d8QGJu0TRePthniQDp3oKnPyvmrmlBXYd2fnzCcsjcbmzq6m_lxecjCMQz5rE6_6T8WllBAtqethKw-3y1Cgs9B0VDsAwp53aQ2M7-9T7z2amL3ZB0rlqyV=w408-h306-k-no', '0b0297b2-db18-4eb5-a78e-3a632309db7f', 1, ST_Point(21.068389, 52.981368)::GEOGRAPHY, 'toilet', NOW(), NOW());
+
+-- WC #237: Toaleta miejska
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta miejska', 'Kardynała Stefana Wyszyńskiego, 55-120 Oborniki Śląskie', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Z15ukUIoJieiTCqUbH3n5Q&cb_client=search.gws-prod.gps&w=408&h=240&yaw=118.22579&pitch=0&thumbfov=100', '2a88b89f-08e3-435d-aa2d-4d6624ad01a7', 1, ST_Point(16.915497, 51.301419)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #238: WC Toaleta
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC Toaleta', '50-001 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noFGI6zbZG1Gz8xbVPb9JgfDxKBVGTIzPMYOajAfAdGh17wJThpgz7Vua60nNEr35q7TUyz4DHugz_R--GuYgSKwNaN27CI_AqepjvL98fH4i3_7ZbJnURT8BwhUgY6mhWNCBHd4w=w408-h544-k-no', '2a88b89f-08e3-435d-aa2d-4d6624ad01a7', 8, ST_Point(17.042308, 51.07596)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #239: Toaleta Publiczna
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Publiczna', 'plac Klasztorny, 59-220 Legnica', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no99wAJ7Q6pT-mPfQi3pW5g8VQI3z9-XyEoixrnO_3bCSORabPRfVncPwbbAhDBWDDacaBPZxT1135m1-GlnRYdAwnd70xEX2FsU56B1CqvMCVvexERAvpeyyti0ldFVuLrhHRNVw=w408-h724-k-no', '2a88b89f-08e3-435d-aa2d-4d6624ad01a7', 10, ST_Point(16.166177, 51.209976)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #240: Publiczna Toaleta
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Publiczna Toaleta', '59-220 Legnica', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=bNVZT6qjYEM_5pixUTsiIQ&cb_client=search.gws-prod.gps&w=408&h=240&yaw=244.07747&pitch=0&thumbfov=100', '2a88b89f-08e3-435d-aa2d-4d6624ad01a7', 1, ST_Point(16.159745, 51.211639)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #241: Toaleta Publiczna
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Publiczna', 'Górnicza 13, 59-220 Legnica', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqtrErhVPIFpplPIVoh1Rxns3SyHRhTKzRqe-P48UTpkp3DiDcaLOlEL1RhHwZ9TD5su2SgGjScx_XK4e8ASsXK32C5V1Kz-QOiiHW6qUm1gJhGfqlTQsSChPAajprQWUH_QlcKdw=w426-h240-k-no', '2a88b89f-08e3-435d-aa2d-4d6624ad01a7', 3, ST_Point(16.186053, 51.205884)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #242: Toaleta publiczna
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna', 'plac Strzegomski, 52-443 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noMi99SlTIMS_XmluhNBfekIdA3czuI3_MjbrGy7jB4OlmP1N2LdOVQnhfp5HBm6DXrAB_PDlpM5EjmehS0hVD2sUJ-QFDS8RAm6JyOGFHGdKz6OTRjkbmSHav-3urvQEBsZg5-=w408-h544-k-no', '2a88b89f-08e3-435d-aa2d-4d6624ad01a7', 6, ST_Point(17.006647, 51.113059)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #243: Toaleta
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', '50-001 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npL8Tl8NEBy4nh0MOslWN77GAiAndv05Pmd23pb79CRHrGq6Md-IdYyoYKgUIQ2v2jaMJmQM-7aCAZvJ1GfwLNQNkbmhF9ts2z6qzX4qBfflJAw8xSILFlvOcYd2hm1kosFKQjC6g=w408-h306-k-no', '1d11021e-9a60-4a47-9da9-e338ad84df41', 5, ST_Point(17.074783, 51.085215)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #244: WC Toaleta
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC Toaleta', 'Stanów Zjednoczonych 25A, 54-403 Wrocław', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=T36XwX_3pXxXmbtSL-Assg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=183.97249&pitch=0&thumbfov=100', '1d11021e-9a60-4a47-9da9-e338ad84df41', 7, ST_Point(16.965492, 51.106915)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #245: Toaleta publiczna (automatyczna)
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna (automatyczna)', 'Pilczycka 26, 54-144 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nocIJuIm42yQrZIaa0we48BjxhgAORXaqEDjuPd4PvhldDUZwgeWKBNMDOSmSwTO8t6XRyWeWEioKgd5aFhgRXLcHTcvsWhrDocUws8IQ8ZDoVJCO_npuTOjlaU5DLR22ENT7BL=w408-h544-k-no', '1d11021e-9a60-4a47-9da9-e338ad84df41', 3, ST_Point(16.975392, 51.130747)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #246: Toaleta
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', '55-100 Trzebnica', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=96DO5eRc55dTnqfZQzUSIg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=238.47348&pitch=0&thumbfov=100', '17955def-f924-4eaa-83ec-0bb490c0d789', 1, ST_Point(17.067391, 51.316213)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #247: Toaleta miejska
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta miejska', 'Kardynała Stefana Wyszyńskiego, 55-120 Oborniki Śląskie', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Z15ukUIoJieiTCqUbH3n5Q&cb_client=search.gws-prod.gps&w=408&h=240&yaw=118.22579&pitch=0&thumbfov=100', '69332776-634d-4cc3-9b1d-cdc899bc1605', 1, ST_Point(16.915497, 51.301419)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #248: Toaleta
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', 'Turkusowa 45, 71-899 Szczecin', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npHiFUYt8cbDXhOE_VMp-aye6FPrQyAkVutCu_CqHOKsOCkC57hd-gagd8oFp-zKhQ3N1CU2kJ7NCx1Lc287_KqQDdV2arpC3gB_i2Zuc-36J8WBUX2AwggHmvN65WUL2iCoI40=w408-h306-k-no', '6774164a-f4aa-4711-a479-6d74fa8c2960', 8, ST_Point(14.644002, 53.379991)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #249: Toaleta
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', '83-250', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4now1yHj8pjlcBbSVX8WQu_3fbTmxjj7RfZv-aVnZFBgIcE2uwOIflWHhCdUIpF9cKQ-h42Osi2JhJL0arnaDrTJwS5tAc_RnCVQUYwuAnwxLfMU2mmjOdrLzsDpMcEU3EeEjzly=w408-h306-k-no', '6774164a-f4aa-4711-a479-6d74fa8c2960', 7, ST_Point(18.628344, 53.887111)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #250: Toaleta
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', '87-853 Włocławek', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr5KjOO9uGRY8F2NyhgpwQ7nCWl9cVHZPv8xXj7F_pfO4g3JwZYwUKFHVmTPcUqGeyWqPSW1O5bZY3J7hSlOQnJTX-jGaFiBomDj65d-QiwmPl_1HKkme8wKxjnKBUlCGRVw0bM=w408-h306-k-no', '6774164a-f4aa-4711-a479-6d74fa8c2960', 9, ST_Point(19.01253, 52.567018)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #251: Toaleta Publiczna
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Publiczna', '12-122 Narty', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrWuyDCbKajaYVOtwBMWtp3ukDMcZehbJszrpZvCvZiMinOREJ6v1Anfp6BMR3y76ovQRbm2sO-McDqLlV4RxqdgMPfnhe66-yMR5U6qZlGGFyKYhc2wWl1s8wp4UYHdtnHi-3emA=w426-h240-k-no', '6774164a-f4aa-4711-a479-6d74fa8c2960', 1, ST_Point(20.786424, 53.540878)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #252: Toaleta w Metrze
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta w Metrze', 'Stacja Metra Plac Wilsona', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npovLzkj-2i_-ubHbVzA18GbnVVgKKbWTQeThaom1FWI8FoyS33jDyIZ4tC3YUTnBTz7XPLqa9vu1UaT66XYAJWXpm-pQB-QioeMPBG7M9nI3Yi4NI3wxccZFUp-Y_uoRkPM412Jw=w408-h306-k-no', '6774164a-f4aa-4711-a479-6d74fa8c2960', 8, ST_Point(20.985403, 52.269233)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #253: Szalet Miejski
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Szalet Miejski', 'Gen. Ludwika Bogusławskiego 19, 07-410 Ostrołęka', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr_RXLsHv0wGil7PqshDHX1pAvmKBqobcm1LgSWzg-5LOsAWkHttwIN5aCO9DvcD7JMHzeq8c6yaF-GQ7rp2q197W10WHtZuFzAr1TKbZUFmno3cAe-0pi0BIhcc5JmPmiqlCXYhg=w516-h240-k-no', '6774164a-f4aa-4711-a479-6d74fa8c2960', 7, ST_Point(21.573246, 53.085292)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #254: Toaleta publiczna
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna', 'Łazienki Królewskie, Al. Ujazdowskie, Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npa7hVZoabJxPert8vV49qj06qBa2mbXjvwla6CAS9VXtdkZmn4T4NLq-QCCbS4aKGAL-W1_yk6wT15f582CJ84HjHZhKMQv1XF1sMnmX-dXEhtUcwbSzGV85uzAQ0J8o3uPauZdA=w426-h240-k-no', '6774164a-f4aa-4711-a479-6d74fa8c2960', 7, ST_Point(21.027236, 52.214035)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #255: Toaleta
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', 'C239+R4 Toaleta, 42-584 Dobieszowice', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqS5oUhYs0N6MmytdDg8GgN8H_srgSWHJgV3V7zBPMM36X3CTGI8Rm-UcZ49wrv109SIeiS4SrISXyPExCHZDgyGXGvqPMcS9S6MWpsBc6dwtolnedRXV7fSUrLpSJnFpTIQH2oLd0_M6Sh=w408-h725-k-no', '6774164a-f4aa-4711-a479-6d74fa8c2960', 3, ST_Point(19.017754, 50.404526)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #256: Toaleta Publiczna
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Publiczna', 'aleja ks. Janusza Stanisława Pasierba, 00-401 Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noVyaCp_lF-U3BT0EE1403VDg_LYX3GmTRomMgnSBN5Lz-bNTAjEpW-C7VHKBDXRKSwelN8gY9QyEeawa0rYt8hVDeiZL7wtQE4k1ytu5dahJBd3d0j-vhqq23vbKy0sDtcSxij=w408-h544-k-no', '016d0b25-1690-48bb-858e-ec134470c29d', 4, ST_Point(21.026137, 52.233337)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #257: Toaleta
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta', 'Marii Konopnickiej 2, 58-320 Walim', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=PdJEcX_geLgUlCOzHQW7xw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=320.87622&pitch=0&thumbfov=100', '016d0b25-1690-48bb-858e-ec134470c29d', 8, ST_Point(16.440131, 50.699949)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #258: Toaleta publiczna
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna', 'Kościelna 4a, 47-364 Komorniki', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=iNmH6WfpwjsvON43_AUtZg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=155.02756&pitch=0&thumbfov=100', '016d0b25-1690-48bb-858e-ec134470c29d', 10, ST_Point(17.900213, 50.433512)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #259: Toaleta Publiczna
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta Publiczna', 'CH Blue City, Al. Jerozolimskie 179, 02-222 Warszawa', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=ras4JUscVjGI2lpPb4zIeQ&cb_client=search.gws-prod.gps&w=408&h=240&yaw=271.38937&pitch=0&thumbfov=100', '016d0b25-1690-48bb-858e-ec134470c29d', 10, ST_Point(20.956383, 52.21313)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #260: WC, toaleta
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC, toaleta', 'Edwarda Przymuszały 4, 64-200 Wolsztyn', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqOySfOCYvnzpVcIqiGLlx4q8DJzCU1dxFyWVxaeOKzI9WHxS0RiBMSpc7LIxQwFMewwiqCNCREoDFbfJ5VJmD9H3ry6aQW3AQlRjIB-QwGcgqD-lM2CWelzj2nStMYVz_8OMwBcw=w408-h544-k-no', '016d0b25-1690-48bb-858e-ec134470c29d', 10, ST_Point(16.110585, 52.116039)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #261: Toaleta publiczna
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta publiczna', 'Adama Mickiewicza 5, 18-230 Ciechanowiec', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Cgw6AE0DZMZt_RKAqmAVPg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=68.0613&pitch=0&thumbfov=100', '016d0b25-1690-48bb-858e-ec134470c29d', 1, ST_Point(22.498928, 52.677967)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #262: WC
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC', 'Warszawa', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npXHDaP1M6yifyUlMkLDPJGGboaXHylujCU_lzTe42yvaITZRjlYYv2WxAjtf8_y8ivLND71q1Bt7msqBEZiisgKvLM4FgPiODyj1X7vbmtq5WixweWjUF-CfdBKVtXKB4r79Q=w408-h306-k-no', '016d0b25-1690-48bb-858e-ec134470c29d', 7, ST_Point(21.042972, 52.237767)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #263: WC Miejskie
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC Miejskie', 'Jedności Narodowej 185/191, 50-260 Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npxATeWyRKmrAP3EAHMbx_Sn7Qx3gGEs4ILldtW5xYEYISsv2hWIOoy7SyZ3VWmjJSEhQ61e4HyJKPyj-6Kz3vgbm_HqnvHHI6hgmpHQyiZgGn0Uga306xjc7IbwMqqmUGb_oai=w408-h306-k-no', 'eab5430b-1c9b-46c8-8da6-f96775ce07ba', 10, ST_Point(17.050888, 51.127495)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #264: Toaleta miejska
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'Toaleta miejska', 'aleja Cytadelowców, 61-001 Poznań', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrFmSO1AWoiRCPaWeuah9wQdAeeyjKC6-2ighrz3K8fQS10XQEvCVstt9A3ROexuTPtoxCPC8mGZQJcfOnMV27s5YJMKSg1GvCZannlkgQWWPv6MlCJuADdrMqTpfVmFeeLoqld=w408-h306-k-no', '349a463f-22cc-409c-88a1-d75446b3e17d', 7, ST_Point(16.931947, 52.420005)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
+
+-- WC #265: WC, toaleta, pisuar
+INSERT INTO wcs (user_id, created_by, name, address, image_url, google_place_id, rating, location, place_type, created_at, updated_at)
+VALUES ('cac878bb-3f77-42a7-9221-919238bfae76', 'public@sviete.pl', 'WC, toaleta, pisuar', 'Bolesława Prusa 61, Wrocław', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqjG-QUaIob59cePbgBjG64ajaLTrSiqrZhMF0WCKr50zUbGDI037YwTOJFPadXPJuC5KuNoavsnr1iIcc3aLXlYQYQkUw0OU3FBvhVLu44-D9F0RfHothOeiA7fyeL_jNW1hL-=w408-h544-k-no', 'c97493e1-91c4-467c-ab1c-a5a553634f3c', 8, ST_Point(17.056272, 51.119634)::GEOGRAPHY, 'public_toilet', NOW(), NOW());
 
 -- WC Photos
--- Photos for WC: Stacja Paliw ORLEN
+-- Photos for WC: Toaleta w Warsaw Hub
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNjrQbV0mCVyOnU5lvsEfck6htAREbA_7Z-BAtL=w397-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqo4QtdJy8T39KE0PJU8yL6_kz_yzHmCeCYxxpPM37EgsOHlqT2hpvpf5HFeo-5K0Ki6rQAjESUK9JRLOSYFGmkKm4MzdpeUeupb0-GhVgGiz5BvOnECwKFv-36PO_vsKnnR_U=w529-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Tęczowa 5, 53-601 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta w Warsaw Hub' AND address = 'ul, rondo Ignacego Daszyńskiego 2, 00-843 Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nraHF1Wrb0AEbqvFJKnPC892cNFpTcZIpTF2Bn5MtSt-snMoCQ6EgXuQC_kaY99i0CZ_fVNjLJf_Iptjva_urEgD_KN5LHRpHZ3N4kNRLFwJRvc79OGsG8tiMbuMTk6NuYQrXLs=w224-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq9WaGmfPagvl3jU1k8qDLyEzpNzyrEvuNxkWn1I7OBEUFY7_mvQjJfaGkwB4-BhOI87YHHkpwss9AL8BswWKjw0Gw8PSAdWzZV7nJ1ZbG_IgO9qhux5J7jlstHzv2Henvy6KT4=w224-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Tęczowa 5, 53-601 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta w Warsaw Hub' AND address = 'ul, rondo Ignacego Daszyńskiego 2, 00-843 Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noE6XZWyiXBRO55Wb5x_TX8ZBbnIQhJK9Kc18Q2gary_6nfby7LsqEVBa5B34OU3plcXyAQdWj1gpCB_yph0rZR9_1VGqjC0GtBfsC0YTruq-8iV6cyzLV8NviBmGAKwJIW7HYC=w224-h484-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noF6mEm0AnWIEw8rVX3TI_5FvmigtEchwMYSZq29KKrqnHhxfa4V2ZBQGgNupBhhkNxecGFPV_iMU83gfyhh9YkjwlMIAWVcvfWcSTKdL_IuAiVvMUcx2gCwTAIfmJjmtyntaM=w224-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Tęczowa 5, 53-601 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npyS0cCA-BjaSCfmNJbhcef8xrG5Ty2IIP8YSjtM6tjJ5ekWEfGj8qmcxMSeb-OHwnUqLJ89mPRo0FzcPDNbJSz9wxBsrN4NzqYHrS0U-plY-nvOoYEhT9XE1Rsv1FnzVLNk3BpVA=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Tęczowa 5, 53-601 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNjrQbV0mCVyOnU5lvsEfck6htAREbA_7Z-BAtL=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Tęczowa 5, 53-601 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=9-fwj2h8tynGfphYVUwR4w&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=275.256&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Tęczowa 5, 53-601 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Circle K
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np96YrT5uDCgyB0Iyy8fJk_cVzsgxSnm8GmIFPaPr8oYM1zoUWj8f4heKQyQEuEJsIO1e-L2fA44gwg8w7XdRgQvZb9KWRxlMLLwYWKNgF9AZIEVmC9fojJAb_LYMRRU0eBcnbrzxsz7UR5=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Circle K' AND address = 'Romana Dmowskiego 5, 50-203 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np96YrT5uDCgyB0Iyy8fJk_cVzsgxSnm8GmIFPaPr8oYM1zoUWj8f4heKQyQEuEJsIO1e-L2fA44gwg8w7XdRgQvZb9KWRxlMLLwYWKNgF9AZIEVmC9fojJAb_LYMRRU0eBcnbrzxsz7UR5=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Circle K' AND address = 'Romana Dmowskiego 5, 50-203 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nramwdSLo_KZsYm2XmYhXCBz1xx-6Tnz7zm4CvSQPeQnkxHCRkjGwbIkiNNty9NvQ8V225NrtohqalSh4wW7Jl1RP2QtDfxupIQiUWNBtHfjERoGYZSZqF5N2QBMrqH7XJ8H1il=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Circle K' AND address = 'Romana Dmowskiego 5, 50-203 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4norWeeJ3ai0WqUcNJK3Nj95R0-3g3ItNgLiWqdRNo4_t6jBSz4-WlXvUhVCEM7YdEaTQnxUMPAW1UrWGcVM-0eGq_5my6CABeOajgBoxZSlRX3uA1xJxrRQiS7yHiGNYu1a5m9HhQ=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Circle K' AND address = 'Romana Dmowskiego 5, 50-203 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npG40PshruKcKFpcgG_M-yWwpacDP6nBUFd8eC7uCLr_1caoL1UUH_6-KVDCIad4FErVw485tHjzDzhuimxcIpqzOoyCV2uJewsENxvVOea6guRxQMIqdD5FRADYX-NFbQ12T5OBA=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Circle K' AND address = 'Romana Dmowskiego 5, 50-203 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nowdmm0oC2Frf7giykWDAGUur1U4-OqrKOvx5U4dLwHxApMbEkoc74iRyZ395_fHA7oncI-6cgtA1AAXIPEYTj9nguguzNQfMtD9JlH60aLAkg9DWmjD3rAVgQkTgJI-b98Rk1-=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Circle K' AND address = 'Romana Dmowskiego 5, 50-203 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Llw06wdda4mexg6l0tGX-w&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=341.22656&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Circle K' AND address = 'Romana Dmowskiego 5, 50-203 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Stacja Paliw ORLEN
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPtmMLtS4EXF3TQagPGHGOedPhrBjqWTMxfvX6y=w623-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Grabiszyńska 187, 53-234 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noBfewls9nRbDUrMhAnDfmyPfWvmyNIyO3twC0Wm-mV024awZ4D-wJA1lwHX5gSkQdLDguR4pXbE97wbjz-aq6RbgBkhEV2dJGfDKCPmtWnRbwcWmj7QjwT-lp1QqwUDHQ-XRE=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Grabiszyńska 187, 53-234 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nquh9J2hzQu6JSz9jEbVpK3LD40naUC324sRrnZOqIWV2yREKvRBu71McIQ5-QlpFtrN2ad5kO03WmCt0vK-HBUgH6HhlKuMMKVA9FFIBKi2VDSSEG_OqHgKeDkLDekmY-GqhQb=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Grabiszyńska 187, 53-234 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqO7FlAXDhFgHsxeQTD7vjmOcYajXz1hdcyFpOfLAc6ijiV4Ur-NV28cvALIPgc8UePxHwZQNp8WzgNi0WnwQLYv_j1UG3NtTyXi9x45GdoaaljOP2LBURTIw4XYsjUXSn7kxDA=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Grabiszyńska 187, 53-234 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPtmMLtS4EXF3TQagPGHGOedPhrBjqWTMxfvX6y=w623-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Grabiszyńska 187, 53-234 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=_WZrW9rKDPUlB_l5LvAdyw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=300.5617&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Grabiszyńska 187, 53-234 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Circle K
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrbBUngfyZbp6REHWN1w0B0jbeenXJefUkNX0Aq7_1ezRLu3p2amQ6GMmlef1pnYr3EppsQHVuRYLtbpKayy_JTBmcu9YUGGmWScLWHEvVUyPzCpWBk2McIJ5-DbrTXiS7tiQ0=w528-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Circle K' AND address = 'Sucha 15C, 50-086 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqXk4bR4ZETaAkfoohsgMVsQkyuhM88WysPVKBdr1TM2oT5_b0EZ2_kYYkJ1MefE0zubBibRi5JYaS2hN0D5VVccUDwSxS86MnI8qTb2zowjc5fc8lpA_db4XxJCrzDb0-mnlFgkzrPg8E=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Circle K' AND address = 'Sucha 15C, 50-086 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrA6rbOZqnKNRZZrwgt2DC2LKoDH6Yh49aEbIUKUAqZImdpjIrILTp_5h848c49ghUpYgjp_S1Bu0hGx5zfXspSUig8tICcB1eRjvZviok_0JcnZ8LGQHl_4lumCH0cKH7HFW11=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Circle K' AND address = 'Sucha 15C, 50-086 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4novauAlJhmvD804_4UHMBp4z3vocvoh6C_Fqe0R423o03wr6MPNJceAq-LnoqUR363LanElrXIJq9-vi7G0fWWirBhL9HmPJKsuybNatP4NH07yQ2xvScnJn1fMtdCPVqCcDoMtfQ=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Circle K' AND address = 'Sucha 15C, 50-086 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npcRtom5uc9qS2I-Nsj8V8VLbUbrtqc6NYB2dbao0dbHMP0YuqjQfVDAwMbLgKJczmRY4DIi7mR0d7Zzie4sgWfdEKZeUkptVyYJrjLQHpec3CupEVnJwvl2BjBW-eU3PW_VuMG=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Circle K' AND address = 'Sucha 15C, 50-086 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no6sqSSNXurHVxLFHJUT-rD8bzqsn1xJfjsUSPCJNXjvvfltofT0OcxHoRG-TXVRmN7LO_fbZWyoCYkj3g9wiCmYEEKJnWkXLPEj9KxUt8QBUArCr9raOsbflH_pwyr0igvNOoP=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Circle K' AND address = 'Sucha 15C, 50-086 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr0d9W5MqbOUWFEz2fRfHkLg1A1ngGKkXDhoHwYMorjv0tNxcjdLCbKxEVe5epIZuMG68n9ZJYM4xiVrmqgIoWf4k34uuFSTTR_Lk3srI2EjBub-yyDHMC_ZShQToc9YBjvYALh=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Circle K' AND address = 'Sucha 15C, 50-086 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=MI6sTIz_qFv7SkdYgpbKyw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=342.70493&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Circle K' AND address = 'Sucha 15C, 50-086 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Stacja Paliw ORLEN
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOeN37TzJ9hOiFz8Bq42WeDwgY1TYdk_ERPOXVE=w510-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Księcia Witolda 55, 50-203 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noQwJwFYX1oa9SENxuEgcvLMhDLdta22ArfgebGEavn2_BgvteNaCyp3cqQ16ewugkwrfXHHga2z2oS_6PnYgy2Do6dliiCtjwVJU7bKnl1WxwEwFDRAG9YCYRKcdIBq1jTYaJ4gw=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Księcia Witolda 55, 50-203 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrQUEKWyaxaFpEaHb-r0im12kB9UbFtaP34CagwKPwHCB02YHntKYVsMtEIkYv1FLtCMphmkKmev8towJSZn6d7rBAmbebX_r5PlxZbjKpcBbFfzqqhrasO5sW9s0trkt84CaQF=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Księcia Witolda 55, 50-203 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noQxqsI4ubbYOZMsYLlQksrJsldgkeBjYKIEQWAZK4us9ILoYyayxmtU_GyTfqPXl2TSrFMRbGNnPAuPHJENnnkH3xtYgaYfAQTbQjBDWR8k71_IULNsAf7asJUM6-3QbnH39Cg=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Księcia Witolda 55, 50-203 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrzCBhwGvcMyHrNIX2o-hQEwEjFa_Bz0zYksRLdyfVSNM0Gx9ug-kgSF4n6YCz5OjCkezj1cuYBIiFaEMyoy7znVGBGhH5wugGPiHx6wuvOk9EYBYJ4jBB4_SNG8MZX8M7o8DT3=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Księcia Witolda 55, 50-203 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nosfWVdBmYQZa-Ri2TRPyDx6pu1po300T3q6XM9xU76FsG9BKTjuVeeRumK_2vcidRDkh4tkiadFTEnb-U6IrRSnplIsdZsfNvilQDqT7qEnQWZvzJ_XoEC5sNFAmf-nbLq0h9f=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Księcia Witolda 55, 50-203 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOeN37TzJ9hOiFz8Bq42WeDwgY1TYdk_ERPOXVE=w510-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Księcia Witolda 55, 50-203 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Dye_0SZu4bQd2l2ijGRrvw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=292.89914&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Księcia Witolda 55, 50-203 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: bp
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr65cIBdcljq8CEpldeZhrh6-15Wp1n7Br03ZBW_cO1dxnZEsYV_3fr5C9-hNoWOArvEaadXsibyxibYJclNqZDBczBHDHA9IVZVdhQqVbtT6oVC-0C4RHFxKyZXTtzAdwBkTsd=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'bp' AND address = 'Krakowska 6/7, 50-425 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noXb0GrDfoSRw6CtfpyzAL7ZiRKAkRHzFSaiNFE3p5wA0u8QuPIntEupxZhsLrNhkghfmFe1KGuFUoRbImW9S9CJ0tIjxboZgp5O8gXQn7LXofSgb65j1osiv5Vr7v1AF6xYOlrBA=w954-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'bp' AND address = 'Krakowska 6/7, 50-425 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrB-3SGwUl9PB6KWtKwo-NCeazhNp1Kq-as4HNIlaeCGkJ5N0aHh_pg_A4REGoxaOLdRzwagIPRRqlyUWayWswE3aisrhKTPYgeNpcMQQlwD4mbOCJfZf4LvtUc_FGR0RESOFix=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'bp' AND address = 'Krakowska 6/7, 50-425 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=KggkvN8atM-RxOriTKlPfw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=310.6643&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'bp' AND address = 'Krakowska 6/7, 50-425 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Stacja Paliw E.Leclerc
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nppe8jOdl3WfrnIXjtBKRo8Oy_3j5JQnc_lNvaJEmIq2UCUNmoNgTimDve52Ean-ZgSF5LYEVA5tg8XbQbRmK3SDaqI9XC_vt5TITj9IGTdYuWCQ_tKkE2iD-yAFq7SeCulvzZF0w=w398-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw E.Leclerc' AND address = '2-4, Zakładowa, 50-231 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nren0SYuG950P1-23yMT1nMk8UGXt_VAfgs9yojyv9OO4ZcSDDq0tWSLzkaYv1Gs0vMWeujerdjKgbIZZdSpm9n5KwumTyNA99NkTIliAxLFLEse1u6Lp_kSDd7Jw4O_-aiLs_QCQ=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw E.Leclerc' AND address = '2-4, Zakładowa, 50-231 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npbL-Ln1adyok8nG4j7fOX_0fV5ZMopeIWnHVcu9gc6cNxb-PsEVrrjr-nDJjJyCPDnHkjFKf2znpmuewD-QoCx8uf0qF8jomoB8HSmLXj6zyWCmDONOBSzFQTS579-C6-a_G4=w629-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw E.Leclerc' AND address = '2-4, Zakładowa, 50-231 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noxxw5djHmYNOuWA5BLufI98Zh-tWvlypY_sYHvq6I6Xqf5W7nOnAd6jYm6TcYqC_X2v-IV50d993QixM81rQlmBrGzg6NQoOh6hbtKpxlGMrJmoVbKBy_x3MbDCSwGxZw1ko0=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw E.Leclerc' AND address = '2-4, Zakładowa, 50-231 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=t-xQMZxLIJ7QIzDzq3-ARw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=264.81842&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw E.Leclerc' AND address = '2-4, Zakładowa, 50-231 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Stacja Paliw ORLEN
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipP2NdO-pMaE6g-ankkz91sFWXwe_pxgKDajKhGJ=w370-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Plac ks. Stanisława Staszica 6A, 50-221 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPD0e11LLg-ISYaeALEJEOQILmk9PKCIHdMV4OX=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Plac ks. Stanisława Staszica 6A, 50-221 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrRTHofCz9_dCvUSLxucEW1OVdZZn0P201rmk6XebwIIvtoZdaHJMM0YNlSBg3Q_ysxcYogP1k1UWsvYOHE0OhJqBsaiR14lZUGC4BvFyeSTe9j4gXYlaV3vRLPSc-5Yu7hfpMg=w224-h498-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Plac ks. Stanisława Staszica 6A, 50-221 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipP2NdO-pMaE6g-ankkz91sFWXwe_pxgKDajKhGJ=w370-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Plac ks. Stanisława Staszica 6A, 50-221 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=AKsaB5VWHsaDif6HvWm_Zg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=247.08107&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Plac ks. Stanisława Staszica 6A, 50-221 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: MOYA Stacja Paliw
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqNv6lnta0_8AFp-6COSg_xJFyGOI4-n8SGHQclCbqsdpwh7Hk7C0HDnpgATVW5NH9XJm_TXipLzSbh_KTNceBWDd0eGgdPZzwCqrm3RHuNLUMQMSxBgWUBkdY4nnK3Wq6MgXzBjg=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'MOYA Stacja Paliw' AND address = 'Długa 47A, 53-633 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noSbe4ZJn2-uzuGpgd3y5xTiuNV1gXo61IJX6g6kRJPatHrPnLM3xP5chVVDemJL1Qghr9-pM1ctfjU5NvFUUb8mttj7PCMh6JurJAX0f_9SltkHUPQ0zFYADwDkk3tGqHh15W71A=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'MOYA Stacja Paliw' AND address = 'Długa 47A, 53-633 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqqdmELHEih7RTfl-4nbQy2LKQAMC8jFOhoOA8j9KQmEHdguYyEpiOQeyz3ZUGal5A6aNvd2o2dvPdpYfDZ4Bc5jfNNtzuz73ivgY21ukCvUej699WyhscXv9xvdO8vr06wJP40pQ=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'MOYA Stacja Paliw' AND address = 'Długa 47A, 53-633 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrcDp3ZFPhMqzQHVn0Itid1hg2wUVdcF8iJCeK5lHS5KdzROYl_nl-3XiAfvF2ztp1gDUyLaBO6JpA7gP_rxGnGa7N5U0yIMJyRnvz4dhSRDwhRK1uwW6gkbLWDejtiomeZk91W5A=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'MOYA Stacja Paliw' AND address = 'Długa 47A, 53-633 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPxzf-ZtQzDY3s5vK5xN6UwXzrD9lerGnAzYWih=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'MOYA Stacja Paliw' AND address = 'Długa 47A, 53-633 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=RnhPgbgOo6DV_FmsaDm9qw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=228.2442&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'MOYA Stacja Paliw' AND address = 'Długa 47A, 53-633 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Stacja Paliw ORLEN
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPV0vB1MR4iApNxrQNfH0hht4fRXDIR1-dvI_kk=w631-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Jedności Narodowej 156, 50-303 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrxYjuotPKQDJ-LE812e-6i9ShPOVcQevaDUpH2dexygDu1yu7-D6k6t9G7Qd55mbKPrpLHJHxVm_xo0jnUnru_DXiSDtmbgZ_t2lA86Zj42qZZyOUjyFW8O7XT-wmiDIUCm-67=w645-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Jedności Narodowej 156, 50-303 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npD8d0ENusse-tgDRqlm0qA-NQsHpdMDH4LtPxjqEpF2xyCtQ9BLwqJFLdstW3gW9LJ1IQPxxdttZDNU0Ws0WqK5lyhN203ihi1uFnUTkuUCv4hjtK11Gc6D1awzjKvRyAMQPxzNg=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Jedności Narodowej 156, 50-303 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npL24NNdzddPq3N5hD_K_9uMfJ8uoFax8Vtw6ChHRDqv3p6ZWxyZpiljfpAsMHzzIBtx7FGQXXZ5-7gRHArwwyO0L1IPEQjyCWOreAlD-tJQE5anAYZZ-z64OGGSOJghDRhrL7oew=w596-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Jedności Narodowej 156, 50-303 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrXJs6Bv0QhMcqVJvZyQh_c5JOh8tLSD0PQd3qhu42bGEbscfxstCA0RrrBKndUsFTdBmk5XE1gk-Uo10DwGjXk6pr2II_ZLRdNjLN-gBjRaSt6Z1Agi9k7zZGNSdFADmbZn8Aq=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Jedności Narodowej 156, 50-303 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nooqkA403QnBUqPRg8VvmfgjFVcBGLYxAAxaew4IXC7t-tsF6ZHFgUOjQF6ZXPVaeGIQhhLNFUIkIgEtqsYHfHAh2_He7pLPZmd5BbQYR8z0XXE-MtdWFAabqjSJR7G1uy5s42tpg=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Jedności Narodowej 156, 50-303 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPV0vB1MR4iApNxrQNfH0hht4fRXDIR1-dvI_kk=w631-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Jedności Narodowej 156, 50-303 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noF2x5bsbEIAylZU56Ztj8hfUt-KTFPB38YUaO52aewR9oadY6BsKFfc5EWnilPbBqL8ODgYo2BgVuwSX8JRxDXoW-7pAVFGQ0Sce62I0nmbirghwxiseLIMBTm3CX6KHa8FA3ikA=w224-h298-k-no-pi-20-ya79.999985-ro-0-fo100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Jedności Narodowej 156, 50-303 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Stacja Paliw ORLEN
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPeOd1_rUmk6DaHLFFz5cOH4rkLAc8m8EqTJViU=w557-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Krakowska 11, 50-424 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqoAlCKzx9W8DfrZfwgvydfwRh01OQwC-GNR6MuHtkIx8arRoKnFR3DVuHV1VXYCvYIebClOu-2Ptbb6ijlIRV8CZgAKZ3XLnlk5ON3gL7A4YPtLap-pdfTShSePEpqwvuS5ag=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Krakowska 11, 50-424 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrKr8vYHWRUyhah8FhpU4drvQ1SDB5Z8UgwrYdV8lVaiuf6ditJspo-up6_xO-gMvpT7zoXORlLUoeux5EUZe2PufHBpuusqpmcJSLcFA0WaDI0LxidTIfriHYNqzNkazHruyfYVA=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Krakowska 11, 50-424 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nonaU74KEZL0o6VEgzNDYpPzb94rOzrBp5eRKp4z0DBqxJyGax-oFpS7LTZjlfR8_FWFIDUUI_IdiNE8DTXawCskgJf2jjvwMmDqFMw0rTecqVSgapia58VOnGkuz9Ho_Ief-_V=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Krakowska 11, 50-424 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noRnseL0dsDT9lENJPS8ft74WK4uUJ2ODv4Xk0lrEJMomKdasSI7NMBZWXhJEr120JgJog5Mmtr_-ANntc3YvdFYPC-QdoHsqDUayCR8uVnasSIBKydCmjqoruKkpLNlJaHTbwQTw=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Krakowska 11, 50-424 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no6BWao2o2nr6U9hn38kpDSURsbzSz7vX9g6EW5zpYMQ685TGAa3iYXCktSL9gCgBxuTStQcslidMH-Bgf_W6M4Q2hViiTWUznlC9hwDtvMvNkx5Xvoe8l7lZlGGYqVBfYpk1OBgA=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Krakowska 11, 50-424 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np-wIhDwT3_4TpqlC3JyXkNpFDlVUcGs9PmHpUeN5pcDD32g6xOsAxWH_l2Y2RU3vIkUClKOh4l8tdwmR005eJzfiv_wz3KrZ0AJ9yVxjw7u5kQ4EDA0_UXOZ__THT7VivTVHrM=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Krakowska 11, 50-424 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPeOd1_rUmk6DaHLFFz5cOH4rkLAc8m8EqTJViU=w557-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Krakowska 11, 50-424 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=wWrQAUoqvMvpRlCr97uJwA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=201.25002&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Krakowska 11, 50-424 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: bp
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqzHHMeHu199r4Ms67NS0ojHIzaVndhVSN-FPGa7jsRS__TOdXzjxCfaLA4ngNNoCAMizrYKMXkXQZAXgjwuAYJuBsrVh3mHcHDXwSpLjU3ZWql4EdBfZBPNZ_fDyMtTI5XLdi0=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'bp' AND address = 'Słubicka 18, 53-615 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrQxy5fGHR6MMZvy9UR4j58DZYZPGx8TQGZcwA09HIccH-CnDlhoaEu2TKm40s29m10Y8x3VBGrnMuCRSnQboeh0hhMLqgVb-0rLsnpthCpw-7383q_BAwaiOpWUFgd6KIf0eKZgQ=w243-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'bp' AND address = 'Słubicka 18, 53-615 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npP3Nud7IfF4jkf7oFv33i6PTVoMyOK8JVOqv_MZTqDRTzY21UqlQ6HBgSkTEo3i1FxndMiJAaCeYMgmlSseui5ILSxj5h9pAJhQ42naPobX9WME9mRIy1nNqXg_eLhWzNMN59F=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'bp' AND address = 'Słubicka 18, 53-615 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np3D0-jftcjgwACAdm1qSvMGbdY9V8NChOVuwAEK_IHjU_iciLCpSLUJ6lnijIqAtVdfH29DAGjxFT3XrXF7wbEZgEgTU43-renGdmmhf01josJ24BVMFF4lxMoqcOaVDiX6vCOtw=w445-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'bp' AND address = 'Słubicka 18, 53-615 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npXrHJ4vniki4t0BvswzRxxRKWeRE8iaAvctOlf3piZHAKziZUWpcXb2v0OAtDpx5glZZZGh-Md4dx0fGoRHSuv1nlj5AMH1dlNFU43Ksardj89A5f5IzJtZ6_kWugonl7JTm-nXw=w445-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'bp' AND address = 'Słubicka 18, 53-615 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=P9RHy0Cd9Vb9H2MIRAK4GA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=47.39597&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'bp' AND address = 'Słubicka 18, 53-615 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Stacja Paliw ORLEN
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPaWdyyxDyceMo35Qgc24roFcTJn2WaMNtxCJrw=w576-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Ślężna 129A, 53-301 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npDGc0WY6VXodre-76MRM_QlPldPTQ4BABG-9VDWrbS6Ld2mXGEqLn7ND5CZZ1-wOsyZvAR9UFBztJk_wbg7hCevObVfDK8wDS0mdNPwVsANSpBbLhZrKd2stboF28sgHKDMds-Ug=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Ślężna 129A, 53-301 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqxX__YleelvYFeNMGLUrDPFD6JlJZj6Z0PeowFY6IZgZe52lfpDabtIVa7IQkRo2nfnx2UttPB-rmr-FkJtaPR-3w7RchNJXbTPOpYQrVQPT6ZVUsdFWE7t4Gnuf2cYHT_mlhGfg=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Ślężna 129A, 53-301 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrWayzAls08HhFmdKG4JJT3PUkox-_zucAbu6ezgmzRz2jMdQVibDQpBMr8yJ4XvcyDGfFCGu9yxKoNUldTMgzzEVvbn1k7PYxDTNr2K1Ej8oW7M74LmbbMRVFh2UlHL_KyYXS30g=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Ślężna 129A, 53-301 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4non0hOeP0xk0gyLWrxW9hG8q-6Rb92Kagq5KVrrDEwBXuEfohL9qrHtC4YeRHXnPzbrB0R8kLy8Cc0sFGWv13qx6ZHHtS7INDGs4brOc648L5q9jAuDoIS66Y48V1qjhSByfIb6=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Ślężna 129A, 53-301 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqRGUj6zH8-oJAG_DySxow3Y1IihxUAsF6EZdj13qBI6pINcjUPo61et4qeg0AcvFi0Kb4UbA97Z7d3VEOw6ysYq4L9pjnQ0B9Oyiqueg3GWar1x0_pD8ef__LkrPJgvykthfs=w297-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Ślężna 129A, 53-301 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPaWdyyxDyceMo35Qgc24roFcTJn2WaMNtxCJrw=w576-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Ślężna 129A, 53-301 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=YAKA-w6CWGZCX6D9yP0R1A&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=53.603535&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Ślężna 129A, 53-301 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Gas Station
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=stbxvgWs1xRPPF1QoJdkcA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=33.28626&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Gas Station' AND address = 'Romana Dmowskiego 5, 50-203 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=stbxvgWs1xRPPF1QoJdkcA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=33.28626&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Gas Station' AND address = 'Romana Dmowskiego 5, 50-203 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Circle K
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no93MV5wFtOntHHmoNpPad50XI8CJFbzmN7bIfU2h2AmrOtV3tSwDQfp2TZZiktKIeOZfZCeBav2-Ak79-rp847CPmQD5B9SJ_HXF6x3d-n3Tm02-H9MolyZ88K13WoGZqWgUGr4ur3YMQ8=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Circle K' AND address = 'Braniborska 84, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no93MV5wFtOntHHmoNpPad50XI8CJFbzmN7bIfU2h2AmrOtV3tSwDQfp2TZZiktKIeOZfZCeBav2-Ak79-rp847CPmQD5B9SJ_HXF6x3d-n3Tm02-H9MolyZ88K13WoGZqWgUGr4ur3YMQ8=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Circle K' AND address = 'Braniborska 84, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqm728acyj9_N71Cn1JY_rMjwaw-kWtOmh89IUDh9RnxWlqq-uLY4FpzKhXDkqOLOTfmGRkzC0PfOxIic4xGBwkgw_1BAVzDk-xYYc4kYQfF6U-bo1cFfSe32Qdsn0z-xLfvuRH7w=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Circle K' AND address = 'Braniborska 84, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrubAbgvBKejcov7RtLNAoufL9FulAe90YPEySOBypkeAOSYx7U8qmBVDQHWkoOtHGNXmyR2H6F9S2Cv1DVY_BwAsGiQnEibw4XXV-5L2l_xuqWAqd3RMDPRXGPSKRs3auGYkJj3A=w530-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Circle K' AND address = 'Braniborska 84, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqScIyvda26nYNQDQ0DttwYXxhSOEFgt5CjX3DHT2OJX1kVndC8uxuPNVhxf2-kphmW0_mDsoPrvaKA4B7pPce0TRySpprj02PIrMiaDaNnYn9ozQ6a9dVKTYRfgAFenn906_4=w224-h485-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Circle K' AND address = 'Braniborska 84, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqm728acyj9_N71Cn1JY_rMjwaw-kWtOmh89IUDh9RnxWlqq-uLY4FpzKhXDkqOLOTfmGRkzC0PfOxIic4xGBwkgw_1BAVzDk-xYYc4kYQfF6U-bo1cFfSe32Qdsn0z-xLfvuRH7w=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Circle K' AND address = 'Braniborska 84, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=WB0SPXvm13HC13Suuep_cw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=175.01639&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Circle K' AND address = 'Braniborska 84, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: MYJNIA SAMOOBSŁUGOWA INWASH
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq8efWNvEZ4lXdfK-tmMbCvZdnRv8a5SvlHMhpTtdTYI48JBOB_H5KpdofvaMsfRPzFc4_y0A5iFENgv9gTflJFaIbb2XfJ05YMtR8yqMUBH6uOOz6SCxTnLMIuZBQG_sxaeOQCfw=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'MYJNIA SAMOOBSŁUGOWA INWASH' AND address = 'Tęczowa 51, 53-601 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq9qwN2tC8vnhCCyZjEm7-gOTawpUPTr4axNwToU6ixWDh46QXZmX3iqMfE9KQKwkDsBrA8NEottziWg6P9CyxZ_vOWIf2raLB3gIsuMR70265NsAGZBsJDOA2RA153WtTFgqJxCQFjto-6=w324-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'MYJNIA SAMOOBSŁUGOWA INWASH' AND address = 'Tęczowa 51, 53-601 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nosw2kK9gJSIsp1oMU_treI7Ldfc-Ihpmh4wwn76FdozGe8WgMQkhAltMmSFJborYEv38bKVi40m-lbD03chD6lmR0UHPy4da_UMtVY9rgsHN2WninTLVB5kB4RnkPy0e2TmXDzxg=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'MYJNIA SAMOOBSŁUGOWA INWASH' AND address = 'Tęczowa 51, 53-601 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nptOeWJ7uREF-zVl4aXuiY81iTE1zvOPXd8iEmcTj9C2_k9eYPhhhMJbMzc3BqhcG0Tm_mzFHmcnMLIbMOeLuehrhdszAPm5WMAjzwherhRso5FW9n4G25FOvaZUyTNYZX7J5l1=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'MYJNIA SAMOOBSŁUGOWA INWASH' AND address = 'Tęczowa 51, 53-601 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqhVYb0EJxUoW3VvEsRO8YF93-risQQesNpHNy03hffDgmLcxteQkYXzCyhIoVG5M2sPQnNYTU9zKEyW45ll49jMHflzzZvvs5iN1Bv5i1_ldGbcqcvmhxqSMVXkRv497T8gCCS=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'MYJNIA SAMOOBSŁUGOWA INWASH' AND address = 'Tęczowa 51, 53-601 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=ikgViCf82ySIbxliNIZJOw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=329.52374&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'MYJNIA SAMOOBSŁUGOWA INWASH' AND address = 'Tęczowa 51, 53-601 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Stacja Paliw MOL
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq-B7Wy0tsxzLpe0T2f2gdNJ2EapjDGNUjt-Lj6idg2mh4LtLMEKejaPFsJ8umWFvoTwjB2DdC69j5owNkfdj6VPvGccvoEQ_QgricxxZSTBPrmL8eoUgbKwdtfZ8YA-MFcwaRPaA=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw MOL' AND address = 'Trzebnicka 39/41, 50-231 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrzhz4-rNDRC0HJs79F3TLbVUBuneVP3MQbLDrJVHpsTVZcV_2SuhDS0UYj-EvNNXoskS-cyc1zQLL7v_uZhlIn6ZLT6v6k--Zhz3BQnY7gLJIibx6dsrmwhyUrv-xMeyZbGhoFaUMjywo=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw MOL' AND address = 'Trzebnicka 39/41, 50-231 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr8z2sUR0XT4AgLjDM2VFePxdCMKHmtulSN-f_spgOfGiO4nC0Gd940qerX-sZbMOs3CgSEvPqGAnZ3FdVNwwn9-pXlBoGzsJUbA1r7Vjbq71J4mftfCMVLlM22715TccrmyNme=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw MOL' AND address = 'Trzebnicka 39/41, 50-231 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npEQMS-hWgs7Ejx-yIJzeGmd8HEha8Jh_qcdrCvDjwMknGTpaXpwCr-Yd4d8XOLQgnfCbpfzIEFOPGu8h3x7rhLQGs1WI8tgDrlLSC_i19oUJnB0elfdR7mUd6M4oL1qLGWfQVEXg=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw MOL' AND address = 'Trzebnicka 39/41, 50-231 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrq3ezKf6e3Zjm8SSlydR-hFFbNkLEi3QfOLsz0k54PQyrjCfCSgsJt_Q74pbxVuUymI5JYtRA-w3XulDekB3ytVQM-wTLow5wsq8Yb4llziIGS9VENni_nm77IXd051h2J0qE=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw MOL' AND address = 'Trzebnicka 39/41, 50-231 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=UQei7vkBg-eXfcHPgjcxHA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=114.44843&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw MOL' AND address = 'Trzebnicka 39/41, 50-231 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Myjnia bezdotykowa 24h
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np8WptgbftUEpSw_gE7n6MIUMADaI9mhIX2qYcZ3YodUF7qIfOaYT_G6gYVCEIg7fXAIRRjSZ4d07aMytKYrVOlUnTAmcQZWJgyAfHAa-iEofFMez7bTB1B4WlSVm8spdAR1bgV=w261-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Myjnia bezdotykowa 24h' AND address = 'Długa 37, 53-633 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrgldwm0yUZ4_Hg6WhLtqvHjbtWk2PTFjXhcmiqGpU0cxRCXfqIpXEZ-kP4Te7FWCjvAQZQnA4GgYwP31QV5KOeQ4Q01_D3EqipIgOTKGZTgeOYOY_SYnneXlAk9UKSnsL4esY7=w662-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Myjnia bezdotykowa 24h' AND address = 'Długa 37, 53-633 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrWes7qHw-NacTRasIWJXjOerteh9mSQ9JnHWrqlAIIATXwZ4nEtIgurMR367vAWiyZqiwyXDl_eJNv85HrarlsED9YPIupgX39JfKpBqPKGT_AzROpMmvun0fR-TyJVkgc_nP_KQ=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Myjnia bezdotykowa 24h' AND address = 'Długa 37, 53-633 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=m7S8JMSs4z80fBX9lmy1Fw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=253.95836&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Myjnia bezdotykowa 24h' AND address = 'Długa 37, 53-633 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Stacja Paliw ORLEN
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPuwq3XIngJPTE5HQM2RM5pMJ4BAzJupJv6aMuA=w577-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Curie-Skłodowskiej 14, 50-381 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrYzN11GiID308v6h2IAhwbz2jRilvwbUhxZQ1iOM0h_QF5kBREPKZeQ_qBaBx-4CqlPiPU1s_Y7hHgsTEsowJ0xGy_2V38DaHYmxy4xDrBPmLkHtNllBBkYjd59Ux3SHeKVxgArMxGFCU=w224-h397-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Curie-Skłodowskiej 14, 50-381 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noRNDQ1FVT89JSR3L05pJxlb1Sj2Z9EPLTJJqRjSPqH62q75tJjbucGZavo9QlXqecLl6ZLzwj3hBK9wplsCQc7S2yP7nbY77plGJTnur98KaqbKZaUMI3PWEDUzVyfaNUWfFUp=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Curie-Skłodowskiej 14, 50-381 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noIlQzPvbMWgkUjsTI5FD9zrsuM5H8tUvGgTqC--S61qzFZZqlbuqZR6SCronDjoIMhiRpAMzC2UIm_WoRj-vO5wnTq-fURkQaDXqzi60pKTB11vUMPMPQG5qA6BL_LTU1rLm0Z=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Curie-Skłodowskiej 14, 50-381 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOfTajkiOg-l7E3HIh23g-6jLmS_CYY_uBs6Ugv=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Curie-Skłodowskiej 14, 50-381 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNNZyffwZy1-H3pIm2H3ejGHNMOSonYqg7UwFb4=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Curie-Skłodowskiej 14, 50-381 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=KDr5Wr7DtJM3QHVgoZNFpw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=299.4539&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stacja Paliw ORLEN' AND address = 'Curie-Skłodowskiej 14, 50-381 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: BlueBerryOil - Oddział we Wrocławiu
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=SgR2VMsAT8BdrqKQ4BJonA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=280.0678&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'BlueBerryOil - Oddział we Wrocławiu' AND address = 'Grabarska 1, 50-079 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOKDW2B22pCJUzg_8kB4UdmxSpAwkW56huL8P-E=w488-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'BlueBerryOil - Oddział we Wrocławiu' AND address = 'Grabarska 1, 50-079 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOKDW2B22pCJUzg_8kB4UdmxSpAwkW56huL8P-E=w488-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'BlueBerryOil - Oddział we Wrocławiu' AND address = 'Grabarska 1, 50-079 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=SgR2VMsAT8BdrqKQ4BJonA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=280.0678&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'BlueBerryOil - Oddział we Wrocławiu' AND address = 'Grabarska 1, 50-079 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Kaffe Bageri Stockholm
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqWhhqNVd0uZJI9lPuzLkzs_wQ0gF5HHcvQKUj3vSBCzsVrZhJgna4b97e5H2GGadtPj2ZBRcUxDZSQunAdUBrtpZkwlFCKtqgzPwjn0oUBtsIg-D4c9n-DfbnLwgnIweQrJnLzSQ=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kaffe Bageri Stockholm' AND address = 'Nożownicza 37, 50-147 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrNBeMbFOMlwiXspP6xmxopZgU3VO92B0hr3cdMQWY8EJLKN-xBTufiDHyJ8DqVIYQCYWuFm_tlRiTznUh1Y1U8zHGimUYkqSG8z9Ut0_G0ZwE906rYSYy4A7k_91BoEibaZT51y6hHJ0qG=w298-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kaffe Bageri Stockholm' AND address = 'Nożownicza 37, 50-147 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq5CORieAxW1kgtMTMEpcaW7M2lnMprdlEhYmHqgDe6eKmMYwtkg47UCG9GsyI8gUg58zxxgPHuus9q8nmhwtAYoCat28NdvH-ChnVz77PmsLs24B99RO2dT23xnd8hX6OC5dKO=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kaffe Bageri Stockholm' AND address = 'Nożownicza 37, 50-147 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np4fxVgXJM9r_nvAVpERzrOUNKlQFC51U7TWETIkaKiVABoYNHGrB-IsvYXc8ojEfm7MHut1QKxNjw7nw1VTLOazAt_49No6-G5yI8idjAIHR9_vgCIxCd0kk_rtAd-Aba2IBP8-A=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kaffe Bageri Stockholm' AND address = 'Nożownicza 37, 50-147 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqewTlki4NtgolPEb6hlPG27hgTIZrcnNk1eAvUk_Fb7GxsiZZQTuYo-YuXJDoNjJjfB2T74_ZVk0A4eQX1gc0lB8CkEXPie8HI9SO7tvRQ7qE3mV4X4AA1S7Cvxh7PwKHqdMs2=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kaffe Bageri Stockholm' AND address = 'Nożownicza 37, 50-147 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nodGbOgZmdoC2CSvkty8216PfHaqZgWoGfnyf-iYvkFTlHVzan5CLcsq54sQUJb5jT4dhvHrmG3XZbBOOFis9bVguxDQrrVWh6u3PpnwK9dJTBl2XMBiLMIIPcriB_2NW6YABd86Q=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kaffe Bageri Stockholm' AND address = 'Nożownicza 37, 50-147 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noURi34WJTtTbLXXhMEg4_yqLf6xs4VKbIGzEya5G_r6PCFTB1qYvhZNikszZCj51yOPPJzzy5QMdCUoNGEYB6m4xHA-56yP6-BNIamP5mR94qrfgpt4h1_Z9KsW8CuSINKMKah=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kaffe Bageri Stockholm' AND address = 'Nożownicza 37, 50-147 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npuwMEZLCI8Pr5TrDAddkDIUQAItWagYuGdTDFmCxmgn2-yr6FZAFBg_9hjkdlqIR_NRt9iTOIlAKcye9DvvHkCXrjYXD6KKcBw1aOmI5HjTZcD7Hxx2TbmfGR-2iSLH0ykaaz_=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kaffe Bageri Stockholm' AND address = 'Nożownicza 37, 50-147 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqOppJ-4MmlrWA_qQVfGBbn_ZCxA9MkP3tm1_ojsChzIxdV8JzOsimizYa92QdjQoqe1gLebt3fOMYby94Rk0ZrSthEkDRRNtrIfecN6fohlT-UWGIn_w2_tb3Z3V_rsQVLdvsT=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kaffe Bageri Stockholm' AND address = 'Nożownicza 37, 50-147 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npnfrNYc2GouTWinq2Y36ewJdk2g1QW9AwXY254sn80IskhkC32kvzWSVZeUj4UH3ufLHJYRAO0c2PVv1sU3m5skcIA0E_kUJxF3rFoANSTk3awzxSsWA5Mr0JS-7ys_eh67VxX-A=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kaffe Bageri Stockholm' AND address = 'Nożownicza 37, 50-147 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOouzz4TF6BS0bcimpJZ5ASZH1haFHmzyJ6_OM_=w298-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kaffe Bageri Stockholm' AND address = 'Nożownicza 37, 50-147 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=o2QWelFbedZIE7VFAmrF4Q&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=198.91487&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kaffe Bageri Stockholm' AND address = 'Nożownicza 37, 50-147 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Chmiel kawę - Specialty Coffee Concept
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNB1mo7G2XPS8HPeI8CrtfIJ1EfWQ0uxA87Av3t=w238-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Chmiel kawę - Specialty Coffee Concept' AND address = 'Szewska 27A, 50-139 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrGw8yIGzyUTkL_HTmk2RR1zhXxmBNGc6j8U5FBsgVjeDdIzrZDjZYtLuH5FjIHq8Dm_4RtceVBGx4kbedmB1-QvIh9m_4bq-O37JmywhmPL7sn0fgdnu8xAV7RU7IDP6OHnIbPNiFELm12=w224-h497-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Chmiel kawę - Specialty Coffee Concept' AND address = 'Szewska 27A, 50-139 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nogXqzx4CzApKMdOXE6mFz-jTzAcaCUZfO_MWiJHg5cWKfuHkNeYug1UgOhsRBsOB0yDsb-CB6ejk6OhwH5ac686VHHSFiZgVWjLsM5x7R7oAWlN3T6Y_rHJ7N5oVTSxcf9gPkH=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Chmiel kawę - Specialty Coffee Concept' AND address = 'Szewska 27A, 50-139 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrz2mn8QYafySr9S-mpZfzsl4SF84NmwWOz5GU4Mmo0I5fmb6PORotmRm6wYomr3oAGOJ63QlricXrzCveBQDcY9ZHqICrGSpU7FM1sQVH-ebobw9P8KcEeLgcyyuFUlb2v2YzC=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Chmiel kawę - Specialty Coffee Concept' AND address = 'Szewska 27A, 50-139 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no3z4kQnDjRq4vhmb-L4AEYUbks-QKiitiWIZYmGJcFG56q4x-tgfKDQYNG5dGCDCLN9F6Uz5AZH1wTqvTPA2Tfmhx_4HPLJkR1uv37g2iDgLEjcd67HAmw2tcTh6RHls9p4vrU=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Chmiel kawę - Specialty Coffee Concept' AND address = 'Szewska 27A, 50-139 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np_X1nHBoLRvG9TKwz3EnBm5rTjaTxTkpV6MN0vZ4Snkme_m0WlKIq6M9eob2UeDaGslkOSD_zoqqhy51GQ5J7t0D7_f_ejUuEB96GSO7ge4IKcH858-Y_xxz-XVjBhTBafXSGd_w=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Chmiel kawę - Specialty Coffee Concept' AND address = 'Szewska 27A, 50-139 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOhiFRcTWKkR5zvV-qAqIEcyHuCQD9azbke9mWl=w224-h336-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Chmiel kawę - Specialty Coffee Concept' AND address = 'Szewska 27A, 50-139 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqVpIE9xyNLSwTehLdGhTFVqbypyaXCe-Pq6mxMiZnVJmfnbjNXp4UNRVNjmUgZrKMOVvOR-7-vOK1OSUbow9A0bX-e_npQQhZMxnEPNlh1skjkt2MiYboE80KZeFhICX2sifc0aw=w298-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Chmiel kawę - Specialty Coffee Concept' AND address = 'Szewska 27A, 50-139 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrPql0fw5Q3oiRkAL8H84l11B5REJa7sM2maTwSVrpUsujoflKApjaDSSYIbIReMsMi8B-9nyBvF7eyFNVafBG-ZGwaIeyutheWmCwA06AJHhtQAQ458Yc6surm-j5S9jz9MyDTBA=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Chmiel kawę - Specialty Coffee Concept' AND address = 'Szewska 27A, 50-139 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPxNduBAZAnLSiVgKMgh7AU_mKmBPVmfPj3ZYas=w238-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Chmiel kawę - Specialty Coffee Concept' AND address = 'Szewska 27A, 50-139 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nocKo7QUVlHFq8biuzcORoxPabb_tvb05y-qb4AL13npvvaWoJE6mOgp8FgaOZcj1MXNfz8lkbKmVJzWb8K_IyR8Lurg_AjfTxWMK7P7dST0ZfXgvhuo3wS09lZAUr4ikrRLbNSag=w224-h298-k-no-pi0-ya240-ro0-fo100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Chmiel kawę - Specialty Coffee Concept' AND address = 'Szewska 27A, 50-139 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: BANANA KAWIARNIA
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPUtxCde_1A7I-NO0lrmDuUENpKhfI74j3uBQAj=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'BANANA KAWIARNIA' AND address = 'Hugona Kołłątaja 29, 50-004 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOIQ2OdOvjzTpbos7OBwbm6Gnex0N0wO2M32AGo=w224-h316-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'BANANA KAWIARNIA' AND address = 'Hugona Kołłątaja 29, 50-004 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqbZA17AWcXykSzab00crxm0D-thrd6_S4EPvYaLPvjWz5CqjCtNLt-CO4ggMraVdijjGsJnZVqmzMHHVH5ZUVyi15rJBsz4o4lbY9UbdY6w36kd2uhB4VaDgOTzLv8T4XseXAszA=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'BANANA KAWIARNIA' AND address = 'Hugona Kołłątaja 29, 50-004 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqdYFFM_BMcFQidP57nd4w0nfqqX_yKV3vg9dN1UpeE3eFGDFLXZz_AuAxi207Ieb0FVpim2Xoaq7xDw8iicUD63IpgRxIpwpxABCGELjT1hT3fqlaSuj15kCWw1Rmf5OcwPRzY=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'BANANA KAWIARNIA' AND address = 'Hugona Kołłątaja 29, 50-004 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOqQRsViAxNWD_6xkPylYugEqiYIh5T3PfvfUhi=w224-h335-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'BANANA KAWIARNIA' AND address = 'Hugona Kołłątaja 29, 50-004 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr1_b7ZU5pV4zLuiB2pdLd_L_vBR_BJClI5-YUCs3m7VVncmkLVZ-x0AEkDEcPBjHJANUSYJoOjH8Na8egM878o-Vf9TeigoeddhUatD4zEaXUY5FMegBO80pK-FC3OpRCMRIM=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'BANANA KAWIARNIA' AND address = 'Hugona Kołłątaja 29, 50-004 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipM_LC1oJPkkrehbaylc3GhJms9giR_0Xgo5lEif=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'BANANA KAWIARNIA' AND address = 'Hugona Kołłątaja 29, 50-004 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipP3YerqcbX2Sp99hhtn1HMGUkcaA36AK74lSWFp=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'BANANA KAWIARNIA' AND address = 'Hugona Kołłątaja 29, 50-004 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqEt0T8ICxPio5W5yTwNSNkoSrTpQgu1q5rcZC96UYfp3gzNpGRxA_5w2GmXFChA_tNfkHWNSZD3eHpPdrBI0CkYLqSLzupuTiV4cLp7zECvYUgQtKnLSw05IKx3_pECXCSXDZ4=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'BANANA KAWIARNIA' AND address = 'Hugona Kołłątaja 29, 50-004 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPRxNMbe3A6qtQjPmOMksXBiR7Sfd7-XZ91lmgk=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'BANANA KAWIARNIA' AND address = 'Hugona Kołłątaja 29, 50-004 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=gJqBZI5JuGnnLAeLXdqCZQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=136.3211&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'BANANA KAWIARNIA' AND address = 'Hugona Kołłątaja 29, 50-004 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Kocia Kawiarnia "Cat&Alice"
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOupGlseSc5aV1yLrfksoY8QaxXmvoIb_eWp4I7=w298-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kocia Kawiarnia "Cat&Alice"' AND address = 'Igielna 14/15, 50-117 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqGrMbKyZQHQAdAb5YrC8VKEZnZx-6byjOXuN3WpyFwOww6btNUAlm_sGNMYSGFATDc3r5kI8RrPuu0r4lOpfVJ3MyaYvUGBuSO9y5hVDU8os7yCcQW14YrMQCeYVnNVouDKdb7Jix09nQ=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kocia Kawiarnia "Cat&Alice"' AND address = 'Igielna 14/15, 50-117 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4notnR9gxvpwuA6HCeCgWV4jZ5JIinR3CbCzSoFeaXIOG9hTUhzgNp1EJFuFJ3buWUVWrl4mtuNsHF9FZVLYRyNTtPGI5Qy8_N8vXOinxo68wzaGhiVOpf40onfeVRcuvXldUM1-=w224-h401-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kocia Kawiarnia "Cat&Alice"' AND address = 'Igielna 14/15, 50-117 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNW0Muoukr6ecrC_AFpumi5hGlqvddLKuX7parO=w224-h316-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kocia Kawiarnia "Cat&Alice"' AND address = 'Igielna 14/15, 50-117 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNyC9wsLcRtpRfukZzCvBAaDfD850Up_ytqslgM=w298-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kocia Kawiarnia "Cat&Alice"' AND address = 'Igielna 14/15, 50-117 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrjepd2hrox9VVxFv993CkoERVcPgryPev2viV_19Ybr_FK_vWZpPXnE2mVXLtmw3hmZL-aQv7KYYH0sSmMPKAhaZLiZYDwHBnl6KvEbm5hvHRKcHLWqlh1t6O53fq--eFjM5c=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kocia Kawiarnia "Cat&Alice"' AND address = 'Igielna 14/15, 50-117 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq5zSXETUv6BMP5S6R2Mc-yaHOLehiZD1SQfkZuzd8vu0TZBCiaDKI5pkpy7odJbg7BwMgb7dyqai2vRM2vj51czbaBAoC9J-sK5ZVVBqZRyo5aec-itQrle5hlvwUKgY3mcSS8Lg=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kocia Kawiarnia "Cat&Alice"' AND address = 'Igielna 14/15, 50-117 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrWlWuawiYsasSa9_32QF-wnRbUm7OgbtUvJU3qS4GoAMX8TWFTCu4Y6csKcapG-6yPQfHD8tUOHiZE0FTN_ONC3GNq5Eh45vFSieoHCRX4FdkKG7aLO2Sh--mAWy_59a4g07L6=w395-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kocia Kawiarnia "Cat&Alice"' AND address = 'Igielna 14/15, 50-117 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no-VbF7dCCr7e5br66y6DD-ZkXcei7c0-jCvnFG3JV6Fl3y-xS4YdLBLSUvDvOPHSw0zxAKttnC8Z1mJvaR3Js6GdYrAalbNmZ2pgssYjBseDtM8S3u-SRZk_rxtXWF2TVUI7t2Kg=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kocia Kawiarnia "Cat&Alice"' AND address = 'Igielna 14/15, 50-117 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no_Qcfjhj_6cRzzTrQZNmoh2Mj9kQk01Vud3uTNgZcV7NMAIPs_7gsRtqA8v6ilypotUR-g8NIz1P9jBRXlWmguh7e-_HP94bJHKQPJJr5yNKGbMSqFGIn-bc0TDD3MtzJD9gpO-A=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kocia Kawiarnia "Cat&Alice"' AND address = 'Igielna 14/15, 50-117 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOa1lG7SPD116LUWJc6P1LluMxS086opx_5RfAv=w298-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kocia Kawiarnia "Cat&Alice"' AND address = 'Igielna 14/15, 50-117 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=-uLe-6RUzzUAsmbdC3zH8Q&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=228.20465&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kocia Kawiarnia "Cat&Alice"' AND address = 'Igielna 14/15, 50-117 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: cafe rozrusznik
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrF23zkT3CTyMj1T5V9WCYKL6srPowv0xwdfvtuTAjrYiHfmGIqku0szb81ebBpeHYxyrTW-Ycv0jHz2MLjFeoA2VpdF6Cpbva_Hg7iDK2SX1uRbFu-FESWI3rynPQXwhWcEp5j=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'cafe rozrusznik' AND address = 'Wojciecha Cybulskiego 15, 50-205 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nopG1_wlCAb5IO59k6gS-8t2FgxvwcbulliFHz7iikHXdhZukpWA_woiWIOkQRDdBCpTuSprjYPHScN6PBSH_W00Sle2KsnEt5vpG2MgqCsQwOPVGlsXuPB9EGsO2tP1JhidC0b5747K4Sz=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'cafe rozrusznik' AND address = 'Wojciecha Cybulskiego 15, 50-205 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr6qEONWZomq50EAdCChQDI4FjuKDBLqlD8Q8A5jHCyy1BMHgyKKgeqOSDx5fKYq76WyM_TwiVOHT2a7trO7oNnCji46nTm18oLGAF1J42moF1r-1m73PVh7E9VxNsRTjIsxySufw=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'cafe rozrusznik' AND address = 'Wojciecha Cybulskiego 15, 50-205 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np_fjyUZ5t-3nu__ICrNrMYMwW9fc2tkhlVVrj6C0flzlIyn-8WWy7ujIhPZ9VKdAL6sfMfspMXrtrySn111Pq54jIZatoHroSovUUq_o0d3gbyerxfzJJ8n6GHs1WC3_reFxQ=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'cafe rozrusznik' AND address = 'Wojciecha Cybulskiego 15, 50-205 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOIWLm5x-haXhTraFqge9d1-Rr7b2SZA7D43s7N=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'cafe rozrusznik' AND address = 'Wojciecha Cybulskiego 15, 50-205 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noBsRJOPsTZsDkXDA9mBAFIQ0l6aNugmEJy1ts1DW8yg1jCQZkHoY_J0ABUR5R649-ZHmiN3yCJ63SWLCpTCfN1km5HkqZEztCkdMqHV5qXkXn4ch_OU_pNgRW131EFfs-IlkQtMA=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'cafe rozrusznik' AND address = 'Wojciecha Cybulskiego 15, 50-205 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOW3vA2R6sFOig68wLSmppM1qgeLB6IiDWrcypb=w224-h336-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'cafe rozrusznik' AND address = 'Wojciecha Cybulskiego 15, 50-205 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr7ljCnJNnqZHW_qhdMEAUgNMsv4CrLK15CE6_7swDENSp9dD7GsSyMPNh8vl0Ie33OVl1KT1z1d1YMObt6wgVBpkme08x_5CLt-0cH_d1nxs7XiBat6OqlN0gXxieo74HtVF69CQ=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'cafe rozrusznik' AND address = 'Wojciecha Cybulskiego 15, 50-205 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npKkarIL_SCOS9KoJMGcOGQYgINP0PzxPpRCN8YtLsqOa_4cPNc40TKqCIkWmA23WRgxY18MFdYmYOPi41vB-IF5b0XkcY4fynGW_GarcrO5NUvzdz98SzNMGyO8YDGg81dTt-5Hg=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'cafe rozrusznik' AND address = 'Wojciecha Cybulskiego 15, 50-205 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMd1pntWVAy1Hy9nFvS0lESsnkO_w2aL3r1LO0h=w224-h336-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'cafe rozrusznik' AND address = 'Wojciecha Cybulskiego 15, 50-205 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=n8DJXkWV0aKFSnglT68PMQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=333.80206&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'cafe rozrusznik' AND address = 'Wojciecha Cybulskiego 15, 50-205 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Cafe Równik
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOUli3hHpNQTwPdNNkJrQNxoMkxXzFZ7YJZ1oRs=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cafe Równik' AND address = 'Jedności Narodowej 47, 50-260 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrt7R2mdg4CDaNwoqM9hVWDhtlSB-NYXOv5BsAMWPXMnguIplTCzre5mhK0_EbrUHQ8eV7Z-LFNTi4K5z3pWspgh85qOX3Yipfz5N72BjpigXDqIzLCtkrFUDBuNUxkN6FW9oen=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cafe Równik' AND address = 'Jedności Narodowej 47, 50-260 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrkPuuibMrEoGl_BYX4EyIogSY1mxRa9udAVs_MlyiqhQDTOgBjzFxZplPfPupzw7KeRLgvAQx-DDu8aTrgVqsImSegf7auEfzPIL-dzYhFmN10GiyNsoe4HGg1eSiyxEfb_iBf=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cafe Równik' AND address = 'Jedności Narodowej 47, 50-260 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrRBGZv2AObe7_FzFeIuQRuPN3xspF5tknniFH6_1ONEl6V72lnP_wB-xZ7fmKMMP3JHnnJIKlQAtq6Ll8jqPsHlo0A9bx6Hmo-6aVXaB5Kwea4fuH2k1dod-8k4fdAB56uEVC0=w447-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cafe Równik' AND address = 'Jedności Narodowej 47, 50-260 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noQx7VVEmf_MF5cSHMgfw1iaanu36HJ_cORS_ekprajsRoFmUja-7RA6bd9RBIsLcGV611QT-qFzpc1AMNL0TJZiY14P9vrBIkItkwpPViyp8Vh1azO2wwt6hrfcbEm0n_ORpqtEg=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cafe Równik' AND address = 'Jedności Narodowej 47, 50-260 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noXFvxnumM_9nAB_-uddFNey6INjb5g3YXNEcJdaJSkvia79T7Pmmy_IMGv4pvArHNwd66QYxua_JIa8dORTrQncW4sFGNwBcdqbB5pg_dIpNrWs80IsBf5TtcxnDN_TdqRAgEA3g=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cafe Równik' AND address = 'Jedności Narodowej 47, 50-260 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqsjPYGCZOivINHjx_gnobaWbXDE4vLuimAltVnOE1wI24NlMbLDVU4Mr9JKQSnKTL2Odrm1gmVgQgRIEzdtOsf-94t2QMeNLWgqYn1GeacwT0iF2_4N8uIC_lhfHWzuRz8AMM=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cafe Równik' AND address = 'Jedności Narodowej 47, 50-260 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipP2j0_cUKoAndXCjnRSe7ZNo6Hwvbv2UYeQHmEY=w298-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cafe Równik' AND address = 'Jedności Narodowej 47, 50-260 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=rExcp-JSV4_gVU_cYr24uA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=149.50229&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cafe Równik' AND address = 'Jedności Narodowej 47, 50-260 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Cafe Targowa
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNfOZSO6AnskyEJDx-Nu7Ar6J7xyUxYnNYz3vWC=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cafe Targowa' AND address = 'Piaskowa 17, Stoisko 11, 50-158, 50-001 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noLWw408kXtQUSsASb2rQThkyphXL3XdhdRJyoQLMVeyiL4cU7fsqQHQstuaZC-NJyeb_WJWvTVVBvcUH_q5AmPlNbXhSdPOKcghCEDa-SbJhWZFC1E_aIuo_Y_tfb61JE5McxK=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cafe Targowa' AND address = 'Piaskowa 17, Stoisko 11, 50-158, 50-001 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipP85YE0LAiY7o31VMD-Xx_QrrVAkE8klygwf0nN=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cafe Targowa' AND address = 'Piaskowa 17, Stoisko 11, 50-158, 50-001 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nroLRleuL8oEIcnGUjCOjOwBt_XMLAOLhxJ8AZ7Q9QOb0QGWe34vEGlYz0mesoPWGBCCij4NhCGBS3sS7--8s4nvlnBEJ0NbJ7TyuqpaZYcctVkCIIVsWI8wnE04hPog7wS7OwH=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cafe Targowa' AND address = 'Piaskowa 17, Stoisko 11, 50-158, 50-001 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrVO909xNwg9tNOhpgniW4cUGTd1yurRZNEn1yWqqqM53n4js-k6co7-lh0KHk5Ij3W9dokBETNEfBwYwHajO0-x3MQKdyuabxSULE3NXeJYupOhciQ2w_js7Q8b1uYt2WtrTVM=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cafe Targowa' AND address = 'Piaskowa 17, Stoisko 11, 50-158, 50-001 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npcw2A4TmqiqB2HQ__iH0qtT1XOKjWhZhClYwVF1wsM_a2nxmSbwkJm5Z8f7tZjOOeeLZ9LREDn_h9NcBHJz4Sc9Z-C4P3GYyum-VPjQVcObEs2t5Uy66hoJYsamabLr14F6cE=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cafe Targowa' AND address = 'Piaskowa 17, Stoisko 11, 50-158, 50-001 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPTpy9sjiu4Q4KiCE1DyoKMITWvBIboBWyZ0kBI=w447-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cafe Targowa' AND address = 'Piaskowa 17, Stoisko 11, 50-158, 50-001 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNlnf_-3WjDw31HvGGBZIarCgUCQsr7gWbvs0CK=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cafe Targowa' AND address = 'Piaskowa 17, Stoisko 11, 50-158, 50-001 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=L7CsQyZ8ZsA9pq9PnhH3ZA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=143.25754&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cafe Targowa' AND address = 'Piaskowa 17, Stoisko 11, 50-158, 50-001 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: El Gato Specialty Coffee Roasters
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOShGFXxTtq-Og_P-gw1Gi9EwxDdjM5zPpCx-7e=w528-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'El Gato Specialty Coffee Roasters' AND address = 'Odrzańska 8/1, 50-113 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npUB2ogJSxm5M88Ztr3G3L9MvWJ61o4OTzGTVEUVgPnMfRfe9R3PrrbXcIAlvxS_qgicb-4OVGZ1rOLxcXzwkn9C_C9bJdB4OLnLbhmbhKz23VuYLJNQt0dtWsxg-O52e36QNUFVf770Uj3=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'El Gato Specialty Coffee Roasters' AND address = 'Odrzańska 8/1, 50-113 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr8vsV_hUDhcE_1OFBUmvhKeyCCOEVP58cO66nOqujTWtVqDoY-t_hYPHFpCEgOE8fJ5ddvLGHNrHkmGPupN8P3jnBB48Ny8XCGYxUSr4OMl5zpOy5h5e7FAQ-5sP3YePIqnak=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'El Gato Specialty Coffee Roasters' AND address = 'Odrzańska 8/1, 50-113 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqIcYaxiCYpiq6x2flZfMJPJgsbMy8wf-Ykj0mamZAloz54Tjdr_S_110t4TckXdsDotVX-2Gqhqy3-XdSf26on8VnATxiCr3TfpcoUC0MsCHnVIDkSSNz9ipF_0v9uM9_KX39yCA=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'El Gato Specialty Coffee Roasters' AND address = 'Odrzańska 8/1, 50-113 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOnYyqbBedeN-ofDM-uokc-dRAXqNjKCOAK7saB=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'El Gato Specialty Coffee Roasters' AND address = 'Odrzańska 8/1, 50-113 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noHrgDgWzno3KI924-WD4v_KxDayGpfvhlwAYpPSuBmIE7Fj00G9ZB-j-o8t476hCc13rJOK8fw4PhQMBnwfF3s1rNCSbhLnBiRxbLcT0BtV-J0ZysfB_7x3PGx2xjKmZDqIgw=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'El Gato Specialty Coffee Roasters' AND address = 'Odrzańska 8/1, 50-113 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4notcuIwN3X9rbO0PpdI_msNyNUzV7V9jMfeMGlLSv0HWK-WeYdxrM6GrraO03xtyzZm4n522E-sHgNmAnlCdV_AB-lVb01x40DIH6RWAFzjgIfUEgE3lO-HfwksrUG1wsjQosSd=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'El Gato Specialty Coffee Roasters' AND address = 'Odrzańska 8/1, 50-113 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4non0PFuoZWC1qXwDr2N_gZpwKVEMLqpYMEq6f9zYIivMIAZIOc9ni0ORodbuu7uj6ba3U50qLBdvlN6nms45rltnDtYz-TsZGC56c7Bjk8w4gUZ9nMR5xWIJbSIRI9Eur7EspO5=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'El Gato Specialty Coffee Roasters' AND address = 'Odrzańska 8/1, 50-113 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npUG27KFtKal4hVy9F4bzKqOuFgZTqF8vAkK_jIo_hppPUYUFZobMeNNP34hDTxJ5BmvSP-9Vyoq4ovjVOeDtIOYzlsQ-jX9z3QJl5fnPON448rDhhtibITMdl2PTa2hDTkYNo=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'El Gato Specialty Coffee Roasters' AND address = 'Odrzańska 8/1, 50-113 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no7139yKCicPf6BlYyxw57IiKhlGCldcm2nngyZslldgm_9iE2ZrbEqB3Ehy_vriv5lF4QJD3daWOwFhomsKvMCLvi04VtEsp7UNSF9OeWGYMV4Iv8sUXKN6KDaJoQ5PhNlToSo=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'El Gato Specialty Coffee Roasters' AND address = 'Odrzańska 8/1, 50-113 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPaPQEMhMgACQ6_NLRD8BYFEKNZ4AcGn_DLbm8a=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'El Gato Specialty Coffee Roasters' AND address = 'Odrzańska 8/1, 50-113 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=jwKNql20dlXJJ0WL905voQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=87.35332&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'El Gato Specialty Coffee Roasters' AND address = 'Odrzańska 8/1, 50-113 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: OTO Coffee Bar
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noBjWA3gkIpT1JL6F5hemQcWffDscf_eh5mcmen9tjn-YWvxjgDjMGqFGtu82WodRsGRr1MN69GnNRJJpfnWW-tHix9HfLEZb7Sl33NGiKYZJeqJqLu4frNh6I9GBwwpDGqxv_r=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'OTO Coffee Bar' AND address = 'Świętego Antoniego 28, 50-073 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr3d-dKP4e-L5r4EyYWpcyfU61LtElOnyebx24lX1L4EyN6fnr3QrYG5own5iOzwZCV4Z7RFi1ywaUkXSW19Fp4v0pWRgbrYw1Gt6hW1OREyxSyiD6CLbksKvDrV3OZUeX5bkjCDmVaFfNS=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'OTO Coffee Bar' AND address = 'Świętego Antoniego 28, 50-073 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrXwzlubEhKFX0wlpvebW9zDFvBGvgCDiXS7Ime2V80CbfJfRUlfJSujGzDIptW4Izf9tAQaLdOBGmxNlh_tLEOVw_nPOEq2-Snv9GUpz99JQxzg0LQmGWYZgqSKHSHs19_fzI_=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'OTO Coffee Bar' AND address = 'Świętego Antoniego 28, 50-073 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqM_3SdL2WWb7Op5ByB5dB271p8Z8WEYtvgD7GSsKW2Hs-hP0D9w54CXkb_be_xMuX_DXmrJY1UTyUZ2_Z1sbGepglk-ZOrog8MiaAsDgRBBm6a93YWZ5uJN_mPTA9QphvP38fhZvvuFa8=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'OTO Coffee Bar' AND address = 'Świętego Antoniego 28, 50-073 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr4ePSJdqq2uC1vBv-n6f4KiNgD8VrKZAm6CLY3GnmSzXydmXr0S_wmxAAyYtJDdBITLYNs_hgxkKA_6lq6xwDa-CNfvFX-t0f3Vxis2yUKXeMjS-HmsHLoey6pNR4nZd5aXrQF=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'OTO Coffee Bar' AND address = 'Świętego Antoniego 28, 50-073 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr9kzazWmRh8H8YKyytrlyloHTPvE4kUNMQ8uTtTLPAEGEd0tTKFyoyFCn4XOXcUIzR9zsc_K6HsXi1wiYOqy-gtXu1aI9r2l20ThZLHYniXHkM4W10GqZqhhyYpBrzP23cUYlTEw=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'OTO Coffee Bar' AND address = 'Świętego Antoniego 28, 50-073 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrkkbEIp4d9y7RN-Ybg19h3lxKIuXSgJXlRT2heJAOWzbYbacwr71cvpJLdee3Je6LDNWobRDw2s6xF-_-IO1J03M4pTdJdEPRzyK25GRofcoEPBAZyehOetGBlTmHM9yrnxAxY=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'OTO Coffee Bar' AND address = 'Świętego Antoniego 28, 50-073 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npX15YctG_TEt41fOEr-_2G5FBReRqaGDqCVoGD5HAfoC3tuo47OkrrA2G8wlqxN7X5RP_y10NErRN7fC0mSb_JqFTJOv6BGBzjM-LnFmXxi9YBC0Z3EL4ZkGhZuGto4eIrjNw=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'OTO Coffee Bar' AND address = 'Świętego Antoniego 28, 50-073 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqDwWdXRCGsq8smMgN70ZmaGmeFDcwHKFePaAHMGsSbewgralZSLjl-Y-yestcJ4rmFAjGQKAi-5qeeDWip6_t8rk_sZq2YeGNX0-tqP46dXE3rV-G5bnUlgOiJk1g2Jw5DgLGc=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'OTO Coffee Bar' AND address = 'Świętego Antoniego 28, 50-073 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMfW_zkHRQR4VZkGZN_oxRWKytxwht5D-YSAeFU=w521-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'OTO Coffee Bar' AND address = 'Świętego Antoniego 28, 50-073 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=-xNtcMtOjvQuebquj8hYZw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=239.46971&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'OTO Coffee Bar' AND address = 'Świętego Antoniego 28, 50-073 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Kawiarenka św. Jadwigi
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMYLPHtKlalKQGfc01d2sA0uyP-vyknyJKyo-aI=w447-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kawiarenka św. Jadwigi' AND address = 'Świętego Marcina 12, 50-327 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noJfUTj4SM9529ZZdJ5J-EGCOwOzef-VsiQusxAwU-YiM4jp0gJbNZ9C3vsnQxrtqgFpQPuEMNYxz637wJm3w4Q_Q2tNEw5VowbkCapAngEkv0VEnpErEO7w8_XNG1IypAspSxs8JxRdhi7=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kawiarenka św. Jadwigi' AND address = 'Świętego Marcina 12, 50-327 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npGiSD9DXlfLxqXcXK7CHSbW51dlV-XTvmJ1xtlxeeDUywe7eYTXSc23872I7P8tGQCkoXXH3dx_f_Nmrt1PiYKDM54Dh3m7a0oRTvLWZ1eFpuJqYp3bd3TYEjITI2APjiA9C0h=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kawiarenka św. Jadwigi' AND address = 'Świętego Marcina 12, 50-327 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipP90pkooP6o_7B0QaGU_W_H958R-jRPiCmFbdMR=w224-h316-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kawiarenka św. Jadwigi' AND address = 'Świętego Marcina 12, 50-327 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrENQWNH4T0WnbvJ97llDFYd5uoHKmsL9hesCPzBetR-Hw6OGzxwpGr5ftsPgR2FMgJfDo1G3ASxG-mLLofojeUYZJNchbMb58d7c3B7-A9yzh6UhQSK2Acm6kl1h1557yZDAfu9w=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kawiarenka św. Jadwigi' AND address = 'Świętego Marcina 12, 50-327 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrNI5cgkBv8kfP9VEjG7WyXBjIW79h_l-gdOeeaYMWR8MrIXs1mV-rIktg95tZw_sYpYccMcO8AXU3KnT803OsZHPuwvgEfBbSWqK34Uhefa1Gj4nmkgt5l2LY9uQqycr4I6rHP=w224-h299-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kawiarenka św. Jadwigi' AND address = 'Świętego Marcina 12, 50-327 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npinxGee9cLUgHHVfnC5_xjRRpy7lNLzM9cNdLacimpGNWlOatTVcaJG75XfWvTA5bQdXpzx0gsxWVWwB3JBy90hOa59HbAf-kexM-i3rk-_hiN7VfVbzomppX6VGxQ_poc7Mw5Ug=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kawiarenka św. Jadwigi' AND address = 'Świętego Marcina 12, 50-327 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMQQ7PN7Jax0E_-HiWrjV8znR4IAbwqMU9UUJkO=w446-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kawiarenka św. Jadwigi' AND address = 'Świętego Marcina 12, 50-327 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=sy7QcSseeXaR3qCX0Grt7Q&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=42.69765&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kawiarenka św. Jadwigi' AND address = 'Świętego Marcina 12, 50-327 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Cherubinowy Wędrowiec
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nroLWO0bG2l4YHfXInEaBLWavJuZWBHSjGDXlV3grlQtRegccZFJ_s9yMSV8FZiE6ZwgIS_Kvb1SaHZAbZvWsWGEi6HbGpz6ajobSzKh1a0wBRJUXMPLKa8hDQ0UPN8dooUcdJ7=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cherubinowy Wędrowiec' AND address = 'plac Nankiera 17a, 50-140 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no2WSFFoVFgyXmYvmirJwvTSnMCqG84bZZkBRt1LLzZtXyy2RCgK-f5vyDUqqz8clVh8olr4fCm37-j5fJP8CRSNfPZRWpnm1MX2mlUxBFfFf5lLZv3vevgEzPEGbA857TNZoOyoJ9uTeWV=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cherubinowy Wędrowiec' AND address = 'plac Nankiera 17a, 50-140 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqDB5L1pzUw-AQnI_VcOaiiPpbSyd-QUUFOHwJbM2RkeUJnwT8DsMfZ8PH99qH0BfbwbQpHEnunXzmBh7dmmqs9FQ5zr2ryFlhkrZ2qnKVMHFzZb9V911jf7PJBCPqlpY3SVP0=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cherubinowy Wędrowiec' AND address = 'plac Nankiera 17a, 50-140 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMPa_hlwhq0uUz6v-34CKiexiqMy4vQovPVzdHK=w421-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cherubinowy Wędrowiec' AND address = 'plac Nankiera 17a, 50-140 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqDUfTaG_lBrIBUv1SPuFCQIicpyACubg1WVsIEzNitYfKpaC2Sweq0ijUJ6tZwV1KpbTieOtjYBTWNSq50nvOvH3lVxuM6OByUA6FKS_RKBT1NE7evRrs2AuQZl_G_HGiu46XrqA=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cherubinowy Wędrowiec' AND address = 'plac Nankiera 17a, 50-140 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrnwRtMjXoKIF9CuROlZquqLy4RvO7Eob-GNqxHxlmEbO3ynY5g4cfi0wJ4HDHnJESec5YOEcnM3XSHTw2daq9Mp66ElwrW71JJB_sI-iJp4j1z0sPv7kFh_pYSYkruS_VQIJfP=w298-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cherubinowy Wędrowiec' AND address = 'plac Nankiera 17a, 50-140 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr-TWCoDmm09AwV6G0Q7EY8N2romnvo29lH1DKEIgpue2FdI6PaDF71Gh2DoDpqcBAPp-8z2i743r6r4HOUvfSdfGdzycjZtdWCRzGa01xJ7fT-tZA1o7moPn8gryHnaJ9sHkye=w224-h484-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cherubinowy Wędrowiec' AND address = 'plac Nankiera 17a, 50-140 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrwULxXRuDQwn7gAaUmoxk6gCjomQpMbvA7nmBR1nyTyTk423BBxNlOWoCrLsHp0Wyo6bCGKvECjJ1mmDHxzBt8ObybVuZ2Bk1kRqPPiFwifyIiydMfnm9HCTJNC-m5f8xwXMvr=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cherubinowy Wędrowiec' AND address = 'plac Nankiera 17a, 50-140 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqdJEfzhaYUERapcxQmByr04qodebuePGrzSZAq144E_RczIZo0LHxI1j8s2_dUFVyikZkdp-IT3ZGOj1Fsv85q0huTqnv4PpfabMEWMgiDI1lH103ln4ZXs7_zh8Y4FzmHFl4=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cherubinowy Wędrowiec' AND address = 'plac Nankiera 17a, 50-140 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMLwC4GzLOOSTJSeUimhSq6X3hpS-mnvHAJ-KJT=w298-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cherubinowy Wędrowiec' AND address = 'plac Nankiera 17a, 50-140 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOQhukXi1QiKtRFKpQzRdUH4MG3jWYdwxNbn-SL=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cherubinowy Wędrowiec' AND address = 'plac Nankiera 17a, 50-140 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=I9PkQbcIAjUC5gZ295pPqw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=168.07985&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cherubinowy Wędrowiec' AND address = 'plac Nankiera 17a, 50-140 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Parrot Coffee
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqzQ3i2_MZNIjoQdSt-5deuA4BwFoSqE6D6zyDkJztvgJIEZjJ4K5yCKH5UOrJcDXIr4DQHoR-3O9l2czRJkVwapDYIt6uzObpMo0Sd33yOVFmYobZQBr8o4bo-bYr-nGiJ_31JBA=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Parrot Coffee' AND address = 'Generała Józefa Bema 2, 50-265 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nolzlCBYj_WdRgi2t5nRJxzJiuWjGbX4h_x2e0Jqys1x-NdYK0tZu6BRhgZFe4hHJijXYDIDdj2FdqbWbjlZ3tBtY_qtTGiAaDS0S2BfsMKwi3M9UkG7MhssL8c2C3JPMjmXouy2vFnUko=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Parrot Coffee' AND address = 'Generała Józefa Bema 2, 50-265 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrqD3-NwePnuvLfhdusq0CIo3eGPbgVmLqizWo-VTIUYHIJINQNhlU8C7X8s6aKSwQDXC9hgPHxwqH9aRis59SSp8CFGcobXWRd6Xs3Bv4nQzUAzSINfD_nO1xzK6KNT2_bp8rI=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Parrot Coffee' AND address = 'Generała Józefa Bema 2, 50-265 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrZALbs4PBqjuus6t7AD5gaOUkXaYz4gZOQM9i0NCCNt04MraWGtGZ-91E-YNvXRzNOw0il8NdNo0m8prbvjxtgDkn6RTVghFs97Wb3pmBug4mEfA-Wcgkfg0fFmOXpVh4v8LPW=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Parrot Coffee' AND address = 'Generała Józefa Bema 2, 50-265 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOhTUNJjyI9h39prD6-OMBxh7PrNzzAaAPHCQ2I=w224-h319-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Parrot Coffee' AND address = 'Generała Józefa Bema 2, 50-265 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nor6ROtIQcWcg6SwkUMUksyxFSb4SnYcglZMkjQFZ0dJWxRx8gQ1GMj93EfJuNAVY0dcWOhC45TDmaWU0Ihp9m9wuPLkzQMgX2Vd3NxqVJ1cEWlgdPVLjfgtmPpjLFMaek_AUA=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Parrot Coffee' AND address = 'Generała Józefa Bema 2, 50-265 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqzEt2NjBrdnnihimiyQEt6KtFtBwsab47E7Z3efwi0dG9eLQuyOfbna79eKBgDio9muqpDFmsG9hZbHyB8vbgntgR5NFBGnlBxDxZBKursqZvdMj8g4t5qzjhaPRPr-ZvE-QKRag=w298-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Parrot Coffee' AND address = 'Generała Józefa Bema 2, 50-265 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrSE5-c5ROBvglm2rXJkllrPRmptpTRhw_GNghku-vDjr-qj9KiX8R2FddE7If51zIHDcoo2FKb6mdSfxNBsNEZ_eVrpiQoI1DIR2t8gDWYK04DlDHBSUzBy5JA9IYrwD10vOGO=w226-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Parrot Coffee' AND address = 'Generała Józefa Bema 2, 50-265 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPKxJEwxIhfngUx3Ul6zwWpYyPeE7vQPQZomOfY=w227-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Parrot Coffee' AND address = 'Generała Józefa Bema 2, 50-265 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOFJL_itnqM2SVskZouHI1g9K4YJa4GDJ0Cb0pg=w224-h479-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Parrot Coffee' AND address = 'Generała Józefa Bema 2, 50-265 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq6WFcZNOqFo1_EEfX2eY2TVygwm_DCnFu1rLf7dBOULQcu9Z2lTDYfncvYG2877Z-nXusaEl6SEbp19_r9rK3j7oZNylO5V-7u7SZmC-LC91gtYcyJLbUUBhUIMtjA1nrAocj5=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Parrot Coffee' AND address = 'Generała Józefa Bema 2, 50-265 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOUu5csu7cBrybwYVtCqleYAr5mhiCjQXdyt5Vf=w238-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Parrot Coffee' AND address = 'Generała Józefa Bema 2, 50-265 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=obvRHrQ42K8mTkty4-gKPQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=262.94928&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Parrot Coffee' AND address = 'Generała Józefa Bema 2, 50-265 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Baldachim Kawiarnia
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipO37A_QDbeOW4RGoV1lfjioYlcooD-EUVzIObPI=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Baldachim Kawiarnia' AND address = 'Świętej Jadwigi 9/1A, 50-266 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np96ABSEvRBagucmPMT4H4hI4YN0mq0Ws2WEbp04e_O0zpN0ZHjB--19JwHKcdq_4AXrv96E6t6imuZCUKMJg7x32C-e6cjZp-dJIK2fniJTzGuHzWUDY3nis0luvxYxYxrzesDETThO6yU=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Baldachim Kawiarnia' AND address = 'Świętej Jadwigi 9/1A, 50-266 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrN1DekPr-rM1PSEjPoQzzDwRZuWd8z5zvj5vPGCptt7N8JKkjJ_00jbUjBWtIO015X0LmrdoJr_jGDtcaNpcuYa_fR1iGCli3ndqnFYMge5uHGNyLBkKqymMbphMqEHQclKj75=w224-h389-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Baldachim Kawiarnia' AND address = 'Świętej Jadwigi 9/1A, 50-266 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMjgaVjV9lFUXh4Nm9pomMrQ5q36J36WNTVmmMo=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Baldachim Kawiarnia' AND address = 'Świętej Jadwigi 9/1A, 50-266 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPpNBjWP7d0jRcEeKxPdhDZaRTyCG_LJwzZvLmC=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Baldachim Kawiarnia' AND address = 'Świętej Jadwigi 9/1A, 50-266 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npH5pja-K-YHUG0i2oBuumM2Vf4m9l0HloYCly-Bkaou5LxyOScJ1IFf3uAWAzaaj2-rWP_4m3cb5GAwhF_M2cPruU-dzAvhYLb-kReeCHFqsE5Z23AGbWDxz91jz2auWukW2fK6A=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Baldachim Kawiarnia' AND address = 'Świętej Jadwigi 9/1A, 50-266 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipP9kATxX425IZ0fJv6Sd418sYVHap0QHTE0jKrD=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Baldachim Kawiarnia' AND address = 'Świętej Jadwigi 9/1A, 50-266 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=_MJag0JZH0c76if9Tykleg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=278.77377&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Baldachim Kawiarnia' AND address = 'Świętej Jadwigi 9/1A, 50-266 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: ARTCAF
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrI13BHEjuNptJz_D4lz5-YTET1iYMM9EOMFS0vwomm6WfP9xex0VUcHKIfGO7THmgePSo9m5dCXVBwSomLGflbW1kV-hA0SbdCf8SAmMckTYOmcIsUwDOFdphpkgrc4mJont34NQ=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'ARTCAF' AND address = 'Braniborska 10e, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqrgtMMBZTihLwxAFZkRG6ilmhhCQkzq2e335_F24C52LHb3t8OCv0Jvp4li6amCBf9GaSL29FBtk-pgP5Kr0UAUXwnCZ82yjsMoHo0ZH3Do5yz0CFp6HW0nnic7-1YbkUQVKzVJ939aUBO=w224-h479-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'ARTCAF' AND address = 'Braniborska 10e, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npiYF3ZJLVkIu9jEnomzcKnVPaypAa1PqjY1KFNLI84oumBhwC773U9iBdzouVYff8lwqXOGMpodvBhJx9HtIWr1nE9cG2w6RqU_T7G_XVN1M_fYrPhzs9TTZ8E754aSmunWFizxg=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'ARTCAF' AND address = 'Braniborska 10e, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npOPG9ueO9GotCyMi7_-XnBgztruwBen2XHdSv52KnAhDaPvpdi7-vhecdSFHeop6-Ceku65HUGvkx6LjEJ2hRTg0O9Ug4ciHMskck90zPg18TEAXYZ7VAJDQQP4J_eWiDlSf8M2Q=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'ARTCAF' AND address = 'Braniborska 10e, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipO5DXMlTq9k1ET-psOJ3xzPWrmTQrAF4NQaGO3F=w446-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'ARTCAF' AND address = 'Braniborska 10e, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqN3VTRR5Pg0HyeCUt3-295-O9Ml4OHQuw_HTHCGuGi9zLTOwJHKEmVQV3oKSKyohQrj3-eyIZzM9o9Y3Pi9OfxdznYugQ5v67574MohMqTkfRAg2w_96b-CYAt5HdCRUxIHqDb=w396-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'ARTCAF' AND address = 'Braniborska 10e, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipO5DXMlTq9k1ET-psOJ3xzPWrmTQrAF4NQaGO3F=w446-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'ARTCAF' AND address = 'Braniborska 10e, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq1icqcaEIMdm68XNsnOLcGPtqq9X9Ty7VhRKtKdnFfUsLUZ9gSW_0XR2dkOz_AskU6iVm2bUtke2NVrobUEhrQKtedMeiQ1vrU1ubuYheL6AUK_GMjhXw1yFL4kmBuuSx36YbO=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'ARTCAF' AND address = 'Braniborska 10e, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPwSOHR6zzseLCZfzLayUHgyEG8VobPqd89deE2=w446-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'ARTCAF' AND address = 'Braniborska 10e, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr2JfkoGmj6NcjRADHjo0EzeUU_Lk1Qu2qBXxu4T7m375u7FbvLGdcvohzWgUIH7gkoDfBX-zGt7hIcaoHXnKvhxz1AEyuAsYVKx-WYg_VyLjxge-oKg-agu6kZvgL7nm3HJmCE=w497-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'ARTCAF' AND address = 'Braniborska 10e, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMc0bQ7fXsOfJ1VMfPxsddLoIiWLRT9IbasRFlP=w447-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'ARTCAF' AND address = 'Braniborska 10e, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=aBWcj6FvTXuBT7QMdstzng&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=42.001747&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'ARTCAF' AND address = 'Braniborska 10e, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Fama cafe
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPZ1Z4k9_FGcfVsyN-bFivrW_zeUHBdHeUzRs9g=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Fama cafe' AND address = 'Bolesława Prusa 51A, 50-317 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrxLXC3vfVrXvyOudZfN-pEBLiKsX_r3Lc7SD6mATRHzjQ6c9NrK3BaV5EMIh6crLRPVWCrobyNfpulpDy2naPo923yybVGZnb7jBygHDUolSVnPjUODptHD2wc3-nohAYUF0_h8NnaHcU=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Fama cafe' AND address = 'Bolesława Prusa 51A, 50-317 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nofHii3Xds73wgOO3OPkyad_apFnjK4TOS3lrQwd0_fR45UYyPyi21XukmZy0XZZRMQw_SOxtqV-N33GX2xojFbZCimLmy_SUTxg1AFsJQ2um3uQ7oclu5cdEr8EEF8gm5Go59D0A=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Fama cafe' AND address = 'Bolesława Prusa 51A, 50-317 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOlGhAaMwoSwpofELxB3rJ4dstMsOuY5UMpAcVs=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Fama cafe' AND address = 'Bolesława Prusa 51A, 50-317 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq06Zgtozz2jisGeX2DFd5aTt6XDJsS30CP6_mxUdiMtImkAYEDWHnzsJ2yU56j8c2qYpBATmaCXGWcnqRqXS78bxYbcWrqP4tDkcsC-2AUH3Fzm-bB2GtCPPTbmMHUMVqAfHA6=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Fama cafe' AND address = 'Bolesława Prusa 51A, 50-317 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrg4hJ6wIYLWkQbXrYny2xRXjtHcbbSqvIe2VmYuxFJOlp2WRwHhFi6gYyFxaUkTgpzz9-wjPTzL3Ncrvsit8g2EGLJ0ObuV9VjnJYFDvTvZUtWWtoT9pTnMrvJ044t-gygvVbN4A=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Fama cafe' AND address = 'Bolesława Prusa 51A, 50-317 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOZq4kZHJwhFuFq8g-Cj0Aa3qFYxCP7b5oT-f5y=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Fama cafe' AND address = 'Bolesława Prusa 51A, 50-317 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNM1SUPlkiItA9VTsD2kUrhlnovI3GXrff3KF45=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Fama cafe' AND address = 'Bolesława Prusa 51A, 50-317 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=EiZxYpxeoInv-VV5KLEuFw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=179.86243&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Fama cafe' AND address = 'Bolesława Prusa 51A, 50-317 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: NIECAFE
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipN46fwkAUBE9VNoconFLglD4YRVH3pHrrttkHFR=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'NIECAFE' AND address = 'Tęczowa 1, 53-601 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np3KS7SCOZHmHp6vC14tFTi7CPbggfhApZHgOTeT4l3cHFYxb-bv1qXSRe5U1ThC1qnmZH-teXQRVK9-n2tGVUFfVCqgdU8yZtRKaoMAOk51GzwlbjL2PpUX87YGidXaikmWgTP6j6X5uA=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'NIECAFE' AND address = 'Tęczowa 1, 53-601 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npABNelOgvEEwz5wsvQ44-MY5QUS2iZwIxRInIDiZOrgUEfIIW53wQZ_jKAAuXJcKRSRWyCwLwWCv-F4Ij8SVI5TsNJp6saIaYTHeepB3Y088aUWE3U7vRQ-bXYyJwAfYUAEC_G=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'NIECAFE' AND address = 'Tęczowa 1, 53-601 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrlsIjbqWdUi2a6KwQ1OcVYnGZHWRQCzIkJctGcD92wCL6zLQOBMhbzPhf33jyhzU9fpsNHcKK68OiZYLi2uq_CuIjTqvKRIWrhyf8UeMmLLCFlr_DFLTXGteYCPwUohtmfa1s=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'NIECAFE' AND address = 'Tęczowa 1, 53-601 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMJ8IhcWXCrq7KprUaGboVLybbu8G-ingE90qzt=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'NIECAFE' AND address = 'Tęczowa 1, 53-601 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipM4vtbMQ2jfOXZpRrxhWJdm7ynjkm3gvIChwl7K=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'NIECAFE' AND address = 'Tęczowa 1, 53-601 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=OmtNSeOFAYe8TeN85BI3sQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=249.64821&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'NIECAFE' AND address = 'Tęczowa 1, 53-601 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Vinyl Cafe
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNSI1j0i0skUgUNaHLz88OKHKAibExBPqJgYebr=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Vinyl Cafe' AND address = 'Kotlarska 35/36, 50-120 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noC3JEFdLMXerOZLnP6894u_fOf8FIPArZoQzQhXTFw-3_d3uaTkxXyjq5eh3_PODkW03OaO3uayyN82cEE8rJXeDCYkYwtCdsp0TKZDQ4FNjSORPJQs8EzVfxiLga_5DQa_PfkjhUFk6JR=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Vinyl Cafe' AND address = 'Kotlarska 35/36, 50-120 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noEkvLhqOEDEuAM_9KbAyCLTIS8VTHl-rEYI6UVOT4nIk-XcKv8yRHxH_SNOBtrggxP40nXE0G5CSedr_JV59MELr16_g9LdOqZ5Y_1wSejQfvv1f5WiLM9s3QetI8EnV4lkcTLZg=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Vinyl Cafe' AND address = 'Kotlarska 35/36, 50-120 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrQ6BCbe6fcrCZSScI0A1CwCyQ-01OHjX0fmleBiKJeIMaXBW2MwiVvHfOUW9Uvlyi_tKTtz-8NufbGGtmocAUYTATsHwXeC8M7DXen-RFVRMyq8_f-_RzKQlYe6F9ayiSHNOs=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Vinyl Cafe' AND address = 'Kotlarska 35/36, 50-120 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr1Q0pUCMfCMjX5M4pKsTPE59tksDsO5FvkBhB4P0Kvw9JGFdwMRxkzjCq-8m55sxXRyB6uQ9RXFNcXHWzEKaaKILnGg4h1Z1ESylItwrYQJybaGSH-K2Jq3_DOV0_vaiKv6aw=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Vinyl Cafe' AND address = 'Kotlarska 35/36, 50-120 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPF5t_CrI7gvW41mMjp2WTvUc0_kpgZwNs0NU4A=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Vinyl Cafe' AND address = 'Kotlarska 35/36, 50-120 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no_7hO-M5Pxg3y9e2CbeAQfUXY7EHBQ0JWJSq8BMIx1xNM6CdYcOnwLTftGxBsENukFlpce69bs1MLZgd24Prh6vP8Pp221vYCZSs47cT7GCoUFGDb4XzYB_Pbgdnr6KJI6QvrE=w345-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Vinyl Cafe' AND address = 'Kotlarska 35/36, 50-120 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNrmIcl0zHQ1wX6bJIk6Ppir4rCT6hzGexfAytm=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Vinyl Cafe' AND address = 'Kotlarska 35/36, 50-120 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq9HHH4w5CGEhcnBfDyQssQB4K_2B4S29AhCHgUmnQP3Alf4msEtGlIoOrgamxF_IQ_7nHhiuSt9NNOZnNJ8KdLyd_Tw9GBqCnFmJCBEG8dY1TBKTJleeMoXOXMrBo_YzSDAfGE=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Vinyl Cafe' AND address = 'Kotlarska 35/36, 50-120 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq_CI31t6XDtnsnQPbdEcZDJVXNe-3OSfYtlK6styYScwrh8v4BZH3Xr0DeO1hPUJlf4zlsh27o5WYKnKSL4l07vonNI82X2sBtKk8-Jzo-_A7qPICjqyZa7F-rHcRbNgVKvfZI=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Vinyl Cafe' AND address = 'Kotlarska 35/36, 50-120 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqcUJyTxM60XGFprmEGoRzLVlnW4pFoelWZW79ZZMm-485FvqsHErTTzRM9A9fNP_S1t18qJB6GS1UotXsEGLVruJZhj3G7d0dTUQQnbawGMFIX1BS_bPniZgHA1VN8HF40G1XY=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Vinyl Cafe' AND address = 'Kotlarska 35/36, 50-120 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNMaMJLPFGfWNT5KHfWixaxJIsXZ9wsijxUtc1e=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Vinyl Cafe' AND address = 'Kotlarska 35/36, 50-120 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=rcVAi_5in_Wp0BZUA84gyw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=202.42963&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Vinyl Cafe' AND address = 'Kotlarska 35/36, 50-120 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Kofeina
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOew7cTI5LkOeOuAsQmfwvWg1B6pqCnBuA0_6xE=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kofeina' AND address = 'Szewska 68, 50-139 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipM3oOdAgPNrrYZ7dm4kNvk73mqkZeML_IYkyhng=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kofeina' AND address = 'Szewska 68, 50-139 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noFot-pfoJWauXPHruRMF7ArVBESEcB7uGPK2baBKj6iXus04D1jb279WB6OgNDNFHzq22IwADVk_rbyIMR0IksHrhdazykFeWGinfgYzcnA1VA_mFEm8pCgG3l2yNox6VCXKo=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kofeina' AND address = 'Szewska 68, 50-139 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npp-dqM7PxHg1uS8brrOE9ZpZzh-3q3tF_cc_tde04a9qSUsGHFaXy22T4KPW_Gd6fG6OFYoVoLNiQ_dNXDueCnphjKr1uxY0ZrbTlj5z9USp7eukiYtCdTMVQcqGd-gksGyAmi=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kofeina' AND address = 'Szewska 68, 50-139 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOHBxNbNnmL7U1K_q5QV-kWOUoGagkHAUcEEZ_u=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kofeina' AND address = 'Szewska 68, 50-139 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=PFPZHH4SdIf83bq8yzGOXg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=306.75412&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kofeina' AND address = 'Szewska 68, 50-139 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: lotos - centrum handlowe
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npX78qBcpjqSg97BB08ci4eJrEOmGNJp8WiD1UD_la6MY7X_av2rGg3WK64UW-YPeV8gkHzFyG8J0yZrrZ2EVQ7QSipMiEi1mNIDRJdTsSHuO8cSjU3qRpKe8ombu8oWzIR6KV-=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'lotos - centrum handlowe' AND address = 'Grabiszyńska 3, 53-503 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=hsXNlZQEqA3P0rLM4kZe9Q&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=347.3948&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'lotos - centrum handlowe' AND address = 'Grabiszyńska 3, 53-503 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Centrum Handlowe Auchan Bielany Wrocławskie
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPC6WxvpRkvR7v32lnvb5Xj4gSv8aSqHvMeZJs0=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum Handlowe Auchan Bielany Wrocławskie' AND address = 'Francuska 6, 55-040 Bielany Wrocławskie' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqw8OunmuxeygIy1Rj0tNA13pL60f2ykSwk5oUEF0rkmdPcG73xzW-KcNjH2q3dakoMU5WCYU8PVuD12lb6Zrywu2OwJVbcyXIhyM1Uw5U5Q_gdUNb2MX5FB_zuNUsooL-rvTf5UwPSyUgq=w224-h397-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum Handlowe Auchan Bielany Wrocławskie' AND address = 'Francuska 6, 55-040 Bielany Wrocławskie' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrBeK6a_RbvrLRTR43USQc9NwBthdaD5yrMcfEd65WrikrF44kxPBtYKu6l-lIvssJE2J4flfN_xGWwBBK_TYAT81Jj4VBfggoWJL9gGMTEaZ1SedyVBrLkoHPA2cL222jVidcPnA=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum Handlowe Auchan Bielany Wrocławskie' AND address = 'Francuska 6, 55-040 Bielany Wrocławskie' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPDnK9-Dlz8EZ9I8Ujl75ytn-5vTudQMSfYxOgc=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum Handlowe Auchan Bielany Wrocławskie' AND address = 'Francuska 6, 55-040 Bielany Wrocławskie' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipN-SLgRJZMgjbYfasn8kqvwdPNN8W3SEmJqCvi7=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum Handlowe Auchan Bielany Wrocławskie' AND address = 'Francuska 6, 55-040 Bielany Wrocławskie' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMgPTIjR9EVOLpAwtitOT0LZcok4X0i5lYYc08u=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum Handlowe Auchan Bielany Wrocławskie' AND address = 'Francuska 6, 55-040 Bielany Wrocławskie' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noRcSCuX_3rwBw8gV9OQOrRpnQphg9n_wLgMjGVifXHhoDJlG-Tvey0IO5E1bFH_x8GNb6PtyzDkNOs5oJWvA5czJm2V0QLvoWjpDRPU6DpnA8Ow4D_eXJygepf72ddzQX3JdtKLA=w224-h298-k-no-pi-15.886119-ya353.14508-ro2.6657746-fo100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum Handlowe Auchan Bielany Wrocławskie' AND address = 'Francuska 6, 55-040 Bielany Wrocławskie' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Galeria Dominikańska
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqfEXnjnQmISO6ws4Xh1a2BoDtNUDmryw7PHt6uBjvwCab3QVAF_qjtXNNF4z3t34ApUKkSUMs15gNP4n6lCoE5NRJ9jIMRKvxKobhCYotf8XFIw6MsruEH1QI-7G79UkLH3aZy=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Galeria Dominikańska' AND address = 'plac Dominikański 3, 50-159 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npLtP8rS6nXFaSG5mfhoS9eggI0UgcNXmKbkCxQrAfDTfpEfHnQIK7NMeecn_IC8DCD9CkyCKCPROcl4HypariaLKwhpBdPiEnTIXO6LHirNAlHFoRARvCKdYlUt4OAEid2KoLC1sV5eic=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Galeria Dominikańska' AND address = 'plac Dominikański 3, 50-159 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqwFM96JViKdCqwzYhrrRGi9yxrGXmbfMbL5m7jrgYqw1MCCIjj9vKfH82S5NlG9eLEmrD1mNNSYZwJ3FnIjETs8AB95PehpeC8fwN_nqID5-mqeRPqFftW2zZjp_AUw7BhMuc-dA=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Galeria Dominikańska' AND address = 'plac Dominikański 3, 50-159 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq-kedZf8zusndmHOwGz6M-vjD8i9VZofHm8qusqvmWQoCZDy2837bDwAd_K6UZwIlcwTRGfhUJeOrvcVYk25ezifSAt5-aNKrlp1JQBDq_QuNlDub-6iLh0N3uMp8WxILWx2-8dQ=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Galeria Dominikańska' AND address = 'plac Dominikański 3, 50-159 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipP_Bqr1eApTbf-5n_XqrTL3bAJoTULyjevzliGj=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Galeria Dominikańska' AND address = 'plac Dominikański 3, 50-159 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrskOlWuxVSYZxNMg9biVtm9R5mXX86Nmb3tu3XnuOtYMzPXlu3lHpVUbwIy31FbBP1K0tmcUX7SPiCY6FXL3XKE7U_lq-PmsHEkub-HqoAkBJnajV-XKYMo6yT7XD5Qa7DoF8q=w224-h298-k-no-pi-0-ya230.99998-ro0-fo100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Galeria Dominikańska' AND address = 'plac Dominikański 3, 50-159 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Renoma
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4notW9biLIfY7TEVw9LIXtwlgZbanZhiLYzR722LpWBX9EXT_lgZeSY49NttkVivI9KiXZsqstf5k8QuW2TK7MZZ8aV7NPeCb6fc3rpJZlp69QI7aQ-4fSmhY0dmHm-ipDcQmTs=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Renoma' AND address = 'Świdnicka 40, 50-024 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrCAUVekEQvP_I1lzZcrfu_lv9p-xeWUwPaHGxIbp6GQnYCWdXU8k5rjrBs-jhdJnkV-RG59vxWNmVuLW6AD3NWrmBx0g-08i2aTFZTCKg9Fn46h13uRINB2fBtiOveTqkfZP9bpuhriJv3=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Renoma' AND address = 'Świdnicka 40, 50-024 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrUinHm-YWwWteRw1XVPP3yNkp0HMapU949NTOhA0WzgzUkTQZYuJ6TKqCaTSTEjLjq-I1U6F4HMhFIWsd-IPEf49iWPq284MFZkxmDykZRqbo5LrS0Dmi8aeycf-ze-Xt3S2Na4w=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Renoma' AND address = 'Świdnicka 40, 50-024 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nopgnVpLXMxZckxnOj7x0kLeRbD95lpmUSNQoHtxTeNNpMrpASPNiIrA_kK-uyPG82kgIDBFKZ9R70Gi1F5Crd0ybi_SatIPW92-7_1-GrncOoWxfFizLPgqZpW6UXUN_sdLzKiMQ=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Renoma' AND address = 'Świdnicka 40, 50-024 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPkWTt440hksdUXfRr_v0gH-RIOFXFzE4gq66ux=w566-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Renoma' AND address = 'Świdnicka 40, 50-024 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqi6fafx23cm7Ktag6s1PLjJCiuTrI4bUQd1fcwlp72Vj0YsT-oOqQFoI-Ce9pi_Ga79lAL85slVTgx_ii_mwxnTFpAUauGUNj1N0CO65VDKRK_QCyQpcp7DFRbn0FMjHwF=w224-h298-k-no-pi-30.000002-ya238.87431-ro0-fo100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Renoma' AND address = 'Świdnicka 40, 50-024 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Pasaż Zielińskiego
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipP69UvZl6yEu7I6dkcx5G6ZDa69ZmIxWCWZuK3h=w531-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pasaż Zielińskiego' AND address = 'Swobodna 37, 50-088 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npSGEw9-quaC28qDpC6MZgRtsgbNfEIhrMZCuVxRMqd71B5Z9_WcLgxAdY0WDDUayri5zvuG13WsGO9YfKgpZ-Y1biWVp1TCud_X1rMD43ErZc80EbIFEh3O7pR85tI0A8LH35T5Y_ZExvf=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pasaż Zielińskiego' AND address = 'Swobodna 37, 50-088 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nojdZjJtzQirPNNoADJLTeTF6bKqxNsywu9dZz6TyajH6FfCPpEIIHrPp8dccvlzFFIiRK5o-GThcHIVRJJphQRkzLhrdOkjkxqOkjmFFqDdLbxaGuyCIFGauoRtl2iYpFlFXhd=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pasaż Zielińskiego' AND address = 'Swobodna 37, 50-088 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNC27BgdKPOMAQt0AkKerNGAda-TfkOrMNsCBlZ=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pasaż Zielińskiego' AND address = 'Swobodna 37, 50-088 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMtQU_VQ9HoFuWWJAubcNsI0j5KywP4ZznBH4-S=w398-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pasaż Zielińskiego' AND address = 'Swobodna 37, 50-088 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq4LIC-JQAsLcR_5uZZ5aiaEXZV6IzX3DoMoTz6nJkgWA3FAdBIJXdVyMqaiL-ilbM5KFZgHe_gbBU3cp3zZV-1GKepZGbe-2FkEw62fU3jKHB7I3RFJsbshh16XgvDR9GTpbzXlg=w224-h298-k-no-pi0-ya291.83-ro-0-fo100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pasaż Zielińskiego' AND address = 'Swobodna 37, 50-088 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Pasaż Grunwaldzki
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipP_rlJNKcBMMEJNloJpAitq8BWLNuN3GvqGJRIi=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pasaż Grunwaldzki' AND address = 'plac Grunwaldzki 22, 50-363 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrYvlqNyPszzcwBW3QFR2rNcGTuQQ61eySXiZEMn5HQEbJvT8O6-Wxs8MSCglVUZcMVANxeNqVPnbgBxaLLfLnVtntYk3n1ul8TKWlBAhPgDjYnw1jGJSm0mQ1cjeMZ8_W2EoYFQT7rYRo=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pasaż Grunwaldzki' AND address = 'plac Grunwaldzki 22, 50-363 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npAY5ewf0f_Ivv4VVSyQ9iPuvCa5D8Cv2u4OSMr_Q0bL_-SkVUMQrmKsVRntnEq0Gd-gawDEx4cDI9_ZdZ6nCY0gawKonSShKwu51D6f77QiRWSN4XI70_VvfQCTHMgDeH_piM=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pasaż Grunwaldzki' AND address = 'plac Grunwaldzki 22, 50-363 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrN3C8qC0FkQLAhMyajeNIkz0MGUw03J7iIuoXrj4VkSPS7FFFy1FsRJvt8UFwA39mW6ByleSyH99ou38CcSdUZ2IIlaXGDQqXW_STjLRd60XjEI6HBgbsU09L8zxDyj31oE9z1OA=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pasaż Grunwaldzki' AND address = 'plac Grunwaldzki 22, 50-363 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4norlry6daVkS0bnlDHfxynUrpRiurnvDVcIDx7UpQEgy0A1BN8xKcQ-wsBvDvJe-gAvPReJlKBbN_nAOS0TbhnamKAQ8vBjZxkGT4CjEIVYeBuXdyhlJ3WrIv0yu75ES2XZTy_7kw=w447-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pasaż Grunwaldzki' AND address = 'plac Grunwaldzki 22, 50-363 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNSiw1mdNEx5bDPeuFSKjrQRJnO3BzjMTxKibpf=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pasaż Grunwaldzki' AND address = 'plac Grunwaldzki 22, 50-363 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no8Zdlz060y_pEOiNcRV5XVHsX9EYC8OeHf9A4uqzgkhhtSbWD5PKps4hRCWU1NQjB55jqOAilnn2VnHA1NSgvcbEM-ROgzkVGGkVPGBsck3kXxUTJ9a_XNkuqYCiPJ2EgPeV-A=w224-h298-k-no-pi33.890762-ya155.80481-ro-83.83167-fo100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pasaż Grunwaldzki' AND address = 'plac Grunwaldzki 22, 50-363 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Wroclavia
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqH7nF_KKmBOkpHcQI9ky2sxLCRlzSaN93zSiacPgnb0jXgzdH0EI3KSXPqphwF3akNs8aS6kxCUEwbehNBhPGCvrPu9ZlK_llo1DVhxcczkmX-1J1jALxSK-eo3wFQHTg5a6p0WA=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Wroclavia' AND address = 'Sucha 1, 50-086 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrYsU6xSdLzGVzWiB5PPWd1aHZhBUJIMsIq6ujp3_lKl_S7Pe-NfQCSbtKBr7PFR6Fe9zB3SlUzBN8350F63tq61b48TvqZeI5aXMuuec2mSfkKXgRUo_cd65NF_SX4Zm9LsIc1gyLDyAM=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Wroclavia' AND address = 'Sucha 1, 50-086 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqll2Cm2rEtnztHHcm_pOLAkNOxSGk8Eqy3rdA4zFiaIecoM1zA9qQQG5iPgyn5UPplmmEnrD8HbDoZWSt2nE8C6Qg0MgtgvG6jW7opQoIPjI1GpJ62CfREbiWe16XVcxxvVjk2=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Wroclavia' AND address = 'Sucha 1, 50-086 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no7opspaxyTs364TyevCjdUAanK-lZXkgYLe5ImqOcJXo9muWMTcjowJfV7cp5IzKo_0pKHX8cc3q8rX2OBrwvZERIxFmT6O1H4aFd53xmcYIEi6tECKGz_YfHB6Rt_HILAE9U3Pw=w662-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Wroclavia' AND address = 'Sucha 1, 50-086 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPvcOTypSjjkGN5XmSmgjjcyQFs98-T-lqSkUdX=w569-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Wroclavia' AND address = 'Sucha 1, 50-086 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqRfwZyKOnaPdmf6h4jLTevbdtpGgEP3pA1_f6Pq6F1pUp4ZocMO6XycrWZAMaqmaVBUTrkrvgwjYGWIuTPgA-ThY1c8zhDXUAjOhEAEhoJRBvnyiJUt0CJc7I461Qz0tyfn1gr3w=w224-h298-k-no-pi-0-ya180-ro0-fo100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Wroclavia' AND address = 'Sucha 1, 50-086 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Szewska Center
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq9NHG-q_ZKWPiBpj0PPHJXfmOP0eUyADmXgxO6B9mvsM9wYFKgBdNT9cn1fEPRuE2OGg1ztIazRj9c1YqdPPEvT74lDLxdrNbJmi3zAFdS719nuJjF2SKqSU8xl_1rbHigvMAC1w=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Szewska Center' AND address = 'Szewska 3a, 50-053 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqbbLqTWAJSHOiIEEP-VrFdbzQvTSfoHoDV9OtHtBTOgKkR5soPutqeNJvmh2zQ5T7xBUQnaHzSFDQIP6jVRlYeMGtF3XKoUvjbE3VB0Na6ni2-ssfso0DdHSkWSKaz_XlwJ8A=w242-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Szewska Center' AND address = 'Szewska 3a, 50-053 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=OkeAuskdY8EKCqcHF4Oi2Q&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=212.54265&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Szewska Center' AND address = 'Szewska 3a, 50-053 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Dom Handlowy Podwale
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nryY7mNNW8rru1PoY_IrZeObXrNYl66BWNpnMLXWWgwQbELXwjPgCjWFTE4iWb4SpWN3f9bokjnhi0Dbg6gkS99tZ3nbfIIDGKFL8fgHqOhwvEswGlOTBoescwdtnSXG2wGIkEm=w662-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dom Handlowy Podwale' AND address = 'Podwale 37/38, 50-040 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no5IQ5ygATWplzIrPgI-OpYqK2JAxNRaGno3i_0vEEDPiohZNl7cwZS8C86RZ6odCJLgt216zJK9nbfX9ovQ51_qfPAM_IZferI0eJHsdKH2qCMkT0yVDfaYB1J1Sc6XIia71Z9VHHzqJg=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dom Handlowy Podwale' AND address = 'Podwale 37/38, 50-040 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrXmH9GkXD6jtzf9BR877W6DwXo9TVg6XH2ZWw4ZWUum4xuU275RZ459aGIv0uFV37-Dx9aDxk6uR2PaXYmY551UMHgsSfaggPMGD8einrgC_yrsUO3Boit8A8dkHUTQZkW1GZvsQ=w398-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dom Handlowy Podwale' AND address = 'Podwale 37/38, 50-040 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=lj6ll_WCvoDVu7Xon_mnAg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=203.6754&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dom Handlowy Podwale' AND address = 'Podwale 37/38, 50-040 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Centrum Handlowe TGG
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNO-vRpiNwG7UCdcIyQ1oqb6zEiLs2L2qQJmSl-=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum Handlowe TGG' AND address = 'Słubicka 18, 53-615 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npMBWzdxNG_t3sfFY1suZQai-8TxQ6FShh4Fn1YYwPCLmWTvTy6nsh13YnkdCufuYi7MKSGgB6sJi5jKEQEP8Q2VqYKLW1y2cx8SDKUmpMBW9Sfr4R8ulAHANv30LUlX6bOduw=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum Handlowe TGG' AND address = 'Słubicka 18, 53-615 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nobUITOGgZHBongwgUGOq1GGvU4GvmMYZtOltds5jfIAjL2hTSd-gmd4Ng2mZ8EhZHFonEL5vhtHydP72BWun_21VL0r_6HDjP4cwpzC9t46jwmz3irH8tXyGLtK_bc2nfSn-UTzw=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum Handlowe TGG' AND address = 'Słubicka 18, 53-615 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOeTxBvY42VIu0ocgsvfWmOlcw3ta5iqSJuLE_o=w530-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum Handlowe TGG' AND address = 'Słubicka 18, 53-615 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noxBZo_fmn5rXmX6P_ouLxFne9t4vxwZknSrQu9JG-jGBoQ9C71jRYdQjX1OVz8HhDaN66BRH-5YOj34YTjGfYF49auY8REJfEAHZkg9ye11Y99JfjQv430ncavGT-Gl5Cvyytc=w224-h298-k-no-pi-10-ya171.41116-ro-0-fo100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum Handlowe TGG' AND address = 'Słubicka 18, 53-615 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Pasaż Pod Błękitnym Słońcem
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqkpboQoMxGT8ZdXSIuyFw_S83oZJDkLNcdQVkl5Q79VY9WzIfE4R5IbMfAaasixYsL7GIN9lIDx5cGG0iJwVCr7yZItAuNy8WwqwHy2J7SKLEv2UbKTp-GCo5upMN6hu9YNDNe=w224-h299-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pasaż Pod Błękitnym Słońcem' AND address = 'Kiełbaśnicza 2, 50-108 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npxGxmjNEoiVRQ7AmkfZjC8LyYK81AFN1KriPAH3LIXhK4sa3H2aa7KgKF5vtezm4VRo0sG3S0qHfDp41--qFpmS11eMnPgBwvYFYdtS_BUQNR2ZvFeUSNU_EaVUG1VLy_VhRMbxdi-zGaz=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pasaż Pod Błękitnym Słońcem' AND address = 'Kiełbaśnicza 2, 50-108 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq3rZNszo2ZilwU3uP1nOzvrHX35HWtCkKtKIiYpUfQ6zsEiB7ujLUfqwseFVyRFbvDY2I1Xz0XCFvS0s2Lbri0R7IIN-RhuIWU_Viw6Y0fegsaBfFvP6iUvdYugO8FvFo64FLx=w528-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pasaż Pod Błękitnym Słońcem' AND address = 'Kiełbaśnicza 2, 50-108 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrIIIWy3EpWc0c5tTXKfmee_RDQoeJE4SewYXkITe58RDXp4rWBECJQQRkPtK9Mv0bi7fkFmKBSGKjh1HlznaeFtOkCrlaTlisJpfK4SrihBNdL4iykk07MECIEP01Uap6WeJir=w452-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pasaż Pod Błękitnym Słońcem' AND address = 'Kiełbaśnicza 2, 50-108 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=WHThk30n0M_oNZAerCXWBg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=129.8735&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pasaż Pod Błękitnym Słońcem' AND address = 'Kiełbaśnicza 2, 50-108 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Dom Handlowy Kameleon
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqxnf9zN7tC0FIT2iUmGR-NVwOUmfpUCRHe6O84VeZHxNealoNyQg27TtJlIF4WJ-bR0Y4v6Ert6QSIE4WJhK7eP0RAgT_N5ly75jLutdu-XrUH9JKuHc2RdzvSLMbrGPBWGDDadA=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dom Handlowy Kameleon' AND address = 'Szewska 6/7, 50-139 Kameleon' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np_aEiqAwVeZXfRnLik9xXj_ybAXd80AD-ixPpz1oyp4OKjqkoD8gHc_nynLctHzcCHjXU-hQcC3m7YMJngMzt5JPMQoa7M3ctLwhBL9oPbV_X4Yb5IVdvHxdZqy5SN5ia-29YcaWYCLQwk=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dom Handlowy Kameleon' AND address = 'Szewska 6/7, 50-139 Kameleon' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nowcia0x_89eAc-wbXMUdyhr790CgkPvmbYOP2slOA-TbzKdWezxxm2zgkiEv7I9fipnS8Es3gLEr-Cc8-jZD1m_erfbs0ZkDG7aiCSo1MNhAwxx66hZ-3Flp43jXAC4m0vXygl=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dom Handlowy Kameleon' AND address = 'Szewska 6/7, 50-139 Kameleon' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrU5vkRVodxEJPGK8DW0b5ByDo7K3WWwgWk37sqq-O85BB2Rvv7upYAd1jU3rbU6LV00oHo-kBTTmWvJK1J1VoKy31wcnrz8GsO-1fkxxsC3cr9ov2f6BweWhkYBJtjsmuD_IQ=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dom Handlowy Kameleon' AND address = 'Szewska 6/7, 50-139 Kameleon' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=KwLth5deTl6xVOB8roBagA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=173.19516&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dom Handlowy Kameleon' AND address = 'Szewska 6/7, 50-139 Kameleon' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Sky Tower
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nplwGsB26xAKOQJj-w2DF6h71mT5hlMltVtn0F0kR0-L85ZaQOBf3Swfr7p9oSpuyRWvrPLX1b4eKAbwqvW1yeUF5EtMB9scCLs3srdcLn71WpjwtR50awFYB4UDf9xtATIVJw=w224-h298-k-no-pi0-ya0-ro0-fo100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Sky Tower' AND address = 'Powstańców Śląskich 95, 53-332 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np6StNlvbImU9pclW8PisBSImKn-kjmq0NwuCr1v157PHwNMi7DBaYV81YaVPDVYRsHdfhvqLBjKIvczv9yIXeEmvF7eyL7mPzloADx4fu50naccE84itPiySIniMJePgqxIIDybaELYsAw=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Sky Tower' AND address = 'Powstańców Śląskich 95, 53-332 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrK3XAiZKpXbq4jMRf6o6kFt67_JiG16ccp1_zfemx4JZ6uAsmaHjGLCQN0RUp9k-PHeSffJvlsaKAXwyXkJyAjgUrSbnmf2oAM85EloZgaqfaba2lgXnSO1J38oy4m4O6XsEXb3Q=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Sky Tower' AND address = 'Powstańców Śląskich 95, 53-332 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noBd2bOyY5JrVyV_ivfr-Jg8yB1VG6tlUk5cghHqR8BiQzXH6EkJHEtwFwYyGVXeFtAAriP1UbzBuc15Q27HJSGN2P7EHEl13OVaIJqwVzNOfvnk5H1Ph4agYX4Yz1dyBqpL5aedQ=w612-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Sky Tower' AND address = 'Powstańców Śląskich 95, 53-332 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNrkUVqJbk0SJhk8PwccnQ0M_DK6wyCH0axmU5r=w298-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Sky Tower' AND address = 'Powstańców Śląskich 95, 53-332 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrlK_vM5_ChDfSVWQM-fAj5T2KLYDlIcRUdzNm_IF8uHZhNE_zlRxvBwCyzJ_VEpsQc4YCIyGVIGOkGbqpItn2OJYn8KNar8oSB0FfwHJzRSCVpYy0O36Az7RO_NjZ6dP5zuw3T=w224-h298-k-no-pi-10-ya100-ro0-fo100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Sky Tower' AND address = 'Powstańców Śląskich 95, 53-332 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Centrum Handlowe ARENA
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npR5iqYHsXlOH60X2GSnz2Shsxf_vWsmWozn2liYwuaRyo-K_mNbYfkng2NOMSf3erx4mnbYwRXxJqmNyAHD2umvnlKt2ZG2nz4V4rwZmRGUc-ze31suPCSIuYHAPbVG2HdkTXU=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum Handlowe ARENA' AND address = 'Komandorska 66, 53-342 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr1aHFSdIywGlhxT4hUzJCUgGsMmhU8vddiJxLnPxbAGEwkkTXfeMeV5xJGvZCr65cMTSiDCpFEVaqxCP7eAXcwabSFIRit1nRdDjstWXKH6wtcYqrGJ5O-bLr9IVapdgs96pp1TA=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum Handlowe ARENA' AND address = 'Komandorska 66, 53-342 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr4k41et59Wix7TfVO32rW_mGH54D-ny2UwCEJdKbq3tqqJBUtbsAXofqyjLPo1EyMVsTZ5JOikUJaofJNReaMOBLzO7jxUFPpjn5BOky8gX3Sqp15CvidksAWbqARDbz6mTvVg=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum Handlowe ARENA' AND address = 'Komandorska 66, 53-342 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq2Ba2irjDJM9wqlyLPGOXpsvx97P9mC6wu1RhF7XKVSg2FeOtpyjGjLaZ-tlArGIDmFA_-mRNeqZGKPQ7_qiw_SPy3N0jG1HEwhLJVKnOj4BmYRxUm_4sQwy7ygpwPBIE1VccY=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum Handlowe ARENA' AND address = 'Komandorska 66, 53-342 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMiU2dVqn66SHsOVFzZW_bjJwdyGsEw_MtDVqh8=w298-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum Handlowe ARENA' AND address = 'Komandorska 66, 53-342 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npWl4SjaysC4xiJCHaAArvU8rTEnex_lSKu7qENNnZzvp33zLxlKaVb_4Y6QrjYleiOLGc6NnZHQwdPIAASZig4743R7-fWhClVG1pbq8eKQirR6-BvaM1B-UTphea455yVnib_XA=w224-h298-k-no-pi-20-ya320-ro-0-fo100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum Handlowe ARENA' AND address = 'Komandorska 66, 53-342 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Centrum Handlowe Borek
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nquVrvcZk0prW6e9pAtLFlfkokb_vaLs-uI937Syfa6NxyRXZvRfq-thxZqhbGaiSbD0WXNymydyiSZyQyRnkXFV-apDfGo4-7payjdsDWBTnHgie3e_zNGavLXRmuGqsdflolNBg=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum Handlowe Borek' AND address = 'al. Generała Józefa Hallera 52, 50-984 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np8oP1uLR0JwRkKMMimpwHJFuyP0UQlrRbXGXqlmq9hsn6yhADdQiotwXmKv8BOqv8riB0GtAdPNc_D865oAgwgjyZa31BGZF0Vckdug0QHibHjDLcWX97Cv2r9kDmeEG-votk=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum Handlowe Borek' AND address = 'al. Generała Józefa Hallera 52, 50-984 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrYtbJ4St8b-v3YGIDKXdkk0bGy7mi2TUJ_eXduKLxwfCW2UkG1pW-a_z8g7cbnyFCkTrN3OUJoPwD06zm1rnwSembsncEvWoFcPAJ2XvkIg1u7J7FokuyFDlIpdz8MjB2qD9OHcw=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum Handlowe Borek' AND address = 'al. Generała Józefa Hallera 52, 50-984 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqPED_9M6MN_nKZji7iF6rOnHAA5a5KXjJIVccVmZYc_VyuDc_fsGcm56ckh0BVkQPSGgAhtplyrXErOQWI1kZ83vdrEcYjlXHie-FZwyX3KAnGbVzExlCBDRcMf2R-daYplQ0=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum Handlowe Borek' AND address = 'al. Generała Józefa Hallera 52, 50-984 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=CrLl1n3D_2KO4o5J51S0DA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=291.4404&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum Handlowe Borek' AND address = 'al. Generała Józefa Hallera 52, 50-984 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Magnolia Park
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOdDfYiQCbNlfM1dQexbx5ZxlV4ndR458Y6rRIM=w447-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Magnolia Park' AND address = 'Legnicka 58, 54-204 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npMCwFOKXeCS_IppS15nqzPu2TAZpYpuThN-S1jd5oa6RWigiCc_3skaZHNgCHHVZH8w7VscFAVqiCtvmkH_nckO-b379mCn-9AqOXazkLWF8najakTzeqhudpQk3qx7jKVf1ohZZKvHlI=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Magnolia Park' AND address = 'Legnicka 58, 54-204 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npeGasUmG_gVwRb2_-FomrwLHwMkO2jemUbko3zDJ0aO4-DkN2EXwcslqY8DsBWBkO16HhHqzWE34AC_RbaeL0XUspqOeDaDKApXcmFLB7d6hk6ym_whWiKmgaiYVemlHVmmB-olA=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Magnolia Park' AND address = 'Legnicka 58, 54-204 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no646AcyDkg3VYMTUf2lOIA8pI2Z9EMQQwG1NshFqqrn_HV7_xv-uia6vWz0yh8HC56M5jkOYeom4TBEEcj5qhut8XyTieXKLrMHzJmyEwYhFvQvCGDy8jupuuHxU5pV-YzeK0eFA=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Magnolia Park' AND address = 'Legnicka 58, 54-204 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOLu8d-sezn1zHPBFrQVvbKjnbqahrw73kioBy8=w506-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Magnolia Park' AND address = 'Legnicka 58, 54-204 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq0CWXkJtO7wrJ9wAeFR6dF7f4KrsPRWk3NU-8HlofFyda69QBcfPxoAgrp4VuSnwQ7b6W-Y4piYZTmH1w31OrZTlFBX4OkdjrRtgYMZnaLh1whOCFuf3jwpbZl8NeNXqD4p_RkSA=w224-h298-k-no-pi-20-ya260-ro0-fo100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Magnolia Park' AND address = 'Legnicka 58, 54-204 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Galeria Wnętrz Domar
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipM4GlSVKU3VVX3Ukcd6TxPP3UtOzi1L_6nONKLs=w447-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Galeria Wnętrz Domar' AND address = 'Braniborska 14, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOwUuqKdHBnsabqfltymyqwN6p6je9pix5eLrTE=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Galeria Wnętrz Domar' AND address = 'Braniborska 14, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npdZ6EDRNt77E7eQfJ5gVnf6WduezBwMqXPrQkXyOcwblbe5oKQYL0ynsGf0scfN3Ku85GXew4SJadUoWCAiqqWNaM5iceGxn1_fnFmxZOAXmuEsOja-S2dUmF9C2WJyKZiNp8=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Galeria Wnętrz Domar' AND address = 'Braniborska 14, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npXH7gbBaWORAtIW8sfLHuGYw9YRLdvR7-gura4uy9eQIdZyU3aSfmkKw57rac8hnsxSIp7F38ZA4QaEH3OdrtyRrejB8tFFYBPSCuACiR37c5G2HGKDojF5eJMouBQiYzRgNtVhA=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Galeria Wnętrz Domar' AND address = 'Braniborska 14, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noeW6t-hhT4trrD8oygbWjy6SGeBg-rlryqX5I7w89zHolxdNdN2juo_q_iPW0EQ9gdUTiXIZvKIoOJ4IipSYtPpZRPK9i4uCroGjd2hmOoCbujzcEt6MTPdhJFoKmkELLpM4wptg=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Galeria Wnętrz Domar' AND address = 'Braniborska 14, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPzGtw90fHM1JOII3AP4Oz5lnUi9pG_3iveBH_m=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Galeria Wnętrz Domar' AND address = 'Braniborska 14, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no-bvQOuc0-sxy-Bdoeaia3MOGom5Au-jhcC0WeqByPuw6toA9L0-MHEmeKVRg06ZCkgY_HdpZgSMiOdlt7YaS0aZe0QpTNm2VTJJLGrpLpiDkfM8a6JNrgwJLKkTpmG0zlXmUF=w224-h298-k-no-pi0.35408747-ya277.63223-ro0.48356247-fo100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Galeria Wnętrz Domar' AND address = 'Braniborska 14, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Galeria Sylwia
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrRyOLWbtB2n68LbqIgvcDZf73Fg7Yp1irlinMmW5Bpdv1GtfXNEJm-FJAdjFAxJ7cSE7nwB50FMLNWNXRjxGT8TNnURJLL390-5dTK10jAqJuOSOpMHb3g2af6ApBZqsxq9IeVTQ=w531-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Galeria Sylwia' AND address = 'Krakowska 1, 50-424 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nriDpa7NO30Dv15nkuVFhvuxXj40zYLEiZq45CeyVi22CLzMEMHUB0wzZis_zfg7m3Kd5MOYqzTete26i2MZBiMmPucw3Z_5aJrSTZUo0U_rURCS3ecbWkxgLqzyGcqOnE2cJE=w398-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Galeria Sylwia' AND address = 'Krakowska 1, 50-424 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noJqLVTffNK7V7jrzmGdQQOtE4IFcKEDjsBmMcFBx2auCTnGZQI4iDvbYcbkxku1K9o5nIrwu10eb8PWMTj1NTR8ZLCIMQInIhS9Mor0Ayp_2xbHCssvLXDd_KEr-UQg73xpY2IiQ=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Galeria Sylwia' AND address = 'Krakowska 1, 50-424 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=w2H8hfQp5zBU-cUX33S9Sw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=108.73359&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Galeria Sylwia' AND address = 'Krakowska 1, 50-424 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Mamine Smaki
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipM-CTwcOWgahyz09necr8VXVgfbIXsPfH6Kdulc=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mamine Smaki' AND address = 'Pomorska 27, 50-216 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrYZQylhB1Fg2Zdjhe9YgqsfMxfSoMPflZkW5rzVhPvUR4uIk7tuASGz6HjyOKMFDHbmlQpTrAgc7DHtssdl23fayPmSllAkz_tc2-0OO6iswEcnSU3u7vCO49igXK3LkJnL-lTpkV1DGCv=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mamine Smaki' AND address = 'Pomorska 27, 50-216 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no0IJ8dvz-t5y0lolFkwYZVNGnOO9B8RpfzINvvx75UOwkSuAcG5ketHmk3_rj-jDSY-aUokbNNOfvQwYjPhYDOY33bNL6iiojP56JtzXwOkLItjzyjw7V4dZPBdrS48xg4ZjvP=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mamine Smaki' AND address = 'Pomorska 27, 50-216 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipO_YFvGrAu-H369VFtrfAfi24AHw049S26rAlBy=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mamine Smaki' AND address = 'Pomorska 27, 50-216 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrR2qW5ajwdJSabXQyOoD-e66DZ0P_-NTdREPU7da1YitiXrc_I-ta_I9h3adbCn9haSNMVL0PmunmtoctBBAVYJIV9JrmEmzSYExhSNDEyNBT_pyW9AygO9iZejmyGkkNhCn5f=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mamine Smaki' AND address = 'Pomorska 27, 50-216 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNDYPFs6IbJWjuh1P3hJizu00S4EVSX_giKctyw=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mamine Smaki' AND address = 'Pomorska 27, 50-216 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNJDezw-QjUPgav96Epwpeu4JrssodJa7YlRP3y=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mamine Smaki' AND address = 'Pomorska 27, 50-216 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOaYlnHe2UbzQya05OL-vGclpIE3KKa3ptq21z4=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mamine Smaki' AND address = 'Pomorska 27, 50-216 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOZPkxD_4zHRVnKINrC7zVXIBC4T6pzqxQObbpY=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mamine Smaki' AND address = 'Pomorska 27, 50-216 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMOhvaYxiYR2-iNhYh2rHMUlK11ID2vFzJF1ZS9=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mamine Smaki' AND address = 'Pomorska 27, 50-216 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=XVjYBC7JUUG4V2VXFzfx8g&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=61.05782&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mamine Smaki' AND address = 'Pomorska 27, 50-216 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Drevny Kocur OVO Wroclaw
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipN0DwcsaMs22sIuylBOd2NepauzHv7x6z5zRlP4=w239-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Drevny Kocur OVO Wroclaw' AND address = 'Podwale 83, 50-414 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqK0C9Jqy7n66fTXsMppo9s2VnQ4j98-w_RzGYxukdQYlkQiU5Xz8SR9r78ALCz-RPVUtEiW3qKmhzd06wrEQIgdNfdIhw62hncpPMGlEEcTLOJn3bCaIqai43TVIrhICocSNMfJx3K3XY8=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Drevny Kocur OVO Wroclaw' AND address = 'Podwale 83, 50-414 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqeUizZ33mWprJs9qahJPQgPJ9zmCZovpMPRrMLVk50LRAoDhwdPWvm4HPoq-5Nnke_YYY0aA0I3walAVvDjRqeGOjHIMHCEYwSs6U65Foaj1KF4XWDyj5JQ2CI6TIko878JUF1=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Drevny Kocur OVO Wroclaw' AND address = 'Podwale 83, 50-414 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOsW-D_nFmGhJZVuQQO6ULfOLHAZAQ4etlHiL08=w224-h316-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Drevny Kocur OVO Wroclaw' AND address = 'Podwale 83, 50-414 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPZnGOIM-X6HRwPkY7D-qhPD2gcnemwVwBksR2R=w794-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Drevny Kocur OVO Wroclaw' AND address = 'Podwale 83, 50-414 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrsxt01M-bRT77LgGS3TyimUc-WBjggdWc2juOrADRx0vLsxZfKYKD1pSMY2TTW3l-xjoTh6xM2_5FfcrGAxl9BRwCEWrLTyGGRPsEFYwD__gMqLpLb1aZ6GcLY_gh2qRff39g=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Drevny Kocur OVO Wroclaw' AND address = 'Podwale 83, 50-414 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqwlFUh9XLhSbLJiziejom_Ik3nDDRF6piGIi4PCtmexiiDkVAeKbTdgrOGYuzi9G9bCfb1TR8n2w3JVmaCs2CoUS2ZOa88EIjI5i2b8aFbf1WHJQIfLdND-n40bqAx2gN6QbnV=w662-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Drevny Kocur OVO Wroclaw' AND address = 'Podwale 83, 50-414 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr8pJk7b01vU1kJ85KPsYLzR4B8PDWKfiriwm4-8Iug61pZyYPAoYQRT1d6o3oZloE9iP3wYHmBVipkqjajlL7itvthYpglISiVxHdSIuSUNe6M3u5zahD9XOmjJ7900ucgW74W=w661-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Drevny Kocur OVO Wroclaw' AND address = 'Podwale 83, 50-414 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq7W0rUm7aBv6zT_4rxH6oiOhGD4J45Xn2kXxvSKCOURYz3VN3BjEzq2i___-ffQF5v-BJBoxqJKdpyeupc8QE4IiN5G4_HK-gTZ-331R_w6jMobvna1F33s8iDlnSlh8HQvcct=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Drevny Kocur OVO Wroclaw' AND address = 'Podwale 83, 50-414 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNmuQ1rl8a5EMSESfAZG5c_QHC9TVz58K7vTXfn=w298-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Drevny Kocur OVO Wroclaw' AND address = 'Podwale 83, 50-414 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMxfS-CpjahV7LKLh--oJw8vdYhFKxWqIUz8PAy=w238-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Drevny Kocur OVO Wroclaw' AND address = 'Podwale 83, 50-414 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqma-m81q7SM8s_8Tw5l9KJjLmxOPtFJTKxOfIkiM0Nlp6OrbhIqghPinKuL-lnPCxPYwQOdrMvMOQWxW1AVnvlnDev6eID3rzP-qob3lKrQSmagOHXv27lWSsFk3N5fc_tuz0n=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Drevny Kocur OVO Wroclaw' AND address = 'Podwale 83, 50-414 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no8BZXdIqw6oWh1Jqfh7XZ16GzJ6mCX9wOGYJPIqkG7yI8OEkNcQ8KQp4w6_OuxeRzJZXkUzbu5IpddhEa5FqztatlEw6BkusKitfLPtkezhI_Iunrfi0h-ZjBiFE5o5Jk5Nbr1HfYjK-Gl=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Drevny Kocur OVO Wroclaw' AND address = 'Podwale 83, 50-414 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq6vxKFeBK1ATdUwVT1UYZMDaBYC7vHaksKWiHzrQ50R1M93IeRn0Neg5l142X8QFDjGOQ9dZuU7inUAL4a6EDy_gNGvHMgCfJOFcKA2j77UVoj3UeWwYj8aQOhFKYJuvai7d4=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Drevny Kocur OVO Wroclaw' AND address = 'Podwale 83, 50-414 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNeDuhumJOV0-QDEQa_BJbfUeh9P9fyDnm51PE3=w238-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Drevny Kocur OVO Wroclaw' AND address = 'Podwale 83, 50-414 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqeE-ZVpTZ5j4Ti8LwUiD7P38cWOs0nzJA0ZDHz10BVOQTAZjYYWSoPRnWZvosSoTzuVwi6lX2X3FHHI_Fb_s0NoMhaMEjAiiecCtY_6yCiUORQhG8R0kGuJJBb2AC5rlPZ52GC=w224-h298-k-no-pi-0-ya77.28-ro-0-fo100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Drevny Kocur OVO Wroclaw' AND address = 'Podwale 83, 50-414 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: The Cork
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no06UwY_l6vzzEkMirGVlbIkiI4-yiYw7QWVxgXMx_zbQuzNtT6IIhAHzAwrTvAFo5eQRmkM1mMPPk-o5wcxKUZ2j9twXh6b0dr_qSkZQTwNUVP7rx5mmgpSRu7PlAytDDGbD0=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'The Cork' AND address = 'Igielna 14/15, 50-117 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrR_OZ3x4BsKI94lnzZb1Sr6RBiBPKudF97fEr6K6Sxy_p2loE_LrADrZQ0IkcbORo5TTWgHMnzu22tKVf7PeOtxRpEkxYyrryoToD1Y-g2ftEduRZy4RmZLZQbUM83XQF-YCbl6cf9chiL=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'The Cork' AND address = 'Igielna 14/15, 50-117 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nruN_OkahE5rQvwDmHzj6xF3Vzu24AFIpbzif3zRa1-7z9GTTa4zkE4mwklDx4oXWBLevTxwXnEPj2mLzLdg0OuBH52LkajL4QRC1z3FNqffuyr6cAh3Xnh1v8Q7rBOIkaQgFM=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'The Cork' AND address = 'Igielna 14/15, 50-117 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noUvdHE37LSfPteBruX6gb-60B_hIa2xcEdfSDxOfNt1GBF6ctoqfwoB1C50NG6WEESPdRg3N552ZcOCCHf6BKXHXSbQn5Bodx8pzd7Kb2AbSZ1ApFnT8CCup-qwnQ_Y2kVNhss2w=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'The Cork' AND address = 'Igielna 14/15, 50-117 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMcTkM0n7snXaDXGYYH4W6O_6vEw-txfjkBQf_k=w224-h336-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'The Cork' AND address = 'Igielna 14/15, 50-117 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrC-y3vyRIGKeaEJAlmxLRriS-GYL88qBTqBafVpWCAESV9na4kt-8PXz4QegQ9b8kJZVk33JjdUzBp7HwQS8uom7qEuZxOa2ho8568xb0N3AGU8CaAjgwcaR5Ohpy4bZFW6iSK=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'The Cork' AND address = 'Igielna 14/15, 50-117 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npTsPvmGAMT2-c_wRTkdKc4mzXOS8lUGS7L9gJcrB9U-CiUzomJSC_gOA_NUTOMofaHeK-pp3QtoqWH7geietVJoSBILtwsXhTbSZNUeYiWTDFMo8YXpTDCkxrNPtYExBYVRXM=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'The Cork' AND address = 'Igielna 14/15, 50-117 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nooZ8mNdlPrFsc98CuXDYGa5_R0Y9DIWu111CaFJss8j-G1Y72CtOG81RhB3oT7Kdq_kfxStSFEsc8Z2uCDpfgp6eT873KEDndUjNm44h7X77-y7Gff8ojkVYTiUoQWklrlTLuGnA=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'The Cork' AND address = 'Igielna 14/15, 50-117 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMHl9mVpK6EWaot4LHBZu9p5qsOxk6AfWarC9tj=w294-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'The Cork' AND address = 'Igielna 14/15, 50-117 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=-uLe-6RUzzUAsmbdC3zH8Q&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=215.01633&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'The Cork' AND address = 'Igielna 14/15, 50-117 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Jolie - Brasserie Cafe
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPPy0oKLuc-xfEuhtuVHIRbOe48dwtdDsV06Rdl=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Jolie - Brasserie Cafe' AND address = 'Plac Solny 6, 50-062 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npp6S_9EyJk6uJ-PIlQ0emeyYQ_XADjDiFrlmMP3U_m1z6Y860pWExhCTzZ4v_JYaY2TLK_u7dHf-zTyveNPBaTR4q419SDqdsdBpZSKUKxuDhtyBWrTIi5jnxtbPx4W6BFzdVOFbuZriX6=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Jolie - Brasserie Cafe' AND address = 'Plac Solny 6, 50-062 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nryLFSBup3wdS1THsqR6bYIeg1jsaCzCX2tHtaAicqprNV-p7pXmiiZFJPB2odjIoN2yiekvPoFCkO1DhoQnu49X7zKswUdrErqntGh2cyazCgyfuJZzqy8iy1Zivh-a0dp7QY=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Jolie - Brasserie Cafe' AND address = 'Plac Solny 6, 50-062 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npY6xGBC8xcIRMXrT_t6jMowPBzKpFAmW4ynBHvQZGlag8AEnBCLp0ICHrLVbZG5Y_ybjov4lJXnWAhs9o_WwpTJzAtAEevES1c1zvgvxCSeDxRgr7ooCLZpJZ0nIulGASewRI=w224-h316-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Jolie - Brasserie Cafe' AND address = 'Plac Solny 6, 50-062 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npIW5JlTQQebhVsnVtygCwF73HW3bwR54XpaZ3DS3z9k8cbZv8A0BIraGIc-3JlLZ2xyDDHPm26ubAZrvnXpQvdt4q996N0SqE5NKdE5SOv5L8C4nSzKnMPu0JZmPDLaZmeXnd6DQ=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Jolie - Brasserie Cafe' AND address = 'Plac Solny 6, 50-062 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq9xwetX4ifaz4-YnPORB0PxH84685mkkqHWL7LeV4A9YigJp61fa3zZy4eTi793hGL-3lUwYYrte-sB4AagFoLiBVHUOuOfK75__wjBaWgFvFOP7LWDKCy5MRAlZbSY_31YV19=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Jolie - Brasserie Cafe' AND address = 'Plac Solny 6, 50-062 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no3qoRX5j--R6mwjuyf6e6ch4VH4vil08LZLvmoMXhy5l0ywaodZPOOQVc9Nl_YSbplnNab2_kBl_IyWNNsXE3E8-32L-DtN32xKXoQ-irhPxQF1DVyDGHVW4dGosrsIn1ReUtjjw=w298-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Jolie - Brasserie Cafe' AND address = 'Plac Solny 6, 50-062 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrNQuWhOJngbPhPH4Blp0C76z4eIW2tufbqWw71rEU7ZGMG193u25_tUGSiavU7GN9ukSzDyTDyT-md_u3M7aUxKq4f5f5bPq9YUROBdU9ua61UOm_g6tyv2T6IaevAEz-pnfrP=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Jolie - Brasserie Cafe' AND address = 'Plac Solny 6, 50-062 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqfXGkVBxHA6UJJvmN15ngiiw4ccXa51q2EBwErLqr_bEXmvj405JzFpKWpweW6Wi9B_0YteUd9xSEsNE4RrTOG2BjOx3KfDC57uuW--2fmCfnaht2xRa2ngvR9T7TpGdM-m1s=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Jolie - Brasserie Cafe' AND address = 'Plac Solny 6, 50-062 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqpFLOrCijqReZ1PGxboYPvcOM8j3ln5HZYleqZwOECpoe49RvFZk0imD3f3sV-SnASOvkZ_iwsi2lW3G_UpG_nR6iVcTU6yauzD_B6mGKeovx5YPy3dNW50kE4J6dkqd-wnzlT=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Jolie - Brasserie Cafe' AND address = 'Plac Solny 6, 50-062 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqSyiMY612JeZChw1_M5FhgMSQ5RV47HkqpzV2hbO-WBGscD-0J_modyxDT_zYAaLBLjcJZujxVRFmpcPvLxXRvv2JcnnR3VXfdC0t8g6Xk6XWgKO_8yrzfuNRLAfd8I0LSnEDzLq4fu8Uq=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Jolie - Brasserie Cafe' AND address = 'Plac Solny 6, 50-062 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noYRZrHZAazlEKQF8Sfml8fGfcHH2CwLwTz_sf6OqkE35uUX8Jp2ByI_KzfLglwdxGgZCTiUgy-pXOQWXMFdDB1vKm-vjhJHp0EJCQsr7-EWuofR0bR8AFpkq8kncIKpqIYoNex=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Jolie - Brasserie Cafe' AND address = 'Plac Solny 6, 50-062 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOrhCmh0V0J4sjaKsJoEK_-JCptIxTQvNVid29P=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Jolie - Brasserie Cafe' AND address = 'Plac Solny 6, 50-062 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=o2Is4ehy0gSLWckiPRUW_w&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=271.76898&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Jolie - Brasserie Cafe' AND address = 'Plac Solny 6, 50-062 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Bernard
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr7OxS5LhvSOTjOvmx_DLU2Of00paF-tC09Tfe9XnQaYINwTMz7INfhxp9GZtxwBcBIBD_Bva_o9SRK6vWBxUhsI8tSbt0lW-7vrF6qAexlq0gMh8NRtnRL0Fxzv7VJs8zbFCVx=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Bernard' AND address = 'Rynek 35, 50-102 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqvvWCUkcANxNRrvz7ytgeaACcvGrirjN-4LfRwp7ujOBFrvwAoLYti-7NXzVEaxwetb7n-FhqLlawQ5nM57oa0hb71JqZlGEyYfBFZNVEwTwEbAPHZUDzraOr7cmm1ZoJLbYtkerwIhZPo=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Bernard' AND address = 'Rynek 35, 50-102 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqU8XL_03jMtX5YicYk9vF7Cx5etWz666yLFXmmpBKpdAVwdCxgVaBnSiNyWX6cODU_z58enounMmLaY9U5YHpH9lJLP9Jk-v2Dk653rAgxk4PrIQFKsY0xaFvSTqBw_dau4K6p=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Bernard' AND address = 'Rynek 35, 50-102 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrCOi-YzT3zqHdoe2KlFs0FUJ1rWwXrwkT1JnC2E25D9jwDMyO_iyvtvgOTnoNY8Lk2HUzULWSwXqQIeu0zlHfXUb2fUXjf9OEM-B3YoMsh-6wIOEPCv19eE38YioMHA1tvUuAWow=w415-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Bernard' AND address = 'Rynek 35, 50-102 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no9g3M-lHONYfPmEgf3YzZnzyc078StpjfvO-dzafd34X2gwWbcqE_89NpgYgXdeDdDX_WnSBNG9GYXL1axXpeELtfBi8kRhcTLxptYdP3vbgRuboPziN4KtSd3BhObbEEwfTafxM71p9TX=w370-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Bernard' AND address = 'Rynek 35, 50-102 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no3Zi0pW9Lejzidwdp2wr0DbnbiWp1HnG2NKvPvOrtcSDBS46eZNqS13urNMQQGvKJGL3GscMe0kcPDEinQ-nqDJIZGjws9I_RU-YMt6B4Li_V-P3ljqua3GVR_Ojy-tr33rSVX=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Bernard' AND address = 'Rynek 35, 50-102 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrhFh2cmAQwgMAPQjv3tMKRjnGCl1qy1PPjQx4Y3hEOHAnYRSUKKVyeYT8mx0VfXMfzRA-X9uLCW_QQXU4XS0TdlPDuaan4IkzRkzDdQ1WJgFudllov9d5i6H3WAAJvxoFrE7Y=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Bernard' AND address = 'Rynek 35, 50-102 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrRLF5gvsjMxy_V7d2OwYiQJ1mkL1zPL-Dpftt27NiFq6oCMfzdG-zs3M0CvYWCUp8WgNs1yJq8fZvRu0N7A3L_A0f_MbXRGdn53FDkBH6U_QjEM0ysY2Y6p-pjsh1staOpT_Vy=w383-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Bernard' AND address = 'Rynek 35, 50-102 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrS5ZQBed8PbUp6wyl3k0Aa8EwpJ5Is5l_-DY05bUzWJoPgGRjHDM2JYg0i4Ca8K5bcgduHONux0L6OWPqWkh6mDBzFIx0b7b0QDxCCFgAquO58Ubh9WHbgm_Nfr32Y6ejtR-79Hw=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Bernard' AND address = 'Rynek 35, 50-102 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np1fRPEDFpKzOk4b7fvpv5Q0-Ne7L1tb-SHtgGCvRiTgwd6s-6tglhw6BSSkvfG2O2dBmfdfyYmxDJuyreabuaUp73YWfjbnKl5d1rj4kX5LVFYhZLfJkkk8uLa5sQy4e_pn0F5yQ=w265-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Bernard' AND address = 'Rynek 35, 50-102 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrPU_zWpJr0etmzg2LOudApxHv-aOxaV3rPpr5Xhn8fSk_ym5N9mAlwBg3cRA2Y2xS62gAyP5-9WFGYdCN3aw1a0fWIPbRuRlDCvnEHJ86pODTRaaG6veruuGNSOR7nDzFf0Sr4=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Bernard' AND address = 'Rynek 35, 50-102 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noABiSBOavFHnGs79pfJoRUxDO_cZ6pD8kKh26y81OJa2RHvz0YL3a-F0RZE-q6WR7jvJT3uzM4HGE1Sz0gEBDnpM5goCfYjgI8ILBJC2RXc6jOilAZqpkJ2X7KBU8MV-PqYoJw=w450-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Bernard' AND address = 'Rynek 35, 50-102 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrfWemdPQIYSI6xUEcik8GE0hp_y1QAewBBCBXUquJBmqRbW7fF3IOCTmncODxBS_ZOxiTDGDgD101X21qruXCxe2cSWZ5GT_TZqYJa8sDEiYFhhhpn4YCstePocZY69ZxkSb0sVg=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Bernard' AND address = 'Rynek 35, 50-102 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=gKhoAs0qQC-CAM7x5sMvag&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=84.60282&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Bernard' AND address = 'Rynek 35, 50-102 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: PAMPA
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nofr4zpBoiT2NalGA2V8TfSSIrYCWk2o3pZZmplW2GAopYQ6yjevpxJnl7Ld3qKXgtINpTJszU75u8NXro92xaiWBLtL1a7vxEs4ZS6LIY3jA72mMA-u_JXRsvm_sAM-RqIDWXL7Q=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'PAMPA' AND address = 'Podwale 19/1A, 50-043 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no_wNvclRuFqeaT00Lfakh0Jb1Swgpls-tpnHENCdKDl3OqsZu8mOzhqZjvjevPRDFSuHpnaENn_KpaTXL-mav_9AxMFOUVsE_kaMZ1LoLIoPlde8mbkgEbnWopF8WbY7e_Gn0kggLpAt_w=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'PAMPA' AND address = 'Podwale 19/1A, 50-043 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noe-uaIHv6B0bvpSBHPWChOxbIoRyG7Q_90iqjZ1A9vpIGlmkT9NLW5oME83ImGBYJu6uBSGi9vrPk3B2iF3W7bUEqtTuMUvoOhRHr2qwrFRS7ndsqu-C_6KPd0pK3OwEMFLUbC=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'PAMPA' AND address = 'Podwale 19/1A, 50-043 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMPHoAyJ7dqcGZInfTUaoCaFeiFLcZ3T2qeNdXd=w421-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'PAMPA' AND address = 'Podwale 19/1A, 50-043 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipP1gn77t94c9QRJVphmibk8cA8qICuY8ZkWxQp-=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'PAMPA' AND address = 'Podwale 19/1A, 50-043 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqiQTotp7epawFUW4LGN6frGLzzCN5B1k5NBm64Rh60J9azQe8Lr2Jl4ykVlbVl5T1WheMU55QKttwYZXMwneZJQ7TdbzzPk5LCv1RT_5WUDurimaIoRySLNjgVIPExYQWjs5_E=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'PAMPA' AND address = 'Podwale 19/1A, 50-043 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noIvOL8yh0evPivZbrk5dWbUyGJ_YvJxSLnQUaMsOWBb3yBzgpLHIM4so88n7yNVw6J3bEEjDHdKXdg-HJQx1jH8rDkEOi4PKapO5xWj-bGBU2Gd2z98Og5XouCQG0eSVCL4t7dTg=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'PAMPA' AND address = 'Podwale 19/1A, 50-043 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrl384bCpNZXjn7UxQKTdd2Tmvnf5xKJBKXMkufWM_r2KtAAkOOKyAcT3_hBwhUXztn3oE4IIPODyQqRY5iAKlj-8dpGb0d6gyu_GqnPmRmV-unPD2KiEsosRTDG0q-uJy-V2rkTA=w592-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'PAMPA' AND address = 'Podwale 19/1A, 50-043 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipN1gRoMD0XBzpmDbj7oQLl5SMhG7DOPC0MBU0G1=w447-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'PAMPA' AND address = 'Podwale 19/1A, 50-043 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNGXBsK0wsM5ZgENNA95Yib2vcg0dhI-b4rELiX=w224-h336-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'PAMPA' AND address = 'Podwale 19/1A, 50-043 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npydi5UnhbyV3dkRAqTzeQz8qnvZ3YN_DMk2cJPhwHlwFEW35Af0syTaSLtgi-Jf27Y8XisMk4AdlZ_nNMy-kei1Zz6fczVbHltWHz6tYrfCKO_IjppSZUiwFdumtq96G2A6uF6RQ=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'PAMPA' AND address = 'Podwale 19/1A, 50-043 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipO7xMGngpIjFg_YvzyKTVYzUEVcM7sTdydYzoVC=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'PAMPA' AND address = 'Podwale 19/1A, 50-043 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nonIdCogqV2BQ7SvZiqV19t6c9HhH8gje0pTmAstwQlzctVplmsJJxci4Pqb5IKR-Jm36VA_HcMVSuDYiKQ1PF7-KNWE50onha6_o56OAwOb6IXDmgdf8S7Kn8MJ6XP5DsFQjhjdQ=w224-h298-k-no-pi-21.238617-ya239.67831-ro0.5445162-fo100', NOW(), NOW()
-FROM wcs
-WHERE name = 'PAMPA' AND address = 'Podwale 19/1A, 50-043 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: IDA kuchnia i wino
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPmLK1igzxhw2xwy5VR_W3jtdfUW6kaqJkZMlaZ=w238-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'IDA kuchnia i wino' AND address = 'Łazienna 4, 50-133 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npL00GBMnxyzzBfw1-C9wQrC3N0AuoSqcDYHK29VoGx15oIZ5-pgEBHYQqDyUrF2m7lag2pUpbaYLblfXgCygHAqgxx5ft4KenDf7HzlMjeWk2pDnjWXAzY3f0MPhZscf7RYo3WeNl6rxP8=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'IDA kuchnia i wino' AND address = 'Łazienna 4, 50-133 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqqSlyfBDK90eMIPTTkEKXrg2Yo7HUa7igHDltPX2RmAFcDssnByfBSYU01yGxqJw-_--C-8du4zIgXVPnoV4ISFL-ldeTLHxkDwU8WLUeG9jcsMvujMUmp6LIEXnpg7MKmjDGg=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'IDA kuchnia i wino' AND address = 'Łazienna 4, 50-133 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqCKuxmN8tX52pDlCGA8xH1pwRjzbxF-1Goh9abjXD6B53tOdG8g2UduOF4udoETl5pxU72uuMmhLq9nH-kxJ4AaG414iL3sG-jenExLvJXKFcXj-qgFNAbDotcra_wM6BbitH4=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'IDA kuchnia i wino' AND address = 'Łazienna 4, 50-133 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNnRzRzxpolxIVKvr48-QIv2MciZxbnp-Sdfvo2=w238-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'IDA kuchnia i wino' AND address = 'Łazienna 4, 50-133 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipN2qmQE0hI_2aKryzxjb6yrmc3lPmkedFh1_BlX=w238-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'IDA kuchnia i wino' AND address = 'Łazienna 4, 50-133 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqZxuIbQdD9SIGge7aSYN7pmyTVnpOYixkbNG9GViwkmgzg-rJDregtZz5Zl7ovXbCG4ZmriXyfFkTzGnS63c-u_lMPcyB-qBS0ZWXbjDuAlk6RxP8KxT6yXXTM-SZ6ujhEcHw=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'IDA kuchnia i wino' AND address = 'Łazienna 4, 50-133 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrXDuAGlAbMFBC777tOQh4BVnFHaSJC29fQ96yZmRapUn0enxhhdGmUZv7tYd0QSuMsvK-PDdVatP-wZt7Q_xpSmVK8lz4oQl1GNfHgF03Nnur-72TJk1jxblElsAO52ZZfMXYKvxT-VUw2=w261-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'IDA kuchnia i wino' AND address = 'Łazienna 4, 50-133 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNYyFHQ2hl-A9x1hM2nu2_Fyg5qx50VaALdbHxA=w298-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'IDA kuchnia i wino' AND address = 'Łazienna 4, 50-133 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqgOXe58wN8ev1A-R51nUKICVYxgY-OUUCxYKkYIjAH08IbB1p9lU40cjtRCjj58JdG0J8isK13SZH0EiuBl3yFhtJA3Sd4opZ8wuyYS1sNbvSBHXSfQr-Wv5JK-H1C3blUa4ztD3vuoRk=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'IDA kuchnia i wino' AND address = 'Łazienna 4, 50-133 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npROEE-NYoiryrJS6j6wU2QJzbNQ9xu4uF57BSnQtHBK_usj4NtJOgdGpxMH-vHgAzP2k7TwSJ7AAYFNQe5YV1xic0rQpUDb8Ptg2A_enOtofQEs7QgjEg8adF48xLQLyhhNSAS=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'IDA kuchnia i wino' AND address = 'Łazienna 4, 50-133 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipP_n_HS7cRUKBn1iFEJ49I-kwpKuZZMZmILIfXB=w238-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'IDA kuchnia i wino' AND address = 'Łazienna 4, 50-133 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=z56pYRzNpShpoIlb76xUOA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=155.56871&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'IDA kuchnia i wino' AND address = 'Łazienna 4, 50-133 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Pod przykrywką
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNLVzv6r0elEVH0-ufERqPLNJM6fojZv1Giikx5=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pod przykrywką' AND address = 'Więzienna 18/1, 50-120 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np3ovsMBKCZpCGNamAZebVlcCPiImkTIRkYRbypkr2eRlEcmz3e3g7VzWFn-1g97bgwwikqxuHXrERZXMsmZ4E3zW_94zG5RZPvTyX7jcITskLItJz9okaMYUdXGu_daZv12GBEz_Gy0lZ3=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pod przykrywką' AND address = 'Więzienna 18/1, 50-120 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr8_j3MHfVd0ibjFgHJxyZNs_Thmu6Gbkn_ZPhey2In1LRgt4Dzt5eudXAOwERXaakHxsiai0qkaPZWSLemOzYf9lpg_icaQn_di2vWDqhR1zJbunZkDfOj9MShtVfq9KGmVfJ9=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pod przykrywką' AND address = 'Więzienna 18/1, 50-120 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrFxrVNtXNOpejaAXoWcT5R575u0cbLsYfb3FAyH2bbD0zl0UkXspZqx8yUx_eLJcyXyNkVxr2OKqziAKfYK6eeFb9Ml7nU0JG-cVIE-6QbNp9JdD7uQykpzNPP_7tyyU9UdyyY=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pod przykrywką' AND address = 'Więzienna 18/1, 50-120 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOOYWzCRmkZOLV3r9JwW8IyhU_m_l9v3ZKdMXR0=w387-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pod przykrywką' AND address = 'Więzienna 18/1, 50-120 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqskeiGQJxuzulWi_vxlL5bTjGUdYfel_0pgYxsdzgyo-WPVn3udy9d4-OcIKHOe8Y9YShBg83uScl_hJSU8JOmGyzZGlHXfR6NHGStEUuoN4zu9k2yBa-4fkIdJn35v_Zcz4ek=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pod przykrywką' AND address = 'Więzienna 18/1, 50-120 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noylQya8j6dJ2uXgyS4lbL69wSSLK7AmU3C87szxtutWB-vy9_mVePetn0ErdadfJbnvo23SN88YXM2gMpzhUrWv4Fk8jmsFSQO_pf8ANy2vlpWUpDEx_zWL18g1Fo8J0nLjjU=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pod przykrywką' AND address = 'Więzienna 18/1, 50-120 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrPkG4ya42TPvuS2W_XLhr4-oUp29BVqqNzikd5-ztrTXR_26VCrxqRyllyrB-iuDXAA5CXAEKE7R5zcZ4IEHIFAsV2ZRbnZXNIqfsE5PsN5OlS4h2XCsNVjSoJLyTpyUB_tz1PSQ=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pod przykrywką' AND address = 'Więzienna 18/1, 50-120 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqoa-rPnfDA06kuSWq_77Irp5eAAMOrN7ZR967iiebrGpQm-6V3bVB0PPZLc3EhI7Z-cZDqH28B4uwNW2e-UvVdMklRuTRliiVBIzLQ0rb1vFN9KA7CAZQzDUl5kWqijw=w224-h497-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pod przykrywką' AND address = 'Więzienna 18/1, 50-120 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noWdQGm2iTpnuQXUUb_cTRtqtrsD7Io5G0kfL-CwCR6ZLINMgVSe8ThTOFqDaWvKRSbDFVyNvTF-AuOrDgO9Z8QBmvMpPB05cdIm5FULrXny_OM3jDJSG0sA8CJQEtUqzakcgk=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pod przykrywką' AND address = 'Więzienna 18/1, 50-120 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noavz3mEeeTDFj4VlLK9jodMjlXxIbh2n1tmDE9nAC94ICUrZRk8M61gVeJzf3higYfZvioJE9vMCm4KoarbOMOxVz17N1RRGFiN7iZSg-8XVqRXFx73_rhMF73YmDmr0VZVD8H=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pod przykrywką' AND address = 'Więzienna 18/1, 50-120 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrWFU1dlymhY6BHbqXQwfIk6ScsZKjR3E6Xx0UkR0nVt5HRoaNvPHUdqqpxqfefWBLpT-FR7MnLZ3kkJg1Ug4fDSC8xGQnlESuhfgGnsaEswvtAE4ZgElO6hyxBf9Jd6FAZ3BLvDg=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pod przykrywką' AND address = 'Więzienna 18/1, 50-120 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noYDwPbUOXTJb2qmrqHHQEw7xLtdgjHPuU8XcM7IL-a4zxF17wZjDfFXzYexPKmnR49BskAHlw64Ak04ndj9_UWj6cr9_aUfOmhQRM-Z6nc5zTlPubTnvRxYmlCzy6khV5xC24t=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pod przykrywką' AND address = 'Więzienna 18/1, 50-120 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nowo9QbxQhIDdpK76PMgWGpdBVR8AgW_XEvCTZEBAeMwEa3J1FX0l5PrIT1DNz8a9CDJjcgI6t9tVx7eL1aPtPqM7BN0QVQF2RsWOJTVvOdQncDWzhVjOOw5kVmscfCBI1Ss48=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pod przykrywką' AND address = 'Więzienna 18/1, 50-120 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npz5lf94cHGyzmc2XbXtsb_ee_TpJzBK7crcqcGtgbq-K8KW9d2Rxk6fwnO9Yi6-q9F4CZ87wLLdcrO2N-ofPF8_kOOPpKDnpFN68h5Rrz-sqCwhlh5nJZz2VPeMVJzjS6bZhes=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pod przykrywką' AND address = 'Więzienna 18/1, 50-120 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nok5YrOjKtoKP7Y7b_H8ZJ3OxO_RFO7-jh6_xXJtZ4qmTxRNErsk5FOrOFNUSVAoDstW1SNj4o2Xei28T6D_38YfE5uTtgk0xtjxfu9yryk4b13Dm3hBrVlXH46WLDucD2ez1WkeQ=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pod przykrywką' AND address = 'Więzienna 18/1, 50-120 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNw0mjBxTc-Ozyj6ZxzqU_amS35ImIZrDjz6rCu=w224-h336-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pod przykrywką' AND address = 'Więzienna 18/1, 50-120 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=2il19B7p00LmofW0coc-hA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=225.80627&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pod przykrywką' AND address = 'Więzienna 18/1, 50-120 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Małe co nieco
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNs7Kz6iKLPrWeUxKsrFqLIuwMKRtokY4w-aH9R=w459-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Małe co nieco' AND address = 'Dworcowa 28/32, 50-456 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npLWMMuoH9NB07iY6rDDsLuXslciZYR-tKNlmdDjE125ph_5HRcnNiwkPH-ghIFIhlp9NLnt-SXJEJMI7XhIP6vO-4VJD09qRGwRNl5rGZ5UrQcTi9Z89M7YjE-xYApUikBHiuV3YciYxTC=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Małe co nieco' AND address = 'Dworcowa 28/32, 50-456 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nou3PtbskelGVYWupfqeHVU8Rc3oNqtwLd4xmY0TEf5GPaiyVHa34I4qboQ8Zh4oY2Fpcuf6YLpA1x34v8ZvTLcV2oW1EQxZGBeGbdq1dg7NHr-6oX1MaE8PAMa6S8n0v9G8iwdIA=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Małe co nieco' AND address = 'Dworcowa 28/32, 50-456 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqfwvWmaVnuzrX6ZRqrPV3m87Ww_rCtVurbCKelWIxS-90PP6L5K1A72uzjLotBYZz8NKRi579FKuRIi0fAEivifhGvn_w3VnxgUq-LEoLt58GzYYS1vcqFgpmDjCHnYGHxZqqz=w395-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Małe co nieco' AND address = 'Dworcowa 28/32, 50-456 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMfAIN2gMM6VbAOwRfKenbC7x02d7KeV3Smxjla=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Małe co nieco' AND address = 'Dworcowa 28/32, 50-456 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqXdP63IZHV-T7WFO8XsDTcWo18DOo9pB9fuVL83CrigidYsZ53NsC-N780lE67JCI5eeRRUnqQZek_E-Nk_qR_PEY9E0WBZJtlQktjJf9QIuY8nK40xAI56syg-kAiXzO_9Bqp=w395-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Małe co nieco' AND address = 'Dworcowa 28/32, 50-456 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMPIoW2qSX_ur5nLpeYQ3Y_jnwtR8lxz67l8lWG=w224-h322-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Małe co nieco' AND address = 'Dworcowa 28/32, 50-456 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMQb2N8_EsqK0iQsd795M7ZEVmS4cUEMAWMVy7x=w528-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Małe co nieco' AND address = 'Dworcowa 28/32, 50-456 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=yBaGY7zp3eMtMqhPUUem7g&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=148.84962&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Małe co nieco' AND address = 'Dworcowa 28/32, 50-456 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Czerwona Koza Restauracja Lokalna
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMqQDkxrVPYBTsoTzpMjvEHNScKuE7VUBDk3xbd=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Czerwona Koza Restauracja Lokalna' AND address = 'Braniborska 48, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqZFcKWkRP-ABHxpfHheEHsN_WKf5SmlkPS0ulJJAgnNPw3nbhn7hcB17LdA7uehCXX4B0icI4avtEmXN6qkIHbZyumQS-OhlZRKScqhm2cy8FTSb1NNQX285FTVh48Pb5LNq4uSsdmortm=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Czerwona Koza Restauracja Lokalna' AND address = 'Braniborska 48, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrwd8_zraGdMYnIINdhRyo79TZyvSIfoS2Z5J_emYmZ6j-vD3FFpnECOatdzIyx4Jb3y4jkV8pHlG7cwdZalhyQzbLdbOT5p1oemdCuVzsiyxVO4zNiXZ6wR8bLK4jY6WJ6n2q4lw=w224-h484-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Czerwona Koza Restauracja Lokalna' AND address = 'Braniborska 48, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrtCeVAH0WS8EpEcL6lCCrwjI6RcKgm-pKN-k-39v9nDX8WwcNXBMLuynAdR51yaAxiZcp_WiFN_MaAL_zBmyGAgt7TV-Of4Sr-rOexYkuV80RcE-JBiP1OWCQ787qfikrwKXF62g=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Czerwona Koza Restauracja Lokalna' AND address = 'Braniborska 48, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrWXkVmp-LmoI4kBKB15S6Q8h0q13rVA11E5N6lGYOXPN_X9EpJRpVgfnMYNyTmqlT0kXC-upK81kuzbkE3_eQ9UbD_E0488573qnurlayZg5LNqSmynDLnpCNHkqVhtxGYDjzR=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Czerwona Koza Restauracja Lokalna' AND address = 'Braniborska 48, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npLooJOZcNsmQHGj4aDJjgF3vfHvF5aaNuNB9O7-gRuA_ha-HMQ-DTWqwI0Z2mHcUwp-rklyzD5bqs2sW4P2PzwcKCKqrpN7yy5M7LZfbpPm6Fy8-jNbWpPUOvPqyierj_mD63r=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Czerwona Koza Restauracja Lokalna' AND address = 'Braniborska 48, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrp6K_rsiGcgWLUrnrUgNqxIWBXQfX51ShykS4E_zY-6ax-La3Ne1H6kkeRL9Y44IDueoaB0qE8JQyF5RcnfShddg79J-m-hHx4g4BX0jEWrS-TivhXWqVsBxA5TRAo8CfenS_3=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Czerwona Koza Restauracja Lokalna' AND address = 'Braniborska 48, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq8EO6x9dJUFDBf1yLVHxKhSnU1PrQkoYNjy49JWUT9yw_DpYeGm1g0MVVIpllS0eke0rS5xaepPag2HZUUS4cdgswOB4Z5gwtlGkF4Ml2P3ccpx15NVFEoHS3naR8iBhXN66au=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Czerwona Koza Restauracja Lokalna' AND address = 'Braniborska 48, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipP5Kl1mvvKXchkyEe6PbreC74zjQaa4Ff1G4kfG=w298-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Czerwona Koza Restauracja Lokalna' AND address = 'Braniborska 48, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=3zT1eD4rUZXGwow1ov60KA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=190.39748&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Czerwona Koza Restauracja Lokalna' AND address = 'Braniborska 48, 53-680 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Restauracja przystań&marina
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNxRlb-Hlc5m6SUgR5ggyKxYrR0vfPFqS1GNplI=w447-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja przystań&marina' AND address = 'Księcia Witolda 2, 50-202 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrDVKzGM8o_a_yXJmHXYWIAcAnVomiCqq3yDbQ0j2HuJWHddczilz7_mKf0tygm4DIxFB_d7vFYnTWPoWJOskf3HXm-2Hx3GzKwGH0Ks6dtcakwZKZiG3l1WuEq9mXjmrac6EdjiQKz1DDX=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja przystań&marina' AND address = 'Księcia Witolda 2, 50-202 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no2cCIU02LuiAhgGya5dHTdBJW_F7ykXHQl0iGBtFKMcI5rE9wntp559kCcE507y3DDmKagBYKAfkgt2MDMJo6x7Zq7zD-8rstc1-ajWf9328JqCZhREFErfioWF4MV8v8Zu6gn4g=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja przystań&marina' AND address = 'Księcia Witolda 2, 50-202 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npRu_o2YwfHTMAd4FJOifd58CjEZgEYHo3NVolZs8pKaoKauwpes5l2RudLyJKIuc-SOBKzGUB05fXgyAjZAFKc2CS_Z1nTRslfUqRblw8WbysJC0fUY3hn6MAQi_qrtY-WinfwGA=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja przystań&marina' AND address = 'Księcia Witolda 2, 50-202 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipN0sh_Esf1SGendZ3n7td3Iz5lI49wyoeHhbWiB=w224-h322-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja przystań&marina' AND address = 'Księcia Witolda 2, 50-202 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noD9EuO1NaXJw6xrVkFJRAcE7XDSQjMh_cYmUN7M6e48CUKzfuMDjyuvZaVl-FnMyHoMB7qcZ848jMvT9VpqXb2OfhBcCI0OBLVqT0rCTDM0O8w1drG2bSWQsvKuITURdu6t1c=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja przystań&marina' AND address = 'Księcia Witolda 2, 50-202 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npw9TfFazIW0_ZesePsphxvJ373IyP6aGchmdVvOten8UghKbmYTedlkGoiWZ61mzC-82f9f4nEsHaUKTD4LcurevJbncd-6hGo1w73HGxcVgNTmYlnUAmiY8u3pWJs84oCk7Es=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja przystań&marina' AND address = 'Księcia Witolda 2, 50-202 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npbv_mykVS5MH5AG8dUnMJXB1xKoqlxPzTrR2q4SPLm5nC5t5T4-UiiQDecP7AcjyiQy6PSvv4tyWW-1ZuYbDNiZMM8Q4t5h1RsvKAVAwH56zn4ooWKu5TWCbdYrovUYoFMtVhM4Q=w395-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja przystań&marina' AND address = 'Księcia Witolda 2, 50-202 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noMXtK5iAjzlReTxetN1Kv3r1t3N3qCDZBweEd35soltFEG7GCXEeO3WtRKCZzKmU1s3Fft4i5sVtz-gPpOe37HYgNGspl-Prdv39QnLMHme72935KlkkkDP2bIIsbcAoPQyppP=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja przystań&marina' AND address = 'Księcia Witolda 2, 50-202 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqVuhvyTLcNg5GcivzTUhPu5Ok6VvxRiLnC_d3rgonUNCFf5HQE6Hm1F_2-iz2gzvId3te8bTsmZzwS-gVB5vgP44aJHrFRrvXktbZsU7UoS55rWlq-LZXWyeoff687QirceV3Q=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja przystań&marina' AND address = 'Księcia Witolda 2, 50-202 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noo55JW7PmsGVF2h5ur6yvpo03ZrwHtLiAJlBbf9GkowcTr7uessxj5HkuSieyKbcYiVE23_y8nrCqjXQy5X3xPYi9W1J_3Gga-WdsvX_M01w_XszHN-AHnIhM7BHqBDqK8CeMf=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja przystań&marina' AND address = 'Księcia Witolda 2, 50-202 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNrldV86yJgyygtsle9KktipTGyRDoaFcvQ7j_N=w447-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja przystań&marina' AND address = 'Księcia Witolda 2, 50-202 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=3XzwHx2zaQmESk2PhwvSXg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=155.3514&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja przystań&marina' AND address = 'Księcia Witolda 2, 50-202 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Gustaw Restauracja
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOxyli49iSRq_gV3Gkpxh85TbUl6RTIDZisoTHh=w446-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Gustaw Restauracja' AND address = 'ks. Piotra Skargi 18A, 50-082 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipP-HqmPDpGSr9mMsai5OCdIEgV9h5FByIsDeZL6=w447-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Gustaw Restauracja' AND address = 'ks. Piotra Skargi 18A, 50-082 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nptRQyMMTxl5yL-WsfNwhIK0-rHaCAuxWh6EVUi_-byAfl1pXLlKq7JqN049VRfF7LNpZIuGehErOW_7wxAxQ-Mwc9poJWpgKsDXI0EmQPXx1PxtL2p9uihqGJ3QmlNhLstNj03=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Gustaw Restauracja' AND address = 'ks. Piotra Skargi 18A, 50-082 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMN3oCeFSY19NjIyqzppw3dcMfDkI_G7o407PWk=w224-h315-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Gustaw Restauracja' AND address = 'ks. Piotra Skargi 18A, 50-082 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOvpcxUl-a0WjiFeLsAfFMZaG_ie3-DygpFx2OH=w372-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Gustaw Restauracja' AND address = 'ks. Piotra Skargi 18A, 50-082 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOlDHh9YxBqGlh1fDx7B4maSPBAsTNnMZ3pQym_=w446-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Gustaw Restauracja' AND address = 'ks. Piotra Skargi 18A, 50-082 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrjvAjJ4dVEZ6VwTSCGWcea6w8b4uJwECkB6AgdfUwqxfrbidqp5n3QjXX3aRCf0WVqCIWsrpdyNsMEq1mfGFW-FdWLgrz188g1yrBXe0fSgWrlQff7hoBOyf8QbtQThWFUoBLm66OLaV_E=w396-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Gustaw Restauracja' AND address = 'ks. Piotra Skargi 18A, 50-082 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqyors8nImC6jYNCfZblU-bV2n0567ETzFMuhVEz8i1-m9m_-uWA82-jMQwAskiiNlNmfkIH7veK1lQcdD1fZAGCeKzIz6KLcwz6rkEdd7AD4rMgMWN5zQmIPiQ0aCswifeh3Yc=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Gustaw Restauracja' AND address = 'ks. Piotra Skargi 18A, 50-082 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPdglucW1nkKewLCfreOYX69e1c7osJFAmd3iBZ=w372-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Gustaw Restauracja' AND address = 'ks. Piotra Skargi 18A, 50-082 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=ZzTICP7ypRtb9p8OcsVfNw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=114.10928&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Gustaw Restauracja' AND address = 'ks. Piotra Skargi 18A, 50-082 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: OdNowa Bistro
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no2rU5QgUd85MEtBKX4YodNc8U23_Zn8-UJlAyGhh_aeIZIy32by6leoh7SQm_ueg6vNO_CdL06Sjr5ISja3ixBZeFdYyxsMXFmBY-rBOj8t2U1_EK_twJoHkCW0lpWjyxv_SYG=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'OdNowa Bistro' AND address = 'Wojciecha Bogusławskiego 13, 50-031 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq7W4_QpXi19h_9QdBswS5etD8cva6EKPekbXLDskpfC5ye995IrAm8NdVVMNvkJhatLgFdRpgUZaQAe5ZXEvIF5WKRS8QELSCLHPpIqbf9_3UD30pu0VKL9pqD7ejntCbJtCXXoNhRH8s=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'OdNowa Bistro' AND address = 'Wojciecha Bogusławskiego 13, 50-031 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqNKg3U6RTKB0a2lorPUkoWKqdyb4EmGbES4CNjslK5mZ0CHGIN0Wa1C-P749ZEN_bSJnKpjjGc-4KShYQ1ofC_olYRudpyw4j6tZUBPx8B4Ly5dkhpz5Aj5X3ZsJzpsMOiWoPu8w=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'OdNowa Bistro' AND address = 'Wojciecha Bogusławskiego 13, 50-031 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqWL5Phv7WDy2kLNwWx6FRG8d7YA-tYLg1xTY7nUu2ARW41BjwDXG_Hrv0UH78EwY_XkR5h6lzhwAG_GlzhP8shvR25LFZPnAqzZ6hf6Ez7Tac5nf_hVYWqbe-PNHhCCP4gdo2LZQ=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'OdNowa Bistro' AND address = 'Wojciecha Bogusławskiego 13, 50-031 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr76zeNe6zjd4qyTz83bEWtKkN5pIDSYcvLAEYFjZkrpT9aUpuVhOjh4j89khEoPMsymRcRSFCJUF0zPAIufFgCWjPfSsmD6nkiA_Sf_Ppg3XPJg_1XxiYFc2Y1EYP-RVkfZn-d0IVp6hwQ=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'OdNowa Bistro' AND address = 'Wojciecha Bogusławskiego 13, 50-031 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrwXldtq2mqwHxgPFCeC0EOosQs0rN6aS2E4vHgegU0wSZvFX0fmL0djl3n7-S0C4nJH-MlrkFjwoVP6--DgQ-DQgWN5VK26n9krPCLInav4-ME38J_bamXN8FFQgWFbajhFrtGhA=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'OdNowa Bistro' AND address = 'Wojciecha Bogusławskiego 13, 50-031 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipM-Z1KV6mWMWpqb_9gEVi8LKUxpRK8uzFGznCdF=w298-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'OdNowa Bistro' AND address = 'Wojciecha Bogusławskiego 13, 50-031 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=NGhqTEHtE2pcAV6jNjyUBg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=203.50092&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'OdNowa Bistro' AND address = 'Wojciecha Bogusławskiego 13, 50-031 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Restauracja Bella Storia
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNgWy9UUe6AxcqwLTqrF4U7_Y8PWLvO6J9mUyzg=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja Bella Storia' AND address = 'plac Wolności 4, 50-071 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no8wFCD7UPf-x3GBGxYV0QNjuXQGsGK7BBxfApVKXrtyXCB4pZswrdeeikYyXwfCcdK1pKT9WiQNijtDe1jU-ynnWsfxUu4QwNUjP5GFKX1O_uUQuQngfQy9HOHvog853dwpM8nrD6SqYkP=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja Bella Storia' AND address = 'plac Wolności 4, 50-071 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrXwVALUaFa0svAMW6oER95BAbM22DfVBNhL7KWv-95rE_Rye-P54QAUtjn1I-l5g1MjCiAnk9Mrwqb-iuUwv8WDvidAUDDftAV3spWXB_6bmjuo2JGQDl8m9KmbLQiPUuveOss=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja Bella Storia' AND address = 'plac Wolności 4, 50-071 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMTnCGrunL2OU8Tpyw_PKPH7nyl_XOef41hPhFP=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja Bella Storia' AND address = 'plac Wolności 4, 50-071 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMG7zZO2T_5ITCxmQd_0cAm3SLeCQiAr-4D-ksR=w236-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja Bella Storia' AND address = 'plac Wolności 4, 50-071 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no6u8EpX5CXvHIEy2hKjGHNNrCH3OylFsWyZhGFjAFMp4ao8T0WVzUFvw6Ljk6cGJ6y1gl5RyOWKZxsFOfUltju-6jEWONq2Tu_akFi5r3ksxoJynXvWeIk5GhDE26v5lj5Z7QksA=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja Bella Storia' AND address = 'plac Wolności 4, 50-071 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipN02WjL0JdLZb589wbNY2ArfRfgvp1vIRwh-J6W=w238-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja Bella Storia' AND address = 'plac Wolności 4, 50-071 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr0UQfyOoz6xXlDqRxmM3_-jnp5PxDbEBglqQ2BVUiBPDzLXavgXHIDD5Kic_FURM1cW8ZLxbwmYkYHaarA_Xyq28J5Yk115SvCnD2zvzgr0K6EPvDXFmGJwwivi8aUEBEWImIx=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja Bella Storia' AND address = 'plac Wolności 4, 50-071 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrVpTfMbsSZZnNThmSMEgjnl3VbtVdCGk2kNMuL0Q12RGabDNN06YTbcN277ZwVHZASUfGpHsyn1E4TxdUMRW0DQFGXnCOoF4BrLSzGqV1MA--IuwPgPs7nX0FC4f_l8Efk_fJR=w243-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja Bella Storia' AND address = 'plac Wolności 4, 50-071 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no0cwiNnT88X-wylXFTLaNBQAkM8mXv-jXGFlnW1X4zuVxV6cDfy1GKbdrlaPUMJPS6B0n8lgq-g4DBKRCTyhRnRAd7e2Izsbi73fZhUL0Dsu-W3SlwIpp4JiUboxinmDA9efKb=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja Bella Storia' AND address = 'plac Wolności 4, 50-071 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipO6GiWwuHJ-XcRUPq0zNHrO6yR08FeuvoWiCYmX=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja Bella Storia' AND address = 'plac Wolności 4, 50-071 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=3pkrndzWzVtL4u7LTtfjNA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=36.20675&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja Bella Storia' AND address = 'plac Wolności 4, 50-071 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: House of Spices | jedzenie indyjskie | kuchnia indyjska | restauracja indyjska Wrocław
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrAS8MMmG8Q-OlKqE4zacKjSd-comN9g9ZSvjLChgIRPdp2rfNLSVjgkBEpwJCIhHjI2FbWj_GpI90M6VwPJYEjkP997qE5r-SmDf4lReON8rhbXXT2kE-kOxLOKoj5aQoAJaWQGQ=w309-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'House of Spices | jedzenie indyjskie | kuchnia indyjska | restauracja indyjska Wrocław' AND address = 'Zygmunta Krasińskiego 32/1A, 50-450 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPYrycy49DfSHVkbxJwPl9bFSb5bjQnZNXBB5Hw=w224-h316-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'House of Spices | jedzenie indyjskie | kuchnia indyjska | restauracja indyjska Wrocław' AND address = 'Zygmunta Krasińskiego 32/1A, 50-450 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMqDuPkjFM69LPLI-_pdy361mNyR1LQadYBw1gH=w553-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'House of Spices | jedzenie indyjskie | kuchnia indyjska | restauracja indyjska Wrocław' AND address = 'Zygmunta Krasińskiego 32/1A, 50-450 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipN3-9JnVtuDGiwbLM4LslfugZuEt7e9-ZVsDQH2=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'House of Spices | jedzenie indyjskie | kuchnia indyjska | restauracja indyjska Wrocław' AND address = 'Zygmunta Krasińskiego 32/1A, 50-450 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipM4ytq7G9lOnCWmaRbQG2_Gaz5yflDiwUCGQLoi=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'House of Spices | jedzenie indyjskie | kuchnia indyjska | restauracja indyjska Wrocław' AND address = 'Zygmunta Krasińskiego 32/1A, 50-450 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqJ_QR9oPn3xMayFH-OpQWHfb6oFhT5_eTkQkvogiSbSxJYe25ovXG2Sgk9b6KtL6Za9rKLH6h2IGMc6J-0Zce12PwkQ1Vvy4vWvquoyfDOHfurLxGN72uZPUv35FpdiTkORRJU=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'House of Spices | jedzenie indyjskie | kuchnia indyjska | restauracja indyjska Wrocław' AND address = 'Zygmunta Krasińskiego 32/1A, 50-450 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMuS2ZGFzMl7GIwU91jGPtaLKHGI1D37x-99SKH=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'House of Spices | jedzenie indyjskie | kuchnia indyjska | restauracja indyjska Wrocław' AND address = 'Zygmunta Krasińskiego 32/1A, 50-450 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOWXeTkLBdCtexntmEBCLybC2xBGiv3n_6vXEJZ=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'House of Spices | jedzenie indyjskie | kuchnia indyjska | restauracja indyjska Wrocław' AND address = 'Zygmunta Krasińskiego 32/1A, 50-450 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPCwuxwe4w4JmuOTpMOGI40ha5S1Cy__UVfBSn1=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'House of Spices | jedzenie indyjskie | kuchnia indyjska | restauracja indyjska Wrocław' AND address = 'Zygmunta Krasińskiego 32/1A, 50-450 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMwxJOztZ_GrrC-1MN1TCE_j1xuhFOT_Fp52QXF=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'House of Spices | jedzenie indyjskie | kuchnia indyjska | restauracja indyjska Wrocław' AND address = 'Zygmunta Krasińskiego 32/1A, 50-450 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=VmYZFFGYgkmlBZGrRLlqZg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=125.61683&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'House of Spices | jedzenie indyjskie | kuchnia indyjska | restauracja indyjska Wrocław' AND address = 'Zygmunta Krasińskiego 32/1A, 50-450 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Restauracja Wrocławska
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMWhUdvvKpfxRNeyp6_fyAf-g_ONqUWS05PEmbJ=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja Wrocławska' AND address = 'Szewska 59/60, 50-139 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npac0PM-abaW_9ishJnImP11RT3Ks_KwWMgj_JO8-10DgAOp54QHs7k3q_a5ZIlaBrlAOU_UGSCnXynI9jQ3vNuO4A9b4PZhzXl8Z_7gh8970hK186aRPgM65OFQl1EY8P5bJTmZ7gxMXA=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja Wrocławska' AND address = 'Szewska 59/60, 50-139 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMpmZKVcyjpM9Zgmt4Bd-IfHGhnaA7obXTqzPuw=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja Wrocławska' AND address = 'Szewska 59/60, 50-139 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMCY_GcoYEPberf7ygCxM1bhZXXz_VYbY04bvt6=w224-h316-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja Wrocławska' AND address = 'Szewska 59/60, 50-139 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPaTzvk9B_5MPAeObDo2aGLkTRw_tGI7OlgqssI=w355-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja Wrocławska' AND address = 'Szewska 59/60, 50-139 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipO8onejaDBE3hOMsirZ04GR3N9h9Ygwkv8GD9i_=w437-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja Wrocławska' AND address = 'Szewska 59/60, 50-139 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqetQ1MGxDZXPS6myRYP1dW0bCRbCKroAfga7e9ijVunFqfLC4EWoAxpoPeDMEEawu1BIoJ3KTlSEnulp9Vuwl9pi2DG3hl9ZCMYyAMXodEGkF7fcamhssbnlS3u9zubxE4WN9P=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja Wrocławska' AND address = 'Szewska 59/60, 50-139 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOkXYlH7jMteYMZmb_jY3NLD8A1AirNOdgYD6XA=w291-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja Wrocławska' AND address = 'Szewska 59/60, 50-139 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOA7VFQ-cdlAB7bVckGBA7evVULtQEX20v8YgF9=w288-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja Wrocławska' AND address = 'Szewska 59/60, 50-139 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPcBEbl4gVMvyF5VwvfRuUyQ4wLMgtiFj62B6nq=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja Wrocławska' AND address = 'Szewska 59/60, 50-139 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipN5MD4MWrUg01OWw3KLBdEFtSmlJAcX1R4vKzbL=w238-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja Wrocławska' AND address = 'Szewska 59/60, 50-139 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOdXShV9AlTaGWflDE02OSz_uT2V5Qb5XAEkAKX=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja Wrocławska' AND address = 'Szewska 59/60, 50-139 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=mC5ftmxkwvQxPh5TDU-uOg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=252.4966&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Restauracja Wrocławska' AND address = 'Szewska 59/60, 50-139 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Peruwiana
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipO2HyPVuRa20wuTLa4kIiPHvvmgfG9Zo9mwMnoH=w298-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Peruwiana' AND address = 'Pawła Włodkowica 9, 50-043 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOishIrZk6WTxCJuAbXB_oErPcs6GcZVGe7qHTH=w298-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Peruwiana' AND address = 'Pawła Włodkowica 9, 50-043 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqvaBP15m4sjxx98e9a43edjUi1gE-N--SQ3yEMnMwAj5D1ScoDTzH2Fp4PjV81LiKrNLGJkuQoyM5BH6zvcrZEHBI5CqzhvZdlw7v6I37rtsu8vRbMHT7XvG-u0T6ng7S2CvY_=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Peruwiana' AND address = 'Pawła Włodkowica 9, 50-043 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNs507tzXQV9ypxFzO6wq51MW9oxVUK_5Ukh2Bf=w419-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Peruwiana' AND address = 'Pawła Włodkowica 9, 50-043 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMxSS_cjwdgMorc-w6oeoGBfRWiu8N56RN3wdVo=w224-h347-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Peruwiana' AND address = 'Pawła Włodkowica 9, 50-043 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPmzQXy8YrULfkDeCaR3ozgFgIGDENBvtmk4Y3h=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Peruwiana' AND address = 'Pawła Włodkowica 9, 50-043 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nofGDHnj0Kt1h1w1140FqToOuXSt8uRqTf2rptummhaqweYCXMYAwqfC99Dc_udMf0d0ezhe8_35MBmiAUFT59U-Q0ClL3FaGfMhYId-XK3AAGjqv17YKTBvtw9fYqHNd9DL_3vKeNtHCtH=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Peruwiana' AND address = 'Pawła Włodkowica 9, 50-043 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nofdRAUX3OpJLAnM-fHSJSPkd6VVwbVhK3ZyJ1uHi2nqnoOB1BaQwpIrkjvJKFQkEsrMPjk1_u-T_iRZidvaiflp0jE2YLvN3dvPFVUh1-Eoci0kbgF6fuUdGoE7Yq6adPBRxSr=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Peruwiana' AND address = 'Pawła Włodkowica 9, 50-043 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrTf-zIFY9-rm0mw05bfoe0AfLEhZS3oh02PjVDmlPHfIESC3dGEkvrjDaubP686Iqk-ODW-Pw8pN5KEzdqBhAzfvmY6ZBOYzqdS1e-KyzfTYsXVQckzsIdmheTig45dG6Bn8aozw=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Peruwiana' AND address = 'Pawła Włodkowica 9, 50-043 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npxuCeVpWdop3nWXOtBxENIAtAGZ0ejU_UARz63riQQsntB6c1UOW5YBwBNWhhpT_5LJBXrdPoWh_prX8wlVWgFnrix-micSE5Md0Crv9cCl9T5wqQsHPlNpLYnExcboSOkD4T-9g=w224-h460-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Peruwiana' AND address = 'Pawła Włodkowica 9, 50-043 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipN2trpNYlBA95Ej-8igiIgK_SgTLMM2_ffxkeav=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Peruwiana' AND address = 'Pawła Włodkowica 9, 50-043 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=7YxRO50t9ONBM7SVqn1fBQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=33.69123&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Peruwiana' AND address = 'Pawła Włodkowica 9, 50-043 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: RAGU PRACOWNIA MAKARONU
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npvqxNnq35wYshYb4NV9wXfiRk_C78t4P15ovc9u-IyeA2FhwDcJaalX4AcrltPLEB3Hsq1QYQnCTrqvFtyNQ-wWLoHGn1jYqq7CnM93wLVOwfCigYE0yBMVweD0KYKS8itNwnv=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'RAGU PRACOWNIA MAKARONU' AND address = 'Henryka Sienkiewicza 34A, 50-335 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noVQKAd_CBcRSMNYubzIiK_32JFUAvlF_zeIhK_x04rdUxLlNr9OgIMu65RRNP-uY4DFul6PG5sWKu8x1WpHXDj00SSF8uEKeksHNRG-FdoKcZ3JqAKb67AnRZUVwzAIIosusvQHXledgU=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'RAGU PRACOWNIA MAKARONU' AND address = 'Henryka Sienkiewicza 34A, 50-335 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqFzIjNXW_Krb4eru2BRn4YyASagf3QmPQpIX4MuqJzf9PVj-A-ve_AACxPEDjrBWNIbMCeOuiN8YwNNFgLQfJajS1JEThnVoVKVjXOeYBbYsInsyLYHwOBgUhHk28f1qzHrhE=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'RAGU PRACOWNIA MAKARONU' AND address = 'Henryka Sienkiewicza 34A, 50-335 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr5LFWo4XiM-DhFJlTQ4fjCZJCYtjMCUnmMCNt-nADrp0WCwwyex3AzPyj-MxKEliGCQ0a6BLx8GzyoWVcWG0D6OpiGJdcetTTAgkYCXrCURxHBZ-pF7DQjcO2NUvNrZYZ6PBs=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'RAGU PRACOWNIA MAKARONU' AND address = 'Henryka Sienkiewicza 34A, 50-335 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMHncqYMTyXj49APuFYOaMDnVm9IVBEbgWM4MOq=w229-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'RAGU PRACOWNIA MAKARONU' AND address = 'Henryka Sienkiewicza 34A, 50-335 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrpZh0SJQ7YhDPka_J8fCeMVwrGOKaVJAxNi3ODuRn-RqxwI7O7nUaoICLpKkfkoWoZSrchuxGdOS311sjat_02PU-40Ih_z3Hu4GcKc2NbcRZOa7hIpeIM29CztGLtaVE0-ee_=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'RAGU PRACOWNIA MAKARONU' AND address = 'Henryka Sienkiewicza 34A, 50-335 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqsWwgl5-q9P3uaAER_n_KhU0G4jtJOoo_he6uhQf1QRKZMSv0onmn6BHn6PxZAwOaEiPEu2fW2PPJGuQtfDj5_ilwCBAdwxF6IB5aQ14hYyk0IssJbljHAViIvvMhikrafBmhq=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'RAGU PRACOWNIA MAKARONU' AND address = 'Henryka Sienkiewicza 34A, 50-335 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr6nVMV29bqFDseOn5NZ0RI5ax2dN7eNc2VvJemK5e4CGIoIWBiliw_zVYxN1N0Li6BO3coOI8cJjTVOWkL8MM-xPV4MntDy1YHMGLvkLuizb_Aj-mBwiOa6S_YizU4DtoSRhUL-Q=w224-h299-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'RAGU PRACOWNIA MAKARONU' AND address = 'Henryka Sienkiewicza 34A, 50-335 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqj3SdzbXV_xJZ42dtD7kkdA4ej8pISGtpa1DURfGXSZ9Chl0eF0HaGCB5h0-N7TuvsYl7M4rP2azWkBZpzuXKRIPLOTvaaTaBsHBGfs9w8dNsvuw9kv7BiMK2uJVNI50u6_w=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'RAGU PRACOWNIA MAKARONU' AND address = 'Henryka Sienkiewicza 34A, 50-335 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nprwONRDoS25e-QlOlhTsDeCtT4TJMuFPlGx53Tny7Wm2CSdYhhAm9QTnREphu9fOy_mzHlOLFtcgYOrGDPBjYriTC5of_hSK4AOMWFYErtU05BYKFWYXAWFfxQvjPNql23PNdf=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'RAGU PRACOWNIA MAKARONU' AND address = 'Henryka Sienkiewicza 34A, 50-335 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrZLz3OhsKZRaYC5nN8sBmhCBeX6Hwln15symuLoD3qBKm6MtLKOwTxplsyeRdjbUFfoAVAlmgGr_c6dENFXWBY_idDms09BwnJtOFNIaiHaqLfa2ENnYqNrqjELCvJU9CBoYOc=w253-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'RAGU PRACOWNIA MAKARONU' AND address = 'Henryka Sienkiewicza 34A, 50-335 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npA6YCwKsbBnQy8zfEEc3Uef9exY3yYujXDwq9hmseZmZte7svHxeK7yoTL2XWUdvsUBywNbH69E5XxakXUc5kzoimWdKQcyusameZ1-SjCsetqepJ4PBbYZ69gQ9TOJdis8u9N=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'RAGU PRACOWNIA MAKARONU' AND address = 'Henryka Sienkiewicza 34A, 50-335 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq7KoMlo29dDfDVwM9vpVFLfoHFXQesqIPl6zwINSWJbo_RKGu0b4GciBNCpMatLjdrMZyLtWCCBqDiE4AxhEOkJV_0B64XyQWuhFLnUpJymVxTPSDGNKNLKFA6oFS_NBfTvf0=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'RAGU PRACOWNIA MAKARONU' AND address = 'Henryka Sienkiewicza 34A, 50-335 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr9O0wCxJ9cnvHsglgguYiklofxuPp7Ckm7MBiD7dPK0xRR_IIs6_SLgl7xEkkKKViKr1L71BS5a4oEc-2udA57jPt-NQsLSJfNAwtrMmZOUxy9cqjzGohzbbG0ZPBIFpxmhxjt=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'RAGU PRACOWNIA MAKARONU' AND address = 'Henryka Sienkiewicza 34A, 50-335 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npnIz5iXLEm0G8akvyE5vdkiF-4QNbB1WVdLwxHz0wu0CkHfY69ixmLFCa9nUG9R7h7RD8rMVOWYAV46ji4RrFnvCSmo5Gh9EOKpJunxYa8fC6EvbKk0rTiNkeuFjMvRjyUTp_h=w473-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'RAGU PRACOWNIA MAKARONU' AND address = 'Henryka Sienkiewicza 34A, 50-335 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMptXhexVzEWYuah8UVU75L5_u8XdGVWpr4V7G5=w447-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'RAGU PRACOWNIA MAKARONU' AND address = 'Henryka Sienkiewicza 34A, 50-335 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=DTzC5NwFVwro6tLW4W0frQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=258.8266&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'RAGU PRACOWNIA MAKARONU' AND address = 'Henryka Sienkiewicza 34A, 50-335 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Toaleta bezplatna
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npdU92AbH_VIaT_azBXq80xdp8iQuv1E1fcLNwR-IlcPDq3Jm3TGoQ_D6SrLD2TW8TrtIHh0MMtzl68s6pouOUk00a6Zih6MadG0Re7_l6vLNbMwAObZNnvZYn6FwwIKYVOJH78hA=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Toaleta bezplatna' AND address = 'Skwer Wrocławianek przy ulicy Bernardyńskiej, Bernardyńska, 50-438 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqncAUsjHIVrZMD-D1yNka_YP29OPRnMer3JnhnC31nJ3ypr8-SSUYTPadQbsAWMIr766WWLc_qEPAm7ZL1IAOkqUmQpPxHuskzDsXWaBvg-Yh9iqAqStWYgwK7mMFmUwDT97cw=w662-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Toaleta bezplatna' AND address = 'Skwer Wrocławianek przy ulicy Bernardyńskiej, Bernardyńska, 50-438 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=qLum7Nmob3vXCZWMGo9BNA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=281.5546&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Toaleta bezplatna' AND address = 'Skwer Wrocławianek przy ulicy Bernardyńskiej, Bernardyńska, 50-438 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Szalet Miejski
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqSBUSdjscMwMiznZv7lJ7WZwDoM0rH335DQi5IYmthn486zUBdoMNaU4n-_jjaTfx5axVw5zgGqkG77QHLDN3K9jtwqgYWowtkZdFPd0VINRQ2ZiZBzlQEwZyUnzIDRTjT2h4=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Szalet Miejski' AND address = 'Bożego Ciała 1, 50-001 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqT0rf0ionvyDmy79Xy7tb98ucvw60Xv76be9gZJw4a2en8MUJDzMtHr1SZrDulospGojSh_TEEDZroQsm-5xG2gm2RnC1PLZZnxKDLdEeGaCgmVtUsjztNVOrXv7xyMrrYBcHq=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Szalet Miejski' AND address = 'Bożego Ciała 1, 50-001 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqnTGhm-IiJBoZCFtFoppinKPsI4wgdpLSlrcUBNnuCqlgsyXmQAR7kTZcQ9aAiz7SVRMvcD5XBO4JvXDYUk-NwdCwsGHGJe8ZkOcEgl3ndjfJvFTa2A43kUksdQo-w9-5IZk8=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Szalet Miejski' AND address = 'Bożego Ciała 1, 50-001 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=D3158rrR0BaEv6UZQOB-sA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=181.84377&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Szalet Miejski' AND address = 'Bożego Ciała 1, 50-001 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta w Warsaw Hub' AND address = 'ul, rondo Ignacego Daszyńskiego 2, 00-843 Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
 -- Photos for WC: WC
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noPIfr2Tb8F5LQoeNT6_BTmBS5_-X2aa_6skYkaVYOvVVDlFV3RCFDyJ7-NHJidLTeJbHWJgIbm4k6hd2792t9xeFZEmLYTE9AD5_N9tqCJRnwKQw_UeSBM1T4pNkfKC0flsTBRPQ=w397-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noHpKGa5g6xtq4VlmntdbuJbNTAihMJvjLChuAc_gNcO7BMB_B1iDX2PXipdladEzIpcaehBlv24BBzdFafdCB8VTuQVLlypAYx6DueyUAzcgEikTj8Wh84ILjhhw-lph7e8d3r6g=w528-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'WC' AND address = '48-300 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'WC' AND address = '00-001 Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noy2-fzhYcK623n_kkTknlGhXINQGwama6MvnQFF2udzzOkVn5pEQbTP0wel0zDjjzAs997wh8tiTEAf6faKz8rx63N4y6PYxWAT9PnVOAHqf22EldeG8OH-T_qRwb6xzWzJTxI=w224-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=zn_K_kN0zuUm8CpZf76Qrg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=155.4275&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'WC' AND address = '48-300 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'WC' AND address = '00-001 Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqt9mhYZBXboOuSGSQ3LW3afVSBjbtLW-NWqp-Qzn_NOCnNtNYePVetlzr66RPDPirey2ESg5KaG2vY15IGIn65ofyEMO1Z380pcRlY588Qb5ZnZTMdcXT4AtyG7M3uWIWhMlFJ=w529-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqjVp1qEUmrFdNaCqiy3k_s432_CUakvXGQb7oko_uO1lMYQ5rZ8LGiHeFftfx4CEwPm-i0Jb7hsI0BeRIqFO0WFiQ-G1niJWiU6nzUYwL8r1O-6tMlZvUYG-8sv7dRnEUiWu49=w529-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'WC' AND address = '48-300 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'WC' AND address = '00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toalety
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=ecHiHs4N-_zFf5IoZ-x0bw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=263.12213&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toalety' AND address = 'Muranów, 00-001 Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=9NNpdiR7c7EK0fy23Ly82w&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=229.14973&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=ecHiHs4N-_zFf5IoZ-x0bw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=263.12213&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'WC' AND address = '48-300 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toalety' AND address = 'Muranów, 00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta Bezpłatna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=RU21a3pUvSJs09b3cXTp_w&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=68.982796&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Bezpłatna' AND address = '00-017 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=RU21a3pUvSJs09b3cXTp_w&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=68.982796&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Bezpłatna' AND address = '00-017 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta publiczna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=nLPE5IYQQkfXaCEfdLNxMw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=62.80716&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = '00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=nLPE5IYQQkfXaCEfdLNxMw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=62.80716&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = '00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta w Metrze
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrS0dEYsR88p7mGgjDcZ5JRGgzV1CtjX_5ucMc9rYNKyTCe82kCVW-gNpArzW1KQxylhkHwJmIbb0KD4EpZeDRqZGFl-OQ_jnv7zC1UjrdmSZRvmwgJZuQDNUTzhhQowgQm_nhT=w224-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta w Metrze' AND address = 'Stacja Metra Świętokrzyska 00-001' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=QYFGUYN-0mBJjX0Yvzn4QQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=237.32883&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta w Metrze' AND address = 'Stacja Metra Świętokrzyska 00-001' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta Publiczna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrg-ZCSWuxoClsA7j2M8pMFLT72H0UdCjarHcSxEpKq2W8TQ-PfTIG5d30dzSldD44ua-KyV6AKZ62yTlPK8iCMJt35hPuyuShAPiyJUiaWSiSm5TZu0RsqTjR_LjXNAMsYzw7vBg=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Publiczna' AND address = 'Kościelna, 00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noeuF8Xw5Lob_GZo3Ezb-jUYgjCKVnXCs4gdydvzWS3HreRVnRGp0Jho7w2VKeFLoZPWqFaTsbC-aQbia7JOimYTFU3uc8KDWf_7hEoggzhw8mpgKcvDBLG1mRBZJu4sepkRHIy=w224-h298-k-no-pi-10-ya223.99998-ro-0-fo100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Publiczna' AND address = 'Kościelna, 00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrPra8z1pIIM0FCQmkLn1R3zV7eliRU1oAJtJYyyyDLtsuBqGu71xo8_yCFVNNSoGXf2OKZowYxGosyTsLiadNkyOVvFsegE5_EvZeiTcMbOyTGY8GvaZAUewRFEST9xhZdaY6n=w224-h398-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Publiczna' AND address = 'Kościelna, 00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta Publiczna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOgVFKl-h2vEQ7T57hTrmlUOOxn3CwKPS3JZraT=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Publiczna' AND address = 'Pałac Lubomirskich w, 00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMujwGKwq5cOlUKgJBJOSomsn5gusfh2biIY0U9=w447-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Publiczna' AND address = 'Pałac Lubomirskich w, 00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNflsfDz2PAep7TYW0fh37uyg1Z1-BiX_ncVmV1=w447-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Publiczna' AND address = 'Pałac Lubomirskich w, 00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNx1tMewf1R6mR2u0x8SL91KPffhf_ceuNY-LZl=w238-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Publiczna' AND address = 'Pałac Lubomirskich w, 00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=gdvwy9yRdiVEXIMNUAABgA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=290.75385&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Publiczna' AND address = 'Pałac Lubomirskich w, 00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: WC metro station Nowy Świat
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noX08T3c0sOkhqhZcXJpzl5SE2umWib9Ps48gltozep-ZowbeyKkUbXvjGCzB7uGYtjOUw7xJ7g-8WA7SlsxDq3ZXZFoNOl0J7lLl60N4gojnQJ5v6SHOjScmAGqVAX87l7vrNsQw=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC metro station Nowy Świat' AND address = 'Stacja metra Nowy Świat, Świętokrzyska, 00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=6SeSgK07YYzmLEDMCB1z3g&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=347.38446&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC metro station Nowy Świat' AND address = 'Stacja metra Nowy Świat, Świętokrzyska, 00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: WC
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noInasOg-ZPZAo33oxfLKmHSjeG9lw6XhjJ_huR7EfRNrM43jhhnABCC1Mte43mbEp4s0_I7MIuBLxHtMv2Zs53Q_OcnY9nqn_6fQzigdRiO8uktD07mt1GaG8b650VobLHHH04=w224-h398-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC' AND address = 'Wybrzeże Gdańskie, 00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=aC_ZBNwgrAIOEqZhVmwYrg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=53.30817&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC' AND address = 'Wybrzeże Gdańskie, 00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta „Lapsiu”
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=lHaU0WQA8imP2kvOoIwdtg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=316.32266&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta „Lapsiu”' AND address = 'Rynek 48, 05-079 Okuniew' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=lHaU0WQA8imP2kvOoIwdtg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=316.32266&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta „Lapsiu”' AND address = 'Rynek 48, 05-079 Okuniew' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toi Toi
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=cFmPFYFDcdiNjel20D6ZmQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=101.0444&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toi Toi' AND address = 'Stanisława Żółkiewskiego 17, 05-075 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=cFmPFYFDcdiNjel20D6ZmQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=101.0444&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toi Toi' AND address = 'Stanisława Żółkiewskiego 17, 05-075 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta „Lapsiu”
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=lHaU0WQA8imP2kvOoIwdtg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=316.32266&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta „Lapsiu”' AND address = 'Rynek 48, 05-079 Okuniew' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=lHaU0WQA8imP2kvOoIwdtg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=316.32266&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta „Lapsiu”' AND address = 'Rynek 48, 05-079 Okuniew' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta „Lapsiu”
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=lHaU0WQA8imP2kvOoIwdtg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=316.32266&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta „Lapsiu”' AND address = 'Rynek 48, 05-079 Okuniew' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=lHaU0WQA8imP2kvOoIwdtg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=316.32266&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta „Lapsiu”' AND address = 'Rynek 48, 05-079 Okuniew' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toalety Darmowe
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqU8Xeir5qe96HxzFRDnqrB1bKFTr2ffmdpi20ISs6vgiQcTaRagx_YLkNOqxUISip0EkJUZbe0gR4RzWhMwYszbWK6_WrldCksS58ZiihchwCR7zVh_QOdR25wg7HkEo3kM51U6bN-HpkK=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toalety Darmowe' AND address = '01-999, Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqgYfQgkmZwMIV16nbYx1wx_d3UZcRbDQRpFi1eFdpkNcvrwEAEaiTl0SsQBy3lXiTWTzRjoxdl2iDC6ns4o-FRBsncqgmdWDpxOcPwz8HUv5V_VmcOLNfylP-rNv4pY3BB58Ls9OyikCBt=w224-h398-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toalety Darmowe' AND address = '01-999, Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqhnkrJayIEG1ONsdTZVUznT8Mwus9sxsnTb48-aHP2xNPYHoohGgGXCjmO0dyuT1H9zDHa3Ku9u8tR0ASxLEDo7kx4c2LRm0tuoJ32BlqPCWnhnAOWLNMej9lYn4yt8-_lsUKE=w529-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toalety Darmowe' AND address = '01-999, Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrfzRcblcxOc-Sb7QXyXmEdANjUqE_JKccsXZzhdKrrP0JsXmuyL-zNLzOrERimoqQSW4TB6p3MgNQdUfPyMf_U1NAtYypGihJexLrUQ5c85WlNeNTJ2dy5GYH9Hczw9YIgWXvv=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toalety Darmowe' AND address = '01-999, Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: toaleta w parku
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqGms_x_d2LtR9TaTGn2HHg1ckM06bSX8eR1G3E4X5wfVhAIu_Leo4NdwiSkWVkUpjmMP40xAtKB4ERKPhRHKFDHkiPNlds91dnil8diafMtsBE1mMXcESFnh7V8XBt0teZiZgocg=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'toaleta w parku' AND address = 'Biedronki 6, 02-946 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrXPXVb99V0PSYBVm3X7X2NUWW5Pc6vPzmCMCeXJAImlI1ykZkpWV4MVuxNZw9r0v4XDu9bfI9M5u0elfAQdFajdj467uvd0EO8YM3eWPn3V4NGPOszshr2OSABrGB35ax3RrMofQ=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'toaleta w parku' AND address = 'Biedronki 6, 02-946 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=rMeJDPo0W8NFN5QacQRHgA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=279.5524&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Łukiska 29, 04-123 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=rMeJDPo0W8NFN5QacQRHgA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=279.5524&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Łukiska 29, 04-123 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrbGfQAmgOjMdIntBeEj_W9Y-WVOuWKdsGg4BSCxeW9eJSv6GP2rjUlRbBHWmDs0XY-4OwMHuVBvG5RtTPMBH_9uRqJSrT_bmdp8nS3R3kobSXs0EjIGnbDEW43P6wM0dH9tKpOPA=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Książęca, 00-418 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nretYkeOU8QTylKB9mlU2tyiXeXZZMA8KFTTi39y-QpRvhD8DE_-C-zav0vJg2uFhuNIeV1dJn3D3OWDERUnKPnX5YjMumLuiEqdleC5_v_XO8_k73zLvsM-XuBaKcCBhCTqDIUcA=w224-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Książęca, 00-418 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np-ChWQ0m4HVrTuTCXoEjN8RPapz9n7RrS-gBfZrH1gC880-qk6KZ6jh3uvG2qDrL8Ic3_I3oRLH4l-5I3FIzMUISw1DAMbvmXIe4SOciSLrCSyePM1Zz-0hKubauH0AflAVFL2lQ=w224-h398-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Książęca, 00-418 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=v3DvL5hcxd_FDOut5c4pwQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=342.99948&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Książęca, 00-418 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta WC
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npLNi3zNMQiuHfpuFAKxvppmRkm0ejh3WpGMm0Bsf14ucH-QUllHGS2oaahOLSUaY9hfl5mmwEr4sJ0x_K_jtoMnGYrPCPx8U3GjQ1MoqUxVDq8rwG8ZRpZVBiUiFsElILtOIzA=w529-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta WC' AND address = 'Chyleniecka 4, 99-416 Nieborów' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqwew3OjiDrAZmC5QZVbxrBhGGyQGkZwop8FMmM5R-PEztrw_Kq8GO8YSv4anoTfmgVziZRgMtxRGHWPLA7bCWAiGBPc0upTF74VYs8guc7hUG8lLjc-gz_FNUCSRKQMRym8ngO=w224-h398-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta WC' AND address = 'Chyleniecka 4, 99-416 Nieborów' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqxrgpgJWIwadCwwvvRsDJLl4JDTJLe7roZ8QjO7CHvTKxyt5npy10tjt5h_KYCCv3COYopXPNN3R1GWzNfKt1UFSzzQAfccQ3eysSM5tgTG3uTCalRlK989Qo5gG1dLeAVKYhV=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = '89Q4+96 Toaleta, Niedrzew Drugi' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqgzB6awe4d918FYKmrccWwoRgWQ5UCHOF97bAztkp9Nw5VtbV-2VN4HfoPE1vLBOfmmMxIk5HasqiMKQ3g_0KALot5oC1qnoAvtG7pW42acpnmHrbhaonMAa79nkKLJb69NTNRuXAEgYW9=w529-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = '89Q4+96 Toaleta, Niedrzew Drugi' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noKwfV9UgAzsC8r3uPWDJUjqgwkl0XV9XWyhrL6uVG-jZx6rWlG5aTiohXg55qYVvky0qY4mQFFBbsa2gC1v4PyWh5HmHF78XeEwOCmf1bmyoP4p7dOGz0ro5TJzZ51CBOYIRQ=w224-h397-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = '89Q4+96 Toaleta, Niedrzew Drugi' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqVeFcDKphZI4JWArqE2Oi0vFzSDNWpPaJhgwrLaNU5x1o6z0kXGKLD4eBIHz0RG_IsIZmzJTNKRoKWOLavwyEwK2-MFFv5_wKp2PmnmJXLDOyGNAmfGWCP7-0zpJykmMZ_6Uki=w529-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = '89Q4+96 Toaleta, Niedrzew Drugi' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta (płatna)
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrAsfnE1pne2w7gtppLN07dBjmSZj5GFLPDGbSoLV0BraBdt2lzQr5EuryiQLNt1kfuxRCbHuy0Ee1IShe1NGqoR77KRKcUNZhOeRBJYAg0jQj-0rwu-NH3UcL5GNR4S3kwgj8nrQ=w224-h398-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta (płatna)' AND address = 'Parkowa 15, 05-850 Ożarów Mazowiecki' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=R-ZNYyWtiEQ-ZnbZgc7mfQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=16.80472&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta (płatna)' AND address = 'Parkowa 15, 05-850 Ożarów Mazowiecki' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrAsfnE1pne2w7gtppLN07dBjmSZj5GFLPDGbSoLV0BraBdt2lzQr5EuryiQLNt1kfuxRCbHuy0Ee1IShe1NGqoR77KRKcUNZhOeRBJYAg0jQj-0rwu-NH3UcL5GNR4S3kwgj8nrQ=w224-h398-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta (płatna)' AND address = 'Parkowa 15, 05-850 Ożarów Mazowiecki' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: toaleta
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np8JDcRuSz878VvxxTNCZVElQCaX2Bm4mt8HsAr4mqZHavI6sfq8oBxTcfCxPlENtyVeTonprHHUbRXafuxZFV1l298epJRIIL1QS1kOXlmXjlndUJgRjRcxpbYx-NZ_iUB1WtcbA=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'toaleta' AND address = 'RMR6+QH toaleta, 95-060 Nowe Skoszewy' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=DuX9F9PIi-qD16atNOZHmw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=86.50663&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'toaleta' AND address = 'RMR6+QH toaleta, 95-060 Nowe Skoszewy' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noIswkjxL8F38_kj8MDXhxLZxYRH8m98MUKbXG-g5LiNqJhOBNDEaSQayQf0mCprCyOXPf-CfG-hk2P--9PtPA4UWJjQ9oo8gR1k3IvCeh-i1S1WCVNrYADf5DeRA0E8tIjO6Y=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Nowe Skoszewy 13, 92-701' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=8m3UkoG2OBM_jsCSf-3Xgw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=278.61752&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Nowe Skoszewy 13, 92-701' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nooommvWKk41-8vjeQXDqTDxHBo7I5Ox1PpJ0SbOygnQCOH1sTVZV5nRNQ91vb4vfkO03GeicWXR92tAW5myrsbwmzycj06G79VXrGjZulooT8cK7ERqU8Kp0vZkvkAVuCnDNOC6g=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Mąkolice 9, 95-015 Mąkolice' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr9w1S3DHbJ9ANMGUL3kbHqoDvYhwcj1ew6zKVSBved9A3MldQ1fpKRJ3XFypkYxmN6PGy5sH5l5FawJPCI-BVKWJw3h5bcRxY_d5uc08bV1AIl18J1YnYypSboBSsomOFrffJH=w224-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Mąkolice 9, 95-015 Mąkolice' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=4gr5LdiL8JFzLl6ToDN8eg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=31.987328&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Mąkolice 9, 95-015 Mąkolice' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toalety
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=wj8wshofFOrvpMgl73v8zA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=16.443604&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toalety' AND address = '95-100 Zgierz' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=wj8wshofFOrvpMgl73v8zA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=16.443604&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toalety' AND address = '95-100 Zgierz' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: WC
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=R4104rNBklQlFT6RLybPNg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=120.69012&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC' AND address = 'Zielona, 99-200 Poddębice' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=R4104rNBklQlFT6RLybPNg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=120.69012&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC' AND address = 'Zielona, 99-200 Poddębice' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: WC (toaleta damska/męska)
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=6MgQQxIVpTF_JnUgkp6sOg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=337.29236&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC (toaleta damska/męska)' AND address = 'Przygraniczna 96, 95-100 Zgierz' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nowMmVGGOlCfJOf2FWHkU2JWQEo9tTlUt8-KjIOMHz1wbaIwU-7GpfoKF2dFgl7Lpn1wdSkvli-y4QU72NpYT72XwdKAV2ELixhR2Weh9A85LZhPXDuS8Qv67dHGypwccf0iBos=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC (toaleta damska/męska)' AND address = 'Przygraniczna 96, 95-100 Zgierz' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=6MgQQxIVpTF_JnUgkp6sOg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=337.29236&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC (toaleta damska/męska)' AND address = 'Przygraniczna 96, 95-100 Zgierz' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nphqiSKb-LOx6OShd8pnA6MyzXy2XP0LepFl-D4yIc51PZARynLZ9QreDFz0aNnfvJURvryBfERNR7cbH41nTRPpHQmpxhb3D6o9sObqOVfsC9uY9AomARc7YFilhz9fbdPEM6Eww=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = '99-314 Krzyżanów' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr4y5PoavNuLhzO4oaZsFAUPbl75yQnukAuVOj5c50vPTYreF1gWYYGjW97OdrtoaC9dUSBXcHBGputUrkuYAwIwFd1q9oCAnsbywXiS4MRx_-jFh6XgIyJecM1S33bnJJOgWoa=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = '99-314 Krzyżanów' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=9m5T-ufW3PlLuUB7sDhtkQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=141.40367&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = '99-314 Krzyżanów' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toilette
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no-VnAo8UheaMoKgnNvIodhqGkvBNSCNFVPBcOPcZ266K_wFMo-dFXisNKMwLy2NrEI-bXwtzoIblm2KjdtNvHyMpXDltN9HD_OhkbgPXV_7BDN0SajoebRIw5v3idAe_Mhmb8FSg=w224-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toilette' AND address = 'Północna, Nowomiejska, 90-001 Łódź' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=UrAmMqc1jT0V6S8T1Xf3pQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=99.398384&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toilette' AND address = 'Północna, Nowomiejska, 90-001 Łódź' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nouqcoFMn_CGpKeIA_X6XSkLH2OUf0hpcBeL0sSKMpMngB8Rg-ak9EAMEoZYy-s-6clo9xvgdybXWcKt-mDrG8OgkRtBzgpbCVWcmIZR8BoTa4rMFm61C-2EgFvANO-iMl-VOQF=w224-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Stary Rynek 5, 99-400 Łowicz' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=gBWcM5uBdRDDm4vv8ljaIQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=297.8436&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Stary Rynek 5, 99-400 Łowicz' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta publiczna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr0QN52jOzQjZf-aUarpnEWu41_ki1L_8Uzfdjw-_cH7Uijl24vVsYlEBGKDPwj1TFjce5hYl-fjt-6Y33eQdWCSuoKsnI3FqPLHWiORirZNT4Nd2rKqBd70jCyo4ijQk1QCuYW=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = 'Konopnickiej, 99-200 Poddębice' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=cYVdlgeukB5NS3622TwNSw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=250.17343&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = 'Konopnickiej, 99-200 Poddębice' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: WC
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=YTJ1mkj_rVqHDRMEGo0mkA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=295.71527&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC' AND address = 'Al. Jerozolimskie 142, 02-305 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=YTJ1mkj_rVqHDRMEGo0mkA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=295.71527&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC' AND address = 'Al. Jerozolimskie 142, 02-305 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: WC
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=3p2bCtbrhjA9feUgi7H2Ig&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=306.70218&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC' AND address = '99-101 Łęczyca' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=3p2bCtbrhjA9feUgi7H2Ig&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=306.70218&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC' AND address = '99-101 Łęczyca' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta Publiczna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=ykpKuRD_aj37ueUtonKwzg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=161.77911&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Publiczna' AND address = 'Chomiczówka, 00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=ykpKuRD_aj37ueUtonKwzg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=161.77911&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Publiczna' AND address = 'Chomiczówka, 00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta w Metrze
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npfQJY-rxpSsOMKsXL1aGWkwyHzeOWJe7x_LX8BMEl446BS1XsX14Ajx9GJtYsv9ciKH8OY0cQdi1JCfqm3JzUpMxdTfZ7M3ws4rMQZkQDnwjO1m7EtxiJXVsyj1H9LjiViQLU=w224-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta w Metrze' AND address = 'Stacja Metra Słodowiec 01-001, 01-001, 01-001' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta WC
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npE193bNEglf6rOLt_vcRVshReCFvKjqf31aOeajnDlYlfAQnGTxYqdFFTsxYtEYzdH3HxRs7hoM1U7eTg_xyxn-5nfllkOX8bQcdN9bmg_hyhhsFkcYUjnUwqYjuixo1KH78IVRA=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta WC' AND address = 'Kazimierza Wóycickiego 14, 01-938 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=cderbi-YyRSmRBYIAK1VMg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=322.65872&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = '05-082 Janów' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=cderbi-YyRSmRBYIAK1VMg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=322.65872&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = '05-082 Janów' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toi toi
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=zRPAMiIKtF5aNtCxPQtATg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=60.55868&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toi toi' AND address = '00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=zRPAMiIKtF5aNtCxPQtATg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=60.55868&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toi toi' AND address = '00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta Publiczna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=8P4QQyHBTpAALiIL8zPfpg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=217.40114&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Publiczna' AND address = 'Marii Konopnickiej 8, 58-100 Świdnica' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=8P4QQyHBTpAALiIL8zPfpg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=217.40114&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Publiczna' AND address = 'Marii Konopnickiej 8, 58-100 Świdnica' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Warsztatura Hubiego
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=bnXFEHjJIRdxjIR80iS0Fw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=195.67526&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Warsztatura Hubiego' AND address = 'Dobra 28, 05-082 Zielonki-Wieś' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=bnXFEHjJIRdxjIR80iS0Fw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=195.67526&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Warsztatura Hubiego' AND address = 'Dobra 28, 05-082 Zielonki-Wieś' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta (WC) Płatna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npkwq2ahTqdqX4bTwkLi4zDNPI2tb6sJ2PXVgPKNKqB4p5isYZDroa2Zj1_grOOaQr-O_U17O819mU_Xy6ceI-fKwI0g4Zug2uxMdx5cWzsVW-Br955A6AD0D4i6gVBTMw3eu-cWQ=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta (WC) Płatna' AND address = 'Kazimierza Wóycickiego 14, 01-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta Publiczna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=7F0-P6TFaEaKd6PTVdnqDQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=339.37192&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Publiczna' AND address = '00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=7F0-P6TFaEaKd6PTVdnqDQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=339.37192&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Publiczna' AND address = '00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: WC
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrfe8vHJyC4YILJO5Zq4hI_2VFvSVDt3rFHjrJyGLg4DtaopFbZEqlftGybKqEsoaqqBsxzTl6noVdiJnhlbVWB5p0k4O2X-ptDPDUAvkF7wnkxGI58i0Pka2hDqdgRqvzwMPxp=w224-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC' AND address = 'Jana Kasprowicza 203, 01-949 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=-KAROrKpnUMRccw9ZzZFnQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=130.75899&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC' AND address = 'Jana Kasprowicza 203, 01-949 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta Publiczna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=cENPVCzxHtbqtbx_nxDAHA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=311.51883&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Publiczna' AND address = 'Wrzeciono 10C, 01-829 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=cENPVCzxHtbqtbx_nxDAHA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=311.51883&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Publiczna' AND address = 'Wrzeciono 10C, 01-829 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toi Toi
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=RqmOfrPPQZGzZrID2M-_Rw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=164.46982&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toi Toi' AND address = '01-995 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=RqmOfrPPQZGzZrID2M-_Rw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=164.46982&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toi Toi' AND address = '01-995 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta Publiczna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=ZtvC4x8AeJ0gil9QJ9ewdQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=123.01296&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Publiczna' AND address = '01-493 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=ZtvC4x8AeJ0gil9QJ9ewdQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=123.01296&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Publiczna' AND address = '01-493 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta publiczna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=gYcOfw2UMxIzYAkvz1nQOw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=93.14624&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = '05-088 Brochów' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=gYcOfw2UMxIzYAkvz1nQOw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=93.14624&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = '05-088 Brochów' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta w Metrze
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=RI_iXA4RsoLiExjH_XZXyg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=229.47632&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta w Metrze' AND address = 'Stacja Metra, 01-859 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrsfJ4PdmjzwhVSfWbquANh-5MiEsQE7yle2L-PDK8x_M4omxZKxkBdBTlDV61TQtTr-XjVL2Z24rmnHMs1Jpc_pWBp6tdxyVK1-7TqBD4bBBCM6N430xSlqE51sxtP0PN7ov4g=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta w Metrze' AND address = 'Stacja Metra, 01-859 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=RI_iXA4RsoLiExjH_XZXyg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=229.47632&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta w Metrze' AND address = 'Stacja Metra, 01-859 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Szalet miejski
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=8P4QQyHBTpAALiIL8zPfpg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=20.161983&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Szalet miejski' AND address = 'plac Świętej Małgorzaty, 58-100 Świdnica' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=8P4QQyHBTpAALiIL8zPfpg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=20.161983&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Szalet miejski' AND address = 'plac Świętej Małgorzaty, 58-100 Świdnica' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toalety (TOI TOI)
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noXoY_y3T3QZPcpRd2_GiaDOWIA4hhF8KCXUaA4XnhJcS3VwaPi9YF4yZZSib7BE9VFVSVs0sxOfpgj17jAd7PQo_-nMZpL9JuLWuxJBNhj15LYSbxnQbQb0slo8h8sf1RzC5vUpg=w224-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toalety (TOI TOI)' AND address = 'Wawrzyszew 00/001, 01-912 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Sub Sole
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=99J45oOPKxAn_Cl0l6F1tg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=267.03516&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Sub Sole' AND address = 'Powstańców Śląskich 61, 01-355 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=99J45oOPKxAn_Cl0l6F1tg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=267.03516&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Sub Sole' AND address = 'Powstańców Śląskich 61, 01-355 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta Publiczna w Parku Górczewska
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noOLj_5BOqaJUnr_8o_2pz-Sdaq4hgT3L7rnU8RZ0o-duRwurXwbXnaB8mZwvYWFiuMJGPKav3s3jhDcONFPujEJ9IV74bMLSkmcPtygOpUcW_Ti4qxRfCnc4Z6zLiMlyWDe2lR=w396-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Publiczna w Parku Górczewska' AND address = 'Kryształowa 45, 01-356 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: O'BLOCK Wojcieszyn
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=QeSRgNd7kGX-CHKXRNqkvg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=341.46893&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'O''BLOCK Wojcieszyn' AND address = 'Trakt Królewski 74, 05-850 Wojcieszyn' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=QeSRgNd7kGX-CHKXRNqkvg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=341.46893&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'O''BLOCK Wojcieszyn' AND address = 'Trakt Królewski 74, 05-850 Wojcieszyn' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta publiczna - bezpłatna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqfYjvtiMfTZS9RvMXyHjE42OpHq0uNA1QWpOcoy92bvuNiQTZ2yACnhpeGYK5SE03p71dQrf7aD4eYUAaYU_jDdJvI8TdWGVZkK8ZNNcT62XUByRwFD-W-fPoGVfIf-8DIPIvnfRbG8UQ=w395-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna - bezpłatna' AND address = 'Krakowskie Przedmieście 87/89, 01-195 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrRRtE-CgVg0SZe1fTozolr9e5TlvdkI8Qgb4d90iJ1k7McsiT4SBIWRVnUQ9bkf_hFcR6AYPFQldfqsZW2TeNJRH5oZUKj8AZQWZe8Yt5DRcD5ntw5RmZWgnTWQxb3BJQPOnJSz52LMcSK=w224-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna - bezpłatna' AND address = 'Krakowskie Przedmieście 87/89, 01-195 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npBupMXeVzhuakuuHA4Mg73umD4JG9Ipk32ckRkw1fCmqjSTY4g4U_jO0n0MLlkfs3lNiXwFUUDvFjYa3Roq6Smwvxc1VS9H6-_bGAe37d9G-0xG1YjOr3eGEVm054pmhEbdiQ=w529-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna - bezpłatna' AND address = 'Krakowskie Przedmieście 87/89, 01-195 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrM-IJ2o_9XW6Xa5Q6WjPMOi3ab-BHd1FBMOwM4Ni9PWiefXJP3Ys6PmCJi-DpTrl_dSEzY1K2m1Mng9Ake-I0w8MLP8gQvQFmwRYsKiFXk2RWbP22WpKdNU58FYyEOlUiVOJ_peQ=w628-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna - bezpłatna' AND address = 'Krakowskie Przedmieście 87/89, 01-195 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noediCFP3G57urTkE4C-5lwqHFNdF0e--39SMoU6of3wfHU5pb9e1oghXuHCox8RR3EnZBEL9XosL59rC3TR7f6qpS_N2r-Z9p42rITSxyuliLXfQzHjcJJN7XD2xuzB0B1lLvYag=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna - bezpłatna' AND address = 'Krakowskie Przedmieście 87/89, 01-195 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=cv1FhCF6fstlwPbJ1PgI1A&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=126.268745&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna - bezpłatna' AND address = 'Krakowskie Przedmieście 87/89, 01-195 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toi Toi
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np5pbfhSw5dUgMbP9omrsCMKULBdL637wOXDjt9JtV8UhXfJKo-dAn9HosUFVXg3GjPyzUOqx1e8xhAzDo_Q_1JjQrTnWgEGHlWOvUfpmOBUYNj0oZXerU13VWs8CV13vt7Ovd9=w529-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toi Toi' AND address = 'Regulska, 00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=rrWsBrn8_ifmycmT72qQ2A&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=352.3429&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toi Toi' AND address = 'Regulska, 00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Wc
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nooStI2NtXEagdesxq0y0eEfcQTrKnLyVXDvXFdeOCIBIHCP9plxjNGyIPq14U40gBhEhq2-lNvwq3nPlcxB02kdB2FFPYaSBv68qiFL67n3-7pfq7f4CxV3VIl6ObHAjna3efzmg=w224-h319-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Wc' AND address = 'Unnamed Road, 05-850' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=7dToOm1Sa3EmCA3InSM-Jw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=353.9658&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Wc' AND address = 'Unnamed Road, 05-850' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toalety Westfield Arkadia
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrzUoDUSqDfUFL34TJP48M8Vj2MiaZ_pduSUhxnA3thgZTI5Y2bCyVL-2Jc5ZTVxCDjFLT9BuxNcONCvXPEmtg2ZuWQ53qhJdXvFEM1Neir-4dwRmxq38V-HATdBexMzE-nPfYelQ=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toalety Westfield Arkadia' AND address = 'al. Jana Pawła II 82, 00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npDlRVeSsSflZBMQ_b_QbqX5jiMFsMXkbmscAgKPZ3a1rQRllXtgiGn920GftRnCz7olanDePyWo8egEyTOLG91Ri8qsi6CJdhdHFwVJhnLPzuzuX3ADXaVKuqg0i82BOPTWwgARA=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toalety Westfield Arkadia' AND address = 'al. Jana Pawła II 82, 00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=5i2mfH3xufVs32osMDgQag&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=164.4868&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toalety Westfield Arkadia' AND address = 'al. Jana Pawła II 82, 00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toi Toi
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq3z4lvLAxUEBCYc6qsWjDvg0Q9agjIS8I9Nt3b--N4W7bq9ooEumG_1PzJryyuIXfXHN4U77moVBLwDmb_c4kX5vGvzgnBBfETNpQp2sA8y_qBagvqBrYLtz35CAzL_XpVvS-h=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toi Toi' AND address = '02-495 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=dTdb30XxRMF8V_DdmY4BrA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=96.17512&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toi Toi' AND address = '02-495 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta publiczna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npfiCeeyWKIffp8RNVkphJyXF7P9M4H6kBJNGomePkotdkQt1hhyh_Bn1z2CedKbIT-3-l8Yt2mRsP1pdNBH1bTZyeF3CSfTxDRDEQrb53G899tq_-8K1_rk0NA3HR4GJU6Ry_n=w224-h354-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = 'Rynek 1, 64-100 Leszno' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=GU_Cuq4sexY4KEfRDAQjxw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=270.04645&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = 'Rynek 1, 64-100 Leszno' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta Publiczna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Y0KWKNY0Wm2rMSqdNjFVOw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=32.117928&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Publiczna' AND address = 'Nowy Rynek 33, 64-100 Leszno' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Y0KWKNY0Wm2rMSqdNjFVOw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=32.117928&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Publiczna' AND address = 'Nowy Rynek 33, 64-100 Leszno' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr6D-xplO1dVaS_Exwhte-VeJpCo0zz7JRAuHeHN4YOLkwJT70QcASt7JYYKIcMtfqRSH3ZZka8v7J0n_fx9_F9HtJRsv6TdMTAAdM53rEQptjlEkRJ39pMVCqFqOP0aNL_84pJkmSgQiiA=w557-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = '99-314 Krzyżanów' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=qQHD9_8rP_xQywZ4JuSDGA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=278.04706&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = '99-314 Krzyżanów' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: WC
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=f3MUEnjR3nUq3nVTmvDemw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=278.72598&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC' AND address = 'Romualda Traugutta 2, 96-500 Sochaczew' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=f3MUEnjR3nUq3nVTmvDemw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=278.72598&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC' AND address = 'Romualda Traugutta 2, 96-500 Sochaczew' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta Bezpłatna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=2W9DXl-4C_ys6aOrQQJJTA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=125.53367&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Bezpłatna' AND address = '05-800 Pruszków' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=2W9DXl-4C_ys6aOrQQJJTA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=125.53367&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Bezpłatna' AND address = '05-800 Pruszków' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta WC
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=pEt3sFVdGSA2lfYB87b7CQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=180.9193&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta WC' AND address = '05-800 Pruszków' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=pEt3sFVdGSA2lfYB87b7CQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=180.9193&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta WC' AND address = '05-800 Pruszków' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=1kVDUGe-EDVUz5OV09VrMA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=103.33082&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Łopuszańska 22, 02-220 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=1kVDUGe-EDVUz5OV09VrMA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=103.33082&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Łopuszańska 22, 02-220 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toalety WC
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqAzquWuW8ldjjfPjl_eV1MR92midwGjHVkDo-5iIM_k5SinWBBR7F-rZgT7TqMCRwci1Z69UxyXdxmcUsGV-hbXqhpemBYqFG2R7fFmqXNQxQuYpc7HXdnahD2Gnter_4h-siT=w224-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toalety WC' AND address = 'Henryka Sienkiewicza 19, 05-800 Pruszków' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np5ZjdDoMAFy0eT2b1tTczGiKu60-22HEAzL91XYL_K3pR9E88I7SCcxUMjtKlChAhQ_13TM3LhTSDiSxOYaOo2upg9nLGEiceKQetrrxJjm3DD0behzcQQCkv1JnNDDiLqO70f5w=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toalety WC' AND address = 'Henryka Sienkiewicza 19, 05-800 Pruszków' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=9r7aRW9aOHuXyqYRkL2XKA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=297.687&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toalety WC' AND address = 'Henryka Sienkiewicza 19, 05-800 Pruszków' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta Publiczna bezpłatna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=YESu1cgthRccV3VidwChfg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=339.53284&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Publiczna bezpłatna' AND address = 'plac Czerwca 1976 Roku 1, 02-495 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=YESu1cgthRccV3VidwChfg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=339.53284&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Publiczna bezpłatna' AND address = 'plac Czerwca 1976 Roku 1, 02-495 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toi toi
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=-7pD_GQUHzLrcGrsjyX7jw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=74.12026&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toi toi' AND address = '00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=-7pD_GQUHzLrcGrsjyX7jw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=74.12026&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toi toi' AND address = '00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta publiczna w Parku Kombatantów
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqjH9ZMDli2uQWffpc2kNkFmrlskPS2LG6W_Vmqw2RqxDlZppcGYpXyLu440x4MWt9K2LlNIAv1oM7n9khbqLyofttUrhBz-Xa3fakawVk00NDSaUHSixG49x23XekQGa4BkE_G=w529-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna w Parku Kombatantów' AND address = 'Obrońców Pokoju, 02-435 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Kvlz4UmW8cywayuX9_JPtg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=221.9372&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna w Parku Kombatantów' AND address = 'Obrońców Pokoju, 02-435 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta publiczna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nozsh6MUBmEVVNCYrO48Ji456VilDa_nqPZoVowxKpyxWhDTp9kJUvbc6jPgrutUAKBTm4PLAO85wJxI7e7mJvDUnxXtdWQ7M8Ji66_F_I_Rpdm-Sxx4k6zTFxauX7U7W-WjPcmqA=w224-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = 'Daleka 16, 05-802 Pruszków' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=M1_ijQZHFynN8RZpS5vRYA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=259.70407&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = 'Daleka 16, 05-802 Pruszków' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=zuEBqVkXgzJxkTd13Pjjig&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=279.1869&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = '05-800 Pruszków' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=zuEBqVkXgzJxkTd13Pjjig&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=279.1869&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = '05-800 Pruszków' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta mejska
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=w2i4yWTNT7uwjy3Nr0JByA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=332.26785&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta mejska' AND address = 'Fryderyka Chopina 30, 05-800 Pruszków' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=w2i4yWTNT7uwjy3Nr0JByA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=332.26785&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta mejska' AND address = 'Fryderyka Chopina 30, 05-800 Pruszków' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Miejska toaleta publiczna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrl9-zcPxPtP1DM33bdNkRvyozN4g8w-PRKcfIDbQCyQbRqIo9-pbSRu8K4BeDM2_FXhGmGOhhH-36SyjHwukr9Zat2PFoxG_pNBDptii4zwJySgLLMfN7l1feq6-PrykBrrygnnQ=w224-h312-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Miejska toaleta publiczna' AND address = 'Unnamed Road, 05-800 Pruszków' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=5qUeiXeZXRjDhqhn3VHWCw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=124.149536&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Miejska toaleta publiczna' AND address = 'Unnamed Road, 05-800 Pruszków' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta publiczna (bezpłatna)
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=bnO_hBA1A8WoAWqVPXEHfw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=122.393166&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna (bezpłatna)' AND address = 'Gładka 18, 02-172 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=bnO_hBA1A8WoAWqVPXEHfw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=122.393166&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna (bezpłatna)' AND address = 'Gładka 18, 02-172 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq71hhPAFoEVbJf_gKYw-HvfG1F5_96rxQ_VVJ0uSGcbq_rUxW-3EZ4fW1U1tbVamdbedouxrhdx5wXBM1MGctP7sKQaXhEMESBl4STOmb92QPfzXg6qrOImZoHblQh1JV2c06v=w224-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Stefana Jaronia Kowalskiego 31, 05-800 Pruszków' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toi toi
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=v6_WngtQCLGuBlz8j5TkuQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=77.25368&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toi toi' AND address = '02-479 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=v6_WngtQCLGuBlz8j5TkuQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=77.25368&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toi toi' AND address = '02-479 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta publiczna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqSKTKeeAqKhkQWhpPSU8dtnPhWFJN70Xdx55j7WkICgieTxnUbb76zL0XxHoYpiG2ActIwm-DP8HypVWgygyyr376TTaoXFtIaiXu9To1iCyeyIGUkP0zyok1rBFUld01mGuZOuQ=w529-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = 'Aleja Antoniego Nowakowskiego, 01-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=_jlqyoFt_7FPcqY6F9fUYw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=285.97208&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = 'Aleja Antoniego Nowakowskiego, 01-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta publiczna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nplvMUt9Jyo4fWgh46A8KgrGNws0-XoI34D-x-Hz-olLHJtNL_qfBNqPIVVYKTcMLQUgbgPzjIzr0jEKQTaB8kSBb1fWQyLMGo-zzGi9C2euFIOOKve6W1rH8lCe63lFA696-ying=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = 'Sierakowskiego, 05-509 Piaseczno' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=F8l-D0lVhFw_cNHaS4jicQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=263.75595&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = 'Sierakowskiego, 05-509 Piaseczno' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta publiczna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nohyYgLpN9hXZZAlZ5I33ICilq8UAa1SOfLTxcSNKWkO11OV5RgH7E648WjyjIQ9uM1TjLZpQIs23poz1S6hfYE21T_cyWPqgGYcJCBRcvafhuSzGhAte97tcRCmz24VI1eKqXTJA=w529-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = 'Piaseczyńska, Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Ośrodek Leczenia Uzależnień pod wezwaniem Kamila Chujowskiego
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=IJszLWib-jyC6ocj7UpOAw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=339.49667&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Ośrodek Leczenia Uzależnień pod wezwaniem Kamila Chujowskiego' AND address = 'Księdza Ignacego Skorupki 81A, 05-091 Ząbki' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=IJszLWib-jyC6ocj7UpOAw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=339.49667&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Ośrodek Leczenia Uzależnień pod wezwaniem Kamila Chujowskiego' AND address = 'Księdza Ignacego Skorupki 81A, 05-091 Ząbki' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: WC
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqbmQCk4qwI-bizzMshygLgiDSRRdXwS-AyglTct8H3AW4PEvmNG4DMebnFfrEUzlMDaYAxI2iNj3WMJwc1KtWgLo9Uqki5Y2C0XH84mncpLTicTao98mBVWhFQFR2RSs4-OBI-HQ=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC' AND address = '05-091 Ząbki' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=TX6V-ZlOTvNg2QFw-VP27w&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=320.5587&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC' AND address = '05-091 Ząbki' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrxlopqfKUgqZLomOeZd7XY5Pf-VMWJCTV7C5ax5ZZro47a0EeSiX0wDivqwwJbaSuZ0a0AVZcL0MgSDW3HpHt1tXcMinCDHD9cpuZymeQbKSsiczND1h56KbS_zZt0K98nQcAx=w224-h398-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC' AND address = '05-091 Ząbki' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Samoobsługowa myjnia dla psów
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqJZq1Z0kC-EGOwgcAtuYTFvcq_ZK5Qa_k_NuAz2g67FefWEzKMiKrONNj171xQs2zSyl_MAq3h24ZVRRaSUU-vvqj48uRxynCAP0hDz7SngH38Ti8leq71CIHga4byuUx6_FKk=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Samoobsługowa myjnia dla psów' AND address = 'Powstańców 66, 05-091 Ząbki' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nofqgMgRM79H5Tvp_kxhQ_HJkbSxBo7qyK8WVzL0A6dskVpZr6I3UTLaGGPeca2Nlsrgd0ZgDeBNhS6XMVO0Wa1aaSSrx47TArZSlMiPHnU2ywglZePen1eRAaUKK7GUfMau74h=w241-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Samoobsługowa myjnia dla psów' AND address = 'Powstańców 66, 05-091 Ząbki' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=wWxsCFTnG_TXYl6oCZ37ug&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=151.3613&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Samoobsługowa myjnia dla psów' AND address = 'Powstańców 66, 05-091 Ząbki' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: WC toilet
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=I3slB5xRrpk6ZbY8A_fbcg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=344.9086&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC toilet' AND address = 'Malborska 39, 03-286 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=I3slB5xRrpk6ZbY8A_fbcg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=344.9086&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC toilet' AND address = 'Malborska 39, 03-286 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: WC
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=GEpX8MntFtait16cwt2Ecw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=155.7413&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC' AND address = '00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=GEpX8MntFtait16cwt2Ecw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=155.7413&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC' AND address = '00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta publiczna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npHm3OnOv0htu2yPyfwfuXnFqkeXNjBxdoKU8OKCmXQsR95kEcz3fYDpILKjutEq2G8iREYdC9EZak2nPMiODfIPyHVpfjR8ohnXa13IppcZQNkG_UHhXL9wp1ZnpRtbAm8HI6T=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = 'Pułkowa 60, 01-969 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=MiHl-NKNbjNoJQnBrZAPmw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=135.25684&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = 'Pułkowa 60, 01-969 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqyceTvR1xe_xMg_KnLLpD2ixMkCcf9nQrv_Yrl8SNrc0N4nBDNiyVo13TXmPfRvNJeNVgXicY4K8vAGIH6ojINECbvwnW_8As7qjG9WYqNFUDGW3n-V3NpjKLZVioRl7HJW7a1=w224-h398-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = 'Pułkowa 60, 01-969 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta na placu zabaw
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrvI1kU1kFTZRDaEaR8DxL786wpkVN6VsENuUGbBs2GreVI3kkrBKnJ-VJfEzfGWhvoo9MN1Em4o4E4q5N2M6ypRPUJfUPhJ0-Nc_-KjvfqmU9BK6qkRydCFA8Y8eQp1dPlH6XiCA=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta na placu zabaw' AND address = 'Józefa Przyłuskiego 2, 05-092 Łomianki' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=CLlJ2c8M3mLYBNHBPEm-6Q&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=31.945456&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta na placu zabaw' AND address = 'Józefa Przyłuskiego 2, 05-092 Łomianki' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqkvGG8LXlrCdYJlvkKHs_lEWlYjoS1PIAkHeYQ1op7CqhmRNm19MrvbsZU6O-4Ape7vt9tWYZ2jud2ah0UVKL27XO3bz_7mnjJMX86HuEN6S6Evd-07oLt86OG2--mPShnlPEr=w529-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta na placu zabaw' AND address = 'Józefa Przyłuskiego 2, 05-092 Łomianki' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta publiczna (bezpłatna)
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Op_8obpruMrwHk0Y7DRXKg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=295.13474&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna (bezpłatna)' AND address = 'Modlińska 197, 00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Op_8obpruMrwHk0Y7DRXKg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=295.13474&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna (bezpłatna)' AND address = 'Modlińska 197, 00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta publiczna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=l3lMJ4n53iDNu2g0KCtPWw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=164.85834&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = 'Wyszogrodzka 4, 05-170 Zakroczym' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=l3lMJ4n53iDNu2g0KCtPWw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=164.85834&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = 'Wyszogrodzka 4, 05-170 Zakroczym' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: WC (Szalet Miejski)
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqB5Rs_RtlAM45nrNs3xXdfgM8YawTXONqrenB4ClMIygdZ5fAlt_gzhSQiaLJITNVPerWMRMe2mr33atDh8_TgKpdQs1mnljAsHk-Gy8gd1_yUN9SUoPPAkxunOg-3LnyF2YyQ=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC (Szalet Miejski)' AND address = '100, Zakroczymska 36, 05-100 Nowy Dwór Mazowiecki' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=nsVXuGtLuoT3k-pBjJm-tg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=91.04199&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC (Szalet Miejski)' AND address = '100, Zakroczymska 36, 05-100 Nowy Dwór Mazowiecki' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: WC
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=30E6jcSha82wXjNofc2yAQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=236.9096&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC' AND address = '05-230 Kobyłka' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=30E6jcSha82wXjNofc2yAQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=236.9096&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC' AND address = '05-230 Kobyłka' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta Publiczna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=0IPPPgHvUqnWbFFJPP0CJw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=40.189465&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Publiczna' AND address = 'Tadeusza Kościuszki 8a, 05-120 Legionowo' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=0IPPPgHvUqnWbFFJPP0CJw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=40.189465&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Publiczna' AND address = 'Tadeusza Kościuszki 8a, 05-120 Legionowo' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta Publiczna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=WIyQtwleIFvUo2BaAd20Xw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=77.889656&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Publiczna' AND address = 'Zegrzyńska 115, 05-119 Legionowo' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=WIyQtwleIFvUo2BaAd20Xw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=77.889656&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Publiczna' AND address = 'Zegrzyńska 115, 05-119 Legionowo' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toi Toi
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqwHEZEaBWb3N4nyJbD8gqSs8z4RNjf1iukqq7gtAuUacvGVhjZdop34gB8V6XYj-I0XEe3WKtWsLj4l6YDCqmrScrYWQUqj226-__kJ6UwNyquySb7Qol3MUWQywhamOkOEmQuLw=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toi Toi' AND address = '05-120 Legionowo' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=77a-uFbVJ9csQ2HReoYkGA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=276.68625&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toi Toi' AND address = '05-120 Legionowo' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toi Toi
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=i5tIcTpVucuCcOsmmtJA8A&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=4.963238&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toi Toi' AND address = 'Gdańska 05-120, 05-120 Legionowo' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=i5tIcTpVucuCcOsmmtJA8A&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=4.963238&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toi Toi' AND address = 'Gdańska 05-120, 05-120 Legionowo' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toi Toi
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=cb3obnjHA35BRSF7i1oCMA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=146.83466&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toi Toi' AND address = 'Generała Józefa Sowińskiego 9, 05-120 Legionowo' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=cb3obnjHA35BRSF7i1oCMA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=146.83466&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toi Toi' AND address = 'Generała Józefa Sowińskiego 9, 05-120 Legionowo' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toi Toi
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npuCUO984DRAJZwauD0aKERgHxTUFp-RnbITzcxyObn52G54lDz3J_0tHpgNFxTlw0q_ckjumil21teDKALdQp1yau5M60HgM1A3-8U6FEzZYlQQIVI7gdvsavr-CuKjuS9XItabA=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toi Toi' AND address = 'Długa 5-3, 05-126, 05-126 Michałów-Reginów' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=eIPQDa5yeMzsef1phmF05w&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=164.52673&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toi Toi' AND address = 'Długa 5-3, 05-126, 05-126 Michałów-Reginów' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: WC KING
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipN8BPo1HLt9Fp_YgDiVbkpPR9rZQKXeUkBER4Sl=w827-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC KING' AND address = 'Kościelna 1, 05-126 Kąty Węgierskie' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipN8BPo1HLt9Fp_YgDiVbkpPR9rZQKXeUkBER4Sl=w827-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC KING' AND address = 'Kościelna 1, 05-126 Kąty Węgierskie' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=OhRRm-4BMYNhT_6i66D86w&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=278.31738&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC KING' AND address = 'Kościelna 1, 05-126 Kąty Węgierskie' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrM9PcAQKLfiphUEasvcpn_i_AHInZ4-Xl2HpqfCtM94TRdQpjszOwEZdv9xdzGmVEwH64XsczWIaWeSFlo1zy7kOaW7NcJ1tH5qGWQ5CSHxJzD-mP5TM9GcuSduTG0RV48ROs=w224-h398-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = '05-126 Nieporęt' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrM9PcAQKLfiphUEasvcpn_i_AHInZ4-Xl2HpqfCtM94TRdQpjszOwEZdv9xdzGmVEwH64XsczWIaWeSFlo1zy7kOaW7NcJ1tH5qGWQ5CSHxJzD-mP5TM9GcuSduTG0RV48ROs=w224-h398-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = '05-126 Nieporęt' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toalety
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=uvNlwz9zuQzqpq0xAp-QCA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=94.28142&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toalety' AND address = 'Retmańska 2, 05-140 Serock' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=uvNlwz9zuQzqpq0xAp-QCA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=94.28142&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toalety' AND address = 'Retmańska 2, 05-140 Serock' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Szalet Miejski w Serocku
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqUFwT2mn2MTd4Or0poDNU0loWgFvA6Js4salMwUNF2Ji3nauPE72iVLc9jMEvd_eJo97WdjpO-asCaeLHD2lIzIkCRw1uoQvwiSYNJhCpkBKHezooRxFAF4jiYyaf-PMmJAYfM6Q=w529-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Szalet Miejski w Serocku' AND address = 'Pułtuska 33, 05-140 Serock' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=9I3gyOyHWZwbHxqtqV2KVg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=24.928162&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Szalet Miejski w Serocku' AND address = 'Pułtuska 33, 05-140 Serock' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta publiczna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=McfNjYDP6n3zCHRqAE5JBg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=121.12774&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = 'Smoszewo 6, 05-170 Smoszewo' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=McfNjYDP6n3zCHRqAE5JBg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=121.12774&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = 'Smoszewo 6, 05-170 Smoszewo' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Automatyczna toaleta publiczna (płatna)
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrE6EEWBN9JzU87jukZlO-1S7ceO9gJV80KV5PvCa9lDeXaOWNlvSmonM0ACqKPbWDmmokK88_AiACiY7Q4jikQa_pa5t6cSVrHg3CbI9-323GQodAMlTOEAclG1_a6w5gX37I-3g=w224-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Automatyczna toaleta publiczna (płatna)' AND address = 'Józefa Lewartowskiego 10, 00-169 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=4w3MvApuT0MyglZmqsA12A&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=145.90317&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Automatyczna toaleta publiczna (płatna)' AND address = 'Józefa Lewartowskiego 10, 00-169 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: WC, toaleta, pisuar
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqjG-QUaIob59cePbgBjG64ajaLTrSiqrZhMF0WCKr50zUbGDI037YwTOJFPadXPJuC5KuNoavsnr1iIcc3aLXlYQYQkUw0OU3FBvhVLu44-D9F0RfHothOeiA7fyeL_jNW1hL-=w224-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC, toaleta, pisuar' AND address = 'Bolesława Prusa 61, Wrocław' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=UDWTrLKsUGN6L64PLQ4l0g&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=7.289921&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC, toaleta, pisuar' AND address = 'Bolesława Prusa 61, Wrocław' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
 -- Photos for WC: Toalety Podziemne
@@ -4103,173 +2436,977 @@ LIMIT 1;
 
 -- Photos for WC: Toaleta publiczna
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr7gSS0b1LC5iY7o4-mixPeY1jtEXfQO3AdxiocGCuqGGOHJcGQzfwNwvr6SWvAwMD1MdvJdZhBYQo_0wDiiob3Ly35Dsg_kF8evG3rYrf8cF_X3_bh7ZR_BIeBDAoS2X1Eea7K=w224-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=0B7baM7NO1bmF1hw-AgprQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=155.2083&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Toaleta publiczna' AND address = 'Katedralna 1, 50-328 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta publiczna' AND address = '05-180 Janowo' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr7gSS0b1LC5iY7o4-mixPeY1jtEXfQO3AdxiocGCuqGGOHJcGQzfwNwvr6SWvAwMD1MdvJdZhBYQo_0wDiiob3Ly35Dsg_kF8evG3rYrf8cF_X3_bh7ZR_BIeBDAoS2X1Eea7K=w224-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=0B7baM7NO1bmF1hw-AgprQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=155.2083&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Toaleta publiczna' AND address = 'Katedralna 1, 50-328 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=EdDjM7woK-vvJergST3coQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=214.21054&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Toaleta publiczna' AND address = 'Katedralna 1, 50-328 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta publiczna' AND address = '05-180 Janowo' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Public Toilet
+-- Photos for WC: Publiczna toaleta
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no-aY3mzHMdWIZXgzEtdc9A8wLEjJFQE_YCSJyRITkgsBp5K6RbOqq63JYi0y-p1QU4Zd2wtKGVBHcsd1fwI6VwS6wk5iu7LLMMZ_cguAzAoyRHzLR2mKhdXehZKOsVRwV6oQaNfw=w224-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=oKLaLGf5V91m7RPA7q3RDA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=109.040825&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Public Toilet' AND address = 'Kładka Słodowa, kładka Słodowa, 52-007 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Publiczna toaleta' AND address = 'Zygmunta Modzelewskiego 83, 02-679 Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=cXgEnAKHRf29PP5yQSzbvw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=136.77232&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=oKLaLGf5V91m7RPA7q3RDA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=109.040825&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Public Toilet' AND address = 'Kładka Słodowa, kładka Słodowa, 52-007 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no4M3cX8LJ5RR9CP_MOqy0q4LRBflS4iJ9oti3Zwpmow8HBCXaSJVI0ReAHbvLXAyhLaPbbuIbEPq6btTfOF6H2HLBDQwkvaTtITl8cQhy8Euj4bJLDDsyRa0YILYSIkdBXKSg=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Public Toilet' AND address = 'Kładka Słodowa, kładka Słodowa, 52-007 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Publiczna toaleta' AND address = 'Zygmunta Modzelewskiego 83, 02-679 Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Toaleta Publiczna
+-- Photos for WC: Wc
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npsUokZBZFnbsrZy8IVTj12GlxXcfUH0mv6u2SgTbGtvTrmFEf50UCXAYP11670kv9rEG4Anw9mRul2LlDSoX4eXRw_z023EV64_j4-spEk1p1-5zlNFj5ikh_TeqvgywuHbcgWFw=w447-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=WaZrQIWnpOXqS7GxPzyqWg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=93.217705&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Toaleta Publiczna' AND address = 'Wita Stwosza 40/41, 50-149 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Wc' AND address = 'Legionów 21, 05-200 Wołomin' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=3nCtLmQ5fQLej_CGlD_Syg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=199.22707&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=WaZrQIWnpOXqS7GxPzyqWg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=93.217705&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Toaleta Publiczna' AND address = 'Wita Stwosza 40/41, 50-149 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Toaleta na Dworcu
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np9nooQvxxEXyhWLoJaVip67tl9DOfegbCEw1DASG3dkz1ezo3Y6Qz6kpplnDvGnEu7jPDRtbXEGy2ZK6NrC_2w8JLpLT92yijKsc1533mnJ2wxyQhMhVsb6Sy3_jmW1NZb2F1Kig=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Toaleta na Dworcu' AND address = 'Marszałka Józefa Piłsudskiego 105, 50-001 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Wc' AND address = 'Legionów 21, 05-200 Wołomin' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: WC Toaleta
+-- Photos for WC: Toaleta płatna
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=_gt1zoxSBFHFKlCNuD3NZw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=190.64644&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqv2ADulAWVSPcA6IFH6Xi8Ew7EKM0jfWjHYJVg_b1KaBvtTXjDGy8uvtu5h_DnIWD53cdg3q_jYmd_jezcVi9jlcL6uB2oz_dc4xCqklkNWOkOJvDitJhDRMhXoZUjcS-EB5wu=w397-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'WC Toaleta' AND address = 'Henryka Sienkiewicza 23, 50-335 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta płatna' AND address = 'Stanisława Augusta Poniatowskiego 14, 05-280 Jadów' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=_gt1zoxSBFHFKlCNuD3NZw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=190.64644&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=SuYS-1x3xFD5VShWY_quZA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=185.07256&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'WC Toaleta' AND address = 'Henryka Sienkiewicza 23, 50-335 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: WC Zb
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=ToVMlerAlmDz_evTSdOnDw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=266.4841&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'WC Zb' AND address = 'Młodych Techników 58, 53-646 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=ToVMlerAlmDz_evTSdOnDw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=266.4841&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'WC Zb' AND address = 'Młodych Techników 58, 53-646 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta płatna' AND address = 'Stanisława Augusta Poniatowskiego 14, 05-280 Jadów' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Darmowa toaleta WC
+-- Photos for WC: WC (Castorama)
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npJe7aP-vW8lCNUy1YBBMldnjak6heaV_1llgBNWZOJCbaPrqepdeYZVdDhpkpBRGJUJwC-rxCzwN4S3L-IJ3_O1tu7EmpasDSBApCyC2rm-ZGh44ta9sCinNgBcUyoIsJWt27diQ=w529-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npjrmEbolvM7KhahyImeXSnU9z41MIEph0BzMsANb27IFnwD-_rrAbIFcq1B1r6-lQYkBTHP0Cc34tjZdgQY8KgRd7Et1I4EeXHzVtg5WrHjwtq3fsnZY0FD1o_P4toWuCQykARAQ=w224-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Darmowa toaleta WC' AND address = 'Żabia Ścieżka 6, 50-422 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'WC (Castorama)' AND address = 'Głębocka 15a, 03-287 Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=j_4C2dGTjIaSPcc98KVQqw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=34.844204&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Ad4i6Gu11yCc96TAcuP_IA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=289.79688&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Darmowa toaleta WC' AND address = 'Żabia Ścieżka 6, 50-422 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq2Ew50bvHt3km7eCPac-5AOz8xmOSWARkoiYBIvQMv3_mCsbazTiHJ7kbrRGuCVsEV0SNZMXxRaQfs2Gc_9qF2VxDUt219HcamKB5BRZbnti4_2GaY6iIo66tHdMkJKbaTNXXq=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Darmowa toaleta WC' AND address = 'Żabia Ścieżka 6, 50-422 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'WC (Castorama)' AND address = 'Głębocka 15a, 03-287 Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Pisuar
+-- Photos for WC: Female Bathroom
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=NVJr26wxC0ZqadSxhLmXmg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=352.5232&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=wegxKHR2dee2y7SlQtF6Cg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=16.52794&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Pisuar' AND address = 'Katedra, 50-329 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Female Bathroom' AND address = 'Głębocka 15, 03-287 Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=NVJr26wxC0ZqadSxhLmXmg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=352.5232&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=wegxKHR2dee2y7SlQtF6Cg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=16.52794&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Pisuar' AND address = 'Katedra, 50-329 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: WC Lech
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=FKvUAYncIZHLKk3oNr_eew&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=134.1046&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'WC Lech' AND address = 'Podwale 57, 50-039 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=FKvUAYncIZHLKk3oNr_eew&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=134.1046&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'WC Lech' AND address = 'Podwale 57, 50-039 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Female Bathroom' AND address = 'Głębocka 15, 03-287 Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: WC Qub
+-- Photos for WC: Female Bathroom
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=XPYuHGh9_aI7gU2kp6mYAQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=180.48201&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=F2n6-alJBoLPLNsNIXrCZQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=14.438052&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'WC Qub' AND address = 'Świętej Marii Magdaleny 1, 50-148 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Female Bathroom' AND address = 'Głębocka 15, 03-287 Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=XPYuHGh9_aI7gU2kp6mYAQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=180.48201&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=F2n6-alJBoLPLNsNIXrCZQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=14.438052&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'WC Qub' AND address = 'Świętej Marii Magdaleny 1, 50-148 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Female Bathroom' AND address = 'Głębocka 15, 03-287 Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: WC, toaleta, pisuar
+-- Photos for WC: Bezpłatna toaleta publiczna
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nokRViq8JU4jBqDMRNAvZDk4QovoBAxg8MMzGUKMzlT-Y3RMcWnwuvodNsOCdOvuEm1wnNvAKCSfqhSD2Yp94B1vXBu27Vj2SyezC1U0C2tvwZLj43_LsDVaIPHFvoSARcHguoO=w224-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrsKbz4GIkFkKh_BYUdU7t-YZ0fNea2odQEVYiHcYiL79IUUfncx8YMcGoDNGahnT7vEFT5geLm25hi9ZHzkOXHgXgKWm_1KO4RU3j7qcFPivGqQhV27kJkUfILblZ-7wG8YTE=w224-h484-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'WC, toaleta, pisuar' AND address = 'Bolesława Prusa 61, Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Bezpłatna toaleta publiczna' AND address = 'plac Piotra Szembeka 2, 04-142 Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=UDWTrLKsUGN6L64PLQ4l0g&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=7.289921&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=fh80KTityETTrXQqSER72A&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=98.117035&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'WC, toaleta, pisuar' AND address = 'Bolesława Prusa 61, Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Bezpłatna toaleta publiczna' AND address = 'plac Piotra Szembeka 2, 04-142 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Hurtownia skarpetek
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrHCfzpe4fgKpZrpKxRxCO_PHxNHf8wcy9Rwz40-ngfnwj6uR5Dyv-ieiBoY6HvQ39kLOdIiMwZqBd6wiZesZm6ZgDmgAYw0giooaygIPPoehG6uYtmoIF_1BwguKgb48krJ4Vnlw=w224-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Hurtownia skarpetek' AND address = 'Stanisława Moniuszki 5, 05-220 Zielonka' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=I2fblUbU5eAWSJai9DZprA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=120.66955&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Hurtownia skarpetek' AND address = 'Stanisława Moniuszki 5, 05-220 Zielonka' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: TOI TOI
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noczyfMWnWRAySB55wSxgEPY3cbVCm-B1FuMTYeLCbNCRibXiOLvmUczm8ILi0HferXSuFJ5U96yf-M2yZ_V7_1Inb-nP-MPmj3yIkGFmNw6af7Bbf69Ufdn61lyvdSyV7kSC6T2ho0yZH3=w224-h486-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'TOI TOI' AND address = 'aleja Zieleniecka 2, Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
 -- Photos for WC: Toaleta publiczna
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrPrJIK27bjnUla_lphvL4zaTPOEagVMuubF3W9-vVhqbBAuf4nIpk8hsH7KEAsmCCzY_9c-0EpsLsb001-hiL0gXMe51AR5MNEVsuavAtXmQo2ip4T_cp_b36mC_dktUdW6Ogc=w224-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=wIif6R8bhRY6GCoup0ywNw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=187.5721&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Toaleta publiczna' AND address = 'plac Strzegomski, 52-443 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta publiczna' AND address = 'Park Nad Balatonem, Jana Nowaka-Jeziorańskiego, 03-982 Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq93DXhRV6rIvVwh-JgwRWghzcZAPCl9rf2e61ronJaaWc0vtbokxy8ZN8tKD1o8V3pYs2adbjbLNV1kTxjEN60jZjCt7HVyUtXq-w-yeSooYGevhDkEXyPar3ZFDI3AJ2OYd61=w529-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=wIif6R8bhRY6GCoup0ywNw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=187.5721&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Toaleta publiczna' AND address = 'plac Strzegomski, 52-443 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta publiczna' AND address = 'Park Nad Balatonem, Jana Nowaka-Jeziorańskiego, 03-982 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=a8MUXDmzfSVa5tZVYC7GJA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=146.90485&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Rembielińska 20, 03-352 Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=w28d7Y9DXe98f9T4Hw-AMg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=21.79873&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=a8MUXDmzfSVa5tZVYC7GJA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=146.90485&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Toaleta publiczna' AND address = 'plac Strzegomski, 52-443 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta' AND address = 'Rembielińska 20, 03-352 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Male Bathroom
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=nDXop3qVIqj4bBubmBijkw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=10.774489&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Male Bathroom' AND address = 'Głębocka 15, 03-287 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=nDXop3qVIqj4bBubmBijkw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=10.774489&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Male Bathroom' AND address = 'Głębocka 15, 03-287 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta kompostownika 3
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=-t6OkB0Lp9jfUSF-nyfZWg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=50.149895&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta kompostownika 3' AND address = 'Gimnazjum nr 2 Miejskie, Budowlana 26, 05-300 Mińsk Mazowiecki' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=-t6OkB0Lp9jfUSF-nyfZWg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=50.149895&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta kompostownika 3' AND address = 'Gimnazjum nr 2 Miejskie, Budowlana 26, 05-300 Mińsk Mazowiecki' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
 -- Photos for WC: Toaleta Publiczna
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npHPtnfcoZvgXcHvB4zH8VGXHEELlcHDZtnOZfXF4CHLjNBp8EgH9wDM2Nmghdj8W9mYfeAtRluRpJrG6RHXzLTqxvlCDXGvXyg7MFVNlbFAdwtyefSQ-uqUSgf-jJ9letYCds=w398-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=q86s5r3pT5if-rnGFO3MIA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=320.27994&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Toaleta Publiczna' AND address = 'skwer Pionierów Wrocławskich, 50-301 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta Publiczna' AND address = 'Nadrzeczna 4, 05-300, 05-300 Mińsk Mazowiecki' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=QS9HtrR9wfqbCR5ugXkZMg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=268.38232&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=q86s5r3pT5if-rnGFO3MIA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=320.27994&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Toaleta Publiczna' AND address = 'skwer Pionierów Wrocławskich, 50-301 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta Publiczna' AND address = 'Nadrzeczna 4, 05-300, 05-300 Mińsk Mazowiecki' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta publiczna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqBSLDkh7MwDwKRi-5WgRPM4O0WWb2zTkM8YnXIlcigoeWrD3sTVljfrjSsnXqiJwl0xOcejoCSExGsaG7ONt9IUU-GKWuMyHmBJNwVuOh6m5wCrxsQj7YOb8znB4WHtXxHPHmH=w662-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = 'Park Eleonory Czartoryskiej, 11 Listopada, 05-250 Radzymin' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=1Nujk88Req3J8Cg804MUzA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=301.4252&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = 'Park Eleonory Czartoryskiej, 11 Listopada, 05-250 Radzymin' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: 05-252 Stanisławów
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noLc5lcX9O8stNe6j24sAYBpOaSvLf24NNS7pvpM1ukp8SuO4ROtDIK0eMduypXg4jCebmUnwo2SdzW0t9pPSSYjsxThoMr-rPk1fKQNbBwETEhz72yeMA4GJmORAe-YNFRIrk=w529-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = '05-252 Stanisławów' AND address = '05-252 Stanisławów' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: 05-254 Kuligów
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npOGgbq-T7rDM5xhPeZlhjLgWLEXyCEU8jOvjt9lxgH-izpJLVo35L0mlyl35ymujGJo5iWnDQWzubwl7Tb50t7I5RMXiBXMQ-vWxG-xFtXfqh10xBFe6bkJiL97T3q15WqaztfkA=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = '05-254 Kuligów' AND address = '05-254 Kuligów' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta publiczna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqBSLDkh7MwDwKRi-5WgRPM4O0WWb2zTkM8YnXIlcigoeWrD3sTVljfrjSsnXqiJwl0xOcejoCSExGsaG7ONt9IUU-GKWuMyHmBJNwVuOh6m5wCrxsQj7YOb8znB4WHtXxHPHmH=w662-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = 'Park Eleonory Czartoryskiej, 11 Listopada, 05-250 Radzymin' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=1Nujk88Req3J8Cg804MUzA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=301.4252&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = 'Park Eleonory Czartoryskiej, 11 Listopada, 05-250 Radzymin' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta publiczna (bezpłatna)
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Nlt_bjVKlZfAzu-wesd5gA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=304.6072&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna (bezpłatna)' AND address = '00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Nlt_bjVKlZfAzu-wesd5gA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=304.6072&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna (bezpłatna)' AND address = '00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Male Bathroom
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=F2n6-alJBoLPLNsNIXrCZQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=34.433987&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Male Bathroom' AND address = 'Głębocka 15, 03-287 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=F2n6-alJBoLPLNsNIXrCZQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=34.433987&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Male Bathroom' AND address = 'Głębocka 15, 03-287 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Automatyczna Toaleta Publiczna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Pr8PgegTncx2ULZ8uM6P2A&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=112.37773&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Automatyczna Toaleta Publiczna' AND address = 'Solec, 03-901 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Pr8PgegTncx2ULZ8uM6P2A&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=112.37773&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Automatyczna Toaleta Publiczna' AND address = 'Solec, 03-901 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta publiczna płatny (2zl)
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npDOggblt6OzZ_9ZUgAhYX0Cbc_K6hU1ighO28Vc9Z6bquZYj90BfB3IOyOnvbg-6Bo8iCgujlrOzLxrUWZ99jPbRPQV5vHsKQHVNhiYQ-4Fj1iaiHU82EOdiTwGWYL2n33FNuC=w224-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna płatny (2zl)' AND address = 'Samarytanka, 01-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=dTjHvEJhSSaCVBHwlkTeVg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=334.56387&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna płatny (2zl)' AND address = 'Samarytanka, 01-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta płatna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqv2ADulAWVSPcA6IFH6Xi8Ew7EKM0jfWjHYJVg_b1KaBvtTXjDGy8uvtu5h_DnIWD53cdg3q_jYmd_jezcVi9jlcL6uB2oz_dc4xCqklkNWOkOJvDitJhDRMhXoZUjcS-EB5wu=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta płatna' AND address = 'Stanisława Augusta Poniatowskiego 14, 05-280 Jadów' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=SuYS-1x3xFD5VShWY_quZA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=185.07256&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta płatna' AND address = 'Stanisława Augusta Poniatowskiego 14, 05-280 Jadów' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Kibelek przykościelny
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nof-ATcbLeNg1ISrtAtFKWZ3efohHUi9HVmVhHj6dtxAZAzE7_mEZ9cETnpDcGATLNDmGf4aEGXnr-I0iPSfPt7HIGQyHDaoqZQfYO6VC7Qd0wnBB3S1e37ctGT_U7JCcblX8o=w224-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Kibelek przykościelny' AND address = '05-280 Sulejów' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=rIr96Q3GFIDtQ3xsVig9kA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=162.22952&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Kibelek przykościelny' AND address = '05-280 Sulejów' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta na Dworcu
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr1_oUOmN3l4SmbGpNIyKzmqrDI7kkJf7eVtDBeds_CkDBl3_JWxQuGk06OP8D6IMN-bLSSToHaAogEvkKN-QhFIm09XNOtgx16nApj4jEV_U3Ro-_SPKYSuSqcFAWyFz9jDWKbkQ=w224-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta na Dworcu' AND address = 'Marszałka Józefa Piłsudskiego 105, 50-001 Wrocław' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: WC LEJEK
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPqkyPl-9EiueRwSj19ozm2pxfEe9QfwBJH_3s_=w395-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC LEJEK' AND address = 'Żelechowska 7A, 96-321 Siestrzeń' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipM3QrGhv5VygTsNHS1jHcVyUZzuyqchHJqTBFWc=w395-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC LEJEK' AND address = 'Żelechowska 7A, 96-321 Siestrzeń' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMNPKTpGNAbbBqsE6U_gdACk7VyPCGlGa3iRl_d=w529-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC LEJEK' AND address = 'Żelechowska 7A, 96-321 Siestrzeń' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no_U97xWvTqw1BPJGiBZDRGg6cxA1CsnKGhiJHTqQYQnev6XFnd9h2yRIIGbKeyaYUCyezT3eGUgTBogaewCktqpK_m-Iyl6_8rvd7IGxhCW8PWB_mMKv5qrxoA0VJP6i985EfNfw=w224-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC LEJEK' AND address = 'Żelechowska 7A, 96-321 Siestrzeń' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNTaSu52b-a3rT9GatEUFA_P7ze4IzkTXZ2E7Bk=w529-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC LEJEK' AND address = 'Żelechowska 7A, 96-321 Siestrzeń' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=oJOd8tOxSpFMylNkyUs-1w&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=66.35993&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC LEJEK' AND address = 'Żelechowska 7A, 96-321 Siestrzeń' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Wc
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=P-3AxMpXBVvGmjobzUYwrA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=193.82898&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Wc' AND address = 'Konstytucji 3 Maja 2, 05-300 Mińsk Mazowiecki' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=P-3AxMpXBVvGmjobzUYwrA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=193.82898&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Wc' AND address = 'Konstytucji 3 Maja 2, 05-300 Mińsk Mazowiecki' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toalety
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqXVG3NpnTu1SQjJ0fjNjU7I3n1tyEZUhTUvguUGrMmmANYAUyDD7pz8mTDDd5Hn0WlI9lVfmM8dneUHfYgyNFsVSrZDAfcaMfVIvKl0QMADeBiYdsvaFE8KRuNI53463YFIQKpYg=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toalety' AND address = 'MOP Moczydła, Moczydła 80, 05-306' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=ZdUN1SFLT18tR4xUAdyAlg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=348.86032&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toalety' AND address = 'MOP Moczydła, Moczydła 80, 05-306' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=vT2rhcusf7A55pODn94oxg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=24.760038&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Wczasowa 1, 05-540 Zalesie Górne' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=vT2rhcusf7A55pODn94oxg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=24.760038&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Wczasowa 1, 05-540 Zalesie Górne' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=OfUYT56i_cT3spkIOmJT6A&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=91.113594&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Okulickiego 10, 05-500 Piaseczno' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=OfUYT56i_cT3spkIOmJT6A&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=91.113594&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Okulickiego 10, 05-500 Piaseczno' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta Publiczna (bezpłatna)
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=DY42sw2ocPRYw7nIp98LKw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=357.7395&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Publiczna (bezpłatna)' AND address = 'Franciszka Klimczaka 2, 00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=DY42sw2ocPRYw7nIp98LKw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=357.7395&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Publiczna (bezpłatna)' AND address = 'Franciszka Klimczaka 2, 00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nou19z8QJmqyyy7EcU1ZSHe0rkWoYxWk8zqrk5k3A2hl3TTeZ288QpmGEXBs5rAN0841gfquOLrxQJb_9M5qIMCt9EkPJiQAAtfCbwEXpNASkQNT2aIGf6BUZs0OEoR7vQN7JBm=w224-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Bielawska 9, 05-520 Konstancin-Jeziorna' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=5EEfP99UNZAQfrB1R0N9Nw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=5.069881&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Bielawska 9, 05-520 Konstancin-Jeziorna' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta publiczna w Parku Zdrojowym
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npNsSfUSOeDQbeNafIynykoDP4jlTaypXkNrMCCgOasqornNr_mXarI2YSSk5sSK-qVGZ6K6B4-JNogEf9K-Vb6bRth719HRNkw0p42n08D7bKk58J9b0s_IK75sav6gUd7JaJvAg=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna w Parku Zdrojowym' AND address = '05-510 Konstancin-Jeziorna' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=fV4perW46ow9iJjr6uvbWg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=242.44687&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna w Parku Zdrojowym' AND address = '05-510 Konstancin-Jeziorna' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: WC
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=n4VN7Vp5XcfF6Mt1f2zG4Q&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=189.53804&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC' AND address = 'Karczunkowska 145, 02-871 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=n4VN7Vp5XcfF6Mt1f2zG4Q&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=189.53804&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC' AND address = 'Karczunkowska 145, 02-871 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toilet
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=xHLtGk8adgbmyi1jNA3dBQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=243.9053&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toilet' AND address = '02-958 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=xHLtGk8adgbmyi1jNA3dBQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=243.9053&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toilet' AND address = '02-958 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toi Toi
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=VsOtxyUeW_b-QKFqYaOlyQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=176.29729&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toi Toi' AND address = '00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=VsOtxyUeW_b-QKFqYaOlyQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=176.29729&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toi Toi' AND address = '00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npp6Uq8CIlHADThVcyDd0GYthlavLKssga4MKQ8_lViuqhJGAPUsx8t8OD_-5Dqk3KT0UCgsOsoNmnDYad6H9dd1HOfeSSxdr4_8OCBX3InT0OzEX-AEcjJhLXuNAnFIQMtSZEVaw=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Park Kultury w Powsinie, Maślaków 1, 02-973 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=TLkZtL64_vAE5G91rhQ6vw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=40.495735&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Warszawska 4, 05-510 Konstancin-Jeziorna' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=TLkZtL64_vAE5G91rhQ6vw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=40.495735&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Warszawska 4, 05-510 Konstancin-Jeziorna' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toi toi
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=pMZdyYQFotzPQCA5DwkqBQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=247.91904&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toi toi' AND address = '00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=pMZdyYQFotzPQCA5DwkqBQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=247.91904&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toi toi' AND address = '00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Magazyn PandaBuy Poland
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=-4EOveDJFkhDk5fS4fsNWA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=316.65335&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Magazyn PandaBuy Poland' AND address = 'Kusocińskiego 6, 05-500 Piaseczno' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=-4EOveDJFkhDk5fS4fsNWA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=316.65335&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Magazyn PandaBuy Poland' AND address = 'Kusocińskiego 6, 05-500 Piaseczno' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=NFFlMKJiN3e7MxRJqciynw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=182.12122&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = '00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=NFFlMKJiN3e7MxRJqciynw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=182.12122&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = '00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMLXjRuykSGgup_FDeo0romJeoibQl8iIpLZ9s5=w224-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Unnamed Road, 00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqxZ5amMnVx8_gjU6QVePFTJCmg61NqxIzETId86w15rVC71zQ6IK5kvaOL1mdDD20Xeght3sb2zm90dVmZqj3cY3E1dJucQUPuye8zIDv1cpf_at7uqrpDTZGiKsIymfQkepDH=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Unnamed Road, 00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMp-hYw6jkrTLFRajADnZUCdY0Yt1HbhgYHEicn=w224-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Unnamed Road, 00-001 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta Miejska
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrMUfMl-6_ekBIvnCsUm3j3kwrAx1L8F4eyvo-PLKflhqXnXOlYIxOpUGH1BfzZrQQYeHhAIrriN0Mvp-FAvD0qLVE70Q7QNHSevz3kv885B-G_liuEo2iqvSOsJEkyixt0lVa7hg=w224-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Miejska' AND address = '08-530 Dęblin' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=XWNxijRbTPwOOB-0l6jl_Q&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=159.50139&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Miejska' AND address = '08-530 Dęblin' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta Wc
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=TIAjYZjIrMiuXAbAf65U5g&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=9.890228&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Wc' AND address = 'DW805 79, 08-440 Lipówki' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=TIAjYZjIrMiuXAbAf65U5g&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=9.890228&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Wc' AND address = 'DW805 79, 08-440 Lipówki' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: WCExpress.pl | Najlepsza porównywarka ofert na wynajem toalet przenośnych. Zamawiaj online 24/7
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMUqtvHGvmpHS_yhIXHgelqQyq21_XWpxScBZ43=w398-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'WCExpress.pl | Najlepsza porównywarka ofert na wynajem toalet przenośnych. Zamawiaj online 24/7' AND address = 'Wiewiórki 11, 05-506 Lesznowola' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPstkqFsc5G0U6Yw1oALzZ7Zx-PuIisyhKpDlQC=w398-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'WCExpress.pl | Najlepsza porównywarka ofert na wynajem toalet przenośnych. Zamawiaj online 24/7' AND address = 'Wiewiórki 11, 05-506 Lesznowola' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMKHDKF8MzErmqUl5easeUtm64UWTe3zn86iME3=w529-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'WCExpress.pl | Najlepsza porównywarka ofert na wynajem toalet przenośnych. Zamawiaj online 24/7' AND address = 'Wiewiórki 11, 05-506 Lesznowola' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMKHDKF8MzErmqUl5easeUtm64UWTe3zn86iME3=w529-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'WCExpress.pl | Najlepsza porównywarka ofert na wynajem toalet przenośnych. Zamawiaj online 24/7' AND address = 'Wiewiórki 11, 05-506 Lesznowola' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=1s_xS3Z5COcpXvrMkMzihg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=213.0461&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WCExpress.pl | Najlepsza porównywarka ofert na wynajem toalet przenośnych. Zamawiaj online 24/7' AND address = 'Wiewiórki 11, 05-506 Lesznowola' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=rMeJDPo0W8NFN5QacQRHgA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=279.5524&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Łukiska 29, 04-123 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=rMeJDPo0W8NFN5QacQRHgA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=279.5524&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Łukiska 29, 04-123 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta Wc
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=TIAjYZjIrMiuXAbAf65U5g&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=9.890228&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Wc' AND address = 'DW805 79, 08-440 Lipówki' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=TIAjYZjIrMiuXAbAf65U5g&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=9.890228&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Wc' AND address = 'DW805 79, 08-440 Lipówki' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta publiczna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nplvMUt9Jyo4fWgh46A8KgrGNws0-XoI34D-x-Hz-olLHJtNL_qfBNqPIVVYKTcMLQUgbgPzjIzr0jEKQTaB8kSBb1fWQyLMGo-zzGi9C2euFIOOKve6W1rH8lCe63lFA696-ying=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = 'Sierakowskiego, 05-509 Piaseczno' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=F8l-D0lVhFw_cNHaS4jicQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=263.75595&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = 'Sierakowskiego, 05-509 Piaseczno' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toi Toi
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=rfcz9DYF9Qer3fJcaAICCQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=112.04782&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toi Toi' AND address = '05-077 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=rfcz9DYF9Qer3fJcaAICCQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=112.04782&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toi Toi' AND address = '05-077 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toi Toi
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=vEhW4yusqQx84dJe52la3g&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=350.32184&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toi Toi' AND address = 'Bronisława Czecha 8147, 04-555 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=vEhW4yusqQx84dJe52la3g&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=350.32184&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toi Toi' AND address = 'Bronisława Czecha 8147, 04-555 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: WC Toi Toi
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=ISqbhZ2W9-lu8HXEXxONCg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=81.7767&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC Toi Toi' AND address = 'Dominikańska 15, 05-530 Góra Kalwaria' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=ISqbhZ2W9-lu8HXEXxONCg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=81.7767&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC Toi Toi' AND address = 'Dominikańska 15, 05-530 Góra Kalwaria' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: WC (Płatne) 1zł
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=PxmaTk_11v9feuP7NP0Iag&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=80.610466&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC (Płatne) 1zł' AND address = 'ks. Z. Sajny 0, 05-530 Góra Kalwaria' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=PxmaTk_11v9feuP7NP0Iag&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=80.610466&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC (Płatne) 1zł' AND address = 'ks. Z. Sajny 0, 05-530 Góra Kalwaria' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toalety
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrnvdUZDlF7VMm99ISnpyINo7W0D50GWtbLx3S5CXJR18pyuTwfJKpB9jG1W1Hme7jpgxISxEVw9p4fH_eCzsdGlGTCsnGYVsABpbT_qXExeAh9n4PK2nUwByG00tfeEK5lo_nI=w224-h398-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toalety' AND address = 'Łubińska 69, 05-532 Baniocha' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqejSwCDd6mMlhB8r0WwXJ0URqKmQe1_rU_EzVw75bhlEvdQO1GBe-5k1tfVtJhqo6lCOnzvlDAWW4FNahoL5iwsE_ogdIRwyTaOzTVEFLYqSm-QTmtyH2-d86joXF3sbB0t6w=w224-h398-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toalety' AND address = 'Łubińska 69, 05-532 Baniocha' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta publiczna na basenie miejskim
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=gpELIWBxBJDW5qvVXF-lzw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=209.40541&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna na basenie miejskim' AND address = 'Pijarska 119, 05-530 Góra Kalwaria' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=gpELIWBxBJDW5qvVXF-lzw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=209.40541&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna na basenie miejskim' AND address = 'Pijarska 119, 05-530 Góra Kalwaria' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: WC
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=lrxFgW5yErKmaaLSwmbtcA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=206.95656&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC' AND address = '3 Maja 10, 05-530 Góra Kalwaria' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=lrxFgW5yErKmaaLSwmbtcA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=206.95656&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC' AND address = '3 Maja 10, 05-530 Góra Kalwaria' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Publiczne Toalety
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=CGg24G_KAEsY1PwOjx0juQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=252.82777&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Publiczne Toalety' AND address = 'plac Wolności 1, 05-600 Grójec' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=CGg24G_KAEsY1PwOjx0juQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=252.82777&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Publiczne Toalety' AND address = 'plac Wolności 1, 05-600 Grójec' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=YQi0_ocP4aV0DzvDGjaiCA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=153.89896&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = '58-260 Bielawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=YQi0_ocP4aV0DzvDGjaiCA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=153.89896&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = '58-260 Bielawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no5U9QgbQuAaQ8mSnXH43rgjovvXSi7FwSvrZMNpDBrAZhVUBrexMLBHaNicBCPGJUoO4MbaxHsXTJbKgIutLahQ_sI7wxvdoeoZNw7jYfmwi9fKSq16rhqQbOaiR4RFlCfvu9MlCGzGWtf=w224-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Wojska Polskiego 39C, 58-260 Bielawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=CCGq0aCvxR-o2iPQK7dtuw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=190.8581&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Wojska Polskiego 39C, 58-260 Bielawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta publiczna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=6LfW2H5NURs53e1Qu6-1Bg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=272.9028&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = 'Wojska Polskiego, 58-260 Bielawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=6LfW2H5NURs53e1Qu6-1Bg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=272.9028&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = 'Wojska Polskiego, 58-260 Bielawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Lhz1Qh78D5L1MvMWsrbEJg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=70.57399&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Wojska Polskiego 39b, 58-260 Bielawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Lhz1Qh78D5L1MvMWsrbEJg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=70.57399&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Wojska Polskiego 39b, 58-260 Bielawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta publiczna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=vvVhxCmonoX1eBm2_sunyg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=299.2135&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = 'Skowronki 26, 05-622 Skowronki' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=vvVhxCmonoX1eBm2_sunyg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=299.2135&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = 'Skowronki 26, 05-622 Skowronki' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Publiczne Toalety
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=CGg24G_KAEsY1PwOjx0juQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=252.82777&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Publiczne Toalety' AND address = 'plac Wolności 1, 05-600 Grójec' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=CGg24G_KAEsY1PwOjx0juQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=252.82777&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Publiczne Toalety' AND address = 'plac Wolności 1, 05-600 Grójec' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta WC
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq-OFPV-N6vOk1RUwfjDE7ZxCp5QbiwWzeYD_FKaj1tFn9sjOJ5gtWf45NXdRok6dtAwaziJQIXgJpfu-YaHlrTP3N411dVcrHnA4hLhWDLLWOh05rZpxqrZf5GdgRYxQsvPQuW=w224-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta WC' AND address = '05-800 Piastów' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=jAi9Ovh4bYRVi608rFSnFQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=327.11282&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta WC' AND address = '05-800 Piastów' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: WC
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=eqgJSzBkNKXUrARbjn5asA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=306.02206&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC' AND address = 'Stefana Jaronia Kowalskiego 31, 05-800 Pruszków' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=eqgJSzBkNKXUrARbjn5asA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=306.02206&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC' AND address = 'Stefana Jaronia Kowalskiego 31, 05-800 Pruszków' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrzUSBxXLjln4e34XQax6ugcvsdWfR72v6D7PiVYReXrxTPQwj8yJCXvgpqVLYWCOuoUGkW2M2FEdkfZGP3ghpUUnIUUo4z4MGWyW5jFH2BPzUJpgRI_kbAzKGyuoGMM7kzaDdz=w529-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'A2, 05-840' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=CoD_-F5DY1efJ--6aHSC8Q&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=180.31396&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'A2, 05-840' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta Publiczna Bezpłatna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no87QfPcx-gfrYg2Pjs_ZIVcRLj56PiLTp5hC3xxL89MkTQQip_hQ1ZeSCd7v2F4K6msAul53GdHEasAHBjbFuagMrTK1Ipzs3FAIYZMQ6f0b-zvc9rBNVnZzrj2SYV9fSRgI3S=w224-h307-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Publiczna Bezpłatna' AND address = '05-800 Pruszków' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: WC
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=gt4jU2UcMxB32DKYVH6XQA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=12.467407&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC' AND address = 'Malwy, 05-800 Pruszków' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=gt4jU2UcMxB32DKYVH6XQA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=12.467407&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC' AND address = 'Malwy, 05-800 Pruszków' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrxXKIuajWAXiZd-Nt9etj8mo_Sthw4Oqj7ZDp0HWjWRUcBzzdWDIp7bNl5axX_Pa9yZJYg5-HAzgKdo3EaLLi1dMF7BlFQYUoJtqyGDePReZXPICXAijzYzb-X_ofGe_7-xlJ_HA=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Kotowice 17, 05-840 Kotowice' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=TfQ62paYuLw3VwyCxAg2Fg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=241.75053&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta' AND address = 'Kotowice 17, 05-840 Kotowice' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta publiczna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=2EjvAuMI5gno3dlzyemfTg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=82.60534&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = 'al. Krakowska 26, 05-820 Piastów' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=2EjvAuMI5gno3dlzyemfTg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=82.60534&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = 'al. Krakowska 26, 05-820 Piastów' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Przewijak plenerowy
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr7GoF54Cv5COps0wa4qk4_yGTWHYMRimNQ2Oh4CVH_K6H3FVnrbF78DMo0izu2zELuTLKzpYf0vOHDj2ZVT5CkYb9dDATjxkLNfniK4-64315tk2VsoFknWtgeBg2x66q2QnU_Ag=w224-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Przewijak plenerowy' AND address = 'Fryderyka Chopina 25, 05-800 Pruszków' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=vQ07NEwb2bWROU2vQ9bR7w&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=99.73196&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Przewijak plenerowy' AND address = 'Fryderyka Chopina 25, 05-800 Pruszków' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: WC
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nprchLMB4ehRiAkqV7gbWnYNhQp_IuYyA_r9e6UXeigE7yvSWmMNih2wszlkWjluT0Gy_nuO450N8BQoTmccQdeStOcChruTRsQ1jKczKZXueP4PtvzdZnYWZHMs_RT0pfsLDoleQ=w303-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC' AND address = 'Henryka Sienkiewicza 2K, 05-800 Pruszków' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=sb0sTY6L6HGDs1EDMB3CTg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=326.68454&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC' AND address = 'Henryka Sienkiewicza 2K, 05-800 Pruszków' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toalet płatna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=e2Q6S7Nt6daSPx6zf6Wp2A&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=77.48537&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toalet płatna' AND address = '05-800 Pruszków' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=e2Q6S7Nt6daSPx6zf6Wp2A&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=77.48537&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toalet płatna' AND address = '05-800 Pruszków' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toi Toi
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=hOLAENRKscpKPiWPS95RAw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=70.694374&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toi Toi' AND address = 'Marszałka Józefa Piłsudskiego 30, 05-822 Milanówek' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=hOLAENRKscpKPiWPS95RAw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=70.694374&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toi Toi' AND address = 'Marszałka Józefa Piłsudskiego 30, 05-822 Milanówek' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta publiczna w Eko Parku
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=BSyPQs55MLXd-DdN7lWQAA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=117.83367&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna w Eko Parku' AND address = 'Wolności 19, 02-496 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=BSyPQs55MLXd-DdN7lWQAA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=117.83367&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna w Eko Parku' AND address = 'Wolności 19, 02-496 Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toalety
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Hg43rzpdwD6fGD5wJix7EQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=11.738305&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toalety' AND address = 'Międzychodzka 22, 62-045 Pniewy' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Hg43rzpdwD6fGD5wJix7EQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=11.738305&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toalety' AND address = 'Międzychodzka 22, 62-045 Pniewy' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta Publiczna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrnW-JZjSkw78d64BY7ySiy1MXPWrBgYjlVe6j2pVKcBy93pFaeP2XeidlVY8X6BGW9aQPFE6Qo8ImtLcM8QlTb2GDwuNsyGUn2SKBcGN7i_bQM2UZGZrjcsER1f0_PvQ05yCg=w224-h398-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Publiczna' AND address = '90-001 Łódź' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=wErjIQcealnS-ZZE5RjuZg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=115.3347&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta Publiczna' AND address = '90-001 Łódź' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta przy przystanku
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noeTps2XBhQJN0SxT9yR7ciNYXPTSozOrGIQrMElPreQolUMCKLCoaTw3aGU2vsfsVWAy4q7Z73YspdbDx0PJOGd0yJY0ooYEmbNXS_FZlgb_TEI5jSp_AQtCkgm4V0MQuO0r6RP4NzfOLH=w224-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta przy przystanku' AND address = '05-620 Błędów' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no6sIPzMLup_G7UYFgeNh4RZgZDBftm-QII_xM-_1XqqxMzjz8AolzuyPxafwGAjKiVYZsYDHEAzQ9e9TkcoHIXWEKMX-mDKrOPYDR8eEYrS5DkaUTAVC_2Mz1MaabyIbmyxRcAsDWejck=w397-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta przy przystanku' AND address = '05-620 Błędów' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=mJ_gdRlEspXkqHvhp9pG0A&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=247.27441&pitch=0&thumbfov=100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta przy przystanku' AND address = '05-620 Błędów' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: WC szalet miejski
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqwa9pdxtYZqojeuvRV3cp5p51MoRC44qP1IuoHyHpvB1i80b7uLBq-rkGc3q6qGRY-tbw0a2KgHkL4B4uiBOXEdPwhh_hqbjrIHlmlVwDfyFfa4QRwGNyx_JQZ49CZSszULLw=w529-h298-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'WC szalet miejski' AND address = 'Warszawa' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+
+-- Photos for WC: Toaleta publiczna
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npvTa2nHyEzngfIoJ4lOv8F_-IX1MEbnkapP_r3MOzSE0JQZU6fvolbrHVP9OzywuoDN23PBRLITrQjo4vl1y4Xi4MLLDnXtP3kKQPqh0p21kIXjRj52iTSXDnmWnTrv4R6bOhv=w224-h298-k-no-pi-0-ya20-ro-0-fo100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = 'Promyka 7, 05-830 Urzut' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npvTa2nHyEzngfIoJ4lOv8F_-IX1MEbnkapP_r3MOzSE0JQZU6fvolbrHVP9OzywuoDN23PBRLITrQjo4vl1y4Xi4MLLDnXtP3kKQPqh0p21kIXjRj52iTSXDnmWnTrv4R6bOhv=w224-h298-k-no-pi-0-ya20-ro-0-fo100', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = 'Promyka 7, 05-830 Urzut' AND created_by = 'public@sviete.pl'
+LIMIT 1;
+INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npHh3NfO8e43dWyqoGfOKsF2tAq8M04q0kArbHX6CIBkzDq7sT64cr6JauHvbHEV6xGo4DzDxYfaSv3RI168JywcptaXllic8a3nVeD2vmuQX4Lx582ObBnU49JEuf9gzACggpROQ=w224-h398-k-no', NOW(), NOW()
+FROM wcs
+WHERE name = 'Toaleta publiczna' AND address = 'Promyka 7, 05-830 Urzut' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
 -- Photos for WC: WC Tron - toalety przenośne
@@ -4289,2323 +3426,713 @@ FROM wcs
 WHERE name = 'WC Tron - toalety przenośne' AND address = 'Wybrzeże Juliusza Słowackiego 9, 50-406 Wrocław' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Toaleta WC na placu Staszica
+-- Photos for WC: Toalety i Prysznice
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq2KvJCSKUnEDCx3T3i76_KI49vKQcGWbw6NpuqMch1gjP0AHTw9jiwajL3JgY9l_cFvg0iUInfMsDgABjW_joxnm_F7_BB5e1bhd1A_rJa5oF-9h-zF0M1j4AssDy0_nnyNnLf=w238-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npdJUhk4ARQ9pgZjTNerNKGRkDYJHo4JlBX5nhnEaCT4e4E3Andd7y6YWUWY54DUKefEY26jVKAwSmSFF7uHJNIjRguNQZeILIrJGJDD21Ea5gNWM4rvz3j6umpxsdJeAoK1tlEAJ4VLTc=w397-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Toaleta WC na placu Staszica' AND address = 'Plac ks. Stanisława Staszica 26, 52-007 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toalety i Prysznice' AND address = 'Toalety i Prysznice' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=xMLqZY2ysl5PeEcYxyxECA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=184.61908&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nonHGfmNJseelLwKcatqFFci_WXD2-qIfBlFiMGeSzeudvC_Y6Tdu12yQXA0ga4jJZrqc-dow2oQ36P58RdmuBBF9RJclLVpNspzOKNJCTrj37tfcZTkmGDvz0BvHD40E2ZYWxhP8rfFWE=w397-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Toaleta WC na placu Staszica' AND address = 'Plac ks. Stanisława Staszica 26, 52-007 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toalety i Prysznice' AND address = 'Toalety i Prysznice' AND created_by = 'public@sviete.pl'
 LIMIT 1;
-
--- Photos for WC: Piwnia skullera
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=hgNa4m_gKUJGK91gCp9zQw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=24.463339&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Piwnia skullera' AND address = 'Zachodnia 55, 53-643 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=hgNa4m_gKUJGK91gCp9zQw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=24.463339&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Piwnia skullera' AND address = 'Zachodnia 55, 53-643 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Dworzec Główny PKP
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nokzfDoYd3eTnKiW_WtRpB1wtFOhoYXcfP9jyzny78N5jGZuW34hxkDneQaILOonEuAlVx6sjbE51BfW4EnIBk6q8fbQNk0-dR41x0ue2cS5UYGqvfmWDpIZnso6rFI-HAUCtqc=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dworzec Główny PKP' AND address = '50-002 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np8KSgLIl06r6KZ_tLAIvxbf7gmslUX6jwD19VVkOE8--eWvTJoS_m9wGYQyZ71VLu7-FJJyLxd31t8lxiD_tM45bw-wQ7BmN-wx7Wce8uYifyFVXl6KK3yN236ER2GxLCrDrpZ=w224-h298-k-no-pi-20-ya54.000015-ro-0-fo100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dworzec Główny PKP' AND address = '50-002 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqkpj6M62yW3Z4Cbdx_KpSvfPneIFlzNjOEkvbk35vWrYbjDY7Gf1bVrL6Z8gPOTHtdxmwBliGDAYXD2TxkDr-eQrwCywKNOFppIAYCo5of6oA1iMsrrHxJG6ruch0GDVhQHs4L=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dworzec Główny PKP' AND address = '50-002 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Centrum
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npIFaqgEAVWpVJHHv9p6XRwI-qgcLC9LsgR4TJSdnapKrEFyUMS-Tx7J_0lIcl12xxFTBo4KUTO8p4R9E45wFUhOly8zQT8uOLfuYlEYoaX_od40g5ZYBGKk5l5-jL1QhC9gk4k=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum' AND address = '00-057 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np2M-SxIADo93vu4X1n-hVTSciUtHE8_1Xq2zX4SRXlQ7BSvu-6VOWoxGy3azu83qJhq9WsfSX9WLdo2hBaYHhDbm8edKOR40IiPUdhqtlm1nE5G2do1FCIJqBgHP_xq5m3Oexq--D-fXAZ=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum' AND address = '00-057 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nomgkN98Fnxox9m1WhlaWs-lLepFcPpdRELxhmohbm2G2Kl_zPms6Hx0pcY5WTa7j306x001zAFmBdbptbehHfAkTRudjPnRwHcpzAhDruYcxWh1dUBi2DwbTUHATrUlu9SGZwT=w224-h467-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum' AND address = '00-057 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npOX3wXEZKizXZjrgZ7QY2YkHW8gP62lQWm4I9h5s9ROv2Tp-jVLDNYKqapg9pOzt9Gl49wcXkF0zODL9AmVEdizIv38PKoybmS_HAMy6x_eRs8M-fOAHa26VPAWjoSFsDTaaMZ=w398-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum' AND address = '00-057 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=HNWZzY-0AQ1MQlXs5upERQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=179.88747&pitch=-0.11254019&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum' AND address = '00-057 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Środa Śląska
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqGB48ddrUR-WXypvAuu5SjiQe4too8c5KvRGT0uL21LTZeMV0sqoHbMR4DtrSc0qY0GX5Mo3uWdbo_ltrV6fyebc_SkEJMvA6m5UiigsQ6NcLv4muyR2W83VZeCNMBuvuZDvY8rQ=w374-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Środa Śląska' AND address = '55-300 Środa Śląska' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no25I-nM18ug-Gzl7on-npmNPCnL6X98Kd5aqWk47qkl1MbZpu_waGkmxAdXKBGgV35julA3u4j2cu64R64iOg4qBDKYH7FMCN2Y6GbUq7MSV84mWL9TUK10LOXVJjSgHEXTfM=w631-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Środa Śląska' AND address = '55-300 Środa Śląska' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noakjkoBgAMc4xjHSDSPT2f_40t0Cb1mGWVPkmf_tlbAuLU10TVVa4NuFLkusPjO979ugTa1b_xfh_6Z542yoDe561SbtEjTBOttOw-20OcpH35C5IJ6kubSHLVoLY5CSuS6Gbe=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Środa Śląska' AND address = '55-300 Środa Śląska' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrSr9CN2UuonIYl8WMnM2jC84R6xSaI3a4XJnkkBSH1z0WlIwd5RPOuaznIMDc2hSg4RWjxSoGQitqJE5veE9U0HI1G0PzdFPlelvCJLlZqnszpX_tm5LpougFQnwXxZdaMHUTbFw=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Środa Śląska' AND address = '55-300 Środa Śląska' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=jdEaAkK3aBSj7WEuqSQOAQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=348.85858&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Środa Śląska' AND address = '55-300 Środa Śląska' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Rondo Daszyńskiego
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipM7EzYXPIaI3a-9-irsUHVHbdrL6ObYalXf_4GO=w447-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Rondo Daszyńskiego' AND address = 'rondo Daszyńskiego, 00-869 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqu2KCaabzTcPrNht94vqXL3KVvAmvvL2fcsIuajFOuem_sTw2dm4pIlix1g7xJ2LKbSEgzGAdrcfuKEN_orkw4FDTonOqLjPnSzIJCskl0j8BPOg8fVvxUQ_rF1B5_A84Q7hVycfCH0yJ5=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Rondo Daszyńskiego' AND address = 'rondo Daszyńskiego, 00-869 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr0zAMIf1NI1gvrBst-20TvIuv-77Q3IxPZo_oNayZ0-ahOCFVJcpjwtHG6RqlFFajnH1KMZIgaBrWzGq2BoKU2qo_gaF5HqxSC62DLjxZITMPSzk2XtpCoVeIIz1MdAOTuk8Wv=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Rondo Daszyńskiego' AND address = 'rondo Daszyńskiego, 00-869 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noumdotabTtX6QisU7jduU-zUV6KLNp1a-oqxtkPqOyHnO_OZn-3-6aWvTSbjV2n84cGiNp6ypS9RI3CNmqgSY-tgGD6h4N7JCJjSdQTfuJS4lwXiZjtDYfsQPxT35z_fiP5hnv=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Rondo Daszyńskiego' AND address = 'rondo Daszyńskiego, 00-869 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqjuUoxwHd-fBhdRm2Nze-S2fWGCeeBCSvdlh6AQjzc6CgKVmyr2klu4VhxXl1niZi1wKlFUI5TaO_X2k86_SM3SMMnVHK42BPt6ag9VITqHLKjNySFczncOlTKWc0r_m-7Rk_9=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Rondo Daszyńskiego' AND address = 'rondo Daszyńskiego, 00-869 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipM7EzYXPIaI3a-9-irsUHVHbdrL6ObYalXf_4GO=w447-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Rondo Daszyńskiego' AND address = 'rondo Daszyńskiego, 00-869 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noXkliaia9XleeRJv7mGgpjXZ8AgqH2a0IeRUuKLbihColMLHbyPYmyfDEtEuLC_6B_i1izn4XTOempZzDolzKL7ElYRUfnpm4pFBDprLWFYPHuEOxRAH7IxujgbVjQ6qOERuDw=w224-h298-k-no-pi-0-ya176.0944-ro0-fo100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Rondo Daszyńskiego' AND address = 'rondo Daszyńskiego, 00-869 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Stadion Narodowy
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq3J3h0p0Ushf1pWAPoM6hM9S_FJAEta9bmF70HIQdCzrGkaO1xlpbGs1o0Me7NlxAYXS7ox0GDx6u9k67LrZQwsDxr-Mp_5wbV9sMCDggFJ1tOC8Z3d9-8mHWjtk6H-x0gqfig=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stadion Narodowy' AND address = 'Sokola, 03-724 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noqk7BGj-6OzuYxOj19KMvFWd46Y0sXKBzX7-8zP0_zgITmIoCkMm8C6mL2oqMk-NYaetvmCFkpxxmpGJ7Y5zOA-dSKsDTg4XdP9RGzGw4SaAkjamVlrtYfDduXAwWilzwH5r1lECAocHlo=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stadion Narodowy' AND address = 'Sokola, 03-724 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqi2kdXz3AKxwOeyzWM92nAFBI6bseo6GjlQg4dkJUPRitfygyipRazaeFWXy1_A53cEXe-nH9Og35FrNymDmodVqD5wUwigbOpdhdlkAPc9UIPoiWF5NUnjxqRRfaEkuJWWO3z=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stadion Narodowy' AND address = 'Sokola, 03-724 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq4_3GBezMGCSM2aJWF8tIWnFq2iP8Oit1w5hfcy1RDcERuiyWskqQGOJqcUoXAFdUpcKx_bb_Jk3vuD2PD4LwQNS8lHS95FjBY-4pYm1O_xvzXerfkfEp8WwWAXL79ny4LXpWg=w482-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stadion Narodowy' AND address = 'Sokola, 03-724 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nomj2ToZp7HlLkGp8S3B56BbdEa2-sLKssJ97XOq9q5LGgWaoLVVJe8RKydCvnk4ECH3GsezpJI3YznBMP19Cq5dFBsy-ZCot-bI66uvyAIxp5ud-fN-v3h8vLNkkR5rZsldi0kFg=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stadion Narodowy' AND address = 'Sokola, 03-724 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqNgEpAMPrJxYRdQMAbcZaKeQJT6H2Rvgjt-D8OItvBc_-r0DuucHkHR1hCkG6uCo0gDDgHpG9nTkL8cY27eRRyK72Tm5X714U0QWTVe92k4TI-frWvYn_5Fu0geZHZoHh73O3wLQ=w224-h298-k-no-pi-30.000002-ya347.61722-ro-0-fo100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stadion Narodowy' AND address = 'Sokola, 03-724 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Centrum
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npb-_XTouyMIW9a00ciTufxhRJJlCOZS8PAEumjGC5a2ukYj-clDPDXO9guVsS5F10oBA9BeqX-7rfANPyLMb5zx-rjrlsNbs9tZiP1owF2wT7XDihjt5eX3SSnmddSmLgGuoh7=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum' AND address = 'Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npjXaoUWSXa45bCxfQqhqifg1D17TAlDY3aY8UymY2KQWJmwDij9EnryisaPgBZl7atBoOEOrltqCSyNGgQmBE9_620tezOt7orGLI4G46ivuYSoX7jNUMwU2I7sgwm7cGfD9x8oA=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum' AND address = 'Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np3HG7uEL_sVGJHEvobjvk-itMdrnn5H_h7ZFRbmaybyIQBEFicQVzUUGbU369d9_V8nbGwF5Xtm5atOSlcpR5-1KV8AE6iHRDM1R-3isbztnzhm6hwDSLeXazgTQaUOB72288w=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum' AND address = 'Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=ccvt2Z-r_7UuHmRb0LPp9Q&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=118.86786&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum' AND address = 'Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Świętokrzyska
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipM5YwUJHYsXYPoyuyJ1MAya4sFLLSvagrsKDc7s=w447-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Świętokrzyska' AND address = 'Marszałkowska 0, 00-004 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npCJpvy1ZYIpjaX87lA29XcjBuuzL8pUTbv5REbUQJLTGSYoUjsesxHhV25mb6Fy_BNAlUw0-KIWvdYSbBhd0azP0X9cZY_5d8_GfneF8UA1pxoiYG7gnCJLlgwS-5kwikyZhkc4pnwb6c=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Świętokrzyska' AND address = 'Marszałkowska 0, 00-004 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrQL5ykgpoV15p5dykIN7NHluLz4W4qCreUH6LAL7Q1d7O3bWKCPJDMiyvjjPF2BClz-wFD5Nx1W08NRnsT03NJlIdhpc2kg6zAju35-vVJ5zOB89BOxt5_lqaIgCNNk3IgkGK7=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Świętokrzyska' AND address = 'Marszałkowska 0, 00-004 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrYqpxlpWeyHt8aPo6GPJ8xdjDSeciHgVgu6oOVhVByzZ_logxs5k_A42-i4SI_cOGzc6PD-d0nHAJpub93a8CGN-ctZFq7lPyEss4OVQJA1609aPa-bxKyliqP2z2SDPlM2-CUfQ=w446-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Świętokrzyska' AND address = 'Marszałkowska 0, 00-004 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npW-1XWRaEhVh3N20znk--d9bYs0EPyLwNNxBIlDM_eyPri8mqhc731goITRNS-2x1XF-VQEikMnabaY_c0GzNkLndJJq5vVoLwisfp7yxf6xX0hdoHa9RmTTjSgzBWHdugoke_SQ=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Świętokrzyska' AND address = 'Marszałkowska 0, 00-004 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipM5YwUJHYsXYPoyuyJ1MAya4sFLLSvagrsKDc7s=w447-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Świętokrzyska' AND address = 'Marszałkowska 0, 00-004 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nobiTmxN9ec7BP_DKK_2b2pZhwqerA2oW5q9lvs8Ok7GunWYb0oOvDQ_aGOn5zlZukAtSveCmfcFwSMwaYgv9R7kO7vjUnSKJ1CuDMrTHfcpUVNN4hg9fs9lMvDjuDkvkPbmvrCNA=w224-h298-k-no-pi-10-ya180.90501-ro0-fo100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Świętokrzyska' AND address = 'Marszałkowska 0, 00-004 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Dworzec Gdański
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=oOn5teFH1mcAAAQ7LsymaQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=220&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dworzec Gdański' AND address = '00-204 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npLMLr-UaEgInISQCK5hk7FQz0F81ote1QQunZKRXVSP_iMbxupQuNknoDs4oecS-N55QMNiegplh_4RBCL0kGjOU8SO-xZ-uY6n8wWyJiAq2otPUzCvLpau5s1StIiyF2k4V3EdQ3pk1OO=w224-h497-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dworzec Gdański' AND address = '00-204 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqORYzqxOnHtOSl0d0kDtiIi03HNTQxjFvy2FJM75bxUmSM4qTSDl03Jm-7uNsr0gYOwc5hdk0C1eEFjahdyA-wKtkZW5yfXMFhWPtr6GF9dZUEWAomiWB-J6VnUP5zGDvzwxPs=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dworzec Gdański' AND address = '00-204 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4notxGLFr9UxJr8oVNaEVbSRusZm_-FF6-VwVkA463vNGye6xGt1bjd68-XnWHUdWHOSWeLqTofSY5xP-kH8S1ciwUQpg2CqmIO7vIGCPuifb6nUqdOaYGfX3Yysk3zTIJBsX2E=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dworzec Gdański' AND address = '00-204 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nocb_ZZOrmGMsRmqoEPrSq6eGXYK4O9JeT0AjeFRzmP4TvMx9P1oKj-Jlz7an_BcJ5uVImb6gXrV0JIG2X9qB1arL81fj5hj9oOS2hh01FEmjYLN-zGvFfLiaRVEULe9ULvPZEq=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dworzec Gdański' AND address = '00-204 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=fgq8iUe2kz4AAAQ7Lsip_Q&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=180&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dworzec Gdański' AND address = '00-204 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Centrum Nauki Kopernik
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOA246W-lFV-7s2edspbzIXCi4l1QKyvZO3oShl=w447-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum Nauki Kopernik' AND address = 'Wybrzeże Kościuszkowskie, 00-347 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nphZwuv5-E4_InTKNebewVTQHprEM07UgCbxRXR8Md0VoDcLy7AZ_HlplnOphqOTMtlX9YhJioFRhgAdFsm08HCLeLHzs9lMn9V49b9DGgVEF6hWaHwEm2SBadMaxcVm5_AzKxi0W17vZ4=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum Nauki Kopernik' AND address = 'Wybrzeże Kościuszkowskie, 00-347 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np2JeNAFfl7uF2WN5R0mRGihZpPHNn_KEx3bNWFa9CQQ5enWc3VP4HJwLZoSqRrx8lDxaREhKSvOBfQbOu036h1tQ5apgdNT_8FjpjJpZ3vehutmdnPLD1Td7Jt_K28a0Snv0Yw=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum Nauki Kopernik' AND address = 'Wybrzeże Kościuszkowskie, 00-347 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqQ_hweQf1Y_vCakmczuN7vEMDy9-q5tVV0OFypFN7ywpF5gIpZZ4lctKn_ITTgRN-dPRrMV8EvScCellPD-YpcOtrSJiszNGYDNk3OhitNnCHjf656Oi3d30_C6_7gwRt7nkh-=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum Nauki Kopernik' AND address = 'Wybrzeże Kościuszkowskie, 00-347 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npP_uchqwILf240nigBiuu0apg3g21a2_O5H9bc7BW-sT1Mn_jvww1VlXpSknPAn4NDjD1-qoG0nw8IUtLr4pp5M7DrJEBlttA8F9oNlJ2UL6tzN6k2FsVodJqzaV8pGvtzGkCDFQ=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum Nauki Kopernik' AND address = 'Wybrzeże Kościuszkowskie, 00-347 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOA246W-lFV-7s2edspbzIXCi4l1QKyvZO3oShl=w447-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum Nauki Kopernik' AND address = 'Wybrzeże Kościuszkowskie, 00-347 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrg9UxGppRHMJ5aNCq-QN-8ChLmTT8MHlZEc5VobIkH1XiveOhBBNCWA1EJ1Q3cl2BemuRL0ELYuKxOM77mUrRSfpNR-QeTx8qC9MJiNEdp7q7pwMxV3ClDyqFxnEjvqlPtigYn=w224-h298-k-no-pi-20-ya158.09686-ro0-fo100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Centrum Nauki Kopernik' AND address = 'Wybrzeże Kościuszkowskie, 00-347 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Politechnika
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nreuv79tMDCK0q8hY18iU2XIUro1hIxT--pB3o9Y74ptQw4AiBflafIiDoUkEQlJOjqOJDf275j595rw2_b13Ns6l7dLtKQYZs9k9KCBBfsC68PHnsf4I0GPhBitaWYvcomw7bS=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Politechnika' AND address = '00-636 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqUS68ynfJGPauGPTRCbmx5PHi59ND2KSb6oQijimpn8RFe3U7iNfZMIZ_xS_0TrCGDOgkc-S9Xf16tUt2Mik88vBzMEyZYpLz18Kj6wOJU_h22QYcnxkXeU08OhnS-DE-gabywUOn-nBs7=w645-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Politechnika' AND address = '00-636 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq9O88rANIAyLer-Zc_cxxKOCVa46oZPyoMUS-wNgtNAWQC7CWvUqJeyY13T1fGif6dC22inX26d88k4_n8gLvcMf8PqccEDgDr9I__E3_V-P4QLz4SHQOakH4_qwXWm1iZ24tK=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Politechnika' AND address = '00-636 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np4U8KPd-6IdqJvq9WfHPE33XXn4CjuDlrBgcdVjrqtvsmtJkb7waFg9MdT8fqImAbnG_b-EE-im-b-dUjVd14EJSQ2bbBKoRkwe3DuxTolIH6n-GyjIZH51lvhsU06OOHmxno=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Politechnika' AND address = '00-636 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noC28AcNudoDkBpfKaqfg_RoZ98yFNIBdNqdeZB6jB6yln1IwpU9zpGxygh8o7WVu2Todn8XFe69opuJ0MLX9B2Qc-ZdgZXb8l2x8fFHQZbbGX2U8tzxnFZi5q0qpr10zSOZqu8=w224-h298-k-no-pi-10-ya42.000008-ro-0-fo100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Politechnika' AND address = '00-636 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=x2dSZ2tQNLjdSfKF64PFWg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=0&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Politechnika' AND address = '00-636 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Bródno
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npUjwjxwRVrTf35NPJGZDS-UCFT39lagDMnfvqNcu3wDLM9X0FQbAijeuuDURwUBWzTH-ms__QdbtQUwMMmbX7Y-5rzqjDryXNJlFSsLe5uRFDg9gAREQYkqJlEqgERuA-ArE2ivQ=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Bródno' AND address = '03-242 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrxzas3ecHBfgJ2Mt1gSLy2jQTeC_SRwSxtpqCZEN0Z4ovKF0JCaEDyWTHU9NdS29MUIIEJQVh2lpNnjdUNIuVmlsKUZ0zbMdnx9_bRQNmaQOXAM-68H6OXtIiQ7nU6H8z0_wZl=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Bródno' AND address = '03-242 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nppM9RzQQU6eLvKw9jyBerbgcSYjLP8uzLg6bmNAo1V_lcjVIAzYw2Eq2WMsElY9wyd4BxOQh_NHc4pAjE5s4DIXLWP_R-ZqrLKL9vIFfhE2lIxIUG1GhEIRAqIvEYlSZl7cr-J=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Bródno' AND address = '03-242 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqq2G6cVkBXxMLdoG6ZpsMBX0lX-Sgh1rxtW91O26GYkqSHEWz8IBrUQ5BNkqZX06KpVWwLY__crI40TmASKPOlzTtdGtcszFebcsyDgTM8xoaxR9YOJtvfJee0PIWnr1yD-ds6=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Bródno' AND address = '03-242 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noENdQIibrapBNSM8IX39XmBJlqUl9oJh0-4vPbMJ1jF9CKdzQWzqBmUT33HJ8aGtI-dTa5Ylool49ZTFkA3v8Fmn-pclruIg4ZDbx4LtXKLzzcnPoeg-3lDg8lt9cKgFE75kI=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Bródno' AND address = '03-242 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=UPlaiv-ZDuiqVNd6MepT3Q&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=285.7771&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Bródno' AND address = '03-242 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Wileński
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPxBiF4PdfYHS3CHGpVb_4O0XbBoJ1NZhaoUrU8=w447-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Wileński' AND address = 'al. „Solidarności” 3, 03-734 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npehYboGJzh-fo3bbuizXQKHHX4xUdjRdbP1Pl9GeGHAzb8bEsH7OldAEnGWU6Z-PX-tZa8ouF8JXTr-DNEXHS4mlfpsqmNmc6J8rDIx4BrRRFD252PMpi0-pmREAC8i4RmYxW_iA=w224-h299-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Wileński' AND address = 'al. „Solidarności” 3, 03-734 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noVFSY42u7rkSlp3wg9j1XVtSy6Zm6zqXlNLwctvpkVMHP78VhAuG-VmENGfd-SOLBSAZxIaowiTlrlxrcHuAV-VVGDVi9IG7AK-P2FBCNHpVgmjK04cmQ-4yvLqXBxBVYYsnaI=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Wileński' AND address = 'al. „Solidarności” 3, 03-734 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npO_AssFQk-9KOCOC_Ys2Grrb_yRRHgq_Hvm5yppL5r1lMsor1vBAT4q67rJGzBE8UJOfYTbJ1-Nzn2DBTBv86HsvSQ6XOANhHnKKmeKY_ypa_nK7wlOMVUqLSdZNZHNxEgvTia=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Wileński' AND address = 'al. „Solidarności” 3, 03-734 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPxBiF4PdfYHS3CHGpVb_4O0XbBoJ1NZhaoUrU8=w447-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Wileński' AND address = 'al. „Solidarności” 3, 03-734 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqCX_UF7_CH8y1Pu1tPSvqDL7VQ1a-PN5Wq2R1nJrduagnBFdfiuUynB0chU-zINhG_1SvrngpMsHonP4Dx1OSTk2bFsZzzuda_ou-5PWWwQt068fWziwWpCD29Ik11djIJwGy6=w224-h298-k-no-pi-10-ya356.8198-ro-0-fo100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Wileński' AND address = 'al. „Solidarności” 3, 03-734 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Nowy Świat-Uniwersytet
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nodICw_9RvQlFSZLhf6D4Lld5AA2dMgbsZZPwsqM_7qC0VvpqMQI4fVsgyDzAOkMkQY7xHPipAhaz2W312dCTIQ6Kgcee3kKsvKQq6Xk2ItiWy2UspsAjrQ3iObpR_wXQWluIfM=w444-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Nowy Świat-Uniwersytet' AND address = 'Nowy Świat 0, 00-046 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq-TV135gAAiWLYR73EFI1Dik7UGtWSFKRJ3wUkfcriJuUkXv6nUMnE73AVDJQGpopPtcIG-_Z2xWW3l8z34VZ-C4vqdp-q8P4vuwGzrn3C3z9snwzOKbHIowXKm-V3tGjK3TaQ=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Nowy Świat-Uniwersytet' AND address = 'Nowy Świat 0, 00-046 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq80UiHi1Bg1xxa3XMHYI8l0UjXWZFGRSDZorQsaAqhRq820sBoGjY__x4bBjhSWUk41tUHgDOEegw5o9z7XbKkVxXLGmjaXW1PvRcHZNMMpxrXhtqB0l3RulNheeBvYZJ79dJ9=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Nowy Świat-Uniwersytet' AND address = 'Nowy Świat 0, 00-046 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqikhn0Y-VTCe8N_5e-Vpow3OAdC51p9YXfCZAp5lW86vVpi6e48ttwD1mc3iss9WiwFDEdoQv28n_LzpR-LidDnYVe_wcZ0c4DqIKagCTbB5icWg-hIA4CgtSQ4NB_iBTyLtSi=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Nowy Świat-Uniwersytet' AND address = 'Nowy Świat 0, 00-046 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq0oV-B3ZKB8GKLFzcqSVsONUID-nIVSPyPdz2lcaHsr-n7Ej4PXhoirfgVSEvjfDEepQtjfiqZ0bHK0qaMMnP6iDzXjSfTcZcDSGXEKHD5zuUCx3Y7Jq5-ZoW2XWY3rekFNMVi=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Nowy Świat-Uniwersytet' AND address = 'Nowy Świat 0, 00-046 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOych0VP3yWw0nbqBbu8hFB6vSCFn7ODU9GT8-O=w447-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Nowy Świat-Uniwersytet' AND address = 'Nowy Świat 0, 00-046 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr6ps0qR9xYsmSegzCP-v5bSnPWheQMkjqmZeP21xvFFf1q6tQirjRnYuB6954_1gdFExb7vHkJJW6onXWab23X097GdwBoK7sV8TEEjUDYnmZFI1JJffGkVHaELbTMYvCHeYVc=w224-h298-k-no-pi-10-ya99.747955-ro-0-fo100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Nowy Świat-Uniwersytet' AND address = 'Nowy Świat 0, 00-046 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: STACJA METRA ,,PŁOCKA"
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq4hhlCPKm7pZM-arZUHsbVd0PChJjLQvVG-c0t1VFpb7AE3fW2YnZ4MyLB4pJflVCGkoe4xdh513qkdeezIdcxhYsFDMZOzd_LLwaf4qUaSCDTIcwHZt8SU5wt9BXPY189bSxW=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'STACJA METRA ,,PŁOCKA"' AND address = 'Płocka, 01-231 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=zwsysfyGgWlO7CbQ8Sz5qg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=219.9023&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'STACJA METRA ,,PŁOCKA"' AND address = 'Płocka, 01-231 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nofDTWK1LOIzNqh7tmkQWkGla2CZU-VVUBZLywfC2IrI2bWbB1tvVnpyu7TGmZC3HI9IRryYUksBSifWGOiuAVxr3-fFSg9bOdMTb0uV8Y63XXpsf_Vx01eZ6fvbgGt1ZOs9GKhqQ=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'STACJA METRA ,,PŁOCKA"' AND address = 'Płocka, 01-231 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Pole Mokotowskie
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no7HZhMc7fuyf-uuEWlee0E8qlI1IXVMJZqK2did1J9HvJENq3V5OGmrBqA8d-6_K8XGvoMZT-ojoqP8hQWMw7QprRF5DK_f9U9U9lITXKESuFbLRlnvZNTQIRM0AWqWXxhfC95=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pole Mokotowskie' AND address = '02-521 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nreNfrIInmE0LE1j3uRJuVQl0l5bF81RuIQuNRhkZp2LWdC3lwvwJZS8r_S3My2ZpuEHVJt0w3wL8RkMeDYbR_NbhGgfk7iRLmxnV8Gm4LmIS3ExDZHEfFomjlDuNjKsv1kcJAR=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pole Mokotowskie' AND address = '02-521 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqGQa1U5EtkpnI1aDKuqnGOt0jn8oKyy-CkxBEwEXUNWkvWiULZFlC8I68WMGyjhDi_6N9dlTL5kaEN-gg1gCH-9Z8VVLMBww3qUUoXoHU3jsYFeDCt9dHK6mI0lu5xE-uVkn0N=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pole Mokotowskie' AND address = '02-521 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrM9J2pFfQYiGul27-RTNkiVe_1VePd_QO_w914zc0g6rLqPHkww6HJgbnpMQs3HGB8GzuIH-sykqnCesoLFIxl0UXRLCh-5Wf48-J9udwlO5Nhbe220C6PB214kFSc4l2gNyk=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pole Mokotowskie' AND address = '02-521 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=-BuOaCF9iP3j4hwgkOMOkQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=180&pitch=-10&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Pole Mokotowskie' AND address = '02-521 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Stare Bielany
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq2U_hFEu97tnBjNUISn04SOdI-a0e8n78I5RmEbYpu-TXk9y_qVzKPC7AabxJ9_xZc7Gc4mFDDFkGRTgBVsG4Eyr4QghsaGR9YqS3rWcB5Suovt-BWrYhmEDq7az4tyj3WUq0HYw=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stare Bielany' AND address = '01-871 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np1tnr5az-uQdt0nA5BGNzpV86ZcIYdid0FwRItxyo0WH1k780fw0YwWo5a8-sz7_iH0bEE1UpbK38KktywvY_uf9dZLkcEouUeXXRLLxcJgnvelvgv3pz7ZUnOPma87RPtvR0=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stare Bielany' AND address = '01-871 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqWwJBEmeqHQUjixROqH6BIJLbSBQzf6u1J7Cxfhr4ulWxEti60S4GOHc1oN4GyRE6cYYnX3X_v4qbd9fgjdhdTr-Oj9zrW_llqJL5O_zka9UrTVNbojlYdyznPQpb311OoySWFqQ=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stare Bielany' AND address = '01-871 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr_ZDmpkQMPjYiPL8QNTohzce3acqYm1nr8aNtcipAhMZ3Lql2ExGt0uDfd6Qg9Dh_2sDp6vKt8or9mVqjC1KxFPIKiVI7wRWzk1eIBBrKlLCrfpV9aMFg7x-t9FfXlKAARRywh=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stare Bielany' AND address = '01-871 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npS4ywfyLRA9NuPVoKvCmkF0wYhSw-Ehl1R8ZBhYrLp8MOMj_NGJonWV1FIxMXWMoDmfLQIrpuhHkNt9Ol78HKLeLEVRwnEivKQEJdmi0xrD-ZQsNA093hngQ7tRFKTg0PuM9Q=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stare Bielany' AND address = '01-871 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=hmw9YE3c8wNEv5HxvYv7Eg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=240&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Stare Bielany' AND address = '01-871 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Plac Wilsona
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq9FjGWhw_A77bN7BZpqn011gSB_H7eHw_nQKEeWeL9IOmv_12N0U9hKWwIGpwvT9mTVSy--JFw4oPHnvxbJgXoxRTLzQ-lG3jWaJM9pBllB7X1TS69HAVGPM5dz8OAMpGq0D5g=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Plac Wilsona' AND address = '00-001 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nobOV5vrhoJInNY6J1AdZscJQ94z5VwSqSRKypVLTej4WmMqr1uXu6Gd7rH5oE6Vkn5OIKb4WmTIseF2NftclGaHePwGpcS-LsNApP5odN4HIBT3arMIyCjVz9-63p19FInuoXXew=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Plac Wilsona' AND address = '00-001 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrbKwjiV3e17aUQ9Z0nOEsaixAbQioiojT9OGBeOHsa-pRG9bEEXGMVtSLJ9E6ZM7-aXbMtJZkhHmLKwk79nrtlcWKrwEnbXMBqe-K_tCpL6Cm2iQuOZO7wG0JwegsdchjWsWHRoQ=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Plac Wilsona' AND address = '00-001 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrD8AhKweGZJ8_9bCAHeUYw8n27LQW-lDgFQ9ZGIA_u7WuvStrddTSQ6Zzne-XgteccnkCCxx9ogFmjl6TKAxKNQbkaEOJKv4OLlAzufTCK-6pWYwajheecVBnza30Fj1PtnrFMuQ=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Plac Wilsona' AND address = '00-001 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrFj2ylyAITLlQBQISIkL2nXBhSeadsie3TRI3a9gUawSKbndfLXQuvqk58v0HinH3kBvDyLRxsugRuImtbKXMKpGkptwXoJDOCUtODsE6DNdZjfBSRdZU6gLqCbMEECNdCeG9D=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Plac Wilsona' AND address = '00-001 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=1Htp5GiSzwwAAAQ7LtJe4A&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=180&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Plac Wilsona' AND address = '00-001 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Kondratowicza
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrlsqTBKbmKRPvn8bhBmilDJvHwWG4GOCiQ4IUDftaX8EjAC5YAtoyqvjK6TRdnoXqZ_dHqrAl3UQdCmKkiH63nzAGjuQfssOvw8h2oTboxLLxKyasF4wQ1inHHBHiSlPnfrqQ=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kondratowicza' AND address = '03-291 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqL68iveyoVEPMfNjSyPzuqg7uahgT-vG8ckmwO2h9vU7P03b2qVKshF3BvZ9gqxB8xqngCiCrjr-J18RUH5qYa8K_KKt16THNn47tDqLZpAHRd3VXyQaeeMAncb8cjh0Mo3ldFNg=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kondratowicza' AND address = '03-291 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrBSzDDAghqgmocTci7KALFIQS7mQ4hFcjc7Zx_tAcWJvS6PSr9ltEguRkRK3zMmdIzMHRjmkUzwGyxJzUSphhpUf5Te1Fxjfgxfz97feCNsVRJElw0xjEB5_dB5WkmqPQWIyi7Xw=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kondratowicza' AND address = '03-291 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqy8VXRXBO6Eo5-DlAe0ZkvbpOU10sc-Asdkdygw0uuq6ITQKWRpA1nQzHJ0gLMrWaWC9JdbHbkscE9dZRE1sg2OJq9Voot1NMitRX5xWW001qjRaGOz0ntU5tx0ZNQFDUM3xNb=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kondratowicza' AND address = '03-291 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqUMCwTNJ3smK-CUUQGPTF99g5OCupFLiMvcPURWSu2Po_DHAPM8bFWXwYEGQzO5ib21nLMAHxvOxXAV2JTGTCOvb_nA_FaYx4kS_-_hHq8sLgfRbE0ogtLH51TV6HxTUHVia145g=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kondratowicza' AND address = '03-291 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=iU00tv9lCyOyJa6cJOvrlQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=94.74082&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Kondratowicza' AND address = '03-291 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Racławicka
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np3h7s4aeckM_w1e_lDFqQnDOsKIO2Cvs1DJT5HfMLM31eQSfhZp3HJ7ztdL6Zzrt_p15MB9oXi2LXdDfV-Xf2DTfZL-owhP74TLOLM9gL_cRsaudmK18hikIb9_7l8iYfIjDS3=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Racławicka' AND address = '02-617 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no2c061sx_1uOMuL7YhQ446Gi2uRcxBwrgrpGrdyRCZzNy3czcrlnHefRHNgAqoGC61DMprq93vJjKLVJZF4wvOsbrEY2FxnCGqkc4aMxYogw4RbVsPPbYK72cByhqOKiLHi1lC=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Racławicka' AND address = '02-617 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqP0mDu2-Ti1YakdM6sZMtMFXpsLOp8RHzEYiPGjU-Oay0qlm6aRHJviC24URmnabOFeIJoMAQJPJaTNsKU9OizztcHP1BwhDHqngBSbqQZgLWVX9ME4juwFx3HinQBHHByKE4jnQ=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Racławicka' AND address = '02-617 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqvnUyUKApj_hRGz6g9h097Jom1DofV_BX2Bp4kssOC4OBvKi18wkzgxQZNMBGxio3MJvHggeLe3vs_avG2orDCipIo6lVifUvYew3BFtAZXgMfrNnwcA9JQXGBCOcWaa3FBjYk=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Racławicka' AND address = '02-617 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=ZAea5VW190hBLJFM4pRnbQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=180&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Racławicka' AND address = '02-617 Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Wawrzyszew
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=GtND2rCZo24AAAQ7LuIYjw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=180&pitch=-10&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Wawrzyszew' AND address = 'Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noSxhn-EeCn52IjG82oarsC1U9fxHv1ir-4lriMCdN7r3ILRGpS57qtrtqEhjP9DE8VdkGog8-00wCybMCiheP3lFh_03BIQ5AriWzfehL9gg0v9vDUAZHHVvYYHoNsXQcxlWi4=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Wawrzyszew' AND address = 'Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npOlBZ2gze2rVBSAv9u8IE8FJ_yMqxQzIx5UkqERlfnDh8Qedrogon7aK7MJMGhh25za9zI-vURO3w3Xj_Ni2E8Av8j3P45_EKg2rp-gpHkI1m-mlk46r1AJmfeATq67SbeUcQf=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Wawrzyszew' AND address = 'Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrpHaTqXQRW8oJ_uXGQsu_hIFSXREbmPbkTgPC5Fnhin8ptF_54WlymkIy76Et5BNH918EIY5VKfFIFQ7uHJXHFAwPaUaD0PEcqDnQq-qQ_KUH5NP8HQ-lfOgt7IIi7qXIzNRJUmA=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Wawrzyszew' AND address = 'Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=fOPfMrT1-wQAAAQ7LukgCg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=168.99077&pitch=-1.8211523&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Wawrzyszew' AND address = 'Warszawa' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Mistrz i Małgorzata
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPVURKjHEbp2vH58gfjjPNy_L6S3Na340i3QmvQ=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mistrz i Małgorzata' AND address = 'Wojciecha Bogusławskiego 21, 50-023 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq0Kx7J6i5_gqoMn-w3QY7qRg6YboUialX4b611uip5Ie8qu2iT-ljSju16F3DsiF9O7PIJ4DfPlxN84ciZKMKYoTtquxVcYpCGV7L1UoW5DhgVrphum4fPbLVSOP4ZzamTeluE=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mistrz i Małgorzata' AND address = 'Wojciecha Bogusławskiego 21, 50-023 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noDfKgeiS_h4i-ccL0NGU6b_hr_ynhWPmZSkWpIOYGKoAS1YRD7m3bIQsVRK2YjJvtYoTJFzidgctVbWX5gNXQg4mebNPiInYTAlM2C2cyAEn9DDP6hhmdPoVbplrifWa511F0uIA=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mistrz i Małgorzata' AND address = 'Wojciecha Bogusławskiego 21, 50-023 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrinGk-ShkRM2CC6rcOqVyC3YShUkbNDyVaTiTCcvw-m48X1Yq78swgmrBSMhD3unqHF5hV1sVd5ERqMdCVaYHz3QHUjJWs8ZChI4obNfE5CMzY1_3bwXKaTYZ0ZLBFVWkaaQ-X=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mistrz i Małgorzata' AND address = 'Wojciecha Bogusławskiego 21, 50-023 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNxi6bH6u7dlm_NaOK9T9eqie87DDAhGEOe10Do=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mistrz i Małgorzata' AND address = 'Wojciecha Bogusławskiego 21, 50-023 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noSC45x0niOa77SzdcoJz6Yp1c0Foml6Ukrnccj70fM72y2VPQz49QH2BAWy3C2gHjBbFqtXy4gxHVcFjp1pWM_xrudYNTiIIXp3oiVv_wkXruoJjnFpXdmCPwl6uPlNYm2uLTq=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mistrz i Małgorzata' AND address = 'Wojciecha Bogusławskiego 21, 50-023 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqbkF3uock9K8_eyPG00WbyCILwYtiOzsRXHVE-woazrLozReevtN8CHzfwqZFsPRzU_ulxt2IaU4VEoH7juJqMy5ApIFC75aboB6JZwGNJZQZyaax0UA0g2J9dpjyj3ltQvyA=w395-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mistrz i Małgorzata' AND address = 'Wojciecha Bogusławskiego 21, 50-023 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNHTwHuWTZfsXeZhEwOdUn-2aWowFR94qTC-yiQ=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mistrz i Małgorzata' AND address = 'Wojciecha Bogusławskiego 21, 50-023 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqg8uASALJx-DltPBnBmsJdNBo8ynVHLH8VPUDmGoX68AmOTVTBALzUWYoUBXpANwh0NeDV-VQjURtKJRMIQlJ9m03DDuNPXjIbMEknYqy3lbf0MjfNzKCriwPD8-EW7R6OrJZ3=w224-h298-k-no-pi1.1296428-ya349.99188-ro0.50390375-fo100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mistrz i Małgorzata' AND address = 'Wojciecha Bogusławskiego 21, 50-023 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Barbarka
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np1pivgzf1xqPf-H0QstwVB8IF5cKfCnnQwdKf7IYc309wIxpGNn1RvDn8-qdBETQ4YVqi5pKcMNaXW5_1DD1f2cqAA6a2O7UxjZSIve4IPNYtWvA0KexxBTi1DegLW1UHDOn3uK0tia23a=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Barbarka' AND address = 'wyspa Słodowa, 50-266 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noYkEY9zSCJWZvJDmrLrKbMBztDy_ky4Dey2nG3-WreYlCw-v80WHDZlI3_RXpFkDIJLsUihamOnkjGM2ixh6q6Uui6cWlj-0dx4PzaEDE4ic0PF--IS0UWsoZzqryzbguf-nuVg3x-bG_S=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Barbarka' AND address = 'wyspa Słodowa, 50-266 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqkqah7pX7GhEL6DPaopz-hAdNOCABb0Qf7NDpcrj5h1yWELP4_0OR3wamkIp0h6LTwqvlv9xoubtEVK2-fXtuQ5YI4Kj3HrT2pXQX7w8t6HooN1giDgTotCXdi5ILSeVi-dumE=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Barbarka' AND address = 'wyspa Słodowa, 50-266 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqTQdD7MmkxuTkALU26YAtEwC6cH9NN6Uo-40FdAhTb6TVzXwCOBTmdQhpoaFczkcgKOlZUbfMoiqDOQ7NbnJHewt1mZPD2fsmaPyK2qgs_5WPhK_cNWEEiiSst4M00faZ1muHRP-RGfZ0h=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Barbarka' AND address = 'wyspa Słodowa, 50-266 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npwXXPdkg5adyvISgbebRd6qRyULKU-Nb1hsUUrL92qgBqmXpRFHPUGtulYQvYLiIM3tNbarek-FR_T4f9OJj3_WLxj_ctOLqlVS7_C8vjMrHB27kn8ArisSLZmudBpCDPVRf_6=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Barbarka' AND address = 'wyspa Słodowa, 50-266 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqO9lvDXZ1iW8__SZdSsWExZt8zHzQ3-JPqBqvwZofxu5Th3j2zf_DXC8sNpoGC-AIxjyIrn5icImq-HEHO6mlGIXzOntT6Opzj92zg6kWp1y2MhosG7LUQV3LTi4bEXaxGVEeI=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Barbarka' AND address = 'wyspa Słodowa, 50-266 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqiak9laVXAOqtffV5Ujphs9COpkj2kUhLno0Jlr1LMhi1GHHhpxXNxXdWLP4dHZoLUhXEVpIFRLZiA6lhaBuLB02Y73wueb6Aww_mqHEogMrPQ7LQobFdA6RldujIW2Y2-i9KG=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Barbarka' AND address = 'wyspa Słodowa, 50-266 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no1afc0kW9jL2yWpHVo_u0LPb_W8TmL6h47m56vXj8PjpTXamYjr_6j50cdoZEX9Mw7pWxbcwUuAnvnnp5L6m8gO8RBFsMO_ZmQvWR4DSmvjt5x25-thMoMRbJxwYZ6RX6Q265f=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Barbarka' AND address = 'wyspa Słodowa, 50-266 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=8yroU_LU1Os6-FE31gldtQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=118.544304&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Barbarka' AND address = 'wyspa Słodowa, 50-266 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Cocktail & Whisky Pub Szkocka
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNhM96JpDv-W0KYUfpR8pFukJTgSC25z708lkHN=w446-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cocktail & Whisky Pub Szkocka' AND address = 'plac Orląt Lwowskich 20a, 53-605 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no5d6PQSkIAP8k6PwHKgbCt1dipBznST771obYVndbK6XkZ04HxnZc7w1qX6k1WOLFVcL1XUQWiolq23ANtrdvltclTsPETFklkOJZvq2bWFmKKDpUfqAbj1Dzyywg4zTbfBLeBytbXqE1z=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cocktail & Whisky Pub Szkocka' AND address = 'plac Orląt Lwowskich 20a, 53-605 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np1_d4yCM-AjO9kvittrKnrD6xJzabpGICziAIL0qxKPPOcfUVTxI7pMKt3RzEwN3f1vfMDybr4G4sw5COU6Y-rf3HE2GGKIFdGHrfzSq1L_dSob4xpfXaN5t52Z8nX6FVD29yZ=w224-h471-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cocktail & Whisky Pub Szkocka' AND address = 'plac Orląt Lwowskich 20a, 53-605 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npwWVnxA9BYmqwM2f4kwdGgTyvST0g8eNCVah3QY3vON7I-jKOFSk73rsiDn0HnHhyAyeIPRHC8llm3fjPQpbeLvw0Isd8BupHxSxJRya2w19M_fascTZah38aN7mvvYPDSaponBg=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cocktail & Whisky Pub Szkocka' AND address = 'plac Orląt Lwowskich 20a, 53-605 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipN_dJPbTng1DUyRgvX2SjKIh5zZSH_hFMZDTPhG=w368-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cocktail & Whisky Pub Szkocka' AND address = 'plac Orląt Lwowskich 20a, 53-605 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr31hgFZDmsl2ceBvQ8h4n-Q6BzkykM6G2G8_diEzucNGkTaPor_MtY3vhDP3VV_eJNDQN4DGweqpC0W6KwZCBpf19KXWIS9oVF9vlTUdIEilG8c1A6xYKy9BM_tdb8fgUt9QI=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cocktail & Whisky Pub Szkocka' AND address = 'plac Orląt Lwowskich 20a, 53-605 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr8ChSZBk0ylEa5Trr4W1YckVr0dErb7UNOcNDK0OxrIEWy9Q5bbmdZuOfV8KM4vNXcHyMM-JKiuA3N_3mco8-LcN8AxOeK9HuPZhyA-pLspYc90bxdsT3IjnhVqBerRHg739za=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cocktail & Whisky Pub Szkocka' AND address = 'plac Orląt Lwowskich 20a, 53-605 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nokZ-4x9QLu6Qx9Yu2XdLVCzFpuZCvUqdkVDXoPS5vCcaBpqObObAtlLWsS5ValyYskFWg_JWyyVUcyKDTBZKbJv3sKooci7hzq4YG1SlQTL6c1Ix5TGEZ-8eZoSRw4uD3ohMX9=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cocktail & Whisky Pub Szkocka' AND address = 'plac Orląt Lwowskich 20a, 53-605 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNjJPupV56d7Sd6peDZdoMTGlBZ27Dcj6317NBY=w465-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cocktail & Whisky Pub Szkocka' AND address = 'plac Orląt Lwowskich 20a, 53-605 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=EMV-U49rVItWVIWRi8mMlw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=150.47403&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Cocktail & Whisky Pub Szkocka' AND address = 'plac Orląt Lwowskich 20a, 53-605 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Spritz Break
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npttapV9Notq8ar3uCKp0HRcrkPoEuf7RyMdSPlnoCD1JS8zZFZwv8Sj32e-7xd-awfr_D5yYZmD0ATKIuVvBAcvkpYwV08yI0Kpx23gopv9d8Nfkow6N56no7maYiWuPEugixK=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Spritz Break' AND address = 'Odrzańska 8/1a, 50-113 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np3lOs_1nkch8O3eLyCAn4XOshaR7WNhIQdkcZncWf8GEeslxIsNCmPuWzQ-L_Ze2x6UIsW63639Gx9U_XWYEuorymw8Ytzu719-HMh1jZ4NdVDiTN2ELcTsFWvNrcbeaY1zCZ6vsg5Dx3x=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Spritz Break' AND address = 'Odrzańska 8/1a, 50-113 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqdTIdqK5-i5WQrvY8Q56-h1axdE3Z59mDETUKEoa-MRmC921N9fni9rD7OZTphnsJoYOCygE484e-NLD7ynlAdKzZ9w4oYi5sesS6oerm9DGUrW5FCDZP1KC4E2cu-6ois6GoL=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Spritz Break' AND address = 'Odrzańska 8/1a, 50-113 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPlihShBJO2QF0CKiOJmISvmTWmyF2E_Jyk5ddr=w224-h336-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Spritz Break' AND address = 'Odrzańska 8/1a, 50-113 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nprJXXN9UnaGNX6MVnQFE15c3yZ-fd_SW3z7jn2hm_KD9tSnqQdMWsHsdaiqYoC3NvGoLYQTblQaMDbKR8tylFlTgjmejuuhgr0us-5MrvgnzjjxO7zxA0gP7qqbIEZ_WaxYY_Z=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Spritz Break' AND address = 'Odrzańska 8/1a, 50-113 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrv2ZUPVtJRuEs3N1m_49yyztVg_x57suJ9fyNTmrdmlCRlBl3Q4QNy9BAxRy1mTLgFIyGrREe_8jXjdn3IDFWlfA20kjqKbdJJdXYHUem_qjAdrQUm-pssrYQzj6yH8SANg8PB4eQoezM=w395-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Spritz Break' AND address = 'Odrzańska 8/1a, 50-113 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noUPCyqefUBMy9PqarVIOQVqNmPNsd1RQePyu1ZcGMUSVhin89j5PhqWzLg1wSPE00ci68Mp1UKNDh5bmpzL1VoSnh_Wif54_dJplX6fSo46ur6abNNzlJAvk6Ti-O_BCUhuHY=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Spritz Break' AND address = 'Odrzańska 8/1a, 50-113 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipP3-2JEf3J3h95ZmeLRRtzHe9nnB-vAoBHjl17T=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Spritz Break' AND address = 'Odrzańska 8/1a, 50-113 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=jwKNql20dlXJJ0WL905voQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=128.05504&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Spritz Break' AND address = 'Odrzańska 8/1a, 50-113 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Dziady i Koktajle
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPc7PeffTRH-VwP1osbSaue6f68wkJIV6fHg5qQ=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dziady i Koktajle' AND address = 'Jatki 3/4, 50-111 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqlgFzx31b_WJLaY37llxssB1Mkr775hp1Oo-btNzCR6kgHpDaVMAJzwex6HgtE7-04DjQEqXzf1wUTlyddIWwziiEQNX1fVKy-RoQBHPf-DNDq_xoSqxROi8bd1XZ4pUJgonMdadTLL0M=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dziady i Koktajle' AND address = 'Jatki 3/4, 50-111 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np2PEe4P7nfTyeNfLxXVUCrvd7H_3VntA8758jcOdhSCGpPzJK_K2sGEKBnXiPMHCugaH6e27Fgxjr3FYVW2SVuZHBTSfbiogs7AG2cM0L2gaPlu05V6USfCj0Sj1uLvHRwmgBBAw=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dziady i Koktajle' AND address = 'Jatki 3/4, 50-111 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqnmiSM6Sr3GqCfSkd38C1ThywB-s13Zh-ZdXvlnXfvKcPr9j0JXwqv5EfebGcEGiHOVtULH29xzsESnVAgEhssbTudlORhETEENjd3246bTR5XJt9RHFsLFnp2Wf3pq5tc3PmCixkD8Jly=w224-h397-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dziady i Koktajle' AND address = 'Jatki 3/4, 50-111 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqf2Huc7zTBXTQ0mSq6ss-eXO3HNA0CZFVLVsis0w-AgAHXXqD4M3pkNr-A6k1TFWjBzUdBhKKYUiqXEL0OihpR-7i9UzstsaUItHJGqGnvt4hVJ8NFfCu2YfE2Md0G7ff868ruOw=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dziady i Koktajle' AND address = 'Jatki 3/4, 50-111 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrdX4Am_8zSYSL1UhmhsQMFMYcUxiiAl5MSz9ULbscRMHfMCTChlQRXXuE_hjjqQnir807SQoxtVEh4Rbj82bv5mEjDfh41Tx4xmoz-3TzWFEc3Xx5cI3Y8K7uzKQpMiXSoSas=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dziady i Koktajle' AND address = 'Jatki 3/4, 50-111 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nplcmITVxdNbEZ6A8nSf03hAfC-SSyYnbqUZ1Z2WNpMKp-of6cIKU4tIqYsEA6pfxVBYlJobXi8AXDe9F1l8ZvI43P0PqDyCzuSBVp5KyZTB1ecNhF4YsA_oakLiI-ARnmGhmbQ=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dziady i Koktajle' AND address = 'Jatki 3/4, 50-111 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqLb2joA9SduiVuxZt1BXW1w7pjIVMHuhB8WFO7lxAcddlo1XSoafz8fB8IQeJlY02LqDShnvKGSRgjufK3_RjBqZhVBzKcb37313B_8aL-uvyWsiAzE6SchTt7oxXgbXMttR4y=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dziady i Koktajle' AND address = 'Jatki 3/4, 50-111 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMSfEr5Wn5x6oxvZCbL3FluWFL8QU9GNv6nkp4L=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dziady i Koktajle' AND address = 'Jatki 3/4, 50-111 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=fbY2CZj5hba6wBeXAkGiww&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=161.71358&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dziady i Koktajle' AND address = 'Jatki 3/4, 50-111 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Le Barometre Bistro & Cocktail Bar
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOn87oQJYqdc_XN-32PQbCWBgtKA79st7bCpNPu=w224-h370-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Le Barometre Bistro & Cocktail Bar' AND address = 'Rynek 42/lokal 2, 50-116 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrZF0fhiDr24-P73rz1Vk_Ejl-h6FZNnCtBRZJRcvMZThjPAceZZTQAPgtqRe0LzC8dyNT8PbX8rbL41uO8niTnD0n7KdGROyQ6vSRnjeCBacImA-COKCPL3quLsbZ-JRvoLzvqxlG3hmM=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Le Barometre Bistro & Cocktail Bar' AND address = 'Rynek 42/lokal 2, 50-116 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrVL9_fhjDBCfrVEURxMuWtMIO__RbpobMUcgaE3WG2_SzFPpy-WQrDmPTyM_teApIdDONEQABWQ-a5ddq-sMMxemrtd2YHiRLvU5MeCITjuqtKkwTCe0iUfXeJlOQj5TnL7i9l=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Le Barometre Bistro & Cocktail Bar' AND address = 'Rynek 42/lokal 2, 50-116 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOVrDDoBvju2MLi-mM3peO4iwh5mzC4h8tb5jjI=w224-h316-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Le Barometre Bistro & Cocktail Bar' AND address = 'Rynek 42/lokal 2, 50-116 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOuCwis369I2pX_HhUuBC5XhYH99CwaEqiXs_TJ=w314-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Le Barometre Bistro & Cocktail Bar' AND address = 'Rynek 42/lokal 2, 50-116 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqVYR2rbjqsOnwjMDLGuNGALsh61Oynj3ZUuXZTFfhZ2d5Qj7GwF-QnrZcvNW7VSUgfQLS32pRYuu9ldKWEME7wSDZ5vXq2-6Ep82f9fD9VEFfa58pMRfH2GiCD0O2Lt9GHlcVH=w224-h298-k-no-pi-0-ya57.359997-ro-0-fo100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Le Barometre Bistro & Cocktail Bar' AND address = 'Rynek 42/lokal 2, 50-116 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNknfl99Ljwsfnwie6bf1wbFBVJeCB4MIAh_led=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Le Barometre Bistro & Cocktail Bar' AND address = 'Rynek 42/lokal 2, 50-116 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPZ6My6NfXUXmRBzUIdwpNr2gdcTQ8xST_5m4iN=w260-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Le Barometre Bistro & Cocktail Bar' AND address = 'Rynek 42/lokal 2, 50-116 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr3sfV0AL5ZS1ntbvN6dOvghvhChvI2AuIEc6LR6eQQKhoEF1UZJIxO08ZUj135TwwFa1Z5-6WaHNolM2EZjeKDwaG7u5rt_6iVGXJNzgNu8GfhQSw1DQYUwnLRzkFg5W9DUH7y8g=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Le Barometre Bistro & Cocktail Bar' AND address = 'Rynek 42/lokal 2, 50-116 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqeoKAT61nSwMWnPXYuqINFaoda8AQM88SG59oqST1iK5uqZ0S1xSQnaSwisD2ehQfxtPs1c9jpOEvbJ46TdIMk2JpoEEHZAoOMop_o4nenGPotXBYACgaz-F8vwWtjsUvM190sSA=w356-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Le Barometre Bistro & Cocktail Bar' AND address = 'Rynek 42/lokal 2, 50-116 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqnqY-nKQIaUjsgIPBbjvn4lndu9caR-qHvTayP6aKtCYJqY-KBIdGoXmZqkHv2E06mGjdj_qP60tpPSQgLpiAvLVxI82itrNUK0isoazcvzw709To1-KGCkKinxDtypoglgtII=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Le Barometre Bistro & Cocktail Bar' AND address = 'Rynek 42/lokal 2, 50-116 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOahDddJQkvSVdnGyUoA0wWc18pNqCQHRn05C_l=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Le Barometre Bistro & Cocktail Bar' AND address = 'Rynek 42/lokal 2, 50-116 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMdphq54bK2r2_NCsrTG85b3fsgET4tamuddY3H=w298-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Le Barometre Bistro & Cocktail Bar' AND address = 'Rynek 42/lokal 2, 50-116 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPjB7Dc_9TWPodgIu0ebgWuDXXKtHeBXB05CdHT=w298-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Le Barometre Bistro & Cocktail Bar' AND address = 'Rynek 42/lokal 2, 50-116 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np7-iH8voQXmEnkMzGPZJNh_yAlxUFC55-b3UbMHodiBxrL808RC3dpkxrjtZod81qFUoCOuYdKlw-qDE0BBhMUR27lmQzWyBJOH9sNin3D2dXaIGFL5KSq2u10aQVf66_owTIDng=w224-h298-k-no-pi-20.11257-ya123.08744-ro-0-fo100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Le Barometre Bistro & Cocktail Bar' AND address = 'Rynek 42/lokal 2, 50-116 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Przedwojenna
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrZSgB_kQvaZvot3_a-iPSqCGJgAwdjmV-a8kPskBeFDj1FKJiLox43MZ3Fl4bZWmY2fMggTMYKcVsycv-YRdguvUI9Iu2p9hZKvafEBZg4253m1PoOkQoucu2iQmphcwxhK2JAcA=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Przedwojenna' AND address = 'Świętego Mikołaja 81, 50-126 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrirdi0aZ3DjyPztrDKIrFG5mCiwZq1SuXvHTH2mZK1PO5jj5C2WuRfFdbU4wvTQrjknS_MqXAV1zYYLZkwWotShEbre4ld4OJvrreKp34R1RMFJmr7NpzTtsNxljwdh2ihe7CQ7ki_W0o=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Przedwojenna' AND address = 'Świętego Mikołaja 81, 50-126 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqXhxkfKutv5bT362E2cGHigCge8SFcpap39R53BAH9PUAHTgoe908eueBX8V92WuXGPNKz02Ofj5bzL8BQaEF5wO9JeXwQ8hH5wMmdD4vJwAtu9MhfhsZdjwlYpGuUoALp7AGE=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Przedwojenna' AND address = 'Świętego Mikołaja 81, 50-126 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqSX-TPqFtdC9okjoajyGmJGBhkMyhT9_S4klMg6ywUmp7lYKexOr-RyQFQihwMyj0NKq3P6pAYPJe5eXBbqtNYh2nYCwIqGODjsDujqP9hKuKrTCT7o4jqcCsHl6bsJQ7j1VDA=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Przedwojenna' AND address = 'Świętego Mikołaja 81, 50-126 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqAefJzX7jvEolH63dQ-5D3yi6iX5EzArTBHEsJqLX3qe-ydPi-BhzuZo31uAP-s26DoUvp64JnkP4W7irYzGwxJ_uvVXKwyoP0e1iokvtGKy3FrrX_5McTBsAagNPDfO7nB80=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Przedwojenna' AND address = 'Świętego Mikołaja 81, 50-126 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np9bl755Yj9UJm1F3SJJoLUhVkqmW56kV3num7Ju2bpiyvDowkpti9f53aRtgfYfq93SsaJoTZrwWZLey3NtMHN2efvcs_SLftP8PkCr9Lmdt3p4FiQHP08jc8nmPrQ9UN0CF-1kA=w224-h298-k-no-pi0-ya341.48346-ro-0-fo100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Przedwojenna' AND address = 'Świętego Mikołaja 81, 50-126 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqfzehLsBeZyqj2wMDrREpS-BPC7-da8oqRVeg5xSNO_99eKWpCrbrhi5cKdnvZKCjeRPEdrg15aausW201OeE-BRNTpcLUWLpJ0w-gI0-xBYn_boGcRciLlaG_-w6JfP6R38ZN=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Przedwojenna' AND address = 'Świętego Mikołaja 81, 50-126 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqUTuvNZayHcLHrE4Ozbedy7_NcgNXkUm5SdDwNECoYlCaheQAbizAUNWRIL_CgvPYti-RNbrEzO3bMdYNVsp41xkbsPbDgvxg0PaFmApmnttSYYY7KbiFjw7Lqs57hzMRML2fW_Q=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Przedwojenna' AND address = 'Świętego Mikołaja 81, 50-126 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npe-zX9rdYT_ri9D2_SYfdOpmB26WToVBqe2-YTetzA3ajRt4Mx7t_P1XHmW4kJqjpsz9ZET7wMW9hKv1fHv-bjwAa-Q4HQ3GdLoeQAszthqi0k2koTZ7O3eXgLgoIKFmudJo28Hw=w226-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Przedwojenna' AND address = 'Świętego Mikołaja 81, 50-126 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqe1msvhdMtfvFzypQz4FJJ7Oytwbt7LEASndHMDVnjBO89_AguIzVi7RBL2PnhC81-BbRJcdm8LeMCImBlaovO68Phpe14RNrhDPwvRZWuOCu4dVtM3mgYPuGEM6DE7bOGwh2o=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Przedwojenna' AND address = 'Świętego Mikołaja 81, 50-126 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqhjZXUeStIo5sbjx-dCNfB6iO1lZVe6Q1_8Hcn1QjDaHQ4nnlXnV4ds_yScSYLtcqQTftRHDSeqKUWkEMdJaywasOun42kipCvGeOg4wCqiBxAsTRlQP7Z_loxGl_K_56v43_l=w224-h298-k-no-pi-16.318329-ya287.0043-ro0-fo100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Przedwojenna' AND address = 'Świętego Mikołaja 81, 50-126 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Zagrywki
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noop6zSGFuzAEaVjf7B3IDLTS5US_pm07dO3FnS0GHcNiFzVYjwhOW49hEF6gUEFRcXhS7vPncz9Hs45zAFOdvQCuM5r7ckuLbHRP-_xn-aWYxAWqIe5p5uJHYDllA3ULtwE5yR=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Zagrywki' AND address = 'Wojciecha Bogusławskiego 16, 50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNPng4uwWwncnZIifmtWCkC4wp_1NTJy4B7yhpH=w224-h336-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Zagrywki' AND address = 'Wojciecha Bogusławskiego 16, 50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np1zSPfSvybpEMUahf_dqiM5fvgHERZcPIzn8o5Tf5anxDTueFBQyTYS8uSYrisagPLxGCO1YbTYStxqUD2ZG8j5J5CZIK_t2igT95eoXCdAOmpvBpR02kq3o9-h0oD3H8jLj8m=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Zagrywki' AND address = 'Wojciecha Bogusławskiego 16, 50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npa1ykPyQjYdbB1uSr2zDCBlzYSN0GNLaFiIlGQIB8VkeSNKx4wFsB76zJA-PanBVPloUhT3bGunjk7illrndZ-hWJMgZK-viymBtP22aSghbt-Lli1kU9qOx0dUcgYK4Gs-bFP=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Zagrywki' AND address = 'Wojciecha Bogusławskiego 16, 50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr6kJ_8c1cEO9nAQLTX5htLDj68YIoHSZGz1oKXhGnJNBmf_cEomHmdnjotpn9xfw5FgoV56hm1rwMRWJC4F-qGm0PoqYoch5hJf8KlzXtdm89zR9d_B_gedKdMW9l9bo9c5-PHq9gOpGJT=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Zagrywki' AND address = 'Wojciecha Bogusławskiego 16, 50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNveRW0G3yGvvLBZ0vXXyMrGdf_-zMN503hc5XL=w447-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Zagrywki' AND address = 'Wojciecha Bogusławskiego 16, 50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMXhWDf2nxCpe7x0ntEWNOWEMESNHvOytkPUJsY=w447-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Zagrywki' AND address = 'Wojciecha Bogusławskiego 16, 50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNJb581mtjeIO0Qg_bHq8j3_xf-21jrJQcKMF8d=w224-h333-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Zagrywki' AND address = 'Wojciecha Bogusławskiego 16, 50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=JoRu4euBgLdeAyZKr34OoA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=349.2982&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Zagrywki' AND address = 'Wojciecha Bogusławskiego 16, 50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Szklarnia
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOkVrcRbomffD56FfhRzE-zbr34Zfn8hImKxPzD=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Szklarnia' AND address = 'Ofiar Oświęcimskich 19, 50-069 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNn5plz_YqPUg-6ZphqaDHsA1EfZb88bCXSh7ca=w238-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Szklarnia' AND address = 'Ofiar Oświęcimskich 19, 50-069 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPsJWNtWi5saLc4_K3fuYfQo9GFYGtou2e9v7uE=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Szklarnia' AND address = 'Ofiar Oświęcimskich 19, 50-069 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMSRVlU6qzQxpJaPOv3_lLckZWFxZHQrDkzfvpj=w238-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Szklarnia' AND address = 'Ofiar Oświęcimskich 19, 50-069 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPU7Oe2fC6LtfAscaJqDTUTdQ9LaHeKwQMCPw9L=w238-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Szklarnia' AND address = 'Ofiar Oświęcimskich 19, 50-069 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNj_NYdzbI5nL66GBa0gmrMwRPVn1WM3aditLrq=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Szklarnia' AND address = 'Ofiar Oświęcimskich 19, 50-069 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNP_VLnekP6_ixlXcrF9dFeuKba2-rCsS-KHXFU=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Szklarnia' AND address = 'Ofiar Oświęcimskich 19, 50-069 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMympLQW0lVvEQJ9_wU9YgPtLm1SjsUdkM5DMam=w400-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Szklarnia' AND address = 'Ofiar Oświęcimskich 19, 50-069 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipM20i7JEmZgjORlnIIzAW7LTAVmnaUxCV_E5Uvm=w245-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Szklarnia' AND address = 'Ofiar Oświęcimskich 19, 50-069 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nogIzf_yCwe2D10Aaxt99xHH31hUh0MHw8F-Bj3cL7Wfgr1TGyyb0p4ope1qOAmqXRoJPybROks2oYpO92ENW85X0juhZcEpPGA-nS1UXqEMV6bbStCz5c57gKhkT3UJRPwWQ1P=w224-h298-k-no-pi-10-ya146.41354-ro-0-fo100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Szklarnia' AND address = 'Ofiar Oświęcimskich 19, 50-069 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Mały Bar u Babci Jadzi
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOr-TAY4pz3Hjh9o7ZsQGEVAsyIfwjeH0AplKao=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mały Bar u Babci Jadzi' AND address = 'Hugona Kołłątaja 27/28, 50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no9nbKsA21qyj2RvBCgb4VxIXxoZqGDuUi4S52D6R9dqb1LM5srd6q_TPpTz4xuY4_vosFCRiVzWgcThkkMerQlR8WgUH52Z1XCuCidZ7UB9SWD2CuQKOOpJwRB4PW2ib9e7hnBepPHJau-=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mały Bar u Babci Jadzi' AND address = 'Hugona Kołłątaja 27/28, 50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nox18jBZjzGMUuMFvxEmkxahq2Yx7XRJv-g6gSCboADJslonwxIq0xkVRmwZZoOygRIaIlr7ji34unhOz0fC2LcnufD6Fi4GWVSP9L9qKOuyYP_V_mlSaRsLEJ2BrZUwf1CWbcn=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mały Bar u Babci Jadzi' AND address = 'Hugona Kołłątaja 27/28, 50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipO5UyMv-PmyI9BYbrVx8pO0PbM3i_BDKjRcH7gV=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mały Bar u Babci Jadzi' AND address = 'Hugona Kołłątaja 27/28, 50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrzCkeApnzlYV7bmxAp4IvqzwxXLtTmdgnvlRTEVHi4gZGjLs2aZzqSYXBD3g-xR7cz6lO3ZnjU3a46u4vdS2sGLFIDH0Z7VHFGpbxVZBw0SatLr5Z0rmJPe3Sv3moRfjxoN-zL=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mały Bar u Babci Jadzi' AND address = 'Hugona Kołłątaja 27/28, 50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqiK2dRwWC1O3REjAFObggpZ9Dupg1uWA279iI2sWDeN2nuBSaptbfiJYvx83_fSHBEz1dL88mHRweZO9DXzmZrYyuBzEgVWYJELhDcf4ZriVKGG0Br9vRLFfB_AlYwThJDUWUV=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mały Bar u Babci Jadzi' AND address = 'Hugona Kołłątaja 27/28, 50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNoqHZGljPdSiwscrLtEhq3BO0wvqeuu5dvxkaR=w224-h484-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mały Bar u Babci Jadzi' AND address = 'Hugona Kołłątaja 27/28, 50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=jU-0xBG_n9Dp6DaWiqg4iA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=90.45154&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mały Bar u Babci Jadzi' AND address = 'Hugona Kołłątaja 27/28, 50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Proof Cocktail Bar
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNsh7UyHnKC2FxvkZzc3lfglucVhtRECLfaNUJ-=w447-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Proof Cocktail Bar' AND address = 'Plac Solny, 50-438 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipN6oUD6X-7lyB-yRbsEsT047KU7OTxIv7kSX27k=w238-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Proof Cocktail Bar' AND address = 'Plac Solny, 50-438 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMSantbhJin4cbRzoCqJdIn5JfO44HEh4kI-Ydu=w224-h317-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Proof Cocktail Bar' AND address = 'Plac Solny, 50-438 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipM6cNbn2EtBhZ705DfFtjidocNP9wNmUHET8LbI=w238-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Proof Cocktail Bar' AND address = 'Plac Solny, 50-438 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNsh7UyHnKC2FxvkZzc3lfglucVhtRECLfaNUJ-=w447-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Proof Cocktail Bar' AND address = 'Plac Solny, 50-438 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOz_15erD1tST3cr0vwzkRM0dWkWVC0KltQYWEX=w238-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Proof Cocktail Bar' AND address = 'Plac Solny, 50-438 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=IrFSwBqugRCh5EvrUKWnkA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=7.0692487&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Proof Cocktail Bar' AND address = 'Plac Solny, 50-438 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Sztuka na Miejscu
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMQzJZ3OdDOl5yEM4yaiOpRSELcaS9LtYBj54_a=w447-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Sztuka na Miejscu' AND address = 'Łaciarska 4, 50-104 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPpdFfZ0HeT2TVNt1oShFcFKUdwhsxVTuYaTRpK=w421-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Sztuka na Miejscu' AND address = 'Łaciarska 4, 50-104 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrWD2a4Z7nKGuTwi6Ij50VqgY7Yi_F6FR-soDgOJIE4wrbUm1Fo1XGNXtDQaC67yAc1Hv7pwV1K1PfVd2dJIVtMlg7axOKrTN5pVDs6237XRX7XLNblcO0LRhQ6tMOrVk3PHWnD=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Sztuka na Miejscu' AND address = 'Łaciarska 4, 50-104 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMUhpXT-bdi2j8OP2gjHobz02qwiDfJKQAO6pUD=w446-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Sztuka na Miejscu' AND address = 'Łaciarska 4, 50-104 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPBeQuBMtWtzqmt9sRV4qStEMBJ-FDAam7NgF05=w447-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Sztuka na Miejscu' AND address = 'Łaciarska 4, 50-104 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipM-qHSSVa4npRbEUXalLM8j9eolNy7lbKufSySL=w447-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Sztuka na Miejscu' AND address = 'Łaciarska 4, 50-104 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqWHhALmonWLpJSdb1sYbXtPPH8Cd28_LAuUrlsdnx5I6zuUjcIWcdGx6WHgeyyUQDXqAjQmofB_f4avwbAU68hY8pCJ1Vo9cA3PYAmJeDnrCF4rv1CeDWfv986dSijpshQ41U=w224-h298-k-no-pi-30.000002-ya116.72911-ro-0-fo100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Sztuka na Miejscu' AND address = 'Łaciarska 4, 50-104 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-
--- Photos for WC: Przybij Piątaka – Pub Wrocław
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMo6XrSrhbX265WDH9k14S2R9wOtqZq4tpypAcX=w444-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Przybij Piątaka – Pub Wrocław' AND address = 'Jana Ewangelisty Purkyniego 1, 11-400 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPC4LRa048jJXlnPT3LkPn5wVhNsJtdFKq6iMyO=w224-h524-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Przybij Piątaka – Pub Wrocław' AND address = 'Jana Ewangelisty Purkyniego 1, 11-400 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npCJt2Boi7HUeDzQaTZhfoys7bGrL6-FTnWFuiuxirjCTk_lLDiIcKyZ5nc-xrLJ0FNAqIZjW64JUTWsJ0qDXCltKZ2qgdUTV8-Rds1Nq3D2mlQclWhVGskhyd-qT-Oxx_zn2c=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Przybij Piątaka – Pub Wrocław' AND address = 'Jana Ewangelisty Purkyniego 1, 11-400 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipM9ZV_q0_ELt55pHeK9OmjK8Fi_Nr0T8ackFjqs=w224-h316-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Przybij Piątaka – Pub Wrocław' AND address = 'Jana Ewangelisty Purkyniego 1, 11-400 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNEBm8cncEM7faRqWCHYXp4HM0qxBeKNb_rMZIz=w238-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Przybij Piątaka – Pub Wrocław' AND address = 'Jana Ewangelisty Purkyniego 1, 11-400 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrGInyTU2KIcAcB5XVdvCxpYeUlkY_kjgEcxOvZKLo1v7_W3l0uL071Fhx9fspsQp-0kPFuttnZ_rTFxCLOaALOX_6dNv3I4igiXIYN83wjSgr1YT0-3XLpuUP7W84STbKwZqKmfQ=w238-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrIuSGGuwznQ7x0kYPo0JMyNcFRYD5rfWtGnoDAeDqZqnNGQWb4Xyz45IJ_sM3BcFOlbqbvM21wUYOXla9AdS00Ql3OW7gkoJBpZeK9dZtXd0zumsCSPcYXkjy8EmuderN3T2Y5=w529-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Przybij Piątaka – Pub Wrocław' AND address = 'Jana Ewangelisty Purkyniego 1, 11-400 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toalety i Prysznice' AND address = 'Toalety i Prysznice' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNG79lAddDLnOCbRW15IVo0APVsH9ADxBWWkMjC=w398-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no1SqkNpXhqQheg281iQG8iG9m_Qldl-cpoNtQ-A3a2PRQHaOqG9pvQ3WlxirKKTvPipRcKUxLEFVU7DCm_9iaquD7jH3BPP8XdDsrQPW7mZ7T3Z_GYvPeRHVyDas7uWl5xW8Qt=w224-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Przybij Piątaka – Pub Wrocław' AND address = 'Jana Ewangelisty Purkyniego 1, 11-400 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toalety i Prysznice' AND address = 'Toalety i Prysznice' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no6Nywe4PNlcfGxQqYg1-CyODZ_GB7_2pfmMCi5gYSTggRimFFvE4fbDviHUkH9EN1kZVKH89OcdlGTczS9biohV8FZ-sI67RtxWfbjdKOSUPEvpSwtb6dnQwCevoxH0i5K1J0=w224-h298-k-no-pi0-ya334.06293-ro-0-fo100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=ER1GwDca6wA2aIM6PD0QFw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=305.7834&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Przybij Piątaka – Pub Wrocław' AND address = 'Jana Ewangelisty Purkyniego 1, 11-400 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toalety i Prysznice' AND address = 'Toalety i Prysznice' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: T57 - Cocktail Bar
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPr6_nqyiP-qiZyAOzCMTTy68HvYr3L1b1FKjdg=w224-h335-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'T57 - Cocktail Bar' AND address = 'Tęczowa 57, 52-007 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npXnVHnBfpPf9hPSx6nodUxFj6wilkkcUQibRjgFZVXSEMeZm61WXsOmiPnAZLEqXfiQYcfU65JS70Rys3e4MvQJdVFl83wY7t4N5tlFGGXE-R4uIalncDZ-JS2d9023eTctFcQ7n1Hpi0G=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'T57 - Cocktail Bar' AND address = 'Tęczowa 57, 52-007 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
+-- Photos for WC: Toaleta
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOCXKNLJGFYYQObsGdhuUMgKPakWuNozHN2Xhly=w224-h398-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npKHJ9iPX5NJAVGZNfg14oefUcjb-xJlyMo--HXNn5H2FPrgiI0V-CuEAzWQIq1mFPAhcQjJsOCly6dF8J3gzDHLLljOET0ggLzfHvHzwiwy9oUyOSmGwRCdGL6U-uyShgC1fmU=w397-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'T57 - Cocktail Bar' AND address = 'Tęczowa 57, 52-007 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta' AND address = '98-360' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipO4VvEf1UkbhfXFUXU5Evc4ttC72dBQOfdFLSqi=w224-h336-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=7W6k4VSpD2sr0MFrBM7c_Q&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=326.78912&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'T57 - Cocktail Bar' AND address = 'Tęczowa 57, 52-007 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta' AND address = '98-360' AND created_by = 'public@sviete.pl'
 LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOgjZ7IdcYLLsfgB_ALC5GiO37M8WS0LbAxV9B5=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'T57 - Cocktail Bar' AND address = 'Tęczowa 57, 52-007 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np0hs3v65SVN3zNQD0ZdlfAUfzUquzGHhrrBvqwl2G50joSHVsUKMSfMtsnDo1zolF24B5X9uEjkMIKNY4pUKseoYA1YNofs785ZZfev9czdhP_1kXFwDesqI1UWDmQ1aqId4N7=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'T57 - Cocktail Bar' AND address = 'Tęczowa 57, 52-007 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipP1cSvZ7yY6o4Uj-yfrSk2YPKjvaRAMGmQpDGcd=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'T57 - Cocktail Bar' AND address = 'Tęczowa 57, 52-007 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=eZ1_--7GY2sCw_bh0JT3DA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=347.10254&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'T57 - Cocktail Bar' AND address = 'Tęczowa 57, 52-007 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
 
--- Photos for WC: BAR NA 2 NÓŻKĘ
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPRkggq1ZHWQorbxjlPu1x1SRfCdXIb2pxFM_57=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'BAR NA 2 NÓŻKĘ' AND address = 'Staromłyńska 2A, 50-266 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPlyq3XzoizSHkxJcapMjL44Z-1fR9Qaqtoj8r9=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'BAR NA 2 NÓŻKĘ' AND address = 'Staromłyńska 2A, 50-266 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
+-- Photos for WC: Toaleta miejska
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOYfunZUNeQ6mfqgvbJfrXcmwSdWsagMtps2qmq=w401-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr5VmRaQIbxMafIWMB7nl8L6scN-XFdlFCI-3bxZwDhbnidlCCrycMoSGSP3-tGlhbui78hYYJ6NpdOt59ukzwHei1k2Z2PvlNUn2eebGXOloGczgz5ICsg9vXQeke5UEDUfB6bSQ=w447-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'BAR NA 2 NÓŻKĘ' AND address = 'Staromłyńska 2A, 50-266 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta miejska' AND address = 'Słowicza 3, 05-807 Podkowa Leśna' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=zflQv-UlznOWc7KKi9g4LQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=17.862984&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=hss5xIbpeSWsrSgkyNWd-g&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=158.63321&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'BAR NA 2 NÓŻKĘ' AND address = 'Staromłyńska 2A, 50-266 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta miejska' AND address = 'Słowicza 3, 05-807 Podkowa Leśna' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Mixturium
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipO9-pLk0VHKK-c4PeYdb8FrBqfIyu8b8adH5h4n=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mixturium' AND address = 'Rynek 5, 50-067 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no4Irr8k8I-xtwieFAKhotJQojd88sz9mrIFUhRfqcp7UWfuwAKQeeFQWR3XSVkQlM3VZjH4VmIwBDSABS2yFHYDjI4FR98L553M5sAKj6Es7BvkBMt44A9MaVfupAFLHJ5zHS8e5fmYapK=w224-h397-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mixturium' AND address = 'Rynek 5, 50-067 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nosNZw2TIQlEKiG8Fje9HTbxHH1R9_hnH_eJ3P7TgNNOwarRw0gnxDyU_FimseTyI2AufyEShAB7G3b0Cpk51WpHj6WkW2xV9X8t9PiosneL3RgiO_9B9bUnyVBOZW9P23YinqBXA=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mixturium' AND address = 'Rynek 5, 50-067 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNTkbh3yM7rbfuCH1lI_ewnP6i_qlpOM3d7QvtJ=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mixturium' AND address = 'Rynek 5, 50-067 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNWDFu1drWhnz-8G5DGFU5lNcwvQBSDZHjcb9Az=w372-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mixturium' AND address = 'Rynek 5, 50-067 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPEMihzmEvJf74CxqTHy7c4reE-7pLm69Bel5WN=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mixturium' AND address = 'Rynek 5, 50-067 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
+-- Photos for WC: Toaleta Publiczna
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npmciPPMpOvGZiew5jmbYRLmBPao_hUhoHxi7FlFyBot5RyfPsrfP-4g2UqMmQLxque1WOpAF07VDItvCOhMfR6y8L8wBTRZUFAlOsefinC_b4PlnNAveXZUojZEdkWckAEYDya=w224-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr96VNwt9GwNDhs01r7e6P9T0HrOGqrhpGP56hklqKAuCAALMkovg_a8d5lwTHc9Cojz_5cezQJf60kUNqzZ_AKQimGSjnzNDZC6ctX_VYhRJNqMJPWH7CyPOc1TPRCtUp0lcYJ=w224-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Mixturium' AND address = 'Rynek 5, 50-067 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta Publiczna' AND address = 'Elizy Orzeszkowej 5, 05-827 Grodzisk Mazowiecki' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipMYHMFHkKJ7rwsTHvs4twSkp00DPMoYgdfPGKxH=w257-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=-kSx91x1s-uZCfab_b3FAg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=8.612481&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Mixturium' AND address = 'Rynek 5, 50-067 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta Publiczna' AND address = 'Elizy Orzeszkowej 5, 05-827 Grodzisk Mazowiecki' AND created_by = 'public@sviete.pl'
 LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=jHQ-ehrN0bVJDHzHbWUrLA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=255.84671&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Mixturium' AND address = 'Rynek 5, 50-067 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
 
--- Photos for WC: Zamkowa
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noBokpBSF0XxWP10uDwsDRJr2btCYvYaMOy6Io4ZrWwe-_bdjyGZiIuLc-j8l_lD2nXspLzB-VaQaHr2B9ZME9tAUa6MreH8q0DU1bLsYK2m-UNplQKqyOV73UEcllE6CfEIsN5=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Zamkowa' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqKc4EnuzRwj_KWyj-0Tzy7AThUstNwund55SFyz6XyyO3syzGbNMvEP6l4IzuJd83KGjTp5LZW88_w39AOeQ0T7h92dje2m0JpdiwuYZz0YWtsZWy4suFIkFT13ICnFAI7KNStyyLyQFdS=w298-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Zamkowa' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noF6-MM-GoaEE5XMf18scb8ndNdHXdDbJ_muhHKzSADh-5lIvjddsHThxzrajVVIW7jdIMAH60VM-xpEiJH6KCd-jiV8-WJnKOZRluYOWwVromLf2Py0om-QUVTvqWF0FfJC_oP0A=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Zamkowa' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
+-- Photos for WC: Toaleta publiczna (WC - bezpłatna)
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noFmMF-HNjuV-pm_NH7WXb4n91mNMUivzHm7J3bhlELLsso21EHmzXkF5lYBl_bNanVrXcVLyRGg1JaGic5kDwb1c1amSsd_rbF7Dp1eKVIgKmm9eEae0FuxIxEAnCI-QPW4-cn=w224-h345-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqHE1XPXp0dUNQlQDcmZKAN9CRmwalX_-SGXM5-DzphPPIbSbTmx1TrwqWgSAKQ-sduDJ3jxWjRyseW6axz9NfJAV_JRfhcUJ4KoXHSAWePMs6edy7BY_o-Neogd8Y-t_Vzw5M0=w397-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Zamkowa' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta publiczna (WC - bezpłatna)' AND address = '05-870 Błonie' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=DIBesBYwVxKOr6ww1vAZgw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=59.67365&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrLP7FIbpWEVH4ztcl_dDI0QqpccU5RKuUGNaamM0NhLqfZC2OQMlxV_797DAF1viIZFGvtcZqwNH4kGEhmDuT0wZ5YSm4GRHvXcLLZlYC4uQtE_sawS_faR85YfPnhTFHf2VDirw=w397-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Zamkowa' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta publiczna (WC - bezpłatna)' AND address = '05-870 Błonie' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Oławska
+-- Photos for WC: Toaleta Publiczna
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noJ9vHLITFEcxOu2kcpw-VaoNeVVSrFTearbtZ5uEvuqIn2SOVipd3tcFJnMYjtbVF7wrsY53qryoa7Yn8HPkcXmOOzYjmJYZym_AS3RLEaKMrAAVoHwU2U7Z452hfLVKvpRHvVTHFix48=w296-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=C7bO1YiX4qbpp7b9G6nWgQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=133.23375&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Oławska' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta Publiczna' AND address = 'Marii Skłodowskiej-Curie 5, 05-825 Grodzisk Mazowiecki' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npKuNRtNoitV8LGOXknfsaQ3C4a1lFhQE8OOVlHkGfhQ-ApkltI5YuyXH2T6cQUxb5Kbdv4PrOwZoM7lRnYiHkY1eENphW5bzirSSgpOsDYm3C8RAtRfM8jrxCbWvHUV8_0tA=w529-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=C7bO1YiX4qbpp7b9G6nWgQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=133.23375&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Oławska' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta Publiczna' AND address = 'Marii Skłodowskiej-Curie 5, 05-825 Grodzisk Mazowiecki' AND created_by = 'public@sviete.pl'
 LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=KwLth5deTl6xVOB8roBagA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=190.40166&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Oławska' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
 
--- Photos for WC: Wita Stwosza
+-- Photos for WC: Miejska Toaleta
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np4KTBTl8unDJMPxg78S0Zsnv2O7DWIfCZ-msqGVI4f_umU3zbDGGxC3T8APuEz1EgEhYsC7lxUI0jupolS9iRLESkeKcSZ5jPuDsWE-pbYIJzSqP8f2vvivQ4cYpTPeaKXL1Q=w447-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=YV_7aR2x1urQL9PhWNBUGw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=240.56047&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Wita Stwosza' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Miejska Toaleta' AND address = 'Rynek 13a, 05-870 Błonie' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=fG5A3LeUpl8dx9Vklb9rJw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=60.634182&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=YV_7aR2x1urQL9PhWNBUGw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=240.56047&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Wita Stwosza' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Miejska Toaleta' AND address = 'Rynek 13a, 05-870 Błonie' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Świdnicka
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noUi6RjRsUNWeA48G1aUAPEDVFN9JCFWQyKw7sGbyXi-T5s5iMhEsJYkZHGgWoh0APQNOaxPO7leXhokw-XmfU0EURi278vclag4NNnvZawSs_OPkwY2NudNMM-FFo1Ely6qS31=w247-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Świdnicka' AND address = '11-400, Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noAcTb3JzQUUiJf_WslYy8ik-h0mFIVwWQ3QkPMb9e6YSJCt6uGBE21gZJp45h0K1qF-LXnkFfbpjWDv1-tSjuu-g3aC0f5HPvsshwAnxXd6AUjpjRyOkBhyCtEl1GuC-5N34o1LWTVM8s=w240-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Świdnicka' AND address = '11-400, Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no9OfLDC6REeeAs99I22wOCxutdkZYrZRoSeFNUqGKFFaHNiljOU2Sc-x3MEE8V7D1c_Y8-Xxxtz2d5IjfEipz2Arpsf0_Bq1XerLKG8eUkIMXZR0REl49ZE-xCMOg_B0UTwv2laA=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Świdnicka' AND address = '11-400, Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
+-- Photos for WC: Toaleta Publiczna
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqV5KAnXnpCOjrp-dZut4oLFrEcbwTTkQqF780dFrwH2wYZVtlROYBpHoV5fy2SW0FGBwaHxukSw_V2z9wegoDa9YQb0y8RsVSjhvLnpa_8uwrv43yHkZGs6GpxVubmiFDpylOKGA=w224-h398-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqGO3gTd3HbgQpumICaf503iWAtOpgSYDhFs5HGSAzgr_aEdS7Aq0mZpVm0KQNYDFs1i6Jbt7dR1oE3UKj5J7onyD6swdSMNQHOGjtXoSk9-vbSGman-paZtT6jBflfkZ3P46c=w224-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Świdnicka' AND address = '11-400, Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta Publiczna' AND address = 'Nadarzyńska 63A, 05-825 Grodzisk Mazowiecki' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=grz_NuzIh2S0Ta-zexBHnA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=227.63591&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=1Fux9T1uxMc9lR4DWxGbng&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=132.77077&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Świdnicka' AND address = '11-400, Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta Publiczna' AND address = 'Nadarzyńska 63A, 05-825 Grodzisk Mazowiecki' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Świdnicka
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqD7eMvzw1iTPEzATcOOgaBSqQRRCqiN6L929G4zEGacTYVV7fsNyW7wqL4KDTqibDPkbWOjeS-fC5gKKJRJdvoMQFfZH9Eo0XIgSDhGSIEDerl6lSiZ5UOZf4VQbuJl4BVkRNz=w302-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Świdnicka' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no4eqTgVTsfAyJo_Z37XTNa_jnaczvg_X4kTuMvDxn0jUSDrsVK95vAnupNnXWWBPt88ONocVJpoLuLGL1iNFXriulzddvPFzMLSbn3D7bdnf7Dur7gmjxuXTy7qIjwnEVtefsU_VlUPzah=w296-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Świdnicka' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no18rwW-ohB9-E4SNAGciQBA4NtSWi-RYrKkuXGBNGp4-Tf3clHnz1yUk3S8EyFtXpw39nc9XX80i5YQxyvm7SyRzYLOVkEKAwUs-tV5uGtCtVRag0YXQvR2cRLlfc4C8vMsvObQ7F6R6z1=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Świdnicka' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
+-- Photos for WC: Toaleta toi toi
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nroQQD0OfquhDLVUsFmc_I0oiKGDp9dto0RSzsXkExjln6qkgErGIdzIMz_-2lenCUygHP0RVLJexwQiw1BWoZ0m7Ryha5cl7C5kpMJXAjPeLdv-QO7hl17aAdKP9_QVbSsb-0=w529-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npnpAruAT25SI_X0OmYlh0LfYfrkUWbEFZj60OB9fdAJ7ueiaHM-GuoN4rNasMBMdvwCkCgeCcm3fM29qF1jFxCqMolSwGEZAdBtjdGygRRTTXHBGzlgR1UYVLGWtAw1jDcQfFEKg=w224-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Świdnicka' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta toi toi' AND address = '02-495 Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=byIM9M0Sd8gdqVofD7KmbA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=58.44616&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=BlogJVzBm_iJeKtB7NfJew&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=158.54082&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Świdnicka' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta toi toi' AND address = '02-495 Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Rynek
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqV-vEJgGJOTHGUDq2BYVFZY4fj-tS51sND3O4DwBGfaKHvgpaL6sls2Rogh6g8zIJwQeqBW9p7en2txw_FvkBoJH8Z7B4aOPGYTuvqZQkT1pDteBhZ5m1UIdGZHLa8k763Ky-gSw=w447-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Rynek' AND address = '50-079 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
+-- Photos for WC: WC Partner
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nomYC27BXqT4McyKJxc_zMYkOqD2JXtMsMzCoNDkvUaI0z7Cw8y0faLLwOuQU0Iu_kwCN-TOzmiChK7BKcIAubJbZZh-4AiekaEaLyAvwEz6ndTgeQY2BW4xQhtgwYFEzYL5gpq14wYJFp-=w238-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=tfY7NyBAzVz-p21aAiD8xg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=247.05942&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Rynek' AND address = '50-079 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'WC Partner' AND address = '02-495 Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npHTinN14EzoeTscD7VATCWxh0qUj9itr7iCttoQQIhzMOBTpGXrtyE1QreLsWEL7r4J8AYaOHcCjRrvdmzWbS0J0i0YVWy1tvx4q9-3m5a3e47tgbMVYgu4kdl56UY-Ek-1VA=w293-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=tfY7NyBAzVz-p21aAiD8xg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=247.05942&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Rynek' AND address = '50-079 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'WC Partner' AND address = '02-495 Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=aSeu6eh-dLwc0ZXco9m6ow&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=81.24859&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Rynek' AND address = '50-079 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
 
--- Photos for WC: Rynek
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrdkDvkPnxd47up3806-AtJDbywuTO8In8kHYvdrMkjx63wgJ8QfO4sDITPzyTFfL6cpoX1ZS1Hoin7fX-lJFGgCgqhs6ywxpIy3uwT5diFjlve6J8MQZ4-rsUCwvpburKnt-LO=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Rynek' AND address = '50-043 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
+-- Photos for WC: Toi toi
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4notc4uKtRU-kO-Jy9BFzYPq195l_eloB_aC7cds74BEp1ggmDAOYAUcPghizRDzLBb_qeHdnuX3PFX_GsThP6V38plUTQC_IVPAN8XkaTUltCBbJ9gx8Dc852wrlnvAQ-GxS91vvndxjn9K=w238-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr-UO0SvCJpPkLAtGHSYaGuzm7feAmb-WJcFaV7jeuPKo-okO7-mESBULN3wGfhkZT5IRM6Q4KI1awsJJrr-AIXI1VuiN0rLz-um0Yyujyk8fjdWpMVeCk2ROmsbufpF_doaOJb=w397-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Rynek' AND address = '50-043 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toi toi' AND address = '00-001 Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np5Bei_WwSKvBNR3Q3GaSiujaf87WuAbrwetqFjYJXLiqK2cooZS1zjXgTA_ZgTekfHpeOUwYSPCZyUisHe3Saf1otxuPEjhP9udE6CzROuttH4XrNsv96AY0eDhoJJAyGxdrNubQ=w224-h298-k-no-pi-13.575352-ya217.29984-ro-0.05822967-fo100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=-JYVwDJTmsmP47i5U1OvBg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=174.78345&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Rynek' AND address = '50-043 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toi toi' AND address = '00-001 Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Ossolineum (Uniwersytecka)
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noK2vWIjsGLxghOO3-uBvaS04OFz0bYQN6SCGssXz_7bJRiu1_v1kYY01nmU4slcHzXWE2cR7rpT3eXkt7Gm2s1sHUncpBO_Qy-XOLQnd71u2LH0mA7x9K00TES4QDjSGC2D3U=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Ossolineum (Uniwersytecka)' AND address = '50-120 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no-D7TS1DZTJJSRbQOPYd9JtCvRws66BP2jf6ZCMJ4l0C7t8zCfgmwz1SMCd-4qYcJXNrzkU3qxSu0NIsBJH36oeFiqUChJKdJCfZLPGphmZp-DTjhT2hWPvBh_PnmTxT4wQZRFEw=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Ossolineum (Uniwersytecka)' AND address = '50-120 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
+-- Photos for WC: Toi Toi
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noOxbMqDBGbMWEhsC5UNM7OidYv1w9ClPaWnCmxDxxRLxkfG7sfXUt8BHTIkqjOlrIx5PA-CW5ZnawXAfA1qozBClb2TGg2R73PS68-gRnLYKFJiye4Nqk3Xwvz-Yg-oFZHlM4=w224-h398-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=pEOPRvRiDjCKIuFTOO9uKA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=106.52042&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Ossolineum (Uniwersytecka)' AND address = '50-120 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toi Toi' AND address = 'Ryżowa, 02-495 Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr7mBLHSxy00KNe1ytzRya7McOXvrFQSbzGp8zLpW5sYqoqLhsZXgnQqMlX0iMe6acQUpipxIEMzwWhC6-XXgv_ZkRxO9Lc-198GR5en5RCJK1mGAW5Zfad5V0uRPq7e72gD2Vq=w224-h298-k-no-pi-10-ya290-ro-0-fo100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=pEOPRvRiDjCKIuFTOO9uKA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=106.52042&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Ossolineum (Uniwersytecka)' AND address = '50-120 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toi Toi' AND address = 'Ryżowa, 02-495 Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Świdnicka (Dom Europy)
+-- Photos for WC: Toaleta Publiczna
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npuGgGbZFn2dP4tY0_INKaOWWHyQ2jO4Ft8QICIT9NqF-u7kHlR759QwXnoch4cVxOsM5ssppBeY4O0WHI86pRyum7u6r5sWWP4JDHQCFF_Yw4hKlq-QAaeWIIvXWTZkpPG9oc=w501-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=UeBDSn6ZPPSLYHn3NXX_fw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=332.57474&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Świdnicka (Dom Europy)' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta Publiczna' AND address = '05-825 Grodzisk Mazowiecki' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npcJvyDc6h7cz5cg7dTQkUVhHBthXytV1E8UeGIVxtmj9u4hqoyk_9s4t3I025PI7u-La_t6i5e6z0iqsoLHOlG4_Fd8uoXKtXatiMWsacqNzyuMS8UWewv4X8r8uBuNrjSKVg=w298-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=UeBDSn6ZPPSLYHn3NXX_fw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=332.57474&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Świdnicka (Dom Europy)' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta Publiczna' AND address = '05-825 Grodzisk Mazowiecki' AND created_by = 'public@sviete.pl'
 LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=hA-SSV2w_fFGuwaSGKcvcw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=242.17332&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Świdnicka (Dom Europy)' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
 
--- Photos for WC: Zamkowa
+-- Photos for WC: Toaleta na dworcu w grodzisku mazowieckim
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npdO9Cfu34tQ9cTJ1SBc3gtvtRVdO8XI67Ol1PNlT_XWK8X1RCKPOFzmzIf9dn7FG3cNFYBeycJFJKxXF4gBcoB6AyPkWqKvde9aYUoPC2G5QZnfB9_ZJSSc1I8Lkf5F522QMdZbuYvcew=w397-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqsVSXcdzK_SaZpEe1eCO_sgnO8dnUyqnH0lOmqNJhSA2gntWb6i-Ln6bXxSB387Ub6s1mZtBMAxgqgeww_D8CKcvo3UZjmOf2YZlSS9sJG94k8q7Hy3Tu8FwjGMt5PFpIhZWyRQh4XGiB7=w224-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Zamkowa' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta na dworcu w grodzisku mazowieckim' AND address = '05-825 Grodzisk Mazowiecki' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nozjY5I2zkQPqCryZb2IAcGiaxpJ5G8e1tbBLzZdjIYoQwnszY5aB5eNbYD1OGNYt2mnQao4ms2ZmVDb2ruXDytjtqxAwpq1_df7h04Agv6wnYN1g36P6C_XxJjAadY3_0Ibe55eUpaUlFi=w300-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np2GOUvWCHJHZl9Q2wYE0GZYledel-jD_kMo6YjPe86vOy0LxZelUm9N5r2fXuSHBn2JEWknQ9aCh3pBNvFDbBVdaNMH_WldhvFVaN_0ac2nJcaiSkBZqWm3vJt2jCjIxB5IdMbJcBic7Q=w224-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Zamkowa' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta na dworcu w grodzisku mazowieckim' AND address = '05-825 Grodzisk Mazowiecki' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=YIwLseg32rhDOjmIjQsEAw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=193.19147&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=PDwBkRJdjwGz9TuCmymDdg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=357.3074&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Zamkowa' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta na dworcu w grodzisku mazowieckim' AND address = '05-825 Grodzisk Mazowiecki' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Dworzec Autobusowy
+-- Photos for WC: Toaleta publiczna
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqelvzyY9Gp62s14SPntt04bDYJPrluhb_L8gjr55X8Kwg-aj5tqMq9oxmpPlVCH7WhmyzyIsGrQjNo7kOw_3FdCfikv41lcq-qdDRD7C50wDFWHnbb1llE0YiJcfo8Go7bFoUg=w273-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=zvKRfZwIGXGNTOTHax5b0A&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=349.8224&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Dworzec Autobusowy' AND address = '50-086 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta publiczna' AND address = 'Emilii Plater, 05-825 Grodzisk Mazowiecki' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=JK8WF6_kXWSTFaq5SjQvAA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=324.746&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=zvKRfZwIGXGNTOTHax5b0A&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=349.8224&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Dworzec Autobusowy' AND address = '50-086 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta publiczna' AND address = 'Emilii Plater, 05-825 Grodzisk Mazowiecki' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: DWORZEC GŁÓWNY (Dworcowa)
+-- Photos for WC: Toaleta publiczna
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqW95uJAymK067mhJtk8jN4AOdxJ7FkqGO8GxwenHouLnSQ68gaPZTWH3WStgCRWiHnSiF9Lbu8YG7IpPP2Jm3waDeQXIpwzTkVZOIPU5IZU838zFmUpftZUdRLfep33C3b3HtS=w529-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=HCt5PYEORfR6KZLhnKpcaA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=206.79782&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'DWORZEC GŁÓWNY (Dworcowa)' AND address = '50-441 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta publiczna' AND address = 'Juliusza Ordona 15, 05-825 Grodzisk Mazowiecki' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=yBaGY7zp3eMtMqhPUUem7g&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=261.2348&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=HCt5PYEORfR6KZLhnKpcaA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=206.79782&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'DWORZEC GŁÓWNY (Dworcowa)' AND address = '50-441 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta publiczna' AND address = 'Juliusza Ordona 15, 05-825 Grodzisk Mazowiecki' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Dworzec Główny
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noeowwSKArckPX0LD-xGyPXMR9uk97jk3Fj_JyWFHTwOgZCvDf5QQyP9QJKQY27Jc8qpZufzXpJ1JezF6hyK1n8AWEFndwJ9L0IDeKGzCUPScnE7MjEtFKy2wRAa9tyfKa_bf3E=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dworzec Główny' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrLoEajdKjihOIdV_sDAPtDEHf8cjFF-c3_ZMkFIL5sUBVghvUseQWM5I5UmiEEtwvJkhbe-SBOIotUS1zkWhyglgaF-M3H_i73lyINpCpSBHXUxSsQWeklU-2SqCa43TafS1uYnFsh5tgM=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dworzec Główny' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
+-- Photos for WC: Toaleta publiczna ekopark
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqHgUHZeVYQsnTTu2oF0rZgXU04k3UXWbNQRQzmKPSnaVwLCQEtWmtxgilBjGmE4FPSoCSDYXFZXkKNA7sNPR6qKgl8dKcsALYV07nm8qCL3bd5T_gdi650BGyl3InYPj-wbmyhzGofR4mc=w298-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=F2B31YSv9iEm6jK_hW_BVw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=273.37485&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Dworzec Główny' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta publiczna ekopark' AND address = 'Marii Nietrzebki 2F, 96-300 Żyrardów' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npSPZFDxdNb1FldBJkSg06xqrSz3-u32TKuBDotj4vivWYmCUIW1XFm_lJT6ktuPKZdvUPu_JVBuEMVqbebAQ_-kXHiaaPm5fyw5v3jFdP-dtbOAIvWWzY6qHw30_E83OZ3tQjh=w224-h298-k-no-pi-0-ya160-ro-0-fo100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=F2B31YSv9iEm6jK_hW_BVw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=273.37485&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Dworzec Główny' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta publiczna ekopark' AND address = 'Marii Nietrzebki 2F, 96-300 Żyrardów' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Dworzec Główny
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noT3V4ZXhymsi5b0CBYTu6IpwnPdDOPdkgrVF8tRIUP4KV5y1QTn_5HroZ_1wGqWnKsQP42OHRQ9oXuD3fU0WsIRztTNtT2-ESY6aPixSn7JcipvbEBVJiuOYRYFgCD_rnAk2rd=w238-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dworzec Główny' AND address = '50-002 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
+-- Photos for WC: Toaleta publiczna
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqd_a_5BJQeEpdiuFryWZ-vKoEaTmEh_2_9mzrvXhld3gqDYJUwSbPZkal0um0b1hkD-Z-Ko0BFzmhkUdafV1QL2rxXmnMrNjSOT1g3Q1VS7k2x08WhUQRCdPPeGaZGPgec0xjlXeIZNjie=w238-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq3L5VVSOK7ay9LNUnTU9hgI5dra9VNbAeu4d0VBpkuelq9c6I1lV-DPrGVi4wcr8liUYoaoE-2lrMJEz9lAo-CvhGLG9M7sCbllVi25gCtAS_TYC2wsFbyH0TZA5PLVtH1zpiQ=w224-h407-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Dworzec Główny' AND address = '50-002 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta publiczna' AND address = '96-300 Żyrardów' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrZK36jlWuptAkFTl4TcSjhy_JHB04igNqz1a2aUd6DiQ83JWToU1fiDUh6Z3RNzsPEos5NMrUTa2cMMIHAQTY43DIbpHgxlA5MXnw6vCd5h_vM-MoRvtMmDBTRjgr15CoafMpsmw=w397-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=OWQCKQprPr2CW2PLgIgswQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=252.30849&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Dworzec Główny' AND address = '50-002 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta publiczna' AND address = '96-300 Żyrardów' AND created_by = 'public@sviete.pl'
 LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=eD_PWoxqGYeAZQKEMT-zLA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=50.63807&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dworzec Główny' AND address = '50-002 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
 
--- Photos for WC: Dworzec Główny
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npJUi_ouSJOe4gnFgX9C0XysmYOzhae1n4GOCoLaaz73-kFOrSncWumWPN4BodTni5cs3yGQibfahXyorsStCXeMiUfn7wucOZVV3AOdltfQsqTc4j4z2w_UXldwKgeEyuNuiOEeBZKlfYS=w238-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dworzec Główny' AND address = '50-002 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrhrBH1I5GUk4NCNOF9wixmYdex7W5kIipfOH8fKm1yvtWtvwL5oNXGppQOOrb4X9pf4FswFUW6cg3Pr2P7dKEuTJ7fVzJyIrCUmCbJnbeKv_L_-4VW556wE1_8qhKhY1na4RMhl5eGlBqo=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dworzec Główny' AND address = '50-002 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
+-- Photos for WC: Toaleta publiczna w Galerii Żyrardów
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no3JfjsTRutxWCd5az-LgNiXkkGfBY9VAqwtvQxoRMLEmCktN8TnjfxOya8HLB5elX0rJ3-CjTR_AYM3-kxgnSAaZ5T8PY0DtdsejIDD3vzf1cG0S2FDROKPmCcvRr7OqizNuyg=w382-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=RfNqAF3w1KYM9kUcellX_Q&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=235.13576&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Dworzec Główny' AND address = '50-002 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta publiczna w Galerii Żyrardów' AND address = '96-300 Żyrardów' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=l00E_JHuute_E39L4RCxGw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=342.16367&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=RfNqAF3w1KYM9kUcellX_Q&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=235.13576&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Dworzec Główny' AND address = '50-002 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta publiczna w Galerii Żyrardów' AND address = '96-300 Żyrardów' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Dworzec Główny
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npKct4djT_I5_4vN4ejDHqkmyxM09iEkOwzUkrT0V_neX1_QoHrUc8x8H-OQN0EpDZYhMMbv7QQmbi_WLMQJZj4rYOT61c06J6386sMhOI2zjVIdWVfx2uCr_e1RLWAtfYLexHcwA=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dworzec Główny' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqdmH5bUzEOLG3Y8-5CDaeHSxCHStSE27VGKjFk32t_J3j9GU59Vdq28kBV7z3nPEFpVBJn4ad-1OHu5Uz7GyGfSppuxLsuz-lztB4hGJ08IAef95WufpgheHgkWjHICahLGkKHq4yL2osu=w298-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dworzec Główny' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noFXiVWDAjtZ8X_MfHkX8wefONmCouB6_23VLVgnJj1FUV51-Impo4UxfjLvW78Bv_GcrZGf7BPncLlQ-h-jTxC0DKP0kqoqmQ--lNqbNdWFVuRdVS3RdkwVJHkWJ48pTB54lcOPP6UHQwi=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dworzec Główny' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
+-- Photos for WC: Toaleta
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq9k5ATheoVI0gmTWU2w1JIEhdSatm8yTNeaTzVGIaB4oI0wuHyCd1R01IqtP7dZ2AWCPaPYbQj2hzwTOuudTgyTb4elJH1oy1FVmAU2h03CV5FPBWgzySGNaw-sdt4K4XJMOAYMqMBSoeo=w298-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=XpBtXWrymxvHt5RvwEohdA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=62.906605&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Dworzec Główny' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta' AND address = 'Stanisława Staszica 35, 06-100 Pułtusk' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqRFfkNhRQkQtsxGLh_YwldRUuMz6YGhxQsqc6x9Z6EwDURfeBHLOONYv8muB1qB_CDwKmT7whS-_v590lhWP_wrKUyGMamVl131eIYFCN03kpbbiIw9SmaJ1PPTpZiNAM3DM9D3Q=w224-h298-k-no-pi0-ya280-ro0-fo100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=XpBtXWrymxvHt5RvwEohdA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=62.906605&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Dworzec Główny' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta' AND address = 'Stanisława Staszica 35, 06-100 Pułtusk' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Dworzec Główny (MDK)
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noKVilegnB7uFILwKbxLlPv8A0B1JJYUTLhS53VaCWMXyW0mHEUnxbl4wfNERKvhLMvG1Q-ypDvkoWnxOFOl_9MD46oSa4pFpvA5ybBvxrY1nuf7Qs8ifR_M3_4Jvin9opfKx-h=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dworzec Główny (MDK)' AND address = '50-002 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np0IPA30FqIMz4IRlf2h01Gf5fLTwYN6cakrntk3rzZBf5hkcNTom5OCtLYbxdS_hisO8EhynNQfudx-BJGIZOq73sYtGSKSuZiwjEGW2raYPui3vMyvM1_iwDncSJpfpnZQ9ikLQ=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dworzec Główny (MDK)' AND address = '50-002 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
+-- Photos for WC: Toaleta Publiczna
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noXhntqP-PviJfYf_87fdwDvJmyp8rZ4Po9ZMPDFUswN9g-VQeACyCPyEN4dBwYD7Rqh3QJnHrLWtaYV44VCkWW8rsVGZHgdhmJBKqg2KqNcRX30FclZXPc8h3awdf0mDGeJGjpyA=w224-h398-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=xz3K-TX7ytyaFMYKj1nfLg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=352.30588&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Dworzec Główny (MDK)' AND address = '50-002 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta Publiczna' AND address = 'Młodzieżowa 3, 06-100 Pułtusk' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=VyYT4YR8xsxB7GmPXOgE5w&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=317.42078&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=xz3K-TX7ytyaFMYKj1nfLg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=352.30588&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Dworzec Główny (MDK)' AND address = '50-002 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta Publiczna' AND address = 'Młodzieżowa 3, 06-100 Pułtusk' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Dworzec Autobusowy
+-- Photos for WC: WC, toaleta, pisuar
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no1HehLa_qaxZIvqhWWpUW3YD32hgvi8RNl5s1JolOrn0P6xZxXSr3CGChBXLq9LJeXMiSt51FJw3CImXcXoIOULMJNxIMElbw06MEp69qNzh0ZUqZP8W6C2lZIS5Dqs_EzrhCR=w396-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqjG-QUaIob59cePbgBjG64ajaLTrSiqrZhMF0WCKr50zUbGDI037YwTOJFPadXPJuC5KuNoavsnr1iIcc3aLXlYQYQkUw0OU3FBvhVLu44-D9F0RfHothOeiA7fyeL_jNW1hL-=w224-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Dworzec Autobusowy' AND address = '50-086 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'WC, toaleta, pisuar' AND address = 'Bolesława Prusa 61, Wrocław' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npBWbxlq2TdnrS4HSvQa5mh8syQdEz4GREYy_ocU353cRmaX2JYgJmeJ75xwiFvCFWdLFsuIKVdaUbh0WR6c95CCUsQmI0NSl-EvY6DD8vTQlfkmI8vCkm4-C7nJVrowcmfE973nJ4pvY0G=w319-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=UDWTrLKsUGN6L64PLQ4l0g&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=7.289921&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Dworzec Autobusowy' AND address = '50-086 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'WC, toaleta, pisuar' AND address = 'Bolesława Prusa 61, Wrocław' AND created_by = 'public@sviete.pl'
 LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npIafigUDi_l34hz0sLRj-H0A1ZxslkZiQjWWlxGoyxbTLeQKI_Bwuk5KBliOVNA0Qg5rSFTgItEeFaPe32Sdf0R-ULqyK1UFMhwsVs3gE4xdOwR7XW_h2YHkx1WkYyRWSkiPg=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dworzec Autobusowy' AND address = '50-086 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=j-OLFBg4k-t1SUgTiJu4nw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=289.31497&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dworzec Autobusowy' AND address = '50-086 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
 
--- Photos for WC: Galeria Dominikańska
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npXLnMFa9DssG6SBI0uUJltvMwCtx3kNoD-IAnOya2u8WueNzJdRQv1Mya0KuHqxWf5hE7sHc_Hkz6jtZGK5TsWmbO4TA9wM4vpUxJ9CDmwW_Acp8fomLXwKmI1lFYjGzXkv0ze1A=w298-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Galeria Dominikańska' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noTW_T_UXF1skRA_VgTndr9wYYie0A33OPc3gpsSz95gMa1iUfU4QuPETQhQCpEnx-QX-g7RXYNW44ucpX2ffv-H2CF4kXWPwlqhtsZL4e5XZUgrUN-q78CobsIQqDUAMqBt2f0qw=w660-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Galeria Dominikańska' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
+-- Photos for WC: 06-210 Krzyżewo Borowe
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np6Siofpicsw4qlfRoone9WNn_z1iIaxZKyddJpyRvrgMypPi3zLgNHE7SHivVwX5YQEjKKzIR8qGR3Ppmki2fwy07P-8nTCNBUDJDL7fgpaCqDusoF57R5axZwRwEcnaIVZEC-=w224-h398-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noWAM-SFmgoROay5d8QGJu0TRePthniQDp3oKnPyvmrmlBXYd2fnzCcsjcbmzq6m_lxecjCMQz5rE6_6T8WllBAtqethKw-3y1Cgs9B0VDsAwp53aQ2M7-9T7z2amL3ZB0rlqyV=w397-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Galeria Dominikańska' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = '06-210 Krzyżewo Borowe' AND address = '06-210 Krzyżewo Borowe' AND created_by = 'public@sviete.pl'
 LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqdQBu1s8Gm3bEWfAcqMhTEQxaAO5kFwHM0cw6pL7YESHXclB7duviQsVCeFhtypUmpd2EiDM-JcvFH-5Ty0VdiH_00QU54Ore7eaEqbd46sI7Eo5gPDHw6RxolhAF6nOnJlH8=w224-h298-k-no-pi-10-ya102.99999-ro-0-fo100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Galeria Dominikańska' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
 
--- Photos for WC: DWORZEC GŁÓWNY (Stawowa)
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nouqwtGXsKg9stpeePWdxp4f1Er5hw2E9qYb9qoLYvvJxN8i77bUzRTSwzX20XWk3ESA13YZGkdujdmz2fDs0fM6eMs3FUIdZFlVvk2oDj7XfWSqXIjuEqTUDf3puOKbGNwWVs1=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'DWORZEC GŁÓWNY (Stawowa)' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nojgRfdrG8Z9VVQO0d3HyXgfOO-KtEo0vjj3AwsrCIoHekEsTsyPDFIKU9On5Nc2b2YMhLU1VeEBSyW0o5dH5f32fd-f16oQsS1Ys2IVmFXpIlhdq7Mlg273kmqtJtoh15NxvNB_nWv8c4=w239-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'DWORZEC GŁÓWNY (Stawowa)' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
+-- Photos for WC: Toaleta miejska
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noju3JKFC88H4ev2oOiqYMNFkJ0nUB9-lCbYzSnEPct-Ol53snPlY7EvpSkHPJ0J8mn9Lxb-rqPvGT83d7nV7Cebu1MrdR82BLTBpTk2O7j-PkPR9WKf7U6Pq4PyGZu4zbyWJS1vw=w224-h398-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Z15ukUIoJieiTCqUbH3n5Q&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=118.22579&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'DWORZEC GŁÓWNY (Stawowa)' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta miejska' AND address = 'Kardynała Stefana Wyszyńskiego, 55-120 Oborniki Śląskie' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=XLsv8yRbf9B9wGyKbslg4A&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=130.46591&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Z15ukUIoJieiTCqUbH3n5Q&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=118.22579&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'DWORZEC GŁÓWNY (Stawowa)' AND address = '50-529 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta miejska' AND address = 'Kardynała Stefana Wyszyńskiego, 55-120 Oborniki Śląskie' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: DWORZEC GŁÓWNY (Dworcowa)
+-- Photos for WC: WC Toaleta
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npm_IHejauOdl4k-D7sLEOTzOFHt2_tNmi4OiqBHRkRokTAW6woh8vle0oWdmlXH-FLyUEO5YY6-NfEL4S5kkFgLuXJ5KnKCEjV6dAE-mC5TZbNJPKgfB0zt_gYfS9_zBGX20nhAGM9116q=w301-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noFGI6zbZG1Gz8xbVPb9JgfDxKBVGTIzPMYOajAfAdGh17wJThpgz7Vua60nNEr35q7TUyz4DHugz_R--GuYgSKwNaN27CI_AqepjvL98fH4i3_7ZbJnURT8BwhUgY6mhWNCBHd4w=w224-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'DWORZEC GŁÓWNY (Dworcowa)' AND address = '50-441 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'WC Toaleta' AND address = '50-001 Wrocław' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np4U_0-rSVf39f8gEYdPa0qFS9dja4pz7OX0RzWfRI8Ivm8PtxX_Gzm4GB6XXnNP1h_WzGjYzQbIVmsII0bre0O43VoVH-josmWdCvEi36qgKRVgdLQm_CKnPtoJ-rS4JXEVfL_F9ftF536=w224-h398-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noFGI6zbZG1Gz8xbVPb9JgfDxKBVGTIzPMYOajAfAdGh17wJThpgz7Vua60nNEr35q7TUyz4DHugz_R--GuYgSKwNaN27CI_AqepjvL98fH4i3_7ZbJnURT8BwhUgY6mhWNCBHd4w=w224-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'DWORZEC GŁÓWNY (Dworcowa)' AND address = '50-441 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'WC Toaleta' AND address = '50-001 Wrocław' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=WMfCwADRHE7pO5eSfUyn1A&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=224.7589&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=WeIFkJgEXFCUZfR7IPoGsA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=183.28351&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'DWORZEC GŁÓWNY (Dworcowa)' AND address = '50-441 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'WC Toaleta' AND address = '50-001 Wrocław' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: DWORZEC GŁÓWNY (Stawowa)
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npmVnl6iSYmbUPCNXDv7KcEEOthExI_UxyF6W5ofZNxH23-5AfhN77_Ym7CCEOHIqKp0JtdKhgqM0ZymgoixZugeHAATnbfR9sioWmIDKD90FDnag1pWsSzUC3n7EhSugOEhwdnfbU5XpgG=w299-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'DWORZEC GŁÓWNY (Stawowa)' AND address = '53-112 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
+-- Photos for WC: Toaleta Publiczna
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noTWpAwzrnWocYLyK3A9jFFDdWipyNjGYEWjLrycOLGFUm-_LB6gCyUBJ7CcWPOa9ogdZRPoJLoNxxB1E2SPdRI2KVuA4obBxb022wkzVr2H_AJj8SCnEB7BjFOzs3b3h68KQag=w238-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no99wAJ7Q6pT-mPfQi3pW5g8VQI3z9-XyEoixrnO_3bCSORabPRfVncPwbbAhDBWDDacaBPZxT1135m1-GlnRYdAwnd70xEX2FsU56B1CqvMCVvexERAvpeyyti0ldFVuLrhHRNVw=w224-h397-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'DWORZEC GŁÓWNY (Stawowa)' AND address = '53-112 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta Publiczna' AND address = 'plac Klasztorny, 59-220 Legnica' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=-Z6J6lbcTAIhbQ0XZXyNeQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=297.3412&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=an9zGA5AFaWuREGZv2Mubg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=33.198673&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'DWORZEC GŁÓWNY (Stawowa)' AND address = '53-112 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta Publiczna' AND address = 'plac Klasztorny, 59-220 Legnica' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: DWORZEC GŁÓWNY (Dworcowa)
+-- Photos for WC: Publiczna Toaleta
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqc3N8xMQJwRwmhx9JAqR_Ez9oFtyJHqxOMiQ_Ey0S2Ge7aCn9rd7WRkwrZeZflvV4wUA7guKeEN7Clg6oZCr80YMG9d9FUtpVWhrj_76rKiD09J_zVfsw6sGqwhoC-lIC6Q-SOXZ-J-i9a=w238-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=bNVZT6qjYEM_5pixUTsiIQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=244.07747&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'DWORZEC GŁÓWNY (Dworcowa)' AND address = '50-441 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Publiczna Toaleta' AND address = '59-220 Legnica' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=r4H0LCC4wA9EthQoBsHljQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=180.69514&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=bNVZT6qjYEM_5pixUTsiIQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=244.07747&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'DWORZEC GŁÓWNY (Dworcowa)' AND address = '50-441 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Publiczna Toaleta' AND address = '59-220 Legnica' AND created_by = 'public@sviete.pl'
 LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nryR1srbRSLLDYsEY37lFDvvqmjnEIIP8yDXdcWHg1faKhQJ1d7DERDGFkgl9qs3OlvItnFZNX2CL6GmkafnNbO5L4Dy9wVNZZD0R54gyS0D1XP3ex5lFzDOvs-Srr-RYDGNv7HPw=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'DWORZEC GŁÓWNY (Dworcowa)' AND address = '50-441 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
 
--- Photos for WC: Dworzec Główny
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noEv1MW5ItzV8qXSwHb6y5BKmlE0JigQ13ehCB0XBYM8EZl0_XpAvo1JC1dCcJpCrS5Tl3YhQv9e5S6rDiaqWg9baF2E20OrXycXCVx19vFd3JBgem_qtbQUwEQ2DRO81TLrma2az-tFels=w295-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dworzec Główny' AND address = '50-002 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
+-- Photos for WC: Toaleta Publiczna
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqS8Xkh_c6gmlHnHX9BxI3UCDxDBU4quOi9ZXuCqbb2XNYaI5LVPf1Ie0siZ9_rKBp0PVd4LE7ZIjiDoRBHVUrUmcVGhs-LouKd5MtUEm67cYneeTdVsSdseDGttB8OtM1jhYwUHA=w314-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqtrErhVPIFpplPIVoh1Rxns3SyHRhTKzRqe-P48UTpkp3DiDcaLOlEL1RhHwZ9TD5su2SgGjScx_XK4e8ASsXK32C5V1Kz-QOiiHW6qUm1gJhGfqlTQsSChPAajprQWUH_QlcKdw=w529-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Dworzec Główny' AND address = '50-002 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta Publiczna' AND address = 'Górnicza 13, 59-220 Legnica' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nofMys6csW1wfv5jNytEvoyt4O9EZFR-Db2ptmvIqIoGdkF3TnI7oTXWTHdOJOu5nPV2Wdvj3spJ-fM3FiSCVuSU_GqBqz3K6ddUZhSEuY7hxj4T3lplH8izR9kuNHC-bGyQH-2=w224-h298-k-no-pi-10-ya1.0000116-ro-0-fo100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=nD8q0rzMfrWD5ojVRs1FUg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=212.54967&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Dworzec Główny' AND address = '50-002 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta Publiczna' AND address = 'Górnicza 13, 59-220 Legnica' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Dworzec Autobusowy WROCŁAW WROCLAVIA
+-- Photos for WC: Toaleta publiczna
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no5Vssa651_mFGTut_bqu_fsrdVPQ_J9r3Bvv7Zb9Da_E-KLZO49vAplcjQSKBBj2mO5AdqK_qpw56cNV_Kr1gronMaKG2RRILL_hNXbZkhX_EnHWm9vmL3uV8-bPSQCCZr4NDo3w=w528-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noMi99SlTIMS_XmluhNBfekIdA3czuI3_MjbrGy7jB4OlmP1N2LdOVQnhfp5HBm6DXrAB_PDlpM5EjmehS0hVD2sUJ-QFDS8RAm6JyOGFHGdKz6OTRjkbmSHav-3urvQEBsZg5-=w224-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Dworzec Autobusowy WROCŁAW WROCLAVIA' AND address = 'Sucha 1, 11-400 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta publiczna' AND address = 'plac Strzegomski, 52-443 Wrocław' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nriXRldd-P4GUmUnrLtk6KW78Dld-TBNQegRgbnR4Z1qlKTLgMZJpD33xETWLP_nla-ZguseVeQapRlCPsarybzFeM6VzSCzNcSZGBk6EjcIdV8IGVvELUFU3yAaKMTRSC3Zl2QluRuMT_o=w224-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq93DXhRV6rIvVwh-JgwRWghzcZAPCl9rf2e61ronJaaWc0vtbokxy8ZN8tKD1o8V3pYs2adbjbLNV1kTxjEN60jZjCt7HVyUtXq-w-yeSooYGevhDkEXyPar3ZFDI3AJ2OYd61=w529-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Dworzec Autobusowy WROCŁAW WROCLAVIA' AND address = 'Sucha 1, 11-400 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta publiczna' AND address = 'plac Strzegomski, 52-443 Wrocław' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nowZjhK3qUCgP1aJmMeM_tPC2UwNtWD0f8Zqj4vftGIKU-6ZA5Y9-uVRWtHWtA6guk0TMP_rToWHCPPW2pZtSNQJkpv-3K-IFY40fiy916RW5AjsMUt7heoRLtvijJK2ynqpoNv=w529-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=w28d7Y9DXe98f9T4Hw-AMg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=21.79873&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Dworzec Autobusowy WROCŁAW WROCLAVIA' AND address = 'Sucha 1, 11-400 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta publiczna' AND address = 'plac Strzegomski, 52-443 Wrocław' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Galeria Dominikańska
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqKgMtIdUTIFkHtD_btwXwJQjYYEJHID8ii_Vgd9v_svYML_VhcqKIaCK3lYpOtRS9l8JseA2BcVDSDespggAI5V5hJkThdp_Y-0aKNQ8SxV9qUCMPYJ0HNOcbG5NvuXUKTqyhBiYhDnJcJ=w243-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Galeria Dominikańska' AND address = '50-082 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
+-- Photos for WC: Toaleta
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nooOdWO5kSak5O0sVOFS_ui5PHLGDerk7T5OlE7AwdojcqcV2U17MBRLaFFy7EvO6GQmp01_66z4-zhO9pbIPIXcuA1ZlEQ24Ke1lIA2P_2tupIy9m0R_TW2_oDGUTO3PGzESoREEtT8Eji=w224-h398-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npL8Tl8NEBy4nh0MOslWN77GAiAndv05Pmd23pb79CRHrGq6Md-IdYyoYKgUIQ2v2jaMJmQM-7aCAZvJ1GfwLNQNkbmhF9ts2z6qzX4qBfflJAw8xSILFlvOcYd2hm1kosFKQjC6g=w397-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Galeria Dominikańska' AND address = '50-082 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta' AND address = '50-001 Wrocław' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npODpht1xv1ltzLfdRlk899GF0lkXYOf4U3AoiRxQ6Gfu5LP__jI3GAHv0amgw8c__072AgZw7oDYkObDqIm_udE6ZqfJYvj8VVF8BD-UB9Lv2-gUsOk2VncWwUBRLrSv3r6Ow=w529-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrYFHHU8Aq3DTr9cpk_sIT5bUOULUT1RI7AYpTt5_VGWX6YXcEnrenmHC1_U937neNkuWkUjFCN86T1O1q2Q7via43Nuhktnqfb5h_8Zq79zM3a7mhi7uMM9BAtfDU_BErY1sAm=w529-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Galeria Dominikańska' AND address = '50-082 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta' AND address = '50-001 Wrocław' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrg3XTKMDstlvCX4UBg5lUlKY_a7_dcNhnwJcEUrO87FWtT9URGHpMgvMl9Q4hv71-Lt_Njnmh8unkgnJX5K5y0ckGRKMuBUAGv22eanLu5hYHcIhPwg-noF75u1WvX2fUjDEj1=w298-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqSP5YtuT7Zm3mv5sesL9dom3IiJMb0qOCud4eJqs9g83ZUeufsGOnuNNfm2GypvWEb41ML7VnBoUxMF7Rjqkn8yiwCRo0Dy5uKV4vHllKucNCV7cqDNLhq_5FFVl7_Z9Vv3E7uqg=w529-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Galeria Dominikańska' AND address = '50-082 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta' AND address = '50-001 Wrocław' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=fLAV_6X3Unl1-37DIVvdKA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=232.75946&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=eYl1NCFOVjDWK6HMeD1xdg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=16.532162&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Galeria Dominikańska' AND address = '50-082 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta' AND address = '50-001 Wrocław' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Przystanek Autobusowy
+-- Photos for WC: WC Toaleta
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=KGCtd0cuhAC4O4HoHiXCvg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=270.87344&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=T36XwX_3pXxXmbtSL-Assg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=183.97249&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Przystanek Autobusowy' AND address = '50-005 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'WC Toaleta' AND address = 'Stanów Zjednoczonych 25A, 54-403 Wrocław' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=KGCtd0cuhAC4O4HoHiXCvg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=270.87344&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=T36XwX_3pXxXmbtSL-Assg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=183.97249&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Przystanek Autobusowy' AND address = '50-005 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'WC Toaleta' AND address = 'Stanów Zjednoczonych 25A, 54-403 Wrocław' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Dworzec Autobusowy
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqyq1CdSkD3rwqziUV1tsaaiXzIJAQ-RKridc5_ZVphYzcoiA59RiDbxoUdUcWhA1Ut_XkcWMI9p36r25ItOUFqRjMLLSShvIJVjqLqPzSu1w0hWlRG0EDDW5Oku8Q11NUaXOQr=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dworzec Autobusowy' AND address = '50-086 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npxSHTFXdiHtRK5eCIBMVmgUS7dJsWsgYfOmBKhnTUHf_1JlxBanE6p8iA6Qx7c1S04ODcrtPA0uMfsEypSUlPAOQhBLzM_8KDPCGftpNyn8Ul9STwh0BrIUTSBKwOdUifPOOOR2aAo19pm=w293-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dworzec Autobusowy' AND address = '50-086 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrlGZM34qHGd-T67RNXHL6hnD1iwnAaoijSNDt4CPuKzpyqvviqOp7vf11M4lr_-TGUaSA3YDEw4C19PVCSo9ZWHZnsAyMjKl0qA6NVIpw1SfvY1U8xp5sx3V702YoZKrhBfWQa=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dworzec Autobusowy' AND address = '50-086 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
+-- Photos for WC: Toaleta publiczna (automatyczna)
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4non2PrKRJca_f5UlruOZ9H8f3W07KI5LwwxJwuBjDNuUSavyrDSpjnspNHRGU34XvnbRLzvZhbutGH7HfyrvleJ25V7bBXBQmE0wP1lffllWA4ERkJn3a8U45bBOBCstiR-R1XH9NRdVGCX=w298-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nocIJuIm42yQrZIaa0we48BjxhgAORXaqEDjuPd4PvhldDUZwgeWKBNMDOSmSwTO8t6XRyWeWEioKgd5aFhgRXLcHTcvsWhrDocUws8IQ8ZDoVJCO_npuTOjlaU5DLR22ENT7BL=w224-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Dworzec Autobusowy' AND address = '50-086 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta publiczna (automatyczna)' AND address = 'Pilczycka 26, 54-144 Wrocław' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=JE5B-Iwdl2Ns4Z1jOUDA-A&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=155.08905&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=6KkhXRe_FOqBu28IrwzgZg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=262.94125&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Dworzec Autobusowy' AND address = '50-086 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta publiczna (automatyczna)' AND address = 'Pilczycka 26, 54-144 Wrocław' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Dworzec Autobusowy
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrtL6kD5FpMyj4O2SjyC5vq80UjpdwyjnAY-mbj_3ilzU5kfsstEd_A_BBI5DNzYB_AXk2-cVz2gcSjb99ceYr9sKag4ZEIJDNwUc1RcNKhj2oE69rvWxot_4mJccPyb8MDcrKu=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dworzec Autobusowy' AND address = '50-086 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npUQDZZXm20MpZCenuhBTfu1pDKBYyDtwJB87dK8unhgq8wkTx4afgREae-dIl9I-Iq6RYPEQ3WiW78DfD_YlOYjh2lRqZZf5zyIcjg6BoJPZECVd-wz8_HojEwIiS8JcxaNjw5=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Dworzec Autobusowy' AND address = '50-086 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
+-- Photos for WC: Toaleta
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrsrW4hnaLmA6btU9BnLKp5jRffkoB-xKfpJg6J8910_lYhcCzF0qneVFgdA5_uw80QIHaRjF8flUMpmd2ZFfxBg_5jhH5q-T5dNUwQctRBCd4mAzt2tQey8u6vkBxBXODmUweipA5-hkRe=w529-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=96DO5eRc55dTnqfZQzUSIg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=238.47348&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Dworzec Autobusowy' AND address = '50-086 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta' AND address = '55-100 Trzebnica' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=gips3F6MLwMdfWvw1eh5cg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=311.6898&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=96DO5eRc55dTnqfZQzUSIg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=238.47348&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Dworzec Autobusowy' AND address = '50-086 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta' AND address = '55-100 Trzebnica' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Port Lotniczy
+-- Photos for WC: Toaleta miejska
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr1GBcmBc9CmADlLShR-C43ZM3a-LNLJhygvfX3hnebz9ukOFUA6GB2y1E5MuZQKRUKl5HFbdaKFjTiR84W-zpA9stxgM3Z8jdDstvOwyR7bqjmMOw0-qr4-YSBOzeA-4-XSit5=w224-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Z15ukUIoJieiTCqUbH3n5Q&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=118.22579&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Port Lotniczy' AND address = '54-530 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta miejska' AND address = 'Kardynała Stefana Wyszyńskiego, 55-120 Oborniki Śląskie' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq5EMcBMqWngg1tCLEcGCK69jCBbv7wAC8dQWBP6ONuCVi4je9HaEKTimxchYzlVSqJc0HiYO8UHKGUYjnd9CiCZ9nGYA8FSqaAfGkcBb4e_ToH99sIf7P67DzLF7_sKAw-7cOXMw=w224-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Z15ukUIoJieiTCqUbH3n5Q&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=118.22579&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Port Lotniczy' AND address = '54-530 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta miejska' AND address = 'Kardynała Stefana Wyszyńskiego, 55-120 Oborniki Śląskie' AND created_by = 'public@sviete.pl'
 LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Y0vbFDmijSocqnmHN3C1YA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=67.040245&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Port Lotniczy' AND address = '54-530 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
 
--- Photos for WC: Port Lotniczy Wrocław S.A.
+-- Photos for WC: Toaleta
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNp-pcFlF93mHyrMeBt50beAHW42GfAGBFyHILd=w446-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npHiFUYt8cbDXhOE_VMp-aye6FPrQyAkVutCu_CqHOKsOCkC57hd-gagd8oFp-zKhQ3N1CU2kJ7NCx1Lc287_KqQDdV2arpC3gB_i2Zuc-36J8WBUX2AwggHmvN65WUL2iCoI40=w397-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Port Lotniczy Wrocław S.A.' AND address = 'Graniczna 190, 54-530 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta' AND address = 'Turkusowa 45, 71-899 Szczecin' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrksBoggog4okcnnLYWNm2miJcs0edzaHXKS06FIy1RZQ-WbasKLZYw8A_a2cUa-LRzR8Rt5Zd1fe_gIVqqZupG7wdHWhUKFMvv67P2hLJIs6cETM7A8sZbrpsuYcbjWOIkMXM3ipXXVVM=w224-h398-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=-ZQQVZVTPd1oz64JZaBoDw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=64.630066&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Port Lotniczy Wrocław S.A.' AND address = 'Graniczna 190, 54-530 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta' AND address = 'Turkusowa 45, 71-899 Szczecin' AND created_by = 'public@sviete.pl'
 LIMIT 1;
+
+-- Photos for WC: Toaleta
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npgRwE72aWM6ZEAyboMGmwIfYdENNMFeyd169a3lgJqvxKEGY1NR4QA0mnEss08eGboXHsetbrvF_A5Gt6YDIXBMV0TZfx7NGaI3blO4L3liNe5dege6tzX2AlGg9nNVms0xIVy2A=w224-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4now1yHj8pjlcBbSVX8WQu_3fbTmxjj7RfZv-aVnZFBgIcE2uwOIflWHhCdUIpF9cKQ-h42Osi2JhJL0arnaDrTJwS5tAc_RnCVQUYwuAnwxLfMU2mmjOdrLzsDpMcEU3EeEjzly=w397-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Port Lotniczy Wrocław S.A.' AND address = 'Graniczna 190, 54-530 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta' AND address = '83-250' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr872smBFOqHm6SOzwOVejlNjYJJybA0CuO83btVHm9x9DOQU9mEGDl9xSsr6H16ZYiFKZAPHCJTe_75YPGiI9fQeeX7XmqePqwKM_I0Rz2vnZqlQraJ42UkW-51e4jsSJqhRlSoQ=w529-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nphIwWyS1lRRahn0Y4OelSWz-PdTM4IkYMcA6j35_z0rmzxpXPMtSXXCUNWRGzRQgHNMUy9bN4BW8ezorpV39UCwjAx7-sakM6UtkTWBKJWrp52sHKuAW6I2XbZJ4KfxVxHtp_0=w445-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Port Lotniczy Wrocław S.A.' AND address = 'Graniczna 190, 54-530 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta' AND address = '83-250' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNp-pcFlF93mHyrMeBt50beAHW42GfAGBFyHILd=w446-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqE3rieZCgawzdgqvzTxArYt4kEm2enRnvPhBmQuVMTYSvvV6jm4vYDuG5-HSooHiJaSHzUnEckOYh-DXfLJcV0h_PAlWRniNTft2d6GcSIIE4p9AgZtizVjCa1A1VI20kuFDFspQ=w529-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Port Lotniczy Wrocław S.A.' AND address = 'Graniczna 190, 54-530 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta' AND address = '83-250' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=EKBr_iY4sdBTE39FiTc9-A&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=0&pitch=-20&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=PrBi5ux3wXNuIJkI5oufgQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=279.60565&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Port Lotniczy Wrocław S.A.' AND address = 'Graniczna 190, 54-530 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta' AND address = '83-250' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Lotnisko Szymanów, Aeroklub Wrocławski
+-- Photos for WC: Toaleta
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrD9u1ZtHye4sZ4ixSLY7wz4QPGQwewrL35-84LBkSM0pmEJLscFXPZ6SLix5gt4AK8k0ijlXIT9M5D1b5-SCqIw1aXlOBgDlkdhzJm3wLJNS6m9ZcybXoWeY5dD5dn_8AXlO4A=w398-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr5KjOO9uGRY8F2NyhgpwQ7nCWl9cVHZPv8xXj7F_pfO4g3JwZYwUKFHVmTPcUqGeyWqPSW1O5bZY3J7hSlOQnJTX-jGaFiBomDj65d-QiwmPl_1HKkme8wKxjnKBUlCGRVw0bM=w397-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Lotnisko Szymanów, Aeroklub Wrocławski' AND address = 'Szymanów, 51-188 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta' AND address = '87-853 Włocławek' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqKxCjH2YpQIVr2lT2SEZ60P0hUleHkqf_IPYpj5IWbpjErGwk4QHOtKsVWIr25JgPXcwWkC_PHraMO8rp-8pKYG6GK_k-PfuoCM3GD1v5ytA9er2vVKgTNFJTvla6e8qeXzU6n7p1djW4x=w224-h336-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noo0k8pm_1JWop0FvDPqykoOcAS2Ku_Vi6S6gBObr0bHKF92YLQx9KbwuOmNdqMzXopQSx15JNJdj2a2327A1MrFTO_-t744wUw-S7bp1566qAaPAZZeVUpoly9JvPt3WEeZyejpq3T4Pnd=w224-h398-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Lotnisko Szymanów, Aeroklub Wrocławski' AND address = 'Szymanów, 51-188 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta' AND address = '87-853 Włocławek' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrCSO1NypGOk8oK7iJvFo3PSQYJBUcsCqkC0vgC50vXqbfBkf_n4WRGVhNF7VoIIbS962uhhbIMOKlWHmHLDSkeZaUfb3Jm1yLznS8_ubcb1T484cxw38SZQXCpnqSI0NVv0ijc=w224-h398-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npOMzU68eFEgpfPvoTLcevMSDBylt_AqHje2c3tMmz7-I1XZYkNnBYm-elrtFjUkQ1heBLw-9IudWuwhZKnBsz5D1d1AzCbR_2Bi7aGWGZvcgoVrf2swcPMYZoUxBT0fSkPYP1KWZj3iQVj=w224-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Lotnisko Szymanów, Aeroklub Wrocławski' AND address = 'Szymanów, 51-188 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta' AND address = '87-853 Włocławek' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no3WXT9StjSM13ypSkoZNKi8ImaMUASOC8j9dKfrGOuLMn3UVEFXCM5EgmHQizWB5xI9_piuABq6KYIBcT25_UPhXxBJJAkwssThETkt4Bthvh8ol7ITq6eBPkoDCOs-Ye2FGc=w446-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noPQyUvJMHR51z6UcdmHrC6azJr6kUNK_q8qpjEO1bfo9KvIhUlKhmnzCYzFWLj5qBBYKEqLVqB6BcnRQGf1CpVKEQbnjDWPEgqOYRhs5R4f4XKnCKalObuvXo3K4Lgw8Y553o_hLh6vzV2=w397-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Lotnisko Szymanów, Aeroklub Wrocławski' AND address = 'Szymanów, 51-188 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta' AND address = '87-853 Włocławek' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no1PeBGZ6YjJPNCuCE4eMkygzc9rsHSJrUn6NgQwu1bfjVdrveYuvU5Kj5JTz0VbWMxIomfDueptdRwSEJK1Os688OrSf6ypxiVQF_5uubnR4zfToWhdDuxQbRzisL5xcyHWr39=w529-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4novXyvhPTZ3GrEX9s_SujUoEB0hVitnONdxq23br7g75ikcDeN-KtPGaxsAyALzMUMrTOEjkU16Kozeo287lct3mjLXpNPSdzT6D_-7FgNV3akEsbBSqlQd8s6WFCL1uBiD12SlXg=w224-h398-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Lotnisko Szymanów, Aeroklub Wrocławski' AND address = 'Szymanów, 51-188 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta' AND address = '87-853 Włocławek' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noRwj59rkPOG7WqWigr-TVNGmEoZnHPMFPyrXF8NpJ2LYik485NUNMDuMJXmBKXC61Sg6b8zi0_HcpWQVeifhVzjSt7f5eMYjhkdaCflGmmvCewOruje7fLgJ4yo3qyJ8vRJHuX=w224-h298-k-no-pi0-ya340-ro-0-fo100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=fUEsaIvvMnZlszcpzFC_jQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=0.29394993&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Lotnisko Szymanów, Aeroklub Wrocławski' AND address = 'Szymanów, 51-188 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta' AND address = '87-853 Włocławek' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Aeroklub Wrocławski
+-- Photos for WC: Toaleta Publiczna
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqvd9COKX4BBLKU82bilHZYYHKSDtduC7VyRpEWaVzo2gRxta4k6tNlYEzzYMZtkCjAXKWGDxHZUWVCFexOkDZl893MzQsDSOv5n37lfZTr4lf8W1Yq9xgv8NYf6NTN7_qZsFal4Q=w224-h302-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrWuyDCbKajaYVOtwBMWtp3ukDMcZehbJszrpZvCvZiMinOREJ6v1Anfp6BMR3y76ovQRbm2sO-McDqLlV4RxqdgMPfnhe66-yMR5U6qZlGGFyKYhc2wWl1s8wp4UYHdtnHi-3emA=w529-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Aeroklub Wrocławski' AND address = 'Henryka Sienkiewicza 108/110, 50-348 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta Publiczna' AND address = '12-122 Narty' AND created_by = 'public@sviete.pl'
 LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=PGlZsotq9gBSQtZ_9Ri5eA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=20.266787&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Aeroklub Wrocławski' AND address = 'Henryka Sienkiewicza 108/110, 50-348 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
 
--- Photos for WC: Port Lotniczy
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npM1kMqE6JY9qcfmWNsT6ATBVcY6dD2Eq2wCUTm-3Z7z4G2nCibRZUfG8giEVKuBeHB_1KSLMMbH1BV1KjTy14ATG04hQ-4PZGj0GY0FqLHjFdrb55ZWTFhqY-kMPt-gI4Iz0K0nw=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Port Lotniczy' AND address = '54-530 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Y0vbFDmijSocqnmHN3C1YA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=16.37318&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Port Lotniczy' AND address = '54-530 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
+-- Photos for WC: Toaleta w Metrze
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npyau_qDrq5YIu80UgeUTi04kLcoJ45Vlgx98eRS0xfNcgXXGM79p6vOzQq_So6meLZ8SlXsdz5jeIC_HuvsI6-j4M2X8dDwMcaDqFz1mXzIAYrZIq5Y9XsyL2GHgrLaBGtZXX__g=w224-h398-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npovLzkj-2i_-ubHbVzA18GbnVVgKKbWTQeThaom1FWI8FoyS33jDyIZ4tC3YUTnBTz7XPLqa9vu1UaT66XYAJWXpm-pQB-QioeMPBG7M9nI3Yi4NI3wxccZFUp-Y_uoRkPM412Jw=w397-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Port Lotniczy' AND address = '54-530 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta w Metrze' AND address = 'Stacja Metra Plac Wilsona' AND created_by = 'public@sviete.pl'
 LIMIT 1;
-
--- Photos for WC: Amatorskie Lotnisko Modelarskie Wroclaw modele do max 1,9kg elektryczne zakaz latania spalinami
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no1vBOgOeZxeEw8uBn5VJsKPwgRrNSqBgUQF48Bo6ezqNE7NrkGr3bPsQm7OYQGigAg8bxPVg2Wx7M6KqobxlIbaxjjCxbWlZr2-rj74lDmc3DGQT261tuGVTf7nCBy_Y9LipgX=w397-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npovLzkj-2i_-ubHbVzA18GbnVVgKKbWTQeThaom1FWI8FoyS33jDyIZ4tC3YUTnBTz7XPLqa9vu1UaT66XYAJWXpm-pQB-QioeMPBG7M9nI3Yi4NI3wxccZFUp-Y_uoRkPM412Jw=w397-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Amatorskie Lotnisko Modelarskie Wroclaw modele do max 1,9kg elektryczne zakaz latania spalinami' AND address = '50-001 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta w Metrze' AND address = 'Stacja Metra Plac Wilsona' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=XesDQ4vwluvlS7wKeBYxIQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=358.4838&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=gu2GaPctor3NeOaoxfn7Sg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=298.38342&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Amatorskie Lotnisko Modelarskie Wroclaw modele do max 1,9kg elektryczne zakaz latania spalinami' AND address = '50-001 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta w Metrze' AND address = 'Stacja Metra Plac Wilsona' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Lotniczy Dworzec Towarowy Wrocław Sp. z o.o.
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOBnoPqqStZQfAe1D2yUjvB-rbYd-XFSMMBD9R4=w397-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Lotniczy Dworzec Towarowy Wrocław Sp. z o.o.' AND address = 'Władysława Zarembowicza 40, 54-530 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqpWwk3I_bSILNWr4I7plL3MfdDf_iu3IP9zoe9DlPOfpXdSgn3PlwBT33KzmUbHkE7eUz5DdREm051UWsdcdbK89FuckzxfU57Q_i5vUs5OnTtYKCXeJzmA_lEDQoIWXGncjnsuLRN5Xs=w224-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Lotniczy Dworzec Towarowy Wrocław Sp. z o.o.' AND address = 'Władysława Zarembowicza 40, 54-530 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
+-- Photos for WC: Szalet Miejski
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqJNEEwU3Rv7xl40608AgLet3Qv4OPqBrprp_f1JdH5d3kvAvJCc2sg-P_S7eBFQoadBdd-j-vqbAWZhqIV01mVygySE3Cn39jAwxlywvy-qrnP9b3D5U3B8lOCFUr16U-c4LSXug=w224-h398-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr_RXLsHv0wGil7PqshDHX1pAvmKBqobcm1LgSWzg-5LOsAWkHttwIN5aCO9DvcD7JMHzeq8c6yaF-GQ7rp2q197W10WHtZuFzAr1TKbZUFmno3cAe-0pi0BIhcc5JmPmiqlCXYhg=w641-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Lotniczy Dworzec Towarowy Wrocław Sp. z o.o.' AND address = 'Władysława Zarembowicza 40, 54-530 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Szalet Miejski' AND address = 'Gen. Ludwika Bogusławskiego 19, 07-410 Ostrołęka' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipO-Tt-FQ7EQUzVET2GxxkQok4MimeZOdg8sIj_b=w529-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=uYFx1BGAeBfTmakjlYU72g&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=98.376625&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Lotniczy Dworzec Towarowy Wrocław Sp. z o.o.' AND address = 'Władysława Zarembowicza 40, 54-530 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Szalet Miejski' AND address = 'Gen. Ludwika Bogusławskiego 19, 07-410 Ostrołęka' AND created_by = 'public@sviete.pl'
 LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=q7no5bHbJId78t3Hlxk77Q&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=225.5465&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Lotniczy Dworzec Towarowy Wrocław Sp. z o.o.' AND address = 'Władysława Zarembowicza 40, 54-530 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
 
--- Photos for WC: SkyTaxi Sp. z o.o.
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNPs9b3_DYPd_L8i-f9Q6N927olUCVbuwpsmqGS=w455-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'SkyTaxi Sp. z o.o.' AND address = 'Strzegomska 48a, 53-611 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nql8i_bsYyFSeMKMwoZLTSt_RfMJEovbk6rXyrNYTVj6XL7RT7NNOg6bD9RFGPAdPy7aawHYigvPEr87UqR6x7LFt6TokDII6ObExEGfbCfOzs4MpmNsxN8-GeBJLTNiF_xwpFufg=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'SkyTaxi Sp. z o.o.' AND address = 'Strzegomska 48a, 53-611 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
+-- Photos for WC: Toaleta publiczna
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqlI8tHRstyfroAMgaqmxH3nRTp2Ptg090PkqcpdNMscQBd98WMbArj28WiSKWo8MUW9beg709hisB3blM_k-kV-T8ym3Y5wtbb_oWSXVn7jSSE9Pn_tQrcBWKyKnwUdhgEojU=w529-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npa7hVZoabJxPert8vV49qj06qBa2mbXjvwla6CAS9VXtdkZmn4T4NLq-QCCbS4aKGAL-W1_yk6wT15f582CJ84HjHZhKMQv1XF1sMnmX-dXEhtUcwbSzGV85uzAQ0J8o3uPauZdA=w529-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'SkyTaxi Sp. z o.o.' AND address = 'Strzegomska 48a, 53-611 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta publiczna' AND address = 'Łazienki Królewskie, Al. Ujazdowskie, Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipO4eZ1ID53t9gxswZJDht4x5bOyWXntbPReclXd=w453-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqwCzgREcTB63-oiR-vNNBArAxvah9wyAmyPTnXuqX17zisWhoLLObKwSjdns3YekZwc2aU9zb1I55zg1zSjrXqUNe32m0nS1RO17O_vyGeW7A1I9-OLWUN7m4USyTv6aYhHDD-qO6E3Dt8=w397-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'SkyTaxi Sp. z o.o.' AND address = 'Strzegomska 48a, 53-611 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta publiczna' AND address = 'Łazienki Królewskie, Al. Ujazdowskie, Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=z1TjbePUoNODLZp0JEyZCw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=358.11594&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=zA37PvvBEU64h_TC6p8T1Q&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=43.315548&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'SkyTaxi Sp. z o.o.' AND address = 'Strzegomska 48a, 53-611 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta publiczna' AND address = 'Łazienki Królewskie, Al. Ujazdowskie, Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Parking długoterminowy
+-- Photos for WC: Toaleta
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr-snH4k29-38SCGg7eQjG6gPiIK1BuEHJqZDmj2nnX38op5vD7KCb8XbZ5U886VEaJamwK3huDQtcl4dAttCRW56Qj7YR0ExG8GuPqYWvu-DpzMOyyjDGevawYFM0aQGn_r5n2=w224-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqS5oUhYs0N6MmytdDg8GgN8H_srgSWHJgV3V7zBPMM36X3CTGI8Rm-UcZ49wrv109SIeiS4SrISXyPExCHZDgyGXGvqPMcS9S6MWpsBc6dwtolnedRXV7fSUrLpSJnFpTIQH2oLd0_M6Sh=w224-h398-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Parking długoterminowy' AND address = 'Graniczna 190, 54-530 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta' AND address = 'C239+R4 Toaleta, 42-584 Dobieszowice' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np_OZqUF7AjMcAnWJbTtng3HhIeO20Lp5JXXfgoSqjrAzChchQ918HxdmYT2FruB1bD0yFty7AyncG15y4f5KYATYhr1znt_x9NZ4JI1BYDamu2Gw8yBhoFaCii-3NK8Xxo_kS1C7Kum_E=w397-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npEZeQX8FogIxBQvc_sCRiyDde4f1-bJj4hMzGwq1_DQyGoojzlSQ1oMKhDChha4y3ugYoOMkfJmz3hbZ1iIPoBDNGXWZoPTcieosabOeJ9abeIP_SYXSru8Mm4tJqeOsHjMXTN91Q8BGM=w224-h398-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Parking długoterminowy' AND address = 'Graniczna 190, 54-530 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta' AND address = 'C239+R4 Toaleta, 42-584 Dobieszowice' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noqbI0bPk-H0pJ2O1ECaPvUdWJP-ijoCRrJwr_SmjbX7P-WkDK9LN-M5TWu-gq7YtvQtm7htxyG3ybWPX2BvfCp7T3Ub4nhgz7Qc7R2bROiSniWwOAELHaQOPgEJfltHOzEuqxq=w224-h398-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npEZeQX8FogIxBQvc_sCRiyDde4f1-bJj4hMzGwq1_DQyGoojzlSQ1oMKhDChha4y3ugYoOMkfJmz3hbZ1iIPoBDNGXWZoPTcieosabOeJ9abeIP_SYXSru8Mm4tJqeOsHjMXTN91Q8BGM=w224-h398-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Parking długoterminowy' AND address = 'Graniczna 190, 54-530 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta' AND address = 'C239+R4 Toaleta, 42-584 Dobieszowice' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no662vrZlfOpgk1s4pyX5N4oI5qvRQTLl5vKnyPQIfEahzY3sCs-lVPpO5EdEzpZz5-Q0tdQulPwj8FzYZ-Yqv5uNo-WcDpgtUdIFA3kpK6JHivqUVg0CLHvYN_V8R1Nlr4-zzI=w397-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=9vvXKodbfqYzOhG51VKJ0A&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=165.78252&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Parking długoterminowy' AND address = 'Graniczna 190, 54-530 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta' AND address = 'C239+R4 Toaleta, 42-584 Dobieszowice' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Lotnisko Mirosławice (EPMR)
+-- Photos for WC: Toaleta Publiczna
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr9gyqyr5hY5RXyslMceO0Myh4RPTViCkk0A4BWJcMaDVZP1J-yhQ37Rl-gzfzUvlri58J6F1SVj3-iBDqJnK6TNPRMNIEI4QdUZ58T32zGCs6UyjbwNgN5xEY-N0SRX0z5C-a-=w396-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noVyaCp_lF-U3BT0EE1403VDg_LYX3GmTRomMgnSBN5Lz-bNTAjEpW-C7VHKBDXRKSwelN8gY9QyEeawa0rYt8hVDeiZL7wtQE4k1ytu5dahJBd3d0j-vhqq23vbKy0sDtcSxij=w224-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Lotnisko Mirosławice (EPMR)' AND address = 'Aeroklub Dolnośląski, Lotnicza 14, 55-080 Mirosławice' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta Publiczna' AND address = 'aleja ks. Janusza Stanisława Pasierba, 00-401 Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqXD2Pobb5EwACu3s0c5Tlf4LSwwipebiCHWq8eN3WfXCFSylY6P2nlLeAAPTOJ72ILT-Rv-Zd7KGsA0h1TSGw8SXGJv24Ey4fDD0cS-g44o8-E-ZS7t9Jfdr_kd54ObTzKV9fCJRe7a_Yw=w224-h398-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrdU3UMGXAk68IeNwf2-hXmcorrb2aklkli1QG1pltfRMHNMEEjhYwMm9SP-QD756o2jmKQ4kQCh-prJADtXOJSG8K8u14FOQp3HwdB74VmnTzrv7DH5CniHxnZ6xvB9v_LEAO9=w397-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Lotnisko Mirosławice (EPMR)' AND address = 'Aeroklub Dolnośląski, Lotnicza 14, 55-080 Mirosławice' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta Publiczna' AND address = 'aleja ks. Janusza Stanisława Pasierba, 00-401 Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npCbfp9wRMfKXny-_IB1grUOWkEeRlmO8nl8kmZiqMqEutHaaRWsPiVFRLIOMZWAueXRO49mqDB5wzyIDOumxW__9oMC6ZYOnHHvxbD9kNzwNJVSZ7rCBxZEvu9-UD-dxR9HAJydw=w224-h398-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=RzkomhRyPsr6hRLvyn_bXg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=99.6661&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Lotnisko Mirosławice (EPMR)' AND address = 'Aeroklub Dolnośląski, Lotnicza 14, 55-080 Mirosławice' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta Publiczna' AND address = 'aleja ks. Janusza Stanisława Pasierba, 00-401 Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Parking pod Żyrafą
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPdt-saUbu_oQZOm0_W-Nc6p_SDrNPca5A4JnJJ=w398-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Parking pod Żyrafą' AND address = 'Rdestowa 22, 54-530 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
+-- Photos for WC: Toaleta
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noD-DX974SeZvwuMMyb18Qt023ovIpfLn4SQsytqrcN9LgPEt2b9U4gehhQf7bKbzAnvQhKr4_ZwEppTIKBdKtCoVR5vlSk-Ci_lO_qN_iMvw-o_soelOsYB6uPc56tZPn4pEZ8=w447-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=PdJEcX_geLgUlCOzHQW7xw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=320.87622&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Parking pod Żyrafą' AND address = 'Rdestowa 22, 54-530 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta' AND address = 'Marii Konopnickiej 2, 58-320 Walim' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipPJHp8kgtm_ZS16oX1afVP3e7ICk9iC5tERJjx2=w488-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=PdJEcX_geLgUlCOzHQW7xw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=320.87622&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Parking pod Żyrafą' AND address = 'Rdestowa 22, 54-530 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta' AND address = 'Marii Konopnickiej 2, 58-320 Walim' AND created_by = 'public@sviete.pl'
 LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=ZTcDI-WzzOEumUcqvueh-g&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=211.27281&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Parking pod Żyrafą' AND address = 'Rdestowa 22, 54-530 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
 
--- Photos for WC: Parking Lotnisko Wrocław - Parking Strachowice
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipM6y9nzOh7CcPVl3HecXAQ7MBWw-trq6FIfP0rI=w447-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Parking Lotnisko Wrocław - Parking Strachowice' AND address = 'Graniczna 189, 54-530 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4np1LRoRb6I_fb6AS6fDd1RBnXEWQohCU8SrJhqLcYx1_q1hxpHlv5zpvaV9PKLP2_1xS-skgdE4c1T-MbrwD1f-EAty9EJ10pxEJzfEjHd5RamxKEu6KRcnDjL6bN7gJh9xPkZhfJWdYChM=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Parking Lotnisko Wrocław - Parking Strachowice' AND address = 'Graniczna 189, 54-530 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
+-- Photos for WC: Toaleta publiczna
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqc6mvLhSmPhFdae1YQY3LVE3PNEfeNunzirGqE95gPPzFxLyhX8KjdU7Z0NN3Wf5eTI1u8vWqnGk5wcpDvsqR4uoyC05FKRvdlXvCJMVB_9Lv9RY4bV4-yD8ygrmQZCkGOVcruNg=w529-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=iNmH6WfpwjsvON43_AUtZg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=155.02756&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Parking Lotnisko Wrocław - Parking Strachowice' AND address = 'Graniczna 189, 54-530 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta publiczna' AND address = 'Kościelna 4a, 47-364 Komorniki' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipNqaAMKrcNAJu9yuyEbAlKXE2XRTAB06LklqR09=w447-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=iNmH6WfpwjsvON43_AUtZg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=155.02756&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Parking Lotnisko Wrocław - Parking Strachowice' AND address = 'Graniczna 189, 54-530 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta publiczna' AND address = 'Kościelna 4a, 47-364 Komorniki' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Port Lotniczy
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqGkEJ5ozgHM3lTfxI4EHXtvNMNoX14tOhVkqshWYy0Uv3LEeUBmqfzyboM_pgFKsHvP-pkDhL7IDzQ1Gtk1kJXVfIJDmyzJmcYNd435cGrtfLky0mh9BFdtlQ31uClYWhZLJo=w529-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Port Lotniczy' AND address = 'Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
+-- Photos for WC: Toaleta Publiczna
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=vYvrizKPH5xx5fACS6m2QQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=24.546425&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=ras4JUscVjGI2lpPb4zIeQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=271.38937&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Port Lotniczy' AND address = 'Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta Publiczna' AND address = 'CH Blue City, Al. Jerozolimskie 179, 02-222 Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
-
--- Photos for WC: Lądowisko Dla Helikopterow
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4noONEbcwp8gLoDINCd8HTQfFlawuohEdPrtDFnv6J_lvFjzhfiY1N0PnfODWUX5gs5VjRL_7AXe987QbUgn1ec9cGPplBgHXpCW87DzT7R07jCnNU5oP9U8YukpQODCrTTOQ2bn=w224-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=ras4JUscVjGI2lpPb4zIeQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=271.38937&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Lądowisko Dla Helikopterow' AND address = 'Weigla, Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta Publiczna' AND address = 'CH Blue City, Al. Jerozolimskie 179, 02-222 Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Wroclaw Airport ul. Graniczna 190
+-- Photos for WC: WC, toaleta
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npXFHqy6W-Ltci6qGzdZxU_YxhT3mvrfPQb_xjDCzREp1Y4KaNJ1jhkABpU2ipztx2O1R8BaLYVKW26zt7dSqs9yeNxovLPfmrHXOAVuyr8w-qsKoNOfRVFl6xjZCLEx4IWXhVs=w529-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqOySfOCYvnzpVcIqiGLlx4q8DJzCU1dxFyWVxaeOKzI9WHxS0RiBMSpc7LIxQwFMewwiqCNCREoDFbfJ5VJmD9H3ry6aQW3AQlRjIB-QwGcgqD-lM2CWelzj2nStMYVz_8OMwBcw=w224-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Wroclaw Airport ul. Graniczna 190' AND address = 'Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'WC, toaleta' AND address = 'Edwarda Przymuszały 4, 64-200 Wolsztyn' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=_AWhiU6My-GJyZby6CXcfA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=22.395117&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=-EXkWjmI1rFvEyTOOOUTUA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=351.11484&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Wroclaw Airport ul. Graniczna 190' AND address = 'Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'WC, toaleta' AND address = 'Edwarda Przymuszały 4, 64-200 Wolsztyn' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Transfery
+-- Photos for WC: Toaleta publiczna
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=rqIYHfifZTuqPlVV2NS3RA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=204.16989&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Cgw6AE0DZMZt_RKAqmAVPg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=68.0613&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Transfery' AND address = 'Nowowiejska 1/21, 50-314 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta publiczna' AND address = 'Adama Mickiewicza 5, 18-230 Ciechanowiec' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=rqIYHfifZTuqPlVV2NS3RA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=204.16989&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Cgw6AE0DZMZt_RKAqmAVPg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=68.0613&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Transfery' AND address = 'Nowowiejska 1/21, 50-314 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta publiczna' AND address = 'Adama Mickiewicza 5, 18-230 Ciechanowiec' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Parking Rondo Lotnisko Wrocław
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOztBFMoMc-KyPUVu1_ZK2v4X7JFC9jYlGlUtzE=w531-h298-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Parking Rondo Lotnisko Wrocław' AND address = 'Skarżyńskiego 2, 54-530 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
+-- Photos for WC: WC
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/p/AF1QipOHOywqn61yHdGLaeSp5cyVWHqXVhjYgCVhs5fV=w603-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npXHDaP1M6yifyUlMkLDPJGGboaXHylujCU_lzTe42yvaITZRjlYYv2WxAjtf8_y8ivLND71q1Bt7msqBEZiisgKvLM4FgPiODyj1X7vbmtq5WixweWjUF-CfdBKVtXKB4r79Q=w397-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Parking Rondo Lotnisko Wrocław' AND address = 'Skarżyńskiego 2, 54-530 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'WC' AND address = 'Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqDyOE2ogl5jGZ9J3H0aIvNyBaphtqzYAKZQmgPUjYIVIcxpV7jLxB5HGbKacXtBmtGu4O10N0E-YlPICNs2z_IbORb1EWcUPkx8V2OdYwkDKsfQNZRSlVbo4yAViiGG-s2Erg0=w298-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr2zoKafN1N7PEK33Vbxahk_-zMjoFOZT1MZJaLJHtGBJN6AP1fZaOU_eaoESn1sUIDxBQMRYjOZ3JD9i6xaR2NfjAxxViTCrT8vG8BP4RMhVImWibZuGV9xsuyKEUawQeaB8OZHA=w224-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Parking Rondo Lotnisko Wrocław' AND address = 'Skarżyńskiego 2, 54-530 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'WC' AND address = 'Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=BX_y247RMY7Gc_IWAOX6nw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=184.37538&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=YcOaGcPex1kd5kbpyCYjlw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=253.48479&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Parking Rondo Lotnisko Wrocław' AND address = 'Skarżyńskiego 2, 54-530 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'WC' AND address = 'Warszawa' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Lądowisko Golędzinów
+-- Photos for WC: WC Miejskie
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqiC4OSvnjRVPIkxje1Dpdqoax_l0JT69TqH46dUyePz77YVoWRoavlNs3GSVh8oDeEA5fU3MVGXAaIKhH2rIJ-oqhDjVKca48ENCePB2a9Ac_S2NV3HYv0t9kmIoBRDD5Q0uan=w529-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npxATeWyRKmrAP3EAHMbx_Sn7Qx3gGEs4ILldtW5xYEYISsv2hWIOoy7SyZ3VWmjJSEhQ61e4HyJKPyj-6Kz3vgbm_HqnvHHI6hgmpHQyiZgGn0Uga306xjc7IbwMqqmUGb_oai=w397-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Lądowisko Golędzinów' AND address = 'DW342 28, 55-120' AND created_by = 'public@sviete.pl'
+WHERE name = 'WC Miejskie' AND address = 'Jedności Narodowej 185/191, 50-260 Wrocław' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr4ziSHAd3zz8MjfNP6xEGGfbdZy6AohAADpffMZFDXUoI_6Yl532tblXq656rzlJJ9QkYLqwQeQH_1uxwby6pixIeRCd9EAXJqFvCeLd480q6XM78u-jDHyr5OnJ5EFtzKPwMj=w529-h298-k-no', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=_JSVfLWQH8oubxrDNlkbzA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=2.3346577&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Lądowisko Golędzinów' AND address = 'DW342 28, 55-120' AND created_by = 'public@sviete.pl'
+WHERE name = 'WC Miejskie' AND address = 'Jedności Narodowej 185/191, 50-260 Wrocław' AND created_by = 'public@sviete.pl'
 LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npsDkjEGVCqBfqvrma1GLM-DihOFRr5XQpYyZ1jZaeTcFCnRyg70d1TG4e-MHdtHq7usuMPcRBwuSmwW8_zjIGlxoG3BJCs-Od89AMulaIZLP0JNj8jbdWeOE8b46CmpcaeJHRn=w224-h398-k-no', NOW(), NOW()
-FROM wcs
-WHERE name = 'Lądowisko Golędzinów' AND address = 'DW342 28, 55-120' AND created_by = 'public@sviete.pl'
-LIMIT 1;
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=dV2L6kWp895hUPQnpkeYdA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=239.22034&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = 'Lądowisko Golędzinów' AND address = 'DW342 28, 55-120' AND created_by = 'public@sviete.pl'
-LIMIT 1;
 
--- Photos for WC: 8. Baza Lotnictwa Transportowego - Komenda Obsługi Lotniska
-INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=xXw_6mNCOCRxPDXpvmv6yw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=147.80728&pitch=0&thumbfov=100', NOW(), NOW()
-FROM wcs
-WHERE name = '8. Baza Lotnictwa Transportowego - Komenda Obsługi Lotniska' AND address = 'Graniczna 13, 54-530 Wrocław' AND created_by = 'public@sviete.pl'
-LIMIT 1;
+-- Photos for WC: Toaleta miejska
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=xXw_6mNCOCRxPDXpvmv6yw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=147.80728&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrFmSO1AWoiRCPaWeuah9wQdAeeyjKC6-2ighrz3K8fQS10XQEvCVstt9A3ROexuTPtoxCPC8mGZQJcfOnMV27s5YJMKSg1GvCZannlkgQWWPv6MlCJuADdrMqTpfVmFeeLoqld=w397-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = '8. Baza Lotnictwa Transportowego - Komenda Obsługi Lotniska' AND address = 'Graniczna 13, 54-530 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'Toaleta miejska' AND address = 'aleja Cytadelowców, 61-001 Poznań' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
--- Photos for WC: Heliport Lądowisko dla helikopterów
+-- Photos for WC: WC, toaleta, pisuar
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=N2Bs6TZQ1vgSL0vW0wpwgw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=65.53205&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqjG-QUaIob59cePbgBjG64ajaLTrSiqrZhMF0WCKr50zUbGDI037YwTOJFPadXPJuC5KuNoavsnr1iIcc3aLXlYQYQkUw0OU3FBvhVLu44-D9F0RfHothOeiA7fyeL_jNW1hL-=w224-h298-k-no', NOW(), NOW()
 FROM wcs
-WHERE name = 'Heliport Lądowisko dla helikopterów' AND address = 'Generała Romualda Traugutta 118, 50-438 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'WC, toaleta, pisuar' AND address = 'Bolesława Prusa 61, Wrocław' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 INSERT INTO wc_photos (wc_id, user_id, photo, created_at, updated_at)
-SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=N2Bs6TZQ1vgSL0vW0wpwgw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=65.53205&pitch=0&thumbfov=100', NOW(), NOW()
+SELECT id, 'cac878bb-3f77-42a7-9221-919238bfae76', 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=UDWTrLKsUGN6L64PLQ4l0g&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=7.289921&pitch=0&thumbfov=100', NOW(), NOW()
 FROM wcs
-WHERE name = 'Heliport Lądowisko dla helikopterów' AND address = 'Generała Romualda Traugutta 118, 50-438 Wrocław' AND created_by = 'public@sviete.pl'
+WHERE name = 'WC, toaleta, pisuar' AND address = 'Bolesława Prusa 61, Wrocław' AND created_by = 'public@sviete.pl'
 LIMIT 1;
 
 
@@ -6617,4 +4144,4 @@ RAISE NOTICE 'ERROR:%', l_context;
 END;
 $$;
 
--- Summary: 179 WC locations processed, 0 skipped
+-- Summary: 265 WC locations processed, 1 skipped

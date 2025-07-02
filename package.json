@@ -12,6 +12,7 @@
     "cleanup:all": "echo 'Run database/cleanup_all_data.sql in Supabase first, then:' && npm run cleanup:storage",
     "csv-to-sql": "node scripts/csv-to-sql.js",
     "import-poland": "node scripts/import-poland-data.js",
+    "generate-keywords": "node scripts/generate-keywords-postal-codes.js",
     "cleanup:test-files": "rm -f test_import*.sql example_data.csv debug-*.png"
   },
   "dependencies": {

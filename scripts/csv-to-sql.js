@@ -103,7 +103,12 @@ function mapPlaceType(originalType) {
   // supermarket: ["supermarket", "sklep spożywczy"],
   // department_store: ["dom handlowy", "department store"],
 
-  if (originalType === "Public bathroom") {
+  if (
+    originalType === "Toaleta publiczna" ||
+    originalType === "Toaleta publiczna z dostępem dla niepełnosprawnych" ||
+    originalType === "Publiczna toaleta damska" ||
+    originalType === "Publiczna toaleta męska"
+  ) {
     return "public_toilet";
   }
 
@@ -281,7 +286,7 @@ function main() {
   }
 
   const csvFile = args[0];
-  let outputFile = "import.sql";
+  let outputFile = args[1];
   let userId = DEFAULT_USER_ID;
   let createdBy = DEFAULT_CREATED_BY;
 
