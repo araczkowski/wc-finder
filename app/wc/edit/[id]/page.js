@@ -10,7 +10,7 @@ const debounce = (func, delay) => {
     timeoutId = setTimeout(() => func.apply(null, args), delay);
   };
 };
-import { useSession, signOut } from "next-auth/react";
+// Removed authentication imports - no longer needed
 import { useRouter, useParams } from "next/navigation";
 import { createClient } from "@supabase/supabase-js";
 import Link from "next/link";
@@ -316,7 +316,7 @@ export default function EditWcPage() {
   const params = useParams();
   const wcId = params?.id;
 
-  const { data: session, status: sessionStatus } = useSession();
+  // Removed session - no longer needed for authentication
 
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
@@ -390,11 +390,7 @@ export default function EditWcPage() {
         // Add user email information to photos
         const photosWithUsers = await Promise.all(
           (result.photos || []).map(async (photo) => {
-            // Try to get user email from session if it's current user
-            if (photo.user_id === session?.user?.id) {
-              return { ...photo, user_email: session.user.email };
-            }
-            // For other users, we'll show "User" for now since we removed the JOIN
+            // Show "User" for all photos since we removed authentication requirements
             return { ...photo, user_email: "User" };
           }),
         );
@@ -407,30 +403,17 @@ export default function EditWcPage() {
     } finally {
       setPhotosLoading(false);
     }
-  }, [wcId, session?.user?.id, session?.user?.email]);
+  }, [wcId]);
 
-  // Effect for authentication & redirect
-  useEffect(() => {
-    if (sessionStatus === "loading") return;
-    if (sessionStatus === "unauthenticated") {
-      router.push(`/auth/signin?callbackUrl=/wc/edit/${wcId}`);
-    }
-  }, [sessionStatus, router, wcId]);
+  // Effect for authentication & redirect - REMOVED to allow all users access
 
   // Effect for fetching WC data
   useEffect(() => {
     const fetchWcData = async () => {
-      if (
-        !wcId ||
-        !supabase ||
-        sessionStatus !== "authenticated" ||
-        !session?.user?.id
-      ) {
-        setPageLoading(sessionStatus === "loading");
-        if (sessionStatus === "authenticated" && !wcId)
-          setError("WC ID missing.");
-        if (sessionStatus === "authenticated" && !supabase)
-          setError("Supabase client not configured.");
+      if (!wcId || !supabase) {
+        setPageLoading(false);
+        if (!wcId) setError("WC ID missing.");
+        if (!supabase) setError("Supabase client not configured.");
         return;
       }
 
@@ -449,9 +432,8 @@ export default function EditWcPage() {
           setPageLoading(false);
           return;
         }
-        // Allow all authenticated users to view any WC, but only owners and admin can edit
-        const isAdmin = session.user.email === "admin@sviete.pl";
-        setIsOwner(fetchedWc.user_id === session.user.id || isAdmin);
+        // Allow all users to edit any WC - removed owner/admin restrictions
+        setIsOwner(true);
 
         setOriginalWcData(fetchedWc);
         setName(fetchedWc.name || "");
@@ -518,36 +500,18 @@ export default function EditWcPage() {
           console.log("[fetchUserRatings] Setting ratings data:", {
             ratingsCount: result.ratings?.length || 0,
             averageRating: result.averageRating || 0,
-            currentUserId: session.user.id,
           });
 
           setAllRatings(result.ratings || []);
           setAverageRating(result.averageRating || 0);
 
-          // Check if current user has already rated this WC
-          const currentUserRating = result.ratings?.find(
-            (r) => r.user_id === session.user.id,
-          );
-
+          // Since we removed authentication, reset user rating state
+          setUserRating(0);
+          setUserComment("");
+          setHasUserRating(false);
           console.log(
-            "[fetchUserRatings] Current user rating found:",
-            currentUserRating,
+            "[fetchUserRatings] Reset user rating state for public access",
           );
-
-          if (currentUserRating) {
-            setUserRating(currentUserRating.rating);
-            setUserComment(currentUserRating.comment || "");
-            setHasUserRating(true);
-            console.log("[fetchUserRatings] Set user rating:", {
-              rating: currentUserRating.rating,
-              comment: currentUserRating.comment,
-              hasRating: true,
-            });
-          } else {
-            console.log(
-              "[fetchUserRatings] No existing rating for current user",
-            );
-          }
         } else {
           console.error("[fetchUserRatings] API Error:", result);
         }
@@ -556,17 +520,9 @@ export default function EditWcPage() {
       }
     };
 
-    if (sessionStatus === "authenticated") {
-      fetchWcData();
-    }
-  }, [
-    wcId,
-    supabase,
-    sessionStatus,
-    session?.user?.id,
-    session?.user?.email,
-    fetchWcPhotos,
-  ]); // Re-run if user changes
+    // Always fetch WC data regardless of authentication status
+    fetchWcData();
+  }, [wcId, supabase, fetchWcPhotos]); // Re-run if data changes
 
   // Handle coordinates change from AddressAutocomplete
   const handleCoordinatesChange = (coords) => {
@@ -671,8 +627,8 @@ export default function EditWcPage() {
     setError("");
     setFormLoading(true);
 
-    if (!session?.user?.id || !originalWcData) {
-      setError("Authentication error or data missing. Cannot update.");
+    if (!originalWcData) {
+      setError("Data missing. Cannot update.");
       setFormLoading(false);
       return;
     }
@@ -908,11 +864,8 @@ export default function EditWcPage() {
     }
   };
 
-  if (pageLoading || sessionStatus === "loading") {
+  if (pageLoading) {
     return <div style={styles.loadingMessage}>Wczytuje szczegóły WC...</div>;
-  }
-  if (sessionStatus === "unauthenticated") {
-    return <div style={styles.loadingMessage}>Redirecting to sign in...</div>;
   }
   if (error && !originalWcData) {
     return (
@@ -1188,8 +1141,8 @@ export default function EditWcPage() {
               {formLoading ? "Updating..." : "Update WC"}
             </button>
 
-            {/* Delete WC Button - only show for admin */}
-            {session?.user?.email === "admin@sviete.pl" && (
+            {/* Delete WC Button - now available for all users */}
+            {true && (
               <>
                 {deleteError && <p style={styles.formError}>{deleteError}</p>}
                 <button
@@ -1278,48 +1231,8 @@ export default function EditWcPage() {
             paddingTop: "2rem",
           }}
         >
-          {session?.user?.email === "public@sviete.pl" ? (
-            <div
-              style={{
-                textAlign: "center",
-                padding: "2rem",
-                backgroundColor: "#f8f9fa",
-                borderRadius: "8px",
-                border: "1px solid #dee2e6",
-              }}
-            >
-              <p
-                style={{
-                  fontSize: "1.1rem",
-                  color: "#333",
-                  marginBottom: "1rem",
-                }}
-              >
-                Aby oceniać, komentować i dodawać zdjęcia musisz się{" "}
-                <button
-                  onClick={async () => {
-                    // Clear session flag from localStorage
-                    if (typeof window !== "undefined") {
-                      localStorage.removeItem("hasLoggedInThisSession");
-                    }
-                    // Sign out and redirect to signin page
-                    await signOut({ callbackUrl: "/auth/signin" });
-                  }}
-                  style={{
-                    background: "none",
-                    border: "none",
-                    color: "#007bff",
-                    textDecoration: "underline",
-                    cursor: "pointer",
-                    fontSize: "inherit",
-                    padding: 0,
-                  }}
-                >
-                  zalogować do aplikacji
-                </button>
-              </p>
-            </div>
-          ) : (
+          {/* Removed login requirement - allow all users to rate and comment */}
+          {true && (
             <>
               <h3 style={{ marginBottom: "1rem", color: "#333" }}>
                 {t("YourRating")} ({userRating} / 10)
@@ -1492,7 +1405,7 @@ export default function EditWcPage() {
                   <div style={styles.photoInfo}>
                     <div>By: {photo.user_email || "Anonymous"}</div>
                     <div>{new Date(photo.created_at).toLocaleDateString()}</div>
-                    {photo.user_id === session?.user?.id && (
+                    {true && (
                       <button
                         onClick={() => handleDeletePhoto(photo.id)}
                         style={styles.deletePhotoButton}
