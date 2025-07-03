@@ -1774,7 +1774,7 @@ export default function Home() {
           setBottomSheetOpen(false);
           setSelectedWcId(null);
         }}
-        snapPoints={[0.2, 0.5, 0.85]}
+        snapPoints={[0.2, 0.5, 0.9]}
         initialSnap={0.2}
         minHeight={300}
         maxWidth={500}

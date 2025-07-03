@@ -51,11 +51,20 @@ export default function BottomSheet({
 
   const handlePan = (event, info) => {
     const newHeight = height.get() - info.delta.y;
-    height.set(newHeight);
+
+    // Constrain the height to prevent going above window bounds
+    const maxHeight = windowHeight * 0.95; // 95% of window height
+    const minHeight = 0; // Allow dragging to 0 for closing
+    const constrainedHeight = Math.min(
+      Math.max(newHeight, minHeight),
+      maxHeight,
+    );
+
+    height.set(constrainedHeight);
 
     // Check if we're in the close zone
     const closeThreshold = windowHeight * snapPoints[0] * 0.6;
-    setCanClose(newHeight < closeThreshold);
+    setCanClose(constrainedHeight < closeThreshold);
   };
 
   const handlePanStart = () => {
@@ -89,7 +98,10 @@ export default function BottomSheet({
 
     // Calculate projected height for snap point selection
     const projectedHeight = currentHeightValue - velocity * 0.1;
-    const snapPixelValues = snapPoints.map((p) => windowHeight * p);
+    const maxHeight = windowHeight * 0.95;
+    const snapPixelValues = snapPoints.map((p) =>
+      Math.min(windowHeight * p, maxHeight),
+    );
     const closestSnapPixel = snapPixelValues.reduce((prev, curr) => {
       return Math.abs(curr - projectedHeight) < Math.abs(prev - projectedHeight)
         ? curr
