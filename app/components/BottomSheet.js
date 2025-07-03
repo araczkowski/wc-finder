@@ -30,6 +30,7 @@ export default function BottomSheet({
   const containerRef = useRef(null);
   const contentRef = useRef(null);
   const [windowHeight, setWindowHeight] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
 
   // Debug logging
   console.log("BottomSheet render:", {
@@ -47,12 +48,20 @@ export default function BottomSheet({
     return () => window.removeEventListener("resize", updateHeight);
   }, []);
 
+  // Cleanup effect for body overflow
+  useEffect(() => {
+    return () => {
+      // Ensure body overflow is restored when component unmounts
+      document.body.style.overflow = "";
+    };
+  }, []);
+
   const currentHeight = windowHeight * currentSnap;
   const opacity = useTransform(y, [-200, 0], [0, 1]);
 
   // Scroll handler for infinite scroll
   const handleScroll = (e) => {
-    if (!onScrollBottom) return;
+    if (!onScrollBottom || isDragging) return;
 
     const element = e.target;
     const isNearBottom =
@@ -63,7 +72,16 @@ export default function BottomSheet({
     }
   };
 
+  const handleDragStart = () => {
+    setIsDragging(true);
+    // Disable scroll on body to prevent conflicts
+    document.body.style.overflow = "hidden";
+  };
+
   const handleDragEnd = (event, info) => {
+    setIsDragging(false);
+    // Re-enable scroll on body
+    document.body.style.overflow = "";
     const velocity = info.velocity.y;
     const currentY = y.get();
 
@@ -108,6 +126,14 @@ export default function BottomSheet({
     y.set(0);
   };
 
+  // Handle tap to expand when minimized
+  const handleTap = () => {
+    if (currentSnap === snapPoints[0]) {
+      // If at minimum snap, expand to middle
+      setCurrentSnap(snapPoints[1] || snapPoints[0]);
+    }
+  };
+
   if (!isOpen) {
     console.log("BottomSheet not open, returning null");
     return null;
@@ -141,10 +167,14 @@ export default function BottomSheet({
       <motion.div
         ref={containerRef}
         drag="y"
-        dragControls={dragControls}
-        dragConstraints={{ top: -100, bottom: 100 }}
-        dragElastic={0.1}
+        dragMomentum={false}
+        dragConstraints={{ top: -200, bottom: 200 }}
+        dragElastic={0.2}
+        dragPropagation={false}
+        onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
+        onTap={handleTap}
+        whileDrag={{ scale: 1.02 }}
         style={{
           y,
           opacity,
@@ -154,10 +184,16 @@ export default function BottomSheet({
           maxWidth: maxWidth,
           minHeight: Math.max(minHeight, currentHeight),
           height: currentHeight,
-          boxShadow: "0 -4px 20px rgba(0, 0, 0, 0.15)",
+          boxShadow: isDragging
+            ? "0 -8px 32px rgba(0, 0, 0, 0.3)"
+            : "0 -4px 20px rgba(0, 0, 0, 0.15)",
           display: "flex",
           flexDirection: "column",
           overflow: "hidden",
+          cursor: isDragging ? "grabbing" : "grab",
+          transition: isDragging
+            ? "none"
+            : "box-shadow 0.2s ease, transform 0.2s ease",
         }}
         onClick={(e) => e.stopPropagation()}
         animate={{
@@ -174,12 +210,27 @@ export default function BottomSheet({
           style={{
             width: "40px",
             height: "4px",
-            backgroundColor: "#ccc",
+            backgroundColor: isDragging ? "#007bff" : "#ccc",
             borderRadius: "2px",
             margin: "12px auto 8px",
-            cursor: "grab",
+            cursor: isDragging ? "grabbing" : "grab",
+            transition: "background-color 0.2s ease",
+            touchAction: "none",
           }}
-          onPointerDown={(e) => dragControls.start(e)}
+        />
+
+        {/* Invisible drag area for better UX */}
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            height: "60px",
+            cursor: isDragging ? "grabbing" : "grab",
+            zIndex: 10,
+            touchAction: "pan-y",
+          }}
         />
 
         {/* Content */}
@@ -189,9 +240,11 @@ export default function BottomSheet({
           style={{
             flex: 1,
             padding: "0 20px 20px",
-            overflow: "auto",
+            overflow: isDragging ? "hidden" : "auto",
             scrollbarWidth: "thin",
             scrollbarColor: "#ccc transparent",
+            pointerEvents: isDragging ? "none" : "auto",
+            touchAction: "pan-y",
           }}
         >
           {children}
