@@ -793,7 +793,7 @@ export default function AddWcPage() {
               onChange={(e) => setName(e.target.value)}
               required
               style={styles.formInput}
-              placeholder="e.g., Central Park Restroom"
+              placeholder="np pl. Wolnośći 62/2a Środa Śląska"
               disabled={loading}
             />
           </div>
