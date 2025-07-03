@@ -87,8 +87,8 @@ a {
 }
 
 .thumbnail-in-table {
-    width: 50%;
-    height: 150px;
+    width: 40%;
+    height: 130px;
     object-fit: cover;
     border-radius: 4px;
     border: 1px solid #ddd;
@@ -147,8 +147,8 @@ a {
 
     .thumbnail-in-table,
     .thumbnail-placeholder {
-        width: 50%;
-        height: 150px;
+        width: 45%;
+        height: 140px;
     }
 }
 
@@ -156,8 +156,8 @@ a {
 @media (min-width: 1024px) {
     .thumbnail-in-table,
     .thumbnail-placeholder {
-        width: 50%;
-        height: 150px;
+        width: 45%;
+        height: 140px;
     }
 
     .table-cell {
@@ -238,7 +238,7 @@ div.hidden-div {
     padding: 2px;
     position: absolute;
     right: 0em;
-    top: 8em;
+    top: 7.5em;
     width: 50%;
 }
 
@@ -926,8 +926,8 @@ textarea.form-input {
 /* Image Slideshow Styles */
 .slideshow-container {
     position: relative;
-    width: 50%;
-    height: 150px;
+    width: 45%;
+    height: 140px;
     border-radius: 4px;
     overflow: hidden;
 }

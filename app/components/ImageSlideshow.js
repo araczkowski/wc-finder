@@ -134,7 +134,7 @@ const ImageSlideshow = ({ images, alt, className, width, height }) => {
       ref={containerRef}
       className="slideshow-container"
       data-multiple={images.length > 1 ? "true" : "false"}
-      style={{ position: "relative", width: "50%", height: "150px" }}
+      style={{ position: "relative", width: "45%", height: "140px" }}
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}

@@ -17,7 +17,12 @@ import BottomSheet from "./components/BottomSheet";
 import WCReport from "./components/WCReport";
 import { getPlaceTypeLabel } from "./utils/placeTypes";
 import { pl } from "./locales/pl";
-import { LocateFixed, RulerDimensionLine, SquarePen } from "lucide-react";
+import {
+  LocateFixed,
+  RulerDimensionLine,
+  SquarePen,
+  ChevronUp,
+} from "lucide-react";
 
 // Basic inline styles for layout - consider moving to CSS modules or global CSS
 const styles = {
@@ -1751,18 +1756,18 @@ export default function Home() {
           >
             <div
               style={{
-                width: "40px",
-                height: "4px",
-                backgroundColor: "#ccc",
-                borderRadius: "2px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
                 margin: "0 auto 8px",
               }}
-            />
+            >
+              <ChevronUp size={20} color="#666" />
+            </div>
             <div
               style={{ textAlign: "center", fontSize: "14px", color: "#666" }}
             >
-              {wcs.length} {wcs.length === 1 ? "toaleta" : "toalet"} - przesuń w
-              górę
+              {wcs.length} {wcs.length === 1 ? "toaleta" : "toalet"} - stuknij
             </div>
           </div>
         )}

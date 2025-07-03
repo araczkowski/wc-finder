@@ -2,6 +2,7 @@
 
 import { motion, useMotionValue, useAnimation } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { ChevronUp } from "lucide-react";
 
 export default function BottomSheet({
   isOpen,
@@ -186,15 +187,22 @@ export default function BottomSheet({
             minHeight: "80px",
           }}
         >
-          <div
-            style={{
-              width: "50px",
-              height: "5px",
-              borderRadius: "2.5px",
-              backgroundColor: isDragging && canClose ? "#ff4444" : "#e0e0e0",
-              transition: "background-color 0.1s ease",
-            }}
-          ></div>
+          {currentSnap === snapPoints[0] ? (
+            <ChevronUp
+              size={20}
+              color={isDragging && canClose ? "#ff4444" : "#666"}
+            />
+          ) : (
+            <div
+              style={{
+                width: "50px",
+                height: "5px",
+                borderRadius: "2.5px",
+                backgroundColor: isDragging && canClose ? "#ff4444" : "#e0e0e0",
+                transition: "background-color 0.1s ease",
+              }}
+            ></div>
+          )}
         </motion.div>
         <div
           ref={contentRef}
