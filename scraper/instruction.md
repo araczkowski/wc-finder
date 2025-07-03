@@ -28,15 +28,21 @@ npm run csv-to-sql ./scraper/results.csv ./scraper/results.sql
 ```
 
 ```
-node ../scripts/csv-to-sql.js results.csv -o results.sql
+node --stack-size=12000 ../scripts/csv-to-sql.js results.csv -o results.sql
 ```
 
 4. import data to postgres via pgAdmin
 
 ```
-psql postgresql://postgres.hzkvqzhvgdwlbienjgjx:<PASSWORD>>@aws-0-eu-north-1.pooler.supabase.com:5432/postgres -f results.sql -f cleanup.sql
+psql postgresql://postgres.hzkvqzhvgdwlbienjgjx:<PASSWORD>@aws-0-eu-north-1.pooler.supabase.com:5432/postgres -f cleanup.sql
 ```
 
 ```
 psql postgresql://postgres.hzkvqzhvgdwlbienjgjx:<PASSWORD>>@aws-0-eu-north-1.pooler.supabase.com:5432/postgres -f results.sql
+```
+
+5. remove duplicates
+
+```
+psql postgresql://postgres.hzkvqzhvgdwlbienjgjx:<PASSWORD>>@aws-0-eu-north-1.pooler.supabase.com:5432/postgres -f remove-duplicates.sql
 ```
