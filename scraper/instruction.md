@@ -31,6 +31,10 @@ npm run csv-to-sql ./scraper/results.csv ./scraper/results.sql
 node --stack-size=12000 ../scripts/csv-to-sql.js results.csv -o results.sql
 ```
 
+```
+mlr --csv split -n 10000 results_restaurant.csv
+```
+
 4. import data to postgres via pgAdmin
 
 ```
