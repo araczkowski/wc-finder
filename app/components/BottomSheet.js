@@ -22,6 +22,7 @@ export default function BottomSheet({
   const [currentSnap, setCurrentSnap] = useState(initialSnap);
   const [windowHeight, setWindowHeight] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
+  const [canClose, setCanClose] = useState(false);
   const height = useMotionValue(0);
   const controls = useAnimation();
   const contentRef = useRef(null);
@@ -36,7 +37,7 @@ export default function BottomSheet({
     updateHeight();
     window.addEventListener("resize", updateHeight);
     return () => window.removeEventListener("resize", updateHeight);
-  }, [currentSnap]); // Re-run on snap change
+  }, [currentSnap, height]);
 
   useEffect(() => {
     if (isOpen) {
@@ -46,26 +47,48 @@ export default function BottomSheet({
     } else {
       controls.start({ height: 0 });
     }
-  }, [isOpen, currentSnap, windowHeight, controls]);
+  }, [isOpen, currentSnap, windowHeight, controls, height]);
 
   const handlePan = (event, info) => {
     const newHeight = height.get() - info.delta.y;
     height.set(newHeight);
+
+    // Check if we're in the close zone
+    const closeThreshold = windowHeight * snapPoints[0] * 0.6;
+    setCanClose(newHeight < closeThreshold);
   };
 
   const handlePanStart = () => {
     setIsDragging(true);
+    setCanClose(false);
     document.body.style.overflow = "hidden";
   };
 
   const handlePanEnd = (event, info) => {
     setIsDragging(false);
+    setCanClose(false);
     document.body.style.overflow = "";
 
     const currentHeightValue = height.get();
     const velocity = info.velocity.y;
-    const projectedHeight = currentHeightValue - velocity * 0.1;
+    const offset = info.offset.y;
 
+    // Check if we should close the bottom sheet
+    const shouldClose =
+      // Fast downward swipe from any position
+      velocity > 500 ||
+      // Dragged down significantly from the smallest snap point
+      (currentSnap === snapPoints[0] && offset > 50) ||
+      // Dragged below 60% of the smallest snap point
+      currentHeightValue < windowHeight * snapPoints[0] * 0.6;
+
+    if (shouldClose) {
+      onClose();
+      return;
+    }
+
+    // Calculate projected height for snap point selection
+    const projectedHeight = currentHeightValue - velocity * 0.1;
     const snapPixelValues = snapPoints.map((p) => windowHeight * p);
     const closestSnapPixel = snapPixelValues.reduce((prev, curr) => {
       return Math.abs(curr - projectedHeight) < Math.abs(prev - projectedHeight)
@@ -74,12 +97,6 @@ export default function BottomSheet({
     });
 
     const newSnap = closestSnapPixel / windowHeight;
-
-    if (velocity > 800 && currentSnap === snapPoints[0]) {
-      onClose();
-      return;
-    }
-
     setCurrentSnap(newSnap);
   };
 
@@ -117,6 +134,9 @@ export default function BottomSheet({
       }}
     >
       <motion.div
+        onPanStart={handlePanStart}
+        onPan={handlePan}
+        onPanEnd={handlePanEnd}
         style={{
           backgroundColor: "white",
           borderRadius: "20px 20px 0 0",
@@ -130,6 +150,10 @@ export default function BottomSheet({
           display: "flex",
           flexDirection: "column",
           overflow: "hidden",
+          cursor: isDragging ? "grabbing" : "grab",
+          touchAction: "pan-y",
+          opacity: isDragging && canClose ? 0.7 : 1,
+          transition: isDragging ? "opacity 0.1s ease" : "none",
         }}
         onClick={(e) => e.stopPropagation()}
         animate={controls}
@@ -141,12 +165,13 @@ export default function BottomSheet({
           onPanEnd={handlePanEnd}
           style={{
             width: "100%",
-            padding: "16px 0",
+            padding: "16px 0 60px 0",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             cursor: isDragging ? "grabbing" : "grab",
             touchAction: "none",
+            minHeight: "80px",
           }}
         >
           <div
@@ -154,7 +179,8 @@ export default function BottomSheet({
               width: "50px",
               height: "5px",
               borderRadius: "2.5px",
-              backgroundColor: "#e0e0e0",
+              backgroundColor: isDragging && canClose ? "#ff4444" : "#e0e0e0",
+              transition: "background-color 0.1s ease",
             }}
           ></div>
         </motion.div>
@@ -167,6 +193,7 @@ export default function BottomSheet({
             overflow: "auto",
             scrollbarWidth: "thin",
             scrollbarColor: "#ccc transparent",
+            touchAction: "pan-y",
           }}
         >
           {children}
