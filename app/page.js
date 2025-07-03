@@ -673,6 +673,7 @@ export default function Home() {
     totalCount,
     allDataLoaded,
     loadInitialData,
+    loadMore,
     reset,
   } = useInfiniteScroll(fetchWcs, 5);
 
@@ -1760,8 +1761,8 @@ export default function Home() {
             <div
               style={{ textAlign: "center", fontSize: "14px", color: "#666" }}
             >
-              {filteredWcs.length}{" "}
-              {filteredWcs.length === 1 ? "toaleta" : "toalet"} - przesuń w górę
+              {wcs.length} {wcs.length === 1 ? "toaleta" : "toalet"} - przesuń w
+              górę
             </div>
           </div>
         )}
@@ -1777,6 +1778,13 @@ export default function Home() {
         initialSnap={0.6}
         minHeight={300}
         maxWidth={500}
+        onScrollBottom={loadMore}
+        isLoading={loadingMore}
+        loadingMessage={t("loadingMore")}
+        allDataLoaded={allDataLoaded}
+        hasMore={hasMore}
+        totalCount={totalCount}
+        currentCount={wcs.length}
       >
         {selectedWcId ? (
           <WCReport
@@ -1795,10 +1803,10 @@ export default function Home() {
                 fontWeight: "bold",
               }}
             >
-              Lista toalet ({filteredWcs.length})
+              Lista toalet ({wcs.length})
             </h3>
 
-            {filteredWcs.length > 0 && (userAddress || userLocation) && (
+            {wcs.length > 0 && (userAddress || userLocation) && (
               <div
                 style={{
                   ...styles.infoMessage,
@@ -1813,7 +1821,7 @@ export default function Home() {
             )}
 
             <div className="responsive-table">
-              {filteredWcs.map((wc) => (
+              {wcs.map((wc) => (
                 <div
                   key={wc.id}
                   className="table-row"
@@ -2009,67 +2017,6 @@ export default function Home() {
                 </div>
               ))}
             </div>
-
-            {/* Loading more indicator */}
-            {loadingMore && (
-              <div
-                style={{
-                  textAlign: "center",
-                  padding: "20px",
-                  fontSize: "1rem",
-                  color: "#666",
-                  backgroundColor: "#f8f9fa",
-                  border: "1px solid #e9ecef",
-                  borderRadius: "8px",
-                  margin: "20px 0",
-                  transition: "opacity 0.3s ease",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: "10px",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: "20px",
-                      height: "20px",
-                      border: "2px solid #e9ecef",
-                      borderTop: "2px solid #007bff",
-                      borderRadius: "50%",
-                      animation: "spin 1s linear infinite",
-                    }}
-                  ></div>
-                  {t("loadingMore")}
-                </div>
-              </div>
-            )}
-
-            {/* No more data indicator */}
-            {(allDataLoaded || !hasMore) && wcs.length > 0 && (
-              <div
-                style={{
-                  textAlign: "center",
-                  padding: "20px",
-                  fontSize: "0.9rem",
-                  color: "#28a745",
-                  backgroundColor: "#f8f9fa",
-                  border: "1px solid #d4edda",
-                  borderRadius: "8px",
-                  margin: "20px 0",
-                  fontWeight: "500",
-                }}
-              >
-                ✓ Wczytano {wcs.length}{" "}
-                {totalCount > 0 && totalCount === wcs.length
-                  ? `z ${totalCount}`
-                  : ""}{" "}
-                {wcs.length === 1 ? "toaleta" : "toalet"}
-              </div>
-            )}
           </div>
         )}
       </BottomSheet>

@@ -16,11 +16,19 @@ export default function BottomSheet({
   initialSnap = 0.7,
   minHeight = 200,
   maxWidth = 500,
+  onScrollBottom,
+  isLoading = false,
+  loadingMessage = "Ładowanie...",
+  allDataLoaded = false,
+  hasMore = true,
+  totalCount = 0,
+  currentCount = 0,
 }) {
   const dragControls = useDragControls();
   const y = useMotionValue(0);
   const [currentSnap, setCurrentSnap] = useState(initialSnap);
   const containerRef = useRef(null);
+  const contentRef = useRef(null);
   const [windowHeight, setWindowHeight] = useState(0);
 
   // Debug logging
@@ -41,6 +49,19 @@ export default function BottomSheet({
 
   const currentHeight = windowHeight * currentSnap;
   const opacity = useTransform(y, [-200, 0], [0, 1]);
+
+  // Scroll handler for infinite scroll
+  const handleScroll = (e) => {
+    if (!onScrollBottom) return;
+
+    const element = e.target;
+    const isNearBottom =
+      element.scrollTop + element.clientHeight >= element.scrollHeight - 100;
+
+    if (isNearBottom && !isLoading) {
+      onScrollBottom();
+    }
+  };
 
   const handleDragEnd = (event, info) => {
     const velocity = info.velocity.y;
@@ -163,6 +184,8 @@ export default function BottomSheet({
 
         {/* Content */}
         <div
+          ref={contentRef}
+          onScroll={handleScroll}
           style={{
             flex: 1,
             padding: "0 20px 20px",
@@ -172,6 +195,67 @@ export default function BottomSheet({
           }}
         >
           {children}
+
+          {/* Loading indicator */}
+          {isLoading && (
+            <div
+              style={{
+                textAlign: "center",
+                padding: "20px",
+                fontSize: "1rem",
+                color: "#666",
+                backgroundColor: "#f8f9fa",
+                border: "1px solid #e9ecef",
+                borderRadius: "8px",
+                margin: "20px 0",
+                transition: "opacity 0.3s ease",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "10px",
+                }}
+              >
+                <div
+                  style={{
+                    width: "20px",
+                    height: "20px",
+                    border: "2px solid #e9ecef",
+                    borderTop: "2px solid #007bff",
+                    borderRadius: "50%",
+                    animation: "spin 1s linear infinite",
+                  }}
+                ></div>
+                {loadingMessage}
+              </div>
+            </div>
+          )}
+
+          {/* No more data indicator */}
+          {(allDataLoaded || !hasMore) && currentCount > 0 && (
+            <div
+              style={{
+                textAlign: "center",
+                padding: "20px",
+                fontSize: "0.9rem",
+                color: "#28a745",
+                backgroundColor: "#f8f9fa",
+                border: "1px solid #d4edda",
+                borderRadius: "8px",
+                margin: "20px 0",
+                fontWeight: "500",
+              }}
+            >
+              ✓ Wczytano {currentCount}{" "}
+              {totalCount > 0 && totalCount === currentCount
+                ? `z ${totalCount}`
+                : ""}{" "}
+              {currentCount === 1 ? "toaleta" : "toalet"}
+            </div>
+          )}
         </div>
       </motion.div>
     </motion.div>
