@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  motion,
-  useDragControls,
-  useMotionValue,
-  useTransform,
-} from "framer-motion";
+import { motion, useMotionValue, useAnimation } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 export default function BottomSheet({
@@ -24,126 +19,83 @@ export default function BottomSheet({
   totalCount = 0,
   currentCount = 0,
 }) {
-  const dragControls = useDragControls();
-  const y = useMotionValue(0);
   const [currentSnap, setCurrentSnap] = useState(initialSnap);
-  const containerRef = useRef(null);
-  const contentRef = useRef(null);
   const [windowHeight, setWindowHeight] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
-
-  // Debug logging
-  console.log("BottomSheet render:", {
-    isOpen,
-    selectedWcId: children?.props?.wcId,
-  });
+  const height = useMotionValue(0);
+  const controls = useAnimation();
+  const contentRef = useRef(null);
 
   useEffect(() => {
     const updateHeight = () => {
-      setWindowHeight(window.innerHeight);
+      const newWindowHeight = window.innerHeight;
+      setWindowHeight(newWindowHeight);
+      height.set(newWindowHeight * currentSnap);
     };
 
     updateHeight();
     window.addEventListener("resize", updateHeight);
     return () => window.removeEventListener("resize", updateHeight);
-  }, []);
+  }, [currentSnap]); // Re-run on snap change
 
-  // Cleanup effect for body overflow
   useEffect(() => {
-    return () => {
-      // Ensure body overflow is restored when component unmounts
-      document.body.style.overflow = "";
-    };
-  }, []);
+    if (isOpen) {
+      const targetHeight = windowHeight * currentSnap;
+      height.set(targetHeight);
+      controls.start({ height: targetHeight });
+    } else {
+      controls.start({ height: 0 });
+    }
+  }, [isOpen, currentSnap, windowHeight, controls]);
 
-  const currentHeight = windowHeight * currentSnap;
-  const opacity = useTransform(y, [-200, 0], [0, 1]);
+  const handlePan = (event, info) => {
+    const newHeight = height.get() - info.delta.y;
+    height.set(newHeight);
+  };
 
-  // Scroll handler for infinite scroll
+  const handlePanStart = () => {
+    setIsDragging(true);
+    document.body.style.overflow = "hidden";
+  };
+
+  const handlePanEnd = (event, info) => {
+    setIsDragging(false);
+    document.body.style.overflow = "";
+
+    const currentHeightValue = height.get();
+    const velocity = info.velocity.y;
+    const projectedHeight = currentHeightValue - velocity * 0.1;
+
+    const snapPixelValues = snapPoints.map((p) => windowHeight * p);
+    const closestSnapPixel = snapPixelValues.reduce((prev, curr) => {
+      return Math.abs(curr - projectedHeight) < Math.abs(prev - projectedHeight)
+        ? curr
+        : prev;
+    });
+
+    const newSnap = closestSnapPixel / windowHeight;
+
+    if (velocity > 800 && currentSnap === snapPoints[0]) {
+      onClose();
+      return;
+    }
+
+    setCurrentSnap(newSnap);
+  };
+
   const handleScroll = (e) => {
     if (!onScrollBottom || isDragging) return;
-
     const element = e.target;
     const isNearBottom =
       element.scrollTop + element.clientHeight >= element.scrollHeight - 100;
-
     if (isNearBottom && !isLoading) {
       onScrollBottom();
     }
   };
 
-  const handleDragStart = () => {
-    setIsDragging(true);
-    // Disable scroll on body to prevent conflicts
-    document.body.style.overflow = "hidden";
-  };
-
-  const handleDragEnd = (event, info) => {
-    setIsDragging(false);
-    // Re-enable scroll on body
-    document.body.style.overflow = "";
-    const velocity = info.velocity.y;
-    const currentY = y.get();
-
-    // Calculate which snap point to go to
-    let targetSnap = currentSnap;
-
-    if (velocity > 500) {
-      // Fast downward swipe - go to lower snap point or close
-      const currentIndex = snapPoints.indexOf(currentSnap);
-      if (currentIndex > 0) {
-        targetSnap = snapPoints[currentIndex - 1];
-      } else {
-        onClose();
-        return;
-      }
-    } else if (velocity < -500) {
-      // Fast upward swipe - go to higher snap point
-      const currentIndex = snapPoints.indexOf(currentSnap);
-      if (currentIndex < snapPoints.length - 1) {
-        targetSnap = snapPoints[currentIndex + 1];
-      }
-    } else {
-      // Slow drag - snap to nearest point
-      const threshold = windowHeight * 0.1;
-      if (currentY > threshold) {
-        const currentIndex = snapPoints.indexOf(currentSnap);
-        if (currentIndex > 0) {
-          targetSnap = snapPoints[currentIndex - 1];
-        } else {
-          onClose();
-          return;
-        }
-      } else if (currentY < -threshold) {
-        const currentIndex = snapPoints.indexOf(currentSnap);
-        if (currentIndex < snapPoints.length - 1) {
-          targetSnap = snapPoints[currentIndex + 1];
-        }
-      }
-    }
-
-    setCurrentSnap(targetSnap);
-    y.set(0);
-  };
-
-  // Handle tap to expand when minimized
-  const handleTap = () => {
-    if (currentSnap === snapPoints[0]) {
-      // If at minimum snap, expand to middle
-      setCurrentSnap(snapPoints[1] || snapPoints[0]);
-    }
-  };
-
   if (!isOpen) {
-    console.log("BottomSheet not open, returning null");
     return null;
   }
-
-  console.log("BottomSheet rendering with:", {
-    isOpen,
-    currentHeight,
-    windowHeight,
-  });
 
   return (
     <motion.div
@@ -165,91 +117,59 @@ export default function BottomSheet({
       }}
     >
       <motion.div
-        ref={containerRef}
-        drag="y"
-        dragMomentum={false}
-        dragConstraints={{ top: -200, bottom: 200 }}
-        dragElastic={0.2}
-        dragPropagation={false}
-        onDragStart={handleDragStart}
-        onDragEnd={handleDragEnd}
-        onTap={handleTap}
-        whileDrag={{ scale: 1.02 }}
         style={{
-          y,
-          opacity,
           backgroundColor: "white",
           borderRadius: "20px 20px 0 0",
           width: "100%",
           maxWidth: maxWidth,
-          minHeight: Math.max(minHeight, currentHeight),
-          height: currentHeight,
+          height: height,
+          minHeight: minHeight,
           boxShadow: isDragging
             ? "0 -8px 32px rgba(0, 0, 0, 0.3)"
             : "0 -4px 20px rgba(0, 0, 0, 0.15)",
           display: "flex",
           flexDirection: "column",
           overflow: "hidden",
-          cursor: isDragging ? "grabbing" : "grab",
-          transition: isDragging
-            ? "none"
-            : "box-shadow 0.2s ease, transform 0.2s ease",
         }}
         onClick={(e) => e.stopPropagation()}
-        animate={{
-          height: currentHeight,
-        }}
-        transition={{
-          type: "spring",
-          damping: 30,
-          stiffness: 300,
-        }}
+        animate={controls}
+        transition={{ type: "spring", damping: 30, stiffness: 300 }}
       >
-        {/* Handle */}
-        <div
+        <motion.div
+          onPanStart={handlePanStart}
+          onPan={handlePan}
+          onPanEnd={handlePanEnd}
           style={{
-            width: "40px",
-            height: "4px",
-            backgroundColor: isDragging ? "#007bff" : "#ccc",
-            borderRadius: "2px",
-            margin: "12px auto 8px",
+            width: "100%",
+            padding: "16px 0",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
             cursor: isDragging ? "grabbing" : "grab",
-            transition: "background-color 0.2s ease",
             touchAction: "none",
           }}
-        />
-
-        {/* Invisible drag area for better UX */}
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            height: "60px",
-            cursor: isDragging ? "grabbing" : "grab",
-            zIndex: 10,
-            touchAction: "pan-y",
-          }}
-        />
-
-        {/* Content */}
+        >
+          <div
+            style={{
+              width: "50px",
+              height: "5px",
+              borderRadius: "2.5px",
+              backgroundColor: "#e0e0e0",
+            }}
+          ></div>
+        </motion.div>
         <div
           ref={contentRef}
           onScroll={handleScroll}
           style={{
             flex: 1,
             padding: "0 20px 20px",
-            overflow: isDragging ? "hidden" : "auto",
+            overflow: "auto",
             scrollbarWidth: "thin",
             scrollbarColor: "#ccc transparent",
-            pointerEvents: isDragging ? "none" : "auto",
-            touchAction: "pan-y",
           }}
         >
           {children}
-
-          {/* Loading indicator */}
           {isLoading && (
             <div
               style={{
@@ -257,37 +177,11 @@ export default function BottomSheet({
                 padding: "20px",
                 fontSize: "1rem",
                 color: "#666",
-                backgroundColor: "#f8f9fa",
-                border: "1px solid #e9ecef",
-                borderRadius: "8px",
-                margin: "20px 0",
-                transition: "opacity 0.3s ease",
               }}
             >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "10px",
-                }}
-              >
-                <div
-                  style={{
-                    width: "20px",
-                    height: "20px",
-                    border: "2px solid #e9ecef",
-                    borderTop: "2px solid #007bff",
-                    borderRadius: "50%",
-                    animation: "spin 1s linear infinite",
-                  }}
-                ></div>
-                {loadingMessage}
-              </div>
+              {loadingMessage}
             </div>
           )}
-
-          {/* No more data indicator */}
           {(allDataLoaded || !hasMore) && currentCount > 0 && (
             <div
               style={{
@@ -295,18 +189,9 @@ export default function BottomSheet({
                 padding: "20px",
                 fontSize: "0.9rem",
                 color: "#28a745",
-                backgroundColor: "#f8f9fa",
-                border: "1px solid #d4edda",
-                borderRadius: "8px",
-                margin: "20px 0",
-                fontWeight: "500",
               }}
             >
-              ✓ Wczytano {currentCount}{" "}
-              {totalCount > 0 && totalCount === currentCount
-                ? `z ${totalCount}`
-                : ""}{" "}
-              {currentCount === 1 ? "toaleta" : "toalet"}
+              ✓ Wczytano wszystkie toalety
             </div>
           )}
         </div>
