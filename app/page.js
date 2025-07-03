@@ -13,6 +13,8 @@ import AddressAutocomplete from "./components/AddressAutocomplete";
 import PlaceTypeDisplay from "./components/PlaceTypeDisplay";
 import RatingDisplay from "./components/RatingDisplay";
 import WCTags from "./components/WCTags";
+import BottomSheet from "./components/BottomSheet";
+import WCReport from "./components/WCReport";
 import { getPlaceTypeLabel } from "./utils/placeTypes";
 import { pl } from "./locales/pl";
 import { LocateFixed, RulerDimensionLine, SquarePen } from "lucide-react";
@@ -310,6 +312,10 @@ export default function Home() {
     useState(false);
   const [hasSetAddress, setHasSetAddress] = useState(false);
   const [isLoadingLocation, setIsLoadingLocation] = useState(false);
+
+  // Bottom Sheet states
+  const [bottomSheetOpen, setBottomSheetOpen] = useState(false);
+  const [selectedWcId, setSelectedWcId] = useState(null);
 
   // Funkcja automatycznego logowania
   const handleAutoLogin = async () => {
@@ -1479,329 +1485,103 @@ export default function Home() {
                 !wcError &&
                 filteredWcs.length > 0 &&
                 (userAddress || userLocation) && (
-                  <>
-                    {userLocation && geolocationSupported && (
-                      <div
-                        style={{
-                          textAlign: "center",
-                          marginBottom: "15px",
-                          padding: "8px",
-                          backgroundColor: addressManuallyChanged
-                            ? "#e3f2fd"
-                            : "#e8f5e8",
-                          borderRadius: "4px",
-                          fontSize: "0.85rem",
-                          color: addressManuallyChanged ? "#1976d2" : "#2E7D32",
-                          border: addressManuallyChanged
-                            ? "1px solid #2196F3"
-                            : "1px solid #4CAF50",
-                        }}
-                      >
-                        {addressManuallyChanged
+                  <div
+                    style={{
+                      ...styles.successMessage,
+                      fontSize: "0.9rem",
+                      textAlign: "center",
+                      marginBottom: "20px",
+                    }}
+                  >
+                    {userLocation && !userAddress
+                      ? t("locationSorted")
+                      : userAddress && !userLocation
+                        ? t("locationSortedByAddress")
+                        : userAddress && userLocation
                           ? t("locationSortedByAddress")
                           : t("locationSorted")}
-                      </div>
-                    )}
+                  </div>
+                )}
 
-                    {!userLocation && !geolocationSupported && (
-                      <div
-                        style={{
-                          textAlign: "center",
-                          marginBottom: "15px",
-                          padding: "8px",
-                          backgroundColor: "#fff3cd",
-                          borderRadius: "4px",
-                          fontSize: "0.85rem",
-                          color: "#856404",
-                          border: "1px solid #ffeaa7",
-                        }}
-                      >
-                        {t("locationUnavailable")}
-                      </div>
-                    )}
-                    {!userLocation && geolocationSupported && (
-                      <div
-                        style={{
-                          textAlign: "center",
-                          marginBottom: "15px",
-                          padding: "8px",
-                          backgroundColor: "#f0f9ff",
-                          borderRadius: "4px",
-                          fontSize: "0.85rem",
-                          color: "#0369a1",
-                          border: "1px solid #bae6fd",
-                        }}
-                      >
-                        {t("distancesAfterLocation")}
-                      </div>
-                    )}
-                    <div className="responsive-table">
-                      {filteredWcs.map((wc) => (
-                        <div
-                          key={wc.id}
-                          className="table-row"
-                          onClick={() =>
-                            (window.location.href = `/wc/view/${wc.id}`)
-                          }
-                          style={{ cursor: "pointer" }}
-                          title="Kliknij aby zobaczyć szczegóły WC"
-                        >
-                          <div
-                            className="table-cell, first-cell"
-                            style={{
-                              textAlign: "center",
-                              position: "relative",
-                            }}
-                          >
-                            <div
-                              className="edit-cell"
-                              style={{
-                                textAlign: "center",
-                                position: "absolute",
-                                width: "60px",
-                              }}
-                            >
-                              {session?.user?.email === wc.created_by ||
-                              (wc.google_place_id && session?.user?.email) ? (
-                                <Link
-                                  href={`/wc/edit/${wc.id}`}
-                                  onClick={(e) => e.stopPropagation()}
-                                  className="edit-button"
-                                  title={t("editIconTitle")}
-                                  style={{
-                                    zIndex: "10000",
-                                  }}
-                                >
-                                  <SquarePen
-                                    size={14}
-                                    style={{ marginRight: "4px" }}
-                                  />
-                                </Link>
-                              ) : (
-                                <span>WC Google: {wc.google_place_id}</span>
-                              )}
-                            </div>
-                            <div
-                              style={{
-                                fontSize: "1rem",
-                                width: "50%",
-                                position: "absolute",
-                                height: "auto",
-                                right: "0px",
-                                zIndex: "1000000",
-                                textAlign: "center",
-                                alignItems: "center",
-                                justifyContent: "center",
-                              }}
-                            >
-                              {(wc.distance_km !== null &&
-                                wc.distance_km !== undefined) ||
-                              (wc.distance !== null &&
-                                wc.distance !== undefined) ? (
-                                <div
-                                  style={{
-                                    fontSize: "1rem",
-                                    color: "#ffffff",
-                                    backgroundColor: "#2196F3",
-                                    borderRadius: "2em",
-                                    fontWeight: "bold",
-                                    marginTop: "2px",
-                                    whiteSpace: "nowrap",
-                                    height: "3em",
-                                    lineHeight: "3.5em",
-                                    position: "relative",
-                                    right: "1em",
-                                    width: "6em",
-                                    zIndex: 1000,
-                                    justifyContent: "center",
-                                    marginLeft: "auto",
-                                    marginRight: "auto",
-                                    verticalAlign: "middle",
-                                    textAlign: "center",
-                                    display: "inline-flex",
-                                    alignItems: "center",
-                                  }}
-                                >
-                                  <RulerDimensionLine
-                                    size={22}
-                                    style={{ marginRight: "4px" }}
-                                  />
-                                  {formatDistance(
-                                    wc.distance_km || wc.distance,
-                                  )}
-                                </div>
-                              ) : null}
-                              <div
-                                className="place-type-cell"
-                                style={{
-                                  textAlign: "center",
-                                  display: "inline-block",
-                                }}
-                              >
-                                <div
-                                  style={{
-                                    fontSize: "1rem",
-                                    color: "#ffffff",
-                                    backgroundColor: "#2196F3",
-                                    padding: "0px",
-                                    borderRadius: "2em",
-                                    fontWeight: "bold",
-                                    marginTop: "p0x",
-                                    whiteSpace: "nowrap",
-                                    height: "3em",
-                                    lineHeight: "4em",
-                                    position: "relative",
-                                    right: "1em",
-                                    width: "3em",
-                                    zIndex: 1000,
-                                    display: "inline-block",
-                                    alignItems: "center",
-                                    justifyContent: "space-evenly",
-                                    flexWrap: "wrap",
-                                    flexDirection: "column",
-                                    alignContent: "center",
+              {!loadingWcs &&
+                !isLoadingLocation &&
+                !wcError &&
+                filteredWcs.length === 0 &&
+                (userAddress || userLocation) && (
+                  <div
+                    style={{
+                      ...styles.errorMessage,
+                      fontSize: "0.9rem",
+                      textAlign: "center",
+                      marginBottom: "20px",
+                    }}
+                  >
+                    {t("noWcsFound")}
+                  </div>
+                )}
 
-                                    margin: "auto",
-                                    verticalAlign: "middle",
-                                    marginLeft: "1em",
-                                  }}
-                                >
-                                  <PlaceTypeDisplay
-                                    placeType={wc.place_type}
-                                    showIcon={true}
-                                    showText={false}
-                                    iconSize={22}
-                                  />
-                                </div>
-                              </div>
-                            </div>
-                            <div
-                              className="table-cell name-cell"
-                              style={{ textAlign: "center" }}
-                            >
-                              {wc.name}
-                            </div>
+              {!loadingWcs &&
+                !isLoadingLocation &&
+                !wcError &&
+                filteredWcs.length === 0 &&
+                !userAddress &&
+                !userLocation && (
+                  <div
+                    style={{
+                      ...styles.infoMessage,
+                      fontSize: "0.9rem",
+                      textAlign: "center",
+                      marginBottom: "20px",
+                    }}
+                  >
+                    {t("enterAddressToSeeWcs")}
+                  </div>
+                )}
 
-                            <div
-                              className="table-cell rating-cell"
-                              style={{ textAlign: "center" }}
-                            >
-                              {wc.rating ? (
-                                <RatingDisplay
-                                  rating={wc.rating}
-                                  size={14}
-                                  showNumeric={true}
-                                />
-                              ) : (
-                                t("notRated")
-                              )}
-                            </div>
+              {wcError && (
+                <div
+                  style={{
+                    ...styles.errorMessage,
+                    fontSize: "0.9rem",
+                    textAlign: "center",
+                    marginBottom: "20px",
+                  }}
+                >
+                  {wcError}
+                </div>
+              )}
 
-                            <div
-                              className="image-container"
-                              style={{ textAlign: "left", width: "100%" }}
-                            >
-                              {wc.gallery_photos &&
-                              wc.gallery_photos.length > 0 ? (
-                                <ImageSlideshow
-                                  images={wc.gallery_photos}
-                                  alt={wc.name || t("wcImage")}
-                                  className="thumbnail-in-table"
-                                  width={200}
-                                  height={150}
-                                />
-                              ) : (
-                                <div className="thumbnail-placeholder">
-                                  {t("noImage")}
-                                </div>
-                              )}
-                            </div>
-                          </div>
-
-                          <div
-                            className="table-cell third-cell"
-                            style={{ textAlign: "center" }}
-                          >
-                            <div style={{ marginBottom: "4px" }}>
-                              {wc.address || "N/A"}
-                            </div>
-                          </div>
-
-                          <div
-                            className="table-cell sixth-cell"
-                            style={{ textAlign: "left" }}
-                          >
-                            <WCTags
-                              wcId={wc.id}
-                              isEditable={false}
-                              isHeaderText={false}
-                            />
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Loading more indicator */}
-                    {loadingMore && (
-                      <div
-                        style={{
-                          textAlign: "center",
-                          padding: "20px",
-                          fontSize: "1rem",
-                          color: "#666",
-                          backgroundColor: "#f8f9fa",
-                          border: "1px solid #e9ecef",
-                          borderRadius: "8px",
-                          margin: "20px 0",
-                          transition: "opacity 0.3s ease",
-                        }}
-                      >
-                        <div
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            gap: "10px",
-                          }}
-                        >
-                          <div
-                            style={{
-                              width: "20px",
-                              height: "20px",
-                              border: "2px solid #e9ecef",
-                              borderTop: "2px solid #007bff",
-                              borderRadius: "50%",
-                              animation: "spin 1s linear infinite",
-                            }}
-                          ></div>
-                          {t("loadingMore")}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* No more data indicator */}
-                    {(allDataLoaded || !hasMore) && wcs.length > 0 && (
-                      <div
-                        style={{
-                          textAlign: "center",
-                          padding: "20px",
-                          fontSize: "0.9rem",
-                          color: "#28a745",
-                          backgroundColor: "#f8f9fa",
-                          border: "1px solid #d4edda",
-                          borderRadius: "8px",
-                          margin: "20px 0",
-                          fontWeight: "500",
-                        }}
-                      >
-                        ✓ Wczytano {wcs.length}{" "}
-                        {totalCount > 0 && totalCount === wcs.length
-                          ? `z ${totalCount}`
-                          : ""}{" "}
-                        rekordów
-                      </div>
-                    )}
-                  </>
+              {!loadingWcs &&
+                !isLoadingLocation &&
+                !wcError &&
+                filteredWcs.length > 0 &&
+                (userAddress || userLocation) && (
+                  <div
+                    style={{
+                      textAlign: "center",
+                      padding: "20px",
+                      fontSize: "1rem",
+                      color: "#007bff",
+                      backgroundColor: "#f8f9fa",
+                      border: "1px solid #e9ecef",
+                      borderRadius: "8px",
+                      margin: "20px 0",
+                    }}
+                  >
+                    <p>
+                      Znaleziono {filteredWcs.length}{" "}
+                      {filteredWcs.length === 1 ? "toaletę" : "toalet"}
+                    </p>
+                    <p
+                      style={{
+                        fontSize: "0.9rem",
+                        marginTop: "10px",
+                        color: "#666",
+                      }}
+                    >
+                      Przesuń w górę aby zobaczyć listę
+                    </p>
+                  </div>
                 )}
             </div>
           </>
@@ -1942,6 +1722,357 @@ export default function Home() {
           </>
         )}
       </main>
+
+      {/* Bottom Handle for WC List */}
+      {!loadingWcs &&
+        !isLoadingLocation &&
+        !wcError &&
+        filteredWcs.length > 0 &&
+        (userAddress || userLocation) && (
+          <div
+            style={{
+              position: "fixed",
+              bottom: 0,
+              left: "50%",
+              transform: "translateX(-50%)",
+              zIndex: 999,
+              backgroundColor: "white",
+              borderRadius: "20px 20px 0 0",
+              padding: "10px 20px",
+              boxShadow: "0 -4px 20px rgba(0, 0, 0, 0.15)",
+              cursor: "pointer",
+              border: "1px solid #ddd",
+              borderBottom: "none",
+              maxWidth: "500px",
+              width: "100%",
+            }}
+            onClick={() => setBottomSheetOpen(true)}
+          >
+            <div
+              style={{
+                width: "40px",
+                height: "4px",
+                backgroundColor: "#ccc",
+                borderRadius: "2px",
+                margin: "0 auto 8px",
+              }}
+            />
+            <div
+              style={{ textAlign: "center", fontSize: "14px", color: "#666" }}
+            >
+              {filteredWcs.length}{" "}
+              {filteredWcs.length === 1 ? "toaleta" : "toalet"} - przesuń w górę
+            </div>
+          </div>
+        )}
+
+      {/* WC List Bottom Sheet */}
+      <BottomSheet
+        isOpen={bottomSheetOpen}
+        onClose={() => {
+          setBottomSheetOpen(false);
+          setSelectedWcId(null);
+        }}
+        snapPoints={[0.3, 0.6, 0.9]}
+        initialSnap={0.6}
+        minHeight={300}
+        maxWidth={500}
+      >
+        {selectedWcId ? (
+          <WCReport
+            wcId={selectedWcId}
+            onClose={() => {
+              setBottomSheetOpen(false);
+              setSelectedWcId(null);
+            }}
+          />
+        ) : (
+          <div>
+            <h3
+              style={{
+                marginBottom: "15px",
+                fontSize: "1.2rem",
+                fontWeight: "bold",
+              }}
+            >
+              Lista toalet ({filteredWcs.length})
+            </h3>
+
+            {filteredWcs.length > 0 && (userAddress || userLocation) && (
+              <div
+                style={{
+                  ...styles.infoMessage,
+                  fontSize: "0.85rem",
+                  color: "#0369a1",
+                  border: "1px solid #bae6fd",
+                  marginBottom: "15px",
+                }}
+              >
+                {t("distancesAfterLocation")}
+              </div>
+            )}
+
+            <div className="responsive-table">
+              {filteredWcs.map((wc) => (
+                <div
+                  key={wc.id}
+                  className="table-row"
+                  onClick={() => {
+                    setSelectedWcId(wc.id);
+                  }}
+                  style={{ cursor: "pointer" }}
+                  title="Kliknij aby zobaczyć szczegóły WC"
+                >
+                  <div
+                    className="table-cell, first-cell"
+                    style={{
+                      textAlign: "center",
+                      position: "relative",
+                    }}
+                  >
+                    <div
+                      className="edit-cell"
+                      style={{
+                        textAlign: "center",
+                        position: "absolute",
+                        width: "60px",
+                      }}
+                    >
+                      {session?.user?.email === wc.created_by ||
+                      (wc.google_place_id && session?.user?.email) ? (
+                        <Link
+                          href={`/wc/edit/${wc.id}`}
+                          onClick={(e) => e.stopPropagation()}
+                          className="edit-button"
+                          title={t("editIconTitle")}
+                          style={{
+                            zIndex: "10000",
+                          }}
+                        >
+                          <SquarePen size={14} style={{ marginRight: "4px" }} />
+                        </Link>
+                      ) : (
+                        <span>WC Google: {wc.google_place_id}</span>
+                      )}
+                    </div>
+                    <div
+                      style={{
+                        fontSize: "1rem",
+                        width: "50%",
+                        position: "absolute",
+                        height: "auto",
+                        right: "0px",
+                        zIndex: "1000000",
+                        textAlign: "center",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      {(wc.distance_km !== null &&
+                        wc.distance_km !== undefined) ||
+                      (wc.distance !== null && wc.distance !== undefined) ? (
+                        <div
+                          style={{
+                            fontSize: "1rem",
+                            color: "#ffffff",
+                            backgroundColor: "#2196F3",
+                            borderRadius: "2em",
+                            fontWeight: "bold",
+                            marginTop: "2px",
+                            whiteSpace: "nowrap",
+                            height: "3em",
+                            lineHeight: "3.5em",
+                            position: "relative",
+                            right: "1em",
+                            width: "6em",
+                            zIndex: 1000,
+                            justifyContent: "center",
+                            marginLeft: "auto",
+                            marginRight: "auto",
+                            verticalAlign: "middle",
+                            textAlign: "center",
+                            display: "inline-flex",
+                            alignItems: "center",
+                          }}
+                        >
+                          <RulerDimensionLine
+                            size={22}
+                            style={{ marginRight: "4px" }}
+                          />
+                          {formatDistance(wc.distance_km || wc.distance)}
+                        </div>
+                      ) : null}
+                      <div
+                        className="place-type-cell"
+                        style={{
+                          textAlign: "center",
+                          display: "inline-block",
+                        }}
+                      >
+                        <div
+                          style={{
+                            fontSize: "1rem",
+                            color: "#ffffff",
+                            backgroundColor: "#2196F3",
+                            padding: "0px",
+                            borderRadius: "2em",
+                            fontWeight: "bold",
+                            marginTop: "p0x",
+                            whiteSpace: "nowrap",
+                            height: "3em",
+                            lineHeight: "4em",
+                            position: "relative",
+                            right: "1em",
+                            width: "3em",
+                            zIndex: 1000,
+                            display: "inline-block",
+                            alignItems: "center",
+                            justifyContent: "space-evenly",
+                            flexWrap: "wrap",
+                            flexDirection: "column",
+                            alignContent: "center",
+                            margin: "auto",
+                            verticalAlign: "middle",
+                            marginLeft: "1em",
+                          }}
+                        >
+                          <PlaceTypeDisplay
+                            placeType={wc.place_type}
+                            showIcon={true}
+                            showText={false}
+                            iconSize={22}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      className="table-cell name-cell"
+                      style={{ textAlign: "center" }}
+                    >
+                      {wc.name}
+                    </div>
+
+                    <div
+                      className="table-cell rating-cell"
+                      style={{ textAlign: "center" }}
+                    >
+                      {wc.rating ? (
+                        <RatingDisplay
+                          rating={wc.rating}
+                          size={14}
+                          showNumeric={true}
+                        />
+                      ) : (
+                        t("notRated")
+                      )}
+                    </div>
+
+                    <div
+                      className="image-container"
+                      style={{ textAlign: "left", width: "100%" }}
+                    >
+                      {wc.gallery_photos && wc.gallery_photos.length > 0 ? (
+                        <ImageSlideshow
+                          images={wc.gallery_photos}
+                          alt={wc.name || t("wcImage")}
+                          className="thumbnail-in-table"
+                          width={200}
+                          height={150}
+                        />
+                      ) : (
+                        <div className="thumbnail-placeholder">
+                          {t("noImage")}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  <div
+                    className="table-cell third-cell"
+                    style={{ textAlign: "center" }}
+                  >
+                    <div style={{ marginBottom: "4px" }}>
+                      {wc.address || "N/A"}
+                    </div>
+                  </div>
+
+                  <div
+                    className="table-cell sixth-cell"
+                    style={{ textAlign: "left" }}
+                  >
+                    <WCTags
+                      wcId={wc.id}
+                      isEditable={false}
+                      isHeaderText={false}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Loading more indicator */}
+            {loadingMore && (
+              <div
+                style={{
+                  textAlign: "center",
+                  padding: "20px",
+                  fontSize: "1rem",
+                  color: "#666",
+                  backgroundColor: "#f8f9fa",
+                  border: "1px solid #e9ecef",
+                  borderRadius: "8px",
+                  margin: "20px 0",
+                  transition: "opacity 0.3s ease",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "10px",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "20px",
+                      height: "20px",
+                      border: "2px solid #e9ecef",
+                      borderTop: "2px solid #007bff",
+                      borderRadius: "50%",
+                      animation: "spin 1s linear infinite",
+                    }}
+                  ></div>
+                  {t("loadingMore")}
+                </div>
+              </div>
+            )}
+
+            {/* No more data indicator */}
+            {(allDataLoaded || !hasMore) && wcs.length > 0 && (
+              <div
+                style={{
+                  textAlign: "center",
+                  padding: "20px",
+                  fontSize: "0.9rem",
+                  color: "#28a745",
+                  backgroundColor: "#f8f9fa",
+                  border: "1px solid #d4edda",
+                  borderRadius: "8px",
+                  margin: "20px 0",
+                  fontWeight: "500",
+                }}
+              >
+                ✓ Wczytano {wcs.length}{" "}
+                {totalCount > 0 && totalCount === wcs.length
+                  ? `z ${totalCount}`
+                  : ""}{" "}
+                {wcs.length === 1 ? "toaleta" : "toalet"}
+              </div>
+            )}
+          </div>
+        )}
+      </BottomSheet>
     </div>
   );
 }
