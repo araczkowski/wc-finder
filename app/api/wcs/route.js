@@ -77,7 +77,7 @@ export async function GET(request) {
 
     // If user location is provided, use PostGIS for distance-based sorting
     if (hasUserLocation) {
-      // Use raw SQL for PostGIS distance sorting
+      // Use improved PostGIS function that returns coordinates directly
       const { data, error: sqlError } = await supabase.rpc(
         "get_wcs_by_distance",
         {
@@ -120,16 +120,77 @@ export async function GET(request) {
         wcs = data;
         error = null;
         console.log(
-          "PostGIS query successful - sample WC:",
+          "PostGIS query successful - sample WC with coordinates:",
           wcs?.[0]
             ? {
                 id: wcs[0].id,
                 name: wcs[0].name,
+                lat: wcs[0].lat,
+                lng: wcs[0].lng,
+                distance_km: wcs[0].distance_km,
                 google_place_id: wcs[0].google_place_id,
                 has_google_place_id: !!wcs[0].google_place_id,
               }
             : "No WCs",
         );
+
+        // If new PostGIS function doesn't return coordinates, extract them manually
+        if (
+          wcs &&
+          wcs.length > 0 &&
+          (wcs[0].lat === undefined || wcs[0].lng === undefined)
+        ) {
+          console.log(
+            "PostGIS function doesn't return coordinates, extracting manually...",
+          );
+          try {
+            const coordinatePromises = wcs.map(async (wc) => {
+              if (wc.id) {
+                try {
+                  const { data: coords } = await supabase.rpc(
+                    "get_wc_coordinates",
+                    { p_wc_id: wc.id },
+                  );
+                  return coords && coords.length > 0
+                    ? {
+                        id: wc.id,
+                        lat: coords[0].latitude,
+                        lng: coords[0].longitude,
+                      }
+                    : { id: wc.id, lat: null, lng: null };
+                } catch (err) {
+                  console.warn(
+                    `Failed to get coordinates for WC ${wc.id}:`,
+                    err,
+                  );
+                  return { id: wc.id, lat: null, lng: null };
+                }
+              }
+              return { id: wc.id, lat: null, lng: null };
+            });
+
+            const allCoordinates = await Promise.all(coordinatePromises);
+            const coordMap = {};
+            allCoordinates.forEach((coord) => {
+              coordMap[coord.id] = { lat: coord.lat, lng: coord.lng };
+            });
+
+            // Add coordinates to WC data
+            wcs = wcs.map((wc) => ({
+              ...wc,
+              lat: coordMap[wc.id]?.lat || null,
+              lng: coordMap[wc.id]?.lng || null,
+            }));
+
+            console.log(
+              "Manually extracted coordinates for",
+              wcs.length,
+              "WCs",
+            );
+          } catch (coordErr) {
+            console.warn("Could not extract coordinates manually:", coordErr);
+          }
+        }
 
         // Check if PostGIS function is missing place_type and fallback to supplement it
         if (wcs && wcs.length > 0 && wcs[0].place_type === undefined) {
@@ -174,6 +235,7 @@ export async function GET(request) {
       }
     } else {
       console.log("No user location provided, using regular query");
+      // Use regular query and extract coordinates manually
       query = supabase
         .from("wcs")
         .select("*")
@@ -181,6 +243,7 @@ export async function GET(request) {
       const result = await query.range(offset, offset + limit - 1);
       wcs = result.data;
       error = result.error;
+
       console.log(
         "Regular query result - sample WC:",
         wcs?.[0]
@@ -192,6 +255,60 @@ export async function GET(request) {
             }
           : "No WCs",
       );
+
+      // Extract coordinates for regular query
+      if (wcs && wcs.length > 0) {
+        try {
+          console.log("Extracting coordinates for", wcs.length, "WCs...");
+          const coordinatePromises = wcs.map(async (wc) => {
+            if (wc.id) {
+              try {
+                const { data: coords } = await supabase.rpc(
+                  "get_wc_coordinates",
+                  { p_wc_id: wc.id },
+                );
+                return coords && coords.length > 0
+                  ? {
+                      id: wc.id,
+                      lat: coords[0].latitude,
+                      lng: coords[0].longitude,
+                    }
+                  : { id: wc.id, lat: null, lng: null };
+              } catch (err) {
+                console.warn(`Failed to get coordinates for WC ${wc.id}:`, err);
+                return { id: wc.id, lat: null, lng: null };
+              }
+            }
+            return { id: wc.id, lat: null, lng: null };
+          });
+
+          const allCoordinates = await Promise.all(coordinatePromises);
+          const coordMap = {};
+          allCoordinates.forEach((coord) => {
+            coordMap[coord.id] = { lat: coord.lat, lng: coord.lng };
+          });
+
+          // Add coordinates to WC data
+          wcs = wcs.map((wc) => ({
+            ...wc,
+            lat: coordMap[wc.id]?.lat || null,
+            lng: coordMap[wc.id]?.lng || null,
+          }));
+
+          console.log("Successfully extracted coordinates for WCs");
+        } catch (coordErr) {
+          console.warn(
+            "Could not extract coordinates for regular query:",
+            coordErr,
+          );
+          // Add null coordinates as fallback
+          wcs = wcs.map((wc) => ({
+            ...wc,
+            lat: null,
+            lng: null,
+          }));
+        }
+      }
     }
 
     if (error) {

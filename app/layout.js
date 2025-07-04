@@ -4,6 +4,7 @@ import AuthProvider from "./components/AuthProvider"; // Updated path
 import { TranslationProvider } from "./hooks/useTranslation";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "./api/auth/[...nextauth]/route"; // Updated path
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,6 +30,13 @@ export default async function RootLayout({ children }) {
         <TranslationProvider defaultLanguage="pl">
           <AuthProvider session={session}>{children}</AuthProvider>
         </TranslationProvider>
+        {process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY && (
+          <Script
+            id="google-maps"
+            src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=places`}
+            strategy="beforeInteractive"
+          />
+        )}
       </body>
     </html>
   );

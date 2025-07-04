@@ -15,6 +15,7 @@ import RatingDisplay from "./components/RatingDisplay";
 import WCTags from "./components/WCTags";
 import BottomSheet from "./components/BottomSheet";
 import WCReport from "./components/WCReport";
+import GoogleMap from "./components/GoogleMap";
 import { getPlaceTypeLabel } from "./utils/placeTypes";
 import { pl } from "./locales/pl";
 import {
@@ -1133,18 +1134,26 @@ export default function Home() {
               </div>
             )}
 
-            {/* Address Section */}
-            <div style={styles.addressSection}>
+            {/* Address Section - Hide when map is shown */}
+            <div
+              style={{
+                ...styles.addressSection,
+                ...((userAddress || userLocation) &&
+                  filteredWcs.length > 0 && {
+                    display: "none",
+                  }),
+              }}
+            >
               <label
                 style={{
+                  display: "block",
+                  marginBottom: "8px",
                   fontSize: "1rem",
                   fontWeight: "600",
-                  marginBottom: "0.75rem",
-                  display: "block",
                   color: "#333",
                 }}
               >
-                📍 {t("userAddress")}
+                {t("yourLocation")}
               </label>
               <div style={{ position: "relative" }}>
                 <div style={{ position: "relative", display: "flex" }}>
@@ -1158,42 +1167,33 @@ export default function Home() {
                     placeholder={t("addressPlaceholder")}
                     style={{
                       ...styles.addressField,
-                      borderColor: addressManuallyChanged ? "#28a745" : "#ddd",
+                      paddingRight: "4.5rem",
+                      fontSize: "16px",
                     }}
+                    disabled={
+                      loadingWcs || isLoadingLocation || isGeolocatingAddress
+                    }
                   />
                   <button
                     onClick={() => {
-                      console.log("[GPS Button] Starting GPS location request");
-
-                      // 1. Czyścimy pole Twoja lokalizacja i współrzędne GPS
-                      setUserAddress("");
-                      setAddressDetected(false);
-                      setAddressManuallyChanged(false);
-                      setUserExplicitlyClearedAddress(false);
-                      setUserLocation(null);
-                      setHasSetAddress(false);
-
-                      // Resetujemy listę WC aby wyczyścić poprzednie wyniki
-                      if (resetRef.current) {
-                        resetRef.current();
-                      }
-
-                      // 2. Pobieramy aktualną pozycję użytkownika
+                      console.log("[GPS Button] Button clicked");
                       if (navigator.geolocation) {
                         setIsGeolocatingAddress(true);
+                        console.log("[GPS Button] Getting current position...");
                         navigator.geolocation.getCurrentPosition(
-                          async (position) => {
-                            const { latitude, longitude } = position.coords;
+                          (position) => {
                             console.log(
-                              "[GPS Button] Got coordinates:",
+                              "[GPS Button] Position received:",
+                              position.coords,
+                            );
+                            const { latitude, longitude } = position.coords;
+                            console.log("[GPS Button] Coordinates:", {
                               latitude,
                               longitude,
-                            );
+                            });
+                            setUserLocation({ lat: latitude, lng: longitude });
 
-                            // 3. Zamieniamy uzyskaną pozycję na adres używając reverseGeocode
-                            reverseGeocode(latitude, longitude);
-
-                            // 4. Na końcu wywołujemy handleCoordinatesChange tak jak po Enter w polu adresu
+                            // Delay the coordinate change to allow for proper state update
                             setTimeout(() => {
                               console.log(
                                 "[GPS Button] Calling handleCoordinatesChange with:",
@@ -1353,8 +1353,250 @@ export default function Home() {
               </div>
             </div>
 
-            {/* WC List Display */}
-            <div style={styles.wcListContainer}>
+            {/* Google Map Section - Full Height */}
+            {(userAddress || userLocation) && filteredWcs.length > 0 && (
+              <div
+                style={{
+                  position: "fixed",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100vh",
+                  zIndex: 1,
+                }}
+              >
+                {(() => {
+                  console.log("[HomePage] Rendering GoogleMap with data:", {
+                    wcsCount: filteredWcs.length,
+                    userLocation,
+                    sampleWcs: filteredWcs.slice(0, 3).map((wc) => ({
+                      id: wc.id,
+                      name: wc.name,
+                      lat: wc.lat,
+                      lng: wc.lng,
+                      hasCoordinates: wc.lat !== null && wc.lng !== null,
+                    })),
+                  });
+                  return null;
+                })()}
+                <GoogleMap
+                  wcs={filteredWcs}
+                  userLocation={userLocation}
+                  onMarkerClick={(wc) => {
+                    console.log("[HomePage] Map marker clicked:", wc);
+                    setSelectedWcId(wc.id);
+                    setBottomSheetOpen(true);
+                  }}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                  }}
+                  zoom={13}
+                  center={userLocation}
+                />
+
+                {/* Transparent Address Overlay */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "20px",
+                    left: "20px",
+                    right: "20px",
+                    zIndex: 10,
+                    maxWidth: "500px",
+                    margin: "0 auto",
+                  }}
+                >
+                  <div
+                    style={{
+                      backgroundColor: "rgba(255, 255, 255, 0.95)",
+                      borderRadius: "8px",
+                      padding: "15px",
+                      boxShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
+                      backdropFilter: "blur(5px)",
+                    }}
+                  >
+                    <div style={{ position: "relative", display: "flex" }}>
+                      <AddressAutocomplete
+                        value={userAddress}
+                        onChange={handleAddressChange}
+                        onCoordinatesChange={handleCoordinatesChange}
+                        onBlur={() => {
+                          console.log("[Home] Address field blur event");
+                        }}
+                        placeholder={t("addressPlaceholder")}
+                        style={{
+                          ...styles.addressField,
+                          paddingRight: "4.5rem",
+                          fontSize: "16px",
+                          border: "1px solid #ddd",
+                          backgroundColor: "white",
+                        }}
+                        disabled={
+                          loadingWcs ||
+                          isLoadingLocation ||
+                          isGeolocatingAddress
+                        }
+                      />
+                      <button
+                        onClick={() => {
+                          console.log("[GPS Button] Button clicked");
+                          if (navigator.geolocation) {
+                            setIsGeolocatingAddress(true);
+                            console.log(
+                              "[GPS Button] Getting current position...",
+                            );
+                            navigator.geolocation.getCurrentPosition(
+                              (position) => {
+                                console.log(
+                                  "[GPS Button] Position received:",
+                                  position.coords,
+                                );
+                                const { latitude, longitude } = position.coords;
+                                console.log("[GPS Button] Coordinates:", {
+                                  latitude,
+                                  longitude,
+                                });
+                                setUserLocation({
+                                  lat: latitude,
+                                  lng: longitude,
+                                });
+
+                                // Delay the coordinate change to allow for proper state update
+                                setTimeout(() => {
+                                  console.log(
+                                    "[GPS Button] Calling handleCoordinatesChange with:",
+                                    { lat: latitude, lng: longitude },
+                                  );
+                                  handleCoordinatesChange({
+                                    lat: latitude,
+                                    lng: longitude,
+                                  });
+                                }, 1000);
+                              },
+                              (error) => {
+                                console.error(
+                                  "[GPS Button] Geolocation failed:",
+                                  error,
+                                );
+                                setLocationError(t("locationError"));
+                                setIsGeolocatingAddress(false);
+                              },
+                              {
+                                enableHighAccuracy: true,
+                                timeout: 10000,
+                                maximumAge: 0, // Zawsze pobieraj świeżą lokalizację
+                              },
+                            );
+                          } else {
+                            setLocationError(t("locationNotSupported"));
+                          }
+                        }}
+                        disabled={
+                          !geolocationSupported ||
+                          locationPermission === "denied" ||
+                          locationPermission === "unsupported"
+                        }
+                        title="Pobierz moją lokalizację GPS"
+                        style={{
+                          position: "absolute",
+                          right: 0,
+                          top: 0,
+                          bottom: 0,
+                          width: 40,
+                          backgroundColor: "transparent",
+                          border: "none",
+                          cursor:
+                            !geolocationSupported ||
+                            locationPermission === "denied" ||
+                            locationPermission === "unsupported"
+                              ? "not-allowed"
+                              : "pointer",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          height: "100%",
+                          backgroundColor:
+                            !geolocationSupported ||
+                            locationPermission === "denied" ||
+                            locationPermission === "unsupported"
+                              ? "#cccccc"
+                              : "#007bff",
+                          color: "white",
+                          border: "none",
+                          borderRadius: "0 4px 4px 0",
+                          fontSize: "0.8rem",
+                          transition: "background-color 0.2s ease",
+                          fontWeight: "bold",
+                          width: "4em",
+                          opacity:
+                            !geolocationSupported ||
+                            locationPermission === "denied" ||
+                            locationPermission === "unsupported"
+                              ? 0.5
+                              : 1,
+                        }}
+                        onMouseEnter={(e) => {
+                          e.target.style.backgroundColor = "#0056b3";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.target.style.backgroundColor = "#007bff";
+                        }}
+                      >
+                        <LocateFixed size={20} />
+                      </button>
+                    </div>
+                    {isGeolocatingAddress && (
+                      <div
+                        style={{
+                          color: "#007bff",
+                          marginTop: "0.5rem",
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "0.5rem",
+                          fontSize: "0.9rem",
+                        }}
+                      >
+                        <div
+                          style={{
+                            width: "12px",
+                            height: "12px",
+                            border: "2px solid #e9ecef",
+                            borderTop: "2px solid #007bff",
+                            borderRadius: "50%",
+                            animation: "spin 1s linear infinite",
+                          }}
+                        ></div>
+                        {t("geolocatingAddress")}
+                      </div>
+                    )}
+                    {userLocation && !isGeolocatingAddress && (
+                      <div
+                        style={{
+                          color: "#666",
+                          marginTop: "0.5rem",
+                          fontSize: "0.8rem",
+                        }}
+                      >
+                        📍 {userLocation.lat.toFixed(4)},{" "}
+                        {userLocation.lng.toFixed(4)}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* WC List Display - Hidden when map is shown */}
+            <div
+              style={{
+                ...styles.wcListContainer,
+                ...((userAddress || userLocation) &&
+                  filteredWcs.length > 0 && {
+                    display: "none",
+                  }),
+              }}
+            >
               {(loadingWcs || isLoadingLocation) && (
                 <p style={styles.loader}>{t("loadingWcs")}</p>
               )}
