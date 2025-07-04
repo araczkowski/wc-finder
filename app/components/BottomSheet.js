@@ -2,7 +2,7 @@
 
 import { motion, useMotionValue, useAnimation } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { ChevronUp, ChevronDown } from "lucide-react";
+import { ChevronUp, ChevronDown, X } from "lucide-react";
 
 export default function BottomSheet({
   isOpen,
@@ -183,7 +183,7 @@ export default function BottomSheet({
           style={{
             width: "100%",
             display: "flex",
-            justifyContent: "center",
+            justifyContent: "right",
             alignItems: "center",
             cursor: isDragging ? "grabbing" : "grab",
             touchAction: "none",
@@ -194,30 +194,14 @@ export default function BottomSheet({
             style={{
               display: "flex",
               flexDirection: "column",
-              alignItems: "center",
+              alignItems: "left",
               gap: "8px",
+              paddingRight: "32px",
             }}
           >
-            {currentSnap === snapPoints[0] ? (
-              <ChevronUp
-                size={20}
-                color={isDragging && canClose ? "#ff4444" : "#666"}
-              />
-            ) : (
-              <div
-                style={{
-                  width: "50px",
-                  height: "5px",
-                  borderRadius: "2.5px",
-                  backgroundColor:
-                    isDragging && canClose ? "#ff4444" : "#e0e0e0",
-                  transition: "background-color 0.1s ease",
-                }}
-              ></div>
-            )}
             <div
+              onClick={handleCloseClick}
               style={{
-                padding: "12px",
                 borderRadius: "50%",
                 backgroundColor: "transparent",
                 cursor: "pointer",
@@ -228,7 +212,6 @@ export default function BottomSheet({
                 minWidth: "48px",
                 minHeight: "48px",
               }}
-              onClick={handleCloseClick}
               onMouseEnter={(e) => {
                 e.target.style.backgroundColor = "#f0f0f0";
                 e.target.querySelector("svg").style.color = "#007bff";
@@ -247,9 +230,8 @@ export default function BottomSheet({
                   e.target.querySelector("svg").style.color = "#666";
                 }, 150);
               }}
-              title="Zamknij"
             >
-              <ChevronDown
+              <X
                 size={24}
                 color="#666"
                 style={{

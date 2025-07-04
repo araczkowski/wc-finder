@@ -1574,7 +1574,7 @@ export default function Home() {
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "center",
-                          height: "100%",
+                          height: "5em",
                           backgroundColor:
                             !geolocationSupported ||
                             locationPermission === "denied" ||

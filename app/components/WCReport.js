@@ -289,8 +289,8 @@ export default function WCReport({ wcId, onClose }) {
           <ImageSlideshow
             images={wcData.gallery_photos}
             alt={wcData.name || "WC Image"}
-            width={350}
-            height={280}
+            width={175}
+            height={140}
             style={{
               borderRadius: "8px",
               overflow: "hidden",
