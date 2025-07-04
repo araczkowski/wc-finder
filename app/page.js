@@ -25,6 +25,7 @@ import {
   ChevronUp,
   MapPinned,
   Eye,
+  Plus,
 } from "lucide-react";
 
 // Basic inline styles for layout - consider moving to CSS modules or global CSS
@@ -2076,29 +2077,77 @@ export default function Home() {
               borderRadius: "20px 20px 0 0",
               padding: "10px 20px",
               boxShadow: "0 -4px 20px rgba(0, 0, 0, 0.15)",
-              cursor: "pointer",
               border: "1px solid #ddd",
               borderBottom: "none",
               maxWidth: "500px",
               width: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
             }}
-            onClick={() => setBottomSheetOpen(true)}
           >
-            <div
+            {/* Przycisk Dodaj nowe WC */}
+            <Link
+              href="/wc/add"
               style={{
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "center",
-                margin: "0 auto 8px",
+                gap: "6px",
+                padding: "8px 12px",
+                backgroundColor: "#007bff",
+                color: "white",
+                borderRadius: "18px",
+                textDecoration: "none",
+                fontSize: "12px",
+                fontWeight: "500",
+                transition: "all 0.2s ease",
+                border: "none",
+                cursor: "pointer",
               }}
+              onMouseEnter={(e) => {
+                e.target.style.backgroundColor = "#0056b3";
+                e.target.style.transform = "translateY(-1px)";
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.backgroundColor = "#007bff";
+                e.target.style.transform = "translateY(0)";
+              }}
+              onClick={(e) => e.stopPropagation()}
             >
-              <ChevronUp size={20} color="#666" />
-            </div>
+              <Plus size={14} />
+              Dodaj WC
+            </Link>
+
+            {/* Środkowa część z liczbą toalet */}
             <div
-              style={{ textAlign: "center", fontSize: "14px", color: "#666" }}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                cursor: "pointer",
+                flex: 1,
+              }}
+              onClick={() => setBottomSheetOpen(true)}
             >
-              {wcs.length} {wcs.length === 1 ? "toaleta" : "toalet"}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginBottom: "4px",
+                }}
+              >
+                <ChevronUp size={20} color="#666" />
+              </div>
+              <div
+                style={{ textAlign: "center", fontSize: "14px", color: "#666" }}
+              >
+                {wcs.length} {wcs.length === 1 ? "toaleta" : "toalet"}
+              </div>
             </div>
+
+            {/* Puste miejsce po prawej dla symetrii */}
+            <div style={{ width: "80px" }}></div>
           </div>
         )}
 
