@@ -271,33 +271,45 @@ export default function WCReport({ wcId, onClose }) {
       </div>
 
       {/* Images */}
-      {wcData.gallery_photos && wcData.gallery_photos.length > 0 && (
+      <div
+        style={{
+          marginBottom: "15px",
+        }}
+      >
         <div
           style={{
-            marginBottom: "15px",
+            fontSize: "14px",
+            color: "#666",
+            marginBottom: "10px",
           }}
         >
-          <div
-            style={{
-              fontSize: "14px",
-              color: "#666",
-              marginBottom: "10px",
-            }}
-          >
-            Photos:
-          </div>
+          Photos:
+        </div>
+        {wcData.gallery_photos && wcData.gallery_photos.length > 0 ? (
           <ImageSlideshow
             images={wcData.gallery_photos}
             alt={wcData.name || "WC Image"}
-            width={280}
-            height={210}
+            width={350}
+            height={280}
             style={{
               borderRadius: "8px",
               overflow: "hidden",
             }}
           />
-        </div>
-      )}
+        ) : (
+          <div
+            style={{
+              padding: "20px",
+              textAlign: "center",
+              backgroundColor: "#f8f9fa",
+              borderRadius: "8px",
+              color: "#666",
+            }}
+          >
+            Brak zdjęć
+          </div>
+        )}
+      </div>
 
       {/* Tags */}
       <div
@@ -343,7 +355,7 @@ export default function WCReport({ wcId, onClose }) {
           onMouseEnter={(e) => (e.target.style.backgroundColor = "#5a6268")}
           onMouseLeave={(e) => (e.target.style.backgroundColor = "#6c757d")}
         >
-          ← Back to List
+          ← Powrót
         </button>
         <Link
           href={`/wc/view/${wcData.id}`}
@@ -361,7 +373,7 @@ export default function WCReport({ wcId, onClose }) {
           onMouseEnter={(e) => (e.target.style.backgroundColor = "#218838")}
           onMouseLeave={(e) => (e.target.style.backgroundColor = "#28a745")}
         >
-          View Full Details
+          Oceń to miejsce
         </Link>
       </div>
     </div>

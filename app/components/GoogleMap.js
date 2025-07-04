@@ -184,7 +184,7 @@ const GoogleMap = memo(
         // Create custom marker icon for WC
         const markerIcon = {
           path: window.google.maps.SymbolPath.CIRCLE,
-          scale: 8,
+          scale: 12,
           fillColor: "#4285f4",
           fillOpacity: 1,
           strokeColor: "#ffffff",
@@ -283,7 +283,7 @@ const GoogleMap = memo(
 
       const userIcon = {
         path: window.google.maps.SymbolPath.CIRCLE,
-        scale: 10,
+        scale: 14,
         fillColor: "#EA4335",
         fillOpacity: 1,
         strokeColor: "#ffffff",

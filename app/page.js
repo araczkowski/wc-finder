@@ -2009,7 +2009,7 @@ export default function Home() {
             <div
               style={{ textAlign: "center", fontSize: "14px", color: "#666" }}
             >
-              {wcs.length} {wcs.length === 1 ? "toaleta" : "toalet"} - stuknij
+              {wcs.length} {wcs.length === 1 ? "toaleta" : "toalet"}
             </div>
           </div>
         )}
@@ -2021,11 +2021,11 @@ export default function Home() {
           setBottomSheetOpen(false);
           setSelectedWcId(null);
         }}
-        snapPoints={[0.2, 0.5, 0.9]}
-        initialSnap={0.2}
-        minHeight={300}
+        snapPoints={[0.5, 0.8, 0.95]}
+        initialSnap={0.8}
+        minHeight={400}
         maxWidth={500}
-        onScrollBottom={loadMore}
+        onScrollBottom={selectedWcId ? null : loadMore}
         isLoading={loadingMore}
         loadingMessage={t("loadingMore")}
         allDataLoaded={allDataLoaded}
