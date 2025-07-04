@@ -1860,23 +1860,6 @@ export default function Home() {
                 !isLoadingLocation &&
                 !wcError &&
                 filteredWcs.length === 0 &&
-                (userAddress || userLocation) && (
-                  <div
-                    style={{
-                      ...styles.errorMessage,
-                      fontSize: "0.9rem",
-                      textAlign: "center",
-                      marginBottom: "20px",
-                    }}
-                  >
-                    {t("noWcsFound")}
-                  </div>
-                )}
-
-              {!loadingWcs &&
-                !isLoadingLocation &&
-                !wcError &&
-                filteredWcs.length === 0 &&
                 !userAddress &&
                 !userLocation && (
                   <div

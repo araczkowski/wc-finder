@@ -1,8 +1,15 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useSession } from "next-auth/react";
-import { Camera, Upload, X, Check, AlertCircle } from "lucide-react";
+import {
+  Camera,
+  Upload,
+  X,
+  Check,
+  AlertCircle,
+  Image as ImageIcon,
+} from "lucide-react";
 
 const PhotoUpload = ({ wcId, onPhotoUploaded, disabled = false }) => {
   const { data: session } = useSession();
@@ -12,7 +19,10 @@ const PhotoUpload = ({ wcId, onPhotoUploaded, disabled = false }) => {
   const [success, setSuccess] = useState("");
   const [uploadProgress, setUploadProgress] = useState(0);
   const [optimizationInfo, setOptimizationInfo] = useState(null);
+  const [showSourceSelector, setShowSourceSelector] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const fileInputRef = useRef(null);
+  const cameraInputRef = useRef(null);
 
   // Image optimization configuration
   const WC_GALLERY_CONFIG = {
@@ -48,6 +58,22 @@ const PhotoUpload = ({ wcId, onPhotoUploaded, disabled = false }) => {
       errors,
     };
   };
+
+  // Check if device is mobile
+  const checkIsMobile = () => {
+    if (typeof window === "undefined") return false;
+    return (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent,
+      ) ||
+      (window.innerWidth <= 768 && "ontouchstart" in window)
+    );
+  };
+
+  // Set mobile state on component mount
+  useEffect(() => {
+    setIsMobile(checkIsMobile());
+  }, []);
 
   // Format file size
   const formatFileSize = (bytes) => {
@@ -174,7 +200,9 @@ const PhotoUpload = ({ wcId, onPhotoUploaded, disabled = false }) => {
       });
 
       if (validationErrors.length > 0) {
-        setError(`Walidacja zdjęć nie powiodła się: ${validationErrors.join("; ")}`);
+        setError(
+          `Walidacja zdjęć nie powiodła się: ${validationErrors.join("; ")}`,
+        );
         event.target.value = "";
         return;
       }
@@ -186,8 +214,12 @@ const PhotoUpload = ({ wcId, onPhotoUploaded, disabled = false }) => {
       const optimizedFiles = await optimizeImages(files, WC_GALLERY_CONFIG);
 
       // Calculate optimization results
-      const optimizedTotalSize = optimizedFiles.reduce((sum, file) => sum + file.size, 0);
-      const compressionRatio = ((originalTotalSize - optimizedTotalSize) / originalTotalSize) * 100;
+      const optimizedTotalSize = optimizedFiles.reduce(
+        (sum, file) => sum + file.size,
+        0,
+      );
+      const compressionRatio =
+        ((originalTotalSize - optimizedTotalSize) / originalTotalSize) * 100;
 
       setOptimizationInfo({
         originalSize: formatFileSize(originalTotalSize),
@@ -212,7 +244,9 @@ const PhotoUpload = ({ wcId, onPhotoUploaded, disabled = false }) => {
 
         const result = await response.json();
         if (!response.ok) {
-          throw new Error(result.error || `Nie udało się przesłać zdjęcia ${index + 1}`);
+          throw new Error(
+            result.error || `Nie udało się przesłać zdjęcia ${index + 1}`,
+          );
         }
 
         // Update progress
@@ -222,7 +256,9 @@ const PhotoUpload = ({ wcId, onPhotoUploaded, disabled = false }) => {
 
       const results = await Promise.all(uploadPromises);
 
-      setSuccess(`Pomyślnie dodano ${results.length} ${results.length === 1 ? 'zdjęcie' : 'zdjęć'}!`);
+      setSuccess(
+        `Pomyślnie dodano ${results.length} ${results.length === 1 ? "zdjęcie" : "zdjęć"}!`,
+      );
 
       // Clear form
       event.target.value = "";
@@ -234,7 +270,6 @@ const PhotoUpload = ({ wcId, onPhotoUploaded, disabled = false }) => {
 
       // Auto-hide success message
       setTimeout(() => setSuccess(""), 3000);
-
     } catch (error) {
       console.error("Błąd przesyłania zdjęć:", error);
       setError(`Przesyłanie zdjęć nie powiodło się: ${error.message}`);
@@ -247,17 +282,47 @@ const PhotoUpload = ({ wcId, onPhotoUploaded, disabled = false }) => {
   };
 
   const handleButtonClick = () => {
+    if (isMobile) {
+      setShowSourceSelector(true);
+    } else {
+      if (fileInputRef.current) {
+        fileInputRef.current.click();
+      }
+    }
+  };
+
+  const handleCameraClick = () => {
+    if (cameraInputRef.current) {
+      cameraInputRef.current.click();
+    }
+    setShowSourceSelector(false);
+  };
+
+  const handleGalleryClick = () => {
     if (fileInputRef.current) {
       fileInputRef.current.click();
     }
+    setShowSourceSelector(false);
   };
 
   const isDisabled = disabled || uploading || optimizing || !session?.user?.id;
 
   return (
     <div style={styles.container}>
+      {/* Gallery input */}
       <input
         ref={fileInputRef}
+        type="file"
+        multiple
+        accept="image/*"
+        onChange={handleFileSelection}
+        style={styles.hiddenInput}
+        disabled={isDisabled}
+      />
+
+      {/* Camera input for mobile */}
+      <input
+        ref={cameraInputRef}
         type="file"
         multiple
         accept="image/*"
@@ -267,6 +332,7 @@ const PhotoUpload = ({ wcId, onPhotoUploaded, disabled = false }) => {
         disabled={isDisabled}
       />
 
+      {/* Main upload button */}
       <button
         type="button"
         onClick={handleButtonClick}
@@ -280,6 +346,73 @@ const PhotoUpload = ({ wcId, onPhotoUploaded, disabled = false }) => {
         <Camera size={16} style={{ marginRight: "6px" }} />
         {uploading ? "Przesyłanie..." : "Dodaj zdjęcia"}
       </button>
+
+      {/* Mobile source selector */}
+      {showSourceSelector && isMobile && (
+        <div
+          style={styles.sourceSelector}
+          onClick={() => setShowSourceSelector(false)}
+        >
+          <div
+            style={{
+              backgroundColor: "white",
+              borderRadius: "12px",
+              minWidth: "280px",
+              maxWidth: "90vw",
+              boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)",
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div style={styles.selectorHeader}>
+              <span style={styles.selectorTitle}>Wybierz źródło zdjęć</span>
+              <button
+                onClick={() => setShowSourceSelector(false)}
+                style={styles.closeButton}
+              >
+                <X size={16} />
+              </button>
+            </div>
+            <div style={styles.selectorButtons}>
+              <button
+                onClick={handleCameraClick}
+                style={styles.sourceButton}
+                disabled={isDisabled}
+                onMouseEnter={(e) => {
+                  e.target.style.backgroundColor = "#007bff";
+                  e.target.style.color = "white";
+                  e.target.style.transform = "scale(1.05)";
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.backgroundColor = "#f8f9fa";
+                  e.target.style.color = "#007bff";
+                  e.target.style.transform = "scale(1)";
+                }}
+              >
+                <Camera size={24} style={{ marginBottom: "8px" }} />
+                <span style={{ fontWeight: "600" }}>Aparat</span>
+              </button>
+              <button
+                onClick={handleGalleryClick}
+                style={styles.sourceButton}
+                disabled={isDisabled}
+                onMouseEnter={(e) => {
+                  e.target.style.backgroundColor = "#007bff";
+                  e.target.style.color = "white";
+                  e.target.style.transform = "scale(1.05)";
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.backgroundColor = "#f8f9fa";
+                  e.target.style.color = "#007bff";
+                  e.target.style.transform = "scale(1)";
+                }}
+              >
+                <ImageIcon size={24} style={{ marginBottom: "8px" }} />
+                <span style={{ fontWeight: "600" }}>Galeria</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {!session?.user?.id && (
         <div style={styles.loginPrompt}>
@@ -299,7 +432,10 @@ const PhotoUpload = ({ wcId, onPhotoUploaded, disabled = false }) => {
             />
           </div>
           <div style={styles.progressText}>
-            🔄 {uploadProgress < 50 ? "Optymalizowanie zdjęć..." : "Przesyłanie zdjęć..."}
+            🔄{" "}
+            {uploadProgress < 50
+              ? "Optymalizowanie zdjęć..."
+              : "Przesyłanie zdjęć..."}
           </div>
         </div>
       )}
@@ -313,7 +449,9 @@ const PhotoUpload = ({ wcId, onPhotoUploaded, disabled = false }) => {
           <div style={styles.optimizationDetails}>
             <div>📊 Zdjęć: {optimizationInfo.fileCount}</div>
             <div>📏 Rozmiar oryginalny: {optimizationInfo.originalSize}</div>
-            <div>⚡ Rozmiar po optymalizacji: {optimizationInfo.optimizedSize}</div>
+            <div>
+              ⚡ Rozmiar po optymalizacji: {optimizationInfo.optimizedSize}
+            </div>
             <div>🎯 Kompresja: {optimizationInfo.compressionRatio}%</div>
           </div>
         </div>
@@ -435,6 +573,61 @@ const styles = {
     borderRadius: "6px",
     fontSize: "14px",
     color: "#155724",
+  },
+  sourceSelector: {
+    position: "fixed",
+    top: "0",
+    left: "0",
+    right: "0",
+    bottom: "0",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    zIndex: 1000,
+  },
+  selectorHeader: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "16px 20px",
+    borderBottom: "1px solid #e9ecef",
+  },
+  selectorTitle: {
+    fontSize: "16px",
+    fontWeight: "600",
+    color: "#333",
+  },
+  closeButton: {
+    background: "none",
+    border: "none",
+    cursor: "pointer",
+    padding: "4px",
+    color: "#666",
+    borderRadius: "4px",
+  },
+  selectorButtons: {
+    display: "flex",
+    gap: "16px",
+    padding: "24px 20px",
+    justifyContent: "center",
+  },
+  sourceButton: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "110px",
+    height: "110px",
+    backgroundColor: "#f8f9fa",
+    border: "2px solid #007bff",
+    borderRadius: "16px",
+    fontSize: "14px",
+    fontWeight: "500",
+    color: "#007bff",
+    cursor: "pointer",
+    transition: "all 0.3s ease",
+    boxShadow: "0 4px 12px rgba(0, 123, 255, 0.15)",
   },
 };
 
