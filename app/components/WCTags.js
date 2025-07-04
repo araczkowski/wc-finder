@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useSession } from "next-auth/react";
 import {
   Plus,
@@ -61,13 +61,7 @@ const WCTags = ({
   const [showTagSelector, setShowTagSelector] = useState(false);
   const [recentlyAddedTag, setRecentlyAddedTag] = useState(null);
 
-  useEffect(() => {
-    if (wcId) {
-      fetchTags();
-    }
-  }, [wcId]);
-
-  const fetchTags = async () => {
+  const fetchTags = useCallback(async () => {
     try {
       setLoading(true);
       const response = await fetch(`/api/wc-tags?wc_id=${wcId}`);
@@ -87,7 +81,13 @@ const WCTags = ({
     } finally {
       setLoading(false);
     }
-  };
+  }, [wcId, onTagsChange]);
+
+  useEffect(() => {
+    if (wcId) {
+      fetchTags();
+    }
+  }, [wcId, fetchTags]);
 
   const addTag = async (tagName, event) => {
     console.log("WCTags: addTag function called", {

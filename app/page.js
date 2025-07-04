@@ -2124,6 +2124,11 @@ export default function Home() {
         onClose={() => {
           setBottomSheetOpen(false);
           setSelectedWcId(null);
+          // Odświeżenie danych po zamknięciu bottom sheet
+          if (selectedWcId) {
+            reset();
+            loadInitialData();
+          }
         }}
         snapPoints={[0.5, 0.8, 0.95]}
         initialSnap={0.8}
@@ -2143,6 +2148,9 @@ export default function Home() {
             onClose={() => {
               setBottomSheetOpen(false);
               setSelectedWcId(null);
+              // Odświeżenie danych po zamknięciu szczegółów WC
+              reset();
+              loadInitialData();
             }}
           />
         ) : (
