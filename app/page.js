@@ -24,6 +24,7 @@ import {
   SquarePen,
   ChevronUp,
   MapPinned,
+  Eye,
 } from "lucide-react";
 
 // Basic inline styles for layout - consider moving to CSS modules or global CSS
@@ -2167,15 +2168,7 @@ export default function Home() {
 
             <div className="responsive-table">
               {wcs.map((wc) => (
-                <div
-                  key={wc.id}
-                  className="table-row"
-                  onClick={() => {
-                    setSelectedWcId(wc.id);
-                  }}
-                  style={{ cursor: "pointer" }}
-                  title="Kliknij aby zobaczyć szczegóły WC"
-                >
+                <div key={wc.id} className="table-row">
                   <div
                     className="table-cell, first-cell"
                     style={{
@@ -2351,8 +2344,46 @@ export default function Home() {
 
                   <div
                     className="table-cell map-button-cell"
-                    style={{ textAlign: "center" }}
+                    style={{
+                      textAlign: "center",
+                      display: "flex",
+                      gap: "8px",
+                      justifyContent: "center",
+                    }}
                   >
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedWcId(wc.id);
+                        setBottomSheetOpen(true);
+                      }}
+                      style={{
+                        backgroundColor: "#007bff",
+                        color: "white",
+                        border: "none",
+                        borderRadius: "8px",
+                        padding: "8px 12px",
+                        fontSize: "14px",
+                        cursor: "pointer",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "6px",
+                        transition: "background-color 0.2s",
+                        minWidth: "120px",
+                        justifyContent: "center",
+                      }}
+                      onMouseEnter={(e) =>
+                        (e.target.style.backgroundColor = "#0056b3")
+                      }
+                      onMouseLeave={(e) =>
+                        (e.target.style.backgroundColor = "#007bff")
+                      }
+                      title="Pokaż szczegóły"
+                      aria-label={`Pokaż szczegóły ${wc.name}`}
+                    >
+                      <Eye size={16} />
+                      Pokaż szczegóły
+                    </button>
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
