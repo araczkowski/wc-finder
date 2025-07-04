@@ -243,10 +243,13 @@ function generateWcInsert(row, userId, createdBy, wcIndex) {
     console.log("Pizzeria GRAN TORINO rating/: ", rating);
     console.log(
       "Pizzeria GRAN TORINO rating/: ",
-      Math.max(Math.min(Math.floor(rating * 2), 10), 1),
+      rating,
+      // Math.max(Math.min(Math.floor(rating * 2), 10), 1),
     );
   }
-  const ratingValue = Math.max(Math.min(Math.floor(rating * 2), 10), 1);
+
+  // 5 star rating
+  const ratingValue = rating;
   const locationValue = `ST_Point(${longitude}, ${latitude})::GEOGRAPHY`;
 
   return {
