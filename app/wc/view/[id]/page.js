@@ -396,7 +396,7 @@ export default function ViewWcPage() {
   ]);
 
   const handleAutoSaveRating = async (rating, comment) => {
-    if (!rating || rating < 1 || rating > 10) {
+    if (!rating || rating < 1 || rating > 5) {
       return;
     }
 
@@ -445,7 +445,7 @@ export default function ViewWcPage() {
       clearTimeout(debounceTimeoutRef.current);
     }
     debounceTimeoutRef.current = setTimeout(() => {
-      if (rating && rating >= 1 && rating <= 10) {
+      if (rating && rating >= 1 && rating <= 5) {
         handleAutoSaveRating(rating, comment);
       }
     }, 1000);
@@ -703,10 +703,10 @@ export default function ViewWcPage() {
 
           <div>
             <label style={styles.formLabel}>
-              Ocena użytkownika ({wcData.rating || 0} / 10)
+              Ocena użytkownika ({wcData.rating || 0} / 5)
             </label>
             <div style={styles.starRatingContainer}>
-              {[...Array(10)].map((_, index) => {
+              {[...Array(5)].map((_, index) => {
                 const starValue = index + 1;
                 return (
                   <span
@@ -788,10 +788,10 @@ export default function ViewWcPage() {
                 <div style={styles.form}>
                   <div>
                     <label style={styles.formLabel}>
-                      Oceń to WC ({userRating} / 10)
+                      Oceń to WC ({userRating} / 5)
                     </label>
                     <div style={styles.starRatingContainer}>
-                      {[...Array(10)].map((_, index) => {
+                      {[...Array(5)].map((_, index) => {
                         const starValue = index + 1;
                         return (
                           <span
@@ -1015,8 +1015,27 @@ export default function ViewWcPage() {
           >
             <h3 style={{ marginBottom: "1rem", color: "#333" }}>
               Wszystkie oceny ({allRatings.length}) - Średnia:{" "}
-              {averageRating.toFixed(1)} ⭐
+              {(averageRating / 2).toFixed(1)}
             </h3>
+            <div style={styles.starRatingContainer}>
+              {[...Array(5)].map((_, index) => {
+                const starValue = index + 1;
+                return (
+                  <span
+                    key={starValue}
+                    style={{
+                      ...styles.star,
+                      color:
+                        starValue <= Math.round(averageRating / 2)
+                          ? "#ffc107"
+                          : "#e4e5e9",
+                    }}
+                  >
+                    ★
+                  </span>
+                );
+              })}
+            </div>
 
             <div style={{ maxHeight: "400px", overflowY: "auto" }}>
               {allRatings.map((rating) => (
@@ -1041,7 +1060,7 @@ export default function ViewWcPage() {
                     <div>
                       <strong>{rating.user_email || "Anonim"}</strong>
                       <span style={{ marginLeft: "1rem", color: "#666" }}>
-                        {"⭐".repeat(rating.rating)} ({rating.rating}/10)
+                        {"⭐".repeat(rating.rating)} ({rating.rating}/5)
                       </span>
                     </div>
                     <small style={{ color: "#666" }}>

@@ -24,7 +24,7 @@ export async function GET(request, { params }) {
     if (!session?.user?.id) {
       return NextResponse.json(
         { error: "Authentication required" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -32,7 +32,8 @@ export async function GET(request, { params }) {
 
     const { data: rating, error } = await supabase
       .from("wc_rating")
-      .select(`
+      .select(
+        `
         id,
         wc_id,
         rating,
@@ -41,24 +42,21 @@ export async function GET(request, { params }) {
         updated_at,
         user_id,
         auth.users!wc_rating_user_id_fkey(email)
-      `)
+      `,
+      )
       .eq("id", ratingId)
       .single();
 
     if (error || !rating) {
-      return NextResponse.json(
-        { error: "Rating not found" },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: "Rating not found" }, { status: 404 });
     }
 
     return NextResponse.json({ rating });
-
   } catch (error) {
     console.error("GET /api/wc-ratings/[id] error:", error);
     return NextResponse.json(
       { error: "Internal server error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -70,7 +68,7 @@ export async function PUT(request, { params }) {
     if (!session?.user?.id) {
       return NextResponse.json(
         { error: "Authentication required" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -79,10 +77,10 @@ export async function PUT(request, { params }) {
     const { rating, comment } = body;
 
     // Validate rating range
-    if (rating && (rating < 1 || rating > 10 || !Number.isInteger(rating))) {
+    if (rating && (rating < 1 || rating > 5 || !Number.isInteger(rating))) {
       return NextResponse.json(
-        { error: "Rating must be an integer between 1 and 10" },
-        { status: 400 }
+        { error: "Rating must be an integer between 1 and 5" },
+        { status: 400 },
       );
     }
 
@@ -94,22 +92,19 @@ export async function PUT(request, { params }) {
       .single();
 
     if (!existingRating) {
-      return NextResponse.json(
-        { error: "Rating not found" },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: "Rating not found" }, { status: 404 });
     }
 
     if (existingRating.user_id !== session.user.id) {
       return NextResponse.json(
         { error: "You can only update your own ratings" },
-        { status: 403 }
+        { status: 403 },
       );
     }
 
     // Update the rating
     const updateData = {
-      updated_at: new Date().toISOString()
+      updated_at: new Date().toISOString(),
     };
 
     if (rating !== undefined) updateData.rating = rating;
@@ -126,20 +121,19 @@ export async function PUT(request, { params }) {
       console.error("Error updating rating:", error);
       return NextResponse.json(
         { error: "Failed to update rating" },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
     return NextResponse.json({
       data,
-      message: "Rating updated successfully"
+      message: "Rating updated successfully",
     });
-
   } catch (error) {
     console.error("PUT /api/wc-ratings/[id] error:", error);
     return NextResponse.json(
       { error: "Internal server error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -151,7 +145,7 @@ export async function DELETE(request, { params }) {
     if (!session?.user?.id) {
       return NextResponse.json(
         { error: "Authentication required" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -165,16 +159,13 @@ export async function DELETE(request, { params }) {
       .single();
 
     if (!existingRating) {
-      return NextResponse.json(
-        { error: "Rating not found" },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: "Rating not found" }, { status: 404 });
     }
 
     if (existingRating.user_id !== session.user.id) {
       return NextResponse.json(
         { error: "You can only delete your own ratings" },
-        { status: 403 }
+        { status: 403 },
       );
     }
 
@@ -188,19 +179,18 @@ export async function DELETE(request, { params }) {
       console.error("Error deleting rating:", error);
       return NextResponse.json(
         { error: "Failed to delete rating" },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
     return NextResponse.json({
-      message: "Rating deleted successfully"
+      message: "Rating deleted successfully",
     });
-
   } catch (error) {
     console.error("DELETE /api/wc-ratings/[id] error:", error);
     return NextResponse.json(
       { error: "Internal server error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

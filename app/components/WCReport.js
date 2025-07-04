@@ -145,7 +145,7 @@ export default function WCReport({ wcId, onClose }) {
         },
         body: JSON.stringify({
           wc_id: wcId,
-          rating: userRating * 2, // Convert 1-5 stars to 1-10 scale
+          rating: userRating, // Direct 1-5 stars rating
           comment: userComment.trim() || null,
         }),
       });
@@ -156,11 +156,6 @@ export default function WCReport({ wcId, onClose }) {
         setHasUserRating(true);
         setShowRatingForm(false);
         await fetchRatings(); // Refresh ratings
-        alert(
-          hasUserRating
-            ? "Ocena została zaktualizowana!"
-            : "Ocena została dodana!",
-        );
       } else {
         setRatingError(result.error || "Błąd podczas zapisywania oceny");
       }

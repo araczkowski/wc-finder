@@ -529,11 +529,11 @@ export async function POST(request) {
     if (
       isNaN(numericRating) ||
       numericRating < 1 ||
-      numericRating > 10 || // Consistent with 1-10 star UI
+      numericRating > 5 || // Consistent with 1-5 star UI
       !Number.isInteger(numericRating)
     ) {
       return NextResponse.json(
-        { message: "Rating must be an integer between 1 and 10, or null." },
+        { message: "Rating must be an integer between 1 and 5, or null." },
         { status: 400 },
       );
     }

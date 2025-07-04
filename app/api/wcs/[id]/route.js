@@ -351,10 +351,10 @@ export async function PUT(request, { params }) {
     // Basic validation for updated values
     if (
       wcDataToUpdate.rating !== null &&
-      (wcDataToUpdate.rating < 1 || wcDataToUpdate.rating > 10)
+      (wcDataToUpdate.rating < 1 || wcDataToUpdate.rating > 5)
     ) {
       return NextResponse.json(
-        { message: "Rating must be between 1 and 10, or null." },
+        { message: "Rating must be between 1 and 5, or null." },
         { status: 400 },
       );
     }

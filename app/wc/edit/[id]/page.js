@@ -709,7 +709,7 @@ export default function EditWcPage() {
   };
 
   const handleAutoSaveRating = async (rating, comment) => {
-    if (!rating || rating < 1 || rating > 10) {
+    if (!rating || rating < 1 || rating > 5) {
       return;
     }
 
@@ -760,7 +760,7 @@ export default function EditWcPage() {
       clearTimeout(debounceTimeoutRef.current);
     }
     debounceTimeoutRef.current = setTimeout(() => {
-      if (rating && rating >= 1 && rating <= 10) {
+      if (rating && rating >= 1 && rating <= 5) {
         handleAutoSaveRating(rating, comment);
       }
     }, 1000);
@@ -1094,10 +1094,10 @@ export default function EditWcPage() {
             </div>
             <div>
               <label htmlFor="rating" style={styles.formLabel}>
-                Rating ({rating} / 10)
+                Rating ({rating} / 5)
               </label>
               <div style={styles.starRatingContainer}>
-                {[...Array(10)].map((_, index) => {
+                {[...Array(5)].map((_, index) => {
                   const starValue = index + 1;
                   return (
                     <span
@@ -1124,7 +1124,7 @@ export default function EditWcPage() {
                         )
                           setRating(starValue);
                       }}
-                      aria-label={`Rate ${starValue} out of 10 stars`}
+                      aria-label={`Rate ${starValue} out of 5 stars`}
                       aria-disabled={formLoading}
                     >
                       ★
@@ -1200,10 +1200,10 @@ export default function EditWcPage() {
             </div>
             <div>
               <label style={styles.formLabel}>
-                Ocena średnia ({rating} / 10):
+                Ocena średnia ({rating} / 5):
               </label>
               <div style={styles.starRatingContainer}>
-                {[...Array(10)].map((_, index) => {
+                {[...Array(5)].map((_, index) => {
                   const starValue = index + 1;
                   return (
                     <span
@@ -1235,7 +1235,7 @@ export default function EditWcPage() {
           {true && (
             <>
               <h3 style={{ marginBottom: "1rem", color: "#333" }}>
-                {t("YourRating")} ({userRating} / 10)
+                {t("YourRating")} ({userRating} / 5)
               </h3>
 
               {ratingError && <p style={styles.formError}>{ratingError}</p>}
@@ -1243,7 +1243,7 @@ export default function EditWcPage() {
               <div style={styles.form}>
                 <div>
                   <div style={styles.starRatingContainer}>
-                    {[...Array(10)].map((_, index) => {
+                    {[...Array(5)].map((_, index) => {
                       const starValue = index + 1;
                       return (
                         <span
@@ -1277,7 +1277,7 @@ export default function EditWcPage() {
                               handleAutoSaveRating(starValue, userComment);
                             }
                           }}
-                          aria-label={`Rate ${starValue} out of 10 stars`}
+                          aria-label={`Rate ${starValue} out of 5 stars`}
                           aria-disabled={ratingLoading}
                         >
                           ★
@@ -1441,8 +1441,27 @@ export default function EditWcPage() {
           >
             <h3 style={{ marginBottom: "1rem", color: "#333" }}>
               Wszystkie Oceny ({allRatings.length}) - Średnia:{" "}
-              {averageRating.toFixed(1)} ⭐
+              {averageRating.toFixed(1)}
             </h3>
+            <div style={styles.starRatingContainer}>
+              {[...Array(5)].map((_, index) => {
+                const starValue = index + 1;
+                return (
+                  <span
+                    key={starValue}
+                    style={{
+                      ...styles.star,
+                      color:
+                        starValue <= Math.round(averageRating)
+                          ? "#ffc107"
+                          : "#e4e5e9",
+                    }}
+                  >
+                    ★
+                  </span>
+                );
+              })}
+            </div>
 
             <div style={{ maxHeight: "400px", overflowY: "auto" }}>
               {allRatings.map((rating) => (
@@ -1467,7 +1486,7 @@ export default function EditWcPage() {
                     <div>
                       <strong>{rating.user_email || "Anonymous"}</strong>
                       <span style={{ marginLeft: "1rem", color: "#666" }}>
-                        {"⭐".repeat(rating.rating)} ({rating.rating}/10)
+                        {"⭐".repeat(rating.rating)} ({rating.rating}/5)
                       </span>
                     </div>
                     <small style={{ color: "#666" }}>

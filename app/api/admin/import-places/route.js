@@ -855,10 +855,10 @@ export async function POST(request) {
         // Calculate basic rating
         let rating = 0;
         if (place.tags?.stars) {
-          rating = Math.min(Math.round(parseFloat(place.tags.stars) * 2), 10);
+          rating = Math.min(Math.round(parseFloat(place.tags.stars)), 5);
         } else {
           // Generate a reasonable rating based on place type and tags
-          rating = Math.floor(Math.random() * 4) + 6; // 6-9 range
+          rating = Math.floor(Math.random() * 2) + 3; // 3-4 range
         }
 
         // Insert WC into database

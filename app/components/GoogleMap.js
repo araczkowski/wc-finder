@@ -299,7 +299,7 @@ const GoogleMap = memo(
             wc.rating
               ? `
             <p style="margin: 0 0 8px 0; color: #666; font-size: 14px;">
-              ⭐ ${wc.rating}/10
+              ⭐ ${wc.rating}/5
             </p>
           `
               : ""

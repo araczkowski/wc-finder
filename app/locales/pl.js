@@ -118,7 +118,7 @@ export const pl = {
 
   // Ratings
   stars: "⭐",
-  ratingOutOf10: "({rating}/10)",
+  ratingOutOf5: "({rating}/5)",
 
   // Table Headers (if needed)
   image: "Zdjęcie",
@@ -194,4 +194,7 @@ export const pl = {
   uploadFailed: "Przesyłanie nie powiodło się",
   fileTooLarge: "Plik jest za duży",
   invalidFileType: "Nieprawidłowy typ pliku",
+
+  // missing
+  yourLocation: "Twoja lokalizacja",
 };

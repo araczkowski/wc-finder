@@ -525,9 +525,9 @@ export default function AddWcPage() {
       return;
     }
 
-    if (rating < 1 || rating > 10) {
+    if (rating < 1 || rating > 5) {
       // Ensure rating is within bounds, though UI should enforce this
-      setError("Rating must be between 1 and 10.");
+      setError("Rating must be between 1 and 5.");
       setLoading(false);
       return;
     }
@@ -1006,10 +1006,10 @@ export default function AddWcPage() {
 
           <div>
             <label htmlFor="rating" style={styles.formLabel}>
-              Ocena ({rating} / 10)
+              Ocena ({rating} / 5)
             </label>
             <div style={styles.starRatingContainer}>
-              {[...Array(10)].map((_, index) => {
+              {[...Array(5)].map((_, index) => {
                 const starValue = index + 1;
                 return (
                   <span

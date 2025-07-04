@@ -117,9 +117,9 @@ export async function POST(request) {
     }
 
     // Validate rating range
-    if (rating < 1 || rating > 10 || !Number.isInteger(rating)) {
+    if (rating < 1 || rating > 5 || !Number.isInteger(rating)) {
       return NextResponse.json(
-        { error: "Rating must be an integer between 1 and 10" },
+        { error: "Rating must be an integer between 1 and 5" },
         { status: 400 },
       );
     }
