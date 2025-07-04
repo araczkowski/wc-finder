@@ -187,7 +187,6 @@ export default function BottomSheet({
             alignItems: "center",
             cursor: isDragging ? "grabbing" : "grab",
             touchAction: "none",
-            minHeight: "80px",
           }}
         >
           <div
@@ -196,7 +195,7 @@ export default function BottomSheet({
               flexDirection: "column",
               alignItems: "left",
               gap: "8px",
-              paddingRight: "32px",
+              paddingRight: "12px",
             }}
           >
             <div

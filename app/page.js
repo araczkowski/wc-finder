@@ -23,7 +23,7 @@ import {
   RulerDimensionLine,
   SquarePen,
   ChevronUp,
-  Map,
+  MapPinned,
 } from "lucide-react";
 
 // Basic inline styles for layout - consider moving to CSS modules or global CSS
@@ -2342,17 +2342,6 @@ export default function Home() {
                   </div>
 
                   <div
-                    className="table-cell sixth-cell"
-                    style={{ textAlign: "left" }}
-                  >
-                    <WCTags
-                      wcId={wc.id}
-                      isEditable={false}
-                      isHeaderText={false}
-                    />
-                  </div>
-
-                  <div
                     className="table-cell map-button-cell"
                     style={{ textAlign: "center" }}
                   >
@@ -2385,9 +2374,20 @@ export default function Home() {
                       title="Pokaż na mapie"
                       aria-label={`Pokaż ${wc.name} na mapie`}
                     >
-                      <Map size={16} />
+                      <MapPinned size={16} />
                       Pokaż na mapie
                     </button>
+                  </div>
+
+                  <div
+                    className="table-cell sixth-cell"
+                    style={{ textAlign: "left" }}
+                  >
+                    <WCTags
+                      wcId={wc.id}
+                      isEditable={false}
+                      isHeaderText={false}
+                    />
                   </div>
                 </div>
               ))}
