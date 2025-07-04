@@ -246,6 +246,22 @@ div.hidden-div {
     padding: 2px;
 }
 
+.map-button-cell {
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.map-button-cell button {
+    transition: all 0.2s ease;
+}
+
+.map-button-cell button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
 .edit-cell {
     padding: 8px;
     left: 0em;
@@ -312,6 +328,14 @@ BREXPLPWBIA .edit-cell a:hover {
         min-height: 44px;
         min-width: 44px;
         touch-action: manipulation;
+    }
+
+    .map-button-cell button {
+        min-height: 44px;
+        min-width: 44px;
+        padding: 10px 8px;
+        font-size: 12px;
+        gap: 4px;
     }
 }
 

@@ -81,8 +81,6 @@ export const pl = {
   coordinates: "Współrzędne",
   addressPlaceholder: "Wpisz swój adres...",
   geolocatingAddress: "Geokodowanie adresu...",
-  distancesAfterLocation:
-    "📏 Odległości do WC będą wyświetlane po wykryciu lokalizacji",
 
   // Location Errors
   locationDenied:

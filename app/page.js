@@ -23,6 +23,7 @@ import {
   RulerDimensionLine,
   SquarePen,
   ChevronUp,
+  Map,
 } from "lucide-react";
 
 // Basic inline styles for layout - consider moving to CSS modules or global CSS
@@ -322,6 +323,63 @@ export default function Home() {
   // Bottom Sheet states
   const [bottomSheetOpen, setBottomSheetOpen] = useState(false);
   const [selectedWcId, setSelectedWcId] = useState(null);
+
+  // Map control states
+  const [mapCenter, setMapCenter] = useState(null);
+  const [mapZoom, setMapZoom] = useState(13);
+  const [selectedWcForMap, setSelectedWcForMap] = useState(null);
+  const pulseTimerRef = useRef(null);
+
+  // Funkcja centrowania mapy na konkretnym WC
+  const showWcOnMap = (wc) => {
+    if (wc.lat && wc.lng) {
+      const lat = parseFloat(wc.lat);
+      const lng = parseFloat(wc.lng);
+      if (!isNaN(lat) && !isNaN(lng)) {
+        console.log("[HomePage] Centering map on WC:", wc.name, { lat, lng });
+        setMapCenter({ lat, lng });
+        setMapZoom(17); // Zoom in closer to show the WC
+        setSelectedWcForMap(wc.id); // Mark this WC for pulsing
+        setBottomSheetOpen(false); // Close bottom sheet to show map
+
+        // Clear any existing pulse timer
+        if (pulseTimerRef.current) {
+          clearTimeout(pulseTimerRef.current);
+        }
+
+        // Stop pulsing after 3 seconds
+        pulseTimerRef.current = setTimeout(() => {
+          setSelectedWcForMap(null);
+          pulseTimerRef.current = null;
+        }, 3000);
+      }
+    }
+  };
+
+  // Funkcja resetowania mapy do lokalizacji użytkownika
+  const resetMapToUser = () => {
+    if (userLocation) {
+      console.log("[HomePage] Resetting map to user location");
+      setMapCenter(null); // Reset to user location
+      setMapZoom(13); // Reset zoom
+      setSelectedWcForMap(null); // Reset selected WC
+
+      // Clear pulse timer
+      if (pulseTimerRef.current) {
+        clearTimeout(pulseTimerRef.current);
+        pulseTimerRef.current = null;
+      }
+    }
+  };
+
+  // Cleanup timer on unmount
+  useEffect(() => {
+    return () => {
+      if (pulseTimerRef.current) {
+        clearTimeout(pulseTimerRef.current);
+      }
+    };
+  }, []);
 
   // Funkcja automatycznego logowania
   const handleAutoLogin = async () => {
@@ -1382,6 +1440,7 @@ export default function Home() {
                 <GoogleMap
                   wcs={filteredWcs}
                   userLocation={userLocation}
+                  selectedWcId={selectedWcForMap}
                   onMarkerClick={(wc) => {
                     console.log("[HomePage] Map marker clicked:", wc);
                     setSelectedWcId(wc.id);
@@ -1391,8 +1450,8 @@ export default function Home() {
                     width: "100%",
                     height: "100%",
                   }}
-                  zoom={13}
-                  center={userLocation}
+                  zoom={mapZoom}
+                  center={mapCenter || userLocation}
                 />
 
                 {/* Transparent Address Overlay */}
@@ -1409,7 +1468,7 @@ export default function Home() {
                 >
                   <div
                     style={{
-                      backgroundColor: "rgba(255, 255, 255, 0.95)",
+                      backgroundColor: "rgba(255, 255, 255, 0.2)",
                       borderRadius: "8px",
                       padding: "15px",
                       boxShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
@@ -1584,6 +1643,51 @@ export default function Home() {
                     )}
                   </div>
                 </div>
+
+                {/* Reset Map Button - Floating */}
+                {mapCenter && (
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "20px",
+                      right: "20px",
+                      zIndex: 11,
+                    }}
+                  >
+                    <button
+                      onClick={resetMapToUser}
+                      style={{
+                        backgroundColor: "rgba(255, 255, 255, 0.9)",
+                        border: "1px solid #ccc",
+                        borderRadius: "8px",
+                        padding: "10px",
+                        cursor: "pointer",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "6px",
+                        fontSize: "14px",
+                        fontWeight: "500",
+                        color: "#333",
+                        boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+                        transition: "all 0.2s",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.backgroundColor = "#f8f9fa";
+                        e.target.style.transform = "scale(1.05)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.backgroundColor =
+                          "rgba(255, 255, 255, 0.9)";
+                        e.target.style.transform = "scale(1)";
+                      }}
+                      title="Wróć do mojej lokalizacji"
+                      aria-label="Wróć do mojej lokalizacji na mapie"
+                    >
+                      <LocateFixed size={16} />
+                      Moja lokalizacja
+                    </button>
+                  </div>
+                )}
               </div>
             )}
 
@@ -2053,20 +2157,6 @@ export default function Home() {
               Lista toalet ({wcs.length})
             </h3>
 
-            {wcs.length > 0 && (userAddress || userLocation) && (
-              <div
-                style={{
-                  ...styles.infoMessage,
-                  fontSize: "0.85rem",
-                  color: "#0369a1",
-                  border: "1px solid #bae6fd",
-                  marginBottom: "15px",
-                }}
-              >
-                {t("distancesAfterLocation")}
-              </div>
-            )}
-
             <div className="responsive-table">
               {wcs.map((wc) => (
                 <div
@@ -2138,7 +2228,7 @@ export default function Home() {
                             height: "3em",
                             lineHeight: "3.5em",
                             position: "relative",
-                            right: "1em",
+                            right: "-1em",
                             width: "6em",
                             zIndex: 1000,
                             justifyContent: "center",
@@ -2177,7 +2267,7 @@ export default function Home() {
                             height: "3em",
                             lineHeight: "4em",
                             position: "relative",
-                            right: "1em",
+                            right: "-1em",
                             width: "3em",
                             zIndex: 1000,
                             display: "inline-block",
@@ -2260,6 +2350,44 @@ export default function Home() {
                       isEditable={false}
                       isHeaderText={false}
                     />
+                  </div>
+
+                  <div
+                    className="table-cell map-button-cell"
+                    style={{ textAlign: "center" }}
+                  >
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        showWcOnMap(wc);
+                      }}
+                      style={{
+                        backgroundColor: "#28a745",
+                        color: "white",
+                        border: "none",
+                        borderRadius: "8px",
+                        padding: "8px 12px",
+                        fontSize: "14px",
+                        cursor: "pointer",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "6px",
+                        transition: "background-color 0.2s",
+                        minWidth: "120px",
+                        justifyContent: "center",
+                      }}
+                      onMouseEnter={(e) =>
+                        (e.target.style.backgroundColor = "#218838")
+                      }
+                      onMouseLeave={(e) =>
+                        (e.target.style.backgroundColor = "#28a745")
+                      }
+                      title="Pokaż na mapie"
+                      aria-label={`Pokaż ${wc.name} na mapie`}
+                    >
+                      <Map size={16} />
+                      Pokaż na mapie
+                    </button>
                   </div>
                 </div>
               ))}

@@ -11,12 +11,14 @@ const GoogleMap = memo(
     style = {},
     zoom = 13,
     center = null,
+    selectedWcId = null,
   }) => {
     const mapRef = useRef(null);
     const mapInstanceRef = useRef(null);
     const markersRef = useRef([]);
     const userMarkerRef = useRef(null);
     const infoWindowRef = useRef(null);
+    const pulseTimersRef = useRef([]);
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState(null);
 
@@ -118,6 +120,12 @@ const GoogleMap = memo(
 
     // Clear existing markers
     const clearMarkers = useCallback(() => {
+      // Clear all pulse timers
+      pulseTimersRef.current.forEach((timer) => {
+        clearInterval(timer);
+      });
+      pulseTimersRef.current = [];
+
       markersRef.current.forEach((marker) => {
         marker.setMap(null);
       });
@@ -182,13 +190,14 @@ const GoogleMap = memo(
         const position = { lat, lng };
 
         // Create custom marker icon for WC
+        const isSelected = selectedWcId === wc.id;
         const markerIcon = {
           path: window.google.maps.SymbolPath.CIRCLE,
-          scale: 12,
-          fillColor: "#4285f4",
-          fillOpacity: 1,
-          strokeColor: "#ffffff",
-          strokeWeight: 2,
+          scale: isSelected ? 16 : 12,
+          fillColor: isSelected ? "#ff4444" : "#4285f4",
+          fillOpacity: isSelected ? 0.9 : 1,
+          strokeColor: isSelected ? "#ffffff" : "#ffffff",
+          strokeWeight: isSelected ? 6 : 2,
         };
 
         const marker = new window.google.maps.Marker({
@@ -196,8 +205,59 @@ const GoogleMap = memo(
           map: mapInstanceRef.current,
           title: wc.name || "WC",
           icon: markerIcon,
-          zIndex: 100,
+          zIndex: isSelected ? 200 : 100,
         });
+
+        // Add pulsing animation for selected marker
+        if (isSelected) {
+          console.log(
+            `[GoogleMap] Starting pulse animation for WC: ${wc.name}`,
+          );
+          let pulseCount = 0;
+          const maxPulses = 12; // 3 seconds at 0.25s intervals
+          let isExpanded = false;
+
+          const pulseInterval = setInterval(() => {
+            if (pulseCount >= maxPulses) {
+              clearInterval(pulseInterval);
+              // Remove from timers array
+              const index = pulseTimersRef.current.indexOf(pulseInterval);
+              if (index > -1) {
+                pulseTimersRef.current.splice(index, 1);
+              }
+              // Reset to normal state
+              marker.setIcon({
+                ...marker.getIcon(),
+                scale: 12,
+                fillColor: "#4285f4",
+                fillOpacity: 1,
+                strokeWeight: 2,
+              });
+              marker.setZIndex(100);
+              console.log(
+                `[GoogleMap] Pulse animation completed for WC: ${wc.name}`,
+              );
+              return;
+            }
+
+            isExpanded = !isExpanded;
+            const newScale = isExpanded ? 24 : 16;
+            const newOpacity = isExpanded ? 0.4 : 0.9;
+            const newStrokeWeight = isExpanded ? 8 : 6;
+
+            marker.setIcon({
+              ...marker.getIcon(),
+              scale: newScale,
+              fillOpacity: newOpacity,
+              strokeWeight: newStrokeWeight,
+            });
+
+            pulseCount++;
+          }, 250);
+
+          // Store the interval reference for cleanup
+          pulseTimersRef.current.push(pulseInterval);
+        }
 
         console.log(
           `[GoogleMap] ✓ Successfully created marker for WC ${wc.id} at position:`,
@@ -274,7 +334,7 @@ const GoogleMap = memo(
 
         return marker;
       },
-      [onMarkerClick],
+      [onMarkerClick, selectedWcId],
     );
 
     // Create user location marker
@@ -380,6 +440,7 @@ const GoogleMap = memo(
       createWcMarker,
       createUserMarker,
       userLocation,
+      selectedWcId,
     ]);
 
     // Update map center and zoom when user location changes
@@ -391,6 +452,17 @@ const GoogleMap = memo(
         mapInstanceRef.current.setZoom(13);
       }
     }, [userLocation]);
+
+    // Update map center and zoom when selectedWcId changes
+    useEffect(() => {
+      if (!mapInstanceRef.current || !selectedWcId || !center) return;
+
+      console.log("[GoogleMap] Updating map for selected WC:", selectedWcId);
+      mapInstanceRef.current.panTo(center);
+      if (zoom) {
+        mapInstanceRef.current.setZoom(zoom);
+      }
+    }, [selectedWcId, center, zoom]);
 
     // Auto-fit bounds to show all markers
     useEffect(() => {
