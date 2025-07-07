@@ -45,6 +45,10 @@ psql postgresql://postgres.hzkvqzhvgdwlbienjgjx:<PASSWORD>@aws-0-eu-north-1.pool
 psql postgresql://postgres.hzkvqzhvgdwlbienjgjx:<PASSWORD>>@aws-0-eu-north-1.pooler.supabase.com:5432/postgres -f results.sql
 ```
 
+```
+pg_dump -U postgres.hzkvqzhvgdwlbienjgjx -h aws-0-eu-north-1.pooler.supabase.com -p 5432 postgres >> dumpFile.sql
+```
+
 5. remove duplicates
 
 ```
