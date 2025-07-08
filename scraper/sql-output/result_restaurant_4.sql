@@ -1,5 +1,5 @@
 -- Import WC data from CSV
--- Generated on: 2025-07-08T08:57:07.549Z
+-- Generated on: 2025-07-08T12:03:43.690Z
 -- Source file: csv-files/result_restaurant_4.csv
 -- User ID: cac878bb-3f77-42a7-9221-919238bfae76
 -- Created by: public@sviete.pl

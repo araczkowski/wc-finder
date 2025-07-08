@@ -1208,7 +1208,7 @@ textarea.form-input {
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     min-width: 200px;
-    z-index: 1000;
+    z-index: 9999;
     overflow: hidden;
     margin-top: 0.25rem;
 }
@@ -1287,6 +1287,63 @@ textarea.form-input {
 
     .user-dropdown-menu {
         min-width: 180px;
+    }
+}
+
+/* Map fullscreen top bar responsiveness */
+@media (max-width: 400px) {
+    /* Very small screens - hide text labels */
+    .map-top-bar {
+        padding: 0 10px !important;
+    }
+
+    .map-top-bar .logo-text {
+        display: none !important;
+    }
+
+    .map-top-bar .add-wc-text {
+        display: none !important;
+    }
+}
+
+@media (max-width: 500px) {
+    /* Mobile screens - compact layout */
+    .map-top-bar {
+        height: 50px !important;
+        padding: 0 12px !important;
+    }
+
+    .map-top-bar .logo {
+        font-size: 16px !important;
+    }
+
+    .map-top-bar .logo-icon {
+        font-size: 18px !important;
+    }
+
+    .map-top-bar .controls {
+        gap: 8px !important;
+    }
+
+    .map-top-bar .add-wc-btn {
+        padding: 5px 8px !important;
+        font-size: 11px !important;
+    }
+
+    .map-top-bar .add-wc-icon {
+        width: 12px !important;
+        height: 12px !important;
+    }
+}
+
+/* Adjust map content positioning for smaller top bar on mobile */
+@media (max-width: 500px) {
+    .map-content-overlay {
+        top: 60px !important;
+    }
+
+    .map-reset-button {
+        top: 60px !important;
     }
 }
 

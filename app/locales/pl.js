@@ -45,7 +45,6 @@ export const pl = {
   loadingMore: "Ładowanie kolejnych WC...",
 
   // WC Management
-  addNewWc: "Dodaj nowe WC",
   editWc: "Edytuj WC",
   deleteWc: "Usuń WC",
   confirmDeleteWc: "Potwierdź usunięcie WC",

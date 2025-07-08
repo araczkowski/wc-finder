@@ -7,6 +7,7 @@ import { useState, useEffect, useMemo, useCallback, useRef } from "react"; // Ad
 import { useSearchParams } from "next/navigation"; // Added useSearchParams
 import { useInfiniteScroll } from "./hooks/useInfiniteScroll";
 import { useTranslation } from "./hooks/useTranslation";
+import { useWindowSize } from "./hooks/useWindowSize";
 import ImageSlideshow from "./components/ImageSlideshow";
 import UserDropdown from "./components/UserDropdown";
 import AddressAutocomplete from "./components/AddressAutocomplete";
@@ -295,6 +296,7 @@ const styles = {
 export default function Home() {
   const { data: session, status } = useSession();
   const { t } = useTranslation();
+  const { width, isMobile } = useWindowSize();
   const [isAutoLogging, setIsAutoLogging] = useState(false);
   // Log component rendering and current session status
   console.log(
@@ -1480,6 +1482,84 @@ export default function Home() {
                   zIndex: 1,
                 }}
               >
+                {/* Top Navigation Bar */}
+                <div
+                  className="map-top-bar"
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    height: "60px",
+                    backgroundColor: "rgba(255, 255, 255, 0.95)",
+                    backdropFilter: "blur(10px)",
+                    borderBottom: "1px solid rgba(0, 0, 0, 0.1)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    padding: "0 15px",
+                    zIndex: 12,
+                    boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+                  }}
+                >
+                
+
+                  {/* Right side - User info and Add WC button */}
+                  <div
+                    className="controls"
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: isMobile ? "8px" : "15px",
+                    }}
+                  >
+                    {/* Add WC Button */}
+                    {session?.user?.email !== "public@sviete.pl" && (
+                      <Link
+                        href="/wc/add"
+                        className="add-wc-btn"
+                        style={{
+                          backgroundColor: "#28a745",
+                          color: "white",
+                          padding: isMobile ? "6px 10px" : "8px 16px",
+                          borderRadius: "6px",
+                          textDecoration: "none",
+                          fontSize: isMobile ? "12px" : "14px",
+                          fontWeight: "500",
+                          display: "flex",
+                          alignItems: "center",
+                          gap: isMobile ? "4px" : "6px",
+                          transition: "all 0.2s ease",
+                          boxShadow: "0 2px 4px rgba(40, 167, 69, 0.3)",
+                          whiteSpace: "nowrap",
+                        }}
+                        onMouseEnter={(e) => {
+                          e.target.style.backgroundColor = "#218838";
+                          e.target.style.transform = "translateY(-1px)";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.target.style.backgroundColor = "#28a745";
+                          e.target.style.transform = "translateY(0)";
+                        }}
+                      >
+                        <Plus
+                          className="add-wc-icon"
+                          size={isMobile ? 14 : 16}
+                        />
+                        <span className="add-wc-text">
+                          {(width || 500) < 400 ? "+" : t("addNewWc")}
+                        </span>
+                      </Link>
+                    )}
+
+                  </div>
+                  {/* User Dropdown */}
+                  {session && (
+                      <div style={{ flexShrink: 0 }}>
+                        <UserDropdown session={session} />
+                      </div>
+                    )}
+                </div>
                 {(() => {
                   console.log("[HomePage] Rendering GoogleMap with data:", {
                     wcsCount: filteredWcs.length,
@@ -1513,9 +1593,10 @@ export default function Home() {
 
                 {/* Transparent Address Overlay */}
                 <div
+                  className="map-content-overlay"
                   style={{
                     position: "absolute",
-                    top: "20px",
+                    top: "80px", // Adjusted to account for top bar
                     left: "20px",
                     right: "20px",
                     zIndex: 10,
@@ -1703,9 +1784,10 @@ export default function Home() {
                 {/* Reset Map Button - Floating */}
                 {mapCenter && (
                   <div
+                    className="map-reset-button"
                     style={{
                       position: "absolute",
-                      top: "20px",
+                      top: "80px", // Adjusted to account for top bar
                       right: "20px",
                       zIndex: 11,
                     }}
@@ -2122,37 +2204,6 @@ export default function Home() {
               justifyContent: "space-between",
             }}
           >
-            {/* Przycisk Dodaj nowe WC */}
-            <Link
-              href="/wc/add"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "6px",
-                padding: "8px 12px",
-                backgroundColor: "#007bff",
-                color: "white",
-                borderRadius: "18px",
-                textDecoration: "none",
-                fontSize: "12px",
-                fontWeight: "500",
-                transition: "all 0.2s ease",
-                border: "none",
-                cursor: "pointer",
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.backgroundColor = "#0056b3";
-                e.target.style.transform = "translateY(-1px)";
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.backgroundColor = "#007bff";
-                e.target.style.transform = "translateY(0)";
-              }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <Plus size={14} />
-              Dodaj WC
-            </Link>
 
             {/* Środkowa część z liczbą toalet */}
             <div
