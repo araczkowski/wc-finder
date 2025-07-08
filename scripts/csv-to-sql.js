@@ -4,59 +4,23 @@ const fs = require("fs");
 const path = require("path");
 const { parse } = require("csv-parse/sync");
 
-// Place type mapping from CSV values to our database enum
-const PLACE_TYPE_MAPPING = {
-  restaurant: "restaurant",
-  cafe: "cafe",
-  bar: "bar",
-  shopping_mall: "shopping_mall",
-  department_store: "department_store",
-  supermarket: "supermarket",
-  gas_station: "gas_station",
-  park: "park",
-  tourist_attraction: "tourist_attraction",
-  train_station: "train_station",
-  subway_station: "subway_station",
-  bus_station: "bus_station",
-  airport: "airport",
-  library: "library",
-  museum: "museum",
-  movie_theater: "movie_theater",
-  city_hall: "city_hall",
-  toilet: "toilet",
-  public_toilet: "public_toilet",
-  // Fallback mappings for common variations
-  food: "restaurant",
-  lodging: "tourist_attraction",
-  establishment: "toilet",
-  point_of_interest: "tourist_attraction",
-  transit_station: "train_station",
-  health: "toilet",
-  store: "supermarket",
-  // Poland.csv specific mappings
-  "public bathroom": "public_toilet",
-  "public restroom": "public_toilet",
-  restroom: "toilet",
-  bathroom: "toilet",
-};
-
 // Default user ID for imported data (should be replaced with actual admin user ID)
 const DEFAULT_USER_ID = "cac878bb-3f77-42a7-9221-919238bfae76";
 const DEFAULT_CREATED_BY = "public@sviete.pl";
 
 function printUsage() {
   console.log(`
-Użycie: node csv-to-sql.js <plik_csv> [opcje]
+Użycie: node csv-to-sql.js <folder_csv> [opcje]
 
 Opcje:
-  --output, -o <plik>     Plik wyjściowy SQL (domyślnie: import.sql)
-  --user-id <uuid>        UUID użytkownika dla importowanych danych
-  --created-by <email>    Email użytkownika dla importowanych danych
-  --help, -h              Pokaż tę pomoc
+  --output-dir, -o <folder>  Folder wyjściowy SQL (domyślnie: ./output)
+  --user-id <uuid>           UUID użytkownika dla importowanych danych
+  --created-by <email>       Email użytkownika dla importowanych danych
+  --help, -h                 Pokaż tę pomoc
 
 Przykład:
-  node csv-to-sql.js dane_wc.csv -o import_wc.sql
-  node csv-to-sql.js dane_wc.csv --user-id "12345678-1234-1234-1234-123456789012"
+  node csv-to-sql.js ./csv-files -o ./sql-output
+  node csv-to-sql.js ./csv-files --user-id "e21d17a8-f227-4450-b111-e2c2c7980995""
 
 Mapowanie kolumn CSV (poland.csv format):
   Kolumna 0  -> wcs.google_place_id (input_id)
@@ -73,91 +37,16 @@ Mapowanie kolumn CSV (poland.csv format):
 
 function sanitizeString(str) {
   if (!str || str === "NULL" || str === "") return null;
-  return str.replace(/'/g, "''").trim();
+  return str
+    .replace(/'/g, "''")
+    .trim()
+    .replace(/(\r\n|\n|\r)/gm, "");
 }
 
 function sanitizeNumber(num) {
   if (!num || num === "NULL" || num === "") return null;
   const parsed = parseFloat(num);
   return isNaN(parsed) ? null : parsed;
-}
-
-function mapPlaceType(originalType) {
-  // toilet: ["toaleta", "wc", "restroom", "toilet"],
-  // public_toilet: ["toaleta publiczna", "public toilet", "wc publiczne"],
-  // tourist_attraction: ["atrakcja turystyczna", "tourist attraction", "zabytki"],
-  // shopping_mall: ["centrum handlowe", "galeria", "shopping mall"],
-  // restaurant: ["restauracja", "restaurant"],
-  // cafe: ["kawiarnia", "cafe", "coffee"],
-  // bar: ["bar", "pub"],
-  // park: ["park"],
-  // train_station: ["dworzec kolejowy", "stacja kolejowa", "train station"],
-  // subway_station: ["metro", "subway"],
-  // bus_station: ["dworzec autobusowy", "bus station"],
-  // airport: ["lotnisko", "airport"],
-  // gas_station: ["stacja benzynowa", "gas station", "orlen", "bp", "shell"],
-  // library: ["biblioteka", "library"],
-  // museum: ["muzeum", "museum"],
-  // movie_theater: ["kino", "cinema", "movie theater"],
-  // city_hall: ["ratusz", "urząd miasta", "city hall"],
-  // supermarket: ["supermarket", "sklep spożywczy"],
-  // department_store: ["dom handlowy", "department store"],
-
-  if (
-    originalType === "Toaleta publiczna" ||
-    originalType === "Toaleta publiczna z dostępem dla niepełnosprawnych" ||
-    originalType === "Publiczna toaleta damska" ||
-    originalType === "Publiczna toaleta męska"
-  ) {
-    return "public_toilet";
-  }
-
-  if (originalType === "Train station") {
-    return "train_station";
-  }
-
-  if (originalType === "Bus station") {
-    return "bus_station";
-  }
-
-  if (originalType === "Airport") {
-    return "airport";
-  }
-
-  if (originalType === "Gas station") {
-    return "gas_station";
-  }
-
-  if (originalType === "Library") {
-    return "library";
-  }
-
-  if (originalType === "Museum") {
-    return "museum";
-  }
-
-  if (originalType === "Movie theater") {
-    return "movie_theater";
-  }
-
-  if (originalType === "City hall") {
-    return "city_hall";
-  }
-
-  if (originalType === "Supermarket") {
-    return "supermarket";
-  }
-
-  if (originalType === "Department store") {
-    return "department_store";
-  }
-
-  if (!originalType || originalType === "NULL" || originalType === "") {
-    return "toilet";
-  }
-
-  const type = originalType.toLowerCase().trim();
-  return PLACE_TYPE_MAPPING[type] || "toilet";
 }
 
 function findImagesColumn(row) {
@@ -206,7 +95,7 @@ function generateWcInsert(row, userId, createdBy, wcIndex) {
   // Handle potential CSV parsing issues by finding the correct columns
   const googlePlaceId = sanitizeString(row[0]); // input_id
   const name = sanitizeString(row[2]); // title
-  const placeType = mapPlaceType(row[3]); // category (kolumna D)
+  const placeType = row[3]; // category (kolumna D)
   const address = sanitizeString(row[4]); // address
 
   // Find rating column - may shift due to JSON content
@@ -280,39 +169,12 @@ LIMIT 1;`;
     .filter(Boolean);
 }
 
-function main() {
-  const args = process.argv.slice(2);
-
-  if (args.length === 0 || args.includes("--help") || args.includes("-h")) {
-    printUsage();
-    process.exit(0);
-  }
-
-  const csvFile = args[0];
-  let outputFile = args[1];
-  let userId = DEFAULT_USER_ID;
-  let createdBy = DEFAULT_CREATED_BY;
-
-  // Parse arguments
-  for (let i = 1; i < args.length; i++) {
-    if (args[i] === "--output" || args[i] === "-o") {
-      outputFile = args[++i];
-    } else if (args[i] === "--user-id") {
-      userId = args[++i];
-    } else if (args[i] === "--created-by") {
-      createdBy = args[++i];
-    }
-  }
-
-  if (!fs.existsSync(csvFile)) {
-    console.error(`Błąd: Plik CSV nie istnieje: ${csvFile}`);
-    process.exit(1);
-  }
+function processCsvFile(csvFile, outputDir, userId, createdBy) {
+  const csvFileName = path.basename(csvFile, ".csv");
+  const outputFile = path.join(outputDir, `${csvFileName}.sql`);
 
   console.log(`Przetwarzanie pliku CSV: ${csvFile}`);
   console.log(`Plik wyjściowy SQL: ${outputFile}`);
-  console.log(`User ID: ${userId}`);
-  console.log(`Created by: ${createdBy}`);
 
   try {
     // Read and parse CSV with proper JSON handling
@@ -369,9 +231,7 @@ function main() {
       );
 
       if (wcInsert) {
-        sqlStatements.push(
-          `-- WC #${processedCount + 1}: ${row[2] || "Unnamed"}`,
-        );
+        sqlStatements.push(`-- WC #${processedCount + 1}`);
         sqlStatements.push(wcInsert.sql);
         sqlStatements.push("");
 
@@ -384,7 +244,7 @@ function main() {
           createdBy,
         );
         if (photoInserts.length > 0) {
-          photoStatements.push(`-- Photos for WC: ${row[2] || "Unnamed"}`);
+          photoStatements.push(`-- Photos for WC`);
           photoStatements.push(...photoInserts);
           photoStatements.push("");
         }
@@ -421,27 +281,124 @@ function main() {
     // Write SQL file
     fs.writeFileSync(outputFile, sqlStatements.join("\n"));
 
-    console.log(`\n✅ Konwersja zakończona pomyślnie!`);
-    console.log(`📊 Statystyki:`);
-    console.log(`   - Przetworzono: ${processedCount} lokalizacji WC`);
-    console.log(`   - Pominięto: ${skippedCount} wierszy`);
-    console.log(`   - Wygenerowano: ${photoStatements.length} insertów zdjęć`);
-    console.log(`📄 Plik SQL zapisany jako: ${outputFile}`);
-    console.log(`\n💡 Aby zaimportować dane do Supabase:`);
-    console.log(`   1. Otwórz Supabase SQL Editor`);
-    console.log(`   2. Wklej zawartość pliku ${outputFile}`);
-    console.log(`   3. Wykonaj zapytanie`);
     console.log(
-      `\n⚠️  Uwaga: Upewnij się, że User ID ${userId} istnieje w tabeli auth.users`,
+      `✅ Przetworzono: ${processedCount} lokalizacji WC, pominięto: ${skippedCount} wierszy`,
     );
+    console.log(`📄 Plik SQL zapisany jako: ${outputFile}`);
+
+    return { processedCount, skippedCount, photoCount: photoStatements.length };
   } catch (error) {
-    console.error(`❌ Błąd podczas przetwarzania: ${error.message}`);
+    console.error(
+      `❌ Błąd podczas przetwarzania pliku ${csvFile}: ${error.message}`,
+    );
+    return {
+      processedCount: 0,
+      skippedCount: 0,
+      photoCount: 0,
+      error: error.message,
+    };
+  }
+}
+
+function main() {
+  const args = process.argv.slice(2);
+
+  if (args.length === 0 || args.includes("--help") || args.includes("-h")) {
+    printUsage();
+    process.exit(0);
+  }
+
+  const csvFolder = args[0];
+  let outputDir = "./output";
+  let userId = DEFAULT_USER_ID;
+  let createdBy = DEFAULT_CREATED_BY;
+
+  // Parse arguments
+  for (let i = 1; i < args.length; i++) {
+    if (args[i] === "--output-dir" || args[i] === "-o") {
+      outputDir = args[++i];
+    } else if (args[i] === "--user-id") {
+      userId = args[++i];
+    } else if (args[i] === "--created-by") {
+      createdBy = args[++i];
+    }
+  }
+
+  if (!fs.existsSync(csvFolder)) {
+    console.error(`Błąd: Folder CSV nie istnieje: ${csvFolder}`);
     process.exit(1);
   }
+
+  const stats = fs.statSync(csvFolder);
+  if (!stats.isDirectory()) {
+    console.error(`Błąd: ${csvFolder} nie jest folderem`);
+    process.exit(1);
+  }
+
+  // Create output directory if it doesn't exist
+  if (!fs.existsSync(outputDir)) {
+    fs.mkdirSync(outputDir, { recursive: true });
+    console.log(`Utworzono folder wyjściowy: ${outputDir}`);
+  }
+
+  // Find all CSV files in the folder
+  const csvFiles = fs
+    .readdirSync(csvFolder)
+    .filter((file) => file.toLowerCase().endsWith(".csv"))
+    .map((file) => path.join(csvFolder, file));
+
+  if (csvFiles.length === 0) {
+    console.error(`Błąd: Nie znaleziono plików CSV w folderze: ${csvFolder}`);
+    process.exit(1);
+  }
+
+  console.log(
+    `Znaleziono ${csvFiles.length} plików CSV w folderze: ${csvFolder}`,
+  );
+  console.log(`Folder wyjściowy SQL: ${outputDir}`);
+  console.log(`User ID: ${userId}`);
+  console.log(`Created by: ${createdBy}`);
+  console.log("");
+
+  // Process each CSV file
+  let totalProcessed = 0;
+  let totalSkipped = 0;
+  let totalPhotos = 0;
+  let totalErrors = 0;
+
+  csvFiles.forEach((csvFile, index) => {
+    console.log(
+      `\n[${index + 1}/${csvFiles.length}] Przetwarzanie: ${path.basename(csvFile)}`,
+    );
+    const result = processCsvFile(csvFile, outputDir, userId, createdBy);
+
+    totalProcessed += result.processedCount;
+    totalSkipped += result.skippedCount;
+    totalPhotos += result.photoCount;
+    if (result.error) {
+      totalErrors++;
+    }
+  });
+
+  console.log(`\n🎉 Konwersja wszystkich plików zakończona!`);
+  console.log(`📊 Statystyki ogólne:`);
+  console.log(`   - Przetworzono plików CSV: ${csvFiles.length}`);
+  console.log(`   - Błędy: ${totalErrors}`);
+  console.log(`   - Lokalizacje WC: ${totalProcessed}`);
+  console.log(`   - Pominięte wiersze: ${totalSkipped}`);
+  console.log(`   - Zdjęcia: ${totalPhotos}`);
+  console.log(`📁 Pliki SQL zapisane w: ${outputDir}`);
+  console.log(`\n💡 Aby zaimportować dane do Supabase:`);
+  console.log(`   1. Otwórz Supabase SQL Editor`);
+  console.log(`   2. Wklej zawartość każdego pliku SQL z folderu ${outputDir}`);
+  console.log(`   3. Wykonaj zapytania`);
+  console.log(
+    `\n⚠️  Uwaga: Upewnij się, że User ID ${userId} istnieje w tabeli auth.users`,
+  );
 }
 
 if (require.main === module) {
   main();
 }
 
-module.exports = { generateWcInsert, generatePhotoInserts, mapPlaceType };
+module.exports = { generateWcInsert, generatePhotoInserts };

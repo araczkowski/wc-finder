@@ -24,27 +24,35 @@ node scripts/generate-keywords-postal-codes.js
 3. convert csv to sql
 
 ```
-npm run csv-to-sql ./scraper/results.csv ./scraper/results.sql
-```
-
-```
-node --stack-size=12000 ../scripts/csv-to-sql.js results.csv -o results.sql
-```
-
-```
 mlr --csv split -n 10000 results_restaurant.csv
 ```
 
-4. import data to postgres via pgAdmin
-
 ```
-psql postgresql://postgres.hzkvqzhvgdwlbienjgjx:<PASSWORD>@aws-0-eu-north-1.pooler.supabase.com:5432/postgres -f cleanup.sql
+node ../scripts/csv-to-sql.js ./csv-files -o ./sql-output
 ```
 
 ```
-psql postgresql://postgres.hzkvqzhvgdwlbienjgjx:<PASSWORD>>@aws-0-eu-north-1.pooler.supabase.com:5432/postgres -f results.sql
+node --stack-size=12000 ../scripts/csv-to-sql.js csv -o sql
 ```
 
+
+
+4. import data to postgres
+
+```
+./load-data.sh <password>
+```
+
+```
+psql postgresql://postgres:<PASSWORD>@130.61.187.2:9876/postgres -f cleanup.sql
+```
+
+```
+psql postgresql://postgres:<PASSWORD>@130.61.187.2:9876/postgres  -f results.sql
+```
+
+```
+find sql/ -name *.sql -exec psql postgresql://postgres:<PASSWORD>@130.61.187.2:9876/postgres -f {} \;
 ```
 pg_dump -U postgres.hzkvqzhvgdwlbienjgjx -h aws-0-eu-north-1.pooler.supabase.com -p 5432 postgres >> dumpFile.sql
 ```
@@ -52,5 +60,5 @@ pg_dump -U postgres.hzkvqzhvgdwlbienjgjx -h aws-0-eu-north-1.pooler.supabase.com
 5. remove duplicates
 
 ```
-psql postgresql://postgres.hzkvqzhvgdwlbienjgjx:<PASSWORD>>@aws-0-eu-north-1.pooler.supabase.com:5432/postgres -f remove-duplicates.sql
+psql postgresql://postgres:<PASSWORD>@130.61.187.2:9876/postgres -f remove-duplicates.sql
 ```
