@@ -26,6 +26,7 @@ import {
   MapPinned,
   Star,
   Plus,
+  Unplug,
 } from "lucide-react";
 
 // Basic inline styles for layout - consider moving to CSS modules or global CSS
@@ -1226,6 +1227,14 @@ export default function Home() {
     );
   };
 
+  // Funkcja do odświeżania strony po kliknięciu "Odśwież stronę"
+  const onRefreshLinkClick = (e) => {
+    //e.preventDefault();
+    //window.location.reload();
+    reset();
+    loadInitialData();
+  };
+
   return (
     <div style={styles.pageContainer}>
       <header style={styles.header}>
@@ -1501,8 +1510,6 @@ export default function Home() {
                     boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
                   }}
                 >
-                
-
                   {/* Right side - User info and Add WC button */}
                   <div
                     className="controls"
@@ -1550,14 +1557,13 @@ export default function Home() {
                         </span>
                       </Link>
                     )}
-
                   </div>
                   {/* User Dropdown */}
                   {session && (
-                      <div style={{ flexShrink: 0 }}>
-                        <UserDropdown session={session} />
-                      </div>
-                    )}
+                    <div style={{ flexShrink: 0 }}>
+                      <UserDropdown session={session} />
+                    </div>
+                  )}
                 </div>
                 {(() => {
                   console.log("[HomePage] Rendering GoogleMap with data:", {
@@ -1850,23 +1856,34 @@ export default function Home() {
                 wcs.length === 0 &&
                 userLocation &&
                 !isGeolocatingAddress && (
-                  <div style={{
-                    ...styles.noWcsMessage,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: "10px",
-                    fontSize: "1.1rem",
-                    marginTop: "20px",
-                    marginBottom: "20px",
-                  }}>
-                    <Link reloadDocument href="/" style={{ color: "#007bff", textDecoration: "underline" }}> 
-                    <div style={{display: "flex", alignItems: "center", justifyContent: "center", gap: "10px"}}
-                    ><MapPinned size={96} />
-                    </div>
-                      <div>
-                        Odśwież stronę
+                  <div
+                    style={{
+                      ...styles.noWcsMessage,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      gap: "10px",
+                      fontSize: "1.1rem",
+                      marginTop: "20px",
+                      marginBottom: "20px",
+                    }}
+                  >
+                    <Link
+                      onClick={onRefreshLinkClick}
+                      href=""
+                      style={{ color: "#007bff", textDecoration: "underline" }}
+                    >
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          gap: "10px",
+                        }}
+                      >
+                        <Unplug size={96} />
                       </div>
+                      <div>Odśwież stronę</div>
                     </Link>
                   </div>
                 )}
@@ -2220,7 +2237,6 @@ export default function Home() {
               justifyContent: "space-between",
             }}
           >
-
             {/* Środkowa część z liczbą toalet */}
             <div
               style={{
@@ -2383,7 +2399,6 @@ export default function Home() {
                           {formatDistance(wc.distance_km || wc.distance)}
                         </div>
                       ) : null}
-                      
                     </div>
                     <div
                       className="table-cell name-cell"

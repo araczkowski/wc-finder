@@ -968,7 +968,7 @@ export default function EditWcPage() {
                 onChange={(e) => setLocation(e.target.value)}
                 style={styles.formInput}
                 placeholder="e.g., 52.2297,21.0122"
-                disabled="true"
+                disabled={true}
               />
               <p
                 style={{
