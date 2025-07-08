@@ -802,75 +802,135 @@ export default function Home() {
   }, [wcs, loadingWcs, wcError]);
 
   // Reverse geocode user location to get address (ONLY for GPS button)
-  const reverseGeocode = useCallback(async (lat, lng) => {
-    console.log("[DEBUG] reverseGeocode called from GPS button with:", {
-      lat,
-      lng,
-    });
-    console.log("[DEBUG] reverseGeocode - current localStorage before:", {
-      userAddress: localStorage.getItem("userAddress"),
-      userLocation: localStorage.getItem("userLocation"),
-    });
-    setIsGeolocatingAddress(true);
-    try {
-      const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+  const reverseGeocode = useCallback(
+    async (lat, lng) => {
+      console.log("[DEBUG] reverseGeocode called from GPS button with:", {
+        lat,
+        lng,
+      });
+      console.log("[DEBUG] reverseGeocode - current localStorage before:", {
+        userAddress: localStorage.getItem("userAddress"),
+        userLocation: localStorage.getItem("userLocation"),
+      });
+      setIsGeolocatingAddress(true);
+      try {
+        const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+        console.log("[DEBUG] reverseGeocode - API key present:", !!apiKey);
 
-      if (apiKey) {
-        // Use Google Maps API
-        const response = await fetch(
-          `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}&language=pl`,
-        );
-        const data = await response.json();
+        if (apiKey) {
+          console.log("[DEBUG] reverseGeocode - Using Google Maps API");
+          // Use Google Maps API
+          const googleUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}&language=pl`;
+          console.log("[DEBUG] reverseGeocode - Google Maps URL:", googleUrl);
 
-        if (data.status === "OK" && data.results.length > 0) {
+          const response = await fetch(googleUrl);
           console.log(
-            "[DEBUG] reverseGeocode setting address from Google:",
-            data.results[0].formatted_address,
+            "[DEBUG] reverseGeocode - Google Maps response status:",
+            response.status,
+          );
+
+          const data = await response.json();
+          console.log(
+            "[DEBUG] reverseGeocode - Google Maps API response:",
+            data,
+          );
+
+          if (data.status === "OK" && data.results.length > 0) {
+            console.log(
+              "[DEBUG] reverseGeocode setting address from Google:",
+              data.results[0].formatted_address,
+            );
+            console.log(
+              "[DEBUG] reverseGeocode - calling setUserAddress, setAddressDetected, setHasSetAddress",
+            );
+            setUserAddress(data.results[0].formatted_address);
+            setAddressDetected(true);
+            setHasSetAddress(true);
+            return;
+          } else {
+            console.log(
+              "[DEBUG] reverseGeocode - Google Maps API failed with status:",
+              data.status,
+            );
+            console.log(
+              "[DEBUG] reverseGeocode - Google Maps API error message:",
+              data.error_message,
+            );
+          }
+        } else {
+          console.log(
+            "[DEBUG] reverseGeocode - No Google Maps API key, using Nominatim",
+          );
+        }
+
+        // Fallback to Nominatim (OpenStreetMap)
+        console.log("[DEBUG] reverseGeocode - Using Nominatim fallback");
+        const nominatimUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=16&addressdetails=1&accept-language=pl`;
+        console.log("[DEBUG] reverseGeocode - Nominatim URL:", nominatimUrl);
+
+        const response = await fetch(nominatimUrl);
+        console.log(
+          "[DEBUG] reverseGeocode - Nominatim response status:",
+          response.status,
+        );
+
+        const data = await response.json();
+        console.log("[DEBUG] reverseGeocode - Nominatim response:", data);
+
+        if (data && data.display_name) {
+          console.log(
+            "[DEBUG] reverseGeocode setting address from Nominatim:",
+            data.display_name,
           );
           console.log(
             "[DEBUG] reverseGeocode - calling setUserAddress, setAddressDetected, setHasSetAddress",
           );
-          setUserAddress(data.results[0].formatted_address);
+          setUserAddress(data.display_name);
           setAddressDetected(true);
           setHasSetAddress(true);
-          return;
+        } else {
+          console.log(
+            "[DEBUG] reverseGeocode - Nominatim failed, no display_name in response",
+          );
+          console.log(
+            "[DEBUG] reverseGeocode fallback to coordinates:",
+            `${lat.toFixed(6)}, ${lng.toFixed(6)}`,
+          );
+          console.log(
+            "[DEBUG] reverseGeocode - calling setUserAddress, setAddressDetected, setHasSetAddress (fallback)",
+          );
+          setUserAddress(`${lat.toFixed(6)}, ${lng.toFixed(6)}`);
+          setAddressDetected(true);
+          setHasSetAddress(true);
         }
-      }
-
-      // Fallback to Nominatim (OpenStreetMap)
-      const response = await fetch(
-        `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=16&addressdetails=1&accept-language=pl`,
-      );
-      const data = await response.json();
-
-      if (data && data.display_name) {
+      } catch (error) {
+        console.error("Reverse geocoding failed:", error);
+        console.log("[DEBUG] reverseGeocode - Error details:", {
+          message: error.message,
+          name: error.name,
+          stack: error.stack,
+        });
         console.log(
-          "[DEBUG] reverseGeocode setting address from Nominatim:",
-          data.display_name,
+          "[DEBUG] reverseGeocode fallback to coordinates:",
+          `${lat.toFixed(6)}, ${lng.toFixed(6)}`,
         );
         console.log(
-          "[DEBUG] reverseGeocode - calling setUserAddress, setAddressDetected, setHasSetAddress",
+          "[DEBUG] reverseGeocode - calling setUserAddress, setAddressDetected, setHasSetAddress (fallback)",
         );
-        setUserAddress(data.display_name);
+        setUserAddress(`${lat.toFixed(6)}, ${lng.toFixed(6)}`);
         setAddressDetected(true);
         setHasSetAddress(true);
+      } finally {
+        setIsGeolocatingAddress(false);
       }
-    } catch (error) {
-      console.error("Reverse geocoding failed:", error);
-      console.log(
-        "[DEBUG] reverseGeocode fallback to coordinates:",
-        `${lat.toFixed(6)}, ${lng.toFixed(6)}`,
-      );
-      console.log(
-        "[DEBUG] reverseGeocode - calling setUserAddress, setAddressDetected, setHasSetAddress (fallback)",
-      );
-      setUserAddress(`${lat.toFixed(6)}, ${lng.toFixed(6)}`);
-      setAddressDetected(true);
-      setHasSetAddress(true);
-    } finally {
-      setIsGeolocatingAddress(false);
-    }
-  }, []);
+    },
+    [
+      setUserAddress,
+      setAddressDetected,
+      setHasSetAddress,
+      setIsGeolocatingAddress,
+    ],
+  );
 
   // Handle manual address change
   const handleAddressChange = useCallback(async (address, coordinates) => {
@@ -1253,17 +1313,12 @@ export default function Home() {
                             });
                             setUserLocation({ lat: latitude, lng: longitude });
 
-                            // Delay the coordinate change to allow for proper state update
-                            setTimeout(() => {
-                              console.log(
-                                "[GPS Button] Calling handleCoordinatesChange with:",
-                                { lat: latitude, lng: longitude },
-                              );
-                              handleCoordinatesChange({
-                                lat: latitude,
-                                lng: longitude,
-                              });
-                            }, 1000);
+                            // Call reverse geocoding to get address from coordinates
+                            console.log(
+                              "[GPS Button] Calling reverseGeocode with:",
+                              { lat: latitude, lng: longitude },
+                            );
+                            reverseGeocode(latitude, longitude);
                           },
                           (error) => {
                             console.error(
@@ -1522,18 +1577,17 @@ export default function Home() {
                                   lat: latitude,
                                   lng: longitude,
                                 });
+                                setUserLocation({
+                                  lat: latitude,
+                                  lng: longitude,
+                                });
 
-                                // Delay the coordinate change to allow for proper state update
-                                setTimeout(() => {
-                                  console.log(
-                                    "[GPS Button] Calling handleCoordinatesChange with:",
-                                    { lat: latitude, lng: longitude },
-                                  );
-                                  handleCoordinatesChange({
-                                    lat: latitude,
-                                    lng: longitude,
-                                  });
-                                }, 1000);
+                                // Call reverse geocoding to get address from coordinates
+                                console.log(
+                                  "[GPS Button] Calling reverseGeocode with:",
+                                  { lat: latitude, lng: longitude },
+                                );
+                                reverseGeocode(latitude, longitude);
                               },
                               (error) => {
                                 console.error(
@@ -1854,24 +1908,6 @@ export default function Home() {
                         : userAddress && userLocation
                           ? t("locationSortedByAddress")
                           : t("locationSorted")}
-                  </div>
-                )}
-
-              {!loadingWcs &&
-                !isLoadingLocation &&
-                !wcError &&
-                filteredWcs.length === 0 &&
-                !userAddress &&
-                !userLocation && (
-                  <div
-                    style={{
-                      ...styles.infoMessage,
-                      fontSize: "0.9rem",
-                      textAlign: "center",
-                      marginBottom: "20px",
-                    }}
-                  >
-                    {t("enterAddressToSeeWcs")}
                   </div>
                 )}
 
