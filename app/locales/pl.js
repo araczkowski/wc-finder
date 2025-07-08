@@ -54,7 +54,6 @@ export const pl = {
   wcDeletedSuccessfully: "WC zostało pomyślnie usunięte.",
   wcUpdatedSuccessfully: "WC zostało pomyślnie zaktualizowane.",
   wcAddedSuccessfully: "WC zostało pomyślnie dodane.",
-  noWcsFound: "Nie znaleziono WC. Kliknij Dodaj nowe WC, aby dodać pierwsze!",
   allWcsLoaded: "✓ Wszystkie WC załadowane ({count} łącznie)",
 
   // WC Details

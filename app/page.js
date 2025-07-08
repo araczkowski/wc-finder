@@ -11,7 +11,6 @@ import { useWindowSize } from "./hooks/useWindowSize";
 import ImageSlideshow from "./components/ImageSlideshow";
 import UserDropdown from "./components/UserDropdown";
 import AddressAutocomplete from "./components/AddressAutocomplete";
-import PlaceTypeDisplay from "./components/PlaceTypeDisplay";
 import RatingDisplay from "./components/RatingDisplay";
 import WCTags from "./components/WCTags";
 import BottomSheet from "./components/BottomSheet";
@@ -25,7 +24,7 @@ import {
   SquarePen,
   ChevronUp,
   MapPinned,
-  Eye,
+  Star,
   Plus,
 } from "lucide-react";
 
@@ -1851,7 +1850,25 @@ export default function Home() {
                 wcs.length === 0 &&
                 userLocation &&
                 !isGeolocatingAddress && (
-                  <p style={styles.noWcsMessage}>{t("noWcsFound")}</p>
+                  <div style={{
+                    ...styles.noWcsMessage,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "10px",
+                    fontSize: "1.1rem",
+                    marginTop: "20px",
+                    marginBottom: "20px",
+                  }}>
+                    <Link reloadDocument href="/" style={{ color: "#007bff", textDecoration: "underline" }}> 
+                    <div style={{display: "flex", alignItems: "center", justifyContent: "center", gap: "10px"}}
+                    ><MapPinned size={96} />
+                    </div>
+                      <div>
+                        Odśwież stronę
+                      </div>
+                    </Link>
+                  </div>
                 )}
               {!loadingWcs &&
                 !isLoadingLocation &&
@@ -2199,7 +2216,6 @@ export default function Home() {
               borderBottom: "none",
               maxWidth: "500px",
               width: "100%",
-              display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
             }}
@@ -2245,10 +2261,10 @@ export default function Home() {
           setBottomSheetOpen(false);
           setSelectedWcId(null);
           // Odświeżenie danych po zamknięciu bottom sheet
-          if (selectedWcId) {
-            reset();
-            loadInitialData();
-          }
+          //if (selectedWcId) {
+          //  reset();
+          //  loadInitialData();
+          //}
         }}
         snapPoints={[0.5, 0.8, 0.95]}
         initialSnap={0.8}
@@ -2269,8 +2285,8 @@ export default function Home() {
               setBottomSheetOpen(false);
               setSelectedWcId(null);
               // Odświeżenie danych po zamknięciu szczegółów WC
-              reset();
-              loadInitialData();
+              //reset();
+              //loadInitialData();
             }}
           />
         ) : (
@@ -2343,7 +2359,7 @@ export default function Home() {
                             backgroundColor: "#2196F3",
                             borderRadius: "2em",
                             fontWeight: "bold",
-                            marginTop: "2px",
+                            marginTop: "12px",
                             whiteSpace: "nowrap",
                             height: "3em",
                             lineHeight: "3.5em",
@@ -2367,48 +2383,7 @@ export default function Home() {
                           {formatDistance(wc.distance_km || wc.distance)}
                         </div>
                       ) : null}
-                      <div
-                        className="place-type-cell"
-                        style={{
-                          textAlign: "center",
-                          display: "inline-block",
-                        }}
-                      >
-                        <div
-                          style={{
-                            fontSize: "1rem",
-                            color: "#ffffff",
-                            backgroundColor: "#2196F3",
-                            padding: "0px",
-                            borderRadius: "2em",
-                            fontWeight: "bold",
-                            marginTop: "p0x",
-                            whiteSpace: "nowrap",
-                            height: "3em",
-                            lineHeight: "4em",
-                            position: "relative",
-                            right: "-1em",
-                            width: "3em",
-                            zIndex: 1000,
-                            display: "inline-block",
-                            alignItems: "center",
-                            justifyContent: "space-evenly",
-                            flexWrap: "wrap",
-                            flexDirection: "column",
-                            alignContent: "center",
-                            margin: "auto",
-                            verticalAlign: "middle",
-                            marginLeft: "1em",
-                          }}
-                        >
-                          <PlaceTypeDisplay
-                            placeType={wc.place_type}
-                            showIcon={true}
-                            showText={false}
-                            iconSize={22}
-                          />
-                        </div>
-                      </div>
+                      
                     </div>
                     <div
                       className="table-cell name-cell"
@@ -2497,11 +2472,11 @@ export default function Home() {
                       onMouseLeave={(e) =>
                         (e.target.style.backgroundColor = "#007bff")
                       }
-                      title="Pokaż szczegóły"
-                      aria-label={`Pokaż szczegóły ${wc.name}`}
+                      title="Oceń"
+                      aria-label={`Oceń ${wc.name}`}
                     >
-                      <Eye size={16} />
-                      Pokaż szczegóły
+                      <Star size={16} />
+                      Oceń
                     </button>
                     <button
                       onClick={(e) => {

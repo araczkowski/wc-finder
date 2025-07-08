@@ -299,7 +299,26 @@ export default function WCReport({ wcId, onClose }) {
           }}
         >
           {wcData.name}
+          {/* Address */}
+        <div>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            fontSize: "14px",
+            color: "#2c3e50",
+            marginBottom: "8px",
+            fontWeight: "600",
+          }}
+        >
+        </div>
+          <div style={{ fontSize: "14px", color: "#34495e" }}>
+            <MapPin size={16} style={{ marginRight: "8px" }} />
+            {wcData.address || "Nie podano"}
+          </div>
+        </div>
         </h2>
+        
 
         {(session?.user?.email === wcData.created_by ||
           (wcData.google_place_id && session?.user?.email)) && (
@@ -363,31 +382,7 @@ export default function WCReport({ wcId, onClose }) {
             {formatDistance(wcData.distance_km || wcData.distance)}
           </div>
         ) : null}
-
-        {/* Place Type */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            backgroundColor: "#9b59b6",
-            color: "white",
-            padding: "10px 16px",
-            borderRadius: "25px",
-            fontSize: "14px",
-            fontWeight: "bold",
-            boxShadow: "0 2px 10px rgba(155, 89, 182, 0.3)",
-          }}
-        >
-          <PlaceTypeDisplay
-            placeType={wcData.place_type}
-            showIcon={true}
-            showText={true}
-            iconSize={16}
-            iconProps={{ style: { marginRight: "8px" } }}
-          />
-        </div>
       </div>
-
       {/* Rating Display */}
       <div
         style={{
@@ -650,34 +645,6 @@ export default function WCReport({ wcId, onClose }) {
           )}
         </div>
       )}
-
-      {/* Address */}
-      <div
-        style={{
-          marginBottom: "20px",
-          padding: "15px",
-          backgroundColor: "#ecf0f1",
-          borderRadius: "10px",
-          border: "1px solid #bdc3c7",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            fontSize: "14px",
-            color: "#2c3e50",
-            marginBottom: "8px",
-            fontWeight: "600",
-          }}
-        >
-          <MapPin size={16} style={{ marginRight: "8px" }} />
-          Adres:
-        </div>
-        <div style={{ fontSize: "14px", color: "#34495e" }}>
-          {wcData.address || "Nie podano"}
-        </div>
-      </div>
 
       {/* Tags - moved above images */}
       <div
