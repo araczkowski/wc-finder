@@ -62,3 +62,9 @@ pg_dump -U postgres.hzkvqzhvgdwlbienjgjx -h aws-0-eu-north-1.pooler.supabase.com
 ```
 psql postgresql://postgres:<PASSWORD>@130.61.187.2:9876/postgres -f remove-duplicates.sql
 ```
+
+
+6. log to server
+```
+ssh ubuntu@130.61.187.2 -i ~/.ssh/ssh-key-2023-10-25.key
+```
