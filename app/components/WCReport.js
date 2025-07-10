@@ -300,28 +300,26 @@ export default function WCReport({ wcId, onClose }) {
         >
           {wcData.name}
           {/* Address */}
-        <div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            fontSize: "14px",
-            color: "#2c3e50",
-            marginBottom: "8px",
-            fontWeight: "600",
-          }}
-        >
-        </div>
-          <div style={{ fontSize: "14px", color: "#34495e" }}>
-            <MapPin size={16} style={{ marginRight: "8px" }} />
-            {wcData.address || "Nie podano"}
+          <div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                fontSize: "14px",
+                color: "#2c3e50",
+                marginBottom: "8px",
+                fontWeight: "600",
+              }}
+            ></div>
+            <div style={{ fontSize: "14px", color: "#34495e" }}>
+              <MapPin size={16} style={{ marginRight: "8px" }} />
+              {wcData.address || "Nie podano"}
+            </div>
           </div>
-        </div>
         </h2>
-        
 
         {(session?.user?.email === wcData.created_by ||
-          (wcData.google_place_id && session?.user?.email)) && (
+          session?.user?.email === "admin@sviete.pl") && (
           <Link
             href={`/wc/edit/${wcData.id}`}
             onClick={(e) => e.stopPropagation()}
@@ -905,7 +903,7 @@ export default function WCReport({ wcId, onClose }) {
         )}
       </div>
 
-      {/* Action Buttons */}
+      {/* Close Button */}
       <div
         style={{
           marginTop: "25px",
@@ -939,33 +937,8 @@ export default function WCReport({ wcId, onClose }) {
             e.target.style.transform = "translateY(0)";
           }}
         >
-          ← Powrót
+          Zamknij
         </button>
-        <Link
-          href={`/wc/view/${wcData.id}`}
-          style={{
-            display: "inline-block",
-            padding: "14px 28px",
-            backgroundColor: "#3498db",
-            color: "white",
-            borderRadius: "8px",
-            textDecoration: "none",
-            fontSize: "16px",
-            fontWeight: "500",
-            transition: "all 0.3s ease",
-            boxShadow: "0 2px 10px rgba(52, 152, 219, 0.3)",
-          }}
-          onMouseEnter={(e) => {
-            e.target.style.backgroundColor = "#2980b9";
-            e.target.style.transform = "translateY(-2px)";
-          }}
-          onMouseLeave={(e) => {
-            e.target.style.backgroundColor = "#3498db";
-            e.target.style.transform = "translateY(0)";
-          }}
-        >
-          Pełny widok
-        </Link>
       </div>
 
       <style jsx>{`

@@ -27,6 +27,7 @@ import {
   Star,
   Plus,
   Unplug,
+  Eye,
 } from "lucide-react";
 
 // Basic inline styles for layout - consider moving to CSS modules or global CSS
@@ -1553,7 +1554,7 @@ export default function Home() {
                           size={isMobile ? 14 : 16}
                         />
                         <span className="add-wc-text">
-                          {(width || 500) < 400 ? "+" : t("addNewWc")}
+                          {(width || 500) < 400 ? "+" : "Dodaj nowe WC"}
                         </span>
                       </Link>
                     )}
@@ -2336,7 +2337,7 @@ export default function Home() {
                       }}
                     >
                       {session?.user?.email === wc.created_by ||
-                      (wc.google_place_id && session?.user?.email) ? (
+                      session?.user?.email === "admin@sviete.pl" ? (
                         <Link
                           href={`/wc/edit/${wc.id}`}
                           onClick={(e) => e.stopPropagation()}
@@ -2346,7 +2347,22 @@ export default function Home() {
                             zIndex: "10000",
                           }}
                         >
-                          <SquarePen size={14} style={{ marginRight: "4px" }} />
+                          <SquarePen
+                            size={14}
+                            style={{ marginRight: "4px" }}
+                          />{" "}
+                        </Link>
+                      ) : session?.user?.email ? (
+                        <Link
+                          href={`/wc/view/${wc.id}`}
+                          onClick={(e) => e.stopPropagation()}
+                          className="view-button"
+                          title={t("fullViewTitle")}
+                          style={{
+                            zIndex: "10000",
+                          }}
+                        >
+                          <Eye size={14} style={{ marginRight: "4px" }} />
                         </Link>
                       ) : (
                         <span>WC Google: {wc.google_place_id}</span>
