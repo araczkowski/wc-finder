@@ -10,7 +10,7 @@ const nextConfig = {
       "http://localhost:3000", // Common for local development
       "http://127.0.0.1:3000", // Also common for local development
       "http://192.168.0.57:3000", // The specific IP you are accessing from
-      "http://130.61.187.2:8000", // The specific IP you are accessing from
+      "https://get-iot.com:8443", // The specific IP you are accessing from
       // You can add other development origins if needed, e.g.,
       // 'http://<your-computer-name>.local:3000',
     ],
@@ -33,15 +33,15 @@ const nextConfig = {
         pathname: "/storage/v1/object/public/wc-photos/**",
       },
       {
-        protocol: "http",
-        hostname: "130.61.187.2",
-        port: "8000",
+        protocol: "https",
+        hostname: "get-iot.com",
+        port: "8443",
         pathname: "/storage/v1/object/public/wc-images/**",
       },
       {
-        protocol: "http",
-        hostname: "130.61.187.2",
-        port: "8000",
+        protocol: "https",
+        hostname: "get-iot.com",
+        port: "8443",
         pathname: "/storage/v1/object/public/wc-photos/**",
       },
       // Add other remote patterns here if you use images from other domains
@@ -155,9 +155,9 @@ const nextConfig = {
         pathname: "/**",
       },
       {
-        protocol: "http",
-        hostname: "130.61.187.2",
-        port: "8000",
+        protocol: "https",
+        hostname: "get-iot.com",
+        port: "8443",
         pathname: "/**",
       },
       {
