@@ -16,6 +16,7 @@ import WCTags from "./components/WCTags";
 import BottomSheet from "./components/BottomSheet";
 import WCReport from "./components/WCReport";
 import GoogleMap from "./components/GoogleMap";
+import PhotoGallery from "./components/PhotoGallery";
 import { getPlaceTypeLabel } from "./utils/placeTypes";
 import { pl } from "./locales/pl";
 import {
@@ -335,6 +336,11 @@ export default function Home() {
   const [selectedWcForMap, setSelectedWcForMap] = useState(null);
   const pulseTimerRef = useRef(null);
 
+  // Gallery states
+  const [galleryOpen, setGalleryOpen] = useState(false);
+  const [galleryImages, setGalleryImages] = useState([]);
+  const [galleryInitialIndex, setGalleryInitialIndex] = useState(0);
+
   // Funkcja centrowania mapy na konkretnym WC
   const showWcOnMap = (wc) => {
     if (wc.lat && wc.lng) {
@@ -385,6 +391,19 @@ export default function Home() {
       }
     };
   }, []);
+
+  // Gallery functions
+  const openGallery = (images, initialIndex = 0) => {
+    setGalleryImages(images);
+    setGalleryInitialIndex(initialIndex);
+    setGalleryOpen(true);
+  };
+
+  const closeGallery = () => {
+    setGalleryOpen(false);
+    setGalleryImages([]);
+    setGalleryInitialIndex(0);
+  };
 
   // Funkcja automatycznego logowania
   const handleAutoLogin = async () => {
@@ -1217,6 +1236,15 @@ export default function Home() {
               <UserDropdown session={session} />
             )}
           </div>
+
+          {/* Photo Gallery */}
+          <PhotoGallery
+            images={galleryImages}
+            isOpen={galleryOpen}
+            onClose={closeGallery}
+            initialIndex={galleryInitialIndex}
+            showThumbnails={true}
+          />
         </div>
       );
     }
@@ -2443,13 +2471,28 @@ export default function Home() {
                       style={{ textAlign: "left", width: "100%" }}
                     >
                       {wc.gallery_photos && wc.gallery_photos.length > 0 ? (
-                        <ImageSlideshow
-                          images={wc.gallery_photos}
-                          alt={wc.name || t("wcImage")}
-                          className="thumbnail-in-table"
-                          width={200}
-                          height={150}
-                        />
+                        <div
+                          onClick={() => openGallery(wc.gallery_photos, 0)}
+                          style={{
+                            cursor: "pointer",
+                            transition: "transform 0.2s ease",
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.transform = "scale(1.02)";
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.transform = "scale(1)";
+                          }}
+                          title="Kliknij aby powiększyć zdjęcie"
+                        >
+                          <ImageSlideshow
+                            images={wc.gallery_photos}
+                            alt={wc.name || t("wcImage")}
+                            className="thumbnail-in-table"
+                            width={200}
+                            height={150}
+                          />
+                        </div>
                       ) : (
                         <div className="thumbnail-placeholder">
                           {t("noImage")}

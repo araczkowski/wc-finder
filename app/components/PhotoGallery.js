@@ -6,7 +6,9 @@ import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 // Helper function to safely extract image URL
 const getImageUrl = (image) => {
-  if (!image) return null;
+  if (!image) {
+    return null;
+  }
 
   // Handle different image formats
   if (typeof image === "string") {
@@ -15,7 +17,15 @@ const getImageUrl = (image) => {
 
   // Handle object with different possible URL properties
   if (typeof image === "object") {
-    return image.url || image.photo || image.src || null;
+    return (
+      image.url ||
+      image.photo ||
+      image.src ||
+      image.image_url ||
+      image.imageUrl ||
+      image.href ||
+      null
+    );
   }
 
   return null;
@@ -140,14 +150,19 @@ export default function PhotoGallery({
     }
   };
 
-  if (!isVisible || !images.length) return null;
+  if (!isVisible || !images.length) {
+    return null;
+  }
 
   // Filter out undefined/null images and images without valid URLs
   const validImages = images.filter((img) => {
     const url = getImageUrl(img);
     return url && url.trim() !== "";
   });
-  if (validImages.length === 0) return null;
+
+  if (validImages.length === 0) {
+    return null;
+  }
 
   // Ensure currentIndex is within bounds
   const safeIndex = Math.max(0, Math.min(currentIndex, validImages.length - 1));

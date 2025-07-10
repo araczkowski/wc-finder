@@ -199,9 +199,25 @@ export default function WCReport({ wcId, onClose }) {
 
   // Gallery functions
   const openGallery = (images, initialIndex = 0) => {
-    setGalleryImages(images);
-    setGalleryInitialIndex(initialIndex);
-    setGalleryOpen(true);
+    try {
+      console.log("[WCReport] openGallery called with:", {
+        images: images?.slice(0, 2), // Show first 2 images for debug
+        imagesLength: images?.length,
+        initialIndex,
+      });
+
+      if (!images || images.length === 0) {
+        console.warn("[WCReport] No images provided to openGallery");
+        return;
+      }
+
+      setGalleryImages(images);
+      setGalleryInitialIndex(initialIndex);
+      setGalleryOpen(true);
+      console.log("[WCReport] Gallery opened successfully");
+    } catch (error) {
+      console.error("[WCReport] Error opening gallery:", error);
+    }
   };
 
   const closeGallery = () => {
@@ -761,6 +777,22 @@ export default function WCReport({ wcId, onClose }) {
           >
             <Camera size={18} style={{ marginRight: "8px" }} />
             Zdjęcia
+            {(wcData.gallery_photos?.length || 0) + wcPhotos.length > 0 && (
+              <span
+                style={{
+                  marginLeft: "8px",
+                  fontSize: "14px",
+                  color: "#7f8c8d",
+                  fontWeight: "500",
+                  backgroundColor: "#f8f9fa",
+                  padding: "2px 8px",
+                  borderRadius: "12px",
+                  border: "1px solid #e9ecef",
+                }}
+              >
+                {(wcData.gallery_photos?.length || 0) + wcPhotos.length} łącznie
+              </span>
+            )}
           </div>
         </div>
 
@@ -789,19 +821,22 @@ export default function WCReport({ wcId, onClose }) {
               Zdjęcia z galerii:
             </div>
             <div
-              onClick={() => openGallery(wcData.gallery_photos, 0)}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log("[WCReport] Gallery photo container clicked!");
+                console.log(
+                  "[WCReport] wcData.gallery_photos:",
+                  wcData.gallery_photos,
+                );
+                openGallery(wcData.gallery_photos, 0);
+              }}
               style={{
                 cursor: "pointer",
                 position: "relative",
                 display: "inline-block",
-                transition: "transform 0.3s ease",
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "scale(1.05)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "scale(1)";
-              }}
+              title="Kliknij aby powiększyć zdjęcie"
             >
               <ImageSlideshow
                 images={wcData.gallery_photos}
@@ -812,7 +847,7 @@ export default function WCReport({ wcId, onClose }) {
                   borderRadius: "10px",
                   overflow: "hidden",
                   boxShadow: "0 4px 15px rgba(0, 0, 0, 0.1)",
-                  pointerEvents: "none",
+                  cursor: "pointer",
                 }}
               />
               <div
@@ -829,8 +864,10 @@ export default function WCReport({ wcId, onClose }) {
                 }}
               >
                 {wcData.gallery_photos.length > 1
-                  ? `${wcData.gallery_photos.length} zdjęć`
-                  : "Kliknij aby powiększyć"}
+                  ? `${wcData.gallery_photos.length} zdjęć - kliknij aby zobaczyć wszystkie`
+                  : wcPhotos.length > 0
+                    ? "Kliknij aby zobaczyć wszystkie zdjęcia"
+                    : "Kliknij aby powiększyć"}
               </div>
             </div>
           </div>
@@ -889,12 +926,14 @@ export default function WCReport({ wcId, onClose }) {
                     }}
                     onClick={(e) => {
                       e.stopPropagation();
+                      console.log("[WCReport] User photo clicked!");
+                      console.log("[WCReport] wcPhotos:", wcPhotos);
                       openGallery(
                         wcPhotos,
                         wcPhotos.findIndex((p) => p.id === photo.id),
                       );
                     }}
-                    title="Kliknij aby powiększyć"
+                    title="Kliknij aby otworzyć galerię wszystkich zdjęć"
                   />
                   {photo.user_id === session?.user?.id && (
                     <button
@@ -947,6 +986,24 @@ export default function WCReport({ wcId, onClose }) {
                     }}
                   >
                     {photo.user_id === session?.user?.id ? "Ty" : "Użytkownik"}
+                  </div>
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "6px",
+                      left: "6px",
+                      backgroundColor: "rgba(0, 0, 0, 0.7)",
+                      color: "white",
+                      fontSize: "10px",
+                      padding: "2px 6px",
+                      borderRadius: "8px",
+                      fontWeight: "500",
+                    }}
+                  >
+                    {(wcData.gallery_photos?.length || 0) +
+                      wcPhotos.findIndex((p) => p.id === photo.id) +
+                      1}
+                    /{(wcData.gallery_photos?.length || 0) + wcPhotos.length}
                   </div>
                 </div>
               ))}
@@ -1072,6 +1129,12 @@ export default function WCReport({ wcId, onClose }) {
       `}</style>
 
       {/* Photo Gallery */}
+      {console.log("[WCReport] Rendering PhotoGallery with:", {
+        galleryImages: galleryImages?.slice(0, 2),
+        galleryImagesLength: galleryImages?.length,
+        galleryOpen,
+        galleryInitialIndex,
+      })}
       <PhotoGallery
         images={galleryImages}
         isOpen={galleryOpen}
