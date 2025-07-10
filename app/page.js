@@ -2460,10 +2460,19 @@ export default function Home() {
 
                   <div
                     className="table-cell third-cell"
-                    style={{ textAlign: "center" }}
+                    style={{ textAlign: "center", flexDirection: "column" }}
                   >
                     <div style={{ marginBottom: "4px" }}>
                       {wc.address || "N/A"}
+                    </div>
+                    <div
+                      style={{
+                        fontSize: "12px",
+                        color: "#666",
+                        marginTop: "2px",
+                      }}
+                    >
+                      ({getPlaceTypeLabel(wc.place_type, pl)})
                     </div>
                   </div>
 
@@ -2474,6 +2483,7 @@ export default function Home() {
                       display: "flex",
                       gap: "8px",
                       justifyContent: "center",
+                      flexDirection: "row",
                     }}
                   >
                     <button

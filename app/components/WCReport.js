@@ -13,12 +13,14 @@ import {
   X,
   Camera,
   MapPin,
+  Eye,
 } from "lucide-react";
 import ImageSlideshow from "./ImageSlideshow";
 import PlaceTypeDisplay from "./PlaceTypeDisplay";
 import RatingDisplay from "./RatingDisplay";
 import WCTags from "./WCTags";
 import PhotoUpload from "./PhotoUpload";
+import { pl } from "../locales/pl";
 
 export default function WCReport({ wcId, onClose }) {
   const { data: session } = useSession();
@@ -315,11 +317,32 @@ export default function WCReport({ wcId, onClose }) {
               <MapPin size={16} style={{ marginRight: "8px" }} />
               {wcData.address || "Nie podano"}
             </div>
+            {/* Place Type */}
+            <div
+              style={{
+                fontSize: "14px",
+                color: "#34495e",
+                marginTop: "4px",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              {" "}
+              (
+              <PlaceTypeDisplay
+                placeType={wcData.place_type}
+                showIcon={true}
+                showText={true}
+                iconSize={16}
+                iconProps={{ style: { marginRight: "8px", color: "#34495e" } }}
+              />
+              )
+            </div>
           </div>
         </h2>
 
-        {(session?.user?.email === wcData.created_by ||
-          session?.user?.email === "admin@sviete.pl") && (
+        {session?.user?.email === wcData.created_by ||
+        session?.user?.email === "admin@sviete.pl" ? (
           <Link
             href={`/wc/edit/${wcData.id}`}
             onClick={(e) => e.stopPropagation()}
@@ -348,7 +371,36 @@ export default function WCReport({ wcId, onClose }) {
             <SquarePen size={16} style={{ marginRight: "6px" }} />
             Edytuj
           </Link>
-        )}
+        ) : session?.user?.email ? (
+          <Link
+            href={`/wc/view/${wcData.id}`}
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              padding: "10px 16px",
+              backgroundColor: "#95a5a6",
+              color: "white",
+              borderRadius: "8px",
+              textDecoration: "none",
+              fontSize: "14px",
+              fontWeight: "500",
+              transition: "all 0.3s ease",
+              boxShadow: "0 2px 10px rgba(149, 165, 166, 0.3)",
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.backgroundColor = "#7f8c8d";
+              e.target.style.transform = "translateY(-2px)";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.backgroundColor = "#95a5a6";
+              e.target.style.transform = "translateY(0)";
+            }}
+          >
+            <Eye size={16} style={{ marginRight: "6px" }} />
+            {pl.details}
+          </Link>
+        ) : null}
       </div>
 
       {/* Distance and Type Row */}

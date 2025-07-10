@@ -127,6 +127,7 @@ export const pl = {
   // Accessibility
   editIconTitle: "Edytuj WC",
   fullViewTitle: "Pełny widok",
+  details: "Szczegóły",
   userAvatar: "Awatar użytkownika",
   wcImage: "Zdjęcie WC",
   searchingIcon: "Osoba szukająca WC",
