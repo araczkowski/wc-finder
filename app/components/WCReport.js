@@ -20,6 +20,7 @@ import PlaceTypeDisplay from "./PlaceTypeDisplay";
 import RatingDisplay from "./RatingDisplay";
 import WCTags from "./WCTags";
 import PhotoUpload from "./PhotoUpload";
+import PhotoGallery from "./PhotoGallery";
 import { pl } from "../locales/pl";
 
 export default function WCReport({ wcId, onClose }) {
@@ -47,6 +48,11 @@ export default function WCReport({ wcId, onClose }) {
   const [wcPhotos, setWcPhotos] = useState([]);
   const [photosLoading, setPhotosLoading] = useState(false);
   const [photoError, setPhotoError] = useState("");
+
+  // Gallery states
+  const [galleryOpen, setGalleryOpen] = useState(false);
+  const [galleryImages, setGalleryImages] = useState([]);
+  const [galleryInitialIndex, setGalleryInitialIndex] = useState(0);
 
   const fetchWcData = useCallback(async () => {
     try {
@@ -189,6 +195,19 @@ export default function WCReport({ wcId, onClose }) {
       console.error("Błąd usuwania zdjęcia:", err);
       setPhotoError(err.message || "Nie udało się usunąć zdjęcia");
     }
+  };
+
+  // Gallery functions
+  const openGallery = (images, initialIndex = 0) => {
+    setGalleryImages(images);
+    setGalleryInitialIndex(initialIndex);
+    setGalleryOpen(true);
+  };
+
+  const closeGallery = () => {
+    setGalleryOpen(false);
+    setGalleryImages([]);
+    setGalleryInitialIndex(0);
   };
 
   const formatDistance = (distance) => {
@@ -769,17 +788,51 @@ export default function WCReport({ wcId, onClose }) {
             >
               Zdjęcia z galerii:
             </div>
-            <ImageSlideshow
-              images={wcData.gallery_photos}
-              alt={wcData.name || "WC Image"}
-              width={200}
-              height={150}
+            <div
+              onClick={() => openGallery(wcData.gallery_photos, 0)}
               style={{
-                borderRadius: "10px",
-                overflow: "hidden",
-                boxShadow: "0 4px 15px rgba(0, 0, 0, 0.1)",
+                cursor: "pointer",
+                position: "relative",
+                display: "inline-block",
+                transition: "transform 0.3s ease",
               }}
-            />
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "scale(1.05)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "scale(1)";
+              }}
+            >
+              <ImageSlideshow
+                images={wcData.gallery_photos}
+                alt={wcData.name || "WC Image"}
+                width={200}
+                height={150}
+                style={{
+                  borderRadius: "10px",
+                  overflow: "hidden",
+                  boxShadow: "0 4px 15px rgba(0, 0, 0, 0.1)",
+                  pointerEvents: "none",
+                }}
+              />
+              <div
+                style={{
+                  position: "absolute",
+                  top: "8px",
+                  right: "8px",
+                  backgroundColor: "rgba(0, 0, 0, 0.7)",
+                  color: "white",
+                  padding: "4px 8px",
+                  borderRadius: "12px",
+                  fontSize: "12px",
+                  fontWeight: "500",
+                }}
+              >
+                {wcData.gallery_photos.length > 1
+                  ? `${wcData.gallery_photos.length} zdjęć`
+                  : "Kliknij aby powiększyć"}
+              </div>
+            </div>
           </div>
         )}
 
@@ -816,9 +869,11 @@ export default function WCReport({ wcId, onClose }) {
                     transition: "transform 0.3s ease",
                   }}
                   onMouseEnter={(e) =>
-                    (e.target.style.transform = "scale(1.05)")
+                    (e.currentTarget.style.transform = "scale(1.05)")
                   }
-                  onMouseLeave={(e) => (e.target.style.transform = "scale(1)")}
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.transform = "scale(1)")
+                  }
                 >
                   <Image
                     src={photo.photo}
@@ -830,11 +885,23 @@ export default function WCReport({ wcId, onClose }) {
                       height: "105px",
                       objectFit: "cover",
                       display: "block",
+                      cursor: "pointer",
                     }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      openGallery(
+                        wcPhotos,
+                        wcPhotos.findIndex((p) => p.id === photo.id),
+                      );
+                    }}
+                    title="Kliknij aby powiększyć"
                   />
                   {photo.user_id === session?.user?.id && (
                     <button
-                      onClick={() => handleDeletePhoto(photo.id)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleDeletePhoto(photo.id);
+                      }}
                       style={{
                         position: "absolute",
                         top: "6px",
@@ -1003,6 +1070,15 @@ export default function WCReport({ wcId, onClose }) {
           }
         }
       `}</style>
+
+      {/* Photo Gallery */}
+      <PhotoGallery
+        images={galleryImages}
+        isOpen={galleryOpen}
+        onClose={closeGallery}
+        initialIndex={galleryInitialIndex}
+        showThumbnails={true}
+      />
     </div>
   );
 }
