@@ -27,6 +27,7 @@ import { pl } from "../../../locales/pl";
 import PlaceTypeDisplay from "../../../components/PlaceTypeDisplay";
 import WCTags from "../../../components/WCTags";
 import { CircleChevronLeft, Camera, X, Image as ImageIcon } from "lucide-react";
+import PhotoGallery from "../../../components/PhotoGallery";
 
 const styles = {
   loadingMessage: {
@@ -262,6 +263,11 @@ export default function ViewWcPage() {
   const [optimizationInfo, setOptimizationInfo] = useState(null);
   const [showSourceSelector, setShowSourceSelector] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+
+  // Gallery states
+  const [galleryOpen, setGalleryOpen] = useState(false);
+  const [galleryImages, setGalleryImages] = useState([]);
+  const [galleryInitialIndex, setGalleryInitialIndex] = useState(0);
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -604,6 +610,58 @@ export default function ViewWcPage() {
     }
   };
 
+  // Gallery functions
+  const openGallery = (images, initialIndex = 0) => {
+    setGalleryImages(images);
+    setGalleryInitialIndex(initialIndex);
+    setGalleryOpen(true);
+  };
+
+  // Combined gallery function for all images
+  const openCombinedGallery = (sourceType, sourceIndex = 0) => {
+    const allImages = [];
+    let targetIndex = 0;
+
+    // Add main WC image if exists
+    if (wcData.image_url) {
+      allImages.push({
+        image_url: wcData.image_url,
+        url: wcData.image_url,
+        alt: `${wcData.name} - główne zdjęcie`,
+        source: "main",
+      });
+    }
+
+    // Add user photos
+    if (wcPhotos.length > 0) {
+      wcPhotos.forEach((photo, index) => {
+        allImages.push({
+          ...photo,
+          url: photo.photo,
+          alt: `Zdjęcie dodane przez ${photo.user_email || "Anonim"}`,
+          source: "user",
+        });
+      });
+    }
+
+    // Calculate target index based on source
+    if (sourceType === "main") {
+      targetIndex = 0;
+    } else if (sourceType === "user") {
+      targetIndex = (wcData.image_url ? 1 : 0) + sourceIndex;
+    }
+
+    setGalleryImages(allImages);
+    setGalleryInitialIndex(targetIndex);
+    setGalleryOpen(true);
+  };
+
+  const closeGallery = () => {
+    setGalleryOpen(false);
+    setGalleryImages([]);
+    setGalleryInitialIndex(0);
+  };
+
   if (pageLoading || sessionStatus === "loading") {
     return <div style={styles.loadingMessage}>Ładowanie szczegółów WC...</div>;
   }
@@ -705,13 +763,30 @@ export default function ViewWcPage() {
           <div>
             <label style={styles.formLabel}>Zdjęcie</label>
             {wcData.image_url ? (
-              <div style={{ marginTop: "10px" }}>
+              <div
+                style={{
+                  marginTop: "10px",
+                  cursor: "pointer",
+                  transition: "transform 0.2s ease",
+                }}
+                onClick={() => openCombinedGallery("main", 0)}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "scale(1.02)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "scale(1)";
+                }}
+                title="Kliknij aby otworzyć galerię wszystkich zdjęć"
+              >
                 <Image
                   src={wcData.image_url}
                   alt="WC"
                   width={300}
                   height={300}
-                  style={styles.imagePreview}
+                  style={{
+                    ...styles.imagePreview,
+                    cursor: "pointer",
+                  }}
                 />
               </div>
             ) : (
@@ -1154,21 +1229,39 @@ export default function ViewWcPage() {
             </p>
           ) : wcPhotos.length > 0 ? (
             <div style={styles.photoGallery}>
-              {wcPhotos.map((photo) => (
-                <div key={photo.id} style={styles.photoCard}>
+              {wcPhotos.map((photo, index) => (
+                <div
+                  key={photo.id}
+                  style={styles.photoCard}
+                  onClick={() => openCombinedGallery("user", index)}
+                  title="Kliknij aby otworzyć galerię wszystkich zdjęć"
+                >
                   <Image
                     src={photo.photo}
                     alt="WC Photo"
                     width={200}
                     height={200}
-                    style={styles.photoImage}
+                    style={{
+                      ...styles.photoImage,
+                      cursor: "pointer",
+                      transition: "transform 0.2s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = "scale(1.05)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = "scale(1)";
+                    }}
                   />
                   <div style={styles.photoInfo}>
                     <div>Dodane przez: {photo.user_email || "Anonim"}</div>
                     <div>{new Date(photo.created_at).toLocaleDateString()}</div>
                     {photo.user_id === session?.user?.id && (
                       <button
-                        onClick={() => handleDeletePhoto(photo.id)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDeletePhoto(photo.id);
+                        }}
                         style={styles.deletePhotoButton}
                       >
                         Usuń
@@ -1271,6 +1364,15 @@ export default function ViewWcPage() {
             </div>
           </div>
         )}
+
+        {/* Photo Gallery */}
+        <PhotoGallery
+          images={galleryImages}
+          isOpen={galleryOpen}
+          onClose={closeGallery}
+          initialIndex={galleryInitialIndex}
+          showThumbnails={true}
+        />
       </div>
     </div>
   );
