@@ -4,6 +4,23 @@ import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
+// Helper function to safely extract image URL
+const getImageUrl = (image) => {
+  if (!image) return null;
+
+  // Handle different image formats
+  if (typeof image === "string") {
+    return image;
+  }
+
+  // Handle object with different possible URL properties
+  if (typeof image === "object") {
+    return image.url || image.photo || image.src || null;
+  }
+
+  return null;
+};
+
 export default function PhotoGallery({
   images = [],
   isOpen = false,
@@ -16,10 +33,12 @@ export default function PhotoGallery({
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   // Update current index when initialIndex changes
   useEffect(() => {
     setCurrentIndex(initialIndex);
+    setImageError(false);
   }, [initialIndex]);
 
   // Handle visibility animation
@@ -33,17 +52,23 @@ export default function PhotoGallery({
   }, [isOpen]);
 
   const goToNext = useCallback(() => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1,
-    );
+    if (images.length === 0) return;
+    setCurrentIndex((prevIndex) => {
+      const nextIndex = prevIndex === images.length - 1 ? 0 : prevIndex + 1;
+      return Math.max(0, Math.min(nextIndex, images.length - 1));
+    });
     setIsLoading(true);
+    setImageError(false);
   }, [images.length]);
 
   const goToPrevious = useCallback(() => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1,
-    );
+    if (images.length === 0) return;
+    setCurrentIndex((prevIndex) => {
+      const nextIndex = prevIndex === 0 ? images.length - 1 : prevIndex - 1;
+      return Math.max(0, Math.min(nextIndex, images.length - 1));
+    });
     setIsLoading(true);
+    setImageError(false);
   }, [images.length]);
 
   // Keyboard navigation
@@ -77,10 +102,16 @@ export default function PhotoGallery({
     };
   }, [isOpen, currentIndex, onClose, goToPrevious, goToNext]);
 
-  const goToIndex = useCallback((index) => {
-    setCurrentIndex(index);
-    setIsLoading(true);
-  }, []);
+  const goToIndex = useCallback(
+    (index) => {
+      if (images.length === 0) return;
+      const safeIndex = Math.max(0, Math.min(index, images.length - 1));
+      setCurrentIndex(safeIndex);
+      setIsLoading(true);
+      setImageError(false);
+    },
+    [images.length],
+  );
 
   // Handle touch gestures
   const minSwipeDistance = 50;
@@ -111,7 +142,19 @@ export default function PhotoGallery({
 
   if (!isVisible || !images.length) return null;
 
-  const currentImage = images[currentIndex];
+  // Filter out undefined/null images and images without valid URLs
+  const validImages = images.filter((img) => {
+    const url = getImageUrl(img);
+    return url && url.trim() !== "";
+  });
+  if (validImages.length === 0) return null;
+
+  // Ensure currentIndex is within bounds
+  const safeIndex = Math.max(0, Math.min(currentIndex, validImages.length - 1));
+  const currentImage = validImages[safeIndex];
+
+  // If currentImage is undefined or null, return null to prevent errors
+  if (!currentImage) return null;
 
   return (
     <div
@@ -179,7 +222,7 @@ export default function PhotoGallery({
           zIndex: 10001,
         }}
       >
-        {currentIndex + 1} / {images.length}
+        {safeIndex + 1} / {validImages.length}
       </div>
 
       {/* Keyboard hints */}
@@ -201,7 +244,7 @@ export default function PhotoGallery({
       </div>
 
       {/* Navigation buttons */}
-      {images.length > 1 && (
+      {validImages.length > 1 && (
         <>
           <button
             onClick={(e) => {
@@ -304,8 +347,8 @@ export default function PhotoGallery({
         )}
 
         <Image
-          src={currentImage.url || currentImage.photo || currentImage}
-          alt={currentImage.alt || `Zdjęcie ${currentIndex + 1}`}
+          src={getImageUrl(currentImage)}
+          alt={currentImage.alt || `Zdjęcie ${safeIndex + 1}`}
           width={800}
           height={600}
           style={{
@@ -318,12 +361,37 @@ export default function PhotoGallery({
             transition: "opacity 0.3s ease-in-out",
           }}
           onLoad={() => setIsLoading(false)}
-          onError={() => setIsLoading(false)}
+          onError={(e) => {
+            console.error("Error loading image:", getImageUrl(currentImage));
+            setIsLoading(false);
+            setImageError(true);
+          }}
         />
+
+        {/* Error fallback */}
+        {imageError && (
+          <div
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              color: "white",
+              textAlign: "center",
+              backgroundColor: "rgba(0, 0, 0, 0.7)",
+              padding: "20px",
+              borderRadius: "8px",
+              border: "2px dashed #ccc",
+            }}
+          >
+            <div style={{ fontSize: "24px", marginBottom: "10px" }}>📷</div>
+            <div>Nie udało się załadować zdjęcia</div>
+          </div>
+        )}
       </div>
 
       {/* Thumbnails */}
-      {showThumbnails && images.length > 1 && (
+      {showThumbnails && validImages.length > 1 && (
         <div
           style={{
             position: "absolute",
@@ -341,7 +409,7 @@ export default function PhotoGallery({
           }}
           onClick={(e) => e.stopPropagation()}
         >
-          {images.map((image, index) => (
+          {validImages.map((image, index) => (
             <div
               key={index}
               onClick={() => goToIndex(index)}
@@ -351,28 +419,28 @@ export default function PhotoGallery({
                 height: "45px",
                 cursor: "pointer",
                 border:
-                  index === currentIndex
+                  index === safeIndex
                     ? "2px solid #007bff"
                     : "2px solid transparent",
                 borderRadius: "6px",
                 overflow: "hidden",
                 flexShrink: 0,
                 transition: "border-color 0.3s",
-                opacity: index === currentIndex ? 1 : 0.7,
+                opacity: index === safeIndex ? 1 : 0.7,
               }}
               onMouseEnter={(e) => {
-                if (index !== currentIndex) {
+                if (index !== safeIndex) {
                   e.target.style.opacity = "1";
                 }
               }}
               onMouseLeave={(e) => {
-                if (index !== currentIndex) {
+                if (index !== safeIndex) {
                   e.target.style.opacity = "0.7";
                 }
               }}
             >
               <Image
-                src={image.url || image.photo || image}
+                src={getImageUrl(image)}
                 alt={`Miniatura ${index + 1}`}
                 width={60}
                 height={45}
@@ -380,6 +448,10 @@ export default function PhotoGallery({
                   width: "100%",
                   height: "100%",
                   objectFit: "cover",
+                }}
+                onError={(e) => {
+                  console.error("Error loading thumbnail:", getImageUrl(image));
+                  e.target.style.display = "none";
                 }}
               />
             </div>
